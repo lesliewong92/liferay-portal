@@ -14,12 +14,31 @@
 
 package com.liferay.poshi.runner.logger;
 
+import com.liferay.poshi.runner.PoshiRunnerContext;
+import com.liferay.poshi.runner.util.FileUtil;
+
+import java.io.*;
+
+import org.dom4j.Element;
+
 /**
  * @author Michael Hashimoto
  */
 public final class XMLLoggerHandler {
 
-	public static void generateXMLLog(String classCommandName) {
+	public static void createXMLLogFile(String xmlLogContent) throws Exception {
+		String loggerContent = FileUtil.read(
+			"src/com/liferay/poshi/runner/logger/dependencies/index.html");
+
+		loggerContent = loggerContent.replace(
+			"<!-- insert content here -->", xmlLogContent);
+
+		FileUtil.write("test-results/html/index.html", loggerContent);
+	}
+
+	public static void generateXMLLog(String classCommandName)
+		throws Exception {
+
 		LoggerElement xmlLogElement = new LoggerElement();
 
 		xmlLogElement.setName("li");
@@ -53,6 +72,7 @@ public final class XMLLoggerHandler {
 		lineContainerElement.addChildLoggerElement(lineElement);
 
 		xmlLogElement.addChildLoggerElement(lineContainerElement);
-	}
 
+		createXMLLogFile(xmlLogElement.toString());
+	}
 }

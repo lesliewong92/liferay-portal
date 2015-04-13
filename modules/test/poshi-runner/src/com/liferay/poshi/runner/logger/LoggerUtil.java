@@ -21,6 +21,7 @@ import com.liferay.poshi.runner.util.Validator;
 import java.net.URL;
 
 import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.tools.ant.DirectoryScanner;
 
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
@@ -237,7 +238,9 @@ public final class LoggerUtil {
 		_javascriptExecutor.executeScript(sb.toString());
 	}
 
-	public static void startLogger() throws Exception {
+	public static void startLogger()
+	throws Exception {
+
 		if (isLoggerStarted()) {
 			return;
 		}
@@ -249,7 +252,7 @@ public final class LoggerUtil {
 		WebDriver.Window window = options.window();
 
 		window.setPosition(new Point(1050, 45));
-		window.setSize(new Dimension(850, 950));
+		window.setSize(new Dimension(950, 950));
 
 		_javascriptExecutor = (JavascriptExecutor)_webDriver;
 
@@ -270,16 +273,17 @@ public final class LoggerUtil {
 	}
 
 	private static String _getReportFilePath() {
-		LoggerUtil loggerUtil = new LoggerUtil();
+		DirectoryScanner directoryScanner = new DirectoryScanner();
 
-		Class<?> clazz = loggerUtil.getClass();
+		directoryScanner.setBasedir(_CURRENT_DIR);
+		directoryScanner.setIncludes(
+			new String[] {"test-results/html/index.html"});
 
-		ClassLoader classLoader = clazz.getClassLoader();
+		directoryScanner.scan();
 
-		URL url = classLoader.getResource(
-			"com/liferay/poshi/runner/logger/dependencies/report.html");
+		String[] filePathsArray = directoryScanner.getIncludedFiles();
 
-		return url.getPath();
+		return PoshiRunnerGetterUtil.getCanonicalPath(filePathsArray[0]);
 	}
 
 	private static final String _CURRENT_DIR =
