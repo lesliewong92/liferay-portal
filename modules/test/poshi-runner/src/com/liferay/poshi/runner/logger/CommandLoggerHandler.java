@@ -19,6 +19,8 @@ import com.liferay.poshi.runner.PoshiRunnerGetterUtil;
 import com.liferay.poshi.runner.PoshiRunnerVariablesUtil;
 import com.liferay.poshi.runner.util.Validator;
 
+import java.util.List;
+
 import org.dom4j.Element;
 
 /**
@@ -50,6 +52,36 @@ public final class CommandLoggerHandler {
 		}
 
 		_commandElement = null;
+	}
+
+	public static void sendRunLine(Element element, List<String> arguments) {
+		LoggerElement childContainerLoggerElement =
+			_commandLoggerElement.loggerElement("ul");
+
+		LoggerElement runLineLoggerElement = new LoggerElement();
+
+		runLineLoggerElement.setClassName("run-line");
+		runLineLoggerElement.setName("li");
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("Running <b>");
+		sb.append(element.attributeValue("selenium"));
+		sb.append("</b>");
+
+		if (!arguments.isEmpty()) {
+			sb.append(" with parameters");
+
+			for (String argument : arguments) {
+				sb.append(" <b>");
+				sb.append(argument);
+				sb.append("</b>");
+			}
+		}
+
+		runLineLoggerElement.setText(sb.toString());
+
+		childContainerLoggerElement.addChildLoggerElement(runLineLoggerElement);
 	}
 
 	public static void startCommand(Element element) throws Exception {
