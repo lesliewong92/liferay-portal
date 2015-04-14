@@ -14,10 +14,33 @@
 
 package com.liferay.poshi.runner.logger;
 
+import org.dom4j.Element;
+
 /**
  * @author Michael Hashimoto
  */
 public final class XMLLoggerHandler {
+
+	public static LoggerElement generateBtnContainerLoggerElement(
+		Element element) {
+
+		LoggerElement btnContainerLoggerElement = new LoggerElement();
+
+		btnContainerLoggerElement.setClassName("btn-container");
+		btnContainerLoggerElement.setName("div");
+
+		if (element.attributeValue("line-number") != null) {
+			LoggerElement lineNumberElement = new LoggerElement();
+
+			lineNumberElement.setClassName("line-number");
+			lineNumberElement.setName("div");
+			lineNumberElement.setText(element.attributeValue("line-number"));
+
+			btnContainerLoggerElement.addChildLoggerElement(lineNumberElement);
+		}
+
+		return btnContainerLoggerElement;
+	}
 
 	public static LoggerElement generateChildContainerLoggerElement() {
 		LoggerElement childContainerLoggerElement = new LoggerElement();
