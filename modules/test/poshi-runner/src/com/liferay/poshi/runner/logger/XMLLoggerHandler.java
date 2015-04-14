@@ -183,7 +183,44 @@ public final class XMLLoggerHandler {
 		return lineContainerLoggerElement;
 	}
 
-	public static void generateXMLLog(String classCommandName) {
+	public static LoggerElement generateLoggerElement(Element element) {
+		LoggerElement loggerElement = new LoggerElement();
+
+		loggerElement.setName("li");
+
+		String elementName = element.getName();
+
+		if (elementName.equals("execute")) {
+			Attribute attribute = element.attribute(1);
+
+			loggerElement.setClassName(attribute.getName());
+		}
+
+		loggerElement.addChildLoggerElement(
+			generateBtnContainerLoggerElement(element));
+		loggerElement.addChildLoggerElement(
+			generateLineContainerLoggerElement(element));
+
+		List<Element> childElements = element.elements();
+
+		if (!childElements.isEmpty()) {
+			LoggerElement childContainerLoggerElement =
+				generateChildContainerLoggerElement();
+
+			for (Element childElement : childElements) {
+				childContainerLoggerElement.addChildLoggerElement(
+					generateLoggerElement(childElement));
+			}
+
+			loggerElement.addChildLoggerElement(childContainerLoggerElement);
+			loggerElement.addChildLoggerElement(
+				generateClosingLoggerElement(element));
+		}
+
+		return loggerElement;
+	}
+
+	public static void generateXMLLog(String classCommandName, Element element) {
 		LoggerElement xmlLoggerElement = new LoggerElement();
 
 		xmlLoggerElement.setClassName("header");
