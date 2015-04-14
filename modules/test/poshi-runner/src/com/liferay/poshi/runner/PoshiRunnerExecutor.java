@@ -589,6 +589,8 @@ public class PoshiRunnerExecutor {
 			parameterClasses.add(String.class);
 		}
 
+		CommandLoggerHandler.sendRunLine(executeElement, arguments);
+
 		LiferaySelenium liferaySelenium = SeleniumUtil.getSelenium();
 
 		Class<?> clazz = liferaySelenium.getClass();
