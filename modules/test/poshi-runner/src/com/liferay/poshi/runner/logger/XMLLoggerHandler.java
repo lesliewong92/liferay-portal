@@ -87,4 +87,54 @@ public final class XMLLoggerHandler {
 		return childContainerLoggerElement;
 	}
 
+	private static LoggerElement _getLineGroupLoggerElement(Element element) {
+		LoggerElement lineGroupLoggerElement = new LoggerElement();
+
+		lineGroupLoggerElement.setName("li");
+
+		String elementName = element.getName();
+
+		if (elementName.equals("echo")) {
+			lineGroupLoggerElement.setClassName("echo line-group");
+		}
+		else if (elementName.equals("execute")) {
+			Attribute attribute = element.attribute(1);
+
+			lineGroupLoggerElement.setClassName(
+				attribute.getName() + " line-group");
+		}
+		else if (elementName.equals("if")) {
+			lineGroupLoggerElement.setClassName("conditional line-group");
+		}
+		else {
+			lineGroupLoggerElement.setClassName("line-group");
+		}
+
+		lineGroupLoggerElement.addChildLoggerElement(
+			_getBtnContainerLoggerElement(element));
+
+		lineGroupLoggerElement.addChildLoggerElement(
+			_getLineContainerLoggerElement(element));
+
+		List<Element> childElements = element.elements();
+
+		if (!childElements.isEmpty()) {
+			LoggerElement childContainerLoggerElement =
+				_getChildContainerLoggerElement();
+
+			for (Element childElement : childElements) {
+				childContainerLoggerElement.addChildLoggerElement(
+					_getLineGroupLoggerElement(childElement));
+			}
+
+			lineGroupLoggerElement.addChildLoggerElement(
+				childContainerLoggerElement);
+
+			lineGroupLoggerElement.addChildLoggerElement(
+				_getClosingLineContainerLoggerElement(element));
+		}
+
+		return lineGroupLoggerElement;
+	}
+
 }
