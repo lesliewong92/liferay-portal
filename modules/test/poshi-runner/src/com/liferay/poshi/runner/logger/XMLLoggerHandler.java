@@ -108,6 +108,41 @@ public final class XMLLoggerHandler {
 		return childContainerLoggerElement;
 	}
 
+	public static LoggerElement generateClosingLoggerElement(Element element) {
+		LoggerElement lineContainerLoggerElement = new LoggerElement();
+
+		lineContainerLoggerElement.setName("div");
+		lineContainerLoggerElement.setClassName("line-container");
+
+		LoggerElement lessThanLoggerElement = new LoggerElement();
+
+		lessThanLoggerElement.setName("span");
+		lessThanLoggerElement.setClassName("misc");
+		lessThanLoggerElement.setText("&lt;/");
+
+		lineContainerLoggerElement.addChildLoggerElement(lessThanLoggerElement);
+
+		LoggerElement actionTypeLoggerElement = new LoggerElement();
+
+		actionTypeLoggerElement.setName("span");
+		actionTypeLoggerElement.setClassName("action-type");
+		actionTypeLoggerElement.setText(element.getName());
+
+		lineContainerLoggerElement.addChildLoggerElement(
+			actionTypeLoggerElement);
+
+		LoggerElement greaterThanLoggerElement = new LoggerElement();
+
+		greaterThanLoggerElement.setName("span");
+		greaterThanLoggerElement.setClassName("misc");
+		greaterThanLoggerElement.setText("&gt;");
+
+		lineContainerLoggerElement.addChildLoggerElement(
+			greaterThanLoggerElement);
+
+		return lineContainerLoggerElement;
+	}
+
 	public static LoggerElement generateLineContainerLoggerElement(
 		Element element) {
 
