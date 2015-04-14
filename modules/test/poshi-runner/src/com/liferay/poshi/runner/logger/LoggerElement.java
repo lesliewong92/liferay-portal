@@ -82,6 +82,10 @@ public class LoggerElement {
 		}
 	}
 
+	public String getButtonLinkId() {
+		return _buttonLinkId;
+	}
+
 	public String getClassName() {
 		return _className;
 	}
@@ -96,6 +100,10 @@ public class LoggerElement {
 
 	public String getText() {
 		return _text;
+	}
+
+	public void setButtonLinkId(int buttonLinkId) {
+		_buttonLinkId = "btnLinkId-" + buttonLinkId;
 	}
 
 	public LoggerElement loggerElement(String name) {
@@ -169,6 +177,12 @@ public class LoggerElement {
 			sb.append("\"");
 		}
 
+		if (Validator.isNotNull(_buttonLinkId)) {
+			sb.append(" data-btnlinkid=\"");
+			sb.append(_buttonLinkId);
+			sb.append("\"");
+		}
+
 		sb.append(" id=\"");
 		sb.append(_id);
 		sb.append("\"");
@@ -221,6 +235,7 @@ public class LoggerElement {
 	private static final Set<String> _usedIds = new HashSet<>();
 
 	private final List<LoggerElement> _childLoggerElements = new ArrayList<>();
+	private String _buttonLinkId;
 	private String _className = "";
 	private String _id;
 	private String _name = "div";

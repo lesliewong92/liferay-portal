@@ -15,6 +15,7 @@
 package com.liferay.poshi.runner;
 
 import com.liferay.poshi.runner.logger.LoggerUtil;
+import com.liferay.poshi.runner.logger.XMLLoggerHandler;
 import com.liferay.poshi.runner.selenium.SeleniumUtil;
 import com.liferay.poshi.runner.util.PropsValues;
 
@@ -65,41 +66,51 @@ public class PoshiRunner {
 	}
 
 	public PoshiRunner(String classCommandName) throws Exception {
-		LoggerUtil.startLogger();
+		// LoggerUtil.startLogger();
 
-		SeleniumUtil.startSelenium();
+		// SeleniumUtil.startSelenium();
 
-		System.out.println();
-		System.out.println("###");
-		System.out.println("### " + classCommandName);
-		System.out.println("###");
-		System.out.println();
+		// System.out.println();
+		// System.out.println("###");
+		// System.out.println("### " + classCommandName);
+		// System.out.println("###");
+		// System.out.println();
 
 		_testClassCommandName = classCommandName;
 		_testClassName = PoshiRunnerGetterUtil.getClassNameFromClassCommandName(
 			_testClassCommandName);
+
+		Element commandElement = PoshiRunnerContext.getTestcaseCommandElement(
+			classCommandName);
+
+		XMLLoggerHandler.generateXMLLog(
+			commandElement, classCommandName, _testClassName);
+
+		LoggerUtil.startLogger();
 	}
 
 	@Test
 	public void test() throws Exception {
-		try {
-			_runSetUp();
+		// try {
+		// 	_runSetUp();
 
-			_runCommand();
-		}
-		catch (Exception e) {
-			throw new PoshiRunnerException(e.getMessage(), e);
-		}
-		finally {
-			try {
-				_runTearDown();
-			}
-			catch (Exception e) {
-				PoshiRunnerStackTraceUtil.printStackTrace(e.getMessage());
+		// 	_runCommand();
+		// }
+		// catch (Exception e) {
+		// 	throw new PoshiRunnerException(e.getMessage(), e);
+		// }
+		// finally {
+		// 	try {
+		// 		_runTearDown();
+		// 	}
+		// 	catch (Exception e) {
+		// 		PoshiRunnerStackTraceUtil.printStackTrace(e.getMessage());
 
-				PoshiRunnerStackTraceUtil.emptyStackTrace();
-			}
-		}
+		// 		PoshiRunnerStackTraceUtil.emptyStackTrace();
+		// 	}
+		// }
+
+		System.out.println("This is the end");
 	}
 
 	private void _runClassCommandName(String classCommandName)
