@@ -14,12 +14,68 @@
 
 package com.liferay.poshi.runner.logger;
 
+import java.util.List;
+
+import org.dom4j.Attribute;
 import org.dom4j.Element;
 
 /**
  * @author Michael Hashimoto
  */
 public final class XMLLoggerHandler {
+
+	public static LoggerElement appendAttributesToLineContainer(
+		Element element, LoggerElement lineContainerLoggerElement) {
+
+		LoggerElement quoteLoggerElement = new LoggerElement();
+
+		quoteLoggerElement.setClassName("misc quote");
+		quoteLoggerElement.setName("span");
+		quoteLoggerElement.setText("\"");
+
+		List<Attribute> attributes = element.attributes();
+
+		for(Attribute attribute : attributes) {
+			String attributeName = attribute.getName();
+
+			if(attributeName.equals("line-number")) {
+				continue;
+			}
+
+			LoggerElement tagTypeLoggerElement = new LoggerElement();
+
+			tagTypeLoggerElement.setClassName("tag-type");
+			tagTypeLoggerElement.setName("span");
+			tagTypeLoggerElement.setText(attributeName);
+
+			lineContainerLoggerElement.addChildLoggerElement(
+				tagTypeLoggerElement);
+
+			LoggerElement equalsLoggerElement = new LoggerElement();
+
+			equalsLoggerElement.setClassName("misc");
+			equalsLoggerElement.setName("span");
+			equalsLoggerElement.setText("=");
+
+			lineContainerLoggerElement.addChildLoggerElement(
+				equalsLoggerElement);
+
+			lineContainerLoggerElement.addChildLoggerElement(
+				quoteLoggerElement);
+
+			LoggerElement nameLoggerElement = new LoggerElement();
+
+			nameLoggerElement.setClassName("name");
+			nameLoggerElement.setName("span");
+			nameLoggerElement.setText(attribute.getValue());
+
+			lineContainerLoggerElement.addChildLoggerElement(nameLoggerElement);
+			lineContainerLoggerElement.addChildLoggerElement(
+				quoteLoggerElement);
+		}
+
+		return lineContainerLoggerElement;
+	}
 
 	public static LoggerElement generateBtnContainerLoggerElement(
 		Element element) {
@@ -76,6 +132,9 @@ public final class XMLLoggerHandler {
 
 		lineContainerLoggerElement.addChildLoggerElement(
 			actionTypeLoggerElement);
+
+		lineContainerLoggerElement = appendAttributesToLineContainer(
+			element, lineContainerLoggerElement);
 
 		LoggerElement greaterThanLoggerElement = new LoggerElement();
 
