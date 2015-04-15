@@ -14,12 +14,76 @@
 
 package com.liferay.poshi.runner.logger;
 
+import com.liferay.poshi.runner.PoshiRunnerContext;
+import com.liferay.poshi.runner.PoshiRunnerGetterUtil;
+import com.liferay.poshi.runner.util.Validator;
+
 import org.dom4j.Element;
 
 /**
  * @author Michael Hashimoto
  */
 public final class XMLLoggerHandler {
+
+	// public static LoggerElement generateIONOElements(Element element) {
+	// 	LoggerElement testcaseElement = new LoggerElement();
+
+	// 	testcaseElement.setName("li");
+
+	// 	String elementName = element.getName();
+
+	// 	if (elementName.equals("execute")) {
+	// 		Attribute attribute = element.attribute(1);
+
+	// 		testcaseElement.setClassName(attribute.getName());
+	// 	}
+
+	// 	testcaseElement.addChildLoggerElement(
+	// 		generateBtnContainerElement(element));
+	// 	testcaseElement.addChildLoggerElement(
+	// 		generateLineContainerElement(element));
+
+	// 	List<Element> childElements = element.elements();
+
+	// 	if (element.attributeValue("macro") != null ||
+	// 		element.attributeValue("macro-desktop") != null ||
+	// 		element.attributeValue("macro-mobile") != null) {
+
+	// 		if (element.attributeValue("macro") != null) {
+	// 			testcaseElement.addChildLoggerElement(
+	// 				generateMacroElement(element, "macro"));
+	// 		}
+	// 		else if ((element.attributeValue("macro-desktop") != null) &&
+	// 			 !_MOBILE_DEVICE_ENABLED) {
+
+	// 			testcaseElement.addChildLoggerElement(
+	// 				generateMacroElement(element, "macro-desktop"));
+	// 		}
+	// 		else if ((element.attributeValue("macro-mobile") != null) &&
+	// 			 _MOBILE_DEVICE_ENABLED) {
+
+	// 			testcaseElement.addChildLoggerElement(
+	// 				generateMacroElement(element, "macro-mobile"));
+	// 		}
+
+	// 		testcaseElement.addChildLoggerElement(
+	// 			generateClosingElement(element));
+	// 	}
+	// 	else if (!childElements.isEmpty()) {
+	// 		LoggerElement childContainerElement = generateChildContainerElement();
+
+	// 		for (Element childElement : childElements) {
+	// 			childContainerElement.addChildLoggerElement(
+	// 				generateIONOElements(childElement));
+	// 		}
+
+	// 		testcaseElement.addChildLoggerElement(childContainerElement);
+	// 		testcaseElement.addChildLoggerElement(
+	// 			generateClosingElement(element));
+	// 	}
+
+	// 	return testcaseElement;
+	// }
 
 	public static void generateXMLLog(String classCommandName) {
 		LoggerElement xmlLoggerElement = new LoggerElement();
@@ -85,6 +149,39 @@ public final class XMLLoggerHandler {
 		childContainerLoggerElement.setName("ul");
 
 		return childContainerLoggerElement;
+	}
+
+	private static LoggerElement _getMacroChildContainerLoggerElement(
+		Element element, String macroType) {
+
+		String classCommandName = element.attributeValue(macroType);
+
+		String className =
+			PoshiRunnerGetterUtil.getClassNameFromClassCommandName(
+				classCommandName);
+
+		LoggerElement macroContainerElement = _getChildContainerLoggerElement();
+
+		Element rootElement = PoshiRunnerContext.getMacroRootElement(className);
+
+		List<Element> rootVarElements = rootElement.elements("var");
+
+		for (Element rootVarElement : rootVarElements) {
+			macroContainerElement.addChildLoggerElement(
+				_getLineGroupLoggerElement(rootVarElement));
+		}
+
+		Element commandElement = PoshiRunnerContext.getMacroCommandElement(
+			classCommandName);
+
+		List<Element> childElements = commandElement.elements();
+
+		for (Element childElement : childElements) {
+			macroContainerElement.addChildLoggerElement(
+				_getLineGroupLoggerElement(childElement));
+		}
+
+		return macroContainerElement;
 	}
 
 }
