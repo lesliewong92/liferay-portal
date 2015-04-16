@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -221,6 +222,20 @@ public class LoggerElement {
 			sb.append(" id=\"");
 			sb.append(_id);
 			sb.append("\"");
+		}
+
+		Iterator iter = _attributes.entrySet().iterator();
+
+		while (iter.hasNext()) {
+			Map.Entry pair = (Map.Entry)iter.next();
+
+			sb.append(" ");
+			sb.append(pair.getKey());
+			sb.append("=\"");
+			sb.append(pair.getValue());
+			sb.append("\"");
+
+			iter.remove();
 		}
 
 		sb.append(">");
