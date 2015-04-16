@@ -77,6 +77,10 @@ public class LoggerElement {
 		}
 	}
 
+	public void addClassName(String className) {
+		setClassName(_className + " " + className);
+	}
+
 	public void addChildLoggerElement(LoggerElement childLoggerElement) {
 		_childLoggerElements.add(childLoggerElement);
 
@@ -87,8 +91,24 @@ public class LoggerElement {
 		}
 	}
 
-	public void addClassName(String className) {
-		setClassName(_className + " " + className);
+	public LoggerElement copy(String id) {
+		LoggerElement loggerElement = new LoggerElement(id);
+
+		loggerElement.setClassName(_className);
+		loggerElement.setName(_name);
+		loggerElement.setText(_text);
+
+		return loggerElement;
+	}
+
+	public LoggerElement copy() {
+		LoggerElement loggerElement = new LoggerElement();
+
+		loggerElement.setClassName(_className);
+		loggerElement.setName(_name);
+		loggerElement.setText(_text);
+
+		return loggerElement;
 	}
 
 	public List<String> getAttributeNames() {

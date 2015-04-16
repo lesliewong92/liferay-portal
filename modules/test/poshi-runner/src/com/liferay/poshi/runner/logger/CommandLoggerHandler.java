@@ -34,6 +34,58 @@ public final class CommandLoggerHandler {
 		}
 
 		_commandElement = null;
+
+		_commandLoggerElement.addChildLoggerElement(
+			_getErrorContainerLoggerElement());
+
+		_commandLoggerElement.addClassName("failed");
+		_runLineLoggerElement.addClassName("error-line");
+	}
+
+	private static LoggerElement _getErrorContainerLoggerElement() {
+		LoggerElement errorContainerLoggerElement = new LoggerElement();
+
+		errorContainerLoggerElement.setClassName("error-container hidden");
+
+		errorContainerLoggerElement.addChildLoggerElement(
+			_getErrorConsoleLoggerElement());
+		errorContainerLoggerElement.addChildLoggerElement(
+			_getScreenshotLoggerElement());
+
+		return errorContainerLoggerElement;
+	}
+
+	private static LoggerElement _getErrorConsoleLoggerElement() {
+		LoggerElement summaryLoggerElement = new LoggerElement("summary");
+
+		LoggerElement consoleLoggerElement = summaryLoggerElement.copy();
+
+		consoleLoggerElement.setClassName("console");
+
+		return consoleLoggerElement;
+	}
+
+	private static LoggerElement _getScreenshotLoggerElement() {
+		LoggerElement errorScreenshotLoggerElement = new LoggerElement();
+
+		errorScreenshotLoggerElement.setClassName("screenshot");
+
+		LoggerElement beforeLoggerElement = new LoggerElement();
+
+		beforeLoggerElement.setAttribute("alt", "someimagebefore.jpg");
+		beforeLoggerElement.setAttribute("src", "someimagebefore.jpg");
+		beforeLoggerElement.setName("img");
+
+		LoggerElement afterLoggerElement = new LoggerElement();
+
+		afterLoggerElement.setAttribute("alt", "someimagebefore.jpg");
+		afterLoggerElement.setAttribute("src", "someimagebefore.jpg");
+		afterLoggerElement.setName("img");
+
+		errorScreenshotLoggerElement.addChildLoggerElement(beforeLoggerElement);
+		errorScreenshotLoggerElement.addChildLoggerElement(afterLoggerElement);
+
+		return errorScreenshotLoggerElement;
 	}
 
 	public static void logClassCommandName(String classCommandName) {
@@ -80,6 +132,8 @@ public final class CommandLoggerHandler {
 		}
 
 		runLineLoggerElement.setText(sb.toString());
+
+		_runLineLoggerElement = runLineLoggerElement;
 
 		childContainerLoggerElement.addChildLoggerElement(runLineLoggerElement);
 	}
@@ -234,8 +288,11 @@ public final class CommandLoggerHandler {
 
 	private static int _btnLinkId;
 	private static Element _commandElement;
+	private static LoggerElement _runLineLoggerElement;
 	private static LoggerElement _commandLoggerElement;
 	private static final LoggerElement _commandLogLoggerElement =
 		new LoggerElement("commandLog");
+	private static final LoggerElement _sidebarLoggerElement =
+		new LoggerElement("sidebar");
 
 }
