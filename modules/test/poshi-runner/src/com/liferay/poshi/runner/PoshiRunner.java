@@ -161,7 +161,7 @@ public class PoshiRunner {
 			throw e;
 		}
 		finally {
-			LoggerUtil.stopLogger();
+			LoggerUtil.stopLogger(_testClassCommandName);
 
 			SeleniumUtil.stopSelenium();
 		}
