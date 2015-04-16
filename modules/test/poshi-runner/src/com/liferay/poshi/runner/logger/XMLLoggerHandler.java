@@ -94,4 +94,26 @@ public final class XMLLoggerHandler {
 		return lineNumberLoggerElement;
 	}
 
+	private static LoggerElement _getParameterContainerLoggerElement(
+		List<Element> elements) {
+
+		LoggerElement parameterContainerElement = new LoggerElement();
+
+		parameterContainerElement.setClassName(
+			"parameter-container collapse collapsible");
+
+		parameterContainerElement.setName("div");
+
+		for(Element element : elements) {
+			parameterContainerElement.addChildLoggerElement(
+				_getLineNumberLoggerElement(
+					element.attributeValue("line-number")));
+
+			parameterContainerElement.addChildLoggerElement(
+				generateLineContainerElement(element));
+		}
+
+		return parameterContainerElement;
+	}
+
 }
