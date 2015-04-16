@@ -432,8 +432,9 @@ public class PoshiRunnerExecutor {
 			parseElement(commandElement);
 		}
 		catch (Exception e) {
-			CommandLoggerHandler.failCommand(executeElement);
 			SummaryLoggerHandler.failSummary(executeElement, e.getMessage());
+
+			CommandLoggerHandler.failCommand(executeElement);
 
 			throw e;
 		}
