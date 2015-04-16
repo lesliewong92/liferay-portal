@@ -298,9 +298,10 @@ public final class LoggerUtil {
 		_javascriptExecutor = (JavascriptExecutor)_webDriver;
 
 		FileUtil.copyDirectory(
-			_getResourcesDir() + "css", _CURRENT_DIR + "/test-results/css");
+			_CURRENT_DIR + "/src/META-INF/resources/css/.sass-cache",
+			_CURRENT_DIR + "/test-results/css");
 		FileUtil.copyDirectory(
-			_getResourcesDir() + "js", _CURRENT_DIR + "/test-results/js");
+		 	_getResourcesDir() + "js", _CURRENT_DIR + "/test-results/js");
 		FileUtil.copyDirectory(
 			_getResourcesDir() + "html", _CURRENT_DIR + "/test-results/html");
 
@@ -318,15 +319,14 @@ public final class LoggerUtil {
 			testClassCommandName, "#", "_");
 
 		FileUtil.write(
-			_CURRENT_DIR + "/test-results/" + testClassCommandName +
-				"/index.html",
+			_CURRENT_DIR + "/test-results/" + testClassCommandName + "/index.html",
 			content);
 
-		if (isLoggerStarted()) {
+		/*if (isLoggerStarted()) {
 			_webDriver.quit();
 
 			_webDriver = null;
-		}
+		}*/
 	}
 
 	private static String _getResourcesDir() {
