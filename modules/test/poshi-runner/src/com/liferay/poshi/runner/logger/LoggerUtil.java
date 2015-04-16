@@ -16,6 +16,7 @@ package com.liferay.poshi.runner.logger;
 
 import com.liferay.poshi.runner.PoshiRunnerGetterUtil;
 import com.liferay.poshi.runner.util.FileUtil;
+import com.liferay.poshi.runner.util.StringUtil;
 import com.liferay.poshi.runner.util.Validator;
 
 import java.net.URL;
@@ -297,17 +298,30 @@ public final class LoggerUtil {
 
 		_javascriptExecutor = (JavascriptExecutor)_webDriver;
 
-		_webDriver.get("file://" + _getResourcesDir() + "html/index.html");
-	}
-
-	public static void stopLogger() throws Exception {
 		FileUtil.copyDirectory(
 			_getResourcesDir() + "css", _CURRENT_DIR + "/test-results/css");
+		FileUtil.copyDirectory(
+			_getResourcesDir() + "js", _CURRENT_DIR + "/test-results/js");
+		FileUtil.copyDirectory(
+			_getResourcesDir() + "html", _CURRENT_DIR + "/test-results/html");
+
+		_webDriver.get(
+			"file://" + _CURRENT_DIR + "/test-results/html/index.html");
+	}
+
+	public static void stopLogger(String testClassCommandName)
+		throws Exception {
 
 		String content = (String)_javascriptExecutor.executeScript(
 			"return document.getElementsByTagName('html')[0].outerHTML;");
 
-		FileUtil.write(_CURRENT_DIR + "/test-results/html/index.html", content);
+		testClassCommandName = StringUtil.replace(
+			testClassCommandName, "#", "_");
+
+		FileUtil.write(
+			_CURRENT_DIR + "/test-results/" + testClassCommandName +
+				"/index.html",
+			content);
 
 		if (isLoggerStarted()) {
 			_webDriver.quit();
