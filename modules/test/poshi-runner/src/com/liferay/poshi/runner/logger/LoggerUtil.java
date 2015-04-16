@@ -303,8 +303,6 @@ public final class LoggerUtil {
 			_CURRENT_DIR + "/test-results/css");
 		FileUtil.copyDirectory(
 		 	_getResourcesDir() + "js", _CURRENT_DIR + "/test-results/js");
-		FileUtil.copyDirectory(
-			_getResourcesDir() + "html", _CURRENT_DIR + "/test-results/html");
 
 		_webDriver.get(
 			"file://" + _CURRENT_DIR + "/test-results/html/index.html");

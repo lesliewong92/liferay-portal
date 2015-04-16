@@ -17,6 +17,7 @@ package com.liferay.poshi.runner.logger;
 import com.liferay.poshi.runner.PoshiRunnerContext;
 import com.liferay.poshi.runner.PoshiRunnerGetterUtil;
 import com.liferay.poshi.runner.PoshiRunnerVariablesUtil;
+import com.liferay.poshi.runner.PoshiRunnerStackTraceUtil;
 import com.liferay.poshi.runner.util.Validator;
 
 import java.util.List;
@@ -40,6 +41,12 @@ public final class CommandLoggerHandler {
 
 		_commandLoggerElement.addClassName("failed");
 		_runLineLoggerElement.addClassName("error-line");
+
+		_sidebarLoggerElement.setClassName("sidebar finished");
+
+		LoggerElement xmlLoggerElement = XMLLoggerHandler.getLoggerElementFromElement(element);
+
+		xmlLoggerElement.setAttribute("data-status01", "fail");
 	}
 
 	private static LoggerElement _getErrorContainerLoggerElement() {
@@ -104,6 +111,12 @@ public final class CommandLoggerHandler {
 		}
 
 		_commandElement = null;
+
+		_sidebarLoggerElement.setClassName("sidebar finished");
+
+		LoggerElement xmlLoggerElement = XMLLoggerHandler.getLoggerElementFromElement(element);
+
+		xmlLoggerElement.setAttribute("data-status01", "pass");
 	}
 
 	public static void sendRunLine(Element element, List<String> arguments) {
@@ -148,6 +161,26 @@ public final class CommandLoggerHandler {
 		_commandLoggerElement = _getCommandLoggerElement(element);
 
 		_commandLogLoggerElement.addChildLoggerElement(_commandLoggerElement);
+
+		_sidebarLoggerElement.setClassName("sidebar running");
+
+		LoggerElement xmlLoggerElement = XMLLoggerHandler.getLoggerElementFromElement(element);
+
+		xmlLoggerElement.setAttribute("data-status01", "pending");
+		xmlLoggerElement.setAttribute("data-functionlinkid", "functionLinkId-" + _functionLinkId);
+
+		_commandLoggerElement.setAttribute("data-functionlinkid", "functionLinkId-" + _functionLinkId);
+
+		System.out.println("##");
+
+		System.out.println("functionLinkId-" + _functionLinkId);
+		System.out.println(xmlLoggerElement.getID());
+		System.out.println(_commandLoggerElement.getID());
+		System.out.println(PoshiRunnerStackTraceUtil.getUniqueID());
+
+		System.out.println("##");
+
+		_functionLinkId++;
 	}
 
 	private static LoggerElement _getButtonLoggerElement(int btnLinkId) {
@@ -287,6 +320,7 @@ public final class CommandLoggerHandler {
 	}
 
 	private static int _btnLinkId;
+	private static int _functionLinkId;
 	private static Element _commandElement;
 	private static LoggerElement _runLineLoggerElement;
 	private static LoggerElement _commandLoggerElement;

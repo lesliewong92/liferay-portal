@@ -30,6 +30,18 @@ public final class PoshiRunnerStackTraceUtil {
 		}
 	}
 
+	public static String getUniqueID() {
+		Stack<String> stackTrace = (Stack<String>)_stackTrace.clone();
+
+		StringBuilder sb = new StringBuilder();
+
+		while (!stackTrace.isEmpty()) {
+			sb.append(stackTrace.pop());
+		}
+
+		return sb.toString();
+	}
+
 	public static String getStackTrace() {
 		return getStackTrace(null);
 	}

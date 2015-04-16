@@ -82,6 +82,10 @@ public class LoggerElement {
 		setClassName(_className + " " + className);
 	}
 
+	public void removeClassName(String className) {
+		setClassName(_className + " " + className);
+	}
+
 	public void addChildLoggerElement(LoggerElement childLoggerElement) {
 		_childLoggerElements.add(childLoggerElement);
 
