@@ -21,6 +21,57 @@ import org.dom4j.Element;
  */
 public final class XMLLoggerHandler {
 
+	// public static LoggerElement generateLineContainerElement(
+	// 	Element element) {
+
+	// 	LoggerElement lineContainerElement = new LoggerElement();
+
+	// 	lineContainerElement.setName("div");
+	// 	lineContainerElement.setClassName("line-container");
+
+	// 	LoggerElement lessThanElement = new LoggerElement();
+
+	// 	lessThanElement.setName("span");
+	// 	lessThanElement.setClassName("misc");
+	// 	lessThanElement.setText("&lt;");
+
+	// 	lineContainerElement.addChildLoggerElement(lessThanElement);
+
+	// 	LoggerElement actionTypeElement = new LoggerElement();
+
+	// 	actionTypeElement.setName("span");
+	// 	actionTypeElement.setClassName("action-type");
+	// 	actionTypeElement.setText(element.getName() + " ");
+
+	// 	lineContainerElement.addChildLoggerElement(actionTypeElement);
+
+	// 	List<Attribute> attributes = element.attributes();
+
+	// 	lineContainerElement = generateAttributeElements(
+	// 		attributes, lineContainerElement);
+
+	// 	LoggerElement greaterThanElement = new LoggerElement();
+
+	// 	greaterThanElement.setName("span");
+	// 	greaterThanElement.setClassName("misc");
+	// 	greaterThanElement.setText("&gt;");
+
+	// 	lineContainerElement.addChildLoggerElement(greaterThanElement);
+
+	// 	List<Element> elements = element.elements();
+
+	// 	if (!elements.isEmpty() &&
+	// 		(element.attributeValue("macro") != null ||
+	// 		element.attributeValue("macro-desktop") != null ||
+	// 		element.attributeValue("macro-mobile") != null)) {
+
+	// 		lineContainerElement.addChildLoggerElement(
+	// 			generateParameterElements(elements));
+	// 	}
+
+	// 	return lineContainerElement;
+	// }
+
 	public static void generateXMLLog(String classCommandName) {
 		LoggerElement xmlLoggerElement = new LoggerElement();
 
