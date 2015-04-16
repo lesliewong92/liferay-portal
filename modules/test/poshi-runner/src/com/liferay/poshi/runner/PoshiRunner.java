@@ -16,6 +16,7 @@ package com.liferay.poshi.runner;
 
 import com.liferay.poshi.runner.logger.CommandLoggerHandler;
 import com.liferay.poshi.runner.logger.LoggerUtil;
+import com.liferay.poshi.runner.logger.XMLLoggerHandler;
 import com.liferay.poshi.runner.selenium.SeleniumUtil;
 import com.liferay.poshi.runner.util.PropsValues;
 
@@ -68,6 +69,15 @@ public class PoshiRunner {
 	}
 
 	public PoshiRunner(String classCommandName) throws Exception {
+		_testClassCommandName = classCommandName;
+		_testClassName = PoshiRunnerGetterUtil.getClassNameFromClassCommandName(
+			_testClassCommandName);
+
+		Element commandElement = PoshiRunnerContext.getTestCaseCommandElement(
+			classCommandName);
+
+		XMLLoggerHandler.generateXMLLog(classCommandName, commandElement, _testClassName);
+
 		LoggerUtil.startLogger();
 
 		SeleniumUtil.startSelenium();
@@ -77,10 +87,6 @@ public class PoshiRunner {
 		System.out.println("### " + classCommandName);
 		System.out.println("###");
 		System.out.println();
-
-		_testClassCommandName = classCommandName;
-		_testClassName = PoshiRunnerGetterUtil.getClassNameFromClassCommandName(
-			_testClassCommandName);
 
 		PoshiRunnerContext.setTestCaseCommandName(_testClassCommandName);
 		PoshiRunnerContext.setTestCaseName(_testClassName);
