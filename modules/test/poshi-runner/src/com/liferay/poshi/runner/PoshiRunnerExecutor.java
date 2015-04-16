@@ -423,6 +423,13 @@ public class PoshiRunnerExecutor {
 		PoshiRunnerStackTraceUtil.pushFilePath(classCommandName, "function");
 
 		CommandLoggerHandler.startCommand(executeElement);
+
+		/*
+
+			YUI().fire('command-complete');
+
+		*/
+
 		SummaryLoggerHandler.startSummary(executeElement);
 
 		Element commandElement = PoshiRunnerContext.getFunctionCommandElement(

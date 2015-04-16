@@ -24,6 +24,8 @@ import com.liferay.poshi.runner.util.PropsValues;
 import com.liferay.poshi.runner.util.StringUtil;
 import com.liferay.poshi.runner.util.Validator;
 
+import java.util.Map;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Stack;
 
@@ -167,6 +169,8 @@ public final class XMLLoggerHandler {
 	public static LoggerElement generateIONOElements(Element element) {
 		LoggerElement testcaseElement = new LoggerElement();
 
+		_elementToLoggerElement.put(element, testcaseElement);
+
 		testcaseElement.setName("li");
 
 		String elementName = element.getName();
@@ -232,6 +236,10 @@ public final class XMLLoggerHandler {
 		}
 
 		return testcaseElement;
+	}
+
+	public static LoggerElement getLoggerElementFromElement(Element element) {
+		return _elementToLoggerElement.get(element);
 	}
 
 	public static LoggerElement generateLineContainerElement(
@@ -402,9 +410,9 @@ public final class XMLLoggerHandler {
 		childContainerElement.addChildLoggerElement(generateIONOElements(setupElement));
 		childContainerElement.addChildLoggerElement(generateIONOElements(element));
 
-		Element teardownElement = getTeardownElement(testClassName);
+/*		Element teardownElement = getTeardownElement(testClassName);
 
-		childContainerElement.addChildLoggerElement(generateIONOElements(teardownElement));
+		childContainerElement.addChildLoggerElement(generateIONOElements(teardownElement));*/
 
 		rootElement.addChildLoggerElement(childContainerElement);
 
@@ -434,7 +442,14 @@ public final class XMLLoggerHandler {
 		FileUtil.write("test-results/html/index.html", loggerContent);
 	}
 
+	private static boolean _isCurrentCommand(Element element) {
+		return element.equals(_commandElement);
+	}
+
+	private static Map<Element, LoggerElement> _elementToLoggerElement = new HashMap<Element, LoggerElement>();
+
 	private static int _buttonLinkId = 0;
 	private static int _level = 0;
 	private static final Stack<Integer> _buttonIdStack = new Stack<Integer>();
+	private static Element _commandElement;
 }

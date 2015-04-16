@@ -9,7 +9,7 @@
 		<execute macro="Smoke#runSmoke" />
 	</command>
 
-	<tear-down>
+	<!-- <tear-down>
 		<execute macro="Page#tearDownPG" />
-	</tear-down>
+	</tear-down> -->
 </definition>
