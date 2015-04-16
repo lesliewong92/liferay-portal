@@ -87,4 +87,16 @@ public final class XMLLoggerHandler {
 		return childContainerLoggerElement;
 	}
 
+	private static LoggerElement _getLineNumberLoggerElement(
+		String lineNumber) {
+
+		LoggerElement lineNumberLoggerElement = new LoggerElement();
+
+		lineNumberLoggerElement.setClassName("line-number");
+		lineNumberLoggerElement.setName("div");
+		lineNumberLoggerElement.setText(lineNumber);
+
+		return lineNumberLoggerElement;
+	}
+
 }
