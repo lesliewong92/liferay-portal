@@ -311,6 +311,8 @@ public final class LoggerUtil {
 	public static void stopLogger(String testClassCommandName)
 		throws Exception {
 
+		CommandLoggerHandler.stopTest();
+
 		String content = (String)_javascriptExecutor.executeScript(
 			"return document.getElementsByTagName('html')[0].outerHTML;");
 
