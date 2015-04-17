@@ -42,8 +42,6 @@ public final class CommandLoggerHandler {
 		_commandLoggerElement.addClassName("failed");
 		_runLineLoggerElement.addClassName("error-line");
 
-		_sidebarLoggerElement.setClassName("sidebar finished");
-
 		LoggerElement xmlLoggerElement =
 			XMLLoggerHandler.getLoggerElementFromElement(
 				PoshiRunnerStackTraceUtil.getUniqueID());
@@ -63,14 +61,20 @@ public final class CommandLoggerHandler {
 			dividerLineLoggerElement);
 	}
 
+	public static void startTest() {
+		_sidebarLoggerElement.setClassName("sidebar running");
+	}
+
+	public static void stopTest() {
+		_sidebarLoggerElement.setClassName("sidebar finished");
+	}
+
 	public static void passCommand(Element element) {
 		if (!_isCurrentCommand(element)) {
 			return;
 		}
 
 		_commandElement = null;
-
-		_sidebarLoggerElement.setClassName("sidebar finished");
 
 		LoggerElement xmlLoggerElement =
 			XMLLoggerHandler.getLoggerElementFromElement(
@@ -92,17 +96,17 @@ public final class CommandLoggerHandler {
 
 		StringBuilder sb = new StringBuilder();
 
-		sb.append("Running <b>");
-		sb.append(element.attributeValue("selenium"));
-		sb.append("</b>");
+		sb.append(_getLineItemText("misc", "Running "));
+		sb.append(_getLineItemText(
+			"command-name", element.attributeValue("selenium")));
+
 
 		if (!arguments.isEmpty()) {
-			sb.append(" with parameters");
+			sb.append(_getLineItemText("misc", " with parameters"));
 
 			for (String argument : arguments) {
-				sb.append(" <b>");
-				sb.append(argument);
-				sb.append("</b>");
+				sb.append(_getLineItemText("misc", "&nbsp;"));
+				sb.append(_getLineItemText("param-value", argument));
 			}
 		}
 
@@ -129,6 +133,13 @@ public final class CommandLoggerHandler {
 		LoggerElement xmlLoggerElement =
 			XMLLoggerHandler.getLoggerElementFromElement(
 				PoshiRunnerStackTraceUtil.getUniqueID());
+
+		String functionLinkID = xmlLoggerElement.getAttributeValue(
+			"data-functionlinkid");
+
+		if (functionLinkID != null) {
+			_functionLinkId = Integer.parseInt(functionLinkID.substring(15));
+		}
 
 		xmlLoggerElement.setAttribute("data-status01", "pending");
 
