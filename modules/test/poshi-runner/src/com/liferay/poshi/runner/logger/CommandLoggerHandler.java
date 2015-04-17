@@ -200,11 +200,41 @@ public final class CommandLoggerHandler {
 	}
 
 	private static LoggerElement _getErrorConsoleLoggerElement() {
-		LoggerElement summaryLoggerElement = new LoggerElement("summary");
-
-		LoggerElement consoleLoggerElement = summaryLoggerElement.copy();
+		LoggerElement consoleLoggerElement = new LoggerElement();
 
 		consoleLoggerElement.setClassName("console");
+
+		LoggerElement stepsLoggerElement = new LoggerElement();
+
+		stepsLoggerElement.setClassName("steps");
+
+		LoggerElement stepsHeaderLoggerElement = new LoggerElement();
+
+		stepsHeaderLoggerElement.setClassName("steps-header");
+		stepsHeaderLoggerElement.setName("h4");
+		stepsHeaderLoggerElement.setText("Steps:");
+
+		stepsLoggerElement.addChildLoggerElement(stepsHeaderLoggerElement);
+		stepsLoggerElement.addChildLoggerElement(
+			SummaryLoggerHandler.getMajorStepsLoggerElement());
+
+		LoggerElement causeLoggerElement = new LoggerElement();
+
+		causeLoggerElement.setClassName("cause");
+
+		LoggerElement causeHeaderLoggerElement = new LoggerElement();
+
+		causeHeaderLoggerElement.setClassName("cause-header");
+		causeHeaderLoggerElement.setName("h4");
+		causeHeaderLoggerElement.setText("Cause:");
+
+		causeLoggerElement.addChildLoggerElement(causeHeaderLoggerElement);
+		causeLoggerElement.addChildLoggerElement(
+			SummaryLoggerHandler.getCauseBodyLoggerElement());
+
+
+		consoleLoggerElement.addChildLoggerElement(stepsLoggerElement);
+		consoleLoggerElement.addChildLoggerElement(causeLoggerElement);
 
 		return consoleLoggerElement;
 	}
