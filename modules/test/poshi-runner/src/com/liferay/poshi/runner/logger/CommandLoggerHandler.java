@@ -16,8 +16,8 @@ package com.liferay.poshi.runner.logger;
 
 import com.liferay.poshi.runner.PoshiRunnerContext;
 import com.liferay.poshi.runner.PoshiRunnerGetterUtil;
-import com.liferay.poshi.runner.PoshiRunnerVariablesUtil;
 import com.liferay.poshi.runner.PoshiRunnerStackTraceUtil;
+import com.liferay.poshi.runner.PoshiRunnerVariablesUtil;
 import com.liferay.poshi.runner.util.Validator;
 
 import java.util.List;
@@ -44,55 +44,13 @@ public final class CommandLoggerHandler {
 
 		_sidebarLoggerElement.setClassName("sidebar finished");
 
-		LoggerElement xmlLoggerElement = XMLLoggerHandler.getLoggerElementFromElement(PoshiRunnerStackTraceUtil.getUniqueID());
+		LoggerElement xmlLoggerElement =
+			XMLLoggerHandler.getLoggerElementFromElement(
+				PoshiRunnerStackTraceUtil.getUniqueID());
 
 		xmlLoggerElement.setAttribute("data-status01", "fail");
-	}
 
-	private static LoggerElement _getErrorContainerLoggerElement() {
-		LoggerElement errorContainerLoggerElement = new LoggerElement();
-
-		errorContainerLoggerElement.setClassName("error-container hidden");
-
-		errorContainerLoggerElement.addChildLoggerElement(
-			_getErrorConsoleLoggerElement());
-		errorContainerLoggerElement.addChildLoggerElement(
-			_getScreenshotLoggerElement());
-
-		return errorContainerLoggerElement;
-	}
-
-	private static LoggerElement _getErrorConsoleLoggerElement() {
-		LoggerElement summaryLoggerElement = new LoggerElement("summary");
-
-		LoggerElement consoleLoggerElement = summaryLoggerElement.copy();
-
-		consoleLoggerElement.setClassName("console");
-
-		return consoleLoggerElement;
-	}
-
-	private static LoggerElement _getScreenshotLoggerElement() {
-		LoggerElement errorScreenshotLoggerElement = new LoggerElement();
-
-		errorScreenshotLoggerElement.setClassName("screenshot");
-
-		LoggerElement beforeLoggerElement = new LoggerElement();
-
-		beforeLoggerElement.setAttribute("alt", "someimagebefore.jpg");
-		beforeLoggerElement.setAttribute("src", "someimagebefore.jpg");
-		beforeLoggerElement.setName("img");
-
-		LoggerElement afterLoggerElement = new LoggerElement();
-
-		afterLoggerElement.setAttribute("alt", "someimagebefore.jpg");
-		afterLoggerElement.setAttribute("src", "someimagebefore.jpg");
-		afterLoggerElement.setName("img");
-
-		errorScreenshotLoggerElement.addChildLoggerElement(beforeLoggerElement);
-		errorScreenshotLoggerElement.addChildLoggerElement(afterLoggerElement);
-
-		return errorScreenshotLoggerElement;
+		LoggerUtil.executeJavascript("loggerInterface.fire('command-complete')");
 	}
 
 	public static void logClassCommandName(String classCommandName) {
@@ -114,9 +72,13 @@ public final class CommandLoggerHandler {
 
 		_sidebarLoggerElement.setClassName("sidebar finished");
 
-		LoggerElement xmlLoggerElement = XMLLoggerHandler.getLoggerElementFromElement(PoshiRunnerStackTraceUtil.getUniqueID());
+		LoggerElement xmlLoggerElement =
+			XMLLoggerHandler.getLoggerElementFromElement(
+				PoshiRunnerStackTraceUtil.getUniqueID());
 
 		xmlLoggerElement.setAttribute("data-status01", "pass");
+
+		LoggerUtil.executeJavascript("loggerInterface.fire('command-complete')");
 	}
 
 	public static void sendRunLine(Element element, List<String> arguments) {
@@ -164,13 +126,19 @@ public final class CommandLoggerHandler {
 
 		_sidebarLoggerElement.setClassName("sidebar running");
 
-		LoggerElement xmlLoggerElement = XMLLoggerHandler.getLoggerElementFromElement(PoshiRunnerStackTraceUtil.getUniqueID());
+		LoggerElement xmlLoggerElement =
+			XMLLoggerHandler.getLoggerElementFromElement(
+				PoshiRunnerStackTraceUtil.getUniqueID());
 
 		xmlLoggerElement.setAttribute("data-status01", "pending");
 
-		xmlLoggerElement.setAttribute("data-functionlinkid", "functionLinkId-" + _functionLinkId);
+		xmlLoggerElement.setAttribute(
+			"data-functionlinkid", "functionLinkId-" + _functionLinkId);
 
-		_commandLoggerElement.setAttribute("data-functionlinkid", "functionLinkId-" + _functionLinkId);
+		_commandLoggerElement.setAttribute(
+			"data-functionlinkid", "functionLinkId-" + _functionLinkId);
+
+		LoggerUtil.executeJavascript("loggerInterface.fire('command-complete')");
 
 		_functionLinkId++;
 	}
@@ -218,6 +186,29 @@ public final class CommandLoggerHandler {
 		_btnLinkId++;
 
 		return commandLoggerElement;
+	}
+
+	private static LoggerElement _getErrorConsoleLoggerElement() {
+		LoggerElement summaryLoggerElement = new LoggerElement("summary");
+
+		LoggerElement consoleLoggerElement = summaryLoggerElement.copy();
+
+		consoleLoggerElement.setClassName("console");
+
+		return consoleLoggerElement;
+	}
+
+	private static LoggerElement _getErrorContainerLoggerElement() {
+		LoggerElement errorContainerLoggerElement = new LoggerElement();
+
+		errorContainerLoggerElement.setClassName("error-container hidden");
+
+		errorContainerLoggerElement.addChildLoggerElement(
+			_getErrorConsoleLoggerElement());
+		errorContainerLoggerElement.addChildLoggerElement(
+			_getScreenshotLoggerElement());
+
+		return errorContainerLoggerElement;
 	}
 
 	private static LoggerElement _getLineContainerLoggerElement(Element element)
@@ -293,6 +284,29 @@ public final class CommandLoggerHandler {
 		return loggerElement.toString();
 	}
 
+	private static LoggerElement _getScreenshotLoggerElement() {
+		LoggerElement errorScreenshotLoggerElement = new LoggerElement();
+
+		errorScreenshotLoggerElement.setClassName("screenshot");
+
+		LoggerElement beforeLoggerElement = new LoggerElement();
+
+		beforeLoggerElement.setAttribute("alt", "someimagebefore.jpg");
+		beforeLoggerElement.setAttribute("src", "someimagebefore.jpg");
+		beforeLoggerElement.setName("img");
+
+		LoggerElement afterLoggerElement = new LoggerElement();
+
+		afterLoggerElement.setAttribute("alt", "someimagebefore.jpg");
+		afterLoggerElement.setAttribute("src", "someimagebefore.jpg");
+		afterLoggerElement.setName("img");
+
+		errorScreenshotLoggerElement.addChildLoggerElement(beforeLoggerElement);
+		errorScreenshotLoggerElement.addChildLoggerElement(afterLoggerElement);
+
+		return errorScreenshotLoggerElement;
+	}
+
 	private static boolean _isCommand(Element element) {
 		if (!Validator.equals(element.getName(), "execute")) {
 			return false;
@@ -314,12 +328,12 @@ public final class CommandLoggerHandler {
 	}
 
 	private static int _btnLinkId;
-	private static int _functionLinkId;
 	private static Element _commandElement;
-	private static LoggerElement _runLineLoggerElement;
 	private static LoggerElement _commandLoggerElement;
 	private static final LoggerElement _commandLogLoggerElement =
 		new LoggerElement("commandLog");
+	private static int _functionLinkId;
+	private static LoggerElement _runLineLoggerElement;
 	private static final LoggerElement _sidebarLoggerElement =
 		new LoggerElement("sidebar");
 

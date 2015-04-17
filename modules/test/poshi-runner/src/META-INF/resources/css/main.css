@@ -182,7 +182,7 @@ li {
 	color: #EBE7DC;
 }
 
-/* ---------- Button Icons ---------- */
+/* ---------- Button icons ---------- */
 
 
 .btn-collapse {
@@ -208,7 +208,7 @@ li {
 	content: '\f108';
 }
 
-/* ---------- Link Run Log ---------- */
+/* ---------- Link run log ---------- */
 
 .link-run-log {
 	.pass {
@@ -261,7 +261,7 @@ li {
 	}
 }
 
-/* ---------- Scope Selection ---------- */
+/* ---------- Scope selection ---------- */
 
 .current-scope {
 	background-color: rgba(28, 117, 185, 0.5);
@@ -475,7 +475,7 @@ li {
 	}
 }
 
-/* ---------- Syntax Highlight ---------- */
+/* ---------- Syntax highlight ---------- */
 
 .name {
 	color: #111;
@@ -713,7 +713,7 @@ li {
 	}
 }
 
-/* ---------- Syntax Highlight ---------- */
+/* ---------- Syntax highlight ---------- */
 
 .command-name {
 	color: #FFBA6C;

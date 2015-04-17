@@ -424,12 +424,6 @@ public class PoshiRunnerExecutor {
 
 		CommandLoggerHandler.startCommand(executeElement);
 
-		/*
-
-			YUI().fire('command-complete');
-
-		*/
-
 		SummaryLoggerHandler.startSummary(executeElement);
 
 		Element commandElement = PoshiRunnerContext.getFunctionCommandElement(
@@ -464,7 +458,8 @@ public class PoshiRunnerExecutor {
 		if (condition) {
 			Element ifThenElement = element.element("then");
 
-			PoshiRunnerStackTraceUtil.pushStackTrace(ifThenElement.attributeValue("line-number"));
+			PoshiRunnerStackTraceUtil.pushStackTrace(
+				ifThenElement.attributeValue("line-number"));
 
 			parseElement(ifThenElement);
 
@@ -474,7 +469,8 @@ public class PoshiRunnerExecutor {
 			List<Element> elseIfElements = element.elements("elseif");
 
 			for (Element elseIfElement : elseIfElements) {
-				PoshiRunnerStackTraceUtil.pushStackTrace(elseIfElement.attributeValue("line-number"));
+				PoshiRunnerStackTraceUtil.pushStackTrace(
+					elseIfElement.attributeValue("line-number"));
 
 				List<Element> elseIfChildElements = elseIfElement.elements();
 
@@ -485,7 +481,8 @@ public class PoshiRunnerExecutor {
 				if (condition) {
 					Element elseIfThenElement = elseIfElement.element("then");
 
-					PoshiRunnerStackTraceUtil.pushStackTrace(elseIfThenElement.attributeValue("line-number"));
+					PoshiRunnerStackTraceUtil.pushStackTrace(
+						elseIfThenElement.attributeValue("line-number"));
 
 					parseElement(elseIfThenElement);
 
@@ -503,7 +500,8 @@ public class PoshiRunnerExecutor {
 		if ((element.element("else") != null) && !condition) {
 			Element elseElement = element.element("else");
 
-			PoshiRunnerStackTraceUtil.pushStackTrace(elseElement.attributeValue("line-number"));
+			PoshiRunnerStackTraceUtil.pushStackTrace(
+				elseElement.attributeValue("line-number"));
 
 			parseElement(elseElement);
 

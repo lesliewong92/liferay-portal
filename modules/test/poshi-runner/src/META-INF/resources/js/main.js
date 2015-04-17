@@ -1,5 +1,5 @@
-YUI()
-	.ready(
+var loggerInterface = YUI();
+loggerInterface.ready(
 		'anim',
 		'aui-button',
 		'aui-node',
@@ -125,10 +125,10 @@ YUI()
 
 					timing = 200;
 				}
-				if(tree.size() > 0) {
+				if (tree.size() > 0) {
 					setTimeout(expandLoop, timing, tree, target, noScroll);
 				}
-				else if(!noScroll) {
+				else if (!noScroll) {
 					scrollToNode(target);
 				}
 			}
@@ -147,11 +147,7 @@ YUI()
 
 				var lastLog = commandLog.one('ul:last-child');
 
-				var lastLine = lastLog.previous();
-
-				var functionId = lastLine.attr('data-functionLinkId');
-
-				if (lastLog.hasClass('collapse')) {
+				if (lastLog && lastLog.hasClass('collapse')) {
 					collapseToggle(null, lastLog, true);
 				}
 
@@ -285,7 +281,7 @@ YUI()
 				var scope = xmlLog;
 				var resetHeights = true;
 
-				if(inSidebar) {
+				if (inSidebar) {
 					resetHeights = false;
 					scope = sidebar;
 				}
@@ -491,7 +487,7 @@ YUI()
 				if (!noLookUp) {
 					scope = getLink(scope, '.linkable', 'data-functionLinkId', sidebar, true);
 
-					while(scope.size() > 0) {
+					while (scope.size() > 0) {
 						var node = scope.pop()
 
 						commandLogScope.push(node);
@@ -634,5 +630,13 @@ YUI()
 			function testScopeable(testNode) {
 				return testNode.hasClass('macro') || testNode.hasClass('function') || testNode.hasClass('test-group');
 			}
+
+			function update() {
+				console.log('updating...');
+			}
+
+			A.fire('command-complete', function() {
+				console.log('yolo');
+			});
 		}
 	);
