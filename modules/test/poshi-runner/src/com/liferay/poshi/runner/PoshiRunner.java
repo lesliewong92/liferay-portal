@@ -15,6 +15,7 @@
 package com.liferay.poshi.runner;
 
 import com.liferay.poshi.runner.logger.CommandLoggerHandler;
+import com.liferay.poshi.runner.logger.LoggerElement;
 import com.liferay.poshi.runner.logger.LoggerUtil;
 import com.liferay.poshi.runner.logger.XMLLoggerHandler;
 import com.liferay.poshi.runner.selenium.SeleniumUtil;
@@ -92,12 +93,18 @@ public class PoshiRunner {
 
 	@Test
 	public void test() throws Exception {
+		LoggerElement loggerElement = new LoggerElement("xml-logger-header");
+
 		try {
+			loggerElement.setClassName("header pending");
+
 			CommandLoggerHandler.startTest();
 
 			_runSetUp();
 
 			_runCommand();
+
+			loggerElement.setClassName("header pass");
 		}
 		catch (Exception e) {
 			throw new PoshiRunnerException(e.getMessage(), e);
