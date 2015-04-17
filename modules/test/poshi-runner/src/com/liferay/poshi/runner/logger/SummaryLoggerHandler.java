@@ -45,6 +45,8 @@ public final class SummaryLoggerHandler {
 
 				errorLoggerElement.setText("ERROR: " + message);
 
+				_causeBodyLoggerElement.setClassName("cause-body");
+
 				_causeBodyLoggerElement.addChildLoggerElement(
 					errorLoggerElement);
 			}
@@ -57,6 +59,14 @@ public final class SummaryLoggerHandler {
 
 			_stopMinorStep();
 		}
+	}
+
+	public static LoggerElement getCauseBodyLoggerElement() {
+		return _causeBodyLoggerElement;
+	}
+
+	public static LoggerElement getMajorStepsLoggerElement() {
+		return _majorStepsLoggerElement;
 	}
 
 	public static void passSummary(Element element) {
@@ -81,6 +91,9 @@ public final class SummaryLoggerHandler {
 
 			_majorStepsLoggerElement.addChildLoggerElement(
 				_majorStepLoggerElement);
+
+			_majorStepsLoggerElement.setClassName("major-steps");
+			_majorStepsLoggerElement.setName("ul");
 
 			_minorStepsLoggerElement = new LoggerElement();
 
@@ -318,11 +331,11 @@ public final class SummaryLoggerHandler {
 	}
 
 	private static final LoggerElement _causeBodyLoggerElement =
-		new LoggerElement("cause-body");
+		new LoggerElement();
 	private static Element _majorStepElement = null;
 	private static LoggerElement _majorStepLoggerElement = null;
 	private static final LoggerElement _majorStepsLoggerElement =
-		new LoggerElement("major-steps");
+		new LoggerElement();
 	private static Element _minorStepElement;
 	private static LoggerElement _minorStepLoggerElement;
 	private static LoggerElement _minorStepsLoggerElement;
