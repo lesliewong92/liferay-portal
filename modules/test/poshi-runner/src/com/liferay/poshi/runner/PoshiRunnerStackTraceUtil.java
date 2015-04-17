@@ -36,6 +36,10 @@ public final class PoshiRunnerStackTraceUtil {
 		StringBuilder sb = new StringBuilder();
 
 		for (String filePath : _stackTrace) {
+			if (filePath.contains(".function:")) {
+				continue;
+			}
+
 			sb.append(PoshiRunnerGetterUtil.getFileNameFromFilePath(filePath));
 		}
 
