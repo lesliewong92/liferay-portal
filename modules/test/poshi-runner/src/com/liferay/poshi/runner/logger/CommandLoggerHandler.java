@@ -48,7 +48,8 @@ public final class CommandLoggerHandler {
 
 		xmlLoggerElement.setAttribute("data-status01", "fail");
 
-		LoggerUtil.executeJavascript("loggerInterface.fire('command-complete')");
+		LoggerUtil.executeJavascript(
+			"loggerInterface.fire('command-complete')");
 	}
 
 	public static void logClassCommandName(String classCommandName) {
@@ -59,14 +60,6 @@ public final class CommandLoggerHandler {
 
 		_commandLogLoggerElement.addChildLoggerElement(
 			dividerLineLoggerElement);
-	}
-
-	public static void startTest() {
-		_sidebarLoggerElement.setClassName("sidebar running");
-	}
-
-	public static void stopTest() {
-		_sidebarLoggerElement.setClassName("sidebar finished");
 	}
 
 	public static void passCommand(Element element) {
@@ -82,7 +75,8 @@ public final class CommandLoggerHandler {
 
 		xmlLoggerElement.setAttribute("data-status01", "pass");
 
-		LoggerUtil.executeJavascript("loggerInterface.fire('command-complete')");
+		LoggerUtil.executeJavascript(
+			"loggerInterface.fire('command-complete')");
 	}
 
 	public static void sendRunLine(Element element, List<String> arguments) {
@@ -97,9 +91,9 @@ public final class CommandLoggerHandler {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(_getLineItemText("misc", "Running "));
-		sb.append(_getLineItemText(
-			"command-name", element.attributeValue("selenium")));
-
+		sb.append(
+			_getLineItemText(
+				"command-name", element.attributeValue("selenium")));
 
 		if (!arguments.isEmpty()) {
 			sb.append(_getLineItemText("misc", " with parameters"));
@@ -149,9 +143,18 @@ public final class CommandLoggerHandler {
 		_commandLoggerElement.setAttribute(
 			"data-functionlinkid", "functionLinkId-" + _functionLinkId);
 
-		LoggerUtil.executeJavascript("loggerInterface.fire('command-complete')");
+		LoggerUtil.executeJavascript(
+			"loggerInterface.fire('command-complete')");
 
 		_functionLinkId++;
+	}
+
+	public static void startTest() {
+		_sidebarLoggerElement.setClassName("sidebar running");
+	}
+
+	public static void stopTest() {
+		_sidebarLoggerElement.setClassName("sidebar finished");
 	}
 
 	private static LoggerElement _getButtonLoggerElement(int btnLinkId) {
@@ -231,7 +234,6 @@ public final class CommandLoggerHandler {
 		causeLoggerElement.addChildLoggerElement(causeHeaderLoggerElement);
 		causeLoggerElement.addChildLoggerElement(
 			SummaryLoggerHandler.getCauseBodyLoggerElement());
-
 
 		consoleLoggerElement.addChildLoggerElement(stepsLoggerElement);
 		consoleLoggerElement.addChildLoggerElement(causeLoggerElement);

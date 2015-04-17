@@ -40,7 +40,8 @@ public final class XMLLoggerHandler {
 
 		loggerContent = loggerContent.replace(
 			"<ul class=\"xml-log-container\" id=\"xmlLogContainer\" />",
-			"<ul class=\"xml-log-container\" id=\"xmlLogContainer\">\n" + xmlLogContent + "\n</ul>");
+			"<ul class=\"xml-log-container\" id=\"xmlLogContainer\">\n" +
+				xmlLogContent + "\n</ul>");
 
 		FileUtil.write("test-results/html/index.html", loggerContent);
 	}
@@ -96,9 +97,9 @@ public final class XMLLoggerHandler {
 		//Modify in order to account for expanding if just macro
 
 		if (!childElements.isEmpty() ||
-			(element.attributeValue("macro") != null ||
-			 element.attributeValue("macro-desktop") != null ||
-			 element.attributeValue("macro-mobile") != null)) {
+			(element.attributeValue("macro") != null) ||
+			(element.attributeValue("macro-desktop") != null) ||
+			(element.attributeValue("macro-mobile") != null)) {
 
 			LoggerElement btnElement = new LoggerElement();
 
@@ -113,9 +114,9 @@ public final class XMLLoggerHandler {
 			btnContainerElement.addChildLoggerElement(btnElement);
 
 			if (!childElements.isEmpty() &&
-				(element.attributeValue("macro") != null ||
-				 element.attributeValue("macro-desktop") != null ||
-				 element.attributeValue("macro-mobile") != null)) {
+				(element.attributeValue("macro") != null) ||
+				(element.attributeValue("macro-desktop") != null) ||
+				(element.attributeValue("macro-mobile") != null)) {
 
 				LoggerElement varBtnElement = new LoggerElement();
 
@@ -197,9 +198,9 @@ public final class XMLLoggerHandler {
 
 		List<Element> childElements = element.elements();
 
-		if (element.attributeValue("macro") != null ||
-			element.attributeValue("macro-desktop") != null ||
-			element.attributeValue("macro-mobile") != null) {
+		if ((element.attributeValue("macro") != null) ||
+			(element.attributeValue("macro-desktop") != null) ||
+			(element.attributeValue("macro-mobile") != null)) {
 
 			if (element.attributeValue("macro") != null) {
 				PoshiRunnerStackTraceUtil.pushFilePath(
@@ -326,10 +327,9 @@ public final class XMLLoggerHandler {
 
 		List<Element> elements = element.elements();
 
-		if (!elements.isEmpty() &&
-			(element.attributeValue("macro") != null ||
-			 element.attributeValue("macro-desktop") != null ||
-			 element.attributeValue("macro-mobile") != null)) {
+		if (!elements.isEmpty() && (element.attributeValue("macro") != null) ||
+			(element.attributeValue("macro-desktop") != null) ||
+			(element.attributeValue("macro-mobile") != null)) {
 
 			lineContainerElement.addChildLoggerElement(
 				generateParameterElements(elements));
@@ -501,7 +501,8 @@ public final class XMLLoggerHandler {
 		PoshiRunnerStackTraceUtil.pushStackTrace(
 			teardownElement.attributeValue("line-number"));
 
-		childContainerElement.addChildLoggerElement(generateIONOElements(teardownElement));
+		childContainerElement.addChildLoggerElement(
+			generateIONOElements(teardownElement));
 
 		PoshiRunnerStackTraceUtil.popStackTrace();
 		PoshiRunnerStackTraceUtil.popFilePath();
