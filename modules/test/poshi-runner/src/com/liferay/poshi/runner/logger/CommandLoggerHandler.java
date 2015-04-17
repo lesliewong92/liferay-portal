@@ -44,7 +44,7 @@ public final class CommandLoggerHandler {
 
 		_sidebarLoggerElement.setClassName("sidebar finished");
 
-		LoggerElement xmlLoggerElement = XMLLoggerHandler.getLoggerElementFromElement(element);
+		LoggerElement xmlLoggerElement = XMLLoggerHandler.getLoggerElementFromElement(PoshiRunnerStackTraceUtil.getUniqueID());
 
 		xmlLoggerElement.setAttribute("data-status01", "fail");
 	}
@@ -114,7 +114,7 @@ public final class CommandLoggerHandler {
 
 		_sidebarLoggerElement.setClassName("sidebar finished");
 
-		LoggerElement xmlLoggerElement = XMLLoggerHandler.getLoggerElementFromElement(element);
+		LoggerElement xmlLoggerElement = XMLLoggerHandler.getLoggerElementFromElement(PoshiRunnerStackTraceUtil.getUniqueID());
 
 		xmlLoggerElement.setAttribute("data-status01", "pass");
 	}
@@ -164,21 +164,13 @@ public final class CommandLoggerHandler {
 
 		_sidebarLoggerElement.setClassName("sidebar running");
 
-		LoggerElement xmlLoggerElement = XMLLoggerHandler.getLoggerElementFromElement(element);
+		LoggerElement xmlLoggerElement = XMLLoggerHandler.getLoggerElementFromElement(PoshiRunnerStackTraceUtil.getUniqueID());
 
 		xmlLoggerElement.setAttribute("data-status01", "pending");
+
 		xmlLoggerElement.setAttribute("data-functionlinkid", "functionLinkId-" + _functionLinkId);
 
 		_commandLoggerElement.setAttribute("data-functionlinkid", "functionLinkId-" + _functionLinkId);
-
-		System.out.println("##");
-
-		System.out.println("functionLinkId-" + _functionLinkId);
-		System.out.println(xmlLoggerElement.getID());
-		System.out.println(_commandLoggerElement.getID());
-		System.out.println(PoshiRunnerStackTraceUtil.getUniqueID());
-
-		System.out.println("##");
 
 		_functionLinkId++;
 	}

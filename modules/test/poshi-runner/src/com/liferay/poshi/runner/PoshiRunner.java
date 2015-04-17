@@ -135,7 +135,12 @@ public class PoshiRunner {
 			PoshiRunnerStackTraceUtil.pushFilePath(
 				classCommandName, "test-case");
 
+			PoshiRunnerStackTraceUtil.pushStackTrace(
+				commandElement.attributeValue("line-number"));
+
 			PoshiRunnerExecutor.parseElement(commandElement);
+
+			PoshiRunnerStackTraceUtil.popStackTrace();
 
 			PoshiRunnerStackTraceUtil.popFilePath();
 		}
