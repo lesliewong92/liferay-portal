@@ -464,12 +464,18 @@ public class PoshiRunnerExecutor {
 		if (condition) {
 			Element ifThenElement = element.element("then");
 
+			PoshiRunnerStackTraceUtil.pushStackTrace(ifThenElement.attributeValue("line-number"));
+
 			parseElement(ifThenElement);
+
+			PoshiRunnerStackTraceUtil.popStackTrace();
 		}
 		else if (element.element("elseif") != null) {
 			List<Element> elseIfElements = element.elements("elseif");
 
 			for (Element elseIfElement : elseIfElements) {
+				PoshiRunnerStackTraceUtil.pushStackTrace(elseIfElement.attributeValue("line-number"));
+
 				List<Element> elseIfChildElements = elseIfElement.elements();
 
 				Element elseIfConditionElement = elseIfChildElements.get(0);
@@ -479,17 +485,29 @@ public class PoshiRunnerExecutor {
 				if (condition) {
 					Element elseIfThenElement = elseIfElement.element("then");
 
+					PoshiRunnerStackTraceUtil.pushStackTrace(elseIfThenElement.attributeValue("line-number"));
+
 					parseElement(elseIfThenElement);
+
+					PoshiRunnerStackTraceUtil.popStackTrace();
+
+					PoshiRunnerStackTraceUtil.popStackTrace();
 
 					break;
 				}
+
+				PoshiRunnerStackTraceUtil.popStackTrace();
 			}
 		}
 
 		if ((element.element("else") != null) && !condition) {
 			Element elseElement = element.element("else");
 
+			PoshiRunnerStackTraceUtil.pushStackTrace(elseElement.attributeValue("line-number"));
+
 			parseElement(elseElement);
+
+			PoshiRunnerStackTraceUtil.popStackTrace();
 		}
 	}
 

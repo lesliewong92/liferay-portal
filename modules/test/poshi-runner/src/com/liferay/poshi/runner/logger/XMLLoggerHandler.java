@@ -169,7 +169,7 @@ public final class XMLLoggerHandler {
 	public static LoggerElement generateIONOElements(Element element) {
 		LoggerElement testcaseElement = new LoggerElement();
 
-		_elementToLoggerElement.put(element, testcaseElement);
+		_elementToLoggerElement.put(PoshiRunnerStackTraceUtil.getUniqueID(), testcaseElement);
 
 		testcaseElement.setName("li");
 
@@ -203,20 +203,32 @@ public final class XMLLoggerHandler {
 			element.attributeValue("macro-mobile") != null) {
 
 			if (element.attributeValue("macro") != null) {
+				PoshiRunnerStackTraceUtil.pushFilePath(element.attributeValue("macro"), "macro");
+
 				testcaseElement.addChildLoggerElement(
 					generateMacroElement(element, "macro"));
+
+				PoshiRunnerStackTraceUtil.popFilePath();
 			}
 			else if ((element.attributeValue("macro-desktop") != null) &&
 				 Validator.isNull(PropsValues.MOBILE_DEVICE_TYPE)) {
 
+				PoshiRunnerStackTraceUtil.pushFilePath(element.attributeValue("macro-desktop"), "macro");
+
 				testcaseElement.addChildLoggerElement(
 					generateMacroElement(element, "macro-desktop"));
+
+				PoshiRunnerStackTraceUtil.popFilePath();
 			}
 			else if ((element.attributeValue("macro-mobile") != null) &&
 				 Validator.isNotNull(PropsValues.MOBILE_DEVICE_TYPE)) {
 
+				PoshiRunnerStackTraceUtil.pushFilePath(element.attributeValue("macro-mobile"), "macro");
+
 				testcaseElement.addChildLoggerElement(
 					generateMacroElement(element, "macro-mobile"));
+
+				PoshiRunnerStackTraceUtil.popFilePath();
 			}
 
 			testcaseElement.addChildLoggerElement(
@@ -226,8 +238,11 @@ public final class XMLLoggerHandler {
 			LoggerElement childContainerElement = generateChildContainerElement();
 
 			for (Element childElement : childElements) {
-				childContainerElement.addChildLoggerElement(
-					generateIONOElements(childElement));
+				PoshiRunnerStackTraceUtil.pushStackTrace(childElement.attributeValue("line-number"));
+
+				childContainerElement.addChildLoggerElement(generateIONOElements(childElement));
+
+				PoshiRunnerStackTraceUtil.popStackTrace();
 			}
 
 			testcaseElement.addChildLoggerElement(childContainerElement);
@@ -235,11 +250,34 @@ public final class XMLLoggerHandler {
 				generateClosingElement(element));
 		}
 
+/*
+		if (classType.equals("test-case")) {
+			PoshiRunnerStackTraceUtil.pushFilePath(classCommandName, classType);
+
+			PoshiRunnerStackTraceUtil.pushStackTrace(element.attributeValue("line-number"));
+
+		}
+		else if (classType.equals("macro")) {
+			PoshiRunnerStackTraceUtil.pushFilePath(classCommandName, classType);
+
+			PoshiRunnerStackTraceUtil.pushStackTrace(element.attributeValue("line-number"));
+
+			System.out.println(PoshiRunnerStackTraceUtil.getUniqueID());
+		}
+		if (classType.equals("test-case")) {
+			PoshiRunnerStackTraceUtil.popStackTrace();
+			PoshiRunnerStackTraceUtil.popFilePath();
+		}
+		else if (classType.equals("macro")) {
+			PoshiRunnerStackTraceUtil.popStackTrace();
+			PoshiRunnerStackTraceUtil.popFilePath();
+		}*/
+
 		return testcaseElement;
 	}
 
-	public static LoggerElement getLoggerElementFromElement(Element element) {
-		return _elementToLoggerElement.get(element);
+	public static LoggerElement getLoggerElementFromElement(String uniqueID) {
+		return _elementToLoggerElement.get(uniqueID);
 	}
 
 	public static LoggerElement generateLineContainerElement(
@@ -317,8 +355,11 @@ public final class XMLLoggerHandler {
 		List<Element> rootVarElements = rootElement.elements("var");
 
 		for (Element rootVarElement : rootVarElements) {
-			macroContainerElement.addChildLoggerElement(
-				generateIONOElements(rootVarElement));
+			PoshiRunnerStackTraceUtil.pushStackTrace(rootVarElement.attributeValue("line-number"));
+
+			macroContainerElement.addChildLoggerElement(generateIONOElements(rootVarElement));
+
+			PoshiRunnerStackTraceUtil.popStackTrace();
 		}
 
 		Element commandElement = PoshiRunnerContext.getMacroCommandElement(
@@ -327,8 +368,11 @@ public final class XMLLoggerHandler {
 		List<Element> childElements = commandElement.elements();
 
 		for (Element childElement : childElements) {
-			macroContainerElement.addChildLoggerElement(
-				generateIONOElements(childElement));
+			PoshiRunnerStackTraceUtil.pushStackTrace(childElement.attributeValue("line-number"));
+
+			macroContainerElement.addChildLoggerElement(generateIONOElements(childElement));
+
+			PoshiRunnerStackTraceUtil.popStackTrace();
 		}
 
 		return macroContainerElement;
@@ -407,8 +451,22 @@ public final class XMLLoggerHandler {
 
 		Element setupElement = getSetupElement(testClassName);
 
+		PoshiRunnerStackTraceUtil.pushFilePath(testClassName + "#set-up", "test-case");
+		PoshiRunnerStackTraceUtil.pushStackTrace(setupElement.attributeValue("line-number"));
+
 		childContainerElement.addChildLoggerElement(generateIONOElements(setupElement));
+
+		PoshiRunnerStackTraceUtil.popStackTrace();
+		PoshiRunnerStackTraceUtil.popFilePath();
+
+
+		PoshiRunnerStackTraceUtil.pushFilePath(classCommandName, "test-case");
+		PoshiRunnerStackTraceUtil.pushStackTrace(element.attributeValue("line-number"));
+
 		childContainerElement.addChildLoggerElement(generateIONOElements(element));
+
+		PoshiRunnerStackTraceUtil.popStackTrace();
+		PoshiRunnerStackTraceUtil.popFilePath();
 
 /*		Element teardownElement = getTeardownElement(testClassName);
 
@@ -446,7 +504,7 @@ public final class XMLLoggerHandler {
 		return element.equals(_commandElement);
 	}
 
-	private static Map<Element, LoggerElement> _elementToLoggerElement = new HashMap<Element, LoggerElement>();
+	private static Map<String, LoggerElement> _elementToLoggerElement = new HashMap<String, LoggerElement>();
 
 	private static int _buttonLinkId = 0;
 	private static int _level = 0;
