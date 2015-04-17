@@ -78,14 +78,6 @@ public class LoggerElement {
 		}
 	}
 
-	public void addClassName(String className) {
-		setClassName(_className + " " + className);
-	}
-
-	public void removeClassName(String className) {
-		setClassName(_className + " " + className);
-	}
-
 	public void addChildLoggerElement(LoggerElement childLoggerElement) {
 		_childLoggerElements.add(childLoggerElement);
 
@@ -96,8 +88,12 @@ public class LoggerElement {
 		}
 	}
 
-	public LoggerElement copy(String id) {
-		LoggerElement loggerElement = new LoggerElement(id);
+	public void addClassName(String className) {
+		setClassName(_className + " " + className);
+	}
+
+	public LoggerElement copy() {
+		LoggerElement loggerElement = new LoggerElement();
 
 		loggerElement.setClassName(_className);
 		loggerElement.setName(_name);
@@ -106,8 +102,8 @@ public class LoggerElement {
 		return loggerElement;
 	}
 
-	public LoggerElement copy() {
-		LoggerElement loggerElement = new LoggerElement();
+	public LoggerElement copy(String id) {
+		LoggerElement loggerElement = new LoggerElement(id);
 
 		loggerElement.setClassName(_className);
 		loggerElement.setName(_name);

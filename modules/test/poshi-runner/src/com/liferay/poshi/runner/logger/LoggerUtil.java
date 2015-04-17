@@ -302,7 +302,7 @@ public final class LoggerUtil {
 			_CURRENT_DIR + "/src/META-INF/resources/css/.sass-cache",
 			_CURRENT_DIR + "/test-results/css");
 		FileUtil.copyDirectory(
-		 	_getResourcesDir() + "js", _CURRENT_DIR + "/test-results/js");
+			_getResourcesDir() + "js", _CURRENT_DIR + "/test-results/js");
 
 		_webDriver.get(
 			"file://" + _CURRENT_DIR + "/test-results/html/index.html");

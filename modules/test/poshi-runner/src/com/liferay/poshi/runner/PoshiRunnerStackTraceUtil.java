@@ -30,22 +30,6 @@ public final class PoshiRunnerStackTraceUtil {
 		}
 	}
 
-	public static String getUniqueID() {
-		Stack<String> stackTrace = (Stack<String>)_stackTrace.clone();
-
-		StringBuilder sb = new StringBuilder();
-
-		for (String filePath : _stackTrace) {
-			if (filePath.contains(".function:")) {
-				continue;
-			}
-
-			sb.append(PoshiRunnerGetterUtil.getFileNameFromFilePath(filePath));
-		}
-
-		return sb.toString();
-	}
-
 	public static String getStackTrace() {
 		return getStackTrace(null);
 	}
@@ -65,6 +49,22 @@ public final class PoshiRunnerStackTraceUtil {
 		while (!stackTrace.isEmpty()) {
 			sb.append("\n");
 			sb.append(stackTrace.pop());
+		}
+
+		return sb.toString();
+	}
+
+	public static String getUniqueID() {
+		Stack<String> stackTrace = (Stack<String>)_stackTrace.clone();
+
+		StringBuilder sb = new StringBuilder();
+
+		for (String filePath : _stackTrace) {
+			if (filePath.contains(".function:")) {
+				continue;
+			}
+
+			sb.append(PoshiRunnerGetterUtil.getFileNameFromFilePath(filePath));
 		}
 
 		return sb.toString();
