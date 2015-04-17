@@ -35,8 +35,8 @@ public final class PoshiRunnerStackTraceUtil {
 
 		StringBuilder sb = new StringBuilder();
 
-		while (!stackTrace.isEmpty()) {
-			sb.append(stackTrace.pop());
+		for (String filePath : _stackTrace) {
+			sb.append(PoshiRunnerGetterUtil.getFileNameFromFilePath(filePath));
 		}
 
 		return sb.toString();
