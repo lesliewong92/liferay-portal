@@ -122,8 +122,6 @@ public final class CommandLoggerHandler {
 
 		_commandLogLoggerElement.addChildLoggerElement(_commandLoggerElement);
 
-		_sidebarLoggerElement.setClassName("sidebar running");
-
 		LoggerElement xmlLoggerElement =
 			XMLLoggerHandler.getLoggerElementFromElement(
 				PoshiRunnerStackTraceUtil.getUniqueID());
