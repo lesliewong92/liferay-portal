@@ -704,7 +704,12 @@ public class PoshiRunnerExecutor {
 				break;
 			}
 
+			PoshiRunnerStackTraceUtil.pushStackTrace(
+				thenElement.attributeValue("line-number"));
+
 			parseElement(thenElement);
+
+			PoshiRunnerStackTraceUtil.popStackTrace();
 		}
 	}
 

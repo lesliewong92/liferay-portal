@@ -96,6 +96,8 @@ public class PoshiRunner {
 	@Test
 	public void test() throws Exception {
 		try {
+			CommandLoggerHandler.startTest();
+
 			_runSetUp();
 
 			_runCommand();
@@ -111,6 +113,9 @@ public class PoshiRunner {
 				PoshiRunnerStackTraceUtil.printStackTrace(e.getMessage());
 
 				PoshiRunnerStackTraceUtil.emptyStackTrace();
+			}
+			finally {
+				CommandLoggerHandler.stopTest();
 			}
 		}
 	}
@@ -136,6 +141,8 @@ public class PoshiRunner {
 			classCommandName);
 
 		if (commandElement != null) {
+			CommandLoggerHandler.logClassCommandName(classCommandName);
+
 			PoshiRunnerStackTraceUtil.pushFilePath(
 				classCommandName, "test-case");
 
@@ -151,22 +158,15 @@ public class PoshiRunner {
 	}
 
 	private void _runCommand() throws Exception {
-		CommandLoggerHandler.logClassCommandName(_testClassCommandName);
-
 		_runClassCommandName(_testClassCommandName);
 	}
 
 	private void _runSetUp() throws Exception {
-		CommandLoggerHandler.logClassCommandName(_testClassName + "#set-up");
-
 		_runClassCommandName(_testClassName + "#set-up");
 	}
 
 	private void _runTearDown() throws Exception {
 		try {
-			CommandLoggerHandler.logClassCommandName(
-				_testClassName + "#tear-down");
-
 			_runClassCommandName(_testClassName + "#tear-down");
 		}
 		catch (Exception e) {
