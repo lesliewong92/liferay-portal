@@ -317,7 +317,8 @@ public final class LoggerUtil {
 			testClassCommandName, "#", "_");
 
 		FileUtil.write(
-			_CURRENT_DIR + "/test-results/" + testClassCommandName + "/index.html",
+			_CURRENT_DIR + "/test-results/" + testClassCommandName +
+				"/index.html",
 			content);
 
 		/*if (isLoggerStarted()) {
