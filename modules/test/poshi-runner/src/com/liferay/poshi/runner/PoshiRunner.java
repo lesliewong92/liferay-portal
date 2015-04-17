@@ -76,7 +76,8 @@ public class PoshiRunner {
 		Element commandElement = PoshiRunnerContext.getTestCaseCommandElement(
 			classCommandName);
 
-		XMLLoggerHandler.generateXMLLog(classCommandName, commandElement, _testClassName);
+		XMLLoggerHandler.generateXMLLog(
+			classCommandName, commandElement, _testClassName);
 
 		LoggerUtil.startLogger();
 
