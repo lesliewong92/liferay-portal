@@ -494,9 +494,17 @@ public final class XMLLoggerHandler {
 		PoshiRunnerStackTraceUtil.popStackTrace();
 		PoshiRunnerStackTraceUtil.popFilePath();
 
-/* Element teardownElement = getTeardownElement(testClassName);
+		Element teardownElement = getTeardownElement(testClassName);
 
-		childContainerElement.addChildLoggerElement(generateIONOElements(teardownElement));*/
+		PoshiRunnerStackTraceUtil.pushFilePath(
+			testClassName + "#tear-down", "test-case");
+		PoshiRunnerStackTraceUtil.pushStackTrace(
+			teardownElement.attributeValue("line-number"));
+
+		childContainerElement.addChildLoggerElement(generateIONOElements(teardownElement));
+
+		PoshiRunnerStackTraceUtil.popStackTrace();
+		PoshiRunnerStackTraceUtil.popFilePath();
 
 		rootElement.addChildLoggerElement(childContainerElement);
 
