@@ -49,7 +49,7 @@ public class PoshiRunnerExecutor {
 				CommandLoggerHandler.setLineGroupStatus("pending");
 
 				if (!evaluateConditionalElement(andElement)) {
-					CommandLoggerHandler.setLineGroupStatus("conditional-fail");
+					CommandLoggerHandler.setLineGroupStatus("conditional-fail1");
 					PoshiRunnerStackTraceUtil.popStackTrace();
 
 					return false;
@@ -126,7 +126,7 @@ public class PoshiRunnerExecutor {
 					return true;
 				}
 
-				CommandLoggerHandler.setLineGroupStatus("conditional-fail");
+				CommandLoggerHandler.setLineGroupStatus("conditional-fail2");
 				PoshiRunnerStackTraceUtil.popStackTrace();
 			}
 
@@ -147,7 +147,7 @@ public class PoshiRunnerExecutor {
 				PoshiRunnerStackTraceUtil.popStackTrace();
 			}
 			else {
-				CommandLoggerHandler.setLineGroupStatus("conditional-fail");
+				CommandLoggerHandler.setLineGroupStatus("conditional-fail3");
 				PoshiRunnerStackTraceUtil.popStackTrace();
 			}
 
@@ -218,7 +218,20 @@ public class PoshiRunnerExecutor {
 				}
 			}
 			else if (childElementName.equals("if")) {
-				runIfElement(childElement);
+				String currentContext = PoshiRunnerStackTraceUtil.popStackTrace();
+
+				System.out.println(currentContext);
+
+				boolean isFunction = currentContext.contains(".function");
+
+				PoshiRunnerStackTraceUtil.pushStackTrace(currentContext);
+
+				if(isFunction) {
+					runIfElement(childElement, false);
+				}
+				else {
+					runIfElement(childElement, true);
+				}
 			}
 			else if (childElementName.equals("fail")) {
 				CommandLoggerHandler.setLineGroupStatus("pending");
@@ -529,7 +542,7 @@ public class PoshiRunnerExecutor {
 		SummaryLoggerHandler.passSummary(executeElement);
 	}
 
-	public static void runIfElement(Element element) throws Exception {
+	public static void runIfElement(Element element, boolean isNotFunction) throws Exception {
 		//for the if
 		// PoshiRunnerStackTraceUtil.pushStackTrace(element.attributeValue("line-number"));
 		CommandLoggerHandler.setLineGroupStatus("pending");
@@ -539,19 +552,27 @@ public class PoshiRunnerExecutor {
 		Element ifConditionElement = ifChildElements.get(0);
 
 		//for the condition
-		PoshiRunnerStackTraceUtil.pushStackTrace(ifConditionElement.attributeValue("line-number"));
-		CommandLoggerHandler.setLineGroupStatus("pending");
+		if(isNotFunction) {
+			PoshiRunnerStackTraceUtil.pushStackTrace(ifConditionElement.attributeValue("line-number"));
+			CommandLoggerHandler.setLineGroupStatus("pending");
+		}
 
 		boolean condition = evaluateConditionalElement(ifConditionElement);
 
-		if (condition) {
-			CommandLoggerHandler.setLineGroupStatus("pass");
-		}
-		else {
-			CommandLoggerHandler.setLineGroupStatus("conditional-fail");
-		}
+		// System.out.println("condition: " + condition);
+		// System.out.println("function: " + isNotFunction);
+		// System.out.println();
 
-		PoshiRunnerStackTraceUtil.popStackTrace();
+		if(isNotFunction) {
+			if (condition) {
+				CommandLoggerHandler.setLineGroupStatus("pass");
+			}
+			else {
+				CommandLoggerHandler.setLineGroupStatus("conditional-fail4");
+			}
+
+			PoshiRunnerStackTraceUtil.popStackTrace();
+		}
 
 		if (condition) {
 			Element ifThenElement = element.element("then");
@@ -593,7 +614,7 @@ public class PoshiRunnerExecutor {
 					CommandLoggerHandler.setLineGroupStatus("pass");
 				}
 				else {
-					CommandLoggerHandler.setLineGroupStatus("conditional-fail");
+					CommandLoggerHandler.setLineGroupStatus("conditional-fail5");
 				}
 
 				PoshiRunnerStackTraceUtil.popStackTrace();
@@ -653,7 +674,7 @@ public class PoshiRunnerExecutor {
 			element.element("else") == null) {
 
 			//for the if
-			CommandLoggerHandler.setLineGroupStatus("conditional-fail");
+			CommandLoggerHandler.setLineGroupStatus("conditional-fail6");
 			// PoshiRunnerStackTraceUtil.popStackTrace();
 		}
 	}
@@ -874,7 +895,7 @@ public class PoshiRunnerExecutor {
 
 			if (!evaluateConditionalElement(conditionElement)) {
 				if (i == 0) {
-					CommandLoggerHandler.setLineGroupStatus("conditional-fail");
+					CommandLoggerHandler.setLineGroupStatus("conditional-fail7");
 					PoshiRunnerStackTraceUtil.popStackTrace();
 				}
 
@@ -898,7 +919,7 @@ public class PoshiRunnerExecutor {
 
 		if (i == 0) {
 			//for the while
-			CommandLoggerHandler.setLineGroupStatus("conditional-fail");
+			CommandLoggerHandler.setLineGroupStatus("conditional-fail8");
 		}
 		else {
 			//for the while
