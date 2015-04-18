@@ -130,12 +130,6 @@ public final class CommandLoggerHandler {
 		childContainerLoggerElement.addChildLoggerElement(runLineLoggerElement);
 	}
 
-	public static void setLineGroupStatus(String status) {
-		LoggerElement xmlLoggerElement = XMLLoggerHandler.getLoggerElementFromElement(PoshiRunnerStackTraceUtil.getUniqueID());
-
-		xmlLoggerElement.setAttribute("data-status01", status);
-	}
-
 	public static void startCommand(Element element) throws Exception {
 		if (!_isCommand(element)) {
 			return;
