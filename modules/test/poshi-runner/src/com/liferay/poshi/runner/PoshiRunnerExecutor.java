@@ -49,7 +49,7 @@ public class PoshiRunnerExecutor {
 				CommandLoggerHandler.setLineGroupStatus("pending");
 
 				if (!evaluateConditionalElement(andElement)) {
-					CommandLoggerHandler.setLineGroupStatus("conditional-fail1");
+					CommandLoggerHandler.setLineGroupStatus("conditional-fail");
 					PoshiRunnerStackTraceUtil.popStackTrace();
 
 					return false;
@@ -126,7 +126,7 @@ public class PoshiRunnerExecutor {
 					return true;
 				}
 
-				CommandLoggerHandler.setLineGroupStatus("conditional-fail2");
+				CommandLoggerHandler.setLineGroupStatus("conditional-fail");
 				PoshiRunnerStackTraceUtil.popStackTrace();
 			}
 
@@ -147,7 +147,7 @@ public class PoshiRunnerExecutor {
 				PoshiRunnerStackTraceUtil.popStackTrace();
 			}
 			else {
-				CommandLoggerHandler.setLineGroupStatus("conditional-fail3");
+				CommandLoggerHandler.setLineGroupStatus("conditional-fail");
 				PoshiRunnerStackTraceUtil.popStackTrace();
 			}
 
@@ -568,7 +568,7 @@ public class PoshiRunnerExecutor {
 				CommandLoggerHandler.setLineGroupStatus("pass");
 			}
 			else {
-				CommandLoggerHandler.setLineGroupStatus("conditional-fail4");
+				CommandLoggerHandler.setLineGroupStatus("conditional-fail");
 			}
 
 			PoshiRunnerStackTraceUtil.popStackTrace();
@@ -605,7 +605,9 @@ public class PoshiRunnerExecutor {
 
 				Element elseIfConditionElement = elseIfChildElements.get(0);
 
-				PoshiRunnerStackTraceUtil.pushStackTrace(elseIfConditionElement.attributeValue("line-number"));
+				PoshiRunnerStackTraceUtil.pushStackTrace(
+					elseIfConditionElement.attributeValue("line-number"));
+
 				CommandLoggerHandler.setLineGroupStatus("pending");
 
 				condition = evaluateConditionalElement(elseIfConditionElement);
@@ -614,7 +616,7 @@ public class PoshiRunnerExecutor {
 					CommandLoggerHandler.setLineGroupStatus("pass");
 				}
 				else {
-					CommandLoggerHandler.setLineGroupStatus("conditional-fail5");
+					CommandLoggerHandler.setLineGroupStatus("conditional-fail");
 				}
 
 				PoshiRunnerStackTraceUtil.popStackTrace();
@@ -644,7 +646,7 @@ public class PoshiRunnerExecutor {
 					break;
 				}
 
-				CommandLoggerHandler.setLineGroupStatus("pass");
+				CommandLoggerHandler.setLineGroupStatus("conditional-fail");
 
 				PoshiRunnerStackTraceUtil.popStackTrace();
 			}
@@ -670,11 +672,10 @@ public class PoshiRunnerExecutor {
 		}
 
 		if(!condition &&
-			element.element("elseif") == null &&
 			element.element("else") == null) {
 
 			//for the if
-			CommandLoggerHandler.setLineGroupStatus("conditional-fail6");
+			CommandLoggerHandler.setLineGroupStatus("conditional-fail");
 			// PoshiRunnerStackTraceUtil.popStackTrace();
 		}
 	}
@@ -895,7 +896,7 @@ public class PoshiRunnerExecutor {
 
 			if (!evaluateConditionalElement(conditionElement)) {
 				if (i == 0) {
-					CommandLoggerHandler.setLineGroupStatus("conditional-fail7");
+					CommandLoggerHandler.setLineGroupStatus("conditional-fail");
 					PoshiRunnerStackTraceUtil.popStackTrace();
 				}
 
@@ -919,7 +920,7 @@ public class PoshiRunnerExecutor {
 
 		if (i == 0) {
 			//for the while
-			CommandLoggerHandler.setLineGroupStatus("conditional-fail8");
+			CommandLoggerHandler.setLineGroupStatus("conditional-fail");
 		}
 		else {
 			//for the while
