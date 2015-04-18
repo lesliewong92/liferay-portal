@@ -82,6 +82,22 @@ public final class CommandLoggerHandler {
 			"loggerInterface.fire('command-complete')");
 	}
 
+	public static void setLineGroupStatus(String status) {
+		LoggerElement xmlLoggerElement = XMLLoggerHandler.getLoggerElementFromElement(PoshiRunnerStackTraceUtil.getUniqueID());
+
+		// String oldClass = xmlLoggerElement.getClassName();
+
+		// oldClass = oldClass.replace(" pending", "");
+		// oldClass = oldClass.replace(" fail", "");
+		// oldClass = oldClass.replace(" pass", "");
+
+		// String newClass = oldClass + " " + status;
+
+		// xmlLoggerElement.setClassName(newClass);
+
+		xmlLoggerElement.setAttribute("data-status01", status);
+	}
+
 	public static void sendRunLine(Element element, List<String> arguments) {
 		LoggerElement childContainerLoggerElement =
 			_commandLoggerElement.loggerElement("ul");

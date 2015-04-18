@@ -391,7 +391,8 @@ public final class XMLLoggerHandler {
 		parameterContainerElement.setAttribute(
 			"data-btnlinkid", "xml-" + _buttonIdStack.pop());
 		parameterContainerElement.setClassName(
-			"parameter-container collapsible collapse");
+			"child-container parameter-container collapse");
+
 		parameterContainerElement.setName("div");
 
 		for (Element element : elements) {
