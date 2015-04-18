@@ -95,18 +95,20 @@ public class PoshiRunner {
 	public void test() throws Exception {
 		LoggerElement loggerElement = new LoggerElement("xml-logger-header");
 
+		boolean failed = false;
+
 		try {
-			loggerElement.setClassName("header pending");
+			loggerElement.setAttribute("data-status01", "pending");
 
 			CommandLoggerHandler.startTest();
 
 			_runSetUp();
 
 			_runCommand();
-
-			loggerElement.setClassName("header pass");
 		}
 		catch (Exception e) {
+			failed = true;
+
 			throw new PoshiRunnerException(e.getMessage(), e);
 		}
 		finally {
@@ -114,11 +116,17 @@ public class PoshiRunner {
 				_runTearDown();
 			}
 			catch (Exception e) {
+				failed = true;
+
 				PoshiRunnerStackTraceUtil.printStackTrace(e.getMessage());
 
 				PoshiRunnerStackTraceUtil.emptyStackTrace();
 			}
 			finally {
+				if(!failed) {
+					loggerElement.setAttribute("data-status01", "pass");
+				}
+
 				CommandLoggerHandler.stopTest();
 			}
 		}
