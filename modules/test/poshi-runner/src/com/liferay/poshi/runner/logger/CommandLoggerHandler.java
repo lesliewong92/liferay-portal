@@ -14,10 +14,13 @@
 
 package com.liferay.poshi.runner.logger;
 
+import com.liferay.poshi.runner.PoshiRunner;
 import com.liferay.poshi.runner.PoshiRunnerContext;
 import com.liferay.poshi.runner.PoshiRunnerGetterUtil;
 import com.liferay.poshi.runner.PoshiRunnerStackTraceUtil;
 import com.liferay.poshi.runner.PoshiRunnerVariablesUtil;
+import com.liferay.poshi.runner.selenium.LiferaySeleniumHelper;
+import com.liferay.poshi.runner.util.StringUtil;
 import com.liferay.poshi.runner.util.Validator;
 
 import java.util.List;
@@ -115,6 +118,15 @@ public final class CommandLoggerHandler {
 		if (!_isCommand(element)) {
 			return;
 		}
+
+		String testClassCommandName = PoshiRunner.getTestClassCommandName();
+
+		testClassCommandName = StringUtil.replace(
+			testClassCommandName, "#", "_");
+
+		LiferaySeleniumHelper.captureScreen(
+			_CURRENT_DIR + "/test-results/" + testClassCommandName +
+				"/screenshot/before" + _errorLinkId + ".jpg");
 
 		_commandElement = element;
 
@@ -328,17 +340,34 @@ public final class CommandLoggerHandler {
 
 		errorScreenshotLoggerElement.setClassName("screenshot");
 
+		String testClassCommandName = PoshiRunner.getTestClassCommandName();
+
+		testClassCommandName = StringUtil.replace(
+			testClassCommandName, "#", "_");
+
+		try {
+			LiferaySeleniumHelper.captureScreen(
+				_CURRENT_DIR + "/test-results/" + testClassCommandName +
+					"/screenshot/after" + _errorLinkId + ".jpg");
+		}
+		catch (Exception e) {
+		}
+
 		LoggerElement beforeLoggerElement = new LoggerElement();
 
-		beforeLoggerElement.setAttribute("alt", "someimagebefore.jpg");
-		beforeLoggerElement.setAttribute("src", "someimagebefore.jpg");
+		beforeLoggerElement.setAttribute("alt", "before.jpg");
+		beforeLoggerElement.setAttribute(
+			"src", "screenshot/before" + _errorLinkId + ".jpg");
 		beforeLoggerElement.setName("img");
 
 		LoggerElement afterLoggerElement = new LoggerElement();
 
-		afterLoggerElement.setAttribute("alt", "someimagebefore.jpg");
-		afterLoggerElement.setAttribute("src", "someimagebefore.jpg");
+		afterLoggerElement.setAttribute("alt", "after.jpg");
+		afterLoggerElement.setAttribute(
+			"src", "screenshot/after" + _errorLinkId + ".jpg");
 		afterLoggerElement.setName("img");
+
+		_errorLinkId++;
 
 		errorScreenshotLoggerElement.addChildLoggerElement(beforeLoggerElement);
 		errorScreenshotLoggerElement.addChildLoggerElement(afterLoggerElement);
@@ -367,6 +396,7 @@ public final class CommandLoggerHandler {
 	}
 
 	private static int _btnLinkId;
+	private static int _errorLinkId;
 	private static Element _commandElement;
 	private static LoggerElement _commandLoggerElement;
 	private static final LoggerElement _commandLogLoggerElement =
@@ -375,5 +405,7 @@ public final class CommandLoggerHandler {
 	private static LoggerElement _runLineLoggerElement;
 	private static final LoggerElement _sidebarLoggerElement =
 		new LoggerElement("sidebar");
+	private static final String _CURRENT_DIR =
+		PoshiRunnerGetterUtil.getCanonicalPath(".");
 
 }
