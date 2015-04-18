@@ -14,6 +14,7 @@
 
 package com.liferay.poshi.runner.logger;
 
+import com.liferay.poshi.runner.PoshiRunner;
 import com.liferay.poshi.runner.PoshiRunnerGetterUtil;
 import com.liferay.poshi.runner.util.FileUtil;
 import com.liferay.poshi.runner.util.StringUtil;
@@ -303,8 +304,18 @@ public final class LoggerUtil {
 		FileUtil.copyDirectory(
 			_getResourcesDir() + "js", _CURRENT_DIR + "/test-results/js");
 
+		String testClassCommandName = PoshiRunner.getTestClassCommandName();
+
+		testClassCommandName = testClassCommandName.replaceAll("#", "_");
+
+		FileUtil.copyDirectory(
+			_CURRENT_DIR + "/test-results/html",
+			_CURRENT_DIR + "/test-results/" + testClassCommandName);
+
+
 		_webDriver.get(
-			"file://" + _CURRENT_DIR + "/test-results/html/index.html");
+			"file://" + _CURRENT_DIR + "/test-results/" + testClassCommandName +
+				"/index.html");
 	}
 
 	public static void stopLogger(String testClassCommandName)
