@@ -162,6 +162,14 @@ public class PoshiRunner {
 		_runClassCommandName(_testClassName + "#set-up");
 	}
 
+	public static String getTestClassCommandName() {
+		return _testClassCommandName;
+	}
+
+	public static String getTestClassName() {
+		return _testClassName;
+	}
+
 	private void _runTearDown() throws Exception {
 		try {
 			_runClassCommandName(_testClassName + "#tear-down");
@@ -176,7 +184,7 @@ public class PoshiRunner {
 		}
 	}
 
-	private final String _testClassCommandName;
-	private final String _testClassName;
+	private static String _testClassCommandName;
+	private static String _testClassName;
 
 }
