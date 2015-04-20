@@ -374,6 +374,7 @@ public final class CommandLoggerHandler {
 		beforeLoggerElement.setAttribute("alt", "before.jpg");
 		beforeLoggerElement.setAttribute(
 			"src", "screenshot/before" + _errorLinkId + ".jpg");
+		beforeLoggerElement.setClassName("before");
 		beforeLoggerElement.setName("img");
 
 		LoggerElement afterLoggerElement = new LoggerElement();
@@ -381,6 +382,7 @@ public final class CommandLoggerHandler {
 		afterLoggerElement.setAttribute("alt", "after.jpg");
 		afterLoggerElement.setAttribute(
 			"src", "screenshot/after" + _errorLinkId + ".jpg");
+		afterLoggerElement.setClassName("after");
 		afterLoggerElement.setName("img");
 
 		_errorLinkId++;
