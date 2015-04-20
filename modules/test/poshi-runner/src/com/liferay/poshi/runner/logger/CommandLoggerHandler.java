@@ -290,7 +290,7 @@ public final class CommandLoggerHandler {
 		errorContainerLoggerElement.addChildLoggerElement(
 			_getErrorConsoleLoggerElement());
 		errorContainerLoggerElement.addChildLoggerElement(
-			_getScreenshotLoggerElement());
+			_getScreenshotsLoggerElement());
 
 		return errorContainerLoggerElement;
 	}
@@ -366,10 +366,42 @@ public final class CommandLoggerHandler {
 		return loggerElement.toString();
 	}
 
-	private static LoggerElement _getScreenshotLoggerElement() {
-		LoggerElement errorScreenshotLoggerElement = new LoggerElement();
+	private static LoggerElement _getScreenshotsLoggerElement() {
+		LoggerElement screenshotsLoggerElement = new LoggerElement();
 
-		errorScreenshotLoggerElement.setClassName("screenshot");
+		screenshotsLoggerElement.setClassName("errorPanel screenshots toggle");
+		screenshotsLoggerElement.setAttribute(
+			"data-errorlinkid", "errorLinkId-" + _errorLinkId);
+
+		LoggerElement beforeScreenshotContainerLoggerElement =
+			new LoggerElement();
+
+		beforeScreenshotContainerLoggerElement.setClassName(
+			"before screenshot-container");
+
+		LoggerElement beforeScreenshotLoggerElement = new LoggerElement();
+
+		beforeScreenshotLoggerElement.setAttribute(
+			"alt", "before" + _errorLinkId);
+		beforeScreenshotLoggerElement.setAttribute(
+			"src", "screenshot/before" + _errorLinkId + ".jpg");
+		beforeScreenshotLoggerElement.setName("img");
+
+		LoggerElement beforeSpanLoggerElement = new LoggerElement();
+
+		beforeSpanLoggerElement.setName("span");
+		beforeSpanLoggerElement.setText("Before");
+
+		beforeScreenshotContainerLoggerElement.setClassName(
+			"before screenshot-container");
+
+		screenshotsLoggerElement.addChildLoggerElement(
+			beforeScreenshotContainerLoggerElement);
+
+		beforeScreenshotContainerLoggerElement.addChildLoggerElement(
+			beforeScreenshotLoggerElement);
+		beforeScreenshotContainerLoggerElement.addChildLoggerElement(
+			beforeSpanLoggerElement);
 
 		String testClassCommandName = PoshiRunner.getTestClassCommandName();
 
@@ -384,28 +416,37 @@ public final class CommandLoggerHandler {
 		catch (Exception e) {
 		}
 
-		LoggerElement beforeLoggerElement = new LoggerElement();
+		LoggerElement afterScreenshotContainerLoggerElement =
+			new LoggerElement();
 
-		beforeLoggerElement.setAttribute("alt", "before.jpg");
-		beforeLoggerElement.setAttribute(
-			"src", "screenshot/before" + _errorLinkId + ".jpg");
-		beforeLoggerElement.setClassName("before");
-		beforeLoggerElement.setName("img");
+		afterScreenshotContainerLoggerElement.setClassName(
+			"after screenshot-container");
 
-		LoggerElement afterLoggerElement = new LoggerElement();
+		LoggerElement afterScreenshotLoggerElement = new LoggerElement();
 
-		afterLoggerElement.setAttribute("alt", "after.jpg");
-		afterLoggerElement.setAttribute(
+		afterScreenshotLoggerElement.setAttribute(
+			"alt", "after" + _errorLinkId);
+		afterScreenshotLoggerElement.setAttribute(
 			"src", "screenshot/after" + _errorLinkId + ".jpg");
-		afterLoggerElement.setClassName("after");
-		afterLoggerElement.setName("img");
+		afterScreenshotLoggerElement.setName("img");
 
-		_errorLinkId++;
+		LoggerElement afterSpanLoggerElement = new LoggerElement();
 
-		errorScreenshotLoggerElement.addChildLoggerElement(beforeLoggerElement);
-		errorScreenshotLoggerElement.addChildLoggerElement(afterLoggerElement);
+		afterSpanLoggerElement.setName("span");
+		afterSpanLoggerElement.setText("After");
 
-		return errorScreenshotLoggerElement;
+		afterScreenshotContainerLoggerElement.setClassName(
+			"after screenshot-container");
+
+		screenshotsLoggerElement.addChildLoggerElement(
+			afterScreenshotContainerLoggerElement);
+
+		afterScreenshotContainerLoggerElement.addChildLoggerElement(
+			afterScreenshotLoggerElement);
+		afterScreenshotContainerLoggerElement.addChildLoggerElement(
+			afterSpanLoggerElement);
+
+		return screenshotsLoggerElement;
 	}
 
 	private static boolean _isCommand(Element element) {
