@@ -45,7 +45,9 @@ public class PoshiRunnerExecutor {
 			List<Element> andElements = element.elements();
 
 			for (Element andElement : andElements) {
-				PoshiRunnerStackTraceUtil.pushStackTrace(andElement.attributeValue("line-number"));
+				PoshiRunnerStackTraceUtil.pushStackTrace(
+					andElement.attributeValue("line-number"));
+
 				CommandLoggerHandler.setLineGroupStatus("pending");
 
 				if (!evaluateConditionalElement(andElement)) {
@@ -116,7 +118,9 @@ public class PoshiRunnerExecutor {
 			List<Element> orElements = element.elements();
 
 			for (Element orElement : orElements) {
-				PoshiRunnerStackTraceUtil.pushStackTrace(orElement.attributeValue("line-number"));
+				PoshiRunnerStackTraceUtil.pushStackTrace(
+					orElement.attributeValue("line-number"));
+
 				CommandLoggerHandler.setLineGroupStatus("pending");
 
 				if (evaluateConditionalElement(orElement)) {
@@ -137,7 +141,9 @@ public class PoshiRunnerExecutor {
 
 			Element notElement = notElements.get(0);
 
-			PoshiRunnerStackTraceUtil.pushStackTrace(notElement.attributeValue("line-number"));
+			PoshiRunnerStackTraceUtil.pushStackTrace(
+				notElement.attributeValue("line-number"));
+
 			CommandLoggerHandler.setLineGroupStatus("pending");
 
 			boolean notElementValue = !evaluateConditionalElement(notElement);
@@ -211,7 +217,8 @@ public class PoshiRunnerExecutor {
 				}
 			}
 			else if (childElementName.equals("if")) {
-				String currentContext = PoshiRunnerStackTraceUtil.popStackTrace();
+				String currentContext = 
+					PoshiRunnerStackTraceUtil.popStackTrace();
 
 				boolean isFunction = currentContext.contains(".function");
 
@@ -280,7 +287,9 @@ public class PoshiRunnerExecutor {
 		List<Element> executeVarElements = executeElement.elements("var");
 
 		for (Element executeVarElement : executeVarElements) {
-			PoshiRunnerStackTraceUtil.pushStackTrace(executeVarElement.attributeValue("line-number"));
+			PoshiRunnerStackTraceUtil.pushStackTrace(
+				executeVarElement.attributeValue("line-number"));
+
 			CommandLoggerHandler.setLineGroupStatus("pending");
 
 			runVarElement(executeVarElement, false);
@@ -288,8 +297,6 @@ public class PoshiRunnerExecutor {
 			CommandLoggerHandler.setLineGroupStatus("pass");
 			PoshiRunnerStackTraceUtil.popStackTrace();
 		}
-
-		// String actionClassCommandName = executeElement.attributeValue("action");
 
 		int locatorCount = PoshiRunnerContext.getActionLocatorCount(
 			actionClassCommandName);
@@ -429,7 +436,9 @@ public class PoshiRunnerExecutor {
 		List<Element> executeVarElements = executeElement.elements("var");
 
 		for (Element executeVarElement : executeVarElements) {
-			PoshiRunnerStackTraceUtil.pushStackTrace(executeVarElement.attributeValue("line-number"));
+			PoshiRunnerStackTraceUtil.pushStackTrace(
+				executeVarElement.attributeValue("line-number"));
+
 			CommandLoggerHandler.setLineGroupStatus("pending");
 
 			runVarElement(executeVarElement, false);
@@ -437,8 +446,6 @@ public class PoshiRunnerExecutor {
 			CommandLoggerHandler.setLineGroupStatus("pass");
 			PoshiRunnerStackTraceUtil.popStackTrace();
 		}
-
-		// String classCommandName = executeElement.attributeValue("function");
 
 		String className = classCommandName;
 
@@ -526,7 +533,9 @@ public class PoshiRunnerExecutor {
 		SummaryLoggerHandler.passSummary(executeElement);
 	}
 
-	public static void runIfElement(Element element, boolean isNotFunction) throws Exception {
+	public static void runIfElement(Element element, boolean isNotFunction) 
+		throws Exception {
+
 		CommandLoggerHandler.setLineGroupStatus("pending");
 
 		List<Element> ifChildElements = element.elements();
@@ -534,7 +543,9 @@ public class PoshiRunnerExecutor {
 		Element ifConditionElement = ifChildElements.get(0);
 
 		if(isNotFunction) {
-			PoshiRunnerStackTraceUtil.pushStackTrace(ifConditionElement.attributeValue("line-number"));
+			PoshiRunnerStackTraceUtil.pushStackTrace(
+				ifConditionElement.attributeValue("line-number"));
+
 			CommandLoggerHandler.setLineGroupStatus("pending");
 		}
 
@@ -664,7 +675,9 @@ public class PoshiRunnerExecutor {
 		List<Element> rootVarElements = rootElement.elements("var");
 
 		for (Element rootVarElement : rootVarElements) {
-			PoshiRunnerStackTraceUtil.pushStackTrace(rootVarElement.attributeValue("line-number"));
+			PoshiRunnerStackTraceUtil.pushStackTrace(
+				rootVarElement.attributeValue("line-number"));
+
 			CommandLoggerHandler.setLineGroupStatus("pending");
 
 			runVarElement(rootVarElement, false);
