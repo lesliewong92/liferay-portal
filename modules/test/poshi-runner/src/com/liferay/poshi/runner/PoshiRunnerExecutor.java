@@ -247,6 +247,8 @@ public class PoshiRunnerExecutor {
 				runForElement(childElement);
 			}
 			else if (childElementName.equals("task")) {
+				CommandLoggerHandler.setLineGroupStatus("pending");
+
 				try {
 					SummaryLoggerHandler.startSummary(childElement);
 
@@ -260,6 +262,8 @@ public class PoshiRunnerExecutor {
 				}
 
 				SummaryLoggerHandler.passSummary(childElement);
+
+				CommandLoggerHandler.setLineGroupStatus("pass");
 			}
 			else if (childElementName.equals("var")) {
 				CommandLoggerHandler.setLineGroupStatus("pending");
