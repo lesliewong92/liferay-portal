@@ -100,6 +100,10 @@ public class PoshiRunner {
 		try {
 			loggerElement.setAttribute("data-status01", "pending");
 
+			LoggerUtil.executeJavascript(
+				"loggerInterface.fire('line-started', '" +
+					loggerElement.getID() + "')");
+
 			CommandLoggerHandler.startTest();
 
 			_runSetUp();
@@ -125,6 +129,10 @@ public class PoshiRunner {
 			finally {
 				if(!failed) {
 					loggerElement.setAttribute("data-status01", "pass");
+
+					LoggerUtil.executeJavascript(
+						"loggerInterface.fire('line-started', '" +
+							loggerElement.getID() + "')");
 				}
 
 				CommandLoggerHandler.stopTest();
