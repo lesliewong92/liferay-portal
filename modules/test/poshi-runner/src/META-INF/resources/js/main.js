@@ -12,6 +12,7 @@ loggerInterface.ready(
 			var fails;
 			var commandLogId;
 
+			var errorId = 0;
 			var sidebar = A.one('.sidebar');
 			var xmlLog = A.one('.xml-log');
 
@@ -98,8 +99,17 @@ loggerInterface.ready(
 					expandTree
 				);
 
-				commandLogToggle();
-				resizeXmlLog();
+				if (!sidebar.hasClass('finished')) {
+					commandLogToggle();
+				}
+				else {
+					allNodes = xmlLog.all('[style]');
+					allNodes.each(
+						function(node) {
+							node.attr('style', '');
+						}
+					);
+				}
 			}
 
 			init();
@@ -125,16 +135,15 @@ loggerInterface.ready(
 
 					timing = 200;
 				}
-				if (tree.size() > 0) {
+				if(tree.size() > 0) {
 					setTimeout(expandLoop, timing, tree, target, noScroll);
 				}
-				else if (!noScroll) {
+				else if(!noScroll) {
 					scrollToNode(target);
 				}
 			}
 
 			function transitionCommandLog(commandLog) {
-				var newHeight = 0;
 				var newWidth = '20%';
 
 				if (commandLogId) {
@@ -142,10 +151,16 @@ loggerInterface.ready(
 				}
 
 				sidebar.setStyle('width', newWidth);
-				resizeXmlLog(null, open);
+				resizeXmlLog(null, true);
 				commandLog.toggleClass('collapse');
 
 				var lastLog = commandLog.one('ul:last-child');
+
+				// if (lastLog) {
+				// 	var lastLine = lastLog.previous();
+
+				// 	var functionId = lastLine.attr('data-functionLinkId');
+				// }
 
 				if (lastLog && lastLog.hasClass('collapse')) {
 					collapseToggle(null, lastLog, true);
@@ -189,13 +204,7 @@ loggerInterface.ready(
 					}
 				}
 
-				var status = ['pass', 'pending', 'fail']
-				var selector = 'data-status' + logId;
-
-				for (var i = 0; i < status.length; i++) {
-					var nodes = A.all('[' + selector + '="' + status[i] + '"]')
-					nodes.toggleClass(status[i]);
-				}
+				refreshXmlClasses();
 
 				transitionCommandLog(commandLog);
 
@@ -208,6 +217,31 @@ loggerInterface.ready(
 				var body = A.one('body');
 
 				body.toggleClass('link-run-log');
+			}
+
+			function refreshXmlClasses(id) {
+				var status = ['pass', 'pending', 'fail']
+				var selector = 'data-status' + commandLogId;
+
+				for (var i = 0; i < status.length; i++) {
+					var nodes
+					var status
+
+					if (!id) {
+						nodes = A.all('[' + selector + '="' + status[i] + '"]');
+						status = status[i];
+					}
+					else {
+						nodes = xmlLog.one('#' + id);
+					}
+					if (nodes) {
+						status = nodes.attr(selector);
+						nodes.removeClass('pending');
+						nodes.removeClass('fail');
+						nodes.removeClass('pass');
+						nodes.addClass(status);
+					}
+				}
 			}
 
 			function xmlLogRefresh(node) {
@@ -258,8 +292,13 @@ loggerInterface.ready(
 				}
 			}
 
-			function linkFunction(event) {
-				var currentTarget = event.currentTarget.ancestor();
+			function linkFunction(event, node) {
+				if (event) {
+					var currentTarget = event.currentTarget.ancestor();
+				}
+				else {
+					var currentTarget = node;
+				}
 
 				var linkedFunction = getLink(currentTarget, 'li', 'data-functionLinkId', xmlLog);
 
@@ -315,6 +354,7 @@ loggerInterface.ready(
 						targetNode.setStyle('height', height);
 
 						running = targetNode;
+						targetNode.addClass('transitioning');
 					}
 					else {
 						var lastChild = targetNode.getDOMNode().lastElementChild;
@@ -362,18 +402,13 @@ loggerInterface.ready(
 					ease = 'ease-out';
 				}
 
-				var reset;
-
-				targetNode.addClass('transitioning');
-
 				targetNode.transition(
 					{
 						height: {
 							duration: transDuration,
 							easing: ease,
 							value: newHeight
-						},
-						on: reset
+						}
 					},
 					function() {
 						callback(this, collapsing);
@@ -487,7 +522,7 @@ loggerInterface.ready(
 				if (!noLookUp) {
 					scope = getLink(scope, '.linkable', 'data-functionLinkId', sidebar, true);
 
-					while (scope.size() > 0) {
+					while(scope.size() > 0) {
 						var node = scope.pop()
 
 						commandLogScope.push(node);
@@ -573,6 +608,7 @@ loggerInterface.ready(
 
 			function scrollToNode(node, inSidebar, matchNode) {
 				var scrollNode = WIN;
+
 				if (inSidebar) {
 					scrollNode = sidebar.one('.command-log[data-logId=' + commandLogId + ']');
 				}
@@ -631,12 +667,88 @@ loggerInterface.ready(
 				return testNode.hasClass('macro') || testNode.hasClass('function') || testNode.hasClass('test-group');
 			}
 
-			function update() {
-				console.log('updating...');
+			function refreshXmlError(command) {
+				var errorContainer = command.one('.error-container');
+				if (errorContainer) {
+					var steps = errorContainer.one('.steps');
+					var cause = errorContainer.one('.cause');
+					var screenshot = errorContainer.one('.screenshot');
+					var xmlLink = getLink(command, '.line-group', 'data-functionLinkId', xmlLog);
+					var btnContainer = xmlLink.one('.btn-container');
+
+					var imgBefore = screenshot.one('.before');
+					var imgAfter = screenshot.one('.after');
+
+					btnContainer.append(A.Node.create('<button class="btn screenshot-btn" data-errorlinkid="error-screenshot' + errorId + '"><div class="btn-content"></div></button>'));
+					btnContainer.append(A.Node.create('<button class="btn error-btn" data-errorlinkid="error-console' + errorId + '"><div class="btn-content"></div></button>'));
+
+					xmlLink.append(A.Node.create('<div class="screenshots errorPanel toggle" data-errorlinkid="error-screenshot' + errorId + '"><div class="screenshot-container before"><span>Before</span></div><div class="screenshot-container after"><span>After</span></div></div>'));
+					xmlLink.one('.before').prepend(imgBefore);
+					xmlLink.one('.after').prepend(imgAfter);
+					xmlLink.prepend(A.Node.create('<div class="console errorPanel toggle" data-errorlinkid="error-console' + errorId + '"></div>'));
+					xmlLink.one('.console').append(steps);
+					xmlLink.one('.console').append(cause)
+
+					errorId++;
+				}
 			}
 
-			A.fire('command-complete', function() {
-				console.log('yolo');
-			});
+			function updateLog(id, isFail) {
+				if (isFail) {
+					var test = xmlLog.one('#' + id);
+					var test2 = test.attr('data-status01');
+				}
+				var commandLog = sidebar.one('.command-log[data-logId="' + commandLogId +'"]');
+				var latestCommand = commandLog.one('.line-group:last-child');
+
+				if (latestCommand) {
+					linkFunction(null, latestCommand);
+				}
+				if (latestCommand.hasClass('failed')) {
+					var latestFailure = latestCommand;
+
+					refreshXmlError(latestFailure);
+				}
+				refreshXmlClasses(id);
+			}
+
+			function updateXml(id) {
+				refreshXmlClasses(id);
+				var linkedLine = xmlLog.one('#' + id);
+				var container = linkedLine.one('> .child-container');
+
+				var firstContainer = linkedLine.one('.line-container:first-child');
+
+				if (firstContainer) {
+					scrollToNode(firstContainer);
+				}
+			}
+
+			function updateXmlClosing(id) {
+				var linkedLine = xmlLog.one('#' + id);
+				var closingLine = linkedLine.one('> .line-container:last-child');
+				refreshXmlClasses(id);
+				var container = linkedLine.one('> .child-container');
+				// scrollToNode(closingLine);
+				if (container) {
+					collapseToggle(null, container);
+				}
+			}
+
+			A.on(
+				'line-started',
+				updateXml
+			);
+
+			A.on(
+				'line-complete',
+				updateXmlClosing
+			);
+
+			A.on(
+				'command-complete',
+				updateLog
+			);
 		}
 	);
+

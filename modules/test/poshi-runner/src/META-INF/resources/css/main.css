@@ -1,3 +1,8 @@
+/* ---------- DEV ONLY ---------- */
+
+.btn-command-log {
+	display: none;
+}
 
 /* ---------- Main ---------- */
 
@@ -103,6 +108,7 @@ li {
 	color: #222;
 	cursor: pointer;
 	display: inline-block;
+	font-size: 10px;
 	margin-left: 5px;
 	min-width: 26px;
 	opacity: 0.2;
@@ -653,6 +659,7 @@ li {
 	}
 
 	.line-group {
+		padding-bottom: 1px;
 		position: relative;
 	}
 
@@ -661,9 +668,12 @@ li {
 		border-right-width: 0;
 		border-top-width: 0;
 		color: #FFF;
-		margin-left: 24px;
+		margin: 0 0 9px 24px;
 		overflow: hidden;
-		padding-bottom: 11px;
+
+		.run-line:last-child {
+			padding-bottom: 11px;
+		}
 	}
 
 	.expand-toggle {
@@ -818,7 +828,7 @@ li {
 }
 
 .sidebar .current-scope:after {
-	box-shadow: 3px 30px 0 0 rgba(29, 60, 75, 0.3);
+	box-shadow: 3px 31px 0 0 rgba(29, 60, 75, 0.3);
 }
 
 .xml-log .current-scope:after {
