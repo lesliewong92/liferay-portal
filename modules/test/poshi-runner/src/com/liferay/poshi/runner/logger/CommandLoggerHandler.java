@@ -52,7 +52,8 @@ public final class CommandLoggerHandler {
 		xmlLoggerElement.setAttribute("data-status01", "fail");
 
 		LoggerUtil.executeJavascript(
-			"loggerInterface.fire('command-complete')");
+			"loggerInterface.fire('command-complete', " + 
+				xmlLoggerElement.getID() + ")");
 	}
 
 	public static void logClassCommandName(String classCommandName) {
@@ -79,7 +80,7 @@ public final class CommandLoggerHandler {
 		xmlLoggerElement.setAttribute("data-status01", "pass");
 
 		LoggerUtil.executeJavascript(
-			"loggerInterface.fire('command-complete')");
+			"loggerInterface.fire('command-complete', " + xmlLoggerElement.getID() + ")");
 	}
 
 	public static void setLineGroupStatus(String status) {
@@ -96,6 +97,15 @@ public final class CommandLoggerHandler {
 		// xmlLoggerElement.setClassName(newClass);
 
 		xmlLoggerElement.setAttribute("data-status01", status);
+
+		if (status.equals("pending")) {
+			LoggerUtil.executeJavascript(
+				"loggerInterface.fire('line-started', '" + xmlLoggerElement.getID() + "')");
+		}
+		else if (status.equals("pass") || status.equals("conditional-fail")) {
+			LoggerUtil.executeJavascript(
+				"loggerInterface.fire('line-complete', '" + xmlLoggerElement.getID() + "')");
+		}
 	}
 
 	public static void sendRunLine(Element element, List<String> arguments) {
@@ -170,7 +180,8 @@ public final class CommandLoggerHandler {
 			"data-functionlinkid", "functionLinkId-" + _functionLinkId);
 
 		LoggerUtil.executeJavascript(
-			"loggerInterface.fire('command-complete')");
+			"loggerInterface.fire('command-complete', " +
+				xmlLoggerElement.getID() + ")");
 
 		_functionLinkId++;
 	}
