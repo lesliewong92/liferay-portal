@@ -115,6 +115,10 @@ public final class CommandLoggerHandler {
 		childContainerLoggerElement.addChildLoggerElement(runLineLoggerElement);
 	}
 
+	public static String getCommandLog() {
+		return _commandLogLoggerElement.toString();
+	}
+
 	public static void setLineGroupStatus(String status) {
 		LoggerElement xmlLoggerElement =
 			XMLLoggerHandler.getLoggerElementFromElement(

@@ -322,16 +322,43 @@ public final class LoggerUtil {
 
 		CommandLoggerHandler.stopTest();
 
-		String content = (String)_javascriptExecutor.executeScript(
-			"return document.getElementsByTagName('html')[0].outerHTML;");
+		/*String content = (String)_javascriptExecutor.executeScript(
+			"return document.getElementsByTagName('html')[0].outerHTML;");*/
 
 		testClassCommandName = StringUtil.replace(
 			testClassCommandName, "#", "_");
 
+/*
+
+		String loggerContent = FileUtil.read(
+			"src/META-INF/resources/html/index.html");
+
+		loggerContent = loggerContent.replace(
+			"<ul class=\"xml-log-container\" id=\"xmlLogContainer\" />",
+			"<ul class=\"xml-log-container\" id=\"xmlLogContainer\">\n" +
+				xmlLogContent + "\n</ul>");
+
+		FileUtil.write("test-results/html/index.html", loggerContent);
+
+		*/
+
+		String loggerContent = FileUtil.read(
+			"src/META-INF/resources/html/index.html");
+
+		loggerContent = loggerContent.replace(
+			"<ul class=\"xml-log-container\" id=\"xmlLogContainer\" />",
+			"<ul class=\"xml-log-container\" id=\"xmlLogContainer\">\n" +
+				XMLLoggerHandler.getXMLLog() + "\n</ul>");
+
+		loggerContent = loggerContent.replace(
+			"<ul class=\"collapse command-log\" data-logid=\"01\" id=\"commandLog\"></ul>",
+			"<ul class=\"collapse command-log\" data-logid=\"01\" id=\"commandLog\">\n" +
+				CommandLoggerHandler.getCommandLog() + "\n</ul>");
+
 		FileUtil.write(
 			_CURRENT_DIR + "/test-results/" + testClassCommandName +
 				"/index.html",
-			content);
+			loggerContent);
 
 		/*if (isLoggerStarted()) {
 			_webDriver.quit();

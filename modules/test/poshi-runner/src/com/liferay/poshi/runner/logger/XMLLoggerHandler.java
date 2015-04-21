@@ -425,11 +425,17 @@ public final class XMLLoggerHandler {
 		return textLoggerElement;
 	}
 
+	private static LoggerElement rootElement = new LoggerElement();
+
+	public static String getXMLLog() {
+		return rootElement.toString();
+	}
+
 	public static void generateXMLLog(
 			String classCommandName, Element element, String testClassName)
 		throws Exception {
 
-		LoggerElement rootElement = new LoggerElement();
+		rootElement = new LoggerElement();
 
 		rootElement.setName("li");
 		rootElement.setClassName("header");
