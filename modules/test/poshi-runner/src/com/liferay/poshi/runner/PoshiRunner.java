@@ -161,7 +161,11 @@ public class PoshiRunner {
 			PoshiRunnerStackTraceUtil.pushStackTrace(
 				commandElement.attributeValue("line-number"));
 
+			CommandLoggerHandler.setLineGroupStatus("pending");
+
 			PoshiRunnerExecutor.parseElement(commandElement);
+
+			CommandLoggerHandler.setLineGroupStatus("pass");
 
 			PoshiRunnerStackTraceUtil.popStackTrace();
 
