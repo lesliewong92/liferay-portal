@@ -160,13 +160,6 @@ public class PoshiRunnerExecutor {
 	public static void parseElement(Element element) throws Exception {
 		String elementName = element.getName();
 
-		if (elementName.equals("set-up") ||
-			elementName.equals("command") ||
-			elementName.equals("tear-down")) {
-
-			CommandLoggerHandler.setLineGroupStatus("pending");
-		}
-
 		List<Element> childElements = element.elements();
 
 		for (Element childElement : childElements) {
@@ -219,8 +212,6 @@ public class PoshiRunnerExecutor {
 			}
 			else if (childElementName.equals("if")) {
 				String currentContext = PoshiRunnerStackTraceUtil.popStackTrace();
-
-				System.out.println(currentContext);
 
 				boolean isFunction = currentContext.contains(".function");
 
@@ -275,13 +266,6 @@ public class PoshiRunnerExecutor {
 			}
 
 			PoshiRunnerStackTraceUtil.popStackTrace();
-		}
-
-		if (elementName.equals("set-up") ||
-			elementName.equals("command") ||
-			elementName.equals("tear-down")) {
-
-			CommandLoggerHandler.setLineGroupStatus("pass");
 		}
 	}
 
@@ -543,25 +527,18 @@ public class PoshiRunnerExecutor {
 	}
 
 	public static void runIfElement(Element element, boolean isNotFunction) throws Exception {
-		//for the if
-		// PoshiRunnerStackTraceUtil.pushStackTrace(element.attributeValue("line-number"));
 		CommandLoggerHandler.setLineGroupStatus("pending");
 
 		List<Element> ifChildElements = element.elements();
 
 		Element ifConditionElement = ifChildElements.get(0);
 
-		//for the condition
 		if(isNotFunction) {
 			PoshiRunnerStackTraceUtil.pushStackTrace(ifConditionElement.attributeValue("line-number"));
 			CommandLoggerHandler.setLineGroupStatus("pending");
 		}
 
 		boolean condition = evaluateConditionalElement(ifConditionElement);
-
-		// System.out.println("condition: " + condition);
-		// System.out.println("function: " + isNotFunction);
-		// System.out.println();
 
 		if(isNotFunction) {
 			if (condition) {
@@ -577,7 +554,6 @@ public class PoshiRunnerExecutor {
 		if (condition) {
 			Element ifThenElement = element.element("then");
 
-			//for the then
 			PoshiRunnerStackTraceUtil.pushStackTrace(
 				ifThenElement.attributeValue("line-number"));
 
@@ -588,9 +564,7 @@ public class PoshiRunnerExecutor {
 			CommandLoggerHandler.setLineGroupStatus("pass");
 			PoshiRunnerStackTraceUtil.popStackTrace();
 
-			//for the if
 			CommandLoggerHandler.setLineGroupStatus("pass");
-			// PoshiRunnerStackTraceUtil.popStackTrace();
 		}
 		else if (element.element("elseif") != null) {
 			List<Element> elseIfElements = element.elements("elseif");
@@ -631,17 +605,13 @@ public class PoshiRunnerExecutor {
 
 					parseElement(elseIfThenElement);
 
-					//for the then within the elseif 0.o
 					CommandLoggerHandler.setLineGroupStatus("pass");
 					PoshiRunnerStackTraceUtil.popStackTrace();
 
-					//for the elseif
 					CommandLoggerHandler.setLineGroupStatus("pass");
 					PoshiRunnerStackTraceUtil.popStackTrace();
 
-					//for the if
 					CommandLoggerHandler.setLineGroupStatus("pass");
-					// PoshiRunnerStackTraceUtil.popStackTrace();
 
 					break;
 				}
@@ -666,17 +636,13 @@ public class PoshiRunnerExecutor {
 
 			PoshiRunnerStackTraceUtil.popStackTrace();
 
-			//for the if
 			CommandLoggerHandler.setLineGroupStatus("pass");
-			// PoshiRunnerStackTraceUtil.popStackTrace();
 		}
 
 		if(!condition &&
 			element.element("else") == null) {
 
-			//for the if
 			CommandLoggerHandler.setLineGroupStatus("conditional-fail");
-			// PoshiRunnerStackTraceUtil.popStackTrace();
 		}
 	}
 
@@ -685,7 +651,6 @@ public class PoshiRunnerExecutor {
 
 		String classCommandName = executeElement.attributeValue(macroType);
 
-		// PoshiRunnerStackTraceUtil.pushStackTrace(executeElement.attributeValue("line-number"));
 		CommandLoggerHandler.setLineGroupStatus("pending");
 
 		String className =
@@ -716,8 +681,6 @@ public class PoshiRunnerExecutor {
 
 		PoshiRunnerVariablesUtil.pushCommandMap();
 
-		// PoshiRunnerStackTraceUtil.pushFilePath(classCommandName, "macro");
-
 		SummaryLoggerHandler.startSummary(executeElement);
 
 		Element commandElement = PoshiRunnerContext.getMacroCommandElement(
@@ -733,7 +696,6 @@ public class PoshiRunnerExecutor {
 		}
 
 		CommandLoggerHandler.setLineGroupStatus("pass");
-		// PoshiRunnerStackTraceUtil.popStackTrace();
 
 		PoshiRunnerVariablesUtil.popCommandMap();
 
@@ -874,39 +836,46 @@ public class PoshiRunnerExecutor {
 	public static void runWhileElement(Element element) throws Exception {
 		int maxIterations = 15;
 
-		// PoshiRunnerStackTraceUtil.pushStackTrace(element.attributeValue("line-number"));
-		CommandLoggerHandler.setLineGroupStatus("pending");
-
 		if (element.attributeValue("max-iterations") != null) {
 			maxIterations = GetterUtil.getInteger(
 				element.attributeValue("max-iterations"));
 		}
 
+		CommandLoggerHandler.setLineGroupStatus("pending");
+
 		List<Element> whileChildElements = element.elements();
 
 		Element conditionElement = whileChildElements.get(0);
+
 		Element thenElement = element.element("then");
 
-		int i;
+		boolean conditionInitFail = false;
 
-		for (i = 0; i < maxIterations; i++) {
-			//for the condition
-			PoshiRunnerStackTraceUtil.pushStackTrace(conditionElement.attributeValue("line-number"));
+		for (int i = 0; i < maxIterations; i++) {
+			PoshiRunnerStackTraceUtil.pushStackTrace(
+				conditionElement.attributeValue("line-number"));
+
 			CommandLoggerHandler.setLineGroupStatus("pending");
 
 			if (!evaluateConditionalElement(conditionElement)) {
-				if (i == 0) {
+				if(i == 0) {
 					CommandLoggerHandler.setLineGroupStatus("conditional-fail");
-					PoshiRunnerStackTraceUtil.popStackTrace();
+
+					conditionInitFail = true;
 				}
+				else {
+					CommandLoggerHandler.setLineGroupStatus("pass");
+				}
+
+				PoshiRunnerStackTraceUtil.popStackTrace();
 
 				break;
 			}
 
 			CommandLoggerHandler.setLineGroupStatus("pass");
+
 			PoshiRunnerStackTraceUtil.popStackTrace();
 
-			//for the then condition
 			PoshiRunnerStackTraceUtil.pushStackTrace(
 				thenElement.attributeValue("line-number"));
 
@@ -915,19 +884,16 @@ public class PoshiRunnerExecutor {
 			parseElement(thenElement);
 
 			CommandLoggerHandler.setLineGroupStatus("pass");
+
 			PoshiRunnerStackTraceUtil.popStackTrace();
 		}
 
-		if (i == 0) {
-			//for the while
+		if(conditionInitFail) {
 			CommandLoggerHandler.setLineGroupStatus("conditional-fail");
 		}
 		else {
-			//for the while
 			CommandLoggerHandler.setLineGroupStatus("pass");
 		}
-
-		// PoshiRunnerStackTraceUtil.popStackTrace();
 	}
 
 	private static Object _returnObject;
