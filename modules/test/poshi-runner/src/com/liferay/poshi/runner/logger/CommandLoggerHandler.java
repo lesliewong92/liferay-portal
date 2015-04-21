@@ -246,7 +246,15 @@ public final class CommandLoggerHandler {
 	private static LoggerElement _getErrorConsoleLoggerElement() {
 		LoggerElement consoleLoggerElement = new LoggerElement();
 
-		consoleLoggerElement.setClassName("console");
+		consoleLoggerElement.setAttribute(
+			"data-errorlinkid", "console-" + _errorLinkId);
+		consoleLoggerElement.setClassName("console errorPanel toggle");
+
+		LoggerElement consoleLogLoggerElement = new LoggerElement();
+
+		consoleLoggerElement.addChildLoggerElement(consoleLogLoggerElement);
+
+		consoleLogLoggerElement.setClassName("consoleLog");
 
 		LoggerElement stepsLoggerElement = new LoggerElement();
 
@@ -276,8 +284,8 @@ public final class CommandLoggerHandler {
 		causeLoggerElement.addChildLoggerElement(
 			SummaryLoggerHandler.getCauseBodyLoggerElement());
 
-		consoleLoggerElement.addChildLoggerElement(stepsLoggerElement);
-		consoleLoggerElement.addChildLoggerElement(causeLoggerElement);
+		consoleLogLoggerElement.addChildLoggerElement(stepsLoggerElement);
+		consoleLogLoggerElement.addChildLoggerElement(causeLoggerElement);
 
 		return consoleLoggerElement;
 	}
@@ -371,7 +379,7 @@ public final class CommandLoggerHandler {
 
 		screenshotsLoggerElement.setClassName("errorPanel screenshots toggle");
 		screenshotsLoggerElement.setAttribute(
-			"data-errorlinkid", "errorLinkId-" + _errorLinkId);
+			"data-errorlinkid", "screenshots-" + _errorLinkId);
 
 		LoggerElement beforeScreenshotContainerLoggerElement =
 			new LoggerElement();
