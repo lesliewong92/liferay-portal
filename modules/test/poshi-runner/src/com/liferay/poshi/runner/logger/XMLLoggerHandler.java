@@ -432,7 +432,7 @@ public final class XMLLoggerHandler {
 		LoggerElement rootElement = new LoggerElement();
 
 		rootElement.setName("li");
-		rootElement.setClassName("header");;
+		rootElement.setClassName("header");
 		rootElement.setID("xml-logger-header");
 
 		LoggerElement btnContainerElement = new LoggerElement();

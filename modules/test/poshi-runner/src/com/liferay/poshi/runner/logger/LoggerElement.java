@@ -36,8 +36,7 @@ import java.util.Set;
 public class LoggerElement {
 
 	public LoggerElement() {
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
-			"HHmmssSSS");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HHmmssSSS");
 
 		long time = System.currentTimeMillis();
 

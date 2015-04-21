@@ -312,7 +312,6 @@ public final class LoggerUtil {
 			_CURRENT_DIR + "/test-results/html",
 			_CURRENT_DIR + "/test-results/" + testClassCommandName);
 
-
 		_webDriver.get(
 			"file://" + _CURRENT_DIR + "/test-results/" + testClassCommandName +
 				"/index.html");
