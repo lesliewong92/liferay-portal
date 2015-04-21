@@ -52,7 +52,7 @@ public final class CommandLoggerHandler {
 		xmlLoggerElement.setAttribute("data-status01", "fail");
 
 		LoggerUtil.executeJavaScript(
-			"loggerInterface.fire('command-complete', " + 
+			"loggerInterface.fire('command-complete', " +
 				xmlLoggerElement.getID() + ")");
 	}
 
@@ -81,31 +81,6 @@ public final class CommandLoggerHandler {
 
 		LoggerUtil.executeJavaScript(
 			"loggerInterface.fire('command-complete', " + xmlLoggerElement.getID() + ")");
-	}
-
-	public static void setLineGroupStatus(String status) {
-		LoggerElement xmlLoggerElement = XMLLoggerHandler.getLoggerElementFromElement(PoshiRunnerStackTraceUtil.getUniqueID());
-
-		// String oldClass = xmlLoggerElement.getClassName();
-
-		// oldClass = oldClass.replace(" pending", "");
-		// oldClass = oldClass.replace(" fail", "");
-		// oldClass = oldClass.replace(" pass", "");
-
-		// String newClass = oldClass + " " + status;
-
-		// xmlLoggerElement.setClassName(newClass);
-
-		xmlLoggerElement.setAttribute("data-status01", status);
-
-		if (status.equals("pending")) {
-			LoggerUtil.executeJavaScript(
-				"loggerInterface.fire('line-started', '" + xmlLoggerElement.getID() + "')");
-		}
-		else if (status.equals("pass") || status.equals("conditional-fail")) {
-			LoggerUtil.executeJavaScript(
-				"loggerInterface.fire('line-complete', '" + xmlLoggerElement.getID() + "')");
-		}
 	}
 
 	public static void sendRunLine(Element element, List<String> arguments) {
@@ -138,6 +113,35 @@ public final class CommandLoggerHandler {
 		_runLineLoggerElement = runLineLoggerElement;
 
 		childContainerLoggerElement.addChildLoggerElement(runLineLoggerElement);
+	}
+
+	public static void setLineGroupStatus(String status) {
+		LoggerElement xmlLoggerElement =
+			XMLLoggerHandler.getLoggerElementFromElement(
+				PoshiRunnerStackTraceUtil.getUniqueID());
+
+		// String oldClass = xmlLoggerElement.getClassName();
+
+		// oldClass = oldClass.replace(" pending", "");
+		// oldClass = oldClass.replace(" fail", "");
+		// oldClass = oldClass.replace(" pass", "");
+
+		// String newClass = oldClass + " " + status;
+
+		// xmlLoggerElement.setClassName(newClass);
+
+		xmlLoggerElement.setAttribute("data-status01", status);
+
+		if (status.equals("pending")) {
+			LoggerUtil.executeJavaScript(
+				"loggerInterface.fire('line-started', '" +
+					xmlLoggerElement.getID() + "')");
+		}
+		else if (status.equals("pass") || status.equals("conditional-fail")) {
+			LoggerUtil.executeJavaScript(
+				"loggerInterface.fire('line-complete', '" +
+					xmlLoggerElement.getID() + "')");
+		}
 	}
 
 	public static void startCommand(Element element) throws Exception {
@@ -424,17 +428,18 @@ public final class CommandLoggerHandler {
 		return element.equals(_commandElement);
 	}
 
+	private static final String _CURRENT_DIR =
+		PoshiRunnerGetterUtil.getCanonicalPath(".");
+
 	private static int _btnLinkId;
-	private static int _errorLinkId;
 	private static Element _commandElement;
 	private static LoggerElement _commandLoggerElement;
 	private static final LoggerElement _commandLogLoggerElement =
 		new LoggerElement("commandLog");
+	private static int _errorLinkId;
 	private static int _functionLinkId;
 	private static LoggerElement _runLineLoggerElement;
 	private static final LoggerElement _sidebarLoggerElement =
 		new LoggerElement("sidebar");
-	private static final String _CURRENT_DIR =
-		PoshiRunnerGetterUtil.getCanonicalPath(".");
 
 }

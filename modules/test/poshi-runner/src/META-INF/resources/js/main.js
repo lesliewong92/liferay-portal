@@ -135,10 +135,10 @@ loggerInterface.ready(
 
 					timing = 200;
 				}
-				if(tree.size() > 0) {
+				if (tree.size() > 0) {
 					setTimeout(expandLoop, timing, tree, target, noScroll);
 				}
-				else if(!noScroll) {
+				else if (!noScroll) {
 					scrollToNode(target);
 				}
 			}
@@ -522,7 +522,7 @@ loggerInterface.ready(
 				if (!noLookUp) {
 					scope = getLink(scope, '.linkable', 'data-functionLinkId', sidebar, true);
 
-					while(scope.size() > 0) {
+					while (scope.size() > 0) {
 						var node = scope.pop()
 
 						commandLogScope.push(node);
@@ -751,4 +751,3 @@ loggerInterface.ready(
 			);
 		}
 	);
-
