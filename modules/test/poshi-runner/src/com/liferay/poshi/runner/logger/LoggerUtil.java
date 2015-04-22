@@ -17,6 +17,7 @@ package com.liferay.poshi.runner.logger;
 import com.liferay.poshi.runner.PoshiRunnerContext;
 import com.liferay.poshi.runner.PoshiRunnerGetterUtil;
 import com.liferay.poshi.runner.util.FileUtil;
+import com.liferay.poshi.runner.util.PropsValues;
 import com.liferay.poshi.runner.util.Validator;
 
 import java.net.URL;
@@ -282,7 +283,7 @@ public final class LoggerUtil {
 	}
 
 	public static void startLogger() throws Exception {
-		if (isLoggerStarted()) {
+		if (isLoggerStarted() || PropsValues.HEADLESS_LOGGER_ENABLED) {
 			return;
 		}
 
@@ -330,10 +331,16 @@ public final class LoggerUtil {
 
 		testCaseCommandName = testCaseCommandName.replaceAll("#", "_");
 
-		FileUtil.write(_CURRENT_DIR + "/test-results/" + testCaseCommandName + 
-			"/index.html", content);
+		FileUtil.write(
+			_CURRENT_DIR + "/test-results/" + testCaseCommandName +
+				"/index.html", content);
 
-		if (isLoggerStarted()) {
+		if (PropsValues.HEADLESS_LOGGER_ENABLED) {
+			FileUtil.copyDirectory(
+				_getResourcesDir() + "css", _CURRENT_DIR + "/test-results/css");
+		}
+
+		if (isLoggerStarted() || !PropsValues.HEADLESS_LOGGER_ENABLED) {
 			_webDriver.quit();
 
 			_webDriver = null;
