@@ -68,6 +68,13 @@ public class PoshiRunner {
 	}
 
 	public PoshiRunner(String classCommandName) throws Exception {
+		_testClassCommandName = classCommandName;
+		_testClassName = PoshiRunnerGetterUtil.getClassNameFromClassCommandName(
+			_testClassCommandName);
+
+		PoshiRunnerContext.setTestCaseCommandName(_testClassCommandName);
+		PoshiRunnerContext.setTestCaseName(_testClassName);
+
 		LoggerUtil.startLogger();
 
 		SeleniumUtil.startSelenium();
@@ -77,13 +84,6 @@ public class PoshiRunner {
 		System.out.println("### " + classCommandName);
 		System.out.println("###");
 		System.out.println();
-
-		_testClassCommandName = classCommandName;
-		_testClassName = PoshiRunnerGetterUtil.getClassNameFromClassCommandName(
-			_testClassCommandName);
-
-		PoshiRunnerContext.setTestCaseCommandName(_testClassCommandName);
-		PoshiRunnerContext.setTestCaseName(_testClassName);
 	}
 
 	@Test
