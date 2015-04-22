@@ -54,6 +54,8 @@ public final class CommandLoggerHandler {
 		LoggerUtil.executeJavaScript(
 			"loggerInterface.fire('command-complete', " +
 				xmlLoggerElement.getID() + ")");
+
+		_errorLinkId++;
 	}
 
 	public static void logClassCommandName(String classCommandName) {

@@ -255,20 +255,6 @@ public class LoggerElement {
 			sb.append("\"");
 		}
 
-		Iterator iter = _attributes.entrySet().iterator();
-
-		while (iter.hasNext()) {
-			Map.Entry pair = (Map.Entry)iter.next();
-
-			sb.append(" ");
-			sb.append(pair.getKey());
-			sb.append("=\"");
-			sb.append(pair.getValue());
-			sb.append("\"");
-
-			iter.remove();
-		}
-
 		sb.append(">");
 
 		boolean hasChildren = _childLoggerElements.size() > 0;
