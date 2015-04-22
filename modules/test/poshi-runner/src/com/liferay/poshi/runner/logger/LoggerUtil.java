@@ -14,6 +14,7 @@
 
 package com.liferay.poshi.runner.logger;
 
+import com.liferay.poshi.runner.PoshiRunnerContext;
 import com.liferay.poshi.runner.PoshiRunnerGetterUtil;
 import com.liferay.poshi.runner.util.FileUtil;
 import com.liferay.poshi.runner.util.Validator;
@@ -299,11 +300,21 @@ public final class LoggerUtil {
 		FileUtil.copyDirectory(
 			_getResourcesDir() + "css", _CURRENT_DIR + "/test-results/css");
 
-		_webDriver.get("file://" + _getResourcesDir() + "html/index.html");
+		String testCaseCommandName =
+			PoshiRunnerContext.getTestCaseCommandName();
+
+		testCaseCommandName = testCaseCommandName.replaceAll("#", "_");
+
+		FileUtil.copyDirectory(
+			_getResourcesDir() + "html",
+			_CURRENT_DIR + "/test-results/" + testCaseCommandName);
+
+		_webDriver.get(
+			"file://" + _CURRENT_DIR + "/test-results/" + testCaseCommandName +
+				"/index.html");
 	}
 
 	public static void stopLogger() throws Exception {
-
 		String content = (String)_javascriptExecutor.executeScript(
 			"return document.getElementsByTagName('html')[0].outerHTML;");
 
