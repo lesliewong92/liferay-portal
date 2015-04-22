@@ -118,6 +118,9 @@ public final class CommandLoggerHandler {
 	}
 
 	public static String getCommandLog() {
+		_commandLogLoggerElement.setAttribute("data-logid", "01");
+		_commandLogLoggerElement.addClassName("collapse");
+
 		return _commandLogLoggerElement.toString();
 	}
 
