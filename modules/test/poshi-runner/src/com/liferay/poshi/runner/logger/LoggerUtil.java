@@ -296,12 +296,13 @@ public final class LoggerUtil {
 
 		_javascriptExecutor = (JavascriptExecutor)_webDriver;
 
+		FileUtil.copyDirectory(
+			_getResourcesDir() + "css", _CURRENT_DIR + "/test-results/css");
+
 		_webDriver.get("file://" + _getResourcesDir() + "html/index.html");
 	}
 
 	public static void stopLogger() throws Exception {
-		FileUtil.copyDirectory(
-			_getResourcesDir() + "css", _CURRENT_DIR + "/test-results/css");
 
 		String content = (String)_javascriptExecutor.executeScript(
 			"return document.getElementsByTagName('html')[0].outerHTML;");
