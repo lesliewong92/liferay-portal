@@ -315,10 +315,23 @@ public final class LoggerUtil {
 	}
 
 	public static void stopLogger() throws Exception {
-		String content = (String)_javascriptExecutor.executeScript(
-			"return document.getElementsByTagName('html')[0].outerHTML;");
+		String content = FileUtil.read(
+			"src/META-INF/resources/html/index.html");
 
-		FileUtil.write(_CURRENT_DIR + "/test-results/html/index.html", content);
+		String commandLogText = CommandLoggerHandler.getCommandLogText();
+
+		content = content.replace(
+			"<ul class=\"command-log\" data-logid=\"01\" id=\"commandLog\">",
+			"<ul class=\"command-log\" data-logid=\"01\" id=\"commandLog\">" +
+				commandLogText);
+
+		String testCaseCommandName =
+			PoshiRunnerContext.getTestCaseCommandName();
+
+		testCaseCommandName = testCaseCommandName.replaceAll("#", "_");
+
+		FileUtil.write(_CURRENT_DIR + "/test-results/" + testCaseCommandName + 
+			"/index.html", content);
 
 		if (isLoggerStarted()) {
 			_webDriver.quit();
