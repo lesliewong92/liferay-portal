@@ -62,6 +62,14 @@ public final class XMLLoggerHandler {
 		xmlLoggerElement.addChildLoggerElement(lineContainerLoggerElement);
 	}
 
+	private static String _escapeXMLContent(String xmlContent) {
+		xmlContent = xmlContent.replaceAll("<", "&lt;");
+		xmlContent = xmlContent.replaceAll(">", "&gt;");
+		xmlContent = xmlContent.replaceAll("\"", "&quot;");
+
+		return xmlContent;
+	}
+
 	private static LoggerElement _getBtnContainerLoggerElement(
 		Element element) {
 
