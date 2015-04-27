@@ -14,6 +14,8 @@
 
 package com.liferay.poshi.runner.logger;
 
+import com.liferay.poshi.runner.PoshiRunnerContext;
+import com.liferay.poshi.runner.PoshiRunnerGetterUtil;
 import com.liferay.poshi.runner.util.Validator;
 
 import java.util.List;
@@ -251,6 +253,45 @@ public final class XMLLoggerHandler {
 		else if (elementName.equals("fail")) {
 			loggerElement = _getFailLoggerElement(element);
 		}
+
+		return loggerElement;
+	}
+
+	private static LoggerElement _getMacroLoggerElement(
+		Element executeElement, String macroType) {
+
+		LoggerElement loggerElement = _getLineGroupLoggerElement(
+			"macro", executeElement);
+
+		String classCommandName = executeElement.attributeValue(macroType);
+
+		String className =
+			PoshiRunnerGetterUtil.getClassNameFromClassCommandName(
+				classCommandName);
+
+		Element rootElement = PoshiRunnerContext.getMacroRootElement(className);
+
+		List<Element> rootVarElements = rootElement.elements("var");
+
+		for (Element rootVarElement : rootVarElements) {
+			loggerElement.addChildLoggerElement(
+				_getVarLoggerElement(rootVarElement));
+		}
+
+		Element commandElement = PoshiRunnerContext.getMacroCommandElement(
+			classCommandName);
+
+		LoggerElement childContainerLoggerElement =
+			_getChildContainerLoggerElement();
+
+		List<Element> childElements = commandElement.elements();
+
+		for (Element childElement : childElements) {
+			childContainerLoggerElement.addChildLoggerElement(
+				_getLoggerElementFromElement(childElement));
+		}
+
+		loggerElement.addChildLoggerElement(childContainerLoggerElement);
 
 		return loggerElement;
 	}
