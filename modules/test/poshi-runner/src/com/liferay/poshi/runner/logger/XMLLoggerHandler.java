@@ -251,6 +251,18 @@ public final class XMLLoggerHandler {
 		return loggerElement;
 	}
 
+	private static LoggerElement _getVarLoggerElement(Element element) {
+		String elementText = element.getText();
+
+		if (Validator.isNotNull(elementText)) {
+			elementText = _escapeXMLContent(elementText);
+
+			element = element.addAttribute("value", elementText);
+		}
+
+		return _getLineGroupLoggerElement(element);
+	}
+
 	private static boolean _isExecutingMacro(Element element) {
 		if ((element.attributeValue("macro") != null) ||
 			(element.attributeValue("macro-desktop") != null) ||
