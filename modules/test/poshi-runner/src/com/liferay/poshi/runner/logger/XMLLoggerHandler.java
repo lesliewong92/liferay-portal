@@ -147,6 +147,10 @@ public final class XMLLoggerHandler {
 		return _getLineGroupLoggerElement(element);
 	}
 
+	private static LoggerElement _getFunctionLoggerElement(Element element) {
+		return _getLineGroupLoggerElement("function", element);
+	}
+
 	private static LoggerElement _getLineContainerLoggerElement(
 		Element element) {
 
