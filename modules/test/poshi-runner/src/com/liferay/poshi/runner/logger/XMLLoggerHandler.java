@@ -153,6 +153,24 @@ public final class XMLLoggerHandler {
 		return _getLineGroupLoggerElement("function", element);
 	}
 
+	private static LoggerElement _getForLoggerElement(Element element) {
+		LoggerElement loggerElement = _getLineGroupLoggerElement(element);
+
+		LoggerElement childContainerLoggerElement =
+			_getChildContainerLoggerElement();
+
+		List<Element> childElements = loggerElement.elements();
+
+		for (Element childElement : childElements) {
+			childContainerLoggerElement.addChildLoggerElement(
+				_getLoggerElementFromElement(childElement));
+		}
+
+		loggerElement.addChildLoggerElement(childContainerLoggerElement);
+
+		return loggerElement;
+	}
+
 	private static LoggerElement _getLineContainerLoggerElement(
 		Element element) {
 
