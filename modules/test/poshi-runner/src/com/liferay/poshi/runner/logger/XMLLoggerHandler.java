@@ -140,6 +140,10 @@ public final class XMLLoggerHandler {
 				loggerElement.addChildLoggerElement(
 					_getFailLoggerElement(childElement));
 			}
+			else if (childElementName.equals("var")) {
+				loggerElement.addChildLoggerElement(
+					_getVarLoggerElement(childElement));
+			}
 		}
 
 		return loggerElement;
@@ -271,6 +275,18 @@ public final class XMLLoggerHandler {
 			_getClosingLineContainerLoggerElement(element));
 
 		return loggerElement;
+	}
+
+	private static LoggerElement _getVarLoggerElement(Element element) {
+		String elementText = element.getText();
+
+		if (Validator.isNotNull(elementText)) {
+			elementText = _escapeHTML(elementText);
+
+			element = element.addAttribute("value", elementText);
+		}
+
+		return _getLineGroupLoggerElement(element);
 	}
 
 	private static boolean _isExecutingMacro(Element element) {
