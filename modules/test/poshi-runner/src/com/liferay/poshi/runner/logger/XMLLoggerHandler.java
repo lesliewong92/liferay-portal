@@ -112,6 +112,32 @@ public final class XMLLoggerHandler {
 		return childContainerLoggerElement;
 	}
 
+	private static LoggerElement _getChildContentLoggerElement(
+		Element element) {
+
+		LoggerElement childContainerLoggerElement =
+			_getChildContainerLoggerElement();
+
+		List<Element> childElements = element.elements();
+
+		for (Element childElement : childElements) {
+			String childElementName = childElement.getName();
+
+			if (childElementName.equals("description") ||
+				childElementName.equals("echo")) {
+
+				childContainerLoggerElement.addChildLoggerElement(
+					_getEchoLoggerElement(childElement));
+			}
+			else if (childElementName.equals("fail")) {
+				childContainerLoggerElement.addChildLoggerElement(
+					_getFailLoggerElement(childElement));
+			}
+		}
+
+		return childContainerLoggerElement;
+	}
+
 	private static LoggerElement _getClosingLineContainerLoggerElement(
 		Element element) {
 
