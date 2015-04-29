@@ -16,6 +16,7 @@ package com.liferay.poshi.runner.logger;
 
 import com.liferay.poshi.runner.PoshiRunnerContext;
 import com.liferay.poshi.runner.PoshiRunnerGetterUtil;
+import com.liferay.poshi.runner.util.PropsValues;
 import com.liferay.poshi.runner.util.Validator;
 
 import java.util.List;
@@ -122,6 +123,74 @@ public final class XMLLoggerHandler {
 		return childContainerLoggerElement;
 	}
 
+	private static LoggerElement _getChildLoggerElement(Element element) {
+		LoggerElement childContainerLoggerElement =
+			_getChildContainerLoggerElement();
+
+		List<Element> childElements = element.elements();
+
+		for (Element childElement : childElements) {
+			String childElementName = childElement.getName();
+
+			if (childElementName.equals("description") ||
+				childElementName.equals("echo")) {
+
+				childContainerLoggerElement.addChildLoggerElement(
+					_getEchoLoggerElement(childElement));
+			}
+			else if (childElementName.equals("execute")) {
+				if (childElement.attributeValue("function") != null) {
+					childContainerLoggerElement.addChildLoggerElement(
+						_getFunctionLoggerElement(childElement));
+				}
+				else if (childElement.attributeValue("macro") != null) {
+					childContainerLoggerElement.addChildLoggerElement(
+						_getMacroExecuteLoggerElement(childElement, "macro"));
+				}
+				else if ((childElement.attributeValue(
+							"macro-desktop") != null) &&
+						 Validator.isNull(PropsValues.MOBILE_DEVICE_TYPE)) {
+
+					childContainerLoggerElement.addChildLoggerElement(
+						_getMacroExecuteLoggerElement(
+							childElement, "macro-desktop"));
+				}
+				else if ((childElement.attributeValue(
+							"macro-mobile") != null) &&
+						 Validator.isNotNull(PropsValues.MOBILE_DEVICE_TYPE)) {
+
+					childContainerLoggerElement.addChildLoggerElement(
+						_getMacroExecuteLoggerElement(
+							childElement, "macro-mobile"));
+				}
+			}
+			else if (childElementName.equals("fail")) {
+				childContainerLoggerElement.addChildLoggerElement(
+					_getFailLoggerElement(childElement));
+			}
+			else if (childElementName.equals("for") ||
+					 childElementName.equals("task")) {
+
+				childContainerLoggerElement.addChildLoggerElement(
+					_getLoggerElementFromElement(childElement));
+			}
+			else if (childElementName.equals("if")) {
+				childContainerLoggerElement.addChildLoggerElement(
+					_getIfLoggerElement(childElement));
+			}
+			else if (childElementName.equals("var")) {
+				childContainerLoggerElement.addChildLoggerElement(
+					_getVarLoggerElement(childElement));
+			}
+			else if (childElementName.equals("while")) {
+				childContainerLoggerElement.addChildLoggerElement(
+					_getWhileLoggerElement(childElement));
+			}
+		}
+
+		return childContainerLoggerElement;
+	}
+
 	private static LoggerElement _getClosingLineContainerLoggerElement(
 		Element element) {
 
@@ -141,6 +210,25 @@ public final class XMLLoggerHandler {
 		return closingLineContainerLoggerElement;
 	}
 
+	private static LoggerElement _getConditionalLoggerElement(Element element) {
+		LoggerElement loggerElement = _getLineGroupLoggerElement(
+			"conditional", element);
+
+		LoggerElement childContainerLoggerElement =
+			_getChildContainerLoggerElement();
+
+		List<Element> childElements = element.elements();
+
+		for (Element childElement : childElements) {
+			childContainerLoggerElement.addChildLoggerElement(
+				_getLineGroupLoggerElement(childElement));
+		}
+
+		loggerElement.addChildLoggerElement(childContainerLoggerElement);
+
+		return loggerElement;
+	}
+
 	private static LoggerElement _getEchoLoggerElement(Element element) {
 		return _getLineGroupLoggerElement("echo", element);
 	}
@@ -153,20 +241,43 @@ public final class XMLLoggerHandler {
 		return _getLineGroupLoggerElement("function", element);
 	}
 
-	private static LoggerElement _getForLoggerElement(Element element) {
-		LoggerElement loggerElement = _getLineGroupLoggerElement(element);
-
+	private static LoggerElement _getIfLoggerElement(Element element) {
 		LoggerElement childContainerLoggerElement =
 			_getChildContainerLoggerElement();
 
-		List<Element> childElements = loggerElement.elements();
+		List<Element> ifChildElements = element.elements();
 
-		for (Element childElement : childElements) {
+		Element ifConditionElement = ifChildElements.get(0);
+
+		childContainerLoggerElement.addChildLoggerElement(
+			_getConditionalLoggerElement(ifConditionElement));
+
+		Element thenElement = element.element("then");
+
+		childContainerLoggerElement.addChildLoggerElement(
+			_getLoggerElementFromElement(thenElement));
+
+		List<Element> elseIfElements = element.elements("elseif");
+
+		for (Element elseIfElement : elseIfElements) {
 			childContainerLoggerElement.addChildLoggerElement(
-				_getLoggerElementFromElement(childElement));
+				_getIfLoggerElement(elseIfElement));
 		}
 
+		Element elseElement = element.element("else");
+
+		if (Validator.isNotNull(elseElement)) {
+			childContainerLoggerElement.addChildLoggerElement(
+				_getLoggerElementFromElement(elseElement));
+		}
+
+		LoggerElement loggerElement = _getLineGroupLoggerElement(
+			"conditional", element);
+
 		loggerElement.addChildLoggerElement(childContainerLoggerElement);
+
+		loggerElement.addChildLoggerElement(
+			_getClosingLineContainerLoggerElement(element));
 
 		return loggerElement;
 	}
@@ -261,21 +372,23 @@ public final class XMLLoggerHandler {
 	}
 
 	private static LoggerElement _getLoggerElementFromElement(Element element) {
-		String elementName = element.getName();
+		LoggerElement loggerElement = _getLineGroupLoggerElement(element);
 
-		LoggerElement loggerElement = new LoggerElement();
+		loggerElement.addChildLoggerElement(_getChildLoggerElement(element));
 
-		if (elementName.equals("description") || elementName.equals("echo")) {
-			loggerElement = _getEchoLoggerElement(element);
-		}
-		else if (elementName.equals("fail")) {
-			loggerElement = _getFailLoggerElement(element);
-		}
+		loggerElement.addChildLoggerElement(
+			_getClosingLineContainerLoggerElement(element));
 
 		return loggerElement;
 	}
 
-	private static LoggerElement _getMacroLoggerElement(
+	private static LoggerElement _getMacroCommandLoggerElement(
+		Element element) {
+
+		return _getChildLoggerElement(element);
+	}
+
+	private static LoggerElement _getMacroExecuteLoggerElement(
 		Element executeElement, String macroType) {
 
 		LoggerElement loggerElement = _getLineGroupLoggerElement(
@@ -299,17 +412,11 @@ public final class XMLLoggerHandler {
 		Element commandElement = PoshiRunnerContext.getMacroCommandElement(
 			classCommandName);
 
-		LoggerElement childContainerLoggerElement =
-			_getChildContainerLoggerElement();
+		loggerElement.addChildLoggerElement(
+			_getMacroCommandLoggerElement(commandElement));
 
-		List<Element> childElements = commandElement.elements();
-
-		for (Element childElement : childElements) {
-			childContainerLoggerElement.addChildLoggerElement(
-				_getLoggerElementFromElement(childElement));
-		}
-
-		loggerElement.addChildLoggerElement(childContainerLoggerElement);
+		loggerElement.addChildLoggerElement(
+			_getClosingLineContainerLoggerElement(executeElement));
 
 		return loggerElement;
 	}
@@ -324,6 +431,32 @@ public final class XMLLoggerHandler {
 		}
 
 		return _getLineGroupLoggerElement(element);
+	}
+
+	private static LoggerElement _getWhileLoggerElement(Element element) {
+		LoggerElement childContainerLoggerElement =
+			_getChildContainerLoggerElement();
+
+		List<Element> whileChildElements = element.elements();
+
+		Element whileConditionElement = whileChildElements.get(0);
+
+		childContainerLoggerElement.addChildLoggerElement(
+			_getConditionalLoggerElement(whileConditionElement));
+
+		Element whileThenElement = element.element("then");
+
+		childContainerLoggerElement.addChildLoggerElement(
+			_getLoggerElementFromElement(whileThenElement));
+
+		LoggerElement loggerElement = _getLineGroupLoggerElement(element);
+
+		loggerElement.addChildLoggerElement(childContainerLoggerElement);
+
+		loggerElement.addChildLoggerElement(
+			_getClosingLineContainerLoggerElement(element));
+
+		return loggerElement;
 	}
 
 	private static boolean _isExecutingMacro(Element element) {
