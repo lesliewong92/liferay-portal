@@ -146,6 +146,12 @@ public final class XMLLoggerHandler {
 					loggerElement.addChildLoggerElement(
 						_getFailLoggerElement(childElement));
 				}
+				else if (childElementName.equals("for") ||
+						 childElementName.equals("task")) {
+
+					loggerElement.addChildLoggerElement(
+						_getForLoggerElement(childElement));
+				}
 				else if (childElementName.equals("if")) {
 					loggerElement.addChildLoggerElement(
 						_getIfLoggerElement(childElement));
@@ -212,6 +218,10 @@ public final class XMLLoggerHandler {
 
 	private static LoggerElement _getFailLoggerElement(Element element) {
 		return _getLineGroupLoggerElement(element);
+	}
+
+	private static LoggerElement _getForLoggerElement(Element element) {
+		return _getLoggerElementFromElement(element);
 	}
 
 	private static LoggerElement _getIfChildContainerLoggerElement(
