@@ -309,6 +309,15 @@ public final class XMLLoggerHandler {
 			sb.append(_getLineItemText("misc", "&gt;"));
 		}
 
+		String elementName = element.getName();
+
+		if (elementName.equals("execute") && !elements.isEmpty())  {
+			LoggerElement parameterContainerLoggerElement =
+				_getParameterContainerLoggerElement(element);
+
+			sb.append(parameterContainerLoggerElement.toString());
+		}
+
 		lineContainerLoggerElement.setText(sb.toString());
 
 		return lineContainerLoggerElement;
@@ -367,6 +376,35 @@ public final class XMLLoggerHandler {
 			_getChildContainerLoggerElement(element));
 		loggerElement.addChildLoggerElement(
 			_getClosingLineContainerLoggerElement(element));
+
+		return loggerElement;
+	}
+
+	private static LoggerElement _getParameterContainerLoggerElement(
+		Element element) {
+
+		LoggerElement loggerElement = new LoggerElement();
+
+		loggerElement.setClassName("collapsible parameter-container collapse");
+		loggerElement.setID(null);
+		loggerElement.setName("div");
+
+		StringBuilder sb = new StringBuilder();
+
+		List<Element> childElements = element.elements();
+
+		for (Element childElement : childElements) {
+			sb.append(
+				_getLineNumberItemText(
+					childElement.attributeValue("line-number")));
+
+			LoggerElement lineContainerLoggerElement =
+				_getLineContainerLoggerElement(childElement);
+
+			sb.append(lineContainerLoggerElement.toString());
+		}
+
+		loggerElement.setText(sb.toString());
 
 		return loggerElement;
 	}
