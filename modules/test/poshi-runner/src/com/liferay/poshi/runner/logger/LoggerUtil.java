@@ -223,7 +223,7 @@ public final class LoggerUtil {
 		_javascriptExecutor.executeScript(sb.toString());
 	}
 
-	public static void setID(LoggerElement loggerElement) {
+	public static void setID(String newID, String oldID) {
 		if (!isLoggerStarted()) {
 			return;
 		}
@@ -231,11 +231,11 @@ public final class LoggerUtil {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append("var node = document.getElementById('");
-		sb.append(loggerElement.getID());
+		sb.append(oldID);
 		sb.append("');");
 
 		sb.append("node.setAttribute('id', '");
-		sb.append(StringEscapeUtils.escapeEcmaScript(loggerElement.getID()));
+		sb.append(StringEscapeUtils.escapeEcmaScript(newID));
 		sb.append("');");
 
 		_javascriptExecutor.executeScript(sb.toString());
