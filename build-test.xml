@@ -5423,6 +5423,13 @@ jdbc.default.password=${database.mysql.password}</echo>
 
 				<get-poshi-class-command-name />
 
+				<if>
+					<isset property="env.JENKINS_HOME" />
+					<then>
+						<var name="test.selenium.logger.enabled" value="false" />
+					</then>
+				</if>
+
 				<gradle-execute failonerror="false" task="runPoshi">
 					<arg value="--build-file=portal-web/build-test.gradle" />
 					<arg value="-PposhiTestName=${poshi.class.command.name}" />
