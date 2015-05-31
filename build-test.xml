@@ -718,14 +718,14 @@
 				<then>
 					<property name="gradlew.suffix" value="" />
 
-					<chmod file="${sdk.dir}/tools/gradle/gradlew${gradlew.suffix}" perm="a+x" />
+					<chmod file="${sdk.dir}/gradle/gradlew${gradlew.suffix}" perm="a+x" />
 				</then>
 				<else>
 					<property name="gradlew.suffix" value=".bat" />
 				</else>
 			</if>
 
-			<exec executable="${sdk.dir}/tools/gradle/gradlew${gradlew.suffix}" failonerror="@{failonerror}">
+			<exec executable="${sdk.dir}/gradle/gradlew${gradlew.suffix}" failonerror="@{failonerror}">
 				<arg value="-PpluginsExcludes=${plugins.excludes}" />
 				<arg value="-PpluginsIncludes=${plugins.includes}" />
 				<args />
@@ -5419,7 +5419,7 @@ jdbc.default.password=${database.mysql.password}</echo>
 		<if>
 			<equals arg1="${test.poshi.runner.enabled}" arg2="true" />
 			<then>
-				<property name="sdk.dir" value="tools/sdk" />
+				<property name="sdk.dir" value="portal-web" />
 
 				<get-poshi-class-command-name />
 
