@@ -38,6 +38,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 /**
  * @author Michael Hashimoto
  */
+
 public final class LoggerUtil {
 
 	public static void addChildLoggerElement(
