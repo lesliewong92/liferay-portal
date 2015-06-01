@@ -242,22 +242,19 @@ public final class LoggerUtil {
 
 		_javascriptExecutor = (JavascriptExecutor)_webDriver;
 
-		String mainCSSContent = _readResource(
-			"META-INF/resources/css/main.css");
+		String cssContent = _readResource("META-INF/resources/css/main.css");
 
-		FileUtil.write(
-			_CURRENT_DIR + "/test-results/css/main.css", mainCSSContent);
+		FileUtil.write(_CURRENT_DIR + "/test-results/css/main.css", cssContent);
 
-		String mainJSContent = _readResource("META-INF/resources/js/main.js");
+		String jsMain = _readResource("META-INF/resources/js/main.js");
 
-		FileUtil.write(
-			_CURRENT_DIR + "/test-results/js/main.js", mainJSContent);
+		FileUtil.write(_CURRENT_DIR + "/test-results/js/main.js", jsMain);
 
-		String componentJSContent = _readResource(
+		String jsComponent = _readResource(
 			"META-INF/resources/js/component.js");
 
 		FileUtil.write(
-			_CURRENT_DIR + "/test-results/js/component.js", componentJSContent);
+			_CURRENT_DIR + "/test-results/js/component.js", jsComponent);
 
 		String htmlContent = _readResource(
 			"META-INF/resources/html/index.html");
@@ -277,24 +274,21 @@ public final class LoggerUtil {
 
 	public static void stopLogger() throws Exception {
 		if (!PropsValues.SELENIUM_LOGGER_ENABLED) {
-			String mainCSSContent = _readResource(
+			String cssContent = _readResource(
 				"META-INF/resources/css/main.css");
 
 			FileUtil.write(
-				_CURRENT_DIR + "/test-results/css/main.css", mainCSSContent);
+				_CURRENT_DIR + "/test-results/css/main.css", cssContent);
 
-			String mainJSContent = _readResource(
-				"META-INF/resources/js/main.js");
+			String jsMain = _readResource("META-INF/resources/js/main.js");
 
-			FileUtil.write(
-				_CURRENT_DIR + "/test-results/js/main.js", mainJSContent);
+			FileUtil.write(_CURRENT_DIR + "/test-results/js/main.js", jsMain);
 
-			String componentJSContent = _readResource(
+			String jsComponent = _readResource(
 				"META-INF/resources/js/component.js");
 
 			FileUtil.write(
-				_CURRENT_DIR + "/test-results/js/component.js",
-				componentJSContent);
+				_CURRENT_DIR + "/test-results/js/component.js", jsComponent);
 		}
 
 		String htmlContent = _readResource(
