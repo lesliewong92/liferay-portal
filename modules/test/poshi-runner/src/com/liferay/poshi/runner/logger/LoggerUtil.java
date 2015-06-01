@@ -376,6 +376,8 @@ public final class LoggerUtil {
 	private static final String _CURRENT_DIR =
 		PoshiRunnerGetterUtil.getCanonicalPath(".");
 
+	private static final LoggerUtil _instance = new LoggerUtil();
+
 	private static JavascriptExecutor _javascriptExecutor;
 	private static WebDriver _webDriver;
 
