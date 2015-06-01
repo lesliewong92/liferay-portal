@@ -84,14 +84,13 @@ public final class LoggerUtil {
 		while (iterator.hasNext()) {
 			String attributeName = iterator.next();
 
-			String escapedAttributeName = StringEscapeUtils.escapeEcmaScript(
+			String strAttributeName = StringEscapeUtils.escapeEcmaScript(
 				attributeName);
-			String escapedAttributeValue = StringEscapeUtils.escapeEcmaScript(
+			String strAttributeValue = StringEscapeUtils.escapeEcmaScript(
 				childLoggerElement.getAttributeValue(attributeName));
 
 			extraAttr.append(
-				"'" + escapedAttributeName + "' : '" + escapedAttributeValue +
-					"'");
+				"'" + strAttributeName + "' : '" + strAttributeValue + "'");
 
 			if (iterator.hasNext()) {
 				extraAttr.append(",");
@@ -169,14 +168,14 @@ public final class LoggerUtil {
 			return;
 		}
 
-		String escapedAttributeName = StringEscapeUtils.escapeEcmaScript(
+		String strAttributeName = StringEscapeUtils.escapeEcmaScript(
 			attributeName);
-		String escapedAttributeValue = StringEscapeUtils.escapeEcmaScript(
+		String strAttributeValue = StringEscapeUtils.escapeEcmaScript(
 			attributeValue);
 
 		_javascriptExecutor.executeScript(
-			"setAttribute(" + loggerElement.getID() + ", '" +
-				escapedAttributeName + "', '" + escapedAttributeValue + "');");
+			"setAttribute(" + loggerElement.getID() + ", '" + strAttributeName +
+				"', '" + strAttributeValue + "');");
 	}
 
 	public static void setClassName(LoggerElement loggerElement) {
