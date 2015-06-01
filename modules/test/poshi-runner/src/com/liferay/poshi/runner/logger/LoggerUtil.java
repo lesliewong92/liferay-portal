@@ -248,18 +248,18 @@ public final class LoggerUtil {
 		FileUtil.write(
 			_CURRENT_DIR + "/test-results/css/main.css", mainCSSContent);
 
-		String indexHTMLContent = _readResource(
+		String htmlContent = _readResource(
 			"META-INF/resources/html/index.html");
 
-		indexHTMLContent = indexHTMLContent.replace(
+		htmlContent = htmlContent.replace(
 			"<ul class=\"command-log\" data-logid=\"01\" id=\"commandLog\">" +
 				"</ul>",
 			CommandLoggerHandler.getCommandLogText());
-		indexHTMLContent = indexHTMLContent.replace(
+		htmlContent = htmlContent.replace(
 			"<ul class=\"xml-log-container\" id=\"xmlLogContainer\"></ul>",
 			XMLLoggerHandler.getXMLLogText());
 
-		FileUtil.write(_getHtmlFilePath(), indexHTMLContent);
+		FileUtil.write(_getHtmlFilePath(), htmlContent);
 
 		String mainJSContent = _readResource("META-INF/resources/js/main.js");
 
@@ -297,14 +297,14 @@ public final class LoggerUtil {
 				_CURRENT_DIR + "/test-results/js/main.js", mainJSContent);
 		}
 
-		String indexHTMLContent = _readResource(
+		String htmlContent = _readResource(
 			"META-INF/resources/html/index.html");
 
-		indexHTMLContent = indexHTMLContent.replace(
+		htmlContent = htmlContent.replace(
 			"<ul class=\"command-log\" data-logid=\"01\" id=\"commandLog\">" +
 				"</ul>",
 			CommandLoggerHandler.getCommandLogText());
-		indexHTMLContent = indexHTMLContent.replace(
+		htmlContent = htmlContent.replace(
 			"<ul class=\"xml-log-container\" id=\"xmlLogContainer\"></ul>",
 			XMLLoggerHandler.getXMLLogText());
 
@@ -314,19 +314,19 @@ public final class LoggerUtil {
 			sb.append("http://rawgit.com/liferay/liferay-portal/master/");
 			sb.append("modules/test/poshi-runner/src/META-INF/resources");
 
-			indexHTMLContent = StringUtil.replace(
-				indexHTMLContent, "<link href=\"../css/main.css\"",
+			htmlContent = StringUtil.replace(
+				htmlContent, "<link href=\"../css/main.css\"",
 				"<link href=\"" + sb.toString() + "/css/.sass-cache/" +
 					"main.css\"");
-			indexHTMLContent = StringUtil.replace(
-				indexHTMLContent, "<script src=\"../js/component.js\"",
+			htmlContent = StringUtil.replace(
+				htmlContent, "<script src=\"../js/component.js\"",
 				"<script src=\"" + sb.toString() + "/js/component.js\"");
-			indexHTMLContent = StringUtil.replace(
-				indexHTMLContent, "<script src=\"../js/main.js\"",
+			htmlContent = StringUtil.replace(
+				htmlContent, "<script src=\"../js/main.js\"",
 				"<script src=\"" + sb.toString() + "/js/main.js\"");
 		}
 
-		FileUtil.write(_getHtmlFilePath(), indexHTMLContent);
+		FileUtil.write(_getHtmlFilePath(), htmlContent);
 
 		if (isLoggerStarted()) {
 			_webDriver.quit();
