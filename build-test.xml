@@ -5436,6 +5436,18 @@ jdbc.default.password=${database.mysql.password}</echo>
 					<arg value="-PseleniumLoggerEnabled=${test.selenium.logger.enabled}" />
 					<arg value="-PtestCaseAvailablePropertyNames=${test.case.available.property.names}" />
 				</gradle-execute>
+
+				<get-poshi-class-name />
+				<get-poshi-method-name />
+
+				<property name="poshi.runner.results.dir" value="${poshi.class.name}_${poshi.method.name}" />
+
+				<replaceregexp
+					file="portal-web/test-results/${poshi.runner.results.dir}/index.html"
+					flags="g"
+					match="http://rawgit.com/liferay/liferay-portal/master/"
+					replace="http://rawgit.com/lesliewong92/liferay-portal/master-qa-14419/"
+				/>
 			</then>
 			<else>
 				<if>
