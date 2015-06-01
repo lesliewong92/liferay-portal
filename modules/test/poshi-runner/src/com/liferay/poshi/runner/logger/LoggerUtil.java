@@ -51,23 +51,18 @@ public final class LoggerUtil {
 
 		StringBuilder defaultAttr = new StringBuilder();
 
-		String cssClass = StringEscapeUtils.escapeEcmaScript(
-			childLoggerElement.getClassName());
-		String id = StringEscapeUtils.escapeEcmaScript(
-			childLoggerElement.getID());
-		String innerHTML = StringEscapeUtils.escapeEcmaScript(
-			childLoggerElement.getText());
-		String name = StringEscapeUtils.escapeEcmaScript(
-			childLoggerElement.getName());
-		String parentId = StringEscapeUtils.escapeEcmaScript(
-			parentLoggerElement.getID());
+		String parentId = StringEscapeUtils.escapeEcmaScript(parentLoggerElement.getID());
+		String elementName = StringEscapeUtils.escapeEcmaScript(childLoggerElement.getName());
+		String elementClass = StringEscapeUtils.escapeEcmaScript(childLoggerElement.getClassName());
+		String elementId = StringEscapeUtils.escapeEcmaScript(childLoggerElement.getID());
+		String innerHTML = StringEscapeUtils.escapeEcmaScript(childLoggerElement.getText());
 
 		defaultAttr.append("{");
-		defaultAttr.append("cssClass : '" + cssClass + "',");
-		defaultAttr.append("id : '" + id + "',");
-		defaultAttr.append("innerHTML : '" + innerHTML + "',");
-		defaultAttr.append("name : '" + name + "',");
-		defaultAttr.append("parentId : '" + parentId + "'");
+		defaultAttr.append("parentId : '" + parentId + "',");
+		defaultAttr.append("elementName : '" + elementName + "',");
+		defaultAttr.append("elementClass : '" + elementClass + "',");
+		defaultAttr.append("elementId : '" + elementId + "',");
+		defaultAttr.append("innerHTML : '" + innerHTML + "'");
 		defaultAttr.append("}");
 
 		StringBuilder extraAttr = new StringBuilder();
@@ -81,13 +76,11 @@ public final class LoggerUtil {
 			while (iterator.hasNext()) {
 				String attributeName = iterator.next();
 
-				String strAttributeName = StringEscapeUtils.escapeEcmaScript(
-					attributeName);
+				String strAttributeName = StringEscapeUtils.escapeEcmaScript(attributeName);
 				String strAttributeValue = StringEscapeUtils.escapeEcmaScript(
 					childLoggerElement.getAttributeValue(attributeName));
 
-				extraAttr.append("'" + strAttributeName + "' : '" +
-					strAttributeValue + "'");
+				extraAttr.append("'" + strAttributeName + "' : '" + strAttributeValue + "'");
 
 				if (iterator.hasNext()) {
 					extraAttr.append(",");
@@ -96,8 +89,7 @@ public final class LoggerUtil {
 
 		extraAttr.append("}");
 
-		_javascriptExecutor.executeScript("addChildLoggerElement(" + defaultAttr
-			+ ", " + extraAttr + ");");
+		_javascriptExecutor.executeScript("addChildLoggerElement(" + defaultAttr + ", " + extraAttr + ");");
 	}
 
 	public static void executeJavaScript(String script) {
@@ -113,8 +105,15 @@ public final class LoggerUtil {
 			return null;
 		}
 
-		return (String)_javascriptExecutor.executeScript("getClassName(" +
-			loggerElement.getID() + ");");
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("var node = document.getElementById('");
+		sb.append(loggerElement.getID());
+		sb.append("');");
+
+		sb.append("return node.getAttribute('class');");
+
+		return (String)_javascriptExecutor.executeScript("getClassName(" + loggerElement.getID() + ");");
 	}
 
 	public static String getName(LoggerElement loggerElement) {
@@ -122,8 +121,15 @@ public final class LoggerUtil {
 			return null;
 		}
 
-		return (String)_javascriptExecutor.executeScript("getName(" +
-			loggerElement.getID() + ");");
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("var node = document.getElementById('");
+		sb.append(loggerElement.getID());
+		sb.append("');");
+
+		sb.append("return node.nodeName;");
+
+		return (String)_javascriptExecutor.executeScript("getName(" + loggerElement.getID() + ");");
 	}
 
 	public static String getText(LoggerElement loggerElement) {
@@ -131,8 +137,15 @@ public final class LoggerUtil {
 			return null;
 		}
 
-		return (String)_javascriptExecutor.executeScript("getText(" +
-			loggerElement.getID() + ");");
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("var node = document.getElementById('");
+		sb.append(loggerElement.getID());
+		sb.append("');");
+
+		sb.append("return node.innerHTML;");
+
+		return (String)_javascriptExecutor.executeScript("getText(" + loggerElement.getID() + ");");
 	}
 
 	public static boolean isLoggerStarted() {
@@ -165,8 +178,7 @@ public final class LoggerUtil {
 		sb.append("return true;");
 
 		try {
-			return (boolean)_javascriptExecutor.executeScript(
-				"isWrittenToLogger(" + loggerElement.getID() + ");");
+			return (boolean)_javascriptExecutor.executeScript("isWrittenToLogger(" + loggerElement.getID() + ");");
 		}
 		catch (Exception error) {
 			return false;
@@ -193,14 +205,10 @@ public final class LoggerUtil {
 		sb.append(StringEscapeUtils.escapeEcmaScript(attributeValue));
 		sb.append("');");
 
-		String strAttributeName = StringEscapeUtils.escapeEcmaScript(
-			attributeName);
-		String strAttributeValue = StringEscapeUtils.escapeEcmaScript(
-			attributeValue);
+		String strAttributeName = StringEscapeUtils.escapeEcmaScript(attributeName);
+		String strAttributeValue = StringEscapeUtils.escapeEcmaScript(attributeValue);
 
-		_javascriptExecutor.executeScript("setAttribute(" +
-			loggerElement.getID() + ", '" + strAttributeName + "', '" +
-			strAttributeValue + "');");
+		_javascriptExecutor.executeScript("setAttribute(" + loggerElement.getID() + ", '" + strAttributeName + "', '" + strAttributeValue + "');");
 	}
 
 	public static void setClassName(LoggerElement loggerElement) {
@@ -219,11 +227,9 @@ public final class LoggerUtil {
 			StringEscapeUtils.escapeEcmaScript(loggerElement.getClassName()));
 		sb.append("');");
 
-		String className = StringEscapeUtils.escapeEcmaScript(
-			loggerElement.getClassName());
+		String className = StringEscapeUtils.escapeEcmaScript(loggerElement.getClassName());
 
-		_javascriptExecutor.executeScript("setClassName(" +
-			loggerElement.getID() + ", '" + className + "');");
+		_javascriptExecutor.executeScript("setClassName(" + loggerElement.getID() + ", '" + className + "');");
 	}
 
 	public static void setID(LoggerElement loggerElement) {
@@ -243,8 +249,7 @@ public final class LoggerUtil {
 
 		String id = StringEscapeUtils.escapeEcmaScript(loggerElement.getID());
 
-		_javascriptExecutor.executeScript("setID(" + loggerElement.getID() +
-			", '" + id + "');");
+		_javascriptExecutor.executeScript("setID(" + loggerElement.getID() + ", '" + id + "');");
 	}
 
 	public static void setName(LoggerElement loggerElement) {
@@ -274,11 +279,9 @@ public final class LoggerUtil {
 
 		sb.append("parentNode.removeChild(oldNode);");
 
-		String name = StringEscapeUtils.escapeEcmaScript(
-			loggerElement.getName());
+		String name = StringEscapeUtils.escapeEcmaScript(loggerElement.getName());
 
-		_javascriptExecutor.executeScript("setName(" + loggerElement.getID() +
-			", '" + name + "');");
+		_javascriptExecutor.executeScript("setName(" + loggerElement.getID() + ", '" + name + "');");
 	}
 
 	public static void setText(LoggerElement loggerElement) {
@@ -296,11 +299,9 @@ public final class LoggerUtil {
 		sb.append(StringEscapeUtils.escapeEcmaScript(loggerElement.getText()));
 		sb.append("';");
 
-		String text = StringEscapeUtils.escapeEcmaScript(
-			loggerElement.getText());
+		String text = StringEscapeUtils.escapeEcmaScript(loggerElement.getText());
 
-		_javascriptExecutor.executeScript("setText(" + loggerElement.getID() +
-			", '" + text + "');");
+		_javascriptExecutor.executeScript("setText(" + loggerElement.getID() + ", '" + text + "');");
 	}
 
 	public static void startLogger() throws Exception {
