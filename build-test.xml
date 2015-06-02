@@ -5448,6 +5448,20 @@ jdbc.default.password=${database.mysql.password}</echo>
 					match="http://rawgit.com/liferay/liferay-portal/master/"
 					replace="http://rawgit.com/lesliewong92/liferay-portal/master-qa-14419/"
 				/>
+
+				<replaceregexp
+					file="portal-web/test-results/${poshi.runner.results.dir}/index.html"
+					flags="g"
+					match="cdn.alloyui.com"
+					replace="cdn.lfrs.sl/alloyui.com"
+				/>
+
+				<replaceregexp
+					file="portal-web/test-results/${poshi.runner.results.dir}/index.html"
+					flags="g"
+					match="http://"
+					replace="https://"
+				/>
 			</then>
 			<else>
 				<if>
