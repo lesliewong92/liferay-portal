@@ -96,6 +96,12 @@ public final class PoshiRunnerStackTraceUtil {
 		System.out.println(getStackTrace(msg));
 	}
 
+	public static void pushStackTrace(String classCommandName, String classType)
+		throws Exception {
+
+		_pushFilePath(classCommandName, classType);
+	}
+
 	public static void pushStackTrace(Element element) throws Exception {
 		_stackTrace.push(
 			_filePaths.peek() + ":" + element.attributeValue("line-number"));
@@ -123,8 +129,8 @@ public final class PoshiRunnerStackTraceUtil {
 			printStackTrace();
 
 			throw new Exception(
-				"Missing (function|macro|macro-desktop|macro-mobile) " +
-					"attribute");
+				"Missing (function|macro|macro-desktop|macro-mobile|" +
+					"test-case) attribute");
 		}
 
 		_pushFilePath(classCommandName, classType);
