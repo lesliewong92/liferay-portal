@@ -168,6 +168,9 @@ public class PoshiRunnerExecutor {
 				else if (childElement.attributeValue("selenium") != null) {
 					runSeleniumElement(childElement);
 				}
+				else if (childElement.attributeValue("test-case") != null) {
+					runTestCaseExecuteElement(childElement);
+				}
 			}
 			else if (childElementName.equals("if")) {
 				runIfElement(childElement);
@@ -454,6 +457,45 @@ public class PoshiRunnerExecutor {
 		parseElement(commandElement);
 
 		PoshiRunnerVariablesUtil.popCommandMap();
+	}
+
+	public static void runTestCaseExecuteElement(Element executeElement)
+		throws Exception {
+
+		PoshiRunnerStackTraceUtil.setCurrentElement(executeElement);
+
+		String classCommandName = executeElement.attributeValue("test-case");
+
+		String className =
+			PoshiRunnerGetterUtil.getClassNameFromClassCommandName(
+				classCommandName);
+
+		String commandName =
+			PoshiRunnerGetterUtil.getCommandNameFromClassCommandName(
+				classCommandName);
+
+		if (className.equals("super")) {
+			String testCaseClassName =
+				PoshiRunnerGetterUtil.getClassNameFromClassCommandName(
+					PropsValues.TEST_NAME);
+
+			Element rootElement = PoshiRunnerContext.getTestCaseRootElement(
+				testCaseClassName);
+
+			className =
+				PoshiRunnerGetterUtil.getExtendedTestCaseName(rootElement);
+
+			classCommandName = className + commandName;
+		}
+
+		PoshiRunnerStackTraceUtil.pushStackTrace(classCommandName, "test-case");
+
+		Element commandElement = PoshiRunnerContext.getTestCaseCommandElement(
+			className + "#" + commandName);
+
+		parseElement(commandElement);
+
+		PoshiRunnerStackTraceUtil.popStackTrace();
 	}
 
 	public static void runMacroExecuteElement(
