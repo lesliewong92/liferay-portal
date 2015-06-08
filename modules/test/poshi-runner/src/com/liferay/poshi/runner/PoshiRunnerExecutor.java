@@ -217,6 +217,8 @@ public class PoshiRunnerExecutor {
 
 		String message = element.attributeValue("message");
 
+		XMLLoggerHandler.updateStatus(element, "fail");
+
 		if (Validator.isNotNull(message)) {
 			throw new Exception(
 				PoshiRunnerVariablesUtil.replaceCommandVars(message));
@@ -459,10 +461,24 @@ public class PoshiRunnerExecutor {
 		PoshiRunnerVariablesUtil.popCommandMap();
 	}
 
+	public static void runTestCaseCommandElement(Element commandElement)
+		throws Exception {
+
+		PoshiRunnerStackTraceUtil.setCurrentElement(commandElement);
+
+		PoshiRunnerVariablesUtil.pushCommandMap();
+
+		parseElement(commandElement);
+
+		PoshiRunnerVariablesUtil.popCommandMap();
+	}
+
 	public static void runTestCaseExecuteElement(Element executeElement)
 		throws Exception {
 
 		PoshiRunnerStackTraceUtil.setCurrentElement(executeElement);
+
+		XMLLoggerHandler.updateStatus(executeElement, "pending");
 
 		String classCommandName = executeElement.attributeValue("test-case");
 
@@ -470,32 +486,37 @@ public class PoshiRunnerExecutor {
 			PoshiRunnerGetterUtil.getClassNameFromClassCommandName(
 				classCommandName);
 
-		String commandName =
-			PoshiRunnerGetterUtil.getCommandNameFromClassCommandName(
-				classCommandName);
-
 		if (className.equals("super")) {
 			String testCaseClassName =
 				PoshiRunnerGetterUtil.getClassNameFromClassCommandName(
 					PropsValues.TEST_NAME);
 
-			Element rootElement = PoshiRunnerContext.getTestCaseRootElement(
-				testCaseClassName);
+			className = PoshiRunnerGetterUtil.getExtendedTestCaseName(
+				PoshiRunnerContext.getTestCaseRootElement(
+					testCaseClassName));
 
-			className =
-				PoshiRunnerGetterUtil.getExtendedTestCaseName(rootElement);
-
-			classCommandName = className + commandName;
+			classCommandName = classCommandName.replace("super", className);
 		}
 
-		PoshiRunnerStackTraceUtil.pushStackTrace(classCommandName, "test-case");
+		PoshiRunnerStackTraceUtil.pushStackTrace(executeElement);
+
+		Element rootElement = PoshiRunnerContext.getTestCaseRootElement(
+			className);
+
+		List<Element> rootVarElements = rootElement.elements("var");
+
+		for (Element rootVarElement : rootVarElements) {
+			runVarElement(rootVarElement, false, true);
+		}
 
 		Element commandElement = PoshiRunnerContext.getTestCaseCommandElement(
-			className + "#" + commandName);
+			classCommandName);
 
-		parseElement(commandElement);
+		runTestCaseCommandElement(commandElement);
 
 		PoshiRunnerStackTraceUtil.popStackTrace();
+
+		XMLLoggerHandler.updateStatus(executeElement, "pass");
 	}
 
 	public static void runMacroExecuteElement(

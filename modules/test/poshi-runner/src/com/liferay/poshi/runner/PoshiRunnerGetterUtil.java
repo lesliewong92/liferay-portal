@@ -116,7 +116,7 @@ public class PoshiRunnerGetterUtil {
 		return rootElement.attributeValue("extends");
 	}
 
-	public static String getExtendedTestCaseName(String filePath) {
+	public static String getExtendedTestCaseNameFromFilePath(String filePath) {
 		Element rootElement = PoshiRunnerContext.getTestCaseRootElement(
 			getClassNameFromFilePath(filePath));
 

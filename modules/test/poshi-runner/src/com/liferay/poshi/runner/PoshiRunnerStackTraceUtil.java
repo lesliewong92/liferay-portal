@@ -14,6 +14,7 @@
 
 package com.liferay.poshi.runner;
 
+import com.liferay.poshi.runner.util.PropsValues;
 import com.liferay.poshi.runner.util.Validator;
 
 import java.util.Stack;
@@ -125,6 +126,27 @@ public final class PoshiRunnerStackTraceUtil {
 			classCommandName = element.attributeValue("macro-mobile");
 			classType = "macro";
 		}
+		else if (element.attributeValue("test-case") != null) {
+			classCommandName = element.attributeValue("test-case");
+
+			String className =
+				PoshiRunnerGetterUtil.getClassNameFromClassCommandName(
+				classCommandName);
+
+			if (className.equals("super")) {
+				String testCaseClassName =
+					PoshiRunnerGetterUtil.getClassNameFromClassCommandName(
+						PropsValues.TEST_NAME);
+
+				className = PoshiRunnerGetterUtil.getExtendedTestCaseName(
+					PoshiRunnerContext.getTestCaseRootElement(
+						testCaseClassName));
+
+				classCommandName = classCommandName.replace("super", className);
+			}
+
+			classType = "test-case";
+		}
 		else {
 			printStackTrace();
 
@@ -152,6 +174,15 @@ public final class PoshiRunnerStackTraceUtil {
 		String className =
 			PoshiRunnerGetterUtil.getClassNameFromClassCommandName(
 				classCommandName);
+
+		if (className.equals("super")) {
+			String testCaseClassName =
+				PoshiRunnerGetterUtil.getClassNameFromClassCommandName(
+					PropsValues.TEST_NAME);
+
+			className = PoshiRunnerGetterUtil.getExtendedTestCaseName(
+				PoshiRunnerContext.getTestCaseRootElement(testCaseClassName));
+		}
 
 		String fileExtension =
 			PoshiRunnerGetterUtil.getFileExtensionFromClassType(classType);

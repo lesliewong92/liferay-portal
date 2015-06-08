@@ -161,6 +161,21 @@ public class PoshiRunnerContext {
 	}
 
 	public static Element getTestCaseCommandElement(String classCommandName) {
+		String className =
+			PoshiRunnerGetterUtil.getClassNameFromClassCommandName(
+				classCommandName);
+
+		if (className.equals("super")) {
+			String testCaseClassName =
+				PoshiRunnerGetterUtil.getClassNameFromClassCommandName(
+					PropsValues.TEST_NAME);
+
+			className = PoshiRunnerGetterUtil.getExtendedTestCaseName(
+				PoshiRunnerContext.getTestCaseRootElement(testCaseClassName));
+
+			classCommandName = classCommandName.replace("super", className);
+		}
+
 		return _commandElements.get("test-case#" + classCommandName);
 	}
 
@@ -173,6 +188,15 @@ public class PoshiRunnerContext {
 	}
 
 	public static Element getTestCaseRootElement(String className) {
+		if (className.equals("super")) {
+			String testCaseClassName =
+				PoshiRunnerGetterUtil.getClassNameFromClassCommandName(
+					PropsValues.TEST_NAME);
+
+			className = PoshiRunnerGetterUtil.getExtendedTestCaseName(
+				PoshiRunnerContext.getTestCaseRootElement(testCaseClassName));
+		}
+
 		return _rootElements.get("test-case#" + className);
 	}
 
