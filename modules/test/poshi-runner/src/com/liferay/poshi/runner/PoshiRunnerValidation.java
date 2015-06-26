@@ -1132,6 +1132,9 @@ public class PoshiRunnerValidation {
 				element, Arrays.asList("command"), filePath);
 		}
 
+		List<String> requiredPropertyNames = new ArrayList(
+			PoshiRunnerContext.getTestCaseRequiredPropertyNames());
+
 		List<String> possibleTagElementNames = Arrays.asList(
 			"command", "property", "set-up", "tear-down", "var");
 
@@ -1183,6 +1186,10 @@ public class PoshiRunnerValidation {
 								filePath + ":" +
 								childElement.attributeValue("line-number")));
 				}
+
+				if (requiredPropertyNames.contains(propertyName)) {
+					requiredPropertyNames.remove(propertyName);
+				}
 			}
 			else if (childElementName.equals("set-up") ||
 					 childElementName.equals("tear-down")) {
@@ -1195,6 +1202,13 @@ public class PoshiRunnerValidation {
 			else if (childElementName.equals("var")) {
 				_validateVarElement(childElement, filePath);
 			}
+		}
+
+		if (!requiredPropertyNames.isEmpty()) {
+			_exceptions.add(
+				new Exception(
+					"Missing required properties " +
+						requiredPropertyNames + "\n" + filePath));
 		}
 	}
 
