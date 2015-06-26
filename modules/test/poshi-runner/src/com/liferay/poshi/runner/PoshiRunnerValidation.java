@@ -15,7 +15,9 @@
 package com.liferay.poshi.runner;
 
 import com.liferay.poshi.runner.util.OSDetector;
+import com.liferay.poshi.runner.util.PropsUtil;
 import com.liferay.poshi.runner.util.PropsValues;
+import com.liferay.poshi.runner.util.StringUtil;
 import com.liferay.poshi.runner.util.Validator;
 
 import java.util.ArrayList;
@@ -1201,6 +1203,30 @@ public class PoshiRunnerValidation {
 				}
 
 				if (requiredPropertyNames.contains(propertyName)) {
+					String testCaseAvailablePropertyValues = PropsUtil.get(
+						"test.case.available.property.values[" + propertyName +
+							"]");
+
+					if (Validator.isNull(testCaseAvailablePropertyValues)) {
+						_exceptions.add(
+							new Exception(
+								"Please set list of available property " +
+									"values for " + propertyName + "\n" +
+									filePath + ":" +
+									childElement.attributeValue(
+										"line-number")));
+
+						requiredPropertyNames.remove(propertyName);
+
+						continue;
+					}
+
+					List<String> possiblePropertyValues = Arrays.asList(
+						StringUtil.split(testCaseAvailablePropertyValues));
+
+					_validatePossiblePropertyValues(
+						childElement, possiblePropertyValues, filePath);
+
 					requiredPropertyNames.remove(propertyName);
 				}
 			}
