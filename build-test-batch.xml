@@ -187,6 +187,8 @@
 				<test-action>
 					<database-test-run-test database.type="@{database.type}">
 						<test-action>
+							<echo file="test.class.file.names.properties">TEST_CLASS_GROUP_0=com/liferay/portal/service/UserLocalServiceTest.class
+TEST_CLASS_GROUPS=0</echo>
 							<print-test-class-group test.class.group.index="@{test.class.group.index}" />
 
 							<ant dir="portal-impl" target="test-class-group" inheritAll="false">
@@ -358,6 +360,9 @@
 	<target name="unit">
 		<run-batch-test test.class.group.index="${jenkins.axis.variable}">
 			<test-action>
+				<echo file="test.class.file.names.properties">TEST_CLASS_GROUP_0=com/liferay/portal/kernel/util/StringBundlerTest.class
+TEST_CLASS_GROUPS=0</echo>
+
 				<ant dir="portal-service" target="test-class-group" inheritAll="false">
 					<property name="test.class.group.index" value="@{test.class.group.index}" />
 				</ant>
