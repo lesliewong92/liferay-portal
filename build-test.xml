@@ -5843,7 +5843,7 @@ if (ppstate.equals("normal")) {
 
 		<antcall inheritAll="false" target="prepare-poshi-runner-properties" />
 
-		<gradle-execute failonerror="false" task="writePoshiProperties">
+		<gradle-execute failonerror="true" task="writePoshiProperties">
 			<arg value="--build-file=portal-web/build-test.gradle" />
 			<arg value="-Plocal=${test.poshi.runner.local.release}" />
 			<arg value="-PposhiRunnerExtProperties=${test.ext.properties.file}" />
