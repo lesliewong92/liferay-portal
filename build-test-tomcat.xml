@@ -24,7 +24,14 @@
 		<if>
 			<equals arg1="${test.poshi.runner.enabled}" arg2="true" />
 			<then>
-				<antcall target="record-test-generated-properties" />
+				<trycatch>
+					<try>
+						<antcall target="record-test-generated-properties" />
+					</try>
+					<catch>
+						<antcall target="record-test-generated-properties" />
+					</catch>
+				</trycatch>
 			</then>
 			<else>
 				<ant dir="portal-impl" target="build-selenium-test-case" />
