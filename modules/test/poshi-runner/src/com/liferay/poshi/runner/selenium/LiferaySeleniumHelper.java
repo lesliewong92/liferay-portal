@@ -735,9 +735,13 @@ public class LiferaySeleniumHelper {
 			LiferaySelenium liferaySelenium, String image)
 		throws Exception {
 
-		File file = new File(
-			_TEST_BASE_DIR_NAME + "/" +
-				liferaySelenium.getSikuliImagesDirName() + image);
+		String relativePathName = FileUtil.getSeparator() +
+			liferaySelenium.getSikuliImagesDirName() + image;
+
+		String fileName = getFullPathNameFromRelativePathName(
+			_TEST_SEARCH_DIR_NAMES, relativePathName);
+
+		File file = new File(fileName);
 
 		return new ImageTarget(file);
 	}
@@ -1289,12 +1293,11 @@ public class LiferaySeleniumHelper {
 
 		keyboard.keyUp(Key.CTRL);
 
-		String fileName =
-			_TEST_BASE_DIR_NAME + "/" + _TEST_DEPENDENCIES_DIR_NAME + value;
+		String relativePathName = FileUtil.getSeparator() +
+			_TEST_DEPENDENCIES_DIR_NAME + FileUtil.getSeparator() + value;
 
-		if (OSDetector.isWindows()) {
-			fileName = StringUtil.replace(fileName, "/", "\\");
-		}
+		String fileName = getFullPathNameFromRelativePathName(
+			_TEST_SEARCH_DIR_NAMES, relativePathName);
 
 		sikuliType(liferaySelenium, image, fileName);
 
@@ -1783,8 +1786,8 @@ public class LiferaySeleniumHelper {
 		return screenRegion.findAll(imageTarget);
 	}
 
-	private static final String _TEST_BASE_DIR_NAME =
-		PoshiRunnerGetterUtil.getCanonicalPath(PropsValues.TEST_BASE_DIR_NAME);
+	private static final String[] _TEST_SEARCH_DIR_NAMES =
+		PoshiRunnerGetterUtil.getTestSearchDirNames();
 
 	private static final String _TEST_DEPENDENCIES_DIR_NAME =
 		PropsValues.TEST_DEPENDENCIES_DIR_NAME;
