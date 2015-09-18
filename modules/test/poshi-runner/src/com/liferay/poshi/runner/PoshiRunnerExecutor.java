@@ -25,6 +25,9 @@ import com.liferay.poshi.runner.util.PropsValues;
 import com.liferay.poshi.runner.util.RegexUtil;
 import com.liferay.poshi.runner.util.Validator;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
 import java.lang.reflect.Method;
 
 import java.util.ArrayList;
@@ -370,6 +373,36 @@ public class PoshiRunnerExecutor {
 			runFunctionCommandElement(classCommandName, commandElement);
 		}
 		catch (Throwable t) {
+			String[] jps = {"sh", "-c", "jps"};
+
+			BufferedReader jpsBufferedReader = _executeShell(jps);
+
+			String line = null;
+
+			String boostrapPID = null;
+
+			while ((line = jpsBufferedReader.readLine()) != null) {
+				System.out.println(line);
+
+				if (line.contains("Bootstrap")) {
+					boostrapPID = line.substring(0, line.indexOf(" "));
+
+					System.out.println("Boostrap PID: " + boostrapPID);
+				}
+			}
+
+			if (Validator.isNotNull(boostrapPID)) {
+				String[] jstack = {"sh", "-c", "jstack -l " + boostrapPID};
+
+				BufferedReader jstackBufferedReader = _executeShell(jstack);
+
+				line = null;
+
+				while ((line = jstackBufferedReader.readLine()) != null) {
+					System.out.println(line);
+				}
+			}
+
 			String warningMessage = _getWarningFromThrowable(t);
 
 			if (warningMessage != null) {
@@ -893,6 +926,21 @@ public class PoshiRunnerExecutor {
 		else {
 			XMLLoggerHandler.updateStatus(element, "conditional-fail");
 		}
+	}
+
+	private static BufferedReader _executeShell(String[] command)
+		throws Exception {
+
+		Runtime runtime = Runtime.getRuntime();
+
+		Process process = runtime.exec(command);
+
+		InputStreamReader inputStreamReader = new InputStreamReader(
+			process.getInputStream());
+
+		BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+		return bufferedReader;
 	}
 
 	private static String _getWarningFromThrowable(Throwable throwable) {
