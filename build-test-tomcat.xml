@@ -31,8 +31,6 @@
 			</else>
 		</if> -->
 
-		<ant dir="portal-impl" target="build-selenium-test-case" />
-
 		<if>
 			<isset property="vm.host" />
 			<then>
