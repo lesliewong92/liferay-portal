@@ -21,7 +21,7 @@
 
 		<antcall target="revert-test-properties" />
 
-		<if>
+		<!-- <if>
 			<equals arg1="${test.poshi.runner.enabled}" arg2="true" />
 			<then>
 				<antcall target="record-test-generated-properties" />
@@ -29,7 +29,9 @@
 			<else>
 				<ant dir="portal-impl" target="build-selenium-test-case" />
 			</else>
-		</if>
+		</if> -->
+
+		<ant dir="portal-impl" target="build-selenium-test-case" />
 
 		<if>
 			<isset property="vm.host" />
