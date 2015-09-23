@@ -707,13 +707,41 @@ public class LiferaySeleniumHelper {
 		return EmailCommands.getEmailSubject(GetterUtil.getInteger(index));
 	}
 
+	public static String getFullPathNameFromRelativePathName(
+		String[] baseDirNames, String fileName) throws Exception {
+
+		String filePath = null;
+
+		for (String baseDirName : baseDirNames) {
+			String uncheckedFilePath = PoshiRunnerGetterUtil.getCanonicalPath(
+				baseDirName + FileUtil.getSeparator() + fileName);
+
+			if (FileUtil.exists(uncheckedFilePath)) {
+				if (filePath != null) {
+					throw new Exception("Duplicate file names found at\n" +
+						fileName + "\n" + uncheckedFilePath);
+				}
+				filePath = uncheckedFilePath;
+			}
+		}
+
+		if (fileName == null) {
+			throw new Exception("File not found " + fileName);
+		}
+		return filePath;
+	}
+
 	public static ImageTarget getImageTarget(
 			LiferaySelenium liferaySelenium, String image)
 		throws Exception {
 
-		File file = new File(
-			_TEST_BASE_DIR_NAME + "/" +
-				liferaySelenium.getSikuliImagesDirName() + image);
+		String relativePathName = FileUtil.getSeparator() +
+			liferaySelenium.getSikuliImagesDirName() + image;
+
+		String fileName = getFullPathNameFromRelativePathName(
+			_TEST_SEARCH_DIR_NAMES, relativePathName);
+
+		File file = new File(fileName);
 
 		return new ImageTarget(file);
 	}
@@ -1265,12 +1293,11 @@ public class LiferaySeleniumHelper {
 
 		keyboard.keyUp(Key.CTRL);
 
-		String fileName =
-			_TEST_BASE_DIR_NAME + "/" + _TEST_DEPENDENCIES_DIR_NAME + value;
+		String relativePathName = FileUtil.getSeparator() +
+			_TEST_DEPENDENCIES_DIR_NAME + FileUtil.getSeparator() + value;
 
-		if (OSDetector.isWindows()) {
-			fileName = StringUtil.replace(fileName, "/", "\\");
-		}
+		String fileName = getFullPathNameFromRelativePathName(
+			_TEST_SEARCH_DIR_NAMES, relativePathName);
 
 		sikuliType(liferaySelenium, image, fileName);
 
@@ -1759,8 +1786,8 @@ public class LiferaySeleniumHelper {
 		return screenRegion.findAll(imageTarget);
 	}
 
-	private static final String _TEST_BASE_DIR_NAME =
-		PoshiRunnerGetterUtil.getCanonicalPath(PropsValues.TEST_BASE_DIR_NAME);
+	private static final String[] _TEST_SEARCH_DIR_NAMES =
+		PoshiRunnerGetterUtil.getTestSearchDirNames();
 
 	private static final String _TEST_DEPENDENCIES_DIR_NAME =
 		PropsValues.TEST_DEPENDENCIES_DIR_NAME;

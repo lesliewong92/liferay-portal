@@ -52,11 +52,9 @@ public class PoshiRunnerValidation {
 	}
 
 	public static void validate() throws Exception {
-		String[] filePathsArray = PoshiRunnerContext.getFilePathsArray();
+		List<String> filePathNames = PoshiRunnerContext.getFilePathsNames();
 
-		for (String filePath : filePathsArray) {
-			filePath = _TEST_BASE_DIR_NAME + "/" + filePath;
-
+		for (String filePath : filePathNames) {
 			if (OSDetector.isWindows()) {
 				filePath = filePath.replace("/", "\\");
 			}

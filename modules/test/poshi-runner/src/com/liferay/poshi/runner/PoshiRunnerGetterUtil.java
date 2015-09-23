@@ -258,6 +258,37 @@ public class PoshiRunnerGetterUtil {
 		return rootElement;
 	}
 
+	public static String[] getTestIncludeDirNames() {
+		String[] testIncludeDirNames = PropsValues.TEST_INCLUDE_DIR_NAMES;
+
+		if (testIncludeDirNames == null) {
+			testIncludeDirNames = new String[0];
+		}
+		if ((testIncludeDirNames.length == 1) &&
+			testIncludeDirNames[0].equals("")) {
+
+			testIncludeDirNames = new String[0];
+		}
+
+		return testIncludeDirNames;
+	}
+
+	public static String[] getTestSearchDirNames() {
+		String[] testIncludeDirNames = getTestIncludeDirNames();
+
+		int length = testIncludeDirNames.length + 1;
+
+		String[] testSearchDirNames = new String[length];
+
+		testSearchDirNames[0] = PropsValues.TEST_BASE_DIR_NAME;
+
+		for (int i = 1; i < length; i++) {
+			testSearchDirNames[i] = testIncludeDirNames[i-1];
+		}
+
+		return testSearchDirNames;
+	}
+
 	public static String getVarMethodValue(String classCommandName)
 		throws Exception {
 
