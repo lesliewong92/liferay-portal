@@ -4630,6 +4630,9 @@ module.framework.properties.osgi.console=11312</echo>
 			test.console.shut.down.file.name=${project.dir.unix}/console-shut-down
 			test.dependencies.dir.name=dependencies
 			test.poshi.warnings.file.name=${project.dir.unix}/poshi-warnings.xml
+			test.batch.max.group.size=25
+			test.batch.property.names=portal.acceptance
+			test.batch.property.values=true
 		</echo>
 
 		<if>
@@ -4641,20 +4644,20 @@ module.framework.properties.osgi.console=11312</echo>
 			</then>
 		</if>
 
-		<if>
+		<!-- <if>
 			<and>
 				<isset property="test.batch.max.group.size" />
-				<isset property="test.batch.property.name" />
-				<isset property="test.batch.property.value" />
+				<isset property="test.batch.property.names" />
+				<isset property="test.batch.property.values" />
 			</and>
 			<then>
 				<echo append="true" file="${test.ext.properties.file}">
 					test.batch.max.group.size=${test.batch.max.group.size}
-					test.batch.property.name=${test.batch.property.name}
-					test.batch.property.value=${test.batch.property.value}
+					test.batch.property.names=${test.batch.property.names}
+					test.batch.property.values=${test.batch.property.values}
 				</echo>
 			</then>
-		</if>
+		</if> -->
 
 		<if>
 			<isset property="test.class" />
