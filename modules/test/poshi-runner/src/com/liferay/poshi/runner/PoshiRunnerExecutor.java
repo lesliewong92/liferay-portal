@@ -21,6 +21,7 @@ import com.liferay.poshi.runner.logger.XMLLoggerHandler;
 import com.liferay.poshi.runner.selenium.LiferaySelenium;
 import com.liferay.poshi.runner.selenium.SeleniumUtil;
 import com.liferay.poshi.runner.util.GetterUtil;
+import com.liferay.poshi.runner.util.HtmlUtil;
 import com.liferay.poshi.runner.util.PropsUtil;
 import com.liferay.poshi.runner.util.PropsValues;
 import com.liferay.poshi.runner.util.RegexUtil;
@@ -833,8 +834,8 @@ public class PoshiRunnerExecutor {
 			}
 		}
 
-		String replacedVarValue = PoshiRunnerVariablesUtil.replaceCommandVars(
-			varValue);
+		String replacedVarValue = HtmlUtil.escape(
+			PoshiRunnerVariablesUtil.replaceCommandVars(varValue));
 
 		Matcher matcher = _variablePattern.matcher(replacedVarValue);
 
