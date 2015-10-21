@@ -26,11 +26,13 @@ import org.apache.commons.lang.StringEscapeUtils;
 public class HtmlUtil {
 
 	public static String escape(String text) {
-		return StringEscapeUtils.escapeHtml(text);
+		return StringEscapeUtils.escapeHtml(
+			StringEscapeUtils.unescapeHtml(text));
 	}
 
 	public static String escapeJS(String js) {
-		return StringEscapeUtils.escapeJavaScript(js);
+		return StringEscapeUtils.escapeJavaScript(
+			StringEscapeUtils.unescapeJavaScript(js));
 	}
 
 }
