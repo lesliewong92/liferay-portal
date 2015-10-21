@@ -794,7 +794,8 @@ public class WebDriverHelper {
 		sb.append(titleAttribute.substring(x + 2, y));
 
 		sb.append("\"].setData(\"");
-		sb.append(HtmlUtil.escapeJS(value.replace("\\", "\\\\")));
+		sb.append(
+			HtmlUtil.escape(HtmlUtil.escapeJS(value.replace("\\", "\\\\"))));
 		sb.append("\");");
 
 		javascriptExecutor.executeScript(sb.toString());
