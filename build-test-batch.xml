@@ -807,6 +807,7 @@
 
 	<macrodef name="run-functional-test">
 		<attribute name="app.server.type" />
+		<attribute default="@{app.server.type}" name="app.server.name" />
 		<attribute default="${app.server.@{app.server.type}.version}" name="app.server.version" />
 		<attribute name="database.type" />
 		<attribute default="${database.@{database.type}.version}" name="database.version" />
@@ -826,7 +827,7 @@
 				<test-action>
 					<database-test-run-test database.type="@{database.type}">
 						<test-action>
-							<ant antfile="build-test-${app.server.type}.xml" inheritAll="false" target="run-selenium-${app.server.type}">
+							<ant antfile="build-test-@{app.server.name}.xml" inheritAll="false" target="run-selenium-@{app.server.name}">
 								<property name="database.type" value="@{database.type}" />
 								<property name="print.java.process.on.fail" value="Bootstrap" />
 								<property name="test.class" value="${test.class}" />
@@ -854,7 +855,7 @@
 							</antcall>
 						</then>
 						<else>
-							<ant antfile="build-dist.xml" target="build-dist-${app.server.type}" />
+							<ant antfile="build-dist.xml" target="build-dist-@{app.server.name}" />
 						</else>
 					</if>
 
