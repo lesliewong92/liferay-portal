@@ -12,7 +12,6 @@
 	</tear-down>
 
 	<command name="AddMember" priority="5">
-		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Page#gotoCP">
 			<var name="portletName" value="Users and Organizations" />
@@ -53,7 +52,6 @@
 	</command>
 
 	<command name="AddUserGroup" priority="5">
-		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Page#gotoCP">
 			<var name="portletName" value="User Groups" />
@@ -206,7 +204,6 @@
 	</command>
 
 	<command name="DeleteUserGroup" priority="5">
-		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Page#gotoCP">
 			<var name="portletName" value="User Groups" />
@@ -272,7 +269,6 @@
 	</command>
 
 	<command name="EditUserGroup" priority="5">
-		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Page#gotoCP">
 			<var name="portletName" value="User Groups" />

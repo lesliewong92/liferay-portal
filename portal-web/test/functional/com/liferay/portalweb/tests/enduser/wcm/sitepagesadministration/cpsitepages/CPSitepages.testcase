@@ -186,7 +186,6 @@
 	</command>
 
 	<command name="AddSitePublicChildPage" priority="5">
-		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Page#gotoCP">
 			<var name="portletName" value="Sites" />
@@ -229,7 +228,6 @@
 	</command>
 
 	<command name="AddSitePublicPage" priority="5">
-		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Page#gotoCP">
 			<var name="portletName" value="Sites" />
@@ -358,7 +356,6 @@
 	</command>
 
 	<command name="DeleteSitePages" priority="5">
-		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Page#gotoCP">
 			<var name="portletName" value="Sites" />
@@ -392,7 +389,6 @@
 	</command>
 
 	<command name="EditSitePage" priority="5">
-		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Page#gotoPagesCP" >
 			<var name="portletName" value="Site Pages" />

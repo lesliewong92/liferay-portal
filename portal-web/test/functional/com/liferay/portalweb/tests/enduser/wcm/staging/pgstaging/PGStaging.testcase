@@ -172,7 +172,6 @@
 
 	<command name="ActivateRemoteStaging" priority="5">
 		<property name="custom.properties" value="tunneling.servlet.shared.secret=1234567890123456${line.separator}auth.verifier.TunnelingServletAuthVerifier.hosts.allowed=" />
-		<property name="portal.acceptance" value="true" />
 
 		<var name="siteID" value="${siteID}" />
 
@@ -206,7 +205,6 @@
 	</command>
 
 	<command name="ActivateStaging" priority="5">
-		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Page#gotoPublishingTools">
 			<var name="portletName" value="Staging Configuration" />
@@ -296,7 +294,6 @@
 	</command>
 
 	<command name="AddPageVariation" priority="5">
-		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Page#gotoPublishingTools">
 			<var name="portletName" value="Staging Configuration" />
@@ -357,7 +354,6 @@
 	</command>
 
 	<command name="AddSitePagesVariation" priority="5">
-		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Page#gotoPublishingTools">
 			<var name="portletName" value="Staging Configuration" />
@@ -1345,7 +1341,6 @@
 	</command>
 
 	<command name="StagingPublishPortlet" priority="5">
-		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Page#gotoPublishingTools">
 			<var name="portletName" value="Staging Configuration" />
