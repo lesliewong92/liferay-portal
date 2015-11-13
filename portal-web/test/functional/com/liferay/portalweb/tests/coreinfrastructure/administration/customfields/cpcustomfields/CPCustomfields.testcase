@@ -164,7 +164,6 @@
 	</command>
 
 	<command name="AddCustomFieldUserBoolean" priority="5">
-		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Page#gotoCP">
 			<var name="portletName" value="Custom Fields" />
@@ -202,7 +201,6 @@
 	</command>
 
 	<command name="EditCustomFieldUserBoolean" priority="5">
-		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Page#gotoCP">
 			<var name="portletName" value="Custom Fields" />

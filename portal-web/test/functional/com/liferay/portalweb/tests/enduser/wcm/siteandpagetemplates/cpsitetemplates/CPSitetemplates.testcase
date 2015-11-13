@@ -12,7 +12,6 @@
 	</tear-down>
 
 	<command name="AddSiteTemplate" priority="5">
-		<property name="portal.acceptance" value="true" />
 
 		<var name="siteTemplateActive" value="Yes" />
 
@@ -36,7 +35,6 @@
 	</command>
 
 	<command name="DeleteSiteTemplate" priority="5">
-		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Page#gotoCP">
 			<var name="portletName" value="Site Templates" />
@@ -65,7 +63,6 @@
 	</command>
 
 	<command name="EditSiteTemplateStatus" priority="5">
-		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Page#gotoCP">
 			<var name="portletName" value="Site Templates" />

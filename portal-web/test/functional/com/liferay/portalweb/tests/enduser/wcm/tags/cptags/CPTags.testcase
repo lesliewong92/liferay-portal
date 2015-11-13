@@ -10,7 +10,6 @@
 	</tear-down>
 
 	<command name="AddTag" priority="5">
-		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Page#gotoContentCP">
 			<var name="portletName" value="Tags" />
@@ -310,7 +309,6 @@
 	</command>
 
 	<command name="EditTag" priority="5">
-		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Page#gotoContentCP">
 			<var name="portletName" value="Tags" />
@@ -390,7 +388,6 @@
 	</command>
 
 	<command name="SearchTag" priority="5">
-		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Page#gotoContentCP">
 			<var name="portletName" value="Tags" />

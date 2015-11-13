@@ -34,7 +34,6 @@
 	</tear-down>
 
 	<command name="AddFolder" priority="5">
-		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Page#gotoContentCP">
 			<var name="portletName" value="Web Content" />
@@ -456,7 +455,6 @@
 	</command>
 
 	<command name="AddWebContent" priority="5">
-		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Page#gotoContentCP">
 			<var name="portletName" value="Web Content" />
@@ -865,7 +863,6 @@
 	</command>
 
 	<command name="DeleteWebContent" priority="5">
-		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Page#gotoContentCP">
 			<var name="portletName" value="Web Content" />
@@ -1026,7 +1023,6 @@
 	</command>
 
 	<command name="EditWebContent" priority="5">
-		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Page#gotoContentCP">
 			<var name="portletName" value="Web Content" />
@@ -1491,7 +1487,6 @@
 	</command>
 
 	<command name="SearchWebContent" priority="5">
-		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Page#gotoContentCP">
 			<var name="portletName" value="Web Content" />

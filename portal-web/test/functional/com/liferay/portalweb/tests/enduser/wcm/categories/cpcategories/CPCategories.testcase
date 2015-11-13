@@ -74,7 +74,6 @@
 	</command>
 
 	<command description="Ensure that a user can add a category." name="AddCategory" priority="5">
-		<property name="portal.acceptance" value="true" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Categories" />
@@ -325,7 +324,6 @@
 	</command>
 
 	<command name="AddSubcategory" priority="5">
-		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Page#gotoContentCP">
 			<var name="portletName" value="Categories" />
@@ -396,7 +394,6 @@
 	</command>
 
 	<command name="AddVocabulary" priority="5">
-		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Page#gotoContentCP">
 			<var name="portletName" value="Categories" />
@@ -855,7 +852,6 @@
 	</command>
 
 	<command name="DeleteSubcategoryViaMenu" priority="5">
-		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Page#gotoContentCP">
 			<var name="portletName" value="Categories" />
@@ -920,7 +916,6 @@
 	</command>
 
 	<command name="EditCategory" priority="5">
-		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Page#gotoContentCP">
 			<var name="portletName" value="Categories" />
@@ -1001,7 +996,6 @@
 	</command>
 
 	<command name="EditSubcategory" priority="5">
-		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Page#gotoContentCP">
 			<var name="portletName" value="Categories" />
@@ -1039,7 +1033,6 @@
 	</command>
 
 	<command name="EditVocabulary" priority="5">
-		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Page#gotoContentCP">
 			<var name="portletName" value="Categories" />

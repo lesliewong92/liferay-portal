@@ -12,7 +12,6 @@
 	</tear-down>
 
 	<command name="AddOrganizationRole" priority="5">
-		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Page#gotoCP">
 			<var name="portletName" value="Roles" />
@@ -34,7 +33,6 @@
 	</command>
 
 	<command name="AddRegularRole" priority="5">
-		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Page#gotoCP">
 			<var name="portletName" value="Roles" />
@@ -55,7 +53,6 @@
 	</command>
 
 	<command name="AddSiteRole" priority="5">
-		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Page#gotoCP">
 			<var name="portletName" value="Roles" />
@@ -77,7 +74,6 @@
 	</command>
 
 	<command name="DeleteRegularRole" priority="5">
-		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Page#gotoCP">
 			<var name="portletName" value="Roles" />
