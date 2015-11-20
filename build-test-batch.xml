@@ -1050,6 +1050,10 @@
 		/>
 	</target>
 
+	<target name="functional-tcserver-postgresql">
+		<run-functional-test app.server.type="tcserver" database.type="postgresql" />
+	</target>
+
 	<target name="functional-tomcat-hypersonic">
 		<run-functional-test app.server.type="tomcat" database.type="hypersonic" />
 	</target>
