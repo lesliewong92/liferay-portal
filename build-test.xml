@@ -4390,7 +4390,9 @@ mail.session.jndi.name=
 
 axis.servlet.hosts.allowed=
 
-tunnel.servlet.hosts.allowed=</echo>
+tunnel.servlet.hosts.allowed=
+
+javascript.fast.load=false</echo>
 
 		<get-testcase-property property.name="cluster.enabled" />
 
