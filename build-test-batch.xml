@@ -1050,6 +1050,10 @@
 		/>
 	</target>
 
+	<target name="functional-tcserver-mysql">
+		<run-functional-test app.server.type="tcserver" database.type="mysql" />
+	</target>
+
 	<target name="functional-tomcat-hypersonic">
 		<run-functional-test app.server.type="tomcat" database.type="hypersonic" />
 	</target>
