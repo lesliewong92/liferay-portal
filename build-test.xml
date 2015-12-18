@@ -5754,6 +5754,17 @@ module.framework.properties.osgi.console=11312</echo>
 			</then>
 		</if>
 
+		<get-testcase-property property.name="fail.on.warnings" />
+
+		<if>
+			<isset property="fail.on.warnings" />
+			<then>
+				<echo append="true" file="${test.ext.properties.file}">
+					fail.on.warnings=${fail.on.warnings}
+				</echo>
+			</then>
+		</if>
+
 		<get-testcase-property property.name="ignore.errors" />
 
 		<if>
