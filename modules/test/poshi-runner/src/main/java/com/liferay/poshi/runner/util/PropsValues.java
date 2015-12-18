@@ -64,6 +64,9 @@ public class PropsValues {
 	public static final String EMAIL_PASSWORD_5 = PropsUtil.get(
 		"email.password.5");
 
+	public static final boolean FAIL_ON_WARNINGS = GetterUtil.getBoolean(
+		PropsUtil.get("fail.on.warnings"));
+
 	public static final String[] FIXED_ISSUES = StringUtil.split(
 		PropsUtil.get("fixed.issues"));
 
