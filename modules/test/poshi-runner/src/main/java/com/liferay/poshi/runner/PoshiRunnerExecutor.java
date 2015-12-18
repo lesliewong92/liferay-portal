@@ -378,7 +378,7 @@ public class PoshiRunnerExecutor {
 		catch (Throwable t) {
 			String warningMessage = _getWarningFromThrowable(t);
 
-			if (warningMessage != null) {
+			if ((warningMessage != null) && !PropsValues.FAIL_ON_WARNINGS) {
 				_functionWarningMessage = warningMessage;
 			}
 			else {
