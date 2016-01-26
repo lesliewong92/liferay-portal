@@ -31,6 +31,15 @@
 			</else>
 		</if>
 
+		<get-testcase-property property.name="test.prepare.bundle.properties" />
+
+		<if>
+			<equals arg1="${test.prepare.bundle.properties}" arg2="false" />
+			<then>
+				<echo file="test.${user.name}.properties">database.type=hypersonic</echo>
+			</then>
+		</if>
+
 		<if>
 			<isset property="vm.host" />
 			<then>
