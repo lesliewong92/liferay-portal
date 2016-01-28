@@ -142,7 +142,7 @@
 			<var name="exportTemplateName" value="Export Template Name" />
 		</execute>
 
-		<var method="selenium#getElementText('//div[contains(@id,'backgroundTasksSearchContainer')]//table//tr/td[6]/span/a/span')" name="valueName" />
+		<var method="selenium#getText('//div[contains(@id,'backgroundTasksSearchContainer')]//table//tr/td[6]/span/a/span')" name="valueName" />
 
 		<echo message="value name ${valueName}" />
 
@@ -216,7 +216,7 @@
 
 		<execute function="AssertTextEquals#assertPartialText" locator1="SitePagesExport#CURRENT_AND_PREVIOUS_STATUS" value1="Successful" />
 
-		<var method="selenium#getElementText('//div[contains(@id,'backgroundTasksSearchContainer')]//table//tr/td[6]/span/a/span')" name="valueName" />
+		<var method="selenium#getText('//div[contains(@id,'backgroundTasksSearchContainer')]//table//tr/td[6]/span/a/span')" name="valueName" />
 
 		<echo message="value name ${valueName}" />
 
@@ -386,7 +386,7 @@
 
 		<execute function="AssertTextEquals#assertPartialText" locator1="SitePagesExport#CURRENT_AND_PREVIOUS_STATUS" value1="Successful" />
 
-		<var method="selenium#getElementText('//tr/td[6]/span/a')" name="valueName" />
+		<var method="selenium#getText('//tr/td[6]/span/a')" name="valueName" />
 
 		<echo message="value name ${valueName}" />
 
@@ -435,7 +435,7 @@
 
 		<execute function="AssertTextEquals#assertPartialText" locator1="SitePagesExport#CURRENT_AND_PREVIOUS_STATUS" value1="Successful" />
 
-		<var method="selenium#getElementText('//tr/td[6]/span/a')" name="valueName" />
+		<var method="selenium#getText('//tr/td[6]/span/a')" name="valueName" />
 
 		<echo message="value name ${valueName}" />
 
@@ -511,7 +511,7 @@
 
 		<execute function="AssertTextEquals#assertPartialText" locator1="SitePagesExport#CURRENT_AND_PREVIOUS_STATUS" value1="Successful" />
 
-		<var method="selenium#getElementText('//tr/td[6]/span/a')" name="valueName" />
+		<var method="selenium#getText('//tr/td[6]/span/a')" name="valueName" />
 
 		<echo message="value name ${valueName}" />
 
@@ -568,7 +568,7 @@
 
 		<execute macro="SampleLARPortlet#addSampleBooking" />
 
-		<var method="selenium#getElementText('//tbody[@class=\'table-data\']/tr/td[2]')" name="bookingNumber" />
+		<var method="selenium#getText('//tbody[@class=\'table-data\']/tr/td[2]')" name="bookingNumber" />
 
 		<echo message="Booking Number ${bookingNumber}" />
 
@@ -690,7 +690,7 @@
 
 		<execute function="AssertTextEquals#assertPartialText" locator1="SitePagesExport#CURRENT_AND_PREVIOUS_STATUS" value1="Successful" />
 
-		<var method="selenium#getElementText('//tr/td[6]/span/a')" name="valueName" />
+		<var method="selenium#getText('//tr/td[6]/span/a')" name="valueName" />
 
 		<echo message="value name ${valueName}" />
 
@@ -773,7 +773,7 @@
 
 		<execute function="AssertTextEquals#assertPartialText" locator1="SitePagesExport#CURRENT_AND_PREVIOUS_STATUS" value1="Successful" />
 
-		<var method="selenium#getElementText('//tr/td[6]/span/a')" name="valueName" />
+		<var method="selenium#getText('//tr/td[6]/span/a')" name="valueName" />
 
 		<echo message="value name ${valueName}" />
 
@@ -826,7 +826,7 @@
 			<var name="exportTemplateName" value="Export Template Name" />
 		</execute>
 
-		<var method="selenium#getElementText('//div[contains(@id,'backgroundTasksSearchContainer')]//table//tr/td[6]/span/a/span')" name="valueName" />
+		<var method="selenium#getText('//div[contains(@id,'backgroundTasksSearchContainer')]//table//tr/td[6]/span/a/span')" name="valueName" />
 
 		<echo message="value name ${valueName}" />
 
@@ -916,7 +916,7 @@
 
 		<execute function="AssertTextEquals#assertPartialText" locator1="SitePagesExport#CURRENT_AND_PREVIOUS_STATUS" value1="Successful" />
 
-		<var method="selenium#getElementText('//tr/td[6]/span/a')" name="valueName" />
+		<var method="selenium#getText('//tr/td[6]/span/a')" name="valueName" />
 
 		<echo message="value name ${valueName}" />
 
