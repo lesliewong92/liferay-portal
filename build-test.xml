@@ -3572,6 +3572,22 @@ go]]></replacevalue>
 			</then>
 			<elseif>
 				<and>
+					<equals arg1="${database.type}" arg2="mariadb" />
+					<not>
+						<available file="${app.server.lib.global.dir}/${jdbc.mysql.driver}" />
+					</not>
+				</and>
+				<then>
+					<copy todir="${todir}">
+						<fileset
+							dir="lib/development"
+							includes="${jdbc.mariadb.driver}"
+						/>
+					</copy>
+				</then>
+			</elseif>
+			<elseif>
+				<and>
 					<equals arg1="${database.type}" arg2="mysql" />
 					<not>
 						<available file="${app.server.lib.global.dir}/${jdbc.mysql.driver}" />
@@ -6327,7 +6343,10 @@ cluster.link.bind.addr["cluster-link-udp"]=127.0.0.1</echo>
 						</then>
 					</elseif>
 					<elseif>
-						<equals arg1="${database.type}" arg2="mysql" />
+						<or>
+							<equals arg1="${database.type}" arg2="mariadb" />
+							<equals arg1="${database.type}" arg2="mysql" />
+						</or>
 						<then>
 							<var name="mysql.arg.line" unset="true" />
 
