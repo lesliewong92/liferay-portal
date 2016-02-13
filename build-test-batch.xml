@@ -566,7 +566,7 @@ mysql.executable=${mysql.executable}]]></echo>
 		<run-functional-test app.server.type="tomcat" database.type="mysql" />
 	</target>
 
-	<target name="functional-wildfly-mariadb-jdk8">
+	<target name="functional-wildfly10-mariadb100-jdk8">
 		<run-functional-test app.server.type="wildfly" database.type="mariadb" />
 	</target>
 
