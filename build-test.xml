@@ -6953,6 +6953,12 @@ if (ppstate.equals("normal")) {
 			</then>
 		</if>
 
+		<echo>+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</echo>
+		<echo>run-selenium-test: ${database.type}</echo>
+		<echo>run-selenium-test: ${database.type}</echo>
+		<echo>run-selenium-test: ${database.type}</echo>
+		<echo>+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</echo>
+
 		<if>
 			<equals arg1="${database.type}" arg2="hypersonic" />
 			<then>
@@ -7208,6 +7214,12 @@ jdbc.default.password=${database.mysql.password}</echo>
 		</if>
 
 		<get-testcase-property property.name="portal.version" />
+
+		<echo>+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</echo>
+		<echo>run-simple-server: ${database.type}</echo>
+		<echo>run-simple-server: ${database.type}</echo>
+		<echo>run-simple-server: ${database.type}</echo>
+		<echo>+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</echo>
 
 		<if>
 			<isset property="portal.version" />

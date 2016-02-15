@@ -29,6 +29,12 @@
 	</target>
 
 	<target name="run-wildfly">
+		<echo>+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</echo>
+		<echo>build-test-wildfly: ${database.type}</echo>
+		<echo>build-test-wildfly: ${database.type}</echo>
+		<echo>build-test-wildfly: ${database.type}</echo>
+		<echo>+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</echo>
+
 		<antcall target="run-simple-server" />
 	</target>
 </project>
