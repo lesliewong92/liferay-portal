@@ -2985,6 +2985,13 @@ org.apache.catalina.startup.ClassLoaderFactory.level=INFO]]>
 				<get-testcase-property property.name="databases.size" />
 
 				<if>
+					<equals arg1="${database.type}" arg2="mariadb" />
+					<then>
+						<var name="database.type" value="mysql" />
+					</then>
+				</if>
+
+				<if>
 					<and>
 						<isset property="databases.size" />
 						<equals arg1="${database.type}" arg2="mysql" />
