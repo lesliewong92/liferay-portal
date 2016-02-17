@@ -6190,6 +6190,7 @@ ANT_OPTS=${env.ANT_OPTS}</echo>
 							<replacevalue>
 								<![CDATA[
 									<resource-root path="hsql.jar" />
+									<resource-root path="mariadb.jar" />
 									<resource-root path="mysql.jar" />
 								]]>
 							</replacevalue>
@@ -7358,7 +7359,10 @@ jdbc.default.password=${database.mysql.password}</echo>
 		<if>
 			<and>
 				<contains string="${hook.plugins.includes}" substring="so-hook" />
-				<equals arg1="${app.server.type}" arg2="jboss" />
+				<or>
+					<equals arg1="${app.server.type}" arg2="jboss" />
+					<equals arg1="${app.server.type}" arg2="wildfly" />
+				</or>
 			</and>
 			<then>
 				<start-app-server />
