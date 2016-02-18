@@ -213,6 +213,14 @@ mysql.executable=${mysql.executable}]]></echo>
 			<if>
 				<equals arg1="@{database.type}" arg2="mariadb" />
 				<then>
+					<echo>Changing executable to MariaDB</echo>
+					<echo>Changing executable to MariaDB</echo>
+					<echo>Changing executable to MariaDB</echo>
+					<echo>Changing executable to MariaDB</echo>
+					<echo>Changing executable to MariaDB</echo>
+					<echo>Changing executable to MariaDB</echo>
+					<echo>Changing executable to MariaDB</echo>
+
 					<echo append="true" file="sql/sql.${env.HOSTNAME}.properties"><![CDATA[
 mysql.executable=mariadb]]></echo>
 				</then>
