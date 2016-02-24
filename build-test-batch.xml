@@ -635,8 +635,8 @@ echo "Sent notification."]]>
 		<run-functional-test app.server.type="tomcat" database.type="mysql" />
 	</target>
 
-	<target name="functional-wildfly10-mariadb100-jdk8">
-		<run-functional-test app.server.type="wildfly" database.type="mariadb" />
+	<target name="functional-wildfly10-mysql56-jdk8">
+		<run-functional-test app.server.type="wildfly" database.type="mysql" />
 	</target>
 
 	<target name="integration-db2105-jdk7">
