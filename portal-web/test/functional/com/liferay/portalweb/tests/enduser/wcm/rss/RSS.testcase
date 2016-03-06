@@ -43,6 +43,7 @@
 	</tear-down>
 
 	<command name="AddFeedBetweenFeeds" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Page#gotoPG">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
@@ -101,6 +102,7 @@
 	</command>
 
 	<command name="AddFeedWithWrongUrl" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Page#gotoPG">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
@@ -163,6 +165,7 @@
 	</command>
 
 	<command name="AddRSSFeed" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Page#gotoPG">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
@@ -201,6 +204,7 @@
 	</command>
 
 	<command name="ChangeDefaultToNavigationDisplay" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Page#gotoPG">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
@@ -234,6 +238,7 @@
 	</command>
 
 	<command name="ChangeOrderOfRSSFeeds" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Page#gotoPG">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
@@ -314,6 +319,7 @@
 	</command>
 
 	<command name="DeleteFeedFromRSS" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Welcome" />
 		</execute>
@@ -371,6 +377,7 @@
 	</command>
 
 	<command name="DisabledFeedTitle" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Page#gotoPG">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
@@ -410,6 +417,7 @@
 	</command>
 
 	<command name="EnableRSSFeedFromAssetpublisher" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="SitePageNavigator#gotoPages">
 			<var name="page" value="Public Pages" />
 			<var name="site" value="Site Name" />
@@ -505,6 +513,7 @@
 	</command>
 
 	<command name="RemoveRSSPortlet" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Welcome" />
 		</execute>

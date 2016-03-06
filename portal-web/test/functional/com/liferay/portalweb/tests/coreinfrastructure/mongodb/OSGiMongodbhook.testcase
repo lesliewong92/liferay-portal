@@ -7,6 +7,7 @@
 	</set-up>
 
 	<command name="MongoDBHookSmoke" priority="4">
+		<property name="priority" value="4" />
 		<property name="hook.plugins.includes" value="mongodb-hook" />
 
 		<var name="appName" value="MongoDB Expando Adapter" />

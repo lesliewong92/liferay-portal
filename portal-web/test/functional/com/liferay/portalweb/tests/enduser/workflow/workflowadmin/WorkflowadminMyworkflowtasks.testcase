@@ -48,6 +48,7 @@
 	</tear-down>
 
 	<command name="AddCommentToTaskAssignedToMe" priority="4">
+		<property name="priority" value="4" />
 		<var name="entryContent" value="Blogs Entry Content" />
 		<var name="entryTitle" value="Blogs Entry Title" />
 		<var name="workflowComment" value="Workflow Comment" />
@@ -100,6 +101,7 @@
 	</command>
 
 	<command name="AddCommentToTaskAssignedToMyRoles" priority="3">
+		<property name="priority" value="3" />
 		<var name="entryContent" value="Blogs Entry Content" />
 		<var name="entryTitle" value="Blogs Entry Title" />
 		<var name="workflowComment" value="Workflow Comment" />
@@ -146,6 +148,7 @@
 	</command>
 
 	<command name="AddCommentToTaskCompleted" priority="3">
+		<property name="priority" value="3" />
 		<var name="entryContent" value="Blogs Entry Content" />
 		<var name="entryTitle" value="Blogs Entry Title" />
 		<var name="workflowComment" value="Workflow Comment" />
@@ -212,6 +215,7 @@
 	</command>
 
 	<command name="ApproveResubmitTaskByActions" priority="4">
+		<property name="priority" value="4" />
 		<var name="entryContent" value="Blogs Entry Content" />
 		<var name="entryTitle" value="Blogs Entry Title" />
 
@@ -300,6 +304,7 @@
 	</command>
 
 	<command name="ApproveTaskByDetails" priority="4">
+		<property name="priority" value="4" />
 		<var name="entryContent" value="Blogs Entry Content" />
 		<var name="entryTitle" value="Blogs Entry Title" />
 
@@ -357,6 +362,7 @@
 	</command>
 
 	<command name="AssignToMeTaskByDetails" priority="4">
+		<property name="priority" value="4" />
 		<var name="entryContent" value="Blogs Entry Content" />
 		<var name="entryTitle" value="Blogs Entry Title" />
 
@@ -396,6 +402,7 @@
 	</command>
 
 	<command name="RejectTaskByDetails" priority="4">
+		<property name="priority" value="4" />
 		<var name="entryContent" value="Blogs Entry Content" />
 		<var name="entryTitle" value="Blogs Entry Title" />
 
@@ -454,6 +461,7 @@
 	</command>
 
 	<command name="ResubmitTaskByActions" priority="4">
+		<property name="priority" value="4" />
 		<var name="entryContent" value="Blogs Entry Content" />
 		<var name="entryTitle" value="Blogs Entry Title" />
 
@@ -524,6 +532,7 @@
 	</command>
 
 	<command name="ResubmitTaskByDetails" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<var name="entryContent" value="Blogs Entry Content" />
@@ -586,6 +595,7 @@
 	</command>
 
 	<command name="ReviewerApproveResubmitTaskByActionsUser" priority="3">
+		<property name="priority" value="3" />
 		<var name="entryContent" value="Blogs Entry Content" />
 		<var name="entryTitle" value="Blogs Entry Title" />
 		<var name="userEmailAddress1" value="userea1@liferay.com" />
@@ -823,6 +833,7 @@
 	</command>
 
 	<command name="UpdateDueDateTaskByActions" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<var name="entryContent" value="Blogs Entry Content" />

@@ -43,6 +43,7 @@
 	</tear-down>
 
 	<command name="SearchBlogsEntry" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -172,6 +173,7 @@
 	</command>
 
 	<command name="SearchBlogsEntryCategory" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -252,6 +254,7 @@
 	</command>
 
 	<command name="SearchBlogsEntryCategoryQuotes" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -340,6 +343,7 @@
 	</command>
 
 	<command name="SearchBlogsEntryQuotes" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -503,6 +507,7 @@
 	</command>
 
 	<command name="SearchBlogsEntryTag" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -567,6 +572,7 @@
 	</command>
 
 	<command name="SearchBlogsEntryTagQuotes" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -639,6 +645,7 @@
 	</command>
 
 	<command name="SearchDocumentsAndMediaDocument" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -742,6 +749,7 @@
 	</command>
 
 	<command name="SearchMessageBoardsThread" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Page#add">
 			<var name="pageName" value="Message Boards Page" />
 		</execute>
@@ -879,6 +887,7 @@
 	</command>
 
 	<command name="SearchUser" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
@@ -961,6 +970,7 @@
 	</command>
 
 	<command name="SearchUserWildcard" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
@@ -1005,6 +1015,7 @@
 	</command>
 
 	<command name="SearchWebContent" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -1121,6 +1132,7 @@
 	</command>
 
 	<command name="SearchWikiPage" priority="4">
+		<property name="priority" value="4" />
 		<var name="pageName" value="Wiki Test Page" />
 		<var name="portletName" value="Wiki" />
 		<var name="wikiPageContent" value="Wiki Page Content" />

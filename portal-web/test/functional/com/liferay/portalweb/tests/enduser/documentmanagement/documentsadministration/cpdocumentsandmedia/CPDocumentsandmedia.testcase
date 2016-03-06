@@ -26,6 +26,7 @@
 	</tear-down>
 
 	<command name="AddDocument" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<var name="dmDocumentDescription" value="DM Document Description" />
@@ -56,6 +57,7 @@
 	</command>
 
 	<command name="AddFolder" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<var name="dmFolderDescription" value="DM Folder Description" />
@@ -78,6 +80,7 @@
 	</command>
 
 	<command name="EditDocument" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<var name="dmDocumentDescription" value="DM Document Description" />
@@ -127,6 +130,7 @@
 	</command>
 
 	<command name="EditFolder" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<var name="dmFolderDescription" value="DM Folder Description" />
@@ -168,6 +172,7 @@
 	</command>
 
 	<command name="MoveDocumentToFolder" priority="5">
+		<property name="priority" value="5" />
 		<var name="dmDocumentDescription" value="DM Document Description" />
 		<var name="dmDocumentFile" value="Document_1.txt" />
 		<var name="dmDocumentSize" value="0" />
@@ -229,6 +234,7 @@
 	</command>
 
 	<command name="MoveFolderToFolder" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -254,6 +260,7 @@
 	</command>
 
 	<command name="MoveToRecycleBinDocument" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<var name="assetName" value="${dmDocumentTitle}" />
@@ -286,6 +293,7 @@
 	</command>
 
 	<command name="MoveToRecycleBinFolder" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<var name="assetName" value="${dmFolderName}" />
@@ -317,6 +325,7 @@
 	</command>
 
 	<command name="SearchForDocumentInHomeFolder" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">

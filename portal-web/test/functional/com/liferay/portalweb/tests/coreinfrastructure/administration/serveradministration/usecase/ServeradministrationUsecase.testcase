@@ -19,6 +19,7 @@
 	</tear-down>
 
 	<command name="PortalPropertiesDatabaseValue" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="System Settings" />
 		</execute>

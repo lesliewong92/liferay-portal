@@ -11,6 +11,7 @@
 	</tear-down>
 
 	<command name="ViewTestMiscPortlet" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Page#add">

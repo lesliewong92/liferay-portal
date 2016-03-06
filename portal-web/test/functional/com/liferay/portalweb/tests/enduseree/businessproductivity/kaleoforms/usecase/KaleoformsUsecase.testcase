@@ -51,6 +51,7 @@
 	</tear-down>
 
 	<command name="AssertCanEditPendingForm" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
 		<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
@@ -163,6 +164,7 @@
 	</command>
 
 	<command name="AssertEditFormNotUsedAsCreateForm" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
 		<execute macro="Navigator#openURL" />
@@ -304,6 +306,7 @@
 	</command>
 
 	<command name="AssertPendingFormPresentAfterDeletingDifferentProcessDefinition" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
 		<var name="kfProcess1Description" value="Kaleo Forms Process 1 Description" />
 		<var name="kfProcess1Name" value="Kaleo Forms 1 Process" />
@@ -475,6 +478,7 @@
 	</command>
 
 	<command name="AssignRolePermissionsAddProcessCP" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
@@ -615,6 +619,7 @@
 	</command>
 
 	<command name="AssignRolePermissionsApprovePG" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
@@ -797,6 +802,7 @@
 	</command>
 
 	<command name="AssignRolePermissionsCompleteFormPG" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
@@ -994,6 +1000,7 @@
 	</command>
 
 	<command name="AssignRolePermissionsRejectPG" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
@@ -1176,6 +1183,7 @@
 	</command>
 
 	<command name="AssignRolePermissionsSubmitProcessPG" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
@@ -1378,6 +1386,7 @@
 	</command>
 
 	<command name="AssignRolePermissionsViewPG" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Roles" />
 		</execute>
@@ -1469,6 +1478,7 @@
 	</command>
 
 	<command name="CompleteFormWithMultipleAssignedProcessRecordsAndViewChanges" priority="4">
+		<property name="priority" value="4" />
 		<description message="This is a use case for LPS-43482." />
 
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
@@ -1704,6 +1714,7 @@
 	</command>
 
 	<command name="CompleteProcessAndAssertFieldOrder" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
@@ -1910,6 +1921,7 @@
 	</command>
 
 	<command name="CompleteProcessAndViewEmailNotifications" priority="4">
+		<property name="priority" value="4" />
 		<property name="test.assert.javascript.errors" value="false" />
 
 		<var name="field" value="Text" />
@@ -2385,6 +2397,7 @@
 	</command>
 
 	<command name="CompleteProcessAndViewNotifications" priority="4">
+		<property name="priority" value="4" />
 		<property name="portlet.plugins.includes" value="kaleo-designer-portlet,kaleo-forms-portlet,notifications-portlet" />
 
 		<var name="ddlDataDefinitionDescription" value="Data Definition Description" />
@@ -2536,6 +2549,7 @@
 	</command>
 
 	<command name="CompleteProcessLargeFieldSet" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
@@ -2963,6 +2977,7 @@
 	</command>
 
 	<command name="CompleteProcessPredefinedContacts" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfProcessName" value="Kaleo Forms Process Predefined" />
 
 		<execute macro="Navigator#openURL" />
@@ -3146,6 +3161,7 @@
 	</command>
 
 	<command name="CompleteProcessPredefinedEvents" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfProcessName" value="Kaleo Forms Process Predefined" />
 
 		<execute macro="Navigator#openURL" />
@@ -3310,6 +3326,7 @@
 	</command>
 
 	<command name="CompleteProcessPredefinedInventory" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfProcessName" value="Kaleo Forms Process Predefined" />
 
 		<execute macro="Navigator#openURL" />
@@ -3463,6 +3480,7 @@
 	</command>
 
 	<command name="CompleteProcessPredefinedIssuesTracking" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfProcessName" value="Kaleo Forms Process Predefined" />
 
 		<execute macro="Navigator#openURL" />
@@ -3647,6 +3665,7 @@
 	</command>
 
 	<command name="CompleteProcessPredefinedMeetingMinutes" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfProcessName" value="Kaleo Forms Process Predefined" />
 
 		<execute macro="Navigator#openURL" />
@@ -3811,6 +3830,7 @@
 	</command>
 
 	<command name="CompleteProcessPredefinedToDo" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfProcessName" value="Kaleo Forms Process Predefined" />
 
 		<execute macro="Navigator#openURL" />
@@ -4005,6 +4025,7 @@
 	</command>
 
 	<command name="CompleteProcessSubmittedViaCP" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
@@ -4128,6 +4149,7 @@
 	</command>
 
 	<command name="CompleteProcessWithEditedSingleApproverWorkflow" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 		<var name="pageName" value="Kaleo Forms" />
@@ -4277,6 +4299,7 @@
 	</command>
 
 	<command name="CompleteProcessWithUploadedDefinition" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfProcessName" value="Kaleo Forms Process Predefined" />
 
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
@@ -4485,6 +4508,7 @@
 	</command>
 
 	<command name="EditProcessCreateFormAfterFormSubmission" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
@@ -4645,6 +4669,7 @@
 	</command>
 
 	<command name="EditProcessEditFormAfterFormSubmission" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
@@ -4854,6 +4879,7 @@
 	</command>
 
 	<command name="EditProcessFieldSetAfterFormSubmission" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
@@ -5023,6 +5049,7 @@
 	</command>
 
 	<command name="EditProcessFieldSetBeforeFormSubmission" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
@@ -5236,6 +5263,7 @@
 	</command>
 
 	<command name="EditProcessNewDetailsAfterFormApproved" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
@@ -5385,6 +5413,7 @@
 	</command>
 
 	<command name="EditProcessNewDetailsAfterFormSubmission" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
@@ -5534,6 +5563,7 @@
 	</command>
 
 	<command name="EditProcessWorkflowAfterFormSubmission" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
@@ -5719,6 +5749,7 @@
 	</command>
 
 	<command name="EditProcessWorkflowBeforeFormSubmission" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
@@ -5944,6 +5975,7 @@
 	</command>
 
 	<command name="ProcessUsesCreateFormWhenAllFormsAreMissing" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
 		<execute macro="Navigator#openURL" />
@@ -6206,6 +6238,7 @@
 	</command>
 
 	<command name="ProcessUsesCreateFormWhenEditFormIsMissing" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
 		<execute macro="Navigator#openURL" />
@@ -6468,6 +6501,7 @@
 	</command>
 
 	<command name="ProcessUsesCreateFormWhenNoEditFormIsDefined" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
 		<execute macro="Navigator#openURL" />
@@ -6616,6 +6650,7 @@
 	</command>
 
 	<command name="ProcessUsesEditForm" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
 		<execute macro="Navigator#openURL" />
@@ -6828,6 +6863,7 @@
 	</command>
 
 	<command name="RejectAndResubmitProcess" priority="4">
+		<property name="priority" value="4" />
 		<var name="ddldataDefinitionDescription" value="Data Definition Description" />
 		<var name="ddldataDefinitionName" value="Data Definition" />
 		<var name="field" value="Text" />
@@ -6966,6 +7002,7 @@
 	</command>
 
 	<command name="RejectAndResubmitProcessAndViewNotifications" priority="4">
+		<property name="priority" value="4" />
 		<property name="portlet.plugins.includes" value="kaleo-designer-portlet,kaleo-forms-portlet,notifications-portlet" />
 
 		<var name="ddldataDefinitionDescription" value="Data Definition Description" />
@@ -7138,6 +7175,7 @@
 	</command>
 
 	<command name="UpdateDueDate" priority="4">
+		<property name="priority" value="4" />
 		<var name="ddldataDefinitionDescription" value="Data Definition Description" />
 		<var name="ddldataDefinitionName" value="Data Definition" />
 		<var name="field" value="Text" />
@@ -7282,6 +7320,7 @@
 	</command>
 
 	<command name="ViewApprovedProcessNotificationWithComments" priority="4">
+		<property name="priority" value="4" />
 		<property name="portlet.plugins.includes" value="kaleo-designer-portlet,kaleo-forms-portlet,notifications-portlet" />
 
 		<var name="comment" value="Process is approved" />
@@ -7427,6 +7466,7 @@
 	</command>
 
 	<command name="ViewApprovedProcessRecords" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
@@ -7558,6 +7598,7 @@
 	</command>
 
 	<command name="ViewApprovedProcessRecordsSeparateAuthor" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
@@ -7732,6 +7773,7 @@
 	</command>
 
 	<command name="ViewAssignedProcessRecords" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
@@ -7858,6 +7900,7 @@
 	</command>
 
 	<command name="ViewEmailNotificationSentToTaskAssignees" priority="4">
+		<property name="priority" value="4" />
 		<description message="This is a use case for LPS-50688 and LPS-35263." />
 
 		<property name="test.assert.javascript.errors" value="false" />
@@ -8242,6 +8285,7 @@
 	</command>
 
 	<command name="ViewKaleoProcessNameOpenedViaNotifications" priority="4">
+		<property name="priority" value="4" />
 		<description message="This is a use case for LPS-51098." />
 
 		<property name="portlet.plugins.includes" value="kaleo-designer-portlet,kaleo-forms-portlet,notifications-portlet" />
@@ -8413,6 +8457,7 @@
 	</command>
 
 	<command name="ViewMultipleProcessRecords" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
@@ -8561,6 +8606,7 @@
 	</command>
 
 	<command name="ViewNoDuplicatesCreatedByAddFormSaveAndContinue" priority="4">
+		<property name="priority" value="4" />
 		<description message="This is a use case for LPS-48995." />
 
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
@@ -8631,6 +8677,7 @@
 	</command>
 
 	<command name="ViewProcessWithComments" priority="4">
+		<property name="priority" value="4" />
 		<var name="commentList" value="Assigned initial task.,Updating the due date on a process assigned to my roles.,Assign process to Test Test.,Updating the due date on a process assigned to me.,Please make changes and resubmit.,Assigned initial task.,Resubmitting.,Assigned initial task.,Assign process to Test Test again.,Process is approved." />
 		<var name="ddldataDefinitionDescription" value="Data Definition Description" />
 		<var name="ddldataDefinitionName" value="Data Definition" />
@@ -8815,6 +8862,7 @@
 	</command>
 
 	<command name="ViewRejectedProcessRecords" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
@@ -8946,6 +8994,7 @@
 	</command>
 
 	<command name="ViewSubmittedProcessRecords" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
@@ -9063,6 +9112,7 @@
 	</command>
 
 	<command name="WithdrawProcess" priority="4">
+		<property name="priority" value="4" />
 		<var name="ddldataDefinitionDescription" value="Data Definition Description" />
 		<var name="ddldataDefinitionName" value="Data Definition" />
 		<var name="field" value="Text" />

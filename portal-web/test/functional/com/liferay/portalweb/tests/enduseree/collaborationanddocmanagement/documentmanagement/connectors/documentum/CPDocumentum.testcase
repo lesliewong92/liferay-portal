@@ -128,6 +128,7 @@
 	</tear-down>
 
 	<command name="AddDocument" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="DMRepository#gotoCP">
 			<var name="dmRepositoryName" value="Documentum Repository Name" />
 		</execute>
@@ -147,6 +148,7 @@
 	</command>
 
 	<command name="AddDocumentInSubfolder" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -194,6 +196,7 @@
 	</command>
 
 	<command name="AddSubfolder" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="DMRepository#gotoCP">
 			<var name="dmRepositoryName" value="Documentum Repository Name" />
 		</execute>
@@ -208,6 +211,7 @@
 	</command>
 
 	<command name="CheckinDocument" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="DMRepository#gotoCP">
 			<var name="dmRepositoryName" value="Documentum Repository Name" />
 		</execute>
@@ -267,6 +271,7 @@
 	</command>
 
 	<command name="CheckoutDocument" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="DMRepository#gotoCP">
 			<var name="dmRepositoryName" value="Documentum Repository Name" />
 		</execute>
@@ -308,6 +313,7 @@
 	</command>
 
 	<command name="DeleteDocument" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="DMRepository#gotoCP">
 			<var name="dmRepositoryName" value="Documentum Repository Name" />
 		</execute>
@@ -334,6 +340,7 @@
 	</command>
 
 	<command name="DeleteDocumentInSubfolder" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="DMRepository#gotoCP">
 			<var name="dmRepositoryName" value="Documentum Repository Name" />
 		</execute>
@@ -388,6 +395,7 @@
 	</command>
 
 	<command name="DeleteSubfolder" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="DMRepository#gotoCP">
 			<var name="dmRepositoryName" value="Documentum Repository Name" />
 		</execute>
@@ -413,6 +421,7 @@
 	</command>
 
 	<command name="EditDocumentFile" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="DMRepository#gotoCP">
 			<var name="dmRepositoryName" value="Documentum Repository Name" />
 		</execute>
@@ -453,6 +462,7 @@
 	</command>
 
 	<command name="EditDocumentTitleFileExtension" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="DMRepository#gotoCP">
 			<var name="dmRepositoryName" value="Documentum Repository Name" />
 		</execute>
@@ -487,6 +497,7 @@
 	</command>
 
 	<command name="EditDocumentTitleFileNameAndFileExtension" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="DMRepository#gotoCP">
 			<var name="dmRepositoryName" value="Documentum Repository Name" />
 		</execute>
@@ -521,6 +532,7 @@
 	</command>
 
 	<command name="EditDocumentTitleRemoveFileExtension" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="DMRepository#gotoCP">
 			<var name="dmRepositoryName" value="Documentum Repository Name" />
 		</execute>
@@ -555,6 +567,7 @@
 	</command>
 
 	<command name="MoveCheckedoutDocumentToFolder" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -653,6 +666,7 @@
 	</command>
 
 	<command name="MoveDocumentToHome" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="DMRepository#gotoCP">
 			<var name="dmRepositoryName" value="Documentum Repository Name" />
 		</execute>
@@ -697,6 +711,7 @@
 	</command>
 
 	<command name="SearchDocument" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="DMRepository#gotoCP">
 			<var name="dmRepositoryName" value="Documentum Repository Name" />
 		</execute>
@@ -717,6 +732,7 @@
 	</command>
 
 	<command name="SearchDocumentViaHome" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="DMRepository#gotoCP">
 			<var name="dmRepositoryName" value="Documentum Repository Name" />
 		</execute>
@@ -740,6 +756,7 @@
 	</command>
 
 	<command name="ViewEditedCheckedoutDocument" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="DMRepository#gotoCP">
 			<var name="dmRepositoryName" value="Documentum Repository Name" />
 		</execute>
@@ -799,6 +816,7 @@
 	</command>
 
 	<command name="ViewRepository" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">

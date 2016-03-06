@@ -30,6 +30,7 @@
 	</tear-down>
 
 	<command name="MarkNotificationAsReadAndAcceptRequest" priority="4">
+		<property name="priority" value="4" />
 		<property name="portlet.plugins.includes" value="contacts-portlet,microblogs-portlet,notifications-portlet,private-messaging-portlet,so-portlet" />
 
 		<execute macro="ProductMenu#gotoControlPanelUsers">
@@ -214,6 +215,7 @@
 	</command>
 
 	<command name="ViewDefaultNotificationsPortletDeliveryOptions" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="Notifications" />
 		</execute>

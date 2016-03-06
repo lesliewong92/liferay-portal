@@ -40,6 +40,7 @@
 	</tear-down>
 
 	<command name="ViewAnnouncementsEntryWithDistributedScope" priority="4">
+		<property name="priority" value="4" />
 		<var name="announcementType" value="General" />
 
 		<execute macro="Navigator#gotoPage">
@@ -175,6 +176,7 @@
 	</command>
 
 	<command name="ViewAnnouncementsPagination" priority="3">
+		<property name="priority" value="3" />
 		<var name="announcementType" value="General" />
 		<var name="distributionScope" value="General" />
 		<var name="entryContent" value="Announcements Entry Content" />

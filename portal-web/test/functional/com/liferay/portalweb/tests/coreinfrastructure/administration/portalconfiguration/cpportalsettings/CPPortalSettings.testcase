@@ -36,6 +36,7 @@
 	</tear-down>
 
 	<command name="EditDefaultUserAssociationsOrganizationSites" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
@@ -97,6 +98,7 @@
 	</command>
 
 	<command name="EditDefaultUserAssociationsRoles" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Roles" />
 		</execute>
@@ -146,6 +148,7 @@
 	</command>
 
 	<command name="EditDefaultUserAssociationsSites" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -195,6 +198,7 @@
 	</command>
 
 	<command name="EditDefaultUserAssociationsUserGroups" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="User Groups" />
 		</execute>
@@ -244,6 +248,7 @@
 	</command>
 
 	<command name="EnterReservedEmailAddress" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>
@@ -265,6 +270,7 @@
 	</command>
 
 	<command name="EnterReservedScreenName" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>
@@ -286,6 +292,7 @@
 	</command>
 
 	<command name="ViewAuthenticationCAS" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>
@@ -294,6 +301,7 @@
 	</command>
 
 	<command name="ViewAuthenticationGeneral" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>
@@ -302,6 +310,7 @@
 	</command>
 
 	<command name="ViewAuthenticationLDAP" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>
@@ -310,6 +319,7 @@
 	</command>
 
 	<command name="ViewAuthenticationNTLM" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>
@@ -318,6 +328,7 @@
 	</command>
 
 	<command name="ViewAuthenticationOpenID" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>
@@ -326,6 +337,7 @@
 	</command>
 
 	<command name="ViewAuthenticationOpenSSO" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>
@@ -334,6 +346,7 @@
 	</command>
 
 	<command name="ViewContentSharingDisabledAcrossSitesViaAP" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>
@@ -484,6 +497,7 @@
 	</command>
 
 	<command name="ViewContentSharingEnabledAcrossSitesViaAP" priority="4">
+		<property name="priority" value="4" />
 		<var name="entryContent" value="Blogs Entry Content" />
 		<var name="entryTitle" value="Blogs Entry Title" />
 		<var name="liferaySiteName" value="Liferay" />
@@ -598,6 +612,7 @@
 	</command>
 
 	<command name="ViewDefaultUserAssociations" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>
@@ -606,6 +621,7 @@
 	</command>
 
 	<command name="ViewEmailNotificationsAccountCreatedNotification" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>
@@ -614,6 +630,7 @@
 	</command>
 
 	<command name="ViewEmailNotificationsPasswordChangedNotification" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>
@@ -622,6 +639,7 @@
 	</command>
 
 	<command name="ViewEmailNotificationsSender" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>
@@ -630,6 +648,7 @@
 	</command>
 
 	<command name="ViewReservedCredentialsScreenNames" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>

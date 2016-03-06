@@ -46,6 +46,7 @@
 	</tear-down>
 
 	<command name="AddBlogsEntriesWithPortalScopeWorkflowAndAssertWorkflowScope" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Workflow Configuration" />
 		</execute>
@@ -235,6 +236,7 @@
 	</command>
 
 	<command name="AddBlogsEntriesWithSiteScopeWorkflowAndAssertWorkflowScope" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -336,6 +338,7 @@
 	</command>
 
 	<command name="AddDDLRecordWithDoubleApproverDefinition" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
@@ -512,6 +515,7 @@
 	</command>
 
 	<command name="AddDocumentsAndMediaWithScriptedAssignmentDefinition" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Workflow Definition" />
 		</execute>
@@ -810,6 +814,7 @@
 	</command>
 
 	<command name="AddWebContentWithCategorySpecificDefinition" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Workflow Definition" />
 		</execute>
@@ -993,6 +998,7 @@
 	</command>
 
 	<command name="AddWikiPageAsSiteUser" priority="4">
+		<property name="priority" value="4" />
 		<var name="pageName" value="Wiki Page" />
 		<var name="portletName" value="Wiki" />
 		<var name="userEmailAddress" value="userea@liferay.com" />
@@ -1182,6 +1188,7 @@
 	</command>
 
 	<command name="DeactivateAndActivateUploadedDefinition" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Workflow Definition" />
 		</execute>
@@ -1209,6 +1216,7 @@
 	</command>
 
 	<command name="DeactivateAndDeleteUploadedDefinition" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
@@ -1236,6 +1244,7 @@
 	</command>
 
 	<command name="UploadDefinition" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Workflow Definition" />
 		</execute>
@@ -1253,6 +1262,7 @@
 	</command>
 
 	<command name="ViewBlogsEntryWorkflowViaNotifications" priority="3">
+		<property name="priority" value="3" />
 		<property name="portlet.plugins.includes" value="notifications-portlet" />
 
 		<execute macro="Navigator#openURL" />
@@ -1338,6 +1348,7 @@
 	</command>
 
 	<command name="ViewTaskCount" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesConfiguration">
@@ -1426,6 +1437,7 @@
 	</command>
 
 	<command name="ViewWebContentConfigurationCP" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -1458,6 +1470,7 @@
 	</command>
 
 	<command name="ViewWorkflowConfigurationScope" priority="4">
+		<property name="priority" value="4" />
 		<description message="This is a use case for LPS-59108." />
 
 		<execute macro="ProductMenu#gotoControlPanelSites">
@@ -1522,6 +1535,7 @@
 	</command>
 
 	<command name="ViewWorkflowSubmissionsFromDifferentUsers" priority="4">
+		<property name="priority" value="4" />
 		<description message="This is a use case for LRQA-13519." />
 
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
@@ -1700,6 +1714,7 @@
 	</command>
 
 	<command name="XSSScriptWebContent" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">

@@ -28,6 +28,7 @@
 	</tear-down>
 
 	<command name="AddConditionNodeEditNameAndDesciptionAndDeleteViaViewTab" priority="4">
+		<property name="priority" value="4" />
 		<var name="nodeNodeLabel" value="Condition" />
 		<var name="nodeType" value="condition" />
 
@@ -57,6 +58,7 @@
 	</command>
 
 	<command name="AddEndNodeEditNameAndDesciptionAndDeleteViaViewTab" priority="4">
+		<property name="priority" value="4" />
 		<var name="nodeNodeLabel" value="TestEndNode" />
 		<var name="nodeType" value="end" />
 
@@ -86,6 +88,7 @@
 	</command>
 
 	<command name="AddForkNodeEditNameAndDesciptionAndDeleteViaViewTab" priority="4">
+		<property name="priority" value="4" />
 		<var name="nodeNodeLabel" value="Fork" />
 		<var name="nodeType" value="fork" />
 
@@ -115,6 +118,7 @@
 	</command>
 
 	<command name="AddJoinNodeEditNameAndDesciptionAndDeleteViaViewTab" priority="4">
+		<property name="priority" value="4" />
 		<var name="nodeNodeLabel" value="Join" />
 		<var name="nodeType" value="join" />
 
@@ -144,6 +148,7 @@
 	</command>
 
 	<command name="AddJoinXORNodeEditNameAndDesciptionAndDeleteViaViewTab" priority="4">
+		<property name="priority" value="4" />
 		<var name="nodeNodeLabel" value="Join XOR" />
 		<var name="nodeType" value="join-xor" />
 
@@ -173,6 +178,7 @@
 	</command>
 
 	<command name="AddJoinXORWorkflowDefinitionViaViewTab" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Workflow Definition" />
 		</execute>
@@ -260,6 +266,7 @@
 	</command>
 
 	<command name="AddNewWorkflowDefinitionViaViewTab" priority="4">
+		<property name="priority" value="4" />
 		<var name="nodeNodeLabel" value="Task" />
 		<var name="nodeType" value="task" />
 
@@ -344,6 +351,7 @@
 	</command>
 
 	<command name="AddStartNodeEditNameAndDesciptionAndDeleteViaViewTab" priority="4">
+		<property name="priority" value="4" />
 		<var name="nodeNodeLabel" value="TestStartNode" />
 		<var name="nodeType" value="start" />
 
@@ -377,6 +385,7 @@
 	</command>
 
 	<command name="AddStateNodeEditNameAndDesciptionAndDeleteViaViewTab" priority="4">
+		<property name="priority" value="4" />
 		<var name="nodeNodeLabel" value="State" />
 		<var name="nodeType" value="state" />
 
@@ -410,6 +419,7 @@
 	</command>
 
 	<command name="AddTaskNodeEditNameAndDesciptionAndRecipientsAndDeleteViaViewTab" priority="4">
+		<property name="priority" value="4" />
 		<description message="This is a use case for LPS-53992." />
 
 		<var name="nodeNodeLabel" value="Task" />
@@ -463,6 +473,7 @@
 	</command>
 
 	<command name="AddTaskNodeViaSourceTabAndEditNameAndDesciptionAndDeleteViaViewTab" priority="4">
+		<property name="priority" value="4" />
 		<var name="nodeNodeLabel" value="Task" />
 		<var name="nodeType" value="task" />
 
@@ -501,6 +512,7 @@
 	</command>
 
 	<command name="DeleteConnectors" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelApps">
 			<var name="portlet" value="Kaleo Designer" />
 		</execute>
@@ -602,6 +614,7 @@
 	</command>
 
 	<command name="DeleteWorkflowDefinitionDraftViaKDCP" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelApps">
 			<var name="portlet" value="Kaleo Designer" />
 		</execute>
@@ -626,6 +639,7 @@
 	</command>
 
 	<command name="EditSingleApproverDefinitionDeleteTaskNode" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Workflow Definition" />
 		</execute>
@@ -668,6 +682,7 @@
 	</command>
 
 	<command name="PublishDefaultWorkflowDefinition" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Workflow Definition" />
 		</execute>
@@ -680,6 +695,7 @@
 	</command>
 
 	<command name="PublishFromSourceTabAndViewNameChange" priority="4">
+		<property name="priority" value="4" />
 		<description message="This is a use case for LPS-43214 and LPS-50269." />
 
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
@@ -718,6 +734,7 @@
 	</command>
 
 	<command name="PublishWorkflowDefinitionWithConnectorPointingToStartNodeAndViewErrorMessage" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Workflow Definition" />
 		</execute>
@@ -765,6 +782,7 @@
 	</command>
 
 	<command name="PublishWorkflowDefinitionWithInvalidConditionNodeAndViewErrorMessage" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Workflow Definition" />
 		</execute>
@@ -811,6 +829,7 @@
 	</command>
 
 	<command name="PublishWorkflowDefinitionWithInvalidConditionNodeSettingsAndViewErrorMessage" priority="4">
+		<property name="priority" value="4" />
 		<var name="nodeScript" >
 <![CDATA[
 	import com.liferay.portal.kernel.util.GetterUtil;${line.separator}
@@ -899,6 +918,7 @@
 	</command>
 
 	<command name="PublishWorkflowDefinitionWithInvalidForkNodeAndViewErrorMessage" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Workflow Definition" />
 		</execute>
@@ -945,6 +965,7 @@
 	</command>
 
 	<command name="PublishWorkflowDefinitionWithInvalidJoinNodeAndViewErrorMessage" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Workflow Definition" />
 		</execute>
@@ -991,6 +1012,7 @@
 	</command>
 
 	<command name="PublishWorkflowDefinitionWithInvalidJoinXORNodeAndViewErrorMessage" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Workflow Definition" />
 		</execute>
@@ -1037,6 +1059,7 @@
 	</command>
 
 	<command name="PublishWorkflowDefinitionWithMultipleStartNodesAndViewErrorMessage" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Workflow Definition" />
 		</execute>
@@ -1056,6 +1079,7 @@
 	</command>
 
 	<command name="PublishWorkflowDefinitionWithNoConnectorsAndViewErrorMessage" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Workflow Definition" />
 		</execute>
@@ -1072,6 +1096,7 @@
 	</command>
 
 	<command name="PublishWorkflowDefinitionWithNoEndNodeAndViewErrorMessage" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Workflow Definition" />
 		</execute>
@@ -1092,6 +1117,7 @@
 	</command>
 
 	<command name="PublishWorkflowDefinitionWithNoStartNodeAndViewErrorMessage" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Workflow Definition" />
 		</execute>
@@ -1112,6 +1138,7 @@
 	</command>
 
 	<command name="RedoDraftDefinition" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelApps">
 			<var name="portlet" value="Kaleo Designer" />
 		</execute>
@@ -1239,6 +1266,7 @@
 	</command>
 
 	<command name="SaveInvalidWorkflowDefinitionAsDraft" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelApps">
 			<var name="portlet" value="Kaleo Designer" />
 		</execute>
@@ -1259,6 +1287,7 @@
 	</command>
 
 	<command name="UndoDraftDefinition" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelApps">
 			<var name="portlet" value="Kaleo Designer" />
 		</execute>
@@ -1391,6 +1420,7 @@
 	</command>
 
 	<command name="ViewAndPublishWorkflowDefinitionDraftViaKDCP" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelApps">
 			<var name="portlet" value="Kaleo Designer" />
 		</execute>
@@ -1429,6 +1459,7 @@
 	</command>
 
 	<command name="ViewAssignmentsForTaskNodeKDCP" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelApps">
 			<var name="portlet" value="Kaleo Designer" />
 		</execute>
@@ -1450,6 +1481,7 @@
 	</command>
 
 	<command name="ViewDefinitionTemplateCDATARemainsWhenViewingSourceTab" priority="4">
+		<property name="priority" value="4" />
 		<description message="This is a use case for LPS-45514." />
 
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
@@ -1480,6 +1512,7 @@
 	</command>
 
 	<command name="ViewInvalidSourceXMLRemainsAfterTabSwitch" priority="4">
+		<property name="priority" value="4" />
 		<description message="This is a use case for LPS-48590." />
 
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
@@ -1505,6 +1538,7 @@
 	</command>
 
 	<command name="ViewNewUploadedDefinitionDoesNotContainDataFromDeletedDefinition" priority="4">
+		<property name="priority" value="4" />
 		<description message="This is a use case for LPS-45676." />
 
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
@@ -1564,6 +1598,7 @@
 	</command>
 
 	<command name="ViewNodeNotificationRecipientPersistsAfterSwitchingTabs" priority="4">
+		<property name="priority" value="4" />
 		<description message="This is a use case for LPS-46657." />
 
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
@@ -1602,6 +1637,7 @@
 	</command>
 
 	<command name="ViewSingleApproverUserNotificationOption" priority="4">
+		<property name="priority" value="4" />
 		<description message="This is a use case for LPS-46605." />
 
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
@@ -1623,6 +1659,7 @@
 	</command>
 
 	<command name="ViewWorkflowDefinitionButtonsViaKaleoFormsAdmin" priority="4">
+		<property name="priority" value="4" />
 		<description message="This is a use case for LPS-47352 and LPS-48912." />
 
 		<execute macro="Navigator#openURL" />
@@ -1661,6 +1698,7 @@
 	</command>
 
 	<command name="ViewWorkflowDefinitionButtonsViaKDCP" priority="4">
+		<property name="priority" value="4" />
 		<description message="This is a use case for LPS-47352 and LPS-48912." />
 
 		<execute macro="ProductMenu#gotoControlPanelApps">
@@ -1679,6 +1717,7 @@
 	</command>
 
 	<command name="ViewWorkflowDefinitionButtonsViaWorkflowCP" priority="4">
+		<property name="priority" value="4" />
 		<description message="This is a use case for LPS-47352 and LPS-48912." />
 
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">

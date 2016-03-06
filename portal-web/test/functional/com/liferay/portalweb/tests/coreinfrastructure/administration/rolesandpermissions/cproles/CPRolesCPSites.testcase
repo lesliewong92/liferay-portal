@@ -33,6 +33,7 @@
 	</tear-down>
 
 	<command name="AddSiteRegRole" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Permissions#setUpRegRoleLoginUserCP">
 			<var name="page" value="Public Pages" />
 			<var name="portletName" value="Sites" />
@@ -118,6 +119,7 @@
 	</command>
 
 	<command name="SearchPermissions" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Roles" />
 		</execute>
@@ -290,6 +292,7 @@
 	</command>
 
 	<command name="ViewSiteManageChildSiteSiteRole" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Permissions#setUpSiteRoleLoginUserCP">
 			<var name="page" value="Public Pages" />
 			<var name="pageName" value="Site Page" />
@@ -452,6 +455,7 @@
 	</command>
 
 	<command name="ViewSiteManagePagesRegRole" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Permissions#setUpRegRoleLoginUserCP">
 			<var name="portletName" value="Sites" />
 			<var name="roleName" value="Regrole Name" />

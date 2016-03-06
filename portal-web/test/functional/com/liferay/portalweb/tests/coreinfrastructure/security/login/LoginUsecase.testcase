@@ -22,6 +22,7 @@
 	</tear-down>
 
 	<command name="SessionTimeout" priority="4">
+		<property name="priority" value="4" />
 		<property name="web.xml.timeout" value="1" />
 
 		<execute macro="Navigator#openURL" />

@@ -11,6 +11,7 @@
 	</tear-down>
 
 	<command name="ViewHook" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Page#add">
 			<var name="pageName" value="Test Hook Page" />
 		</execute>
