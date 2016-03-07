@@ -32,6 +32,7 @@
 	</tear-down>
 
 	<command name="AddOrganizationSitesAndDeactivate" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
@@ -205,6 +206,7 @@
 	</command>
 
 	<command name="ApplicationAdapter" priority="3">
+		<property name="priority" value="3" />
 		<property name="hook.plugins.includes" value="sample-application-adapter-hook" />
 
 		<execute macro="ProductMenu#gotoControlPanelSites">
@@ -324,6 +326,7 @@
 	</command>
 
 	<command name="MySitesDropDownDoesNotShowUserOrganizationOnTop" priority="3">
+		<property name="priority" value="3" />
 		<for list="Site1 Name,Site2 Name,Site3 Name,Site4 Name,Site5 Name,Site6 Name,Site7 Name,Site8 Name,Site9 Name,Site10 Name" param="siteNameListsCount" >
 
 			<execute macro="ProductMenu#gotoControlPanelSites">
@@ -374,6 +377,7 @@
 	</command>
 
 	<command name="OnlySiteOwnersCanAssignSiteRolesToUserGroups" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Roles" />
 		</execute>
@@ -533,6 +537,7 @@
 	</command>
 
 	<command name="PrivateVirtualHostUrlDoesNotRedirectUserToLoginPage" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesConfiguration">
@@ -612,6 +617,7 @@
 	</command>
 
 	<command name="ReturnWrongLayoutForSignedInUserWithVirtualHostsConfigured" priority="3">
+		<property name="priority" value="3" />
 		<property name="custom.properties" value="layout.default.template.id=2_columns_iii${line.separator}layout.user.private.layouts.enabled=false${line.separator}layout.user.private.layouts.auto.create=false${line.separator}layout.user.private.layouts.power.user.required=true${line.separator}layout.user.public.layouts.enabled=false${line.separator}layout.user.public.layouts.auto.create=false${line.separator}layout.user.public.layouts.power.user.required=true" />
 
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
@@ -768,6 +774,7 @@
 	</command>
 
 	<command name="SiteFriendlyURLLayoutImporter" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="User Groups" />
 		</execute>
@@ -860,6 +867,7 @@
 	</command>
 
 	<command name="SitesDeactivated" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -969,6 +977,7 @@
 	</command>
 
 	<command name="SitesDemoSiteManagement" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -1168,6 +1177,7 @@
 	</command>
 
 	<command name="SiteTeams" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -1321,6 +1331,7 @@
 	</command>
 
 	<command name="SiteTeamsPermissions" priority="4">
+		<property name="priority" value="4" />
 		<var name="pageName" value="Blog Page Template" />
 		<var name="permissionDefinitionKey" value="CONTENT_PERMISSIONS_VIEW_CHECKBOX" />
 		<var name="permissionInLineCheckLists" value="ACTION_ADD_DISCUSSION,ACTION_ADD_LAYOUT,ACTION_CONFIGURE_PORTLETS,ACTION_CUSTOMIZE,ACTION_DELETE,ACTION_DELETE_DISCUSSION,ACTION_PERMISSIONS,ACTION_UPDATE,ACTION_UPDATE_DISCUSSION,ACTION_VIEW" />
@@ -1514,6 +1525,7 @@
 	</command>
 
 	<command name="SiteTeamsXSS" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>

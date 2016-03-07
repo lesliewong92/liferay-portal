@@ -37,6 +37,7 @@
 	</tear-down>
 
 	<command name="AddAndRemoveMetadataSets" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Documents and Media" />
 		</execute>
@@ -77,6 +78,7 @@
 	</command>
 
 	<command name="AllowMultiplePortletConfigurationsPerSite" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -145,6 +147,7 @@
 	</command>
 
 	<command name="CheckoutAndCheckin" priority="5">
+		<property name="priority" value="5" />
 		<var name="pageName" value="Documents and Media Page" />
 		<var name="portletName" value="Documents and Media" />
 
@@ -374,6 +377,7 @@
 	</command>
 
 	<command name="Comments" priority="4">
+		<property name="priority" value="4" />
 		<var name="pageName" value="Documents and Media Page" />
 
 		<execute macro="Navigator#openURL" />
@@ -524,6 +528,7 @@
 	</command>
 
 	<command name="ConfigureXugglerVideoPreviewSizePG" priority="3">
+		<property name="priority" value="3" />
 		<property name="custom.properties" value="xuggler.enabled=true${line.separator}dl.file.entry.preview.video.width=0${line.separator}dl.file.entry.preview.video.height=0" />
 
 		<var name="videoGenerationTimeCounter" value="0" />
@@ -642,6 +647,7 @@
 	</command>
 
 	<command name="ImportDocumentWithDBStore" priority="3">
+		<property name="priority" value="3" />
 		<property name="custom.properties" value="dl.store.impl=com.liferay.portal.store.db.DBStore" />
 
 		<execute macro="Navigator#openURL" />
@@ -704,6 +710,7 @@
 	</command>
 
 	<command name="RemoveCurrentDisplayStyleViews" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Page#add">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
@@ -726,6 +733,7 @@
 	</command>
 
 	<command name="SelectMultipleDocumentsAndDeleteViaActionsButton" priority="4">
+		<property name="priority" value="4" />
 		<var name="dmDocumentCounterList" value="1,2,3" />
 
 		<execute macro="Page#add">
@@ -770,6 +778,7 @@
 	</command>
 
 	<command name="UpdateDocumentTypeWithPermissions" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Documents and Media" />
 		</execute>
@@ -988,6 +997,7 @@
 	</command>
 
 	<command name="ViewDocumentWithGlobalScope" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Page#add">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
@@ -1177,6 +1187,7 @@
 	</command>
 
 	<command name="ViewFileCategoryAndTags" priority="4">
+		<property name="priority" value="4" />
 		<var name="categoryDescription" value="Category Description" />
 		<var name="categoryName" value="Category Name" />
 		<var name="dmDocumentDescription" value="Document Description" />
@@ -1260,6 +1271,7 @@
 	</command>
 
 	<command name="ViewPortletAfterRenamingDocumentWithDuplicateTitlePG" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Page#add">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
@@ -1318,6 +1330,7 @@
 	</command>
 
 	<command name="ViewSingleDocumentSelectionDoesNotCheckAllFileSelectionCP" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">

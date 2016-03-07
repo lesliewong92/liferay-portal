@@ -38,6 +38,7 @@
 	</tear-down>
 
 	<command name="EditAndSendWebFormWithRequiredCheckbox" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="WebForm#viewPG">
 			<var name="wfInformationDescription" value="Your input is valuable to us. Please send us your suggestions." />
 			<var name="wfInformationTitle" value="Suggestions" />
@@ -110,6 +111,7 @@
 	</command>
 
 	<command name="EditWebForm" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
@@ -182,6 +184,7 @@
 	</command>
 
 	<command name="EditWebFormAndViewMultipleFields" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
@@ -256,6 +259,7 @@
 	</command>
 
 	<command name="EditWebFormAndViewOptionalCheckBoxField" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="WebForm#viewPG">
 			<var name="wfInformationDescription" value="Your input is valuable to us. Please send us your suggestions." />
 			<var name="wfInformationTitle" value="Suggestions" />
@@ -305,6 +309,7 @@
 	</command>
 
 	<command name="EditWebFormAndViewOptionalOptionsField" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="WebForm#viewPG">
 			<var name="wfInformationDescription" value="Your input is valuable to us. Please send us your suggestions." />
 			<var name="wfInformationTitle" value="Suggestions" />
@@ -354,6 +359,7 @@
 	</command>
 
 	<command name="EditWebFormAndViewOptionalRadioField" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="WebForm#viewPG">
 			<var name="wfInformationDescription" value="Your input is valuable to us. Please send us your suggestions." />
 			<var name="wfInformationTitle" value="Suggestions" />
@@ -405,6 +411,7 @@
 	</command>
 
 	<command name="EditWebFormAndViewOptionalTextBoxField" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="WebForm#viewPG">
 			<var name="wfInformationDescription" value="Your input is valuable to us. Please send us your suggestions." />
 			<var name="wfInformationTitle" value="Suggestions" />
@@ -454,6 +461,7 @@
 	</command>
 
 	<command name="EditWebFormAndViewOptionalTextField" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="WebForm#viewPG">
 			<var name="wfInformationDescription" value="Your input is valuable to us. Please send us your suggestions." />
 			<var name="wfInformationTitle" value="Suggestions" />
@@ -503,6 +511,7 @@
 	</command>
 
 	<command name="EditWebFormAndViewParagraphField" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="WebForm#viewPG">
 			<var name="wfInformationDescription" value="Your input is valuable to us. Please send us your suggestions." />
 			<var name="wfInformationTitle" value="Suggestions" />
@@ -571,6 +580,7 @@
 	</command>
 
 	<command name="EditWebFormAndViewRequiredCheckBoxField" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="WebForm#viewPG">
 			<var name="wfInformationDescription" value="Your input is valuable to us. Please send us your suggestions." />
 			<var name="wfInformationTitle" value="Suggestions" />
@@ -626,6 +636,7 @@
 	</command>
 
 	<command name="EditWebFormAndViewRequiredOptionsField" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="WebForm#viewPG">
 			<var name="wfInformationDescription" value="Your input is valuable to us. Please send us your suggestions." />
 			<var name="wfInformationTitle" value="Suggestions" />
@@ -695,6 +706,7 @@
 	</command>
 
 	<command name="EditWebFormAndViewRequiredRadioField" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="WebForm#viewPG">
 			<var name="wfInformationDescription" value="Your input is valuable to us. Please send us your suggestions." />
 			<var name="wfInformationTitle" value="Suggestions" />
@@ -752,6 +764,7 @@
 	</command>
 
 	<command name="EditWebFormAndViewRequiredTextBoxField" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="WebForm#viewPG">
 			<var name="wfInformationDescription" value="Your input is valuable to us. Please send us your suggestions." />
 			<var name="wfInformationTitle" value="Suggestions" />
@@ -807,6 +820,7 @@
 	</command>
 
 	<command name="EditWebFormAndViewRequiredTextField" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="WebForm#viewPG">
 			<var name="wfInformationDescription" value="Your input is valuable to us. Please send us your suggestions." />
 			<var name="wfInformationTitle" value="Suggestions" />
@@ -862,6 +876,7 @@
 	</command>
 
 	<command name="SendWebForm" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>

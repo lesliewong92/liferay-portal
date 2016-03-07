@@ -26,6 +26,7 @@
 	</tear-down>
 
 	<command name="ElasticsearchClusterSmokeTest" priority="5">
+		<property name="priority" value="5" />
 		<description message="This test asserts Elasticsearch clustering to add/remove replicas as nodes are added/removed from the portal cluster. Also, we want to maintain no loss in search functionality as replicas are being added or removed." />
 
 		<property name="app.server.bundles.size" value="1" />

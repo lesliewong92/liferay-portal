@@ -26,6 +26,7 @@
 	</tear-down>
 
 	<command name="AutomaticChangesToDisplayStyle" priority="3">
+		<property name="priority" value="3" />
 		<property name="custom.properties" value="display.style.options=from-level-1-to-all-sublevels${line.separator}navigation.display.style[from-level-1-with-title]=root-layout,absolute,1,auto,true${line.separator}display.style.default=" />
 
 		<execute macro="Page#add">
@@ -42,6 +43,7 @@
 	</command>
 
 	<command name="UserPersonalSiteUserGroupPrivatePage" priority="4">
+		<property name="priority" value="4" />
 		<property name="custom.properties" value="layout.user.private.layouts.enabled=false${line.separator}layout.user.private.layouts.auto.create=false" />
 
 		<execute macro="ProductMenu#gotoControlPanelUsers">
@@ -116,6 +118,7 @@
 	</command>
 
 	<command name="ValidateReturnToDefaultStyle" priority="3">
+		<property name="priority" value="3" />
 		<property name="custom.properties" value="display.style.default=from-level-1-with-title${line.separator}navigation.display.style[from-level-1-with-title]=root-layout,absolute,1,auto,true" />
 
 		<execute macro="Page#add">
@@ -154,6 +157,7 @@
 	</command>
 
 	<command name="ViewNoAddPagePermissionsPG" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Page#add">
 			<var name="pageName" value="Navigation Page" />
 		</execute>

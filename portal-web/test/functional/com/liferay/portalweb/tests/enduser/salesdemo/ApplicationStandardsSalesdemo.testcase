@@ -22,6 +22,7 @@
 	</tear-down>
 
 	<command name="WebProxyDemo" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Page#add">
 			<var name="pageName" value="Web Proxy Page" />
 			<var name="sitePageType" value="1 Column" />

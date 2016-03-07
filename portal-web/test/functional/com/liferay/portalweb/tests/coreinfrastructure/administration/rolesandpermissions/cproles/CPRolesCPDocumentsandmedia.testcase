@@ -34,6 +34,7 @@
 	</tear-down>
 
 	<command name="ViewDocumentsAndMediaPortletRegRole" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Permissions#setUpRegRoleLoginUserCP">
 			<var name="portletName" value="Documents and Media" />
 			<var name="roleName" value="Regrole Name" />
@@ -87,6 +88,7 @@
 	</command>
 
 	<command name="ViewDocumentsAndMediaPortletSiteRole" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Permissions#setUpSiteRoleLoginUserCP">
 			<var name="page" value="Public Pages" />
 			<var name="pageName" value="Documents and Media Page" />

@@ -24,6 +24,7 @@
 	</tear-down>
 
 	<command name="AddBlogsEntryWithImageViaBlogsImages" priority="4" >
+		<property name="priority" value="4" />
 		<execute macro="Page#add">
 			<var name="pageName" value="${pageName}" />
 		</execute>
@@ -69,6 +70,7 @@
 	</command>
 
 	<command name="AddWebContentArticleWithImageViaURL" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -101,6 +103,7 @@
 	</command>
 
 	<command name="ViewWikiFrontPageLeftToRight" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Page#add">
 			<var name="pageName" value="${pageName}" />
 		</execute>
@@ -129,6 +132,7 @@
 	</command>
 
 	<command name="ViewWikiFrontPageRightToLeft" priority="4">
+		<property name="priority" value="4" />
 		<var name="currentPortalLanguages" value="English (United States),Arabic (Saudi Arabia)" />
 
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">

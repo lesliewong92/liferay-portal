@@ -24,6 +24,7 @@
 	</tear-down>
 
 	<command name="JoinSiteOpen" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="ProductMenu#gotoControlPanelSites">
@@ -78,6 +79,7 @@
 	</command>
 
 	<command name="JoinSitePrivateNo" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="ProductMenu#gotoControlPanelSites">
@@ -134,6 +136,7 @@
 	</command>
 
 	<command name="JoinSiteRestricted" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -226,6 +229,7 @@
 	</command>
 
 	<command name="LeaveSite" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="ProductMenu#gotoControlPanelSites">

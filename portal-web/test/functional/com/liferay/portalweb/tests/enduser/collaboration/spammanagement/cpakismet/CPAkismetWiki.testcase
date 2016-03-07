@@ -31,6 +31,7 @@
 	</tear-down>
 
 	<command name="MarkAsNotSpamWikiPage" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelApps">
 			<var name="portlet" value="Akismet" />
 		</execute>
@@ -176,6 +177,7 @@
 	</command>
 
 	<command name="MarkAsSpamWikiPage" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelApps">
 			<var name="portlet" value="Akismet" />
 		</execute>

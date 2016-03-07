@@ -37,6 +37,7 @@
 	</tear-down>
 
 	<command name="SubmitPublishedFormWithTextField" priority="3">
+		<property name="priority" value="3" />
 		<description message="This is a use case for LPS-62371" />
 
 		<execute macro="Navigator#openURL" />
@@ -158,6 +159,7 @@
 	</command>
 
 	<command name="ViewDateAssetDetails" priority="5">
+		<property name="priority" value="5" />
 		<description message="This is a use case LPS-61197." />
 
 		<execute macro="Navigator#openURL" />
