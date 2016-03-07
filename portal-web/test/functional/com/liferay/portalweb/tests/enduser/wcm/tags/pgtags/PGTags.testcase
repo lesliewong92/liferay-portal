@@ -24,6 +24,7 @@
 	</tear-down>
 
 	<command name="AddAutoAssertionTagViaBlogs" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -91,6 +92,7 @@
 	</command>
 
 	<command name="AddFrontPageTag" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -127,6 +129,7 @@
 	</command>
 
 	<command name="AddMultipleTagsViaBlogs" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -182,6 +185,7 @@
 	</command>
 
 	<command name="AddSelectTagViaBlogs" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="ProductMenu#gotoControlPanelSites">
@@ -266,6 +270,7 @@
 	</command>
 
 	<command name="AddTagViaBlogs" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="ProductMenu#gotoControlPanelSites">
@@ -322,6 +327,7 @@
 	</command>
 
 	<command name="AddUTFTagViaBlogs" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -358,6 +364,7 @@
 	</command>
 
 	<command name="DisplayTagCloud" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Page#add">
@@ -453,6 +460,7 @@
 	</command>
 
 	<command name="DisplayTagUsageStatistics" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Page#add">
 			<var name="pageName" value="Tags Navigation Page" />
 		</execute>
@@ -544,6 +552,7 @@
 	</command>
 
 	<command name="DisplayUnusedTags" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Page#add">
 			<var name="pageName" value="Tags Navigation Page" />
 		</execute>
@@ -586,6 +595,7 @@
 	</command>
 
 	<command name="RemoveSelectTagViaBlogs" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -681,6 +691,7 @@
 	</command>
 
 	<command name="RemoveTagViaBlogs" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="ProductMenu#gotoControlPanelSites">
@@ -769,6 +780,7 @@
 	</command>
 
 	<command name="SearchMultipleTagsViaBlogs" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -873,6 +885,7 @@
 	</command>
 
 	<command name="ViewTagCloudDisplayConfiguration" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Page#add">
@@ -897,6 +910,7 @@
 	</command>
 
 	<command name="ViewTagCloudIncrease" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Page#add">

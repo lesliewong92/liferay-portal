@@ -11,5 +11,7 @@
 		<execute macro-mobile="MobileNavigator#clickRemoveIcon" />
 
 		<execute function="AssertElementPresent" locator1="Message#SUCCESS" />
+
+		<execute function="AssertNotVisible" locator1="Message#SUCCESS" />
 	</command>
 </definition>

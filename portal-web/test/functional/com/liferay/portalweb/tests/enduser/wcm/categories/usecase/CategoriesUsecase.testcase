@@ -35,6 +35,7 @@
 	</tear-down>
 
 	<command name="AddCategorywithLocalization" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -185,6 +186,7 @@
 	</command>
 
 	<command name="AddCategorywithSiteRole" priority="4">
+		<property name="priority" value="4" />
 		<var name="pageName" value="Test Page Name" />
 		<var name="siteName" value="Test Site Name" />
 
@@ -369,6 +371,7 @@
 	</command>
 
 	<command name="AddSubcategoryProperty" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -414,6 +417,7 @@
 	</command>
 
 	<command name="AddWCFailWithRequiredVocabularyAssetType" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -475,6 +479,7 @@
 	</command>
 
 	<command name="AddWCWithOptionalVocabularyAssetType" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -533,6 +538,7 @@
 	</command>
 
 	<command name="DeletePartialCategory" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -667,6 +673,7 @@
 	</command>
 
 	<command name="DisableMultipleCategories" priority="4">
+		<property name="priority" value="4" />
 		<var name="vocabularyName" value="Vocabulary Name" />
 
 		<execute macro="Navigator#openURL" />
@@ -781,6 +788,7 @@
 	</command>
 
 	<command name="DuplicateCategoriesViaWebContentCopy" priority="3">
+		<property name="priority" value="3" />
 		<var name="categoryName" value="Category Name" />
 		<var name="vocabularyName" value="Vocabulary Name" />
 		<var name="webContentContent" value="Web Content Content" />
@@ -859,6 +867,7 @@
 	</command>
 
 	<command name="ExportImportWCWithCategoryViaAP" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -1021,6 +1030,7 @@
 	</command>
 
 	<command name="MoveSubcategory" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -1085,6 +1095,7 @@
 	</command>
 
 	<command name="SearchCategory" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -1171,6 +1182,7 @@
 	</command>
 
 	<command name="SearchCategoryWithNullResult" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -1209,6 +1221,7 @@
 	</command>
 
 	<command name="SearchEditedCategory" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -1265,6 +1278,7 @@
 	</command>
 
 	<command name="SearchSubcategory" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -1361,6 +1375,7 @@
 	</command>
 
 	<command name="SearchSubcategoryWithNullResult" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -1406,6 +1421,7 @@
 	</command>
 
 	<command name="SearchVocabulary" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -1477,6 +1493,7 @@
 	</command>
 
 	<command name="SearchVocabularyWithNullResult" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -1504,6 +1521,7 @@
 	</command>
 
 	<command name="ViewCannotAddDuplicateSubCategory" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -1551,6 +1569,7 @@
 	</command>
 
 	<command name="ViewNavigation" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">

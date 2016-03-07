@@ -29,6 +29,7 @@
 	</tear-down>
 
 	<command name="AddDefinitionNoTemplate" priority="4">
+		<property name="priority" value="4" />
 		<description message="This is a use case for LPS-51226." />
 
 		<execute macro="Navigator#openURL" />
@@ -49,6 +50,7 @@
 	</command>
 
 	<command name="DownloadReportPG" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesConfiguration">
@@ -90,6 +92,7 @@
 	</command>
 
 	<command name="ViewDefinitionsPagination" priority="4">
+		<property name="priority" value="4" />
 		<description message="This is a use case for LPS-50501." />
 
 		<execute macro="Navigator#openURL" />
@@ -130,6 +133,7 @@
 	</command>
 
 	<command name="ViewReportEmailNewConfiguration" priority="4">
+		<property name="priority" value="4" />
 		<description message="This is a use case for LPS-51009." />
 
 		<var method="TestPropsUtil#get('email.address.1')" name="emailAddress1" />
@@ -266,6 +270,7 @@ Thanks,<br/>
 	</command>
 
 	<command name="ViewReportPG" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesConfiguration">

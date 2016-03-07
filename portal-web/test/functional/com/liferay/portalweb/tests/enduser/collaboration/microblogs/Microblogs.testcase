@@ -38,6 +38,7 @@
 	</tear-down>
 
 	<command name="AddEntry" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Microblogs#updateStatus">
 			<var name="entryContent" value="Microblog Entry Content" />
 		</execute>
@@ -51,6 +52,7 @@
 	</command>
 
 	<command name="DeleteEntry" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Microblogs#updateStatus">
 			<var name="entryContent" value="Microblog Entry Content" />
 		</execute>
@@ -67,6 +69,7 @@
 	</command>
 
 	<command name="EditEntry" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Microblogs#updateStatus">
 			<var name="entryContent" value="Microblog Entry Content" />
 		</execute>

@@ -30,6 +30,7 @@
 	</tear-down>
 
 	<command name="ExportUserGroupMembers" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
@@ -88,6 +89,7 @@
 	</command>
 
 	<command name="UserGroupPrivatePageInheritance" priority="4">
+		<property name="priority" value="4" />
 		<property name="custom.properties" value="layout.user.private.layouts.auto.create=false${line.separator}user.groups.copy.layouts.to.user.personal.site=true" />
 
 		<execute macro="ProductMenu#gotoControlPanelUsers">
@@ -177,6 +179,7 @@
 	</command>
 
 	<command name="UserGroupSiteOwnerPermissions" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Roles" />
 		</execute>
@@ -414,6 +417,7 @@
 	</command>
 
 	<command name="UserGroupSiteTemplates" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
@@ -550,6 +554,7 @@
 	</command>
 
 	<command name="ViewUserGroupPermissionsNoAsUser" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Roles" />
 		</execute>
@@ -716,6 +721,7 @@
 	</command>
 
 	<command name="ViewUserGroupSiteRolePermissions" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Roles" />
 		</execute>

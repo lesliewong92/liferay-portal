@@ -34,6 +34,7 @@
 	</tear-down>
 
 	<command name="AddWebContentCP" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<var name="webContentContent" value="WC WebContent Content" />
@@ -85,6 +86,7 @@
 	</command>
 
 	<command name="AddWebContentDraftCP" priority="3">
+		<property name="priority" value="3" />
 		<var name="webContentContent" value="WC WebContent Content" />
 		<var name="webContentTitle" value="WC WebContent Title" />
 
@@ -136,6 +138,7 @@
 	</command>
 
 	<command name="AddWebContentNoWorkflowCP" priority="3">
+		<property name="priority" value="3" />
 		<var name="webContentContent" value="WC WebContent Content" />
 		<var name="webContentTitle" value="WC WebContent Title" />
 
@@ -178,6 +181,7 @@
 	</command>
 
 	<command name="ApproveInWebContentFolderNoWorkflowWithHomeFolderSingleApproverWorkflowCP" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Workflow#configureWorkflowViaFolderInfo">
 			<var name="workflowDefinition" value="Single Approver (Version 1)" />
 		</execute>
@@ -278,6 +282,7 @@
 	</command>
 
 	<command name="ApproveInWebContentFolderSingleApproverStructureSpecificWorkflowCP" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="WebContentNavigator#gotoManageStructures" />
 
 		<execute macro="WebContentStructures#addCP">
@@ -475,6 +480,7 @@
 	</command>
 
 	<command name="ApproveInWebContentFolderSingleApproverWorkflowWithNoHomeFolderWorkflowCP" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Workflow#configureWorkflowViaFolderInfo">
 			<var name="workflowDefinition" value="No Workflow" />
 		</execute>
@@ -585,6 +591,7 @@
 	</command>
 
 	<command name="ApproveInWebContentFolderWithParentFolderSingleApproverWorkflowCP" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Workflow#configureWorkflowViaFolderInfo">
@@ -736,6 +743,7 @@
 	</command>
 
 	<command name="ApproveWebContentCP" priority="4">
+		<property name="priority" value="4" />
 		<var name="webContentContent" value="WC WebContent Content" />
 		<var name="webContentTitle" value="WC WebContent Title" />
 
@@ -818,6 +826,7 @@
 	</command>
 
 	<command name="RejectInWebContentFolderNoWorkflowWithHomeFolderSingleApproverWorkflowCP" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Workflow#configureWorkflowViaFolderInfo">
 			<var name="workflowDefinition" value="Single Approver (Version 1)" />
 		</execute>
@@ -929,6 +938,7 @@
 	</command>
 
 	<command name="RejectInWebContentFolderSingleApproverStructureSpecificWorkflowCP" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="WebContentNavigator#gotoManageStructures" />
 
 		<execute macro="WebContentStructures#addCP">
@@ -1125,6 +1135,7 @@
 	</command>
 
 	<command name="RejectInWebContentFolderSingleApproverWorkflowWithNoHomeFolderWorkflowCP" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Workflow#configureWorkflowViaFolderInfo">
 			<var name="workflowDefinition" value="No Workflow" />
 		</execute>
@@ -1246,6 +1257,7 @@
 	</command>
 
 	<command name="RejectInWebContentFolderWithParentFolderSingleApproverWorkflowCP" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Workflow#configureWorkflowViaFolderInfo">
 			<var name="workflowDefinition" value="Single Approver (Version 1)" />
 		</execute>
@@ -1417,6 +1429,7 @@
 	</command>
 
 	<command name="RejectWebContentCP" priority="4">
+		<property name="priority" value="4" />
 		<var name="webContentContent" value="WC WebContent Content" />
 		<var name="webContentTitle" value="WC WebContent Title" />
 

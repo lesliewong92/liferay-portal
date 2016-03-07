@@ -56,6 +56,7 @@
 	</tear-down>
 
 	<command name="AddMBCategories" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<var name="categoryNameList" value="MB Category1 Name,MB Category2 Name,MB Category3 Name" />
@@ -76,6 +77,7 @@
 	</command>
 
 	<command name="AddMBCategory" priority="5">
+		<property name="priority" value="5" />
 		<var name="categoryName" value="MB Category Name" />
 
 		<execute macro="Navigator#gotoPage">
@@ -92,6 +94,7 @@
 	</command>
 
 	<command name="AddMBCategoryDescription" priority="4">
+		<property name="priority" value="4" />
 		<var name="categoryDescription" value="MB Category Description" />
 		<var name="categoryDescriptionEnabled" value="true" />
 		<var name="categoryName" value="MB Category Name" />
@@ -114,6 +117,7 @@
 	</command>
 
 	<command name="AddMBCategoryNameUTF8" priority="4">
+		<property name="priority" value="4" />
 		<var name="categoryName" value="MB Catègory Name" />
 
 		<execute macro="Navigator#gotoPage">
@@ -130,6 +134,7 @@
 	</command>
 
 	<command name="AddMBCategorySubcategory" priority="4">
+		<property name="priority" value="4" />
 		<var name="categoryName" value="MB Category Name" />
 		<var name="subCategoryDescription" value="MB Subcategory Description" />
 		<var name="subCategoryName" value="MB Subcategory Name" />
@@ -165,6 +170,7 @@
 	</command>
 
 	<command name="AddMBCategorySubcategoryNullName" priority="4">
+		<property name="priority" value="4" />
 		<var name="categoryName" value="MB Category Name" />
 		<var name="subCategoryDescription" value="MB Subcategory Description" />
 		<var name="subCategoryNullName" value=" " />
@@ -199,6 +205,7 @@
 	</command>
 
 	<command name="AddMBCategorySubcategoryThread" priority="4">
+		<property name="priority" value="4" />
 		<var name="categoryName" value="MB Category Name" />
 		<var name="subCategoryDescription" value="MB Subcategory Description" />
 		<var name="subCategoryEnabled" value="true" />
@@ -263,6 +270,7 @@
 	</command>
 
 	<command name="AddMBCategoryThreadQuestion" priority="4">
+		<property name="priority" value="4" />
 		<var name="categoryName" value="MB Category Name" />
 		<var name="threadBody" value="MB Thread Message Body" />
 		<var name="threadSubject" value="MB Thread Message Subject" />
@@ -310,6 +318,7 @@
 	</command>
 
 	<command name="AddMBCategoryThreadUTF8" priority="4">
+		<property name="priority" value="4" />
 		<var name="categoryName" value="MB Category Name" />
 		<var name="threadBody" value="MB Thrèad Mèssagè Body" />
 		<var name="threadSubject" value="MB Thrèad Mèssagè Subjèct" />
@@ -357,6 +366,7 @@
 	</command>
 
 	<command name="AddMBThread" priority="5">
+		<property name="priority" value="5" />
 		<var name="threadBody" value="MB Thread Message Body" />
 		<var name="threadSubject" value="MB Thread Message Subject" />
 
@@ -387,6 +397,7 @@
 	</command>
 
 	<command name="AddMBThreadGuestReply" priority="5">
+		<property name="priority" value="5" />
 		<var name="replytoMessage" value="guest" />
 		<var name="threadBody" value="MB Thread Message Body" />
 		<var name="threadReplyBody" value="MB Thread Reply Body As Guest" />
@@ -452,6 +463,7 @@
 	</command>
 
 	<command name="AddMBThreadNullBody" priority="4">
+		<property name="priority" value="4" />
 		<var name="threadBody" value="" />
 		<var name="threadSubject" value="MB Thread Message Subject" />
 
@@ -482,6 +494,7 @@
 	</command>
 
 	<command name="AddMBThreadReply" priority="5">
+		<property name="priority" value="5" />
 		<var name="threadBody" value="MB Thread Message Body" />
 		<var name="threadReplyBody" value="MB Thread Reply Body" />
 		<var name="threadSubject" value="MB Thread Message Subject" />
@@ -518,6 +531,7 @@
 	</command>
 
 	<command name="AddMBThreadWithInvalidAttachmentSize" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Message Boards Page" />
 		</execute>
@@ -544,6 +558,7 @@
 	</command>
 
 	<command name="CancelEditOnThread" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Message Boards Page" />
 		</execute>
@@ -577,6 +592,7 @@
 	</command>
 
 	<command name="CancelThread" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Message Boards Page" />
 		</execute>
@@ -592,6 +608,7 @@
 	</command>
 
 	<command name="DeleteMBCategory" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<var name="categoryName" value="MB Category Name" />
@@ -616,6 +633,7 @@
 	</command>
 
 	<command name="DeleteMBThread" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<var name="threadBody" value="MB Thread Message Body" />
@@ -640,6 +658,7 @@
 	</command>
 
 	<command name="EditMBCategory" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Navigator#gotoPage">
@@ -661,6 +680,7 @@
 	</command>
 
 	<command name="EditMBThreadBody" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
@@ -692,6 +712,7 @@
 	</command>
 
 	<command name="EditMBThreadSubject" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
@@ -723,6 +744,7 @@
 	</command>
 
 	<command name="EditMBThreadSubjectAndBody" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
@@ -756,6 +778,7 @@
 	</command>
 
 	<command name="MoveMBCategory1ThreadToCategory2" priority="4">
+		<property name="priority" value="4" />
 		<var name="categoryName1" value="MB Category1 Name" />
 		<var name="categoryName2" value="MB Category2 Name" />
 		<var name="threadBody" value="MB Thread Message Body" />
@@ -824,6 +847,7 @@
 	</command>
 
 	<command name="MoveMBCategory1ThreadWithExplanationPostToCategory2" priority="3">
+		<property name="priority" value="3" />
 		<var name="categoryName1" value="MB Category1 Name" />
 		<var name="categoryName2" value="MB Category2 Name" />
 		<var name="explanationBody" value="MB Explanation Post Body" />
@@ -899,6 +923,7 @@
 	</command>
 
 	<command name="SaveThreadAsDraft" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Message Boards Page" />
 		</execute>
@@ -925,6 +950,7 @@
 	</command>
 
 	<command name="ViewDefaultEmailFromConfigurationAndSubscriptionEmail" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Server Administration" />
 		</execute>
@@ -1047,6 +1073,7 @@
 	</command>
 
 	<command name="ViewMBThreadAndReplyThreadInGmail" priority="4">
+		<property name="priority" value="4" />
 		<property name="custom.properties" value="pop.server.notifications.enabled=true{line.separator}pop.server.subdomain=" />
 
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
@@ -1208,6 +1235,7 @@
 	</command>
 
 	<command name="ViewMBThreadReplyViaMoreMessages" priority="4">
+		<property name="priority" value="4" />
 		<property name="custom.properties" value="discussion.comments.delta.value=5" />
 
 		<execute macro="Page#gotoPG">
@@ -1272,6 +1300,7 @@
 	</command>
 
 	<command name="ViewSubcategorySubscriptionViaMySubscriptionsPage" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Message Boards Page" />
 		</execute>

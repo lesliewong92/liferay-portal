@@ -39,6 +39,7 @@
 	</tear-down>
 
 	<command name="AddFieldSetWithDocumentsAndMediaField" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
@@ -111,6 +112,7 @@
 	</command>
 
 	<command name="AddProcessWithDataDefinitionFieldSet" priority="4">
+		<property name="priority" value="4" />
 		<var name="ddlDataDefinitionDescription" value="Data Definition Description" />
 		<var name="ddlDataDefinitionName" value="Data Definition" />
 		<var name="field" value="Text" />
@@ -192,6 +194,7 @@
 	</command>
 
 	<command name="AddProcessWithNewFieldSetAndWorkflowViaSourceTab" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
 		<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
@@ -276,6 +279,7 @@
 	</command>
 
 	<command name="AddProcessWithPredefinedFieldSetAndSingleApproverWorkflow" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfProcessDescription" value="Kaleo Forms Process Predefined Description" />
 		<var name="kfProcessName" value="Kaleo Forms Process Predefined" />
 
@@ -333,6 +337,7 @@
 	</command>
 
 	<command name="DeactivateAndActivateWorkflowDefinition" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 		<var name="workflowDefinitionTitle" value="Single Approver" />
@@ -406,6 +411,7 @@
 	</command>
 
 	<command name="DeactivateAndDeleteWorkflowDefinition" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
@@ -498,6 +504,7 @@
 	</command>
 
 	<command name="DeleteCreateFormViaDDL" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
@@ -602,6 +609,7 @@
 	</command>
 
 	<command name="DeleteCreateFormViaKaleoFormsAdmin" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
 		<execute macro="Navigator#openURL" />
@@ -659,6 +667,7 @@
 	</command>
 
 	<command name="DeleteEditedDataDefinition" priority="4">
+		<property name="priority" value="4" />
 		<var name="dataDefinitionDescription" value="Data Definition Description" />
 		<var name="dataDefinitionName" value="Data Definition" />
 		<var name="field" value="Text" />
@@ -776,6 +785,7 @@
 	</command>
 
 	<command name="DeleteEditFormViaKaleoFormsAdmin" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
 		<execute macro="Navigator#openURL" />
@@ -833,6 +843,7 @@
 	</command>
 
 	<command name="DeleteFieldSet" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
 		<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
@@ -928,6 +939,7 @@
 	</command>
 
 	<command name="DeleteForm" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
 		<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
@@ -1033,6 +1045,7 @@
 	</command>
 
 	<command name="DeleteProcess" priority="4">
+		<property name="priority" value="4" />
 		<var name="ddlDataDefinitionDescription" value="Data Definition Description" />
 		<var name="ddlDataDefinitionName" value="Data Definition" />
 		<var name="field" value="Text" />
@@ -1118,6 +1131,7 @@
 	</command>
 
 	<command name="DeleteProcessRecords" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
@@ -1302,6 +1316,7 @@
 	</command>
 
 	<command name="EditCreateTaskForm" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
@@ -1429,6 +1444,7 @@
 	</command>
 
 	<command name="EditFieldSetViaAddProcess" priority="4">
+		<property name="priority" value="4" />
 		<var name="ddlDataDefinitionDescription" value="Data Definition Description" />
 		<var name="ddlDataDefinitionName" value="Data Definition" />
 		<var name="field" value="Text" />
@@ -1524,6 +1540,7 @@
 	</command>
 
 	<command name="EditFieldsPredefinedDefinitionViaAddProcess" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -1610,6 +1627,7 @@
 	</command>
 
 	<command name="EditProcessFieldSetPaginationAndViewSelectedForm" priority="4">
+		<property name="priority" value="4" />
 		<description message="This is a use case for LPS-49037." />
 
 		<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
@@ -1697,6 +1715,7 @@
 	</command>
 
 	<command name="EditProcessForms" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
 		<execute macro="Navigator#openURL" />
@@ -1807,6 +1826,7 @@
 	</command>
 
 	<command name="EditProcessNewDetails" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
@@ -1892,6 +1912,7 @@
 	</command>
 
 	<command name="EditProcessNewFieldSet" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
@@ -2012,6 +2033,7 @@
 	</command>
 
 	<command name="EditProcessNewWorkflowViaSourceTab" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
 		<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
@@ -2193,6 +2215,7 @@
 	</command>
 
 	<command name="EditSingleApproverWorkflowViaSourceTabViaAddProcess" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
 		<execute macro="Navigator#openURL" />
@@ -2262,6 +2285,7 @@
 	</command>
 
 	<command name="EditSingleApproverWorkflowViaViewTabViaAddProcess" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
@@ -2357,6 +2381,7 @@
 	</command>
 
 	<command name="EditUploadedWorkflowViaViewTabViaAddProcess" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 		<var name="workflowDefinitionName" value="Uploaded Definition" />
@@ -2471,6 +2496,7 @@
 	</command>
 
 	<command name="ExportAllProcessRecordsCSV" priority="4">
+		<property name="priority" value="4" />
 		<description message="This is a use case for LPS-49107." />
 
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
@@ -2613,6 +2639,7 @@
 	</command>
 
 	<command name="ExportAllProcessRecordsXML" priority="4">
+		<property name="priority" value="4" />
 		<description message="This is a use case for LPS-49107." />
 
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
@@ -2755,6 +2782,7 @@
 	</command>
 
 	<command name="ExportApprovedProcessRecordsCSV" priority="4">
+		<property name="priority" value="4" />
 		<description message="This is a use case for LPS-49107." />
 
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
@@ -2898,6 +2926,7 @@
 	</command>
 
 	<command name="ExportApprovedProcessRecordsXML" priority="4">
+		<property name="priority" value="4" />
 		<description message="This is a use case for LPS-49107." />
 
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
@@ -3041,6 +3070,7 @@
 	</command>
 
 	<command name="NavigateBackFromAssignForm" priority="4">
+		<property name="priority" value="4" />
 		<description message="This is a use case for LPS-48623." />
 
 		<execute macro="Navigator#openURL" />
@@ -3104,6 +3134,7 @@
 	</command>
 
 	<command name="SearchProcessRecords" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
@@ -3288,6 +3319,7 @@
 	</command>
 
 	<command name="ViewCanAddFieldsAfterSaveAndContinue" priority="4">
+		<property name="priority" value="4" />
 		<description message="This is a use case for LPS-50363." />
 
 		<execute macro="Navigator#openURL" />
@@ -3350,6 +3382,7 @@
 	</command>
 
 	<command name="ViewErrorMessageUponSavingBlankFieldSet" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
@@ -3379,6 +3412,7 @@
 	</command>
 
 	<command name="ViewFieldSetCreateHeaderTitle" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
 		<execute macro="Navigator#openURL" />
@@ -3427,6 +3461,7 @@
 	</command>
 
 	<command name="ViewFieldSetParentDefinitionIframeTitle" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
 		<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
@@ -3457,6 +3492,7 @@
 	</command>
 
 	<command name="ViewNoUnpublishedWorkflowMessage" priority="3">
+		<property name="priority" value="3" />
 		<description message="This is a use case for LPS-47352." />
 
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
@@ -3503,6 +3539,7 @@
 	</command>
 
 	<command name="ViewProcessRecordDetails" priority="4">
+		<property name="priority" value="4" />
 		<var name="kfFieldSetName" value="Field Set Data Definition" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
@@ -3667,6 +3704,7 @@
 	</command>
 
 	<command name="ViewSelectedFieldSetWithPagination" priority="4">
+		<property name="priority" value="4" />
 		<description message="This is a use case for LPS-49475." />
 
 		<var name="kfProcessName" value="Kaleo Forms Process" />
@@ -3729,6 +3767,7 @@
 	</command>
 
 	<command name="ViewUnpublishedWorkflowDefinitionsMenulist" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
