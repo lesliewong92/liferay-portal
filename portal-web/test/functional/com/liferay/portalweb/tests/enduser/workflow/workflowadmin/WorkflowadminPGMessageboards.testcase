@@ -57,6 +57,7 @@
 	</tear-down>
 
 	<command name="ApproveMessageBoardsThreadPG" priority="4">
+		<property name="priority" value="4" />
 		<var name="threadBody" value="MB Thread Body" />
 		<var name="threadSubject" value="MB Thread Subject" />
 
@@ -148,6 +149,7 @@
 	</command>
 
 	<command name="RejectMessageBoardsThreadPG" priority="4">
+		<property name="priority" value="4" />
 		<var name="threadBody" value="MB Thread Body" />
 		<var name="threadSubject" value="MB Thread Subject" />
 

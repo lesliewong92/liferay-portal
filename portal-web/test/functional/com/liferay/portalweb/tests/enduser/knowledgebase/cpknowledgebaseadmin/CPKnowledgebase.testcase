@@ -35,6 +35,7 @@
 	</tear-down>
 
 	<command name="AddChildArticleToKBArticleViaKBAdmin" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -73,6 +74,7 @@
 	</command>
 
 	<command name="AddKBArticlesViaKBAdmin" priority="4">
+		<property name="priority" value="4" />
 		<var name="kbArticleCounterList" value="1,2,3" />
 
 		<execute macro="Navigator#openURL" />
@@ -103,6 +105,7 @@
 	</command>
 
 	<command name="AddKBArticleViaKBAdmin" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -127,6 +130,7 @@
 	</command>
 
 	<command name="AddKBArticleViaTemplateCP" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -163,6 +167,7 @@
 	</command>
 
 	<command name="AddKBArticleWithAttachmentViaKBAdmin" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -189,6 +194,7 @@
 	</command>
 
 	<command name="AddKBArticleWithBlogsEntryRelatedAssetViaKBAdmin" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -235,6 +241,7 @@
 	</command>
 
 	<command name="AddKBArticleWithCategory" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -282,6 +289,7 @@
 	</command>
 
 	<command name="AddKBArticleWithInvalidAttachmentSize" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Server Administration" />
 		</execute>
@@ -316,6 +324,7 @@
 	</command>
 
 	<command name="AddKBArticleWithoutRequiredCategory" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -354,6 +363,7 @@
 	</command>
 
 	<command name="AddKBArticleWithSourceViaKBAdmin" priority="4">
+		<property name="priority" value="4" />
 		<var name="kbArticleContentSource">
 			<![CDATA[<b>Knowledge Base&rsquo;s Article Content</b>]]>
 		</var>
@@ -381,6 +391,7 @@
 	</command>
 
 	<command name="AddKBFolder" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -421,6 +432,7 @@
 	</command>
 
 	<command name="AddTemplateCP" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -445,6 +457,7 @@
 	</command>
 
 	<command name="CannotAddDuplicateKBFolder" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -464,6 +477,7 @@
 	</command>
 
 	<command name="DeleteKBArticleViaKBAdmin" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -530,6 +544,7 @@
 	</command>
 
 	<command name="EditKBArticleAndAddAttachmentViaKBAdmin" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -568,6 +583,7 @@
 	</command>
 
 	<command name="EditKBArticlePriorityViaEnterKey" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -606,6 +622,7 @@
 	</command>
 
 	<command name="EditKBArticleViaKBAdmin" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -642,6 +659,7 @@
 	</command>
 
 	<command name="EditKBFolder" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -681,6 +699,7 @@
 	</command>
 
 	<command name="RemoveParentArticleViaKBAdmin" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -733,6 +752,7 @@
 	</command>
 
 	<command name="SelectParentArticleViaKBAdmin" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -773,6 +793,7 @@
 	</command>
 
 	<command name="ViewChildArticleInKBArticleViaKBAdmin" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -805,6 +826,7 @@
 	</command>
 
 	<command name="ViewDuplicateFriendlyURLIsNotAllowed" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -830,6 +852,7 @@
 	</command>
 
 	<command name="ViewImportedKBArticlesPrioritization" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -1012,6 +1035,7 @@
 	</command>
 
 	<command name="ViewKBArticlePriority" priority="4">
+		<property name="priority" value="4" />
 		<var name="kbArticleCounterList" value="1,2" />
 
 		<execute macro="Navigator#openURL" />
@@ -1039,6 +1063,7 @@
 	</command>
 
 	<command name="ViewKBTemplateViaAddKBArticleCP" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -1063,6 +1088,7 @@
 	</command>
 
 	<command name="ViewNoErrorAfterImportWithoutParentMarkdownFiles" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -1080,6 +1106,7 @@
 	</command>
 
 	<command name="ViewPendingKBArticleContent" priority="3">
+		<property name="priority" value="3" />
 		<var name="kbArticleContent" value="Knowledge Base Article Content" />
 		<var name="kbArticleTitle" value="Knowledge Base Article Title" />
 

@@ -50,6 +50,7 @@
 	</tear-down>
 
 	<command name="ViewMentionViaMessageBoardsThread" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -82,6 +83,7 @@
 	</command>
 
 	<command name="ViewMentionViaMessageBoardsThreadReply" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -132,6 +134,7 @@
 	</command>
 
 	<command name="ViewMentionViaUpdatedMessageBoardsThread" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">

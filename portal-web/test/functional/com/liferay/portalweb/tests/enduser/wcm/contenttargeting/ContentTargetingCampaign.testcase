@@ -51,6 +51,7 @@
 	</tear-down>
 
 	<command name="AddBlankCP" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -104,6 +105,7 @@
 	</command>
 
 	<command name="AddCampaignContentCP" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -181,6 +183,7 @@
 	</command>
 
 	<command name="AddCampaignFormCP" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -241,6 +244,7 @@
 	</command>
 
 	<command name="AddCampaignLinkCP" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -301,6 +305,7 @@
 	</command>
 
 	<command name="AddCampaignPageCP" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -360,6 +365,7 @@
 	</command>
 
 	<command name="AddCampaignYoutubeCP" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -420,6 +426,7 @@
 	</command>
 
 	<command name="DeleteCampaignCP" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -470,6 +477,7 @@
 	</command>
 
 	<command name="EditCampaignCP" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -586,6 +594,7 @@
 	</command>
 
 	<command name="ViewInactiveCampaignCP" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>

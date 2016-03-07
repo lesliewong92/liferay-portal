@@ -26,6 +26,7 @@
 	</tear-down>
 
 	<command name="AddMember" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="ProductMenu#gotoControlPanelUsers">
@@ -65,6 +66,7 @@
 	</command>
 
 	<command name="AddMembersSiteUser" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="ProductMenu#gotoControlPanelUsers">
@@ -120,6 +122,7 @@
 	</command>
 
 	<command name="AddSiteTeam" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="ProductMenu#gotoControlPanelSites">
@@ -150,6 +153,7 @@
 	</command>
 
 	<command name="AddSiteTeams" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="ProductMenu#gotoControlPanelSites">
@@ -210,6 +214,7 @@
 	</command>
 
 	<command name="AssignMembersSiteTeamUser" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="ProductMenu#gotoControlPanelUsers">
@@ -283,6 +288,7 @@
 	</command>
 
 	<command name="DeleteSiteTeam" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="ProductMenu#gotoControlPanelSites">
@@ -317,6 +323,7 @@
 	</command>
 
 	<command name="EditSiteTeam" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="ProductMenu#gotoControlPanelSites">
@@ -349,6 +356,7 @@
 	</command>
 
 	<command name="LimitMembershipParentSite" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -490,6 +498,7 @@
 	</command>
 
 	<command name="OrganizationsView" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
@@ -665,6 +674,7 @@
 	</command>
 
 	<command name="RemoveMember" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="ProductMenu#gotoControlPanelUsers">
@@ -718,6 +728,7 @@
 	</command>
 
 	<command name="SiteMembershipsPagination" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
@@ -843,6 +854,7 @@
 	</command>
 
 	<command name="SiteMembershipsSearch" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
@@ -1054,6 +1066,7 @@
 	</command>
 
 	<command name="ViewNoManualMembershipManagement" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Site#manageMembershipOptions">
 			<var name="allowManualMembershipManagement" value="true" />
 		</execute>
