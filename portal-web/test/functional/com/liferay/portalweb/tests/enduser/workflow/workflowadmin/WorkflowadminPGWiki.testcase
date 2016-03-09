@@ -57,6 +57,7 @@
 	</tear-down>
 
 	<command name="ApproveFrontPageUserEdit" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
@@ -171,6 +172,7 @@
 	</command>
 
 	<command name="ApproveWikiPagePG" priority="4">
+		<property name="priority" value="4" />
 		<var name="wikiPageContent" value="Wiki Page Content" />
 		<var name="wikiPageTitle" value="Wiki Page Title" />
 		<var name="wikiPageUsername" value="Test Test" />
@@ -262,6 +264,7 @@
 	</command>
 
 	<command name="RejectFrontPageUserEdit" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
@@ -374,6 +377,7 @@
 	</command>
 
 	<command name="RejectWikiPagePG" priority="4">
+		<property name="priority" value="4" />
 		<var name="wikiPageContent" value="Wiki Page Content" />
 		<var name="wikiPageTitle" value="Wiki Page Title" />
 		<var name="wikiPageUsername" value="Test Test" />

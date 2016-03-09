@@ -7,6 +7,7 @@
 	</set-up>
 
 	<command name="ZoeHealthcareThemeSmoke" priority="4">
+		<property name="priority" value="4" />
 		<property name="portlet.plugins.includes" value="web-form-portlet" />
 		<property name="theme.plugins.includes" value="zoe-healthcare-theme" />
 		<property name="web.plugins.includes" value="resources-importer-web" />

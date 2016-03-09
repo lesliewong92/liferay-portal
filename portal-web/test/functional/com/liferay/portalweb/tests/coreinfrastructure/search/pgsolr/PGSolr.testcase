@@ -31,6 +31,7 @@
 	</tear-down>
 
 	<command name="SolrSmokeTest" priority="4">
+		<property name="priority" value="4" />
 		<description message="This smoke test is to ensure that Solr has successfully deployed in Liferay by asserting the Solr administration dashboard and performing searches in portal. Note by default, an embedded Elasticsearch is deployed in portal." />
 
 		<execute macro="Solr#viewAdminDashboard">

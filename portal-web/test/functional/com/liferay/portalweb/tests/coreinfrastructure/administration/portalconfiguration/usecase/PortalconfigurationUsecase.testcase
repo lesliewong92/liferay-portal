@@ -24,6 +24,7 @@
 	</tear-down>
 
 	<command name="AddPortalInstance" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Virtual Instances" />
 		</execute>
@@ -40,6 +41,7 @@
 	</command>
 
 	<command name="DefaultPortalLandingPage" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>
@@ -76,6 +78,7 @@
 	</command>
 
 	<command name="DeletePortalInstance" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Virtual Instances" />
 		</execute>
@@ -92,6 +95,7 @@
 	</command>
 
 	<command name="PermissionCheckPortalInstances" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Virtual Instances" />
 		</execute>
@@ -156,6 +160,7 @@
 	</command>
 
 	<command name="ViewDeactivatedPortalInstance" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Virtual Instances" />
 		</execute>
@@ -270,6 +275,7 @@
 	</command>
 
 	<command name="ViewVirtualHostPrivateSitePage" priority="4">
+		<property name="priority" value="4" />
 		<property name="custom.properties" value="virtual.hosts.valid.hosts=localhost,127.0.0.1,www.able.com,www.baker.com,www.charlie.com" />
 
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">

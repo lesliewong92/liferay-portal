@@ -50,6 +50,7 @@
 	</tear-down>
 
 	<command name="ActivateInitialStagingWithWikiAttachment" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -155,6 +156,7 @@
 	</command>
 
 	<command name="ConfigurePortletDisplaySettings" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Wiki Test Page" />
 		</execute>
@@ -207,6 +209,7 @@
 	</command>
 
 	<command name="DeleteDeleteWikiFrontpage" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Navigator#openURL" />
@@ -282,6 +285,7 @@
 	</command>
 
 	<command name="RateAndEditPageComment" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -346,6 +350,7 @@
 	</command>
 
 	<command name="RatePage" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -404,6 +409,7 @@
 	</command>
 
 	<command name="RestoreDeleteWikiFrontpage" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Navigator#openURL" />
@@ -470,6 +476,7 @@
 	</command>
 
 	<command name="SearchWikiCommentsAndAttachments" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="WikiPage#addFrontPagePG">
 			<var name="wikiNodeName" value="Main" />
 			<var name="wikiPageContent" value="Wiki FrontPage Content" />
@@ -528,6 +535,7 @@
 	</command>
 
 	<command name="ViewNoWikiXSSviaAddPage" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Wiki Test Page" />
 		</execute>
@@ -542,6 +550,7 @@
 	</command>
 
 	<command name="ViewWikiDraftPagesViaBreadcrumb" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>

@@ -50,6 +50,7 @@
 	</tear-down>
 
 	<command name="AddWikiFrontPage" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<var name="wikiPageContent" value="Wiki FrontPage Content" />
@@ -64,6 +65,7 @@
 	</command>
 
 	<command name="AddWikiFrontPageChildPage" priority="5">
+		<property name="priority" value="5" />
 		<var name="wikiChildPageContent" value="Wiki FrontPage Child Page Content" />
 		<var name="wikiChildPageTitle" value="Wiki FrontPage Child Page Title" />
 		<var name="wikiPageContent" value="Wiki FrontPage Content" />
@@ -111,6 +113,7 @@
 	</command>
 
 	<command name="AddWikiFrontPageChildPageFormatHTML" priority="4">
+		<property name="priority" value="4" />
 		<property name="portal.acceptance" value="true" />
 
 		<var name="welcomeToLiferay">
@@ -170,6 +173,7 @@
 	</command>
 
 	<command name="AddWikiFrontPageChildPages" priority="4">
+		<property name="priority" value="4" />
 		<var name="wikiChildPageCounterList" value="1,2,3" />
 
 		<execute macro="Navigator#gotoPage">
@@ -213,6 +217,7 @@
 	</command>
 
 	<command name="AddWikiFrontPageChildPageWithInvalidTitle" priority="4">
+		<property name="priority" value="4" />
 		<var name="invalidTitleBackslash" value="Wiki\ Front\ Page\ Child\ Page\ Title\" />
 		<var name="invalidTitleColon" value="Wiki: Front: Page: Child: Page: Title:" />
 		<var name="invalidTitleGreaterthan" value="Wiki&gt; Front&gt; Page&gt; Child&gt; Page&gt; Title&gt;" />
@@ -378,6 +383,7 @@
 	</command>
 
 	<command name="AddWikiFrontPageContentNoJavascript" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Wiki Test Page" />
 		</execute>
@@ -413,6 +419,7 @@
 	</command>
 
 	<command name="AddWikiFrontPageFormatCreole" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
@@ -441,6 +448,7 @@
 	</command>
 
 	<command name="AddWikiFrontPageFormatHTML" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Wiki Test Page" />
 		</execute>
@@ -484,6 +492,7 @@
 	</command>
 
 	<command name="AddWikiPage" priority="5">
+		<property name="priority" value="5" />
 		<var name="wikiPageContent" value="Wiki Page Content" />
 		<var name="wikiPageTitle" value="Wiki Page Title" />
 
@@ -516,6 +525,7 @@
 	</command>
 
 	<command name="AddWikiPageChildPage" priority="5">
+		<property name="priority" value="5" />
 		<var name="wikiChildPageContent" value="Wiki Child Page Content" />
 		<var name="wikiChildPageTitle" value="Wiki Child Page Title" />
 		<var name="wikiPageContent" value="Wiki Page Content" />
@@ -565,6 +575,7 @@
 	</command>
 
 	<command name="AddWikiPageFormatHTML" priority="5">
+		<property name="priority" value="5" />
 		<var name="welcomeToLiferay">
 			<![CDATA[
 				<p><a href="http://www.liferay.com">Welcome to LIFERAY</a></p>
@@ -621,6 +632,7 @@
 	</command>
 
 	<command name="AddWikiPageFormatMediaWiki" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Wiki Test Page" />
 		</execute>
@@ -666,6 +678,7 @@
 	</command>
 
 	<command name="AddWikiPages" priority="5">
+		<property name="priority" value="5" />
 		<var name="wikiPageCounterList" value="1,2,3" />
 
 		<execute macro="Navigator#gotoPage">
@@ -703,6 +716,7 @@
 	</command>
 
 	<command name="CancelAddPage" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Navigator#gotoPage">
@@ -729,6 +743,7 @@
 	</command>
 
 	<command name="CancelEditPage" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Wiki Test Page" />
 		</execute>
@@ -773,6 +788,7 @@
 	</command>
 
 	<command name="CompareVersionEditFrontPage" priority="4">
+		<property name="priority" value="4" />
 		<var name="wikiPageContent" value="Wiki Front Page Content" />
 		<var name="wikiPageContentEdit" value="Wiki Front Page Content Edit" />
 		<var name="wikiPageTitle" value="FrontPage" />
@@ -829,6 +845,7 @@
 	</command>
 
 	<command name="CopyPage" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Wiki Test Page" />
 		</execute>
@@ -887,6 +904,7 @@
 	</command>
 
 	<command name="DeleteWikiFrontPage" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<var name="wikiPageContent" value="Wiki FrontPage Content" />
@@ -913,6 +931,7 @@
 	</command>
 
 	<command name="DeleteWikiPage" priority="5">
+		<property name="priority" value="5" />
 		<var name="wikiPageContent" value="Wiki Page Content" />
 		<var name="wikiPageTitle" value="Wiki Page Title" />
 
@@ -949,6 +968,7 @@
 	</command>
 
 	<command name="EditDraftPage" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Wiki Test Page" />
 		</execute>
@@ -1004,6 +1024,7 @@
 	</command>
 
 	<command name="EditWikiFrontPage" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<var name="wikiPageContent" value="Wiki FrontPage Content" />
@@ -1047,6 +1068,7 @@
 	</command>
 
 	<command name="LinkWikiPage1toWikiPage2" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
@@ -1104,6 +1126,7 @@
 	</command>
 
 	<command name="RemoveRedirectLinkFromWikiPage" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
@@ -1166,6 +1189,7 @@
 	</command>
 
 	<command name="RenameWikiPageTitle" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
@@ -1216,6 +1240,7 @@
 	</command>
 
 	<command name="RevertChangeParentWikipage2toWikipage1" priority="4">
+		<property name="priority" value="4" />
 		<var name="wikiPage1Content" value="Wiki Page1 Content" />
 		<var name="wikiPage1Title" value="Wiki Page1 Title" />
 		<var name="wikiPage2Content" value="Wiki Page2 Content" />
@@ -1309,6 +1334,7 @@
 	</command>
 
 	<command name="RevertEditFrontpage" priority="4">
+		<property name="priority" value="4" />
 		<var name="wikiPageContent" value="Wiki Page Content" />
 		<var name="wikiPageContentEdit" value="Wiki Page Content Edit" />
 		<var name="wikiPageRevision" value="1.2" />
@@ -1385,6 +1411,7 @@
 	</command>
 
 	<command name="SaveEditedPageAsDraft" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Wiki Test Page" />
 		</execute>

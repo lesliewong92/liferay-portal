@@ -34,6 +34,7 @@
 	</tear-down>
 
 	<command name="AddBlogsEntryNoGuestRole" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Page#add">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
@@ -53,6 +54,7 @@
 	</command>
 
 	<command name="AddBlogsEntryOrgRole" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="Permissions#setUpOrgRoleLoginUserPG">
 			<var name="orgName" value="Organization Name" />
 			<var name="orgType" value="Organization" />
@@ -124,6 +126,7 @@
 	</command>
 
 	<command name="AddBlogsEntryOrgRoleInline" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Permissions#setUpOrgRoleLoginUserPG">
 			<var name="orgName" value="Organization Name" />
 			<var name="orgType" value="Organization" />
@@ -219,6 +222,7 @@
 	</command>
 
 	<command name="AddBlogsEntryRegRole" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Permissions#setUpRegRoleLoginUserPG">
@@ -277,6 +281,7 @@
 	</command>
 
 	<command name="AddBlogsEntryRegRoleInline" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Permissions#setUpRegRoleLoginUserPG">
 			<var name="pageName" value="Blogs Page" />
 			<var name="portletName" value="Blogs" />
@@ -355,6 +360,7 @@
 	</command>
 
 	<command name="AddBlogsEntrySiteRole" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="Permissions#setUpSiteRoleLoginUserPG">
 			<var name="page" value="Public Pages" />
 			<var name="pageName" value="Blogs Page" />
@@ -424,6 +430,7 @@
 	</command>
 
 	<command name="AddBlogsEntrySiteRoleInline" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Permissions#setUpSiteRoleLoginUserPG">
 			<var name="page" value="Public Pages" />
 			<var name="pageName" value="Blogs Page" />
@@ -516,6 +523,7 @@
 	</command>
 
 	<command name="AddBlogsEntrySiteTeamRoleInline" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Permissions#setUpSiteTeamRoleLoginUserPG">
 			<var name="page" value="Public Pages" />
 			<var name="pageName" value="Blogs Page" />
@@ -606,6 +614,7 @@
 	</command>
 
 	<command name="DeleteBlogsEntryNoGuestRole" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Page#add">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
@@ -632,6 +641,7 @@
 	</command>
 
 	<command name="DeleteBlogsEntryOrgRole" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Permissions#setUpOrgRoleLoginUserPG">
 			<var name="orgName" value="Organization Name" />
 			<var name="orgType" value="Organization" />
@@ -728,6 +738,7 @@
 	</command>
 
 	<command name="DeleteBlogsEntryOrgRoleInline" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Permissions#setUpOrgRoleLoginUserPG">
 			<var name="orgName" value="Organization Name" />
 			<var name="orgType" value="Organization" />
@@ -850,6 +861,7 @@
 	</command>
 
 	<command name="DeleteBlogsEntryOwnerRoleInline" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Permissions#setUpRegRoleLoginUserPG">
 			<var name="pageName" value="Blogs Page" />
 			<var name="portletName" value="Blogs" />
@@ -939,6 +951,7 @@
 	</command>
 
 	<command name="DeleteBlogsEntryRegRole" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Permissions#setUpRegRoleLoginUserPG">
 			<var name="pageName" value="Blogs Page" />
 			<var name="portletName" value="Blogs" />
@@ -1016,6 +1029,7 @@
 	</command>
 
 	<command name="DeleteBlogsEntryRegRoleInline" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Permissions#setUpRegRoleLoginUserPG">
 			<var name="pageName" value="Blogs Page" />
 			<var name="portletName" value="Blogs" />
@@ -1112,6 +1126,7 @@
 	</command>
 
 	<command name="DeleteBlogsEntrySiteRole" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Permissions#setUpSiteRoleLoginUserPG">
 			<var name="page" value="Public Pages" />
 			<var name="pageName" value="Blogs Page" />
@@ -1206,6 +1221,7 @@
 	</command>
 
 	<command name="DeleteBlogsEntrySiteRoleInline" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Permissions#setUpSiteRoleLoginUserPG">
 			<var name="page" value="Public Pages" />
 			<var name="pageName" value="Blogs Page" />
@@ -1321,6 +1337,7 @@
 	</command>
 
 	<command name="DeleteBlogsEntrySiteTeamRoleInline" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Permissions#setUpSiteTeamRoleLoginUserPG">
 			<var name="page" value="Public Pages" />
 			<var name="pageName" value="Blogs Page" />
@@ -1435,6 +1452,7 @@
 	</command>
 
 	<command name="EditBlogsEntryOwnerRoleInline" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Permissions#setUpRegRoleLoginUserPG">
 			<var name="pageName" value="Blogs Page" />
 			<var name="portletName" value="Blogs" />
@@ -1534,6 +1552,7 @@
 	</command>
 
 	<command name="SubcribeBlogsRegRoleInline" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Permissions#setUpRegRoleLoginUserPG">
 			<var name="pageName" value="Blogs Page" />
 			<var name="portletName" value="Blogs" />
@@ -1609,6 +1628,7 @@
 	</command>
 
 	<command name="SubcribeBlogsSiteRoleInline" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Permissions#setUpSiteMemberRoleLoginUserPG">
 			<var name="page" value="Public Pages" />
 			<var name="pageName" value="Blogs Page" />
@@ -1681,6 +1701,7 @@
 	</command>
 
 	<command name="SubscribeBlogsRegRole" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Permissions#setUpRegRoleLoginUserPG">
 			<var name="pageName" value="Blogs Page" />
 			<var name="portletName" value="Blogs" />
@@ -1734,6 +1755,7 @@
 	</command>
 
 	<command name="ViewBlogsEntryPermissionsOwnerRoleInline" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="Permissions#setUpRegRoleLoginUserPG">
 			<var name="pageName" value="Blogs Page" />
 			<var name="portletName" value="Blogs" />
@@ -1821,6 +1843,7 @@
 	</command>
 
 	<command name="ViewBlogsPermissionsRegRole" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Permissions#setUpRegRoleLoginUserPG">
 			<var name="pageName" value="Blogs Page" />
 			<var name="portletName" value="Blogs" />
@@ -1890,6 +1913,7 @@
 	</command>
 
 	<command name="ViewBlogsPermissionsRegRoleInline" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Permissions#setUpRegRoleLoginUserPG">
 			<var name="pageName" value="Blogs Page" />
 			<var name="portletName" value="Blogs" />
@@ -1965,6 +1989,7 @@
 	</command>
 
 	<command name="ViewBlogsPermissionsSiteRole" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Permissions#setUpSiteRoleLoginUserPG">
 			<var name="page" value="Public Pages" />
 			<var name="pageName" value="Blogs Page" />
@@ -2031,6 +2056,7 @@
 	</command>
 
 	<command name="ViewBlogsPermissionsSiteRoleInline" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Permissions#setUpSiteRoleLoginUserPG">
 			<var name="page" value="Public Pages" />
 			<var name="pageName" value="Blogs Page" />
@@ -2119,6 +2145,7 @@
 	</command>
 
 	<command name="ViewBlogsPortletNoGuestRole" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Page#add">
 			<var name="pageName" value="Blogs Page" />
 		</execute>

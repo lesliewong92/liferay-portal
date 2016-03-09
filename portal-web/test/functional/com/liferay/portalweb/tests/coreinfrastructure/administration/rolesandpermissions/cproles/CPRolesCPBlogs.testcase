@@ -36,6 +36,7 @@
 	</tear-down>
 
 	<command name="ViewBlogsEntryRegRoleInline" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Permissions#setUpRegRoleLoginUserCP">
 			<var name="portletName" value="Blogs" />
 			<var name="roleName" value="Regrole Name" />
@@ -147,6 +148,7 @@
 	</command>
 
 	<command name="ViewBlogsPortletRegRole" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Permissions#setUpRegRoleLoginUserCP">
 			<var name="portletName" value="Blogs" />
 			<var name="roleName" value="Regrole Name" />
@@ -200,6 +202,7 @@
 	</command>
 
 	<command name="ViewBlogsPortletSiteRole" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Permissions#setUpSiteRoleLoginUserCP">
 			<var name="page" value="Public Pages" />
 			<var name="pageName" value="Blogs Page" />

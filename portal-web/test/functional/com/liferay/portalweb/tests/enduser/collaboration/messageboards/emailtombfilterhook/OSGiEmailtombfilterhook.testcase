@@ -7,6 +7,7 @@
 	</set-up>
 
 	<command name="EmailToMBFilterHookSmoke" priority="4">
+		<property name="priority" value="4" />
 		<property name="hook.plugins.includes" value="email-to-mb-filter-hook" />
 
 		<var name="appName" value="Email to Message Boards Filter" />

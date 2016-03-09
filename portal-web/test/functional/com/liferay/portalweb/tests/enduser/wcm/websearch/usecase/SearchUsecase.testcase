@@ -35,6 +35,7 @@
 	</tear-down>
 
 	<command name="SearchByUserFacet" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
@@ -156,6 +157,7 @@
 	</command>
 
 	<command name="SearchEntriesByPortletsAndModifiedRangeFacet" priority="4">
+		<property name="priority" value="4" />
 		<var name="searchTerm"><![CDATA["AssetContent"]]></var>
 
 		<execute macro="Navigator#openURL" />
@@ -319,6 +321,7 @@
 	</command>
 
 	<command name="SearchTwiceHideSitesFacet" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
@@ -435,6 +438,7 @@
 	</command>
 
 	<command name="SearchTwiceScopeEverything" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
@@ -560,6 +564,7 @@
 	</command>
 
 	<command name="SearchTwiceScopeLetUserChoose" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
@@ -687,6 +692,7 @@
 	</command>
 
 	<command name="SearchTwiceScopeThisSite" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
@@ -812,6 +818,7 @@
 	</command>
 
 	<command name="SearchXSSAsset" priority="4">
+		<property name="priority" value="4" />
 		<property name="custom.properties" value="index.search.highlight.enabled=false" />
 
 		<execute macro="Page#add">
@@ -843,6 +850,7 @@
 	</command>
 
 	<command name="ViewUserSearchResult" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Page#add">
 			<var name="pageName" value="${searchPageName}" />
 		</execute>

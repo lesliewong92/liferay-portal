@@ -28,6 +28,7 @@
 	</tear-down>
 
 	<command name="Demo1" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Page#add">
 			<var name="pageName" value="Company Picnic" />
 		</execute>

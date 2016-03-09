@@ -22,6 +22,7 @@
 	</tear-down>
 
 	<command name="DisplayStyleOptions" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>

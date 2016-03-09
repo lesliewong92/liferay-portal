@@ -35,6 +35,7 @@
 	</tear-down>
 
 	<command name="CheckLocalizationChinese" priority="4">
+		<property name="priority" value="4" />
 		<execute function="Click" locator1="TestLocalized#CHINESE_LOCALIZATION" />
 		<execute function="AssertTextEquals" locator1="TestLocalized#LOCALIZATION_TEST_1" value1="PASSED" />
 		<execute function="AssertTextEquals" locator1="TestLocalized#LOCALIZATION_TEST_2" value1="PASSED" />
@@ -54,6 +55,7 @@
 	</command>
 
 	<command name="CheckLocalizationFrench" priority="4">
+		<property name="priority" value="4" />
 		<execute function="Click" locator1="TestLocalized#FRENCH_LOCALIZATION" />
 		<execute function="AssertTextEquals" locator1="TestLocalized#LOCALIZATION_TEST_1" value1="PASSED" />
 		<execute function="AssertTextEquals" locator1="TestLocalized#LOCALIZATION_TEST_2" value1="PASSED" />
@@ -73,6 +75,7 @@
 	</command>
 
 	<command name="CheckLocalizationSpanish" priority="4">
+		<property name="priority" value="4" />
 		<execute function="Click" locator1="TestLocalized#SPANISH_LOCALIZATION" />
 		<execute function="AssertTextEquals" locator1="TestLocalized#LOCALIZATION_TEST_1" value1="PASSED" />
 		<execute function="AssertTextEquals" locator1="TestLocalized#LOCALIZATION_TEST_2" value1="PASSED" />
