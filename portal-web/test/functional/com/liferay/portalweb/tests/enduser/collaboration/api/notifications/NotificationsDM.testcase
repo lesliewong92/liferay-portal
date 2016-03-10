@@ -83,6 +83,7 @@
 	</tear-down>
 
 	<command name="ViewNoWebsiteNotificationForNewDocumentInFolder" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
@@ -156,6 +157,7 @@
 	</command>
 
 	<command name="ViewNoWebsiteNotificationForUpdatedDocumentInFolder" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
@@ -234,6 +236,7 @@
 	</command>
 
 	<command name="ViewWebsiteNotificationForNewDocumentInFolder" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
@@ -311,6 +314,7 @@
 	</command>
 
 	<command name="ViewWebsiteNotificationForUpdatedDocumentInFolder" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>

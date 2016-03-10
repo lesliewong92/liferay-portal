@@ -61,6 +61,7 @@
 	</tear-down>
 
 	<command name="AddAndEditAssetsViaVirtualHostOrganizations" priority="4">
+		<property name="priority" value="4" />
 		<property name="custom.properties" value="virtual.hosts.valid.hosts=localhost,127.0.0.1,www.able.com,www.baker.com" />
 
 		<execute macro="ProductMenu#gotoControlPanelUsers">
@@ -258,6 +259,7 @@
 	</command>
 
 	<command name="AssertAssetListScopeViaAssetPublisher" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Global" />
 		</execute>
@@ -300,6 +302,7 @@
 	</command>
 
 	<command name="AssetPublisherCategoriesLocalization" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -484,6 +487,7 @@
 	</command>
 
 	<command name="AssetPublisherCategoriesNavigation" priority="3">
+		<property name="priority" value="3" />
 		<var name="siteName" value="Liferay" />
 
 		<execute macro="Navigator#openURL" />
@@ -723,6 +727,7 @@
 	</command>
 
 	<command name="AssetPublisherFilterAndOrderByFieldType" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -1034,6 +1039,7 @@
 	</command>
 
 	<command name="AssetPublisherHasOpenOfficeFileTypeLinks" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Server Administration" />
 		</execute>
@@ -1125,6 +1131,7 @@
 	</command>
 
 	<command name="AssetPublisherSiteAndGlobalScopeAccessibility" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 		<property name="test.name.skip.portal.instance" value="WebcontentpublicationUsecase#AssetPublisherSiteAndGlobalScopeAccessibility" />
 
@@ -1210,6 +1217,7 @@
 	</command>
 
 	<command name="AssetPublisherTogglingBetweenSites" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -1313,6 +1321,7 @@
 	</command>
 
 	<command name="ViewAPPortletAsNewUserSiteAdministratorViaUserSite" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -1406,6 +1415,7 @@
 	</command>
 
 	<command name="ViewAuthorChangeViaAP" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="AssetPublisherPortlet#configureShowMetadataFieldsPG">
 			<var name="addMetadata" value="true" />
 			<var name="metadataField" value="Author" />
@@ -1534,6 +1544,7 @@
 	</command>
 
 	<command name="ViewBlogsEntriesViaRelatedAssets" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Page#add">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
@@ -1623,6 +1634,7 @@
 	</command>
 
 	<command name="ViewDeletedWCDArticleAsAdminAndGuestCP" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -1706,6 +1718,7 @@
 	</command>
 
 	<command name="ViewRelatedAssetsViaRelatedAssetsPortlet" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
@@ -1803,6 +1816,7 @@
 	</command>
 
 	<command name="ViewRelatedAssetViaDMPortlet" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Page#add">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
@@ -1907,6 +1921,7 @@
 	</command>
 
 	<command name="ViewWebContentWithConfiguredDisplayPageViaAP" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>

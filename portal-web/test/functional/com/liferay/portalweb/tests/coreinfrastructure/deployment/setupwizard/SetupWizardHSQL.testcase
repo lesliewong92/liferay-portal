@@ -3,6 +3,7 @@
 	<property name="testray.main.component.name" value="Setup Wizard" />
 
 	<command name="HSQLtoDB2" priority="4">
+		<property name="priority" value="4" />
 		<execute function="AntCommand" locator1="build-test.xml" value1="rebuild-database -Ddatabase.type=db2 -Ddelete.liferay.home=false" />
 
 		<execute function="AntCommand" locator1="build-test.xml" value1="copy-optional-jars -Ddatabase.type=db2 -Dtodir=${app.server.lib.global.dir}" />
@@ -33,6 +34,7 @@
 	</command>
 
 	<command name="HSQLtoDB2SampleDataDisabled" priority="4">
+		<property name="priority" value="4" />
 		<execute function="AntCommand" locator1="build-test.xml" value1="rebuild-database -Ddatabase.type=db2 -Ddelete.liferay.home=false" />
 
 		<execute function="AntCommand" locator1="build-test.xml" value1="copy-optional-jars -Ddatabase.type=db2 -Dtodir=${app.server.lib.global.dir}" />
@@ -61,6 +63,7 @@
 	</command>
 
 	<command name="HSQLtoHSQLLportal1" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="SetupWizard#configurePG">
 			<var name="administratorEmail" value="test@liferay.com" />
 			<var name="administratorFirstName" value="Test" />
@@ -82,6 +85,7 @@
 	</command>
 
 	<command name="HSQLtoHSQLLportal1SampleDataDisabled" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="SetupWizard#configurePG">
 			<var name="addSampleData" value="false" />
 			<var name="administratorEmail" value="test@liferay.com" />
@@ -101,6 +105,7 @@
 	</command>
 
 	<command name="HSQLtoHSQLSampleDataDisabled" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="SetupWizard#configurePG">
 			<var name="addSampleData" value="false" />
 			<var name="administratorEmail" value="test@liferay.com" />
@@ -119,6 +124,7 @@
 	</command>
 
 	<command name="HSQLtoMySQLSampleDataDisabled" priority="4">
+		<property name="priority" value="4" />
 		<execute function="AntCommand" locator1="build-test.xml" value1="rebuild-database -Ddatabase.type=mysql -Ddelete.liferay.home=false" />
 
 		<execute macro="SetupWizard#configurePG">
@@ -140,6 +146,7 @@
 	</command>
 
 	<command name="HSQLtoOracle" priority="4">
+		<property name="priority" value="4" />
 		<execute function="AntCommand" locator1="build-test.xml" value1="rebuild-database -Ddatabase.type=oracle -Ddelete.liferay.home=false" />
 
 		<execute function="AntCommand" locator1="build-test.xml" value1="copy-optional-jars -Ddatabase.type=oracle -Ddatabase.version=11 -Dtodir=${app.server.lib.global.dir}" />
@@ -170,6 +177,7 @@
 	</command>
 
 	<command name="HSQLtoOracleSampleDataDisabled" priority="4">
+		<property name="priority" value="4" />
 		<execute function="AntCommand" locator1="build-test.xml" value1="rebuild-database -Ddatabase.type=oracle -Ddelete.liferay.home=false" />
 
 		<execute function="AntCommand" locator1="build-test.xml" value1="copy-optional-jars -Ddatabase.type=oracle -Ddatabase.version=11 -Dtodir=${app.server.lib.global.dir}" />
@@ -198,6 +206,7 @@
 	</command>
 
 	<command name="HSQLtoPostgreSQL" priority="4">
+		<property name="priority" value="4" />
 		<execute function="AntCommand" locator1="build-test.xml" value1="rebuild-database -Ddatabase.type=postgresql -Ddelete.liferay.home=false" />
 
 		<execute macro="SetupWizard#configurePG">
@@ -220,6 +229,7 @@
 	</command>
 
 	<command name="HSQLtoPostgreSQLSampleDataDisabled" priority="4">
+		<property name="priority" value="4" />
 		<execute function="AntCommand" locator1="build-test.xml" value1="rebuild-database -Ddatabase.type=postgresql -Ddelete.liferay.home=false" />
 
 		<execute macro="SetupWizard#configurePG">
@@ -240,6 +250,7 @@
 	</command>
 
 	<command name="HSQLtoSybase" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="SetupWizard#configurePG">
 			<var name="administratorEmail" value="test@liferay.com" />
 			<var name="administratorFirstName" value="Test" />
@@ -260,6 +271,7 @@
 	</command>
 
 	<command name="HSQLtoSybaseSampleDataDisabled" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="SetupWizard#configurePG">
 			<var name="addSampleData" value="false" />
 			<var name="administratorEmail" value="test@liferay.com" />

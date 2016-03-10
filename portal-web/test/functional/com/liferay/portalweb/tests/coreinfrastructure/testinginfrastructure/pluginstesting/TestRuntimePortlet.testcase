@@ -15,6 +15,7 @@
 	</tear-down>
 
 	<command description="This is a test case for LPS-56769." name="Smoke" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Navigator#gotoPage">

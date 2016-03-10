@@ -17,6 +17,7 @@
 	</set-up>
 
 	<command name="ViewIdPInitiatedSSO" priority="4">
+		<property name="priority" value="4" />
 		<description message="Sign into portal by executing a IdP initiated SSO login. After a successful login, the IdP will redirect to the SP. If the same users with the same email address are present on both instances, it will authenticate and show the SP. SAML can authenticate across major portal versions, that is, the IdP can be Portal 6.1 EE GA3 and the SP can be Portal 6.2. EE GA1. For testing purposes, it is obvious if the authentication succeeds or fails if the IdP and SP are different portal versions." />
 
 		<!-- Verify SP is logged in -->
@@ -59,6 +60,7 @@
 	</command>
 
 	<command name="ViewIdPInitiatedSSOWithRememberMeChecked" priority="4">
+		<property name="priority" value="4" />
 		<description message="LPS-50220 - IdP initiated SSO login should work regardless if 'Remember Me' is checked or not." />
 
 		<!-- Verify SP is logged in -->
@@ -101,6 +103,7 @@
 	</command>
 
 	<command name="ViewSingleLogoutHTTPPostBindingInConsole" priority="4">
+		<property name="priority" value="4" />
 		<description message="LPS-49666 - SAML Single Logout should support HTTP-POST binding." />
 
 		<execute macro="User#logoutPG" />
@@ -143,6 +146,7 @@
 	</command>
 
 	<command name="ViewSPInitiatedSSO" priority="4">
+		<property name="priority" value="4" />
 		<description message="Sign into portal by executing a SP initiated SSO login. This is done by clicking on the 'Sign In' link in the dockbar on the SP. After the SP is logged in, and if both instances has the same user and email address, the IdP will also be logged in." />
 
 		<!-- Verify SP is logged in -->

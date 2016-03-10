@@ -30,6 +30,7 @@
 	</tear-down>
 
 	<command name="AddPollsQuestionWithSpecialCharacters" priority="4">
+		<property name="priority" value="4" />
 		<var name="pollsQuestionTitle"><![CDATA["Hair Color"]]></var>
 		<var name="pollsQuestion"><![CDATA["What is your hair color? Frank & John want to know."]]></var>
 		<var name="pollsQuestionChoiceA"><![CDATA["Black"]]></var>
@@ -103,6 +104,7 @@
 	</command>
 
 	<command name="AddViaPollDisplay" priority="4">
+		<property name="priority" value="4" />
 		<description message="This is a use case for LPS-60143." />
 
 		<execute macro="Navigator#openURL" />
@@ -145,6 +147,7 @@
 	</command>
 
 	<command name="VotePollsQuestionWithGuestPermissions" priority="4">
+		<property name="priority" value="4" />
 		<var name="pollsQuestion" value="What is your favorite Liferay portlet?" />
 		<var name="pollsQuestionChoiceA" value="Blogs" />
 		<var name="pollsQuestionChoiceB" value="Wiki" />

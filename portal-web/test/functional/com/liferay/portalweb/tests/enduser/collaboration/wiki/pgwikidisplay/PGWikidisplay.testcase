@@ -41,6 +41,7 @@
 	</tear-down>
 
 	<command name="AddWikiFrontPageChildPage" priority="5">
+		<property name="priority" value="5" />
 		<var name="wikiChildPageContent" value="Wiki FrontPage Child Page Content" />
 		<var name="wikiChildPageTitle" value="Wiki FrontPage Child Page Title" />
 		<var name="wikiFrontPageContent" value="Wiki FrontPage Content" />
@@ -104,6 +105,7 @@
 	</command>
 
 	<command name="AddWikiFrontPageChildPageFormatHTML" priority="4">
+		<property name="priority" value="4" />
 		<var name="welcomeToLiferay">
 			<![CDATA[
 				<p><a href="http://www.liferay.com">Welcome to LIFERAY</a></p>
@@ -194,6 +196,7 @@
 	</command>
 
 	<command name="AddWikiFrontPageChildPageInvalidTitle" priority="4">
+		<property name="priority" value="4" />
 		<var name="invalidTitleBackslash" value="Wiki\ Front\ Page\ Child\ Page\ Title\" />
 		<var name="invalidTitleColon" value="Wiki: Front: Page: Child: Page: Title:" />
 		<var name="invalidTitleGreaterthan" value="Wiki&gt; Front&gt; Page&gt; Child&gt; Page&gt; Title&gt;" />
@@ -349,6 +352,7 @@
 	</command>
 
 	<command name="DeleteWikiFrontPage" priority="4">
+		<property name="priority" value="4" />
 		<var name="siteName" value="Liferay" />
 		<var name="wikiFrontPageContent" value="Wiki FrontPage Content" />
 		<var name="wikiNodeName" value="Main" />
@@ -408,6 +412,7 @@
 	</command>
 
 	<command name="ViewConfigurationSetupPageFrontPage" priority="4">
+		<property name="priority" value="4" />
 		<var name="wikiFrontPageContent" value="Wiki FrontPage Content" />
 		<var name="wikiNodeName" value="Main" />
 		<var name="wikiPageContent" value="Wiki FrontPage Content" />

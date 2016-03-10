@@ -33,6 +33,7 @@
 	</tear-down>
 
 	<command name="AddOrganizationRegRole" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Permissions#setUpRegRoleLoginUserCP">
 			<var name="roleName" value="Regrole Name" />
 			<var name="userEmailAddress" value="userea@liferay.com" />
@@ -92,6 +93,7 @@
 	</command>
 
 	<command name="AddUserRegRole" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Permissions#setUpRegRoleLoginUserCP">
 			<var name="roleName" value="Regrole Name" />
 			<var name="userEmailAddress" value="userea@liferay.com" />

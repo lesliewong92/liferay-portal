@@ -45,6 +45,7 @@
 	</tear-down>
 
 	<command name="AddRSSADTViaPortletConfiguration" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Page#gotoPG">
@@ -88,6 +89,7 @@
 	</command>
 
 	<command name="AddRSSADTWithCorruptScript" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Page#gotoPG">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
@@ -120,6 +122,7 @@
 	</command>
 
 	<command name="AddRSSADTWithScript" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Page#gotoPG">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
@@ -159,6 +162,7 @@
 	</command>
 
 	<command name="ADTAssetPublisher" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#openSiteURL">
 			<var name="siteName" value="Test Site Name" />
 		</execute>
@@ -232,6 +236,7 @@
 	</command>
 
 	<command name="ADTBreadcrumb" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Page#gotoPG">
@@ -269,6 +274,7 @@
 	</command>
 
 	<command name="ADTCategoriesNavigation" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="ProductMenu#gotoSite">
@@ -342,6 +348,7 @@
 	</command>
 
 	<command name="ADTDMMediaGallery" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#openSiteURL">
 			<var name="siteName" value="Test Site Name" />
 		</execute>
@@ -445,6 +452,7 @@
 	</command>
 
 	<command name="ADTSiteMap" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#openSiteURL">
 			<var name="siteName" value="Test Site Name" />
 		</execute>
@@ -539,6 +547,7 @@
 	</command>
 
 	<command name="ADTStagingCategoriesNavigation" priority="3">
+		<property name="priority" value="3" />
 		<var name="siteName" value="Test Site Name" />
 
 		<execute macro="ProductMenu#gotoSite">
@@ -639,6 +648,7 @@
 	</command>
 
 	<command name="ADTTagsNavigationPortlet" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Navigator#openSiteURL">
@@ -778,6 +788,7 @@
 	</command>
 
 	<command name="ADTWiki" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#openSiteURL">
 			<var name="siteName" value="Test Site Name" />
 		</execute>

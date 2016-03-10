@@ -51,6 +51,7 @@
 	</tear-down>
 
 	<command name="AddChildArticle" priority="4">
+		<property name="priority" value="4" />
 		<var name="kbArticleContent" value="Knowledge Base Article Content" />
 		<var name="kbArticleTitle" value="Knowledge Base Article Title" />
 		<var name="kbChildArticleContent" value="Child Article Content" />
@@ -89,6 +90,7 @@
 	</command>
 
 	<command name="AddKBArticleContentNull" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -111,6 +113,7 @@
 	</command>
 
 	<command name="AddKBArticleSuggestion" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -154,6 +157,7 @@
 	</command>
 
 	<command name="AddKBArticleTitleNull" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -175,6 +179,7 @@
 	</command>
 
 	<command name="AddMultipleKBArticleSuggestions" priority="4">
+		<property name="priority" value="4" />
 		<var name="kbArticleCounterList" value="1,2" />
 		<var name="kbSuggestionCounterList" value="1,2,3" />
 
@@ -228,6 +233,7 @@
 	</command>
 
 	<command name="CancelKBArticleSuggestion" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -251,6 +257,7 @@
 	</command>
 
 	<command name="CannotViewDuplicateBreadcrumbsWhenAddingParentArticle" priority="3" >
+		<property name="priority" value="3" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -291,6 +298,7 @@
 	</command>
 
 	<command name="ChangeSocialBookmarkSitesForKBArticle" priority="4">
+		<property name="priority" value="4" />
 		<property name="hook.plugins.includes" value="social-bookmarks-hook" />
 
 		<execute macro="Navigator#openURL" />
@@ -361,6 +369,7 @@
 	</command>
 
 	<command name="DeleteKBArticleViaKBDisplay" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -384,6 +393,7 @@
 	</command>
 
 	<command name="EditChildArticle" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -442,6 +452,7 @@
 	</command>
 
 	<command name="EditKBArticle" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -483,6 +494,7 @@
 	</command>
 
 	<command name="EditKBArticleDisplaySettingsViaKBDisplayConfiguration" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -518,6 +530,7 @@
 	</command>
 
 	<command name="RateKBArticleWithoutSuggestions" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -541,6 +554,7 @@
 	</command>
 
 	<command name="SelectParentArticleViaKBDisplay" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -589,6 +603,7 @@
 	</command>
 
 	<command name="ViewEditedKBArticleTitleHistory" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -628,6 +643,7 @@
 	</command>
 
 	<command name="ViewKBArticleByPriority" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -667,6 +683,7 @@
 	</command>
 
 	<command name="ViewKBArticleSuggestionsWorkflow" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -748,6 +765,7 @@
 	</command>
 
 	<command name="ViewKBArticleViaDefaultFriendlyURL" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -783,6 +801,7 @@
 	</command>
 
 	<command name="ViewKBArticleViaNavigationLinks" priority="3">
+		<property name="priority" value="3" />
 		<var name="kbArticleCounterList" value="1,2,3" />
 
 		<execute macro="Navigator#openURL" />
@@ -862,6 +881,7 @@
 	</command>
 
 	<command name="ViewKBArticleViaUserDefinedFriendlyURL" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -898,6 +918,7 @@
 	</command>
 
 	<command name="ViewKBArticleWithAllSocialBookmarkSites" priority="3">
+		<property name="priority" value="3" />
 		<property name="hook.plugins.includes" value="social-bookmarks-hook" />
 
 		<var name="socialBookmarkSites" value="twitter,facebook,plusone,addthis,blinklist,delicious,digg,evernote,linkedin,newsvine,reddit,slashdot,stumbleupon,technorati,tuenti" />
@@ -938,6 +959,7 @@
 	</command>
 
 	<command name="ViewKBArticleWithBlogsEntryRelatedAsset" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -981,6 +1003,7 @@
 	</command>
 
 	<command name="ViewKBArticleWithEditedStarRatings" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -1023,6 +1046,7 @@
 	</command>
 
 	<command name="ViewKBArticleWithKBChildArticleHierarchyNavigation" priority="4">
+		<property name="priority" value="4" />
 		<var name="kbArticleCounterList" value="1,2,3" />
 
 		<execute macro="Navigator#openURL" />
@@ -1105,6 +1129,7 @@
 	</command>
 
 	<command name="ViewKBArticleWithoutConfiguration" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Knowledge Base Display Page" />
 		</execute>
@@ -1133,6 +1158,7 @@
 	</command>
 
 	<command name="ViewKBArticleWithStarRatings" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -1184,6 +1210,7 @@
 	</command>
 
 	<command name="ViewKBArticleWithXSSCodeInjectedTitle" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -1220,6 +1247,7 @@
 	</command>
 
 	<command name="ViewKBChildArticleViaReadMoreLink" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -1251,6 +1279,7 @@
 	</command>
 
 	<command name="ViewNoDuplicateKBSuggestionAfterRefresh" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">

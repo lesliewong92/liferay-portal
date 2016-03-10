@@ -37,6 +37,7 @@
 	</tear-down>
 
 	<command name="SampleDroolsDemo" priority="4">
+		<property name="priority" value="4" />
 		<var name="structureDescription" value="WC Structure Description" />
 		<var name="structureFieldNames" value="Text,Image" />
 		<var name="structureName" value="WC Structure Name" />

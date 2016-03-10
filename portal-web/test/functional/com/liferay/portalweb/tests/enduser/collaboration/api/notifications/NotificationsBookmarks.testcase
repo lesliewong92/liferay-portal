@@ -75,6 +75,7 @@
 	</tear-down>
 
 	<command name="ViewWebsiteNotificationForNewBookmarkInFolder" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
@@ -163,6 +164,7 @@
 	</command>
 
 	<command name="ViewWebsiteNotificationForUpdatedBookmarkInFolder" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>

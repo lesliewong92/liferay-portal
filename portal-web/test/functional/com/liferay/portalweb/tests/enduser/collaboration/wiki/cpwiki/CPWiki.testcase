@@ -24,6 +24,7 @@
 	</tear-down>
 
 	<command name="AddWikiFrontPage" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Navigator#openURL" />
@@ -65,6 +66,7 @@
 	</command>
 
 	<command name="AddWikiNode" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Navigator#openURL" />
@@ -90,6 +92,7 @@
 	</command>
 
 	<command name="AddWikiPageToNode" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -139,6 +142,7 @@
 	</command>
 
 	<command name="CompareVersionsWikiPage" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -215,6 +219,7 @@
 	</command>
 
 	<command name="DeleteWikiNode" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Navigator#openURL" />
@@ -255,6 +260,7 @@
 	</command>
 
 	<command name="EditWikiNode" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Navigator#openURL" />
@@ -287,6 +293,7 @@
 	</command>
 
 	<command name="MovePageUnderNewParentPage" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -375,6 +382,7 @@
 	</command>
 
 	<command name="MoveToRecycleBinFrontPage" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -429,6 +437,7 @@
 	</command>
 
 	<command name="RestoreDeletedPage" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -521,6 +530,7 @@
 	</command>
 
 	<command name="ViewWikiEntryRSS" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">

@@ -38,6 +38,7 @@
 	</tear-down>
 
 	<command name="WithdrawTaskAssignedToMeByActions" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<var name="webContentContent" value="WC WebContent Content" />
@@ -96,6 +97,7 @@
 	</command>
 
 	<command name="WithdrawTaskAssignedToMeByDetails" priority="3">
+		<property name="priority" value="3" />
 		<var name="webContentContent" value="WC WebContent Content" />
 		<var name="webContentTitle" value="WC WebContent Title" />
 
@@ -154,6 +156,7 @@
 	</command>
 
 	<command name="WithdrawTaskAssignedToMyRolesByActions" priority="4">
+		<property name="priority" value="4" />
 		<var name="webContentContent" value="WC WebContent Content" />
 		<var name="webContentTitle" value="WC WebContent Title" />
 
@@ -200,6 +203,7 @@
 	</command>
 
 	<command name="WithdrawTaskAssignedToMyRolesByDetails" priority="3">
+		<property name="priority" value="3" />
 		<var name="webContentContent" value="WC WebContent Content" />
 		<var name="webContentTitle" value="WC WebContent Title" />
 
@@ -247,6 +251,7 @@
 	</command>
 
 	<command name="WithdrawTaskCompletedNoByActions" priority="4">
+		<property name="priority" value="4" />
 		<var name="webContentContent" value="WC WebContent Content" />
 		<var name="webContentTitle" value="WC WebContent Title" />
 
@@ -296,6 +301,7 @@
 	</command>
 
 	<command name="WithdrawTaskCompletedNoByDetails" priority="3">
+		<property name="priority" value="3" />
 		<var name="webContentContent" value="WC WebContent Content" />
 		<var name="webContentTitle" value="WC WebContent Title" />
 

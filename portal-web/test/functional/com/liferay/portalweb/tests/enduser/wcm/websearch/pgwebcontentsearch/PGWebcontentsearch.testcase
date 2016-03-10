@@ -43,6 +43,7 @@
 	</tear-down>
 
 	<command name="SearchWebContent" priority="4">
+		<property name="priority" value="4" />
 		<var name="pageName" value="Web Content Display Page" />
 		<var name="portletName" value="Web Content Display" />
 		<var name="webContentContent" value="WC WebContent Content" />
@@ -157,6 +158,7 @@
 	</command>
 
 	<command name="SearchWebContentCategory" priority="4">
+		<property name="priority" value="4" />
 		<var name="categoryName" value="Category Name" />
 		<var name="pageName" value="Web Content Display Page" />
 		<var name="portletName" value="Web Content Display" />
@@ -256,6 +258,7 @@
 	</command>
 
 	<command name="SearchWebContentCategoryQuotes" priority="3">
+		<property name="priority" value="3" />
 		<var name="categoryName" value="Category Name" />
 		<var name="pageName" value="Web Content Display Page" />
 		<var name="portletName" value="Web Content Display" />
@@ -363,6 +366,7 @@
 	</command>
 
 	<command name="SearchWebContentQuotes" priority="3">
+		<property name="priority" value="3" />
 		<var name="pageName" value="Web Content Display Page" />
 		<var name="portletName" value="Web Content Display" />
 		<var name="webContentContent" value="WC WebContent Content" />
@@ -520,6 +524,7 @@
 	</command>
 
 	<command name="SearchWebContentTag" priority="4">
+		<property name="priority" value="4" />
 		<var name="pageName" value="Web Content Display Page" />
 		<var name="portletName" value="Web Content Display" />
 		<var name="tagName" value="tag name" />
@@ -602,6 +607,7 @@
 	</command>
 
 	<command name="SearchWebContentTagQuotes" priority="3">
+		<property name="priority" value="3" />
 		<var name="pageName" value="Web Content Display Page" />
 		<var name="portletName" value="Web Content Display" />
 		<var name="tagName" value="tag name" />

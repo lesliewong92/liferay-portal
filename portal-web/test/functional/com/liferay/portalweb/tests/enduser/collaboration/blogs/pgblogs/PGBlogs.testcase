@@ -61,6 +61,7 @@
 	</tear-down>
 
 	<command name="AddBlogsEntries" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<var name="blogsEntryCounterList" value="1,2,3" />
@@ -94,6 +95,7 @@
 	</command>
 
 	<command name="AddBlogsEntry" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Navigator#gotoPage">
@@ -117,6 +119,7 @@
 	</command>
 
 	<command name="AddBlogsEntryComment" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Navigator#gotoPage">
@@ -160,6 +163,7 @@
 	</command>
 
 	<command name="AddBlogsEntryContentNull" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
@@ -179,6 +183,7 @@
 	</command>
 
 	<command name="AddBlogsEntryScheduled" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
@@ -211,6 +216,7 @@
 	</command>
 
 	<command name="AddBlogsEntryTitle150Characters" priority="4">
+		<property name="priority" value="4" />
 		<var name="entryContent" value="Blogs Entry Content" />
 		<var name="entryTitle" value="|||||||||1|||||||||2|||||||||3|||||||||4|||||||||5|||||||||6|||||||||7|||||||||8|||||||||9||||||||10||||||||11||||||||12||||||||13||||||||14||||||||15" />
 
@@ -235,6 +241,7 @@
 	</command>
 
 	<command name="AddBlogsEntryTitle151Characters" priority="4">
+		<property name="priority" value="4" />
 		<var name="entryContent" value="Blogs Entry Content" />
 		<var name="entryInvalidTitleLength" value="|||||||||1|||||||||2|||||||||3|||||||||4|||||||||5|||||||||6|||||||||7|||||||||8|||||||||9||||||||10||||||||11||||||||12||||||||13||||||||14||||||||15X" />
 		<var name="entryValidTitleLength" value="|||||||||1|||||||||2|||||||||3|||||||||4|||||||||5|||||||||6|||||||||7|||||||||8|||||||||9||||||||10||||||||11||||||||12||||||||13||||||||14||||||||15" />
@@ -259,6 +266,7 @@
 	</command>
 
 	<command name="AddBlogsEntryTitleEscapeCharacters" priority="4">
+		<property name="priority" value="4" />
 		<var name="entryContent" value="Blogs Entry Content" />
 		<var name="entryTitle" value="&amp; &lt; &gt; &quot; Escape Characters Entry" />
 
@@ -283,6 +291,7 @@
 	</command>
 
 	<command name="AddBlogsEntryTitleNull" priority="4">
+		<property name="priority" value="4" />
 		<var name="entryContent" value="Blogs Entry Content" />
 		<var name="entryTitle" value="" />
 
@@ -305,6 +314,7 @@
 	</command>
 
 	<command name="AddBlogsEntryWithSamePageScope" priority="4">
+		<property name="priority" value="4" />
 		<var name="entryContent" value="Blogs Entry1 Content" />
 		<var name="entryContent2" value="Blogs Entry2 Content" />
 		<var name="entryTitle" value="Blogs Entry1 Title" />
@@ -446,6 +456,7 @@
 	</command>
 
 	<command name="AddBlogsEntryWithSubtitle" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
@@ -469,6 +480,7 @@
 	</command>
 
 	<command name="AddBlogsEntryWithTrackbackURL" priority="4">
+		<property name="priority" value="4" />
 		<property name="custom.properties" value="blogs.trackback.enabled=true" />
 
 		<var name="ipAddress" value="${getIPAddress()}" />
@@ -503,6 +515,7 @@
 	</command>
 
 	<command name="AddPortletToOrganizationSitePublicPage" priority="4">
+		<property name="priority" value="4" />
 		<var name="orgName" value="Organization Name" />
 		<var name="orgType" value="Organization" />
 		<var name="page" value="Public Pages" />
@@ -557,6 +570,7 @@
 	</command>
 
 	<command name="DeleteBlogsEntries" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<var name="blogsEntryCounterList" value="1,2,3" />
@@ -614,6 +628,7 @@
 	</command>
 
 	<command name="DeleteBlogsEntryComment" priority="4">
+		<property name="priority" value="4" />
 		<var name="entryComment" value="Blogs Entry Comment" />
 		<var name="entryContent" value="Blogs Entry Content" />
 		<var name="entryTitle" value="Blogs Entry Title" />
@@ -651,6 +666,7 @@
 	</command>
 
 	<command name="EditBlogsEntry" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Navigator#gotoPage">
@@ -689,6 +705,7 @@
 	</command>
 
 	<command name="EditBlogsEntryComment" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<var name="entryComment" value="Blogs Entry Comment" />
@@ -730,6 +747,7 @@
 	</command>
 
 	<command name="EditBlogsEntryComments" priority="4">
+		<property name="priority" value="4" />
 		<var name="entryComment1" value="1st Blog Comment" />
 		<var name="entryComment2" value="2nd Blog Comment" />
 		<var name="entryComment3" value="3rd Blog Comment" />
@@ -832,6 +850,7 @@
 	</command>
 
 	<command name="MoveToRecycleBinBlogsEntry" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Navigator#gotoPage">
@@ -869,6 +888,7 @@
 	</command>
 
 	<command name="RateBlogsEntry" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
@@ -913,6 +933,7 @@
 	</command>
 
 	<command name="SaveBlogsEntryDraft" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Navigator#gotoPage">
@@ -944,6 +965,7 @@
 	</command>
 
 	<command name="SaveBlogsEntryDraftAuto" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Navigator#gotoPage">
@@ -975,6 +997,7 @@
 	</command>
 
 	<command name="SearchBlogsEntryContent" priority="4">
+		<property name="priority" value="4" />
 		<var name="blogsEntrySearchNoResult" value="Blogs1,Entry1,Content1,Blogs1 Entry1 Content1" />
 		<var name="blogsEntrySearchResult" value="Blogs,Entry,Content,Blogs Entry Content" />
 
@@ -1025,6 +1048,7 @@
 	</command>
 
 	<command name="SearchBlogsEntryContentQuotes" priority="4">
+		<property name="priority" value="4" />
 		<var name="blogsEntrySearchNoResult" value="&quot;Blogs1&quot;,&quot;Entry1&quot;,&quot;Content1&quot;,&quot;Blogs1 Entry1 Content1&quot;" />
 		<var name="blogsEntrySearchResult" value="&quot;Blogs&quot;,&quot;Entry&quot;,&quot;Content&quot;,&quot;Blogs Entry Content&quot;" />
 
@@ -1075,6 +1099,7 @@
 	</command>
 
 	<command name="SearchBlogsEntryTitle" priority="4">
+		<property name="priority" value="4" />
 		<var name="blogsEntrySearchNoResult" value="Blogs1,Entry1,Title1,Blogs1 Entry1 Title1" />
 		<var name="blogsEntrySearchResult" value="Blogs,Entry,Title,Blogs Entry Title" />
 
@@ -1125,6 +1150,7 @@
 	</command>
 
 	<command name="SearchBlogsEntryTitleQuotes" priority="4">
+		<property name="priority" value="4" />
 		<var name="blogsEntrySearchNoResult" value="&quot;Blogs1&quot;,&quot;Entry1&quot;,&quot;Title1&quot;,&quot;Blogs1&quot;,&quot;Entry1&quot;,&quot;Title1&quot;" />
 		<var name="blogsEntrySearchResult" value="&quot;Blogs&quot;,&quot;Entry&quot;,&quot;Title&quot;,&quot;Blogs Entry Title&quot;" />
 
@@ -1179,6 +1205,7 @@
 	</command>
 
 	<command name="SubscribeToBlogsEntryComment" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
@@ -1206,6 +1233,7 @@
 	</command>
 
 	<command name="UserFlagsEntryAndAdminViewsNotificationInGmail" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Server Administration" />
 		</execute>
@@ -1280,6 +1308,7 @@
 	</command>
 
 	<command name="UserSubscribeToBlogsAndViewEntryInGmail" priority="3">
+		<property name="priority" value="3" />
 		<property name="custom.properties" value="pop.server.notifications.enabled=true{line.separator}pop.server.subdomain=" />
 
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
@@ -1377,6 +1406,7 @@
 	</command>
 
 	<command name="ViewBlogsEntryCommentAsGuest" priority="4">
+		<property name="priority" value="4" />
 		<var name="entryComment" value="Blogs Entry Comment" />
 		<var name="entryContent" value="Blogs Entry Content" />
 		<var name="entryTitle" value="Blogs Entry Title" />
@@ -1480,6 +1510,7 @@
 	</command>
 
 	<command name="ViewBlogsEntryDraftNoAsUser" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
@@ -1534,6 +1565,7 @@
 	</command>
 
 	<command name="ViewBlogsEntryRSS" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
@@ -1551,6 +1583,7 @@
 	</command>
 
 	<command name="ViewBlogsEntryViewCount" priority="3">
+		<property name="priority" value="3" />
 		<var name="entryContent" value="Blogs Entry Content" />
 		<var name="entryTitle" value="Blogs Entry Title" />
 
@@ -1586,6 +1619,7 @@
 	</command>
 
 	<command name="ViewBlogsEntryWithAbstractDisplayTemplate" priority="3">
+		<property name="priority" value="3" />
 		<var name="displayTemplate" value="Abstract" />
 		<var name="entryAbstractDescription" value="Blogs Entry Abstract Description" />
 		<var name="entryContent" value="Blogs Entry Content" />
@@ -1648,6 +1682,7 @@
 	</command>
 
 	<command name="ViewBlogsEntryWithDefaultScope" priority="3">
+		<property name="priority" value="3" />
 		<var name="contentScopeName" value="Default Scope" />
 		<var name="entryContent" value="Blogs Entry Content" />
 		<var name="entryTitle" value="Blogs Entry Title" />
@@ -1749,6 +1784,7 @@
 	</command>
 
 	<command name="ViewBlogsEntryWithFullContentDisplayTemplate" priority="4">
+		<property name="priority" value="4" />
 		<var name="displayTemplate" value="Full Content" />
 		<var name="entryContent" value="Blogs Entry Content" />
 		<var name="entryTitle" value="Blogs Entry Title" />
@@ -1791,6 +1827,7 @@
 	</command>
 
 	<command name="ViewBlogsEntryWithGuestPermissionsRemoved" priority="4">
+		<property name="priority" value="4" />
 		<var name="entryContent1" value="Blogs Entry1 Content" />
 		<var name="entryContent2" value="Blogs Entry2 Content" />
 		<var name="entryTitle1" value="Blogs Entry1 Title" />
@@ -1848,6 +1885,7 @@
 	</command>
 
 	<command name="ViewBlogsEntryWithTitleDisplayTemplate" priority="3">
+		<property name="priority" value="3" />
 		<var name="displayTemplate" value="Title" />
 		<var name="entryContent" value="Blogs Entry Content" />
 		<var name="entryTitle" value="Blogs Entry Title" />
@@ -1885,6 +1923,7 @@
 	</command>
 
 	<command name="ViewBlogsEntryWithUploadedCoverImage" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
@@ -1915,6 +1954,7 @@
 	</command>
 
 	<command name="ViewBlogsPortletWithNoPermissions" priority="4">
+		<property name="priority" value="4" />
 		<var name="permissionDefinitionKeyList" value="CONFIGURATION_PERMISSIONS_ADD_DISPLAY_TEMPLATE_CHECKBOX,CONFIGURATION_PERMISSIONS_ADD_TO_PAGE_CHECKBOX,CONFIGURATION_PERMISSIONS_CONFIGURATION_CHECKBOX,CONFIGURATION_PERMISSIONS_CONFIGURATION_CHECKBOX,CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX,CONFIGURATION_PERMISSIONS_PERMISSIONS_CHECKBOX" />
 		<var name="permissionDefinitionKeyView" value="CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX" />
 		<var name="roleName1" value="Guest" />
@@ -1979,6 +2019,7 @@
 	</command>
 
 	<command name="ViewEntryWithSocialBookmarksSites" priority="3">
+		<property name="priority" value="3" />
 		<property name="hook.plugins.includes" value="social-bookmarks-hook" />
 
 		<execute macro="Navigator#gotoPage">

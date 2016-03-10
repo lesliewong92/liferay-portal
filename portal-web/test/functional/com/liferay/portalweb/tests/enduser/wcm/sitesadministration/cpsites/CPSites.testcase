@@ -22,6 +22,7 @@
 	</tear-down>
 
 	<command name="AddChildChildSite" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -64,6 +65,7 @@
 	</command>
 
 	<command name="AddChildSite" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="ProductMenu#gotoControlPanelSites">
@@ -94,6 +96,7 @@
 	</command>
 
 	<command name="AddPublicVirtualHostsSiteURL" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -135,6 +138,7 @@
 	</command>
 
 	<command description="Ensure that the super admin can add a Blank Site" name="AddSite" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="ProductMenu#gotoControlPanelSites">
@@ -155,6 +159,7 @@
 	</command>
 
 	<command name="AddSitesMultiple" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -205,6 +210,7 @@
 	</command>
 
 	<command name="AddSiteWithCommaInName" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -223,6 +229,7 @@
 	</command>
 
 	<command name="AddSiteWithInvalidDuplicateName" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -242,6 +249,7 @@
 	</command>
 
 	<command name="AddSiteWithInvalidName" priority="3">
+		<property name="priority" value="3" />
 		<for list="Site Name*,22222" param="siteName" >
 			<execute macro="ProductMenu#gotoControlPanelSites">
 				<var name="portlet" value="Sites" />
@@ -255,6 +263,7 @@
 	</command>
 
 	<command name="AddSiteWithNullName" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -266,6 +275,7 @@
 	</command>
 
 	<command name="DeleteSite" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="ProductMenu#gotoControlPanelSites">
@@ -286,6 +296,7 @@
 	</command>
 
 	<command name="EditSite" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="ProductMenu#gotoControlPanelSites">
@@ -319,6 +330,7 @@
 	</command>
 
 	<command name="EditSiteFriendlyURL" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -374,6 +386,7 @@
 	</command>
 
 	<command name="EditSiteFriendlyURLInvalid" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -415,6 +428,7 @@
 	</command>
 
 	<command name="SearchSite" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="ProductMenu#gotoControlPanelSites">
@@ -435,6 +449,7 @@
 	</command>
 
 	<command name="SiteCannotBeItsOwnParent" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -458,6 +473,7 @@
 	</command>
 
 	<command name="SiteCannotBeItsOwnParentStaging" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -503,6 +519,7 @@
 	</command>
 
 	<command name="ViewDisplayParentSiteViaSitesDirectory" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -604,6 +621,7 @@
 	</command>
 
 	<command name="ViewSiteHierarchiesViaSitesDirectory" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>

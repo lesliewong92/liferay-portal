@@ -50,6 +50,7 @@
 	</tear-down>
 
 	<command name="CampaignAddMultipleWithPrioritiesViaCampaignDisplayPortlet" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -228,6 +229,7 @@
 	</command>
 
 	<command name="CampaignAddViaCampaignContentDisplayPortlet" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -334,6 +336,7 @@
 	</command>
 
 	<command name="CampaignDeleteMultiple" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -406,6 +409,7 @@
 	</command>
 
 	<command name="CampaignViewContentViewsReports" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -553,6 +557,7 @@
 	</command>
 
 	<command name="CampaignViewInSimulatorPG" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -646,6 +651,7 @@
 	</command>
 
 	<command name="CampaignViewOtherwiseDisplayContentViaCampaignDisplayPortlet" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -778,6 +784,7 @@
 	</command>
 
 	<command name="CampaignViewOtherwiseDontDisplayViaCampaignDisplayPortlet" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -884,6 +891,7 @@
 	</command>
 
 	<command name="CampaignViewStatusCP" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -966,6 +974,7 @@
 	</command>
 
 	<command name="CampaignViewTrackingActionReports" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -1111,6 +1120,7 @@
 	</command>
 
 	<command name="ClusteringWithContentTargeting" priority="4">
+		<property name="priority" value="4" />
 		<property name="app.server.bundles.size" value="1" />
 		<property name="cluster.enabled" value="true" />
 
@@ -1224,6 +1234,7 @@
 	</command>
 
 	<command name="ExportImportDeletions" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -1383,6 +1394,7 @@
 	</command>
 
 	<command name="ExportImportSmoke" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="LAR#setupContentTargeting" />
 
 		<execute macro="LAR#_gotoExportSite">
@@ -1451,6 +1463,7 @@
 	</command>
 
 	<command name="ExportImportUncheckAppAllAndContentCTRefAllAndWC" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -1608,6 +1621,7 @@
 	</command>
 
 	<command name="ExportImportUncheckAppCTRefAllAndContentAll" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="LAR#setupContentTargeting" />
 
 		<execute macro="LAR#_gotoExportSite">
@@ -1666,6 +1680,7 @@
 	</command>
 
 	<command name="ExportImportUncheckAppCTRefAllAndContentAT" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="LAR#setupContentTargeting" />
 
 		<execute macro="LAR#_gotoExportSite">
@@ -1720,6 +1735,7 @@
 	</command>
 
 	<command name="ExportImportUncheckAppCTRefAllAndContentWC" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="LAR#setupContentTargeting" />
 
 		<execute macro="LAR#_gotoExportSite">
@@ -1774,6 +1790,7 @@
 	</command>
 
 	<command name="ExportImportViewOnlyContentCTWithReferencedWCImported" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -1936,6 +1953,7 @@
 	</command>
 
 	<command name="ExportImportViewOnlyReferencedContentImported" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="LAR#setupContentTargeting" />
 
 		<execute macro="ProductMenu#gotoSite">
@@ -2041,6 +2059,7 @@
 	</command>
 
 	<command name="StagingContentTargeting" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
@@ -2313,6 +2332,7 @@
 	</command>
 
 	<command name="StagingCTDeletions" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -2389,6 +2409,7 @@
 	</command>
 
 	<command name="StagingCTDisabled" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -2526,6 +2547,7 @@
 	</command>
 
 	<command name="StagingCTEnabled" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -2686,6 +2708,7 @@
 	</command>
 
 	<command name="StagingUncheckAppAllAndContentCTRefAllAndWC" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -2804,6 +2827,7 @@
 	</command>
 
 	<command name="StagingUncheckAppCTRefAllAndContentAll" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -2850,6 +2874,7 @@
 	</command>
 
 	<command name="StagingUncheckAppCTRefAllAndContentAT" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -2896,6 +2921,7 @@
 	</command>
 
 	<command name="StagingUncheckAppCTRefAllAndContentWC" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -2942,6 +2968,7 @@
 	</command>
 
 	<command name="UserSegmentAddCategorizationToContent" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -2989,6 +3016,7 @@
 	</command>
 
 	<command name="UserSegmentAddFromGlobalSiteViaCampaign" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Global" />
 		</execute>
@@ -3047,6 +3075,7 @@
 	</command>
 
 	<command name="UserSegmentAddFromParentSiteViaCampaign" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -3127,6 +3156,7 @@
 	</command>
 
 	<command name="UserSegmentAddGlobalCategorizationToSiteContent" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Global" />
 		</execute>
@@ -3166,6 +3196,7 @@
 	</command>
 
 	<command name="UserSegmentAddMultipleViaUserContentDisplayPortletPG" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Page#add">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
@@ -3377,6 +3408,7 @@
 	</command>
 
 	<command name="UserSegmentAddParentSiteCategorizationToChildSiteContent" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -3425,6 +3457,7 @@
 	</command>
 
 	<command name="UserSegmentAddWithAllViaUserSegmentContentDisplayPortlet" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -3553,6 +3586,7 @@
 	</command>
 
 	<command name="UserSegmentAddWithAnyViaUserSegmentContentDisplayPortlet" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -3680,6 +3714,7 @@
 	</command>
 
 	<command name="UserSegmentAddWithBelongsViaUserSegmentContentDisplayPortlet" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -3821,6 +3856,7 @@
 	</command>
 
 	<command name="UserSegmentAddWithDoesNotBelongViaUserSegmentContentDisplayPortlet" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -3979,6 +4015,7 @@
 	</command>
 
 	<command name="UserSegmentAddWithOtherwiseDontDisplayAnythingViaUserSegmentContentDisplayPortlet" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -4061,6 +4098,7 @@
 	</command>
 
 	<command name="UserSegmentDeleteMultiple" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -4118,6 +4156,7 @@
 	</command>
 
 	<command name="UserSegmentSimulateRulesViaSimulatorPG" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -4282,6 +4321,7 @@
 	</command>
 
 	<command name="UserSegmentViewAnyContentWithCategorizationViaContentListPortlet" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -4344,6 +4384,7 @@
 	</command>
 
 	<command name="UserSegmentViewInSimulatorPG" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -4456,6 +4497,7 @@
 	</command>
 
 	<command name="UserSegmentViewSpecificContentWithCategorizationViaContentListPortlet" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>

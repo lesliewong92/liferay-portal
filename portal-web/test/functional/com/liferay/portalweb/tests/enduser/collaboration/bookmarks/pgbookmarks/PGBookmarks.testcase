@@ -42,6 +42,7 @@
 	</tear-down>
 
 	<command name="AddBookmark" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<var name="bookmarkDescription" value="Test Bookmark Description" />
@@ -69,6 +70,7 @@
 	</command>
 
 	<command name="AddFolder" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<var name="folderDescription" value="Test Folder Description" />
@@ -90,6 +92,7 @@
 	</command>
 
 	<command name="AddFolderBookmark" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<var name="bookmarkDescription" value="Test Bookmark Description" />
@@ -140,6 +143,7 @@
 	</command>
 
 	<command name="AddFolderBookmarkURLInvalid" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<var name="bookmarkDescription" value="Test Bookmark Description" />
@@ -174,6 +178,7 @@
 	</command>
 
 	<command name="DeleteFolder" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<var name="folderDescription" value="Test Folder Description" />
@@ -199,6 +204,7 @@
 	</command>
 
 	<command name="DeleteFolderBookmark" priority="5">
+		<property name="priority" value="5" />
 		<var name="bookmarkDescription" value="Test Bookmark Description" />
 		<var name="bookmarkName" value="Test Bookmark Name" />
 		<var name="bookmarkURL" value="http://www.liferay.com" />
@@ -242,6 +248,7 @@
 	</command>
 
 	<command name="EditFolder" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<var name="folderDescription" value="Test Folder Description" />
@@ -271,6 +278,7 @@
 	</command>
 
 	<command name="EditFolderBookmark" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<var name="bookmarkDescription" value="Test Bookmark Description" />
@@ -322,6 +330,7 @@
 	</command>
 
 	<command name="MoveFolderBookmarkToFolder" priority="4">
+		<property name="priority" value="4" />
 		<var name="bookmarkDescription" value="Test Bookmark Description" />
 		<var name="bookmarkName" value="Test Bookmark Name" />
 		<var name="bookmarkURL" value="http://www.liferay.com" />
@@ -384,6 +393,7 @@
 	</command>
 
 	<command name="RemoveBookmarkPortlet" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Navigator#gotoPage">
@@ -396,6 +406,7 @@
 	</command>
 
 	<command name="SearchFolderBookmark" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Bookmarks Page" />
 		</execute>

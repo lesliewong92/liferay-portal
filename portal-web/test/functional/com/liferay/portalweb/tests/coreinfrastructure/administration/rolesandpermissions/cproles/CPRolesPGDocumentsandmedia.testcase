@@ -36,6 +36,7 @@
 	</tear-down>
 
 	<command name="AddDMDocumentRegRole" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Permissions#setUpRegRoleLoginUserPG">
@@ -89,6 +90,7 @@
 	</command>
 
 	<command name="AddDMDocumentSiteMemberRoleInline" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Permissions#setUpSiteMemberRoleLoginUserPG">
 			<var name="page" value="Public Pages" />
 			<var name="pageName" value="Documents and Media Page" />
@@ -185,6 +187,7 @@
 	</command>
 
 	<command name="AddDMDocumentSiteRole" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Permissions#setUpSiteRoleLoginUserPG">
 			<var name="page" value="Public Pages" />
 			<var name="pageName" value="Documents and Media Page" />
@@ -268,6 +271,7 @@
 	</command>
 
 	<command name="DeleteDMFolderRegRoleInline" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Permissions#setUpRegRoleLoginUserPG">
 			<var name="pageName" value="Documents and Media Page" />
 			<var name="portletName" value="Documents and Media" />
@@ -362,6 +366,7 @@
 	</command>
 
 	<command name="ViewDMFolderGuestInline" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Page#add">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
