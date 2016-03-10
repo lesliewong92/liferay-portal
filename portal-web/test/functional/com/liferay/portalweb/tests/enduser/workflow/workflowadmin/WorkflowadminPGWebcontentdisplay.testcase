@@ -54,6 +54,7 @@
 	</tear-down>
 
 	<command name="ApproveWebContentViaWebContentDisplayPG" priority="4">
+		<property name="priority" value="4" />
 		<var name="webContentContent" value="WC WebContent Content" />
 		<var name="webContentTitle" value="WC WebContent Title" />
 
@@ -117,6 +118,7 @@
 	</command>
 
 	<command name="RejectWebContentViaWebContentDisplayPG" priority="4">
+		<property name="priority" value="4" />
 		<var name="webContentContent" value="WC WebContent Content" />
 		<var name="webContentTitle" value="WC WebContent Title" />
 

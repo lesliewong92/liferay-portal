@@ -34,6 +34,7 @@
 	</tear-down>
 
 	<command name="ViewMessageBoardsPortletRegRole" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Permissions#setUpRegRoleLoginUserCP">
 			<var name="portletName" value="Message Boards" />
 			<var name="roleName" value="Regrole Name" />
@@ -87,6 +88,7 @@
 	</command>
 
 	<command name="ViewMessageBoardsPortletSiteRole" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Permissions#setUpSiteRoleLoginUserCP">
 			<var name="page" value="Public Pages" />
 			<var name="pageName" value="Blogs Page" />

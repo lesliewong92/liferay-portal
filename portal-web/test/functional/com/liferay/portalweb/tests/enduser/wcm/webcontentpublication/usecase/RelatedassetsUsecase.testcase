@@ -19,6 +19,7 @@
 	</tear-down>
 
 	<command name="AssertRelatedAssetsDisplayWithCategory" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -213,6 +214,7 @@
 	</command>
 
 	<command name="ViewNoFolders" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>

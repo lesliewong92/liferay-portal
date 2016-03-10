@@ -15,6 +15,7 @@
 	</tear-down>
 
 	<command name="GoogleAdSensePortletSmoke" priority="4">
+		<property name="priority" value="4" />
 		<property name="portlet.plugins.includes" value="google-adsense-portlet" />
 
 		<var name="appName" value="Google AdSense" />

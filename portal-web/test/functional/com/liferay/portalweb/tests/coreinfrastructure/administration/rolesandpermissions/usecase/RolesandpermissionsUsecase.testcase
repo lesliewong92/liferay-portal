@@ -44,6 +44,7 @@
 	</tear-down>
 
 	<command name="EditTeamPermissions" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Roles" />
 		</execute>
@@ -267,6 +268,7 @@
 	</command>
 
 	<command name="GroupScopePermissionCheck" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Roles" />
 		</execute>
@@ -436,6 +438,7 @@
 	</command>
 
 	<command name="NoGuestRolePermissionsFromPrivateLayout" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -483,6 +486,7 @@
 	</command>
 
 	<command name="RolesOrganizationSearch" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Roles" />
 		</execute>
@@ -726,6 +730,7 @@
 	</command>
 
 	<command name="RolesPermissionsDynamicDataLists" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Roles" />
 		</execute>
@@ -1085,6 +1090,7 @@
 	</command>
 
 	<command name="RolesSiteSearch" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Roles" />
 		</execute>
@@ -1293,6 +1299,7 @@
 	</command>
 
 	<command name="RolesSitesPermissionsInheritance" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
@@ -1914,6 +1921,7 @@
 	</command>
 
 	<command name="RolesXSS" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Roles" />
 		</execute>
@@ -1987,6 +1995,7 @@
 	</command>
 
 	<command name="SiteRoleBookmarksInlinePermissions" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Roles" />
 		</execute>
@@ -2111,6 +2120,7 @@
 	</command>
 
 	<command name="TeamPermissionsSite" priority="4">
+		<property name="priority" value="4" />
 		<for list="1,2" param="userNumber">
 			<execute macro="ProductMenu#gotoControlPanelUsers">
 				<var name="portlet" value="Users and Organizations" />
@@ -2248,6 +2258,7 @@
 	</command>
 
 	<command name="ViewAutomaticAssignedRoles" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Roles" />
 		</execute>
@@ -2288,6 +2299,7 @@
 	</command>
 
 	<command name="ViewDocumentsAndMediaAddRepositoryPermissionSiteMemberRole" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Roles" />
 		</execute>
@@ -2314,6 +2326,7 @@
 	</command>
 
 	<command name="ViewPreferencesPanelPermissionSiteMemberRole" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
@@ -2390,6 +2403,7 @@
 	</command>
 
 	<command name="ViewRegRolePermissionsDefaultView" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Roles" />
 		</execute>

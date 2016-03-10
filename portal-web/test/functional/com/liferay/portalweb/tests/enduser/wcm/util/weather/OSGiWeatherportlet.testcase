@@ -15,6 +15,7 @@
 	</tear-down>
 
 	<command name="WeatherPortletSmoke" priority="4">
+		<property name="priority" value="4" />
 		<property name="portlet.plugins.includes" value="weather-portlet" />
 
 		<var name="appName" value="Weather" />

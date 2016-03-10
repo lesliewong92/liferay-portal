@@ -40,6 +40,7 @@
 	</tear-down>
 
 	<command name="AdminCanNotAddASubpageOfAChildPageLinkedToSiteTemplatePage" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Site Templates" />
 		</execute>
@@ -89,6 +90,7 @@
 	</command>
 
 	<command name="EditSiteTemplateGuestPermissions" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Site Templates" />
 		</execute>
@@ -135,6 +137,7 @@
 	</command>
 
 	<command name="PortletPreferencesPersistWithSiteTemplateWhenSamePortletAddedOnSecondPage" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Site Templates" />
 		</execute>
@@ -236,6 +239,7 @@
 	</command>
 
 	<command name="SiteAdminCannotDeletePagesThatWereCreatedBySiteTemplates" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="User Groups" />
 		</execute>
@@ -266,6 +270,7 @@
 	</command>
 
 	<command name="SitesDynamicTemplateInheritance" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -363,6 +368,7 @@
 	</command>
 
 	<command name="SitesDynamicTemplates" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Site Templates" />
 		</execute>
@@ -803,6 +809,7 @@
 	</command>
 
 	<command name="SitesTemplateResourceInheritance" priority="3">
+		<property name="priority" value="3" />
 		<property name="portlet.plugins.includes" value="tasks-portlet" />
 
 		<execute macro="ProductMenu#gotoControlPanelSites">
@@ -899,6 +906,7 @@
 	</command>
 
 	<command name="ViewInlineGuestPermissionsInSiteTemplatesViaWCD" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Site Templates" />
 		</execute>
@@ -941,6 +949,7 @@
 	</command>
 
 	<command name="ViewNoAddPageTabViaPageTemplatesCP" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Page Templates" />
 		</execute>

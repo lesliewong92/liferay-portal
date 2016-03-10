@@ -39,6 +39,7 @@
 	</tear-down>
 
 	<command name="AddWCWithMultipleTranslations" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -157,6 +158,7 @@
 	</command>
 
 	<command name="AddWCWithTranslation" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 		<property name="test.name.skip.portal.instance" value="LanguageUsecase#AddWCWithTranslation" />
 
@@ -236,6 +238,7 @@
 	</command>
 
 	<command name="MoveCurrentLanguagesToAvailable" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Page#gotoPG">
 			<var name="pageName" value="Test Page Name" />
 			<var name="siteName" value="Site Name" />
@@ -278,6 +281,7 @@
 	</command>
 
 	<command name="ViewChangedDefaultPortalLanguageViaWebContent" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>
@@ -302,6 +306,7 @@
 	</command>
 
 	<command name="ViewDisplayOptionsViaLanguagePortlet" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Page#gotoPG">
 			<var name="pageName" value="Test Page Name" />
 			<var name="siteName" value="Site Name" />
@@ -398,6 +403,7 @@
 	</command>
 
 	<command name="ViewRemovedCurrentPortalLanguagesViaLanguagePortlet" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Page#gotoPG">
 			<var name="pageName" value="Test Page Name" />
 			<var name="siteName" value="Site Name" />
@@ -440,6 +446,7 @@
 	</command>
 
 	<command name="ViewRemovedCurrentSiteLanguagesViaLanguagePortlet" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Page#gotoPG">
 			<var name="pageName" value="Test Page Name" />
 			<var name="siteName" value="Site Name" />

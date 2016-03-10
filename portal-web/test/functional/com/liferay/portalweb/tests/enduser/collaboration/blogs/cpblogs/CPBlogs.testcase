@@ -22,6 +22,7 @@
 	</tear-down>
 
 	<command description="Ensure that a user can add multiple Blogs Entries." name="AddBlogsEntries" priority="4">
+		<property name="priority" value="4" />
 		<property name="testray.component.names" value="Blogs" />
 		<property name="testray.main.component.name" value="Blogs" />
 
@@ -124,6 +125,7 @@
 	</command>
 
 	<command name="AddBlogsEntry" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -152,6 +154,7 @@
 	</command>
 
 	<command name="AddBlogsEntryContentNull" priority="4">
+		<property name="priority" value="4" />
 		<var name="entryContent" value="" />
 		<var name="entryTitle" value="Blogs Entry Title" />
 
@@ -178,6 +181,7 @@
 	</command>
 
 	<command name="AddBlogsEntryTitleEscapeCharacters" priority="4">
+		<property name="priority" value="4" />
 		<var name="entryContent" value="Blogs Entry Content" />
 		<var name="entryTitle">&amp; &lt; &gt; &quot; Escape Characters Entry</var>
 
@@ -209,6 +213,7 @@
 	</command>
 
 	<command name="AddBlogsEntryTitleNull" priority="4">
+		<property name="priority" value="4" />
 		<var name="entryContent" value="Blogs Entry Content" />
 		<var name="entryTitle" value="" />
 
@@ -235,6 +240,7 @@
 	</command>
 
 	<command name="AddBlogsEntryWithInlineImageViaURL" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -280,6 +286,7 @@
 	</command>
 
 	<command name="AddBlogsEntryWithSubtitle" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -310,6 +317,7 @@
 	</command>
 
 	<command name="DeleteBlogsEntries" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<var name="blogsEntryCounterList" value="1,2,3" />
@@ -372,6 +380,7 @@
 	</command>
 
 	<command name="EditBlogsEntryContent" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<var name="entryContent" value="Blogs Entry Content" />
@@ -424,6 +433,7 @@
 	</command>
 
 	<command name="EditBlogsEntryTitle" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<var name="entryContent" value="Blogs Entry Content" />
@@ -475,6 +485,7 @@
 	</command>
 
 	<command name="PublishBlogsEntryDraft" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -517,6 +528,7 @@
 	</command>
 
 	<command name="SaveBlogsEntryDraft" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -548,6 +560,7 @@
 	</command>
 
 	<command name="SaveBlogsEntryDraftAuto" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -579,6 +592,7 @@
 	</command>
 
 	<command name="SearchBlogsEntryContent" priority="4">
+		<property name="priority" value="4" />
 		<var name="entryContent" value="Blogs Entry Content" />
 		<var name="entryTitle" value="Blogs Entry Title" />
 
@@ -631,6 +645,7 @@
 	</command>
 
 	<command name="SearchBlogsEntryTitle" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -680,6 +695,7 @@
 	</command>
 
 	<command name="ViewBlogsEntryDraftWithCoverImage" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -718,6 +734,7 @@
 	</command>
 
 	<command name="ViewErrorMessageForNullCustomAbstract" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">

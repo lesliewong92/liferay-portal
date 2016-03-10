@@ -91,6 +91,7 @@
 	</tear-down>
 
 	<command name="ViewWikiCommentMentionedUser" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">

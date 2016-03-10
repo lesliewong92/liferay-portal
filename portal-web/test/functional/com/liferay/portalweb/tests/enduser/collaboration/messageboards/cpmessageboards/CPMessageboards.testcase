@@ -26,6 +26,7 @@
 	</tear-down>
 
 	<command name="AddMBCategory" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<var name="categoryName" value="MB Category Name" />
@@ -48,6 +49,7 @@
 	</command>
 
 	<command name="AddMBCategorySubcategory" priority="4">
+		<property name="priority" value="4" />
 		<var name="categoryName" value="MB Category Name" />
 		<var name="subCategoryDescription" value="MB Subcategory Description" />
 		<var name="subCategoryName" value="MB Subcategory Name" />
@@ -76,6 +78,7 @@
 	</command>
 
 	<command name="AddMBThread" priority="5">
+		<property name="priority" value="5" />
 		<var name="threadBody" value="MB Thread Message Body" />
 		<var name="threadSubject" value="MB Thread Message Subject" />
 
@@ -104,6 +107,7 @@
 	</command>
 
 	<command name="DeleteMBCategories" priority="4">
+		<property name="priority" value="4" />
 		<var name="categoryNameList" value="MB Category1 Name,MB Category2 Name,MB Category3 Name" />
 
 		<execute macro="Navigator#openURL" />
@@ -130,6 +134,7 @@
 	</command>
 
 	<command name="EditMBThreadBody" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -169,6 +174,7 @@
 	</command>
 
 	<command name="EditMBThreadSubject" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -208,6 +214,7 @@
 	</command>
 
 	<command name="EditMBThreadSubjectAndBody" priority="5">
+		<property name="priority" value="5" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -248,6 +255,7 @@
 	</command>
 
 	<command name="MoveToRecycleBinMBThread" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<var name="threadBody" value="MB Thread Message Body" />
@@ -286,6 +294,7 @@
 	</command>
 
 	<command name="ViewAnonymousPostingAllowedCheckboxConfiguration" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -322,6 +331,7 @@
 	</command>
 
 	<command name="ViewBBCodeNoXSS" priority="4">
+		<property name="priority" value="4" />
 		<var name="font" value="5" />
 		<var name="portletName" value="Message Boards" />
 

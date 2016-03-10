@@ -49,6 +49,7 @@
 	</tear-down>
 
 	<command name="DeleteKBArticleViaKBArticle" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">

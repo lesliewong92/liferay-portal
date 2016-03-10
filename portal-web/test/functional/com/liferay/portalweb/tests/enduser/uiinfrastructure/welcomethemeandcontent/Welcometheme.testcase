@@ -6,6 +6,7 @@
 	</tear-down>
 
 	<command name="WelcomeThemeView" priority="3">
+		<property name="priority" value="3" />
 		<property name="theme.plugins.includes" value="welcome-theme" />
 		<property name="web.plugins.includes" value="resources-importer-web" />
 

@@ -31,6 +31,7 @@
 	</tear-down>
 
 	<command name="ViewIFramePortlet" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="IFrame Page" />
 		</execute>

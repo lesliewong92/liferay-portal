@@ -22,6 +22,7 @@
 	</tear-down>
 
 	<command name="DeleteWebcontent" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -86,6 +87,7 @@
 	</command>
 
 	<command name="MoveFolderWithWebContentToRecycleBin" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Liferay" />
 		</execute>
@@ -166,6 +168,7 @@
 	</command>
 
 	<command name="RecycleWebContentViaDeleteIcon" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Liferay" />
 		</execute>
@@ -225,6 +228,7 @@
 	</command>
 
 	<command name="RestoreWebcontent" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Navigator#openURL" />
@@ -297,6 +301,7 @@
 	</command>
 
 	<command name="UndoMoveToRecycleBin" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -351,6 +356,7 @@
 	</command>
 
 	<command name="ViewDuplicateAssetNamesInRecycleBin" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Liferay" />
 		</execute>
@@ -441,6 +447,7 @@
 	</command>
 
 	<command name="ViewDuplicateFolderNamesInRecycleBin" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Liferay" />
 		</execute>
@@ -521,6 +528,7 @@
 	</command>
 
 	<command name="ViewRecycleBinEntryViaSuccessMessageLink" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">

@@ -54,6 +54,7 @@
 	</tear-down>
 
 	<command name="AddAPMultiplePortlet" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
@@ -74,6 +75,7 @@
 	</command>
 
 	<command name="AddBookmarkViaAP" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Page#add">
 			<var name="pageName" value="Bookmarks Page" />
 		</execute>
@@ -116,6 +118,7 @@
 	</command>
 
 	<command name="AddCustomTitleViaAP" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Page#add">
 			<var name="pageName" value="Test Page" />
 		</execute>
@@ -148,6 +151,7 @@
 	</command>
 
 	<command name="ConfigureAPPortletDisplaytemplateWithBookmarks" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Page#add">
 			<var name="pageName" value="Bookmarks Page" />
 		</execute>
@@ -248,6 +252,7 @@
 	</command>
 
 	<command name="ConfigureAPPortletEnableRatings" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="AssetPublisherPortlet#configureFlaggableDisplaySettingsPG">
 			<var name="enableRatings" value="true" />
 		</execute>
@@ -297,6 +302,7 @@
 	</command>
 
 	<command name="ConfigureAPPortletScopeMultipleSites" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -332,6 +338,7 @@
 	</command>
 
 	<command name="ConfigureAPPortletSelectedBlogsEntry" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="AssetPublisherPortlet#configureSelectedPG">
 			<var name="selectedAsset" value="Blogs Entry" />
 		</execute>
@@ -347,6 +354,7 @@
 	</command>
 
 	<command name="ConfigureAPPortletSelectedBookmarksEntry" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="AssetPublisherPortlet#configureSelectedPG">
 			<var name="selectedAsset" value="Bookmarks Entry" />
 		</execute>
@@ -362,6 +370,7 @@
 	</command>
 
 	<command name="ConfigureAPPortletSelectedDocument" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="AssetPublisherPortlet#configureSelectedPG">
 			<var name="selectedAsset" value="Document" />
 		</execute>
@@ -377,6 +386,7 @@
 	</command>
 
 	<command name="ConfigureAPPortletSelectedWebContent" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="AssetPublisherPortlet#configureSelectedPG">
@@ -394,6 +404,7 @@
 	</command>
 
 	<command name="ConfigureAPPortletSetAsDefault" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="AssetPublisherPortlet#configureFlaggableDisplaySettingsPG">
 			<var name="setAsDefaultPage" value="true" />
 		</execute>
@@ -408,6 +419,7 @@
 	</command>
 
 	<command name="ConfigureAPPortletWithSelectedBookmarksEntry" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Page#add">
 			<var name="pageName" value="Bookmarks Page" />
 		</execute>
@@ -474,6 +486,7 @@
 	</command>
 
 	<command name="FilterTagsByNameAP" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Page#add">
 			<var name="pageName" value="Tags Navigation Page" />
 		</execute>
@@ -574,6 +587,7 @@
 	</command>
 
 	<command name="FindSiteAPViaSearchScopeSelector" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -592,6 +606,7 @@
 	</command>
 
 	<command name="OrderContentByModifiedDateViaAP" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
@@ -656,6 +671,7 @@
 	</command>
 
 	<command name="OrderWCByModifiedDateViaAP" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
@@ -732,6 +748,7 @@
 	</command>
 
 	<command name="OrderWCByPublishDateViaAP" priority="3">
+		<property name="priority" value="3" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
@@ -796,6 +813,7 @@
 	</command>
 
 	<command name="RestoreAPArchivedSetup" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">

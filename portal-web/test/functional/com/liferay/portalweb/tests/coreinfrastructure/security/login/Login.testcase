@@ -2,6 +2,7 @@
 	<property name="testray.main.component.name" value="Security" />
 
 	<command name="Login" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="User#firstLoginPG" />
 
 		<execute macro="User#logoutPG" />
@@ -10,6 +11,7 @@
 	</command>
 
 	<command name="LoginFirstTime" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="SignIn#signIn" />
 
 		<execute macro="SignIn#agreeToTermsOfUse" />

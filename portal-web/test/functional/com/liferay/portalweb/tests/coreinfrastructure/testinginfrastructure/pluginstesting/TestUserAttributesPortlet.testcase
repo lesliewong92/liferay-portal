@@ -11,6 +11,7 @@
 	</tear-down>
 
 	<command name="ViewUserAttributes" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Page#add">
 			<var name="pageName" value="Test User Attributes Page" />
 		</execute>

@@ -24,6 +24,7 @@
 	</tear-down>
 
 	<command name="AddSiteTemplate" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<var name="siteTemplateActive" value="Yes" />
@@ -48,6 +49,7 @@
 	</command>
 
 	<command name="DeactivateDefaultSiteTemplate" priority="4">
+		<property name="priority" value="4" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="ProductMenu#gotoControlPanelSites">
@@ -82,6 +84,7 @@
 	</command>
 
 	<command name="DeleteSiteTemplate" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="ProductMenu#gotoControlPanelSites">
@@ -111,6 +114,7 @@
 	</command>
 
 	<command name="EditSiteTemplateStatus" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="ProductMenu#gotoControlPanelSites">
@@ -151,6 +155,7 @@
 	</command>
 
 	<command name="LocalizeDefaultSiteTemplates" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Site Templates" />
 		</execute>
@@ -205,6 +210,7 @@
 	</command>
 
 	<command name="ResetPageChanges" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>

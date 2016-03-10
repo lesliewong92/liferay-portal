@@ -33,6 +33,7 @@
 	</tear-down>
 
 	<command name="BlogsDemo" priority="4">
+		<property name="priority" value="4" />
 		<var name="entryComment1" value="Blogs Entry Comment 1" />
 		<var name="entryComment2" value="Blogs Entry Comment 2" />
 		<var name="entryComment3" value="Guest Blogs Entry Comment" />
@@ -277,6 +278,7 @@
 	</command>
 
 	<command name="Localization" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Page#add">
 			<var name="pageName" value="Social Activity Page" />
 		</execute>

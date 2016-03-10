@@ -7,6 +7,7 @@
 	</set-up>
 
 	<command name="323ColumnsLayouttplSmoke" priority="4">
+		<property name="priority" value="4" />
 		<property name="layouttpl.plugins.includes" value="3-2-3-columns-layouttpl" />
 
 		<var name="appName" value="3-2-3 Columns Layout" />

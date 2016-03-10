@@ -76,6 +76,7 @@
 	</tear-down>
 
 	<command name="ApprovePageRevisionPG" priority="5">
+		<property name="priority" value="5" />
 		<var name="pageName" value="Page Revision Page" />
 
 		<execute macro="Page#gotoPG">
@@ -193,6 +194,7 @@
 	</command>
 
 	<command name="RejectPageRevisionPG" priority="4">
+		<property name="priority" value="4" />
 		<var name="pageName" value="Page Revision Page" />
 
 		<execute macro="Page#gotoPG">
@@ -305,6 +307,7 @@
 	</command>
 
 	<command name="WithdrawWorkflowSubmissionFromRemovedUser" priority="2">
+		<property name="priority" value="2" />
 		<description message="This is a use case for LPS-58754" />
 
 		<execute macro="ProductMenu#gotoControlPanelUsers">

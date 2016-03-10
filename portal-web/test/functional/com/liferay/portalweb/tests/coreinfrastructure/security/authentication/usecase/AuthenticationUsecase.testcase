@@ -24,6 +24,7 @@
 	</tear-down>
 
 	<command name="AuthenticationCAS" priority="4">
+		<property name="priority" value="4" />
 		<property name="web.plugins.includes" value="cas-web" />
 
 		<var name="userEmailAddress" value="userea@liferay.com" />

@@ -79,6 +79,7 @@
 	</tear-down>
 
 	<command name="ViewNoWebsiteNotificationForNewThreadInCategory" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
@@ -146,6 +147,7 @@
 	</command>
 
 	<command name="ViewNoWebsiteNotificationForUpdatedThreadInCategory" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
@@ -229,6 +231,7 @@
 	</command>
 
 	<command name="ViewWebsiteNotificationForNewThreadInCategory" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
@@ -304,6 +307,7 @@
 	</command>
 
 	<command name="ViewWebsiteNotificationForUpdatedThreadInCategory" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>

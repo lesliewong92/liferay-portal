@@ -24,6 +24,7 @@
 	</tear-down>
 
 	<command name="AddCustomFieldsSmoke" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Custom Fields" />
 		</execute>
@@ -176,6 +177,7 @@
 	</command>
 
 	<command name="AddCustomFieldUserBoolean" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
@@ -214,6 +216,7 @@
 	</command>
 
 	<command name="EditCustomFieldUserBoolean" priority="5">
+		<property name="priority" value="5" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
@@ -263,6 +266,7 @@
 	</command>
 
 	<command name="EditRevertCustomFieldWikiPage" priority="4">
+		<property name="priority" value="4" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Custom Fields" />
 		</execute>
