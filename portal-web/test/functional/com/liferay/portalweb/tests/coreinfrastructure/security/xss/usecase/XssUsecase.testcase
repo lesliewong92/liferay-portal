@@ -76,6 +76,7 @@
 	</command>
 
 	<command name="ViewBookmarkNoXSS" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="userLastNameEdit"><![CDATA[><script>alert(document.cookie)</script>]]></var>
 
 		<execute macro="Page#gotoMyAccount">
@@ -108,6 +109,7 @@
 
 	<command name="ViewControlPanelNoXSS" priority="5">
 		<property name="portal.acceptance" value="true" />
+
 		<var name="siteName"><![CDATA[<script>alert(123)</script>]]></var>
 
 		<execute macro="ProductMenu#gotoControlPanelSites">
@@ -160,6 +162,7 @@
 
 	<command name="ViewJSONWSNoXSS" priority="5">
 		<property name="portal.acceptance" value="true" />
+
 		<var name="url" value="http://localhost:8080/api/jsonws?contextPath=%22%3E%3Cimg%20src=x%20onerror=alert%28/contextPath/%29%3E" />
 
 		<execute function="Open" locator1="${url}" />

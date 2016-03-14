@@ -31,6 +31,7 @@
 	</tear-down>
 
 	<command name="PreviewDeviceRegRole" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<property name="testray.component.names" value="Mobile Web,User Interface" />
 
 		<execute macro="Permissions#setUpRegRoleLoginUserCP">

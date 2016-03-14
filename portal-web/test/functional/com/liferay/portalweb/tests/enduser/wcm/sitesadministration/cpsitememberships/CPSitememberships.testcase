@@ -348,6 +348,7 @@
 	</command>
 
 	<command name="LimitMembershipParentSite" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -717,6 +718,7 @@
 	</command>
 
 	<command name="SiteMembershipsPagination" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
@@ -842,6 +844,7 @@
 	</command>
 
 	<command name="SiteMembershipsSearch" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
@@ -1053,6 +1056,7 @@
 	</command>
 
 	<command name="ViewNoManualMembershipManagement" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Site#manageMembershipOptions">
 			<var name="allowManualMembershipManagement" value="true" />
 		</execute>

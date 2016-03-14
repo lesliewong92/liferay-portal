@@ -133,6 +133,7 @@
 	</command>
 
 	<command name="EditFormsConfigurationViaSystemSettings" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<description message="This is a use case for LPS-59749" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -189,8 +190,8 @@
 	</command>
 
 	<command name="NavigateToCorrectForm" priority="5">
-		<description message="This is a use case for LPS-59331" />
 		<property name="portal.acceptance" value="true" />
+		<description message="This is a use case for LPS-59331" />
 
 		<execute macro="Navigator#openURL" />
 
@@ -292,8 +293,8 @@
 	</command>
 
 	<command name="PreviewAndPublishForm" priority="5">
-		<description message="This is a use case for LPS-61740" />
 		<property name="portal.acceptance" value="true" />
+		<description message="This is a use case for LPS-61740" />
 
 		<execute macro="Navigator#openURL" />
 
@@ -373,6 +374,7 @@
 	</command>
 
 	<command name="SearchFormRecordMultipleEntries" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<description message="This is a use case for LPS-59336." />
 
 		<var name="fieldValueList" value="testEntry1,exampleText,sampleAnswer" />
@@ -488,6 +490,7 @@
 	</command>
 
 	<command name="SubmitForm3x3Layout" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -734,6 +737,7 @@
 	</command>
 
 	<command name="SubmitFormWithMultipleFieldsAndViewEntriesViaDescriptiveDisplay" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -936,6 +940,7 @@
 	</command>
 
 	<command name="SubmitFormWithoutAFormNameAndViewErrorMessage" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<description message="This is a use case for LPS-59664." />
 
 		<execute macro="Navigator#openURL" />
@@ -956,6 +961,7 @@
 	</command>
 
 	<command name="SubmitFormWithParagraphField" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<description message="This is a use case for LPS-61450 and LPS-61252." />
 
 		<execute macro="Navigator#openURL" />
@@ -1034,6 +1040,7 @@
 	</command>
 
 	<command name="SubmitFormWithRequiredCheckboxField" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<description message="This is a use case for LPS-59338." />
 
 		<execute macro="Navigator#openURL" />
@@ -1115,6 +1122,7 @@
 	</command>
 
 	<command name="SubmitFormWithRequiredMultiLineTextField" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<description message="This is a use case for LPS-59997." />
 
 		<execute macro="Navigator#openURL" />
@@ -1207,6 +1215,7 @@
 	</command>
 
 	<command name="SubmitFormWithRequiredRadioField" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -1391,6 +1400,7 @@
 	</command>
 
 	<command name="SubmitFormWithRequiredTextField" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<description message="This is a use case for LPS-58829." />
 
 		<execute macro="Navigator#openURL" />
@@ -1475,6 +1485,7 @@
 	</command>
 
 	<command name="SubmitFormWithSwitcherCheckboxField" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<description message="This is a use case for LPS-59351." />
 
 		<execute macro="Navigator#openURL" />
@@ -1812,6 +1823,7 @@
 	</command>
 
 	<command name="ViewRepeatableTextFieldLabel" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -1877,6 +1889,7 @@
 	</command>
 
 	<command name="ViewTextFieldWithConditionalVisibility" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<description message="This is a use case for LPS-59604." />
 
 		<execute macro="Navigator#openURL" />

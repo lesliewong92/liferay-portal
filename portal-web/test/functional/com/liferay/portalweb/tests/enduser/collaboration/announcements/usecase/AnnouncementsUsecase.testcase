@@ -40,6 +40,7 @@
 	</tear-down>
 
 	<command name="ViewAnnouncementsEntryWithDistributedScope" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="announcementType" value="General" />
 
 		<execute macro="Navigator#gotoPage">
@@ -172,6 +173,7 @@
 	</command>
 
 	<command name="ViewAnnouncementsPagination" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<var name="announcementType" value="General" />
 		<var name="distributionScope" value="General" />
 		<var name="entryContent" value="Announcements Entry Content" />

@@ -68,6 +68,7 @@
 	</command>
 
 	<command name="ValidateCannotStealAdminAccount" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
@@ -128,6 +129,7 @@
 	</command>
 
 	<command name="ViewExternalWebappsPG" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<property name="portlet.plugins.includes" value="opensocial-portlet" />
 
 		<execute macro="Page#add">
@@ -154,6 +156,7 @@
 	</command>
 
 	<command name="ViewUpdateUserViaJSONWS" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<property name="custom.properties" value="company.security.strangers.verify=true" />
 
 		<execute macro="ProductMenu#gotoControlPanelUsers">
