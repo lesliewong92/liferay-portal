@@ -4471,7 +4471,7 @@ go]]></replacevalue>
 		<if>
 			<isset property="jenkins.testray.results.dir" />
 			<then>
-				<for list="production,uat" param="testray.base.dir.name">
+				<for list="nightly" param="testray.base.dir.name">
 					<sequential>
 						<rsync rsync.dest="testray-results/@{testray.base.dir.name}" rsync.src="${jenkins.results.xml.suite.file}" />
 					</sequential>
@@ -6868,7 +6868,7 @@ if (ppstate.equals("normal")) {
 			gzip -r testray-logs/
 		</execute>
 
-		<for list="production,uat" param="testray.base.dir.name">
+		<for list="nightly" param="testray.base.dir.name">
 			<sequential>
 				<rsync rsync.dest="testray-results/@{testray.base.dir.name}/logs" rsync.src="testray-logs/." />
 			</sequential>
