@@ -24,6 +24,7 @@
 	</tear-down>
 
 	<command name="AddPageFromExistingPage" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="Page#add">
@@ -51,6 +52,7 @@
 	</command>
 
 	<command name="EditSitePage" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="Page#add">

@@ -89,6 +89,7 @@
 	</command>
 
 	<command name="AddCalendarToCurrentSiteCalendars" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
@@ -120,6 +121,7 @@
 	</command>
 
 	<command name="AddCalendarToMyCalendars" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="calendarName" value="My Calendar Name" />
 		<var name="calendarType" value="My Calendars" />
 		<var name="user" value="Test Test" />
@@ -175,6 +177,7 @@
 	</command>
 
 	<command name="AddEventAllDayCommentToCurrentSiteCalendars" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
@@ -231,6 +234,7 @@
 	</command>
 
 	<command name="AddEventAllDayRSVPYes" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<var name="eventTitle" value="Calendar Event All Day Title" />
 		<var name="eventType" value="All Day" />
 
@@ -265,6 +269,7 @@
 	</command>
 
 	<command name="AddEventAllDayWithRemindersEnabled" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<var name="eventTitle" value="Calendar Event All Day Title" />
 		<var name="eventType" value="All Day" />
 		<var name="portletName" value="Calendar" />
@@ -296,6 +301,7 @@
 	</command>
 
 	<command name="AddEventAllDayWithTag" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
@@ -335,6 +341,7 @@
 	</command>
 
 	<command name="AddEventAllDayWithUserInviteAccept" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
@@ -424,6 +431,7 @@
 	</command>
 
 	<command name="AddEventAsPowerUserWhenSiteMemberNoViewPermissions" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<description message="This is a use case for LPS-55163." />
 
 		<execute macro="TestCase#getSiteName">
@@ -541,6 +549,7 @@
 	</command>
 
 	<command name="AddEventRegularAndResourceWithStagingAndSchedulePublishToLive" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -691,6 +700,7 @@
 	</command>
 
 	<command name="AddEventRegularCommentToCurrentSiteCalendars" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
@@ -747,6 +757,7 @@
 	</command>
 
 	<command name="AddEventRegularRSVPYes" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="eventTitle" value="Calendar Event Regular Title" />
 		<var name="eventType" value="Regular" />
 
@@ -781,6 +792,7 @@
 	</command>
 
 	<command name="AddEventRegularWithRemindersEnabled" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="eventTitle" value="Calendar Event Regular Title" />
 		<var name="eventType" value="Regular" />
 		<var name="portletName" value="Calendar" />
@@ -816,6 +828,7 @@
 	</command>
 
 	<command name="AddEventRegularWithTag" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
@@ -855,6 +868,7 @@
 	</command>
 
 	<command name="AddEventRegularWithUserInvite" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="eventTitle" value="Calendar Event Regular Title" />
 		<var name="eventType" value="Regular" />
 		<var name="resourceNameList" value="Test Test" />
@@ -883,6 +897,7 @@
 	</command>
 
 	<command name="AddEventRegularWithUserInviteAccept" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
@@ -976,6 +991,7 @@
 	</command>
 
 	<command name="AddEventRepeating" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="eventTitle" value="Calendar Event Repeating Title" />
 		<var name="eventType" value="Repeating" />
 
@@ -1015,6 +1031,7 @@
 	</command>
 
 	<command name="AddEventRepeatingCommentToCurrentSiteCalendars" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
@@ -1103,6 +1120,7 @@
 	</command>
 
 	<command name="AddEventRepeatingRSVPYes" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<var name="eventTitle" value="Calendar Event Repeating Title" />
 		<var name="eventType" value="Repeating" />
 
@@ -1141,6 +1159,7 @@
 	</command>
 
 	<command name="AddEventRepeatingWeekly2Times" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="eventTitle" value="Calendar Event Repeating Title" />
 		<var name="eventType" value="Repeating" />
 
@@ -1182,6 +1201,7 @@
 	</command>
 
 	<command name="AddEventRepeatingWithEndDateBeforeStartDate" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<description message="This is a use case for LPS-56337." />
 
 		<execute macro="Navigator#gotoPage">
@@ -1204,6 +1224,7 @@
 	</command>
 
 	<command name="AddEventRepeatingWithRemindersEnabled" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<var name="eventTitle" value="Calendar Event Repeating Title" />
 		<var name="eventType" value="Repeating" />
 		<var name="portletName" value="Calendar" />
@@ -1243,6 +1264,7 @@
 	</command>
 
 	<command name="AddEventRepeatingWithTag" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
@@ -1284,6 +1306,7 @@
 	</command>
 
 	<command name="AddEventRepeatingWithUserInviteAccept" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
@@ -1381,6 +1404,7 @@
 	</command>
 
 	<command name="AddEventRepeatingYearly" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<description message="This is a use case for LPS-51402." />
 
 		<var name="eventTitle" value="Calendar Event Repeating Title" />
@@ -1448,6 +1472,7 @@
 	</command>
 
 	<command name="AddEventsViaScheduler" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
@@ -1505,6 +1530,7 @@
 	</command>
 
 	<command name="AddEventWithRelatedAssetViaAssetPublisher" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
@@ -1595,6 +1621,7 @@
 	</command>
 
 	<command name="AddEventWithStaging" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<description message="This is a use case for LPS-52083." />
 
 		<execute macro="ProductMenu#gotoControlPanelSites">
@@ -1779,6 +1806,7 @@
 	</command>
 
 	<command name="AddUserCalendarToOtherCalendars" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="calendarType" value="Other Calendars" />
 		<var name="userCalendarColor" value="668CD9" />
 		<var name="userEmailAddress" value="userea@liferay.com" />
@@ -1823,6 +1851,7 @@
 	</command>
 
 	<command name="ChangeCalendarTypeForAllDayEvent" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
@@ -1856,6 +1885,7 @@
 	</command>
 
 	<command name="ChangeCalendarTypeForRegularEvent" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
@@ -1889,6 +1919,7 @@
 	</command>
 
 	<command name="ChangeCalendarTypeForRepeatingEvent" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
@@ -1924,6 +1955,7 @@
 	</command>
 
 	<command name="ChangeColorCalendarSiteCalendarsEventRegular" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
@@ -2034,6 +2066,7 @@
 	</command>
 
 	<command name="ConfigureDefaultView" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<for list="Day,Week,Month" param="defaultView">
 			<execute macro="Navigator#gotoPage">
 				<var name="pageName" value="${pageName}" />
@@ -2058,6 +2091,7 @@
 	</command>
 
 	<command name="ConfigureDisplayTimeZone" priority="5">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
@@ -2152,6 +2186,7 @@
 	</command>
 
 	<command name="DeactivateAndDeleteSiteCalendarAndViewSiteCalendarEvent" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -2235,6 +2270,7 @@
 	</command>
 
 	<command name="DeleteCalendarMyCalendars" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="calendarName" value="Calendar Name" />
 		<var name="calendarType" value="My Calendars" />
 		<var name="user" value="Test Test" />
@@ -2263,6 +2299,7 @@
 	</command>
 
 	<command name="DeleteCalendarResource" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="calendarResourceName" value="Calendar Resource Name" />
 
 		<execute macro="Navigator#gotoPage">
@@ -2291,6 +2328,7 @@
 	</command>
 
 	<command name="DeleteEventAndViewRSSFeed" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
@@ -2394,6 +2432,7 @@
 	</command>
 
 	<command name="DeleteEventRepeatingAllEventsInTheSeries" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="eventTitle" value="Calendar Event Repeating Title" />
 		<var name="eventType" value="Repeating" />
 
@@ -2463,6 +2502,7 @@
 	</command>
 
 	<command name="DeleteEventRepeatingOnlyThisInstance" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="eventTitle" value="Calendar Event Repeating Title" />
 		<var name="eventType" value="Repeating" />
 
@@ -2534,6 +2574,7 @@
 	</command>
 
 	<command name="DisableRSSFeedForSiteCalendar" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
@@ -2598,6 +2639,7 @@
 	</command>
 
 	<command name="EditCalendarCurrentSiteCalendars" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
@@ -2631,6 +2673,7 @@
 	</command>
 
 	<command name="EditCalendarMyCalendars" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<var name="calendarName" value="My Calendar Name" />
 		<var name="calendarNameEdit" value="My Calendar Name Edit" />
 		<var name="calendarType" value="My Calendars" />
@@ -2670,6 +2713,7 @@
 	</command>
 
 	<command name="EditCalendarResource" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<var name="calendarResourceName" value="Calendar Resource Name" />
 		<var name="calendarResourceNameEdit" value="Calendar Resource Name Edit" />
 
@@ -2700,6 +2744,7 @@
 	</command>
 
 	<command name="EditEventAllDay" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<var name="eventTitle" value="Calendar Event All Day Title" />
 		<var name="eventTitleEdit" value="Calendar Event All Day Title Edit" />
 		<var name="eventType" value="All Day" />
@@ -2733,6 +2778,7 @@
 	</command>
 
 	<command name="EditEventAllDayReminders" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<var name="eventTitle" value="Calendar Event All Day Title" />
 		<var name="eventTitleEdit" value="Calendar Event All Day Title Edit" />
 		<var name="eventType" value="All Day" />
@@ -2780,6 +2826,7 @@
 	</command>
 
 	<command name="EditEventAllDayWithUserInvite" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<var name="eventTitle" value="Calendar Event All Day Title" />
 		<var name="eventTitleEdit" value="Calendar Event All Day Title Edit" />
 		<var name="eventType" value="All Day" />
@@ -2819,6 +2866,7 @@
 	</command>
 
 	<command name="EditEventAndViewRSVP" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<description message="This is a use case for LPS-59097." />
 
 		<execute macro="Navigator#gotoPage">
@@ -2964,6 +3012,7 @@
 	</command>
 
 	<command name="EditEventRegular" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="eventTitle" value="Calendar Event Regular Title" />
 		<var name="eventTitleEdit" value="Calendar Event Regular Title Edit" />
 		<var name="eventType" value="Regular" />
@@ -2997,6 +3046,7 @@
 	</command>
 
 	<command name="EditEventRegularReminders" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<var name="eventTitle" value="Calendar Event Regular Title" />
 		<var name="eventTitleEdit" value="Calendar Event Regular Title Edit" />
 		<var name="eventType" value="Regular" />
@@ -3046,6 +3096,7 @@
 	</command>
 
 	<command name="EditEventRegularWithUserInvite" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<description message="This is a use case for LPS-50026." />
 
 		<execute macro="Navigator#gotoPage">
@@ -3109,6 +3160,7 @@
 	</command>
 
 	<command name="EditEventRepeating" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<var name="eventTitle" value="Calendar Event Repeating Title" />
 		<var name="eventTitleEdit" value="Calendar Event Repeating Title Edit" />
 		<var name="eventType" value="Repeating" />
@@ -3146,6 +3198,7 @@
 	</command>
 
 	<command name="EditEventRepeatingAllEventsInTheSeries" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<description message="This is a use case for LPS-50016." />
 
 		<execute macro="Navigator#gotoPage">
@@ -3204,6 +3257,7 @@
 	</command>
 
 	<command name="EditEventRepeatingAllFollowing" priority="2">
+		<property name="portal.acceptance" value="true" />
 		<description message="This is a use case for LPS-50017" />
 
 		<execute macro="Navigator#gotoPage">
@@ -3252,6 +3306,7 @@
 	</command>
 
 	<command name="EditEventRepeatingReminders" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="eventTitle" value="Calendar Event Repeating Title" />
 		<var name="eventTitleEdit" value="Calendar Event Repeating Title Edit" />
 		<var name="eventType" value="Repeating" />
@@ -3303,6 +3358,7 @@
 	</command>
 
 	<command name="EditEventRepeatingWithUserInvite" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="eventTitle" value="Calendar Event Repeating Title" />
 		<var name="eventTitleEdit" value="Calendar Event Repeating Title Edit" />
 		<var name="eventType" value="Repeating" />
@@ -3344,6 +3400,7 @@
 	</command>
 
 	<command name="EditInviteEmailTemplateForCalendarResourceCalendar" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<var name="calendarResourceName" value="Calendar Resource Name" />
 		<var name="calendarType" value="Other Calendars" />
 
@@ -3387,6 +3444,7 @@
 	</command>
 
 	<command name="EditInviteEmailTemplateForCurrentSiteCalendarsCalendar" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
@@ -3431,6 +3489,7 @@
 	</command>
 
 	<command name="EditInviteEmailTemplateForMyCalendarsCalendar" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<var name="calendarName" value="My Calendar Name" />
 		<var name="calendarType" value="My Calendars" />
 		<var name="user" value="Test Test" />
@@ -3470,6 +3529,7 @@
 	</command>
 
 	<command name="EditInviteEmailTemplateForUserCalendar" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<var name="calendarType" value="Other Calendars" />
 		<var name="userEmailAddress" value="userea@liferay.com" />
 		<var name="userFirstName" value="userfn" />
@@ -3519,6 +3579,7 @@
 	</command>
 
 	<command name="EditLanguageSelectorAndViewEvent" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<description message="This is a use case for LPS-58649." />
 
 		<execute macro="Navigator#gotoPage">
@@ -3555,6 +3616,7 @@
 	</command>
 
 	<command name="EditReminderEmailTemplateForCalendarResourceCalendar" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<var name="calendarResourceName" value="Calendar Resource Name" />
 		<var name="calendarType" value="Other Calendars" />
 
@@ -3598,6 +3660,7 @@
 	</command>
 
 	<command name="EditReminderEmailTemplateForCurrentSiteCalendarsCalendar" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
@@ -3642,6 +3705,7 @@
 	</command>
 
 	<command name="EditReminderEmailTemplateForMyCalendarsCalendar" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<var name="calendarName" value="My Calendar Name" />
 		<var name="calendarType" value="My Calendars" />
 		<var name="user" value="Test Test" />
@@ -3681,6 +3745,7 @@
 	</command>
 
 	<command name="EditReminderEmailTemplateForUserCalendar" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<var name="calendarType" value="Other Calendars" />
 		<var name="userEmailAddress" value="userea@liferay.com" />
 		<var name="userFirstName" value="userfn" />
@@ -3730,6 +3795,7 @@
 	</command>
 
 	<command name="EditUserCalendarOtherCalendars" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<var name="calendarType" value="Other Calendars" />
 		<var name="userEmailAddress" value="userea@liferay.com" />
 		<var name="userFirstName" value="userfn" />
@@ -3777,6 +3843,7 @@
 	</command>
 
 	<command name="ExportUserCalendarAsICS" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<description message="This is a use case for LPS-57992." />
 
 		<execute macro="CalendarNavigator#gotoAddEvent" />
@@ -3808,6 +3875,7 @@
 	</command>
 
 	<command name="ImportCalendarAndViewEventRegularComment" priority="5">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
@@ -3906,6 +3974,7 @@
 	</command>
 
 	<command name="ImportMicrosoftOutlookCalendarICS" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<description message="This is a use case for LPS-53072." />
 
 		<execute macro="TestCase#getSiteName">
@@ -3926,6 +3995,7 @@
 	</command>
 
 	<command name="InviteAndViewAdditionalUsers" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<description message="This is a use case for LPS-46700." />
 
 		<var name="eventTitle" value="Calendar Event Regular Title" />
@@ -3978,6 +4048,7 @@
 	</command>
 
 	<command name="InviteUsersAndViewResponse" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
@@ -4115,6 +4186,7 @@
 	</command>
 
 	<command name="SearchCalendarResource" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<description message="This is a use case for LPS-59743." />
 
 		<execute macro="Navigator#gotoPage">
@@ -4167,6 +4239,7 @@
 	</command>
 
 	<command name="SearchEventInSearchPortletWithTag" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<description message="This is a use case for LPS-54548." />
 
 		<execute macro="Navigator#gotoPage">
@@ -4212,6 +4285,7 @@
 	</command>
 
 	<command name="SearchForOtherCalendars" priority="5">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
@@ -4323,6 +4397,7 @@
 	</command>
 
 	<command name="SearchForOtherCalendarsAsNonPowerUser" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<description message="This is a use case for LPS-51572." />
 
 		<execute macro="ProductMenu#gotoControlPanelUsers">
@@ -4424,6 +4499,7 @@
 	</command>
 
 	<command name="View24hourTimeFormat" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
@@ -4559,6 +4635,7 @@
 	</command>
 
 	<command name="ViewAvailableCalendars" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="siteName" value="Site Name" />
 		<var name="userEmailAddress" value="userea@liferay.com" />
 		<var name="userFirstName" value="userfn" />
@@ -4706,6 +4783,7 @@
 	</command>
 
 	<command name="ViewCorrectCalendarOnEventSwitch" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<description message="This is a use case for LPS-51222." />
 
 		<execute macro="TestCase#getSiteName">
@@ -4799,6 +4877,7 @@
 	</command>
 
 	<command name="ViewCorrectNumberOfWeeksMonthView" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<description message="This is a use case for LPS-52517." />
 
 		<execute macro="Navigator#gotoPage">
@@ -4823,6 +4902,7 @@
 	</command>
 
 	<command name="ViewDefaultDurationsViaScheduler" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<for list="15,30,60,120" param="minutes">
 			<execute macro="Navigator#gotoPage">
 				<var name="pageName" value="${pageName}" />
@@ -4858,6 +4938,7 @@
 	</command>
 
 	<command name="ViewDisplayedSiteCalendarEventsAsGuest" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<description message="This is a use case for LPS-59251." />
 
 		<execute macro="TestCase#getSiteName">
@@ -4966,6 +5047,7 @@
 	</command>
 
 	<command name="ViewEventCalendarChange" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
@@ -5094,6 +5176,7 @@
 	</command>
 
 	<command name="ViewEventDetailsAllDayWithModifiedUserTimeZone" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<description message="This is a use case for LPS-51783." />
 
 		<execute macro="TestCase#getSiteName">
@@ -5137,6 +5220,7 @@
 	</command>
 
 	<command name="ViewInactiveResourceNotPresent" priority="2">
+		<property name="portal.acceptance" value="true" />
 		<description message="This is a use case for LPS-55171." />
 
 		<execute macro="ProductMenu#gotoControlPanelSites">
@@ -5198,6 +5282,7 @@
 	</command>
 
 	<command name="ViewInvitedResourceAvailability" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
@@ -5309,6 +5394,7 @@
 	</command>
 
 	<command name="ViewShowMoreLocalization" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<description message="This is a use case LPS-54786." />
 
 		<execute macro="Navigator#gotoPage">
@@ -5361,6 +5447,7 @@
 	</command>
 
 	<command name="ViewSiteCalendarRSSFeed" priority="5">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
@@ -5434,6 +5521,7 @@
 	</command>
 
 	<command name="ViewSiteNameUpdate" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -5489,6 +5577,7 @@
 	</command>
 
 	<command name="ViewUserCanAddSiteCalendarsWithCalendarPermissions" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<description message="This is a use case for LPS-56229." />
 
 		<execute macro="ProductMenu#gotoControlPanelUsers">
@@ -5677,6 +5766,7 @@
 	</command>
 
 	<command name="ViewWeekStartSaturday" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<description message="This is a use case for 51127." />
 
 		<execute macro="Navigator#gotoPage">

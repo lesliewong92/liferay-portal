@@ -81,6 +81,7 @@
 	</command>
 
 	<command name="AddUserGroupNameAsterisk" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="User Groups" />
 		</execute>
@@ -101,6 +102,7 @@
 	</command>
 
 	<command name="AddUserGroupNameComma" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="User Groups" />
 		</execute>
@@ -121,6 +123,7 @@
 	</command>
 
 	<command name="AddUserGroupNameDuplicate" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="User Groups" />
 		</execute>
@@ -144,6 +147,7 @@
 	</command>
 
 	<command name="AddUserGroupNameNull" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="User Groups" />
 		</execute>
@@ -164,6 +168,7 @@
 	</command>
 
 	<command name="AddUserGroupNameNumber" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="User Groups" />
 		</execute>
@@ -184,6 +189,7 @@
 	</command>
 
 	<command name="AddUserGroups" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="User Groups" />
 		</execute>
@@ -218,6 +224,7 @@
 	</command>
 
 	<command name="DeleteUserGroup" priority="5">
+		<property name="portal.acceptance" value="true" />
 		<property name="portal.acceptance" value="false" />
 
 		<execute macro="ProductMenu#gotoControlPanelUsers">
@@ -236,6 +243,7 @@
 	</command>
 
 	<command name="DeleteUserGroupWithMemberAssigned" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
@@ -315,6 +323,7 @@
 	</command>
 
 	<command name="RemoveMember" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
@@ -363,6 +372,7 @@
 	</command>
 
 	<command name="SearchCurrentMembersAssignedToUserGroup" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="User Groups" />
 		</execute>
@@ -409,6 +419,7 @@
 	</command>
 
 	<command name="SearchUserGroup" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="User Groups" />
 		</execute>
@@ -423,6 +434,7 @@
 	</command>
 
 	<command name="ViewPortletUserGroup" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="User Groups" />
 		</execute>

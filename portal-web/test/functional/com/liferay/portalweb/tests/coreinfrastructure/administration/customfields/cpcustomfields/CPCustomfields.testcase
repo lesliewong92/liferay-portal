@@ -24,6 +24,7 @@
 	</tear-down>
 
 	<command name="AddCustomFieldsSmoke" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Custom Fields" />
 		</execute>
@@ -263,6 +264,7 @@
 	</command>
 
 	<command name="EditRevertCustomFieldWikiPage" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Custom Fields" />
 		</execute>

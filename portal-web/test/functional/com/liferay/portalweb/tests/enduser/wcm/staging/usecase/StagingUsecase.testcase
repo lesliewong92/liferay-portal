@@ -48,6 +48,7 @@
 	</tear-down>
 
 	<command name="ActivateStagingPageVersioningWithCustomDefaultLanguage" priority="5">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
@@ -77,6 +78,7 @@
 	</command>
 
 	<command name="DeleteLivePage" priority="5">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
@@ -131,6 +133,7 @@
 	</command>
 
 	<command name="EditPublishTemplate" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
@@ -329,6 +332,7 @@
 	</command>
 
 	<command name="EnableAndDeleteSitePageVariationPage" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
@@ -398,6 +402,7 @@
 	</command>
 
 	<command name="MoveToTheRecycleBinAndRestorePublishTemplate" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
@@ -498,6 +503,7 @@
 	</command>
 
 	<command name="PublishCustomPortletTitle" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute test-case="super#AddSitePagesVariation" />
 
 		<var name="pageName" value="Staging Test Page" />
@@ -597,6 +603,7 @@
 	</command>
 
 	<command name="StagingAssetPublisher" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -676,6 +683,7 @@
 	</command>
 
 	<command name="StagingBlogs" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#gotoSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
@@ -891,6 +899,7 @@
 	</command>
 
 	<command name="StagingBlogsCP" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
@@ -926,6 +935,7 @@
 	</command>
 
 	<command name="StagingDemoDocumentsAndMedia" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Server Administration" />
 		</execute>
@@ -1058,6 +1068,7 @@
 	</command>
 
 	<command name="StagingDemoLocalLive1" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
@@ -1211,6 +1222,7 @@
 	</command>
 
 	<command name="StagingDemoLocalLive2" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="pageName" value="Home" />
 		<var name="roleName" value="Staging Admin" />
 		<var name="siteName" value="Community Site Name" />
@@ -1354,6 +1366,7 @@
 	</command>
 
 	<command name="StagingDemoLocalLive3" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -1698,6 +1711,7 @@
 	</command>
 
 	<command name="StagingDemoLocalLive4" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -1864,6 +1878,7 @@
 	</command>
 
 	<command name="StagingKaleoPageRevision" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -1979,6 +1994,7 @@
 	</command>
 
 	<command name="StagingKaleoWebContentLinkingUnapprovedContent" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -2086,6 +2102,7 @@
 	</command>
 
 	<command name="StagingLocalLiveLock" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
@@ -2151,6 +2168,7 @@
 	</command>
 
 	<command name="StagingLocalLiveWorkflow" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -2503,6 +2521,7 @@
 	</command>
 
 	<command name="StagingLogo" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
@@ -2592,6 +2611,7 @@
 	</command>
 
 	<command name="StagingMultipleDM" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#gotoSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
@@ -2661,6 +2681,7 @@
 	</command>
 
 	<command name="StagingOnlyApprovedPublishToLive" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -2882,6 +2903,7 @@
 	</command>
 
 	<command name="StagingOrganizations" priority="5">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
@@ -3005,6 +3027,7 @@
 	</command>
 
 	<command name="StagingPortletPublishContentCount" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
@@ -3083,6 +3106,7 @@
 	</command>
 
 	<command name="StagingPublishOnlySelectedPage" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
@@ -3158,6 +3182,7 @@
 	</command>
 
 	<command name="StagingPublishPage" priority="5">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -3343,6 +3368,7 @@
 	</command>
 
 	<command name="StagingRemoteDMViaGlobalScope" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<property name="app.server.bundles.size" value="1" />
 		<property name="custom.properties" value="tunneling.servlet.shared.secret=1234567890123456${line.separator}auth.verifier.TunnelingServletAuthVerifier.hosts.allowed=" />
 
@@ -3465,6 +3491,7 @@
 	</command>
 
 	<command name="StagingRemoteDocumentSubtypeViaAP" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<property name="custom.properties" value="tunneling.servlet.shared.secret=1234567890123456${line.separator}auth.verifier.TunnelingServletAuthVerifier.hosts.allowed=" />
 
 		<execute macro="Staging#remoteStagingSetUp">
@@ -3541,6 +3568,7 @@
 	</command>
 
 	<command name="StagingRemoteLiveWebContent" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<property name="custom.properties" value="tunneling.servlet.shared.secret=1234567890123456${line.separator}auth.verifier.TunnelingServletAuthVerifier.hosts.allowed=" />
 
 		<execute macro="Staging#remoteStagingSetUp">
@@ -3706,6 +3734,7 @@
 	</command>
 
 	<command name="StagingSiteVariationIncompletePage" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
@@ -3760,6 +3789,7 @@
 	</command>
 
 	<command name="StagingVersionHistory" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
@@ -3881,6 +3911,7 @@
 	</command>
 
 	<command name="StagingWithPublishTemplate" priority="4" >
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
@@ -4101,6 +4132,7 @@
 	</command>
 
 	<command name="StagingWithPublishTemplateSmoke" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
@@ -4182,6 +4214,7 @@
 	</command>
 
 	<command name="ViewHistoryVersionWithDeletedUser" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
@@ -4310,6 +4343,7 @@
 	</command>
 
 	<command name="ViewPageOrderWithStaging" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openSiteURL">
 			<var name="siteName" value="${siteName}" />
 		</execute>
@@ -4376,6 +4410,7 @@
 	</command>
 
 	<command name="ViewPublishDMWithModifiedTitle" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>

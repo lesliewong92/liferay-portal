@@ -43,6 +43,7 @@
 	</tear-down>
 
 	<command name="ApproveBlogsEntriesCPJoinXORNodeWorkflowDefinition" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<description message="This is a use case for LPS-35577." />
 
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
@@ -396,6 +397,7 @@
 	</command>
 
 	<command name="RejectBlogsEntryCP" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="entryContent" value="Blogs Entry Content" />
 		<var name="entryTitle" value="Blogs Entry Title" />
 

@@ -39,6 +39,7 @@
 	</tear-down>
 
 	<command name="AddSitePageXSS" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<var name="sitePage3Name"><![CDATA[<script>alert("Site Page 3")</script> />]]></var>
 
 		<execute macro="Page#add">
@@ -76,6 +77,7 @@
 	</command>
 
 	<command name="CannotDeleteLastPrivatePage" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -96,6 +98,7 @@
 	</command>
 
 	<command name="CannotDeleteLastPublicPage" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="SitePageNavigator#gotoPages">
 			<var name="page" value="Public Pages" />
 		</execute>
@@ -120,6 +123,7 @@
 	</command>
 
 	<command name="ChangingPageTypeLayoutToLinkToAPageOfThisSiteHidesChildPages" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -185,6 +189,7 @@
 	</command>
 
 	<command name="DefaultLanguageWithEmptyFriendlyURLThrowsErrorExceptions" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Page#add">
 			<var name="pageName" value="Page Name" />
 		</execute>
@@ -223,6 +228,7 @@
 	</command>
 
 	<command name="LoadMoreResultsLinkAreMissingAtAllLevelsInTreeView" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<property name="custom.properties" value="layout.manage.pages.initial.children=3" />
 		<var name="childPageNameList" value="Child Page1 Name,Child Page2 Name,Child Page3 Name,Child Page4 Name, Child Page5 Name" />
 		<var name="pageNameList" value="Page1 Name,Page2 Name,Page3 Name,Page4 Name" />
@@ -260,6 +266,7 @@
 	</command>
 
 	<command name="SitesPanelLayout" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
@@ -306,6 +313,7 @@
 	</command>
 
 	<command name="SitesPrivatePagesPermissions" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -453,6 +461,7 @@
 	</command>
 
 	<command name="ViewSecureContentAndPageAsGuest" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Server Administration" />
 		</execute>
@@ -657,6 +666,7 @@
 	</command>
 
 	<command name="ViewSecureContentAndPageAsSiteMember" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Server Administration" />
 		</execute>
@@ -907,6 +917,7 @@
 	</command>
 
 	<command name="ViewSecureContentAndPageAsUser" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Server Administration" />
 		</execute>
@@ -1132,6 +1143,7 @@
 	</command>
 
 	<command name="WebContentAdministrationSitesPagesPanel" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Page#add">
 			<var name="componentName" value="Collaboration" />
 			<var name="pageName" value="Panel Test Page" />
@@ -1200,6 +1212,7 @@
 	</command>
 
 	<command name="WebContentAdministrationSitesPageTypes" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>

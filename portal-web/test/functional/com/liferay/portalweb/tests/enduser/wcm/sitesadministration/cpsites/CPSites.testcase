@@ -22,6 +22,7 @@
 	</tear-down>
 
 	<command name="AddChildChildSite" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -94,6 +95,7 @@
 	</command>
 
 	<command name="AddPublicVirtualHostsSiteURL" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -155,6 +157,7 @@
 	</command>
 
 	<command name="AddSitesMultiple" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -205,6 +208,7 @@
 	</command>
 
 	<command name="AddSiteWithCommaInName" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -223,6 +227,7 @@
 	</command>
 
 	<command name="AddSiteWithInvalidDuplicateName" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -242,6 +247,7 @@
 	</command>
 
 	<command name="AddSiteWithInvalidName" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<for list="Site Name*,22222" param="siteName" >
 			<execute macro="ProductMenu#gotoControlPanelSites">
 				<var name="portlet" value="Sites" />
@@ -255,6 +261,7 @@
 	</command>
 
 	<command name="AddSiteWithNullName" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -319,6 +326,7 @@
 	</command>
 
 	<command name="EditSiteFriendlyURL" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -375,6 +383,7 @@
 	</command>
 
 	<command name="EditSiteFriendlyURLInvalid" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -436,6 +445,7 @@
 	</command>
 
 	<command name="SiteCannotBeItsOwnParent" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -459,6 +469,7 @@
 	</command>
 
 	<command name="SiteCannotBeItsOwnParentStaging" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -504,6 +515,7 @@
 	</command>
 
 	<command name="ViewDisplayParentSiteViaSitesDirectory" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -605,6 +617,7 @@
 	</command>
 
 	<command name="ViewSiteHierarchiesViaSitesDirectory" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>

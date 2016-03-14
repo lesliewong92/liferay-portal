@@ -133,6 +133,7 @@
 	</command>
 
 	<command name="DeleteComment" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<description message="This is a use case for LPS-54707." />
 
 		<execute macro="Navigator#gotoPage">
@@ -177,6 +178,7 @@
 	</command>
 
 	<command name="RejectPageCommentPG" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="commentAuthor" value="Test Test (You)" />
 		<var name="commentBody" value="Page Comment Comment" />
 

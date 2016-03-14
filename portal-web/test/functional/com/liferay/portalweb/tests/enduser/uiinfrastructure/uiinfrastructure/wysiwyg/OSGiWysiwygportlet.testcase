@@ -15,6 +15,7 @@
 	</tear-down>
 
 	<command name="WYSIWYGPortletSmoke" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<property name="portlet.plugins.includes" value="wysiwyg-portlet" />
 
 		<var name="appName" value="WYSIWYG" />
