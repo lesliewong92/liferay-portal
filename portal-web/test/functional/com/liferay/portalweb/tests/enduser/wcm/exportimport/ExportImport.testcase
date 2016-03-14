@@ -31,6 +31,7 @@
 	</tear-down>
 
 	<command name="DeleteExportTemplate" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesPublishing">
@@ -87,6 +88,7 @@
 	</command>
 
 	<command name="EditExportTemplate" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -244,6 +246,7 @@
 	</command>
 
 	<command name="ExportImportDDLViaGlobal" priority="5">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -365,6 +368,7 @@
 	</command>
 
 	<command name="ExportImportDMRootFolder" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -458,6 +462,7 @@
 	</command>
 
 	<command name="ExportImportPortletWithADT" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesConfiguration">
@@ -544,6 +549,7 @@
 
 	<command name="ExportImportSampleLARPortlet" priority="5">
 		<property name="portal.acceptance" value="true" />
+
 		<property name="portlet.plugins.includes" value="sample-lar-portlet" />
 
 		<execute macro="Page#add">
@@ -666,6 +672,7 @@
 	</command>
 
 	<command name="ExportImportSmoke" priority="5">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="User#firstLoginPG" />
 
 		<execute macro="LAR#configureExportSiteCP" />
@@ -702,6 +709,7 @@
 	</command>
 
 	<command name="ExportImportValidation" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -794,6 +802,7 @@
 	</command>
 
 	<command name="ExportImportWithExportTemplate" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesPublishing">
@@ -846,6 +855,7 @@
 	</command>
 
 	<command name="ExportImportWSRPUnitConverter" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<property name="portlet.plugins.includes" value="wsrp-portlet" />
 
 		<execute macro="ProductMenu#gotoControlPanelApps">
@@ -967,6 +977,7 @@
 	</command>
 
 	<command name="SearchExportTemplate" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesPublishing">

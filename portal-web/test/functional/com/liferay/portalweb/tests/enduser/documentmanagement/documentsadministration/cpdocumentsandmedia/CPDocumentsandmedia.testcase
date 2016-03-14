@@ -168,6 +168,7 @@
 	</command>
 
 	<command name="MoveDocumentToFolder" priority="5">
+		<property name="portal.acceptance" value="true" />
 		<var name="dmDocumentDescription" value="DM Document Description" />
 		<var name="dmDocumentFile" value="Document_1.txt" />
 		<var name="dmDocumentSize" value="0" />
@@ -229,6 +230,7 @@
 	</command>
 
 	<command name="MoveFolderToFolder" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -254,6 +256,7 @@
 	</command>
 
 	<command name="MoveToRecycleBinDocument" priority="5">
+		<property name="portal.acceptance" value="true" />
 		<var name="assetName" value="${dmDocumentTitle}" />
 		<var name="assetType" value="Document" />
 		<var name="dmDocumentDescription" value="DM Document Description1" />
@@ -315,6 +318,7 @@
 	</command>
 
 	<command name="SearchForDocumentInHomeFolder" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">

@@ -45,6 +45,7 @@
 	</tear-down>
 
 	<command name="AddFormTemplate" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
@@ -136,6 +137,7 @@
 	</command>
 
 	<command name="AddList" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="ddlDataDefinitionName" value="Data Definition Name" />
 		<var name="ddlListName" value="List Name" />
 		<var name="field" value="Text" />
@@ -253,6 +255,7 @@
 	</command>
 
 	<command name="AddListWithDocumentsAndMediaField" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<description message="This is a use case for LPS-58893." />
 
 		<execute macro="Navigator#openURL" />
@@ -323,6 +326,7 @@
 	</command>
 
 	<command name="AddRecordNested" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<description message="This is a use case for LPS-59565." />
 
 		<execute macro="Navigator#openURL" />
@@ -403,6 +407,7 @@
 	</command>
 
 	<command name="AddVelocityDisplayTemplate" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<property name="custom.properties" value="freemarker.engine.restricted.variables=${line.separator}restricted.variables=" />
 
 		<var name="ddlDisplayTemplateScript">
@@ -485,6 +490,7 @@
 	</command>
 
 	<command name="ConfigureEditableListPG" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="ddlDataDefinitionName" value="Data Definition Name" />
 		<var name="ddlListName" value="List Name" />
 		<var name="field" value="Text" />
@@ -599,6 +605,7 @@
 	</command>
 
 	<command name="DeleteListRecord" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="ddlDataDefinitionName" value="Data Definition Name" />
 		<var name="ddlListName" value="List Name" />
 		<var name="ddlRecordFieldData" value="Text" />
@@ -661,6 +668,7 @@
 	</command>
 
 	<command name="EditFormTemplateLabelAndViewRecord" priority="2">
+		<property name="portal.acceptance" value="true" />
 		<description message="This is a use case for LPS-58319." />
 
 		<execute macro="Navigator#openURL" />
@@ -754,6 +762,7 @@
 	</command>
 
 	<command name="EditList" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="ddlDataDefinitionName" value="Data Definition Name" />
 		<var name="ddlListDescription" value="List Description" />
 		<var name="ddlListDescriptionEdit" value="List Description Edit" />
@@ -816,6 +825,7 @@
 	</command>
 
 	<command name="EditListRecord" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="ddlDataDefinitionName" value="Data Definition Name" />
 		<var name="ddlListName" value="List Name" />
 		<var name="ddlRecordFieldData" value="Text" />
@@ -898,6 +908,7 @@
 	</command>
 
 	<command name="EditListRecordViaRecordView" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="ddlDataDefinitionName" value="Data Definition Name" />
 		<var name="ddlListName" value="List Name" />
 		<var name="ddlRecordFieldData" value="Text" />
@@ -980,6 +991,7 @@
 	</command>
 
 	<command name="SearchDynamicDataListsRecords" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -1094,6 +1106,7 @@
 	</command>
 
 	<command name="SearchDynamicDataListsRecordsAsUserWithNoPermissions" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Roles" />
 		</execute>
@@ -1252,6 +1265,7 @@
 	</command>
 
 	<command name="SelectList" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="ddlDataDefinitionName" value="Data Definition Name" />
 		<var name="ddlListName" value="List Name" />
 		<var name="field" value="Text" />
@@ -1306,6 +1320,7 @@
 	</command>
 
 	<command name="SwitchListsViaDDLDisplayAndAssertEditableStillChecked" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<var name="ddlDataDefinition1Name" value="To Do" />
 		<var name="ddlDataDefinition2Name" value="Meeting Minutes" />
 		<var name="ddlList1Name" value="List 1 Name" />
@@ -1355,6 +1370,7 @@
 	</command>
 
 	<command name="ViewBooleanFieldPredefinedValue" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<var name="ddlDataDefinitionName" value="Boolean Predefined Value Data Definition Name" />
 		<var name="ddlListName" value="List Name" />
 		<var name="ddlRecordFieldData" value="No" />
@@ -1460,6 +1476,7 @@
 	</command>
 
 	<command name="ViewDateFieldPredefinedValue" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<var name="ddlDataDefinitionName" value="Date Predefined Value Data Definition Name" />
 		<var name="ddlListName" value="List Name" />
 		<var name="ddlRecordFieldData" value="05/13/2017" />
@@ -1573,6 +1590,7 @@
 	</command>
 
 	<command name="ViewDecimalFieldPredefinedValue" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<var name="ddlDataDefinitionName" value="Decimal Predefined Value Data Definition Name" />
 		<var name="ddlListName" value="List Name" />
 		<var name="ddlRecordFieldData" value="11.18" />
@@ -1678,6 +1696,7 @@
 	</command>
 
 	<command name="ViewDefaultGuestViewPermissions" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="ddlDataDefinitionDescription" value="Data Definition Description" />
 		<var name="ddlDataDefinitionName" value="Data Definition" />
 		<var name="ddlListDescription" value="List Description" />
@@ -1771,6 +1790,7 @@
 	</command>
 
 	<command name="ViewIntegerFieldPredefinedValue" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<var name="ddlDataDefinitionName" value="Integer Predefined Value Data Definition Name" />
 		<var name="ddlListName" value="List Name" />
 		<var name="ddlRecordFieldData" value="4421" />
@@ -1878,6 +1898,7 @@
 	</command>
 
 	<command name="ViewListRecordAndAssertAnchorLink"  priority="3">
+		<property name="portal.acceptance" value="true" />
 		<var name="ddlDataDefinitionName" value="Data Definition Name" />
 		<var name="ddlListName" value="List Name" />
 		<var name="ddlRecordFieldData" value="Text" />
@@ -1941,8 +1962,8 @@
 	</command>
 
 	<command name="ViewListRecordWithUploadedFreeMarkerDisplayTemplate" priority="5">
-		<property name="custom.properties" value="freemarker.engine.restricted.variables=${line.separator}restricted.variables=" />
 		<property name="portal.acceptance" value="true" />
+		<property name="custom.properties" value="freemarker.engine.restricted.variables=${line.separator}restricted.variables=" />
 
 		<var name="ddlDataDefinitionName" value="Data Definition" />
 		<var name="ddlDisplayTemplateLanguage" value="FreeMarker (.ftl)" />
@@ -2063,6 +2084,7 @@
 	</command>
 
 	<command name="ViewListRecordWithUploadedVelocityDisplayTemplate" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<property name="custom.properties" value="freemarker.engine.restricted.variables=${line.separator}restricted.variables=" />
 
 		<var name="ddlDataDefinitionName" value="Data Definition" />
@@ -2179,6 +2201,7 @@
 	</command>
 
 	<command name="ViewListRecordWithVelocityDisplayTemplate" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<property name="custom.properties" value="freemarker.engine.restricted.variables=${line.separator}restricted.variables=" />
 
 		<var name="ddlDataDefinitionDescription" value="Data Definition Description" />
@@ -2313,6 +2336,7 @@
 	</command>
 
 	<command name="ViewNumberFieldPredefinedValue" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<var name="ddlDataDefinitionName" value="Number Predefined Value Data Definition Name" />
 		<var name="ddlListName" value="List Name" />
 		<var name="ddlRecordFieldData" value="5553" />
@@ -2420,6 +2444,7 @@
 	</command>
 
 	<command name="ViewPortletWithSpreadsheetViewDisabled" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<description message="This is a use case for LPS-59146." />
 
 		<execute macro="Navigator#gotoPage">
@@ -2468,6 +2493,7 @@
 	</command>
 
 	<command name="ViewTextBoxFieldPredefinedValue" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<var name="ddlDataDefinitionName" value="Text Box Predefined Value Data Definition Name" />
 		<var name="ddlListName" value="List Name" />
 		<var name="ddlRecordFieldData" value="Test 2" />
@@ -2573,6 +2599,7 @@
 	</command>
 
 	<command name="ViewTextFieldPredefinedValue" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="ddlDataDefinitionName" value="Text Predefined Value Data Definition Name" />
 		<var name="ddlListName" value="List Name" />
 		<var name="ddlRecordFieldData" value="QA Department" />

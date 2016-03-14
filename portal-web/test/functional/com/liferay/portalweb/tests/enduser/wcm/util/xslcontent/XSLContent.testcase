@@ -59,6 +59,7 @@
 	</tear-down>
 
 	<command name="AddXSL" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -186,6 +187,7 @@
 	</command>
 
 	<command name="ConfigurePortletWithCorruptXML" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<property name="ignore.errors" value="must be terminated by the matching end-tag" />
 
 		<execute macro="ProductMenu#gotoSite">
@@ -303,6 +305,7 @@
 	</command>
 
 	<command name="ConfigurePortletWithCorruptXSL" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<property name="ignore.errors" value="must be terminated by the matching end-tag" />
 
 		<execute macro="ProductMenu#gotoSite">
@@ -420,6 +423,7 @@
 	</command>
 
 	<command name="ConfigurePortletWithIncorrectVersionXmlAndXsl" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -539,6 +543,7 @@
 	</command>
 
 	<command name="ViewXSLDefaultContent" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#gotoSitePage">
 			<var name="pageName" value="Test Page Name" />
 			<var name="siteName" value="Site Name" />

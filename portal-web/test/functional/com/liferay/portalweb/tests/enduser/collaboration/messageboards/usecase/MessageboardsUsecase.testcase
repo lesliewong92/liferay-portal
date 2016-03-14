@@ -34,6 +34,7 @@
 	</tear-down>
 
 	<command name="CopyAndPasteTextInCKEditor" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Page#add">
 			<var name="pageName" value="Message Boards Page" />
 		</execute>
@@ -147,6 +148,7 @@
 	</command>
 
 	<command name="RestoreMessageboardsThread" priority="5">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -206,6 +208,7 @@
 	</command>
 
 	<command name="SearchMessageBoardsAttachment" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Page#add">
 			<var name="pageName" value="${pageName}" />
 		</execute>
@@ -254,6 +257,7 @@
 	</command>
 
 	<command name="SplitMBThread" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<var name="threadBody" value="MB Thread Message Body" />
 		<var name="threadReplyBody" value="MB Thread Reply Body" />
 		<var name="threadSplitReplyBody" value="Split Reply Thread Body" />
@@ -337,6 +341,7 @@
 	</command>
 
 	<command name="ViewCategoriesAndThreadsOnTwoScopes" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Page#add">
 			<var name="pageName" value="${pageName}" />
 		</execute>
@@ -962,6 +967,7 @@
 	</command>
 
 	<command name="ViewCorrectViewPermissionsInMessageBoardsQuickReplyInPrivateSite" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -1040,6 +1046,7 @@
 	</command>
 
 	<command name="ViewMessageBoardsBannedUsers" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Page#add">
 			<var name="pageName" value="${pageName}" />
 		</execute>
@@ -1210,6 +1217,7 @@
 	</command>
 
 	<command name="ViewMessageBoardsThreadStatistics" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="threadBody" value="MB Thread1 Message Body" />
 		<var name="threadBody2" value="MB Thread2 Message Body" />
 		<var name="threadBodyEdit" value="MB Thread1 Message Body Edit" />
@@ -1328,6 +1336,7 @@
 	</command>
 
 	<command name="ViewNoMBThreadXSS" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="threadBody" value="[img]asd[font= onerror=alert(/This is an XSS Message/.source)//]FF[/font][/img]" />
 		<var name="threadSubject" value="MB Thread Message Subject" />
 
@@ -1368,6 +1377,7 @@
 	</command>
 
 	<command name="ViewNoSubscribeLinksNoWithEmailNotificationsDisabled" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="categoryName" value="MB Category Name" />
 		<var name="messageAddedEmailEnabled" value="false" />
 		<var name="messageUpdatedEmailEnabled" value="false" />
@@ -1468,6 +1478,7 @@
 	</command>
 
 	<command name="ViewQuestionOnSplitThread" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Page#add">
 			<var name="pageName" value="${pageName}" />
 		</execute>
@@ -1552,6 +1563,7 @@
 	</command>
 
 	<command name="ViewThreadDefaultQuestion" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Page#add">
 			<var name="pageName" value="Message Boards Page" />
 		</execute>
