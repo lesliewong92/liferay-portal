@@ -39,6 +39,7 @@
 
 	<command name="AddAnnouncementsEntry" priority="5">
 		<property name="portal.acceptance" value="true" />
+
 		<property name="test.name.skip.portal.instance" value="PGAnnouncements#AddAnnouncementsEntry" />
 
 		<var name="announcementType" value="General" />
@@ -72,6 +73,7 @@
 	</command>
 
 	<command name="AddAnnouncementsEntryFutureDate" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="announcementType" value="General" />
 		<var name="distributionScope" value="General" />
 		<var name="entryContent" value="Announcements Entry Content" />
@@ -110,6 +112,7 @@
 	</command>
 
 	<command name="AddAnnouncementsEntryPastExpirationDate" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<var name="distributionScope" value="General" />
 		<var name="entryContent" value="Announcements Entry Content" />
 		<var name="entryTitle" value="Announcements Entry Title" />
@@ -142,6 +145,7 @@
 	</command>
 
 	<command name="AddAnnouncementsEntryPriorityImportant" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="announcementType" value="General" />
 		<var name="distributionScope" value="General" />
 		<var name="entryContent" value="Announcements Entry Content" />
@@ -174,6 +178,7 @@
 	</command>
 
 	<command name="AddAnnouncementsEntrySite" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<var name="announcementType" value="General" />
 		<var name="distributionScope" value="General" />
 		<var name="entryContent" value="Announcements Entry Content" />
@@ -229,6 +234,7 @@
 
 	<command name="DeleteAnnouncementsEntry" priority="5">
 		<property name="portal.acceptance" value="true" />
+
 		<property name="test.name.skip.portal.instance" value="PGAnnouncements#DeleteAnnouncementsEntry" />
 
 		<var name="distributionScope" value="General" />
@@ -265,6 +271,7 @@
 
 	<command name="EditAnnouncementsEntry" priority="5">
 		<property name="portal.acceptance" value="true" />
+
 		<property name="test.name.skip.portal.instance" value="PGAnnouncements#EditAnnouncementsEntry" />
 
 		<var name="distributionScope" value="General" />
@@ -313,6 +320,7 @@
 
 	<command name="ViewPreviousAnnouncementEntries" priority="5">
 		<property name="portal.acceptance" value="true" />
+
 		<property name="test.name.skip.portal.instance" value="PGAnnouncements#ViewPreviousAnnouncementEntries" />
 
 		<var name="distributionScope" value="General" />

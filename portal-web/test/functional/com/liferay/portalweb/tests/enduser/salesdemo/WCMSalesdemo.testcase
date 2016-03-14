@@ -26,6 +26,7 @@
 	</tear-down>
 
 	<command name="IFrameDemo" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Page#add">
 			<var name="columnName" value="1 Column" />
 			<var name="pageName" value="IFrame Page" />
@@ -60,6 +61,7 @@
 	</command>
 
 	<command name="SalesDemo" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
