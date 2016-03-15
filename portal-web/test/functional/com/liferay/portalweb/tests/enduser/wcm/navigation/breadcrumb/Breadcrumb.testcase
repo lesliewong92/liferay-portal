@@ -24,6 +24,7 @@
 	</tear-down>
 
 	<command name="ConfigureNoSave" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -86,6 +87,7 @@
 	</command>
 
 	<command name="DisableShowApplicationBreadcrumb" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<property name="custom.properties" value="default.layout.template.id=1_column" />
 
 		<execute macro="ProductMenu#gotoControlPanelSites">
@@ -250,6 +252,7 @@
 	</command>
 
 	<command name="DisableShowCurrentSite" priority="5">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -418,6 +421,7 @@
 	</command>
 
 	<command name="DisableShowParentSite" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -512,6 +516,7 @@
 	</command>
 
 	<command name="DisplayTemplateWithHorizontalStyle" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="SitePageNavigator#gotoPages">
 			<var name="page" value="Public Pages" />
 		</execute>
@@ -558,6 +563,7 @@
 	</command>
 
 	<command name="DisplayTemplateWithVerticalStyle" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="SitePageNavigator#gotoPages">
 			<var name="page" value="Public Pages" />
 		</execute>
@@ -604,6 +610,7 @@
 	</command>
 
 	<command name="EnableShowGuestSite" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="SitePageNavigator#gotoPages">
 			<var name="page" value="Public Pages" />
 		</execute>

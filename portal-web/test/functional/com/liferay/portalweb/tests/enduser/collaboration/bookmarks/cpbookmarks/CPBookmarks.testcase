@@ -130,6 +130,7 @@
 	</command>
 
 	<command name="AddIncorrectURLBookmark" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="bookmarkDescription" value="This is a test bookmark!" />
 		<var name="bookmarkName" value="Test Bookmark" />
 		<var name="bookmarkURL" value="www.liferay.com" />
@@ -148,6 +149,7 @@
 	</command>
 
 	<command name="AddNullBookmark" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -170,6 +172,7 @@
 	</command>
 
 	<command name="AddNullSubfolder" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="folderDescription" value="This is a test bookmarks folder!" />
 		<var name="folderName" value="Test Bookmarks Folder" />
 
@@ -196,6 +199,7 @@
 	</command>
 
 	<command name="AddNullTitleBookmark" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="bookmarkDescription" value="This is a test bookmark!" />
 		<var name="bookmarkURL" value="http://www.liferay.com" />
 
@@ -212,6 +216,7 @@
 	</command>
 
 	<command name="AddNullURLBookmark" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="bookmarkDescription" value="This is a test bookmark!" />
 		<var name="bookmarkName" value="Test Bookmark" />
 
@@ -228,6 +233,7 @@
 	</command>
 
 	<command name="AddSubfolder" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="folderDescription" value="This is a test bookmarks folder!" />
 		<var name="folderName" value="Test Bookmarks Folder" />
 		<var name="subfolderDescription" value="This is a test bookmarks subfolder!" />
@@ -295,6 +301,7 @@
 	</command>
 
 	<command name="DeleteSecondBookmark" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="bookmark2Description" value="This is another test bookmark!" />
 		<var name="bookmark2Name" value="Test Bookmark 2" />
 		<var name="bookmark2URL" value="http://digg.com" />
@@ -421,6 +428,7 @@
 	</command>
 
 	<command name="EditSubfolder" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="editSubfolderDescription" value="This is a test bookmarks subfolder edit!" />
 		<var name="editSubfolderName" value="Test Bookmarks Subfolder Edit" />
 		<var name="folderDescription" value="This is a test bookmarks folder!" />
@@ -466,6 +474,7 @@
 	</command>
 
 	<command name="MergeSubfolderBookmarkToFolder" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<var name="bookmarkDescription" value="This is a test bookmark!" />
 		<var name="bookmarkName" value="Test Bookmark" />
 		<var name="bookmarkURL" value="http://www.liferay.com" />
@@ -526,6 +535,7 @@
 	</command>
 
 	<command name="MoveSubfolderBookmarkToHome" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="folderDescription" value="This is a test bookmarks folder!" />
 		<var name="folderName" value="Test Bookmarks Folder" />
 		<var name="subfolderDescription" value="This is a test bookmarks subfolder!" />
@@ -622,6 +632,7 @@
 	</command>
 
 	<command name="SearchBookmark" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -661,6 +672,7 @@
 	</command>
 
 	<command name="SearchBookmarks" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -737,6 +749,7 @@
 	</command>
 
 	<command name="SearchNullBookmark" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<var name="bookmark2Description" value="This is another test bookmark!" />
 		<var name="bookmark2Name" value="Test Bookmark 2" />
 		<var name="bookmark2URL" value="http://digg.com" />

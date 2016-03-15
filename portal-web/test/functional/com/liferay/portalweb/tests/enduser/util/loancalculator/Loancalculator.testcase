@@ -31,6 +31,7 @@
 	</tear-down>
 
 	<command name="CalculateLoanAmounts" priority="2">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Loan Calculator Page" />
 		</execute>

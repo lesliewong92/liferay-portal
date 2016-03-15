@@ -76,6 +76,7 @@
 	</tear-down>
 
 	<command name="ApprovePageRevisionPG" priority="5">
+		<property name="portal.acceptance" value="true" />
 		<property name="portal.acceptance" value="false" />
 
 		<var name="pageName" value="Page Revision Page" />
@@ -194,6 +195,7 @@
 	</command>
 
 	<command name="RejectPageRevisionPG" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<property name="portal.acceptance" value="false" />
 
 		<var name="pageName" value="Page Revision Page" />
@@ -308,6 +310,7 @@
 	</command>
 
 	<command name="WithdrawWorkflowSubmissionFromRemovedUser" priority="2">
+		<property name="portal.acceptance" value="true" />
 		<description message="This is a use case for LPS-58754" />
 
 		<execute macro="ProductMenu#gotoControlPanelUsers">
