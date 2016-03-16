@@ -39,6 +39,7 @@
 	</tear-down>
 
 	<command name="DisableRecycleBin" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesConfiguration">
@@ -68,6 +69,7 @@
 	</command>
 
 	<command name="RecycleBinBlogs" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#gotoSitePage">
 			<var name="pageName" value="Test Page" />
 			<var name="siteName" value="Site Name" />
@@ -130,6 +132,7 @@
 	</command>
 
 	<command name="RecycleBinBookmarks" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#gotoSitePage">
 			<var name="pageName" value="Test Page" />
 			<var name="siteName" value="Site Name" />
@@ -260,6 +263,7 @@
 	</command>
 
 	<command name="RecycleBinMBAttachment" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -330,6 +334,7 @@
 	</command>
 
 	<command name="RecycleBinScheduledCleanup" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<property name="custom.properties" value="trash.entry.check.interval=1${line.separator}trash.entries.max.age=1" />
 
 		<execute macro="Navigator#gotoSitePage">
@@ -382,6 +387,7 @@
 	</command>
 
 	<command name="RecycleBinSearchBlogsEntries" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#gotoSitePage">
 			<var name="pageName" value="Test Page" />
 			<var name="siteName" value="Site Name" />
@@ -495,6 +501,7 @@
 	</command>
 
 	<command name="RecycleBinSearchDMEntriesInFolder" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<property name="custom.properties" value="default.layout.template.id=1_column" />
 
 		<execute macro="Navigator#gotoSitePage">
@@ -592,6 +599,7 @@
 	</command>
 
 	<command name="RecycleBinStaging" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#gotoSitePage">
 			<var name="pageName" value="Test Page" />
 			<var name="siteName" value="Site Name" />
@@ -691,6 +699,7 @@
 	</command>
 
 	<command name="RecycleBinWebContent" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -842,6 +851,7 @@
 	</command>
 
 	<command name="RecycleBinWiki" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -1093,6 +1103,7 @@
 	</command>
 
 	<command name="RestoreMessageboardsThreadViaRBCP" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -1184,6 +1195,7 @@
 	</command>
 
 	<command name="RestoreWebContentFromFolderCP" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
@@ -1271,6 +1283,7 @@
 	</command>
 
 	<command name="RestoreWebContentWithArticleVersions" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>

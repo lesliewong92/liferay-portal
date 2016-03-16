@@ -22,6 +22,7 @@
 	</tear-down>
 
 	<command name="AddCategories" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -130,6 +131,7 @@
 	</command>
 
 	<command name="AddCategoryProperties" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -178,6 +180,7 @@
 	</command>
 
 	<command name="AddCategoryProperty" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -212,6 +215,7 @@
 	</command>
 
 	<command name="AddCategoryViewableByAnyone" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -242,6 +246,7 @@
 	</command>
 
 	<command name="AddCategoryViewableByOwner" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -272,6 +277,7 @@
 	</command>
 
 	<command name="AddCategoryViewableBySiteMembers" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -302,6 +308,7 @@
 	</command>
 
 	<command name="AddSubcategories" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -434,6 +441,7 @@
 	</command>
 
 	<command name="AddVocabularies" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -490,6 +498,7 @@
 	</command>
 
 	<command name="AddVocabularyAssetTypeAllAssetTypes" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -508,6 +517,7 @@
 	</command>
 
 	<command name="AddVocabularyAssetTypeBlogsEntry" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -526,6 +536,7 @@
 	</command>
 
 	<command name="AddVocabularyAssetTypeBookmarksEntry" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -544,6 +555,7 @@
 	</command>
 
 	<command name="AddVocabularyAssetTypeDocument" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -562,6 +574,7 @@
 	</command>
 
 	<command name="AddVocabularyAssetTypes" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -596,6 +609,7 @@
 	</command>
 
 	<command name="AddVocabularyAssetTypeUser" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -614,6 +628,7 @@
 	</command>
 
 	<command name="AddVocabularyAssetTypeWebContent" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -632,6 +647,7 @@
 	</command>
 
 	<command name="AddVocabularyAssetTypeWikiPage" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -650,6 +666,7 @@
 	</command>
 
 	<command name="AddVocabularyDisallowMultipleCategories" priority="3" >
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -674,6 +691,7 @@
 	</command>
 
 	<command name="AddVocabularyViewableByGuest" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -698,6 +716,7 @@
 	</command>
 
 	<command name="AddVocabularyViewableByOwner" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -722,6 +741,7 @@
 	</command>
 
 	<command name="AddVocabularyViewableBySiteMembers" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -746,6 +766,7 @@
 	</command>
 
 	<command name="CannotAddCategoryWithNullTitle" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -762,6 +783,7 @@
 	</command>
 
 	<command name="CannotAddVocabularyWithNullTitle" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -772,6 +794,7 @@
 	</command>
 
 	<command name="DeleteAssociatedAssetTypeViaVocabulary" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -799,6 +822,7 @@
 	</command>
 
 	<command name="DeleteCategories" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -884,6 +908,7 @@
 	</command>
 
 	<command name="DeleteCategoryByMenu" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -912,6 +937,7 @@
 	</command>
 
 	<command name="DeleteCategoryProperty2" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -960,6 +986,7 @@
 	</command>
 
 	<command name="DeleteSubcategoryViaIcon" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -1068,6 +1095,7 @@
 	</command>
 
 	<command name="DeleteVocabularyByMenu" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -1115,6 +1143,7 @@
 	</command>
 
 	<command name="EditCategoryProperty" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -1240,6 +1269,7 @@
 	</command>
 
 	<command name="MoveCategoryViaEdit" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -1296,6 +1326,7 @@
 	</command>
 
 	<command name="ValidateClickingCloseButtonDoesNotSaveVocabulary" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">

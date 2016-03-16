@@ -139,6 +139,7 @@
 	</command>
 
 	<command name="DeleteAndRestoreEvent" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<description message="This is a use case for LPS-59572." />
 
 		<execute macro="TestCase#getSiteName">
@@ -315,6 +316,7 @@
 	</command>
 
 	<command name="RejectEventWithInvitedUser" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />

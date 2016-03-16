@@ -50,6 +50,7 @@
 	</tear-down>
 
 	<command name="ActivateInitialStagingWithWikiAttachment" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -151,6 +152,7 @@
 	</command>
 
 	<command name="ConfigurePortletDisplaySettings" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Wiki Test Page" />
 		</execute>
@@ -278,6 +280,7 @@
 	</command>
 
 	<command name="RateAndEditPageComment" priority="5">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -342,6 +345,7 @@
 	</command>
 
 	<command name="RatePage" priority="5">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -466,6 +470,7 @@
 	</command>
 
 	<command name="SearchWikiCommentsAndAttachments" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="WikiPage#addFrontPagePG">
 			<var name="wikiNodeName" value="Main" />
 			<var name="wikiPageContent" value="Wiki FrontPage Content" />
@@ -524,6 +529,7 @@
 	</command>
 
 	<command name="ViewNoWikiXSSviaAddPage" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Wiki Test Page" />
 		</execute>
@@ -538,6 +544,7 @@
 	</command>
 
 	<command name="ViewWikiDraftPagesViaBreadcrumb" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>

@@ -47,6 +47,7 @@
 	</tear-down>
 
 	<command name="AccessStaging" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
@@ -164,6 +165,7 @@
 	</command>
 
 	<command name="StagingBlogsRolesWorkflow" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>

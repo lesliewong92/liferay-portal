@@ -24,6 +24,7 @@
 	</tear-down>
 
 	<command name="BreadcrumbConfiguration" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -157,6 +158,7 @@
 	</command>
 
 	<command name="BreadcrumbLinkPointsToLocalhost" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>

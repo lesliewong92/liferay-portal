@@ -36,6 +36,7 @@
 	</command>
 
 	<command name="AddTagInvalidCharacters" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -306,6 +307,7 @@
 	</command>
 
 	<command name="AddTags" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<for list="tag name 1,tag name 2,tag name 3" param="tagName">
 			<execute macro="Navigator#openURL" />
 
@@ -332,6 +334,7 @@
 	</command>
 
 	<command name="DeleteTagFromList" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -355,6 +358,7 @@
 	</command>
 
 	<command name="DeleteTagFromToolbar" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -407,6 +411,7 @@
 	</command>
 
 	<command name="EditTagCancel" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -423,6 +428,7 @@
 	</command>
 
 	<command name="MergeMultipleTags" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -450,6 +456,7 @@
 	</command>
 
 	<command name="MergeSingleTagWarning" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
