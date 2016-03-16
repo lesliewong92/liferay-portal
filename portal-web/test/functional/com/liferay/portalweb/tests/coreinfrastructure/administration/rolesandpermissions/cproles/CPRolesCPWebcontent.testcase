@@ -34,6 +34,7 @@
 	</tear-down>
 
 	<command name="AddFolderSiteRole" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Permissions#setUpSiteRoleLoginUserCP">
 			<var name="page" value="Public Pages" />
 			<var name="pageName" value="Web Content Page" />
@@ -114,6 +115,7 @@
 	</command>
 
 	<command name="AddStructureSiteRole" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Permissions#setUpSiteRoleLoginUserCP">
 			<var name="page" value="Public Pages" />
 			<var name="pageName" value="Web Content Page" />
@@ -206,6 +208,7 @@
 	</command>
 
 	<command name="AddTemplateSiteRole" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Permissions#setUpSiteRoleLoginUserCP">
 			<var name="page" value="Public Pages" />
 			<var name="pageName" value="Web Content Page" />
@@ -288,6 +291,7 @@
 	</command>
 
 	<command name="AddWebContentSiteRole" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Permissions#setUpSiteRoleLoginUserCP">
 			<var name="page" value="Public Pages" />
 			<var name="pageName" value="Web Content Page" />
@@ -376,6 +380,7 @@
 	</command>
 
 	<command name="ViewWebContentPortletRegRole" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Permissions#setUpRegRoleLoginUserCP">
 			<var name="portletName" value="Web Content" />
 			<var name="roleName" value="Regrole Name" />
@@ -429,6 +434,7 @@
 	</command>
 
 	<command name="ViewWebContentPortletSiteRole" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Permissions#setUpSiteRoleLoginUserCP">
 			<var name="page" value="Public Pages" />
 			<var name="pageName" value="Web Content Page" />

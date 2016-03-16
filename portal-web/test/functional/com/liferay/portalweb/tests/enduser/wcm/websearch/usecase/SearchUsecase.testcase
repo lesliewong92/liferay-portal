@@ -35,6 +35,7 @@
 	</tear-down>
 
 	<command name="SearchByUserFacet" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
@@ -156,6 +157,7 @@
 	</command>
 
 	<command name="SearchEntriesByPortletsAndModifiedRangeFacet" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="searchTerm"><![CDATA["AssetContent"]]></var>
 
 		<execute macro="Navigator#openURL" />
@@ -804,6 +806,7 @@
 	</command>
 
 	<command name="SearchXSSAsset" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<property name="custom.properties" value="index.search.highlight.enabled=false" />
 
 		<execute macro="Page#add">
@@ -835,6 +838,7 @@
 	</command>
 
 	<command name="ViewUserSearchResult" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Page#add">
 			<var name="pageName" value="${searchPageName}" />
 		</execute>

@@ -25,6 +25,7 @@
 	</tear-down>
 
 	<command name="AddPageMultiplePagesToSite" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="Page#add">
@@ -45,12 +46,14 @@
 	</command>
 
 	<command name="AddPageWithEscapeCharacter" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Page#add">
 			<var name="pageName" value="Tester&apos;s Page" />
 		</execute>
 	</command>
 
 	<command name="AddPageWithMultipleChildPagesToSite" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -94,6 +97,7 @@
 	</command>
 
 	<command name="AddSitePrivateChildPage" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -136,6 +140,7 @@
 	</command>
 
 	<command name="AddSitePrivatePage" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -165,6 +170,7 @@
 	</command>
 
 	<command name="AddSitePrivatePagePortlet" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -273,6 +279,7 @@
 	</command>
 
 	<command name="AddSitePublicPagePortlet" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -301,6 +308,7 @@
 	</command>
 
 	<command name="ChangePageLayout" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Page#add">
 			<var name="pageName" value="Site Page Name" />
 		</execute>
@@ -327,6 +335,7 @@
 	</command>
 
 	<command name="CopyApplicationsFromPageToPage" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -432,6 +441,7 @@
 	</command>
 
 	<command name="SaveEmbeddedPageType" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -472,6 +482,7 @@
 	</command>
 
 	<command name="SavePortletPageType" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -499,6 +510,7 @@
 	</command>
 
 	<command name="ViewNoInfoMessageWhenChangingSiteTemplateAsUser" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>

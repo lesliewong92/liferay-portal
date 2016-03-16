@@ -35,6 +35,7 @@
 	</tear-down>
 
 	<command name="AddOrganizationName50Characters" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
@@ -62,6 +63,7 @@
 	</command>
 
 	<command name="AddUserSpecialCharacters" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
@@ -115,6 +117,7 @@
 	</command>
 
 	<command name="CannotViewSiteSettingsInUserPersonalSite" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoPersonalSite" />
 
 		<execute macro="ProductMenuHelper#expandPanelSites" />
@@ -127,6 +130,7 @@
 	</command>
 
 	<command name="ImpersonatingAdministratorandOwner" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Roles" />
 		</execute>
@@ -300,6 +304,7 @@
 	</command>
 
 	<command name="MultipleUsersandOrganizations" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="count" value="1" />
 
 		<while>
@@ -638,6 +643,7 @@
 	</command>
 
 	<command name="OrganizationAdministratorActivate" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Roles" />
 		</execute>
@@ -768,6 +774,7 @@
 	</command>
 
 	<command name="OrganizationDropDownItems" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<var name="siteNameList" value="Site Name A,Site Name B,Site Name C,Site Name D,Site Name E,Site Name F,Site Name G,Site Name H" />
 
 		<for list="${siteNameList}" param="siteName" >
@@ -819,6 +826,7 @@
 	</command>
 
 	<command name="OrganizationSiteDefaultUserAssociations" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -897,6 +905,7 @@
 	</command>
 
 	<command  name="OrganizationUserManagement" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
@@ -946,6 +955,7 @@
 	</command>
 
 	<command name="ValidateRegExPasswordPolicyCP" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="atLeastFourCharNoNumbers" value="(?=.{4})(?:[a-zA-Z]*)" />
 		<var name="atLeastSixCharNumbersPermitted" value="(?=.{6})(?:[a-zA-Z0-9]*)" />
 
@@ -1110,6 +1120,7 @@
 	</command>
 
 	<command name="ViewContentInLocationOrganizationSite" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<property name="custom.properties" value="organizations.types=organization,location${line.separator}organizations.rootable[location]=true${line.separator}organizations.children.types[organization]=organization,location" />
 
 		<execute macro="ProductMenu#gotoControlPanelUsers">
