@@ -89,6 +89,7 @@
 	</command>
 
 	<command name="ViewDocumentsAndMediaPortletSiteRole" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Permissions#setUpSiteRoleLoginUserCP">
 			<var name="page" value="Public Pages" />
 			<var name="pageName" value="Documents and Media Page" />

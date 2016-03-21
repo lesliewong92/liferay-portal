@@ -151,6 +151,7 @@
 	</command>
 
 	<command name="LocalizeDefaultSiteTemplates" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Site Templates" />
 		</execute>
@@ -205,6 +206,7 @@
 	</command>
 
 	<command name="ResetPageChanges" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>

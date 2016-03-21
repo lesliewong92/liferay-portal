@@ -24,6 +24,7 @@
 	</tear-down>
 
 	<command name="AddAutoAssertionTagViaBlogs" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -88,6 +89,7 @@
 	</command>
 
 	<command name="AddFrontPageTag" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -122,6 +124,7 @@
 	</command>
 
 	<command name="AddMultipleTagsViaBlogs" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -309,6 +312,7 @@
 	</command>
 
 	<command name="AddUTFTagViaBlogs" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -438,6 +442,7 @@
 	</command>
 
 	<command name="DisplayTagUsageStatistics" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Page#add">
 			<var name="pageName" value="Tags Navigation Page" />
 		</execute>
@@ -529,6 +534,7 @@
 	</command>
 
 	<command name="DisplayUnusedTags" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Page#add">
 			<var name="pageName" value="Tags Navigation Page" />
 		</execute>
@@ -571,6 +577,7 @@
 	</command>
 
 	<command name="RemoveSelectTagViaBlogs" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -747,6 +754,7 @@
 	</command>
 
 	<command name="SearchMultipleTagsViaBlogs" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>

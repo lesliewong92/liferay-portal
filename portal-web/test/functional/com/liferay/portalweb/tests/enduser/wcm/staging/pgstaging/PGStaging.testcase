@@ -43,6 +43,7 @@
 	</tear-down>
 
 	<command name="ActivateDeactivateRemoteStaging" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<property name="custom.properties" value="tunneling.servlet.shared.secret=1234567890123456${line.separator}auth.verifier.TunnelingServletAuthVerifier.hosts.allowed=" />
 
 		<execute macro="Staging#remoteStagingSetUp">
@@ -109,6 +110,7 @@
 	</command>
 
 	<command name="ActivateDeactivateStagingLocalLiveDM" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#gotoSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
@@ -183,8 +185,8 @@
 	</command>
 
 	<command name="ActivateRemoteStaging" priority="5">
-		<property name="custom.properties" value="tunneling.servlet.shared.secret=1234567890123456${line.separator}auth.verifier.TunnelingServletAuthVerifier.hosts.allowed=" />
 		<property name="portal.acceptance" value="true" />
+		<property name="custom.properties" value="tunneling.servlet.shared.secret=1234567890123456${line.separator}auth.verifier.TunnelingServletAuthVerifier.hosts.allowed=" />
 
 		<var name="siteID" value="${siteID}" />
 
@@ -240,6 +242,7 @@
 	</command>
 
 	<command name="ActivateStagingSiteWithPublicAndPrivatePage" priority="5">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
@@ -263,6 +266,7 @@
 	</command>
 
 	<command name="AddDMDocumentStagingLocalLive" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#gotoSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
@@ -312,6 +316,7 @@
 	</command>
 
 	<command name="AddEventRepeatDaily" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
@@ -337,6 +342,7 @@
 	</command>
 
 	<command name="AddPageVariation" priority="5">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
@@ -370,6 +376,7 @@
 	</command>
 
 	<command name="AddPageWithPageVersioningEnabled" priority="5">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
@@ -426,6 +433,7 @@
 	</command>
 
 	<command name="AddSitePagesVariation" priority="5">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
@@ -459,6 +467,7 @@
 	</command>
 
 	<command name="AssertEditWebContentStaging" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#gotoSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
@@ -524,6 +533,7 @@
 	</command>
 
 	<command name="AssertNoEditLink" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -637,6 +647,7 @@
 	</command>
 
 	<command name="BlogsOrganizationWorkflowStaging" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Roles" />
 		</execute>
@@ -998,6 +1009,7 @@
 	</command>
 
 	<command name="DeactivateStaging" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
@@ -1026,6 +1038,7 @@
 	</command>
 
 	<command name="DeleteDMDocument" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#gotoSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
@@ -1133,6 +1146,7 @@
 	</command>
 
 	<command name="LayoutScope" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#gotoSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
@@ -1177,6 +1191,7 @@
 	</command>
 
 	<command name="PublishWCIncludingTextsAndImages" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -1288,6 +1303,7 @@
 	</command>
 
 	<command name="PublishWCViaRemoteStaging" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<property name="custom.properties" value="tunneling.servlet.shared.secret=1234567890123456${line.separator}auth.verifier.TunnelingServletAuthVerifier.hosts.allowed=" />
 
 		<execute macro="Staging#remoteStagingSetUp">
@@ -1324,6 +1340,7 @@
 	</command>
 
 	<command name="PublishWCWithPagesVariationViaRemoteStaging" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<property name="custom.properties" value="tunneling.servlet.shared.secret=1234567890123456${line.separator}auth.verifier.TunnelingServletAuthVerifier.hosts.allowed=" />
 
 		<execute macro="Staging#remoteStagingSetUp">

@@ -124,6 +124,7 @@
 	</command>
 
 	<command name="AddFolders" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="mgFolderDescription1" value="DM Folder1 Description" />
 		<var name="mgFolderDescription2" value="DM Folder2 Description" />
 		<var name="mgFolderDescription3" value="DM Folder3 Description" />
@@ -172,6 +173,7 @@
 	</command>
 
 	<command name="AddSubfolderDocument" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="mgDocumentDescription" value="DM Document Description" />
 		<var name="mgDocumentFile" value="Document_1.jpg" />
 		<var name="mgDocumentTitle" value="DM Document Title" />
@@ -210,6 +212,7 @@
 	</command>
 
 	<command name="AddSubfolders" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="mgFolderDescription" value="DM Folder Description" />
 		<var name="mgFolderName" value="DM Folder Name" />
 		<var name="mgSubfolderDescription1" value="DM Subfolder1 Description" />
@@ -401,6 +404,7 @@
 	</command>
 
 	<command name="SearchFolderDocument" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Media Gallery Page" />
 		</execute>
