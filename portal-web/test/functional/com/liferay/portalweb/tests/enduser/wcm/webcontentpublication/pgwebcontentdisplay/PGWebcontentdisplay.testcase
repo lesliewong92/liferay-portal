@@ -41,6 +41,7 @@
 	</tear-down>
 
 	<command name="AddDraftNotApproved" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="WebContent#addPGViaWCD">
 			<var name="draft" value="true" />
 			<var name="webContentContent" value="WC WebContent Content" />
@@ -58,6 +59,7 @@
 	</command>
 
 	<command name="AddNewWebContentViaAddContentPanel" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Page#add">
 			<var name="pageName" value="Web Content Page" />
 		</execute>
@@ -85,6 +87,7 @@
 	</command>
 
 	<command name="AddPortletWCDSite" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -126,6 +129,7 @@
 	</command>
 
 	<command name="AddWebContentPortalScopeCurrentPage" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<for list="1,2,3" param="i">
 			<execute macro="Page#add">
 				<var name="pageName" value="Web Content Display Page${i}" />
@@ -220,6 +224,7 @@
 	</command>
 
 	<command name="AddWebContentViaAddContentPanel" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -255,6 +260,7 @@
 	</command>
 
 	<command name="AddWithStructure" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -310,6 +316,7 @@
 	</command>
 
 	<command name="AssertExpired" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Web Content Display Page" />
 		</execute>
@@ -340,6 +347,7 @@
 	</command>
 
 	<command name="ChangeTemplate" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="Page#add">
@@ -405,6 +413,7 @@
 	</command>
 
 	<command name="EditWebContent" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Web Content Display Page" />
 		</execute>
@@ -423,6 +432,7 @@
 	</command>
 
 	<command name="LocalizeWebContent" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<var name="languageKey" value="zh_CN" />
 
 		<execute macro="Navigator#gotoPage">
@@ -475,6 +485,7 @@
 	</command>
 
 	<command name="SearchWebContent" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -565,6 +576,7 @@
 	</command>
 
 	<command name="SelectWebContentScopeGlobal" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Global" />
 		</execute>
@@ -616,6 +628,7 @@
 	</command>
 
 	<command name="ViewAllFileTypesEnabled" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Web Content Display Page" />
 		</execute>
@@ -658,6 +671,7 @@
 	</command>
 
 	<command name="ViewAllSettingsEnabledWCDConfiguration" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -749,6 +763,7 @@
 	</command>
 
 	<command name="ViewArticleWithGuestViewPermission" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Web Content Display Page" />
 		</execute>
@@ -860,6 +875,7 @@
 	</command>
 
 	<command name="ViewEditTemplate" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Web Content Display Page" />
 		</execute>
@@ -879,6 +895,7 @@
 	</command>
 
 	<command name="ViewPortletWCDShowAvailableLocales" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Web Content Display Page" />
 		</execute>
@@ -931,6 +948,7 @@
 	</command>
 
 	<command name="ViewWCDWithDeletedWCArticle" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Web Content Display Page" />
 		</execute>
@@ -960,6 +978,7 @@
 	</command>
 
 	<command name="ViewWithPaginationScript" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Web Content Display Page" />
 		</execute>

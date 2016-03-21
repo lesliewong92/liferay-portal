@@ -36,6 +36,8 @@
 	</tear-down>
 
 	<command name="AddWebContentPGViaAP" priority="4">
+		<property name="portal.acceptance" value="true" />
+
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Liferay" />
 		</execute>
@@ -60,6 +62,7 @@
 	</command>
 
 	<command name="AddWebContentWithGlobalScopeViaCPToLiferayAP" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Global" />
 		</execute>
@@ -172,6 +175,7 @@
 	</command>
 
 	<command name="AddWebContentWithGlobalScopeViaCPToSiteAP" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Global" />
 		</execute>
@@ -321,6 +325,7 @@
 	</command>
 
 	<command name="AddWebContentWithStructureAndGlobalScopeViaCPToLiferayAP" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Global" />
 		</execute>
@@ -445,6 +450,7 @@
 	</command>
 
 	<command name="AddWebContentWithStructureAndGlobalScopeViaCPToSiteAP" priority="3">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Global" />
 		</execute>
@@ -587,6 +593,7 @@
 	</command>
 
 	<command name="DisplayWebContentTagViaAP" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Page#add">
 			<var name="pageName" value="Tags Navigation Page" />
 		</execute>
@@ -652,6 +659,7 @@
 	</command>
 
 	<command name="SaveAsDraftWebContentPGViaAP" priority="4">
+		<property name="portal.acceptance" value="true" />
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
