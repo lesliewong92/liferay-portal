@@ -123,6 +123,15 @@ public class PluginFailureMessageGenerator extends BaseFailureMessageGenerator {
 		return sb.toString();
 	}
 
+	public static String fixFilePath(String filePath) {
+		filePath = filePath.replace("%28", "(");
+		filePath = filePath.replace("%29", ")");
+		filePath = filePath.replace("%5B", "[");
+		filePath = filePath.replace("%5D", "]");
+
+		return filePath;
+	}
+
 	private String _getJobName(String buildURL) {
 		String jobName = "";
 
@@ -134,7 +143,7 @@ public class PluginFailureMessageGenerator extends BaseFailureMessageGenerator {
 			jobName = matcher.group(1);
 		}
 
-		return jobName;
+		return fixFilePath(jobName);
 	}
 
 }
