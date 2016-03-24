@@ -74,7 +74,7 @@ public class PluginFailureMessageGenerator extends BaseFailureMessageGenerator {
 
 			sb.append("<p>");
 			sb.append(pluginNames.length);
-			sb.append("plugin");
+			sb.append(" plugin");
 
 			if (pluginNames.length != 1) {
 				sb.append("s");
