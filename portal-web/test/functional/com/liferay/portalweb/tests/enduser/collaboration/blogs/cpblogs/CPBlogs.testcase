@@ -22,6 +22,7 @@
 	</tear-down>
 
 	<command description="Ensure that a user can add multiple Blogs Entries." name="AddBlogsEntries" priority="4">
+		<property name="portal.acceptance" value="false" />
 		<property name="testray.component.names" value="Blogs" />
 		<property name="testray.main.component.name" value="Blogs" />
 
@@ -124,6 +125,8 @@
 	</command>
 
 	<command name="AddBlogsEntry" priority="4">
+		<property name="portal.acceptance" value="false" />
+
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
