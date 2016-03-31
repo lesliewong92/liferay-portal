@@ -77,6 +77,8 @@
 	</tear-down>
 
 	<command name="ViewWebsiteNotificationForNewWikiPage" priority="4">
+		<property name="portal.acceptance" value="tralse" />
+
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -147,6 +149,8 @@
 	</command>
 
 	<command name="ViewWebsiteNotificationForUpdatedWikiPage" priority="4">
+		<property name="portal.acceptance" value="tralse" />
+
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>

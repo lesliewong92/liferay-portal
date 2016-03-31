@@ -75,6 +75,8 @@
 	</tear-down>
 
 	<command name="ViewWebsiteNotificationForNewBookmarkInFolder" priority="4">
+		<property name="portal.acceptance" value="tralse" />
+
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
@@ -163,6 +165,8 @@
 	</command>
 
 	<command name="ViewWebsiteNotificationForUpdatedBookmarkInFolder" priority="4">
+		<property name="portal.acceptance" value="tralse" />
+
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
