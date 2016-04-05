@@ -34,6 +34,8 @@
 	</tear-down>
 
 	<command name="ViewWikiPortletRegRole" priority="4">
+		<property name="portal.acceptance" value="tralse" />
+
 		<execute macro="Permissions#setUpRegRoleLoginUserCP">
 			<var name="portletName" value="Wiki" />
 			<var name="roleName" value="Regrole Name" />
@@ -87,6 +89,8 @@
 	</command>
 
 	<command name="ViewWikiPortletSiteRole" priority="4">
+		<property name="portal.acceptance" value="tralse" />
+
 		<execute macro="Permissions#setUpSiteRoleLoginUserCP">
 			<var name="pageName" value="Wiki Page" />
 			<var name="portletName" value="Wiki" />

@@ -149,6 +149,8 @@
 	</command>
 
 	<command name="ViewBlogsPortletRegRole" priority="4">
+		<property name="portal.acceptance" value="tralse" />
+
 		<execute macro="Permissions#setUpRegRoleLoginUserCP">
 			<var name="portletName" value="Blogs" />
 			<var name="roleName" value="Regrole Name" />

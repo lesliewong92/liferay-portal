@@ -29,6 +29,8 @@
 	<command name="addPG">
 		<execute function="Click#makeVisibleClickAt" locator1="Portlet#ICON_PLUS_SIGN" />
 
+		<execute function="Pause" locator1="1000" />
+
 		<execute function="AssertClick#assertTextClickAtAndWait" locator1="MenuItem#FOLDER" value1="Folder" />
 
 		<execute function="Pause" locator1="1000" />
