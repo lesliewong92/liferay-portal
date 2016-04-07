@@ -4,13 +4,13 @@
 	<import file="build-test.xml" />
 
 	<target name="deploy-extra-apps">
-		<fail message="Please set the property ${extra.apps.zip.file.name}" unless="extra.apps.zip.file.name" />
+		<fail message="Please set the property ${extra.apps.zip.file.path}" unless="extra.apps.zip.file.path" />
 
 		<get-auto-deploy-dir />
 
 		<unzip
 			dest="${auto.deploy.dir}"
-			src="${extra.apps.zip.file.name}"
+			src="${extra.apps.zip.file.path}"
 		/>
 	</target>
 
