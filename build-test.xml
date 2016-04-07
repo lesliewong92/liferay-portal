@@ -3977,6 +3977,8 @@ go]]></replacevalue>
 	</target>
 
 	<target name="deploy-extra-apps">
+		<echo>extra.apps.zip.file.path: ${extra.apps.zip.file.path}</echo>
+
 		<if>
 			<available file="${extra.apps.zip.file.path}" />
 			<then>

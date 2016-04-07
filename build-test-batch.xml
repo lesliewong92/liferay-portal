@@ -761,6 +761,15 @@ app.server.type=@{app.server.type}]]></echo>
 	</target>
 
 	<target name="functional-bundle-tomcat-mysql56-jdk7">
+		<echo>javascript.fast.load:				${javascript.fast.load}</echo>
+		<echo>test.portal.bundle.version: 		${test.portal.bundle.version}</echo>
+		<echo>test.build.fix.pack.zip.url: 		${test.build.fix.pack.zip.url}</echo>
+		<echo>test.fix.pack.base.url: 			${test.fix.pack.base.url}</echo>
+		<echo>test.license.xml.url: 			${test.license.xml.url}</echo>
+		<echo>test.plugin.zip.url: 				${test.plugin.zip.url}</echo>
+		<echo>test.portal.bundle.zip.url: 		${test.portal.bundle.zip.url}</echo>
+		<echo>test.sql.zip.url: 				${test.sql.zip.url}</echo>
+
 		<set-tomcat-version-number liferay.portal.bundle="${test.portal.bundle.version}" />
 
 		<run-functional-test
