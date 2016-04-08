@@ -94,6 +94,9 @@ public class SeleniumUtil extends PropsValues {
 		else if (BROWSER_TYPE.equals("iossafari")) {
 			_selenium = new IOSMobileDriverImpl(portalURL, webDriver);
 		}
+		else if (BROWSER_TYPE.equals("phantomjs")) {
+			_selenium = new GhostWebDriverImpl(portalURL, webDriver);
+		}
 		else if (BROWSER_TYPE.equals("safari")) {
 			_selenium = new SafariWebDriverImpl(portalURL, webDriver);
 		}

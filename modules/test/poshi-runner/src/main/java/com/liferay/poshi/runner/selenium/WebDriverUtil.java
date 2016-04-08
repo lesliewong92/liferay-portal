@@ -34,6 +34,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
@@ -182,6 +183,10 @@ public class WebDriverUtil extends PropsValues {
 		return new FirefoxDriver(firefoxProfile);
 	}
 
+	private WebDriver _getGhostDriver() {
+		return new PhantomJSDriver();
+	}
+
 	private WebDriver _getInternetExplorerDriver() {
 		DesiredCapabilities desiredCapabilities =
 			DesiredCapabilities.internetExplorer();
@@ -292,6 +297,9 @@ public class WebDriverUtil extends PropsValues {
 		}
 		else if (BROWSER_TYPE.equals("iossafari")) {
 			_webDriver = _getIOSMobileDriver();
+		}
+		else if (BROWSER_TYPE.equals("phantomjs")) {
+			_webDriver = _getGhostDriver();
 		}
 		else if (BROWSER_TYPE.equals("safari")) {
 			_webDriver = _getSafariDriver();
