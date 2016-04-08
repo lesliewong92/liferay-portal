@@ -183,6 +183,10 @@ public class WebDriverUtil extends PropsValues {
 		return new FirefoxDriver(firefoxProfile);
 	}
 
+	private WebDriver _getGhostDriver() {
+		return new PhantomJSDriver();
+	}
+
 	private WebDriver _getInternetExplorerDriver() {
 		DesiredCapabilities desiredCapabilities =
 			DesiredCapabilities.internetExplorer();
@@ -194,10 +198,6 @@ public class WebDriverUtil extends PropsValues {
 
 		return new InternetExplorerDriver(desiredCapabilities);
 	}
-
-	private WebDriver _getGhostDriver() {
- 		return new PhantomJSDriver();
- 	}
 
 	private WebDriver _getInternetExplorerRemoteDriver() {
 		DesiredCapabilities desiredCapabilities =
