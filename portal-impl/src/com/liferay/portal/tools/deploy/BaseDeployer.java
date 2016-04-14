@@ -244,7 +244,7 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 		}
 
 		if (!appServerType.equals(ServerDetector.GLASSFISH_ID) &&
-			!appServerType.equals(ServerDetector.JBOSS_ID) &&
+			!appServerType.equals(ServerDetector.JBOSSEAP_ID) &&
 			!appServerType.equals(ServerDetector.JONAS_ID) &&
 			!appServerType.equals(ServerDetector.JETTY_ID) &&
 			!appServerType.equals(ServerDetector.OC4J_ID) &&
@@ -290,7 +290,7 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 			deployer.setDestDir(destDir);
 			deployer.setFilePattern(filePattern);
 			deployer.setJars(jars);
-			deployer.setJbossPrefix(jbossPrefix);
+			deployer.setJbossEAPPrefix(jbossPrefix);
 			deployer.setPortletExtTaglibDTD(portletExtTaglibDTD);
 			deployer.setPortletTaglibDTD(portletTaglibDTD);
 			deployer.setSecurityTaglibDTD(securityTaglibDTD);
@@ -567,7 +567,7 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 			File srcFile, String displayName, PluginPackage pluginPackage)
 		throws Exception {
 
-		if (appServerType.equals(ServerDetector.JBOSS_ID)) {
+		if (appServerType.equals(ServerDetector.JBOSSEAP_ID)) {
 			copyDependencyXml(
 				"jboss-deployment-structure.xml", srcFile + "/WEB-INF");
 		}
@@ -688,7 +688,7 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 
 		String excludes = StringPool.BLANK;
 
-		if (appServerType.equals(ServerDetector.JBOSS_ID) ||
+		if (appServerType.equals(ServerDetector.JBOSSEAP_ID) ||
 			appServerType.equals(ServerDetector.WILDFLY_ID)) {
 
 			excludes += "**/WEB-INF/lib/log4j.jar,";
@@ -926,7 +926,7 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 			displayName = getDisplayName(srcFile);
 		}
 
-		if (appServerType.equals(ServerDetector.JBOSS_ID)) {
+		if (appServerType.equals(ServerDetector.JBOSSEAP_ID)) {
 			deployDir = jbossPrefix + deployDir;
 		}
 		else if (appServerType.equals(ServerDetector.WILDFLY_ID)) {
@@ -1099,7 +1099,7 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 			displayName = displayName.substring(0, displayName.length() - 4);
 		}
 
-		if ((appServerType.equals(ServerDetector.JBOSS_ID) &&
+		if ((appServerType.equals(ServerDetector.JBOSSEAP_ID) &&
 			 Validator.isNotNull(jbossPrefix) &&
 			 displayName.startsWith(jbossPrefix)) ||
 			(appServerType.equals(ServerDetector.WILDFLY_ID) &&
@@ -1596,7 +1596,7 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 		if (appServerType.equals(ServerDetector.GLASSFISH_ID)) {
 			postDeployGlassfish(destDir, deployDir);
 		}
-		else if (appServerType.equals(ServerDetector.JBOSS_ID)) {
+		else if (appServerType.equals(ServerDetector.JBOSSEAP_ID)) {
 			postDeployJBoss(destDir, deployDir);
 		}
 		else if (appServerType.equals(ServerDetector.WILDFLY_ID)) {
@@ -1952,8 +1952,8 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 	}
 
 	@Override
-	public void setJbossPrefix(String jbossPrefix) {
-		this.jbossPrefix = jbossPrefix;
+	public void setJbossEAPPrefix(String jbossEAPPrefix) {
+		this.jbossPrefix = jbossEAPPrefix;
 	}
 
 	@Override

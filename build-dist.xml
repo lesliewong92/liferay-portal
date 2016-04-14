@@ -51,11 +51,11 @@
 	</macrodef>
 
 	<macrodef name="update-jboss-java-opts">
-		<attribute name="app.server.jboss.dir" />
+		<attribute name="app.server.jbosseap.dir" />
 
 		<sequential>
 			<replace
-				dir="@{app.server.jboss.dir}/bin"
+				dir="@{app.server.jbosseap.dir}/bin"
 				includes="*.bat,*.conf"
 				token="-Xmx512m"
 				value="-Xmx1024m"
@@ -120,20 +120,20 @@
 		</antcall>
 	</target>
 
-	<target name="build-dist-jboss-eap-6.0">
+	<target name="build-dist-jbosseap">
 		<app-server-properties-update>
-			app.server.type=jboss
-			app.server.jboss.version=6.0.1
-			app.server.jboss.dir=${app.server.parent.dir}/jboss-eap-6.0.1
-			app.server.jboss.zip.name=jboss-eap-6.0.1.zip
-			app.server.jboss.zip.url=http://www.jboss.org/jbossas/downloads/jboss-eap-6.0.1.zip
+			app.server.type=jbosseap
+			app.server.jbosseap.version=${app.server.jbosseap.version}
+			app.server.jbosseap.dir=${app.server.parent.dir}/jboss-eap-${app.server.jbosseap.version}
+			app.server.jbosseap.zip.name=jboss-eap-${app.server.jbosseap.version}.zip
+			app.server.jbosseap.zip.url=http://www.jboss.org/jbossas/downloads/jboss-eap-${app.server.jbosseap.version}.zip
 		</app-server-properties-update>
 
 		<antcall target="update-sdk-properties" inheritAll="false" />
 
-		<antcall target="unzip-jboss" inheritAll="false" />
+		<antcall target="unzip-jbosseap" inheritAll="false" />
 
-		<update-jboss-java-opts app.server.jboss.dir="${app.server.parent.dir}/jboss-eap-6.0.1" />
+		<update-jboss-java-opts app.server.jbosseap.dir="${app.server.parent.dir}/jboss-eap-${app.server.jbosseap.version}" />
 
 		<delete dir="${project.dir}/portal-web/classes" />
 
@@ -144,69 +144,9 @@
 		<app-server-properties-reset />
 
 		<antcall target="deploy-plugins">
-			<param name="deployer.dest.dir" value="${app.server.jboss.deploy.dir}" />
-			<param name="deployer.app.server.type" value="jboss" />
-			<param name="deployer.app.server.lib.portal.dir" value="${app.server.jboss.portal.dir}/WEB-INF/lib" />
-		</antcall>
-	</target>
-
-	<target name="build-dist-jboss-eap-6.1">
-		<app-server-properties-update>
-			app.server.type=jboss
-			app.server.jboss.version=6.1.0
-			app.server.jboss.dir=${app.server.parent.dir}/jboss-eap-6.1.0
-			app.server.jboss.zip.name=jboss-eap-6.1.0.zip
-			app.server.jboss.zip.url=http://www.jboss.org/jbossas/downloads/jboss-eap-6.1.0.zip
-		</app-server-properties-update>
-
-		<antcall target="update-sdk-properties" inheritAll="false" />
-
-		<antcall target="unzip-jboss" inheritAll="false" />
-
-		<update-jboss-java-opts app.server.jboss.dir="${app.server.parent.dir}/jboss-eap-6.1.0" />
-
-		<delete dir="${project.dir}/portal-web/classes" />
-
-		<ant target="deploy" inheritAll="false" />
-
-		<antcall target="resolve-dynamic-jars" inheritAll="false" />
-
-		<app-server-properties-reset />
-
-		<antcall target="deploy-plugins">
-			<param name="deployer.dest.dir" value="${app.server.jboss.deploy.dir}" />
-			<param name="deployer.app.server.type" value="jboss" />
-			<param name="deployer.app.server.lib.portal.dir" value="${app.server.jboss.portal.dir}/WEB-INF/lib" />
-		</antcall>
-	</target>
-
-	<target name="build-dist-jboss-eap-6.4">
-		<app-server-properties-update>
-			app.server.type=jboss
-			app.server.jboss.version=6.4.0
-			app.server.jboss.dir=${app.server.parent.dir}/jboss-eap-6.4.0
-			app.server.jboss.zip.name=jboss-eap-6.4.0.zip
-			app.server.jboss.zip.url=http://www.jboss.org/jbossas/downloads/jboss-eap-6.4.0.zip
-		</app-server-properties-update>
-
-		<antcall target="update-sdk-properties" inheritAll="false" />
-
-		<antcall target="unzip-jboss" inheritAll="false" />
-
-		<update-jboss-java-opts app.server.jboss.dir="${app.server.parent.dir}/jboss-eap-6.4.0" />
-
-		<delete dir="${project.dir}/portal-web/classes" />
-
-		<ant target="deploy" inheritAll="false" />
-
-		<antcall target="resolve-dynamic-jars" inheritAll="false" />
-
-		<app-server-properties-reset />
-
-		<antcall target="deploy-plugins">
-			<param name="deployer.dest.dir" value="${app.server.jboss.deploy.dir}" />
-			<param name="deployer.app.server.type" value="jboss" />
-			<param name="deployer.app.server.lib.portal.dir" value="${app.server.jboss.portal.dir}/WEB-INF/lib" />
+			<param name="deployer.dest.dir" value="${app.server.jbosseap.deploy.dir}" />
+			<param name="deployer.app.server.type" value="jbosseap" />
+			<param name="deployer.app.server.lib.portal.dir" value="${app.server.jbosseap.portal.dir}/WEB-INF/lib" />
 		</antcall>
 	</target>
 
@@ -1188,12 +1128,12 @@ release was successful.</echo>
 		</chmod>
 	</target>
 
-	<target name="unzip-jboss">
-		<delete dir="${app.server.jboss.dir}" />
+	<target name="unzip-jbosseap">
+		<delete dir="${app.server.jbosseap.dir}" />
 
 		<if>
 			<not>
-				<available file="${app.server.parent.dir}/${app.server.jboss.zip.name}" />
+				<available file="${app.server.parent.dir}/${app.server.jbosseap.zip.name}" />
 			</not>
 			<then>
 				<mkdir dir="${app.server.parent.dir}" />
@@ -1201,8 +1141,8 @@ release was successful.</echo>
 				<trycatch>
 					<try>
 						<mirrors-get
-							dest="${app.server.parent.dir}/${app.server.jboss.zip.name}"
-							src="${app.server.jboss.zip.url}"
+							dest="${app.server.parent.dir}/${app.server.jbosseap.zip.name}"
+							src="${app.server.jbosseap.zip.url}"
 							verbose="true"
 						/>
 					</try>
@@ -1210,8 +1150,8 @@ release was successful.</echo>
 						<fail>
 .
 
-Please download the JBoss EAP zip file from ${app.server.jboss.zip.url} and
-place it here: ${app.server.parent.dir}/${app.server.jboss.zip.name}. Then rerun
+Please download the JBoss EAP zip file from ${app.server.jbosseap.zip.url} and
+place it here: ${app.server.parent.dir}/${app.server.jbosseap.zip.name}. Then rerun
 this task.
 						</fail>
 					</catch>
@@ -1221,18 +1161,18 @@ this task.
 
 		<unzip
 			dest="${app.server.parent.dir}"
-			src="${app.server.parent.dir}/${app.server.jboss.zip.name}"
+			src="${app.server.parent.dir}/${app.server.jbosseap.zip.name}"
 		>
 			<mapper
 				from="(jboss-eap-)\d\.\d[\.]?[\d]?(/.*)"
-				to="\1${app.server.jboss.version}\2"
+				to="\1${app.server.jbosseap.version}\2"
 				type="regexp"
 			 />
 		</unzip>
 
-		<property name="app.server.jboss.module.file" value="${app.server.jboss.dir}/modules/system/layers/base/sun/jdk/main/module.xml" />
+		<property name="app.server.jbosseap.module.file" value="${app.server.jbosseap.dir}/modules/system/layers/base/sun/jdk/main/module.xml" />
 
-		<replace file="${app.server.jboss.module.file}">
+		<replace file="${app.server.jbosseap.module.file}">
 			<replacetoken><![CDATA[<paths>]]></replacetoken>
 			<replacevalue>
 				<![CDATA[
@@ -1246,12 +1186,12 @@ this task.
 			</replacevalue>
 		</replace>
 
-		<replace file="${app.server.jboss.dir}/standalone/configuration/standalone.xml">
+		<replace file="${app.server.jbosseap.dir}/standalone/configuration/standalone.xml">
 			<replacetoken><![CDATA[enable-welcome-root="true"]]></replacetoken>
 			<replacevalue><![CDATA[enable-welcome-root="false"]]></replacevalue>
 		</replace>
 
-		<replace file="${app.server.jboss.dir}/standalone/configuration/standalone.xml">
+		<replace file="${app.server.jbosseap.dir}/standalone/configuration/standalone.xml">
 			<replacetoken><![CDATA[</extensions>]]></replacetoken>
 			<replacevalue>
 				<![CDATA[
@@ -1264,12 +1204,12 @@ this task.
 			</replacevalue>
 		</replace>
 
-		<replace file="${app.server.jboss.dir}/standalone/configuration/standalone.xml">
+		<replace file="${app.server.jbosseap.dir}/standalone/configuration/standalone.xml">
 			<replacetoken><![CDATA[<deployment-scanner ]]></replacetoken>
 			<replacevalue><![CDATA[<deployment-scanner deployment-timeout="120" ]]></replacevalue>
 		</replace>
 
-		<replace file="${app.server.jboss.dir}/standalone/configuration/standalone.xml">
+		<replace file="${app.server.jbosseap.dir}/standalone/configuration/standalone.xml">
 			<replacetoken><![CDATA[<security-domains>]]></replacetoken>
 			<replacevalue>
 				<![CDATA[
@@ -1283,13 +1223,13 @@ this task.
 			</replacevalue>
 		</replace>
 
-		<echo file="${app.server.jboss.bin.dir}/server.policy">
+		<echo file="${app.server.jbosseap.bin.dir}/server.policy">
 			grant {
 				permission java.security.AllPermission;
 			};
 		</echo>
 
-		<replace file="${app.server.jboss.bin.dir}/standalone.conf">
+		<replace file="${app.server.jbosseap.bin.dir}/standalone.conf">
 			<replacetoken><![CDATA[JAVA_OPTS="-Xms64m -Xmx512m -XX:MaxPermSize=256m ]]></replacetoken>
 			<replacevalue><![CDATA[JAVA_OPTS="]]></replacevalue>
 		</replace>
@@ -1300,27 +1240,27 @@ this task.
 				<var name="java.security.config" value="" />
 			</then>
 			<else>
-				<var name="java.security.config" value="${java.security.manager.option} -Djava.security.policy==${app.server.jboss.dir}/bin/server.policy -Djboss.home.dir=${app.server.jboss.dir}" />
+				<var name="java.security.config" value="${java.security.manager.option} -Djava.security.policy==${app.server.jbosseap.dir}/bin/server.policy -Djboss.home.dir=${app.server.jbosseap.dir}" />
 			</else>
 		</if>
 
-		<replace file="${app.server.jboss.bin.dir}/standalone.conf">
+		<replace file="${app.server.jbosseap.bin.dir}/standalone.conf">
 			<replacetoken><![CDATA[JAVA_OPTS="-Xms1303m -Xmx1303m -XX:MaxPermSize=256m ]]></replacetoken>
 			<replacevalue><![CDATA[JAVA_OPTS="]]></replacevalue>
 		</replace>
 
-		<echo file="${app.server.jboss.bin.dir}/standalone.conf" append="true">
+		<echo file="${app.server.jbosseap.bin.dir}/standalone.conf" append="true">
 			<![CDATA[
 				JAVA_OPTS="$JAVA_OPTS -Dfile.encoding=UTF-8 -Djava.net.preferIPv4Stack=true ${java.security.config} -Duser.timezone=GMT -Xmx1024m -XX:MaxPermSize=384m"
 			]]>
 		</echo>
 
-		<replace file="${app.server.jboss.bin.dir}/standalone.conf.bat">
+		<replace file="${app.server.jbosseap.bin.dir}/standalone.conf.bat">
 			<replacetoken><![CDATA[set "JAVA_OPTS=-Xms64M ]]></replacetoken>
 			<replacevalue><![CDATA[rem set "JAVA_OPTS=-Xms64M ]]></replacevalue>
 		</replace>
 
-		<replace file="${app.server.jboss.bin.dir}/standalone.conf.bat">
+		<replace file="${app.server.jbosseap.bin.dir}/standalone.conf.bat">
 			<replacefilter token="@java.security.config@" value="${java.security.config}" />
 			<replacetoken><![CDATA[:JAVA_OPTS_SET]]></replacetoken>
 			<replacevalue>
@@ -1332,7 +1272,7 @@ this task.
 			</replacevalue>
 		</replace>
 
-		<replace file="${app.server.jboss.instance.dir}/configuration/standalone.xml">
+		<replace file="${app.server.jbosseap.instance.dir}/configuration/standalone.xml">
 			<replacetoken><![CDATA[<subsystem xmlns="urn:jboss:domain:web:1.1" default-virtual-server="default-host" native="false">]]></replacetoken>
 			<replacevalue>
 				<![CDATA[
@@ -1345,7 +1285,7 @@ this task.
 		</replace>
 
 		<chmod perm="a+x">
-			<fileset dir="${app.server.jboss.bin.dir}">
+			<fileset dir="${app.server.jbosseap.bin.dir}">
 				<include name="*.sh" />
 			</fileset>
 		</chmod>
@@ -3066,12 +3006,10 @@ plugins.includes=</echo>
 		</antcall>
 	</target>
 
-	<target name="zip-jboss-eap-6.4">
-		<var name="app.server.jboss.dir" value="${app.server.parent.dir}/jboss-eap-6.4.0" />
-
+	<target name="zip-jboss-eap">
 		<antcall target="zip-executable" inheritAll="false">
 			<param name="zip.executable.file" value="liferay-portal-jboss-eap" />
-			<param name="zip.executable.dir" value="${app.server.jboss.dir}" />
+			<param name="zip.executable.dir" value="${app.server.jbosseap.dir}" />
 		</antcall>
 	</target>
 

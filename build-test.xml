@@ -112,7 +112,7 @@
 				<not>
 					<or>
 						<equals arg1="${app.server.type}" arg2="glassfish" />
-						<equals arg1="${app.server.type}" arg2="jboss" />
+						<equals arg1="${app.server.type}" arg2="jbosseap" />
 						<equals arg1="${app.server.type}" arg2="jetty" />
 						<equals arg1="${app.server.type}" arg2="jonas" />
 						<equals arg1="${app.server.type}" arg2="resin" />
@@ -124,7 +124,7 @@
 					</or>
 				</not>
 				<then>
-					<fail>Please set "app.server.type" to one of the following:${line.separator}, glassfish, jboss, jetty, jonas, resin, tcserver, tomcat, weblogic, websphere, or wildfly.</fail>
+					<fail>Please set "app.server.type" to one of the following:${line.separator}, glassfish, jbosseap, jetty, jonas, resin, tcserver, tomcat, weblogic, websphere, or wildfly.</fail>
 				</then>
 			</if>
 
@@ -1701,17 +1701,17 @@ tell application "Safari" to quit
 				</and>
 				<then>
 					<app-server-properties-update>
-						app.server.type=jboss
-						app.server.jboss.version=6.1.0
-						app.server.jboss.dir=${app.server.parent.dir}/jboss-eap-6.1
-						app.server.jboss.zip.name=jboss-eap-6.1.0.zip
-						app.server.jboss.zip.url=http://www.jboss.org/jbossas/downloads/jboss-eap-6.1.0.zip
+						app.server.type=jbosseap
+						app.server.jbosseap.version=6.1.0
+						app.server.jbosseap.dir=${app.server.parent.dir}/jboss-eap-6.1
+						app.server.jbosseap.zip.name=jboss-eap-6.1.0.zip
+						app.server.jbosseap.zip.url=http://www.jboss.org/jbossas/downloads/jboss-eap-6.1.0.zip
 					</app-server-properties-update>
 
 					<antcall target="prepare-test-bundle" inheritAll="false">
 						<param name="app.server.lib.global.dir" value="${app.server.parent.dir}/jboss-eap-6.1/modules/com/liferay/portal/main" />
 						<param name="app.server.portal.dir" value="${app.server.parent.dir}/jboss-eap-6.1/standalone/deployments/ROOT.war" />
-						<param name="app.server.type" value="jboss" />
+						<param name="app.server.type" value="jbosseap" />
 					</antcall>
 
 					<app-server-properties-reset />
@@ -2741,7 +2741,7 @@ org.apache.catalina.startup.ClassLoaderFactory.level=INFO]]>
 
 					<if>
 						<or>
-							<equals arg1="${app.server.type}" arg2="jboss" />
+							<equals arg1="${app.server.type}" arg2="jbosseap" />
 							<equals arg1="${app.server.type}" arg2="wildfly" />
 						</or>
 						<then>
@@ -3624,10 +3624,10 @@ go]]></replacevalue>
 	<target name="check-inet-address">
 		<if>
 			<and>
-				<equals arg1="${app.server.type}" arg2="jboss" />
+				<equals arg1="${app.server.type}" arg2="jbosseap" />
 				<or>
-					<equals arg1="${app.server.jboss.version}" arg2="6.0.1" />
-					<equals arg1="${app.server.jboss.version}" arg2="6.1.0" />
+					<equals arg1="${app.server.jbosseap.version}" arg2="6.0.1" />
+					<equals arg1="${app.server.jbosseap.version}" arg2="6.1.0" />
 				</or>
 			</and>
 			<then>
@@ -3639,7 +3639,7 @@ go]]></replacevalue>
 				<if>
 					<equals arg1="${inet.address}" arg2="127.0.0.1" />
 					<then>
-						<replace file="${app.server.jboss.instance.dir}/configuration/standalone.xml">
+						<replace file="${app.server.jbosseap.instance.dir}/configuration/standalone.xml">
 							<replacefilter>
 								<replacetoken><![CDATA[<inet-address value="${jboss.bind.address:127.0.0.1}"/>]]></replacetoken>
 								<replacevalue><![CDATA[<nic name="eth0:0" />]]></replacevalue>
@@ -6443,11 +6443,11 @@ ANT_OPTS=${env.ANT_OPTS}</echo>
 			<else>
 				<if>
 					<and>
-						<equals arg1="${app.server.jboss.version}" arg2="6.1.0" />
-						<equals arg1="${app.server.type}" arg2="jboss" />
+						<equals arg1="${app.server.jbosseap.version}" arg2="6.1.0" />
+						<equals arg1="${app.server.type}" arg2="jbosseap" />
 					</and>
 					<then>
-						<ant antfile="build-dist.xml" target="unzip-jboss" inheritAll="false" />
+						<ant antfile="build-dist.xml" target="unzip-jbosseap" inheritAll="false" />
 					</then>
 					<elseif>
 						<equals arg1="${app.server.type}" arg2="tcserver" />
@@ -7452,7 +7452,7 @@ jdbc.default.password=${database.mysql.password}</echo>
 
 		<if>
 			<or>
-				<equals arg1="${app.server.type}" arg2="jboss" />
+				<equals arg1="${app.server.type}" arg2="jbosseap" />
 				<equals arg1="${app.server.type}" arg2="wildfly" />
 			</or>
 			<then>
@@ -7637,7 +7637,7 @@ jdbc.default.password=${database.mysql.password}</echo>
 			<and>
 				<contains string="${hook.plugins.includes}" substring="so-hook" />
 				<or>
-					<equals arg1="${app.server.type}" arg2="jboss" />
+					<equals arg1="${app.server.type}" arg2="jbosseap" />
 					<equals arg1="${app.server.type}" arg2="wildfly" />
 				</or>
 			</and>

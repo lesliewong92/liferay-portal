@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+
+<project name="portal-test-jbosseap" basedir="." default="test" xmlns:antelope="antlib:ise.antelope.tasks">
+	<import file="build-test.xml" />
+
+	<target name="run-jbosseap">
+		<antcall target="run-simple-server" />
+	</target>
+
+	<target name="run-selenium-jbosseap">
+		<app-server-properties-update>
+			app.server.type=jbosseap
+			app.server.jbosseap.version=${app.server.jbosseap.version}
+			app.server.jbosseap.dir=${app.server.parent.dir}/jboss-eap-${app.server.jbosseap.version}
+			app.server.jbosseap.zip.name=jboss-eap-${app.server.jbosseap.version}.zip
+		</app-server-properties-update>
+
+		<if>
+			<not>
+				<isset property="build.app.server" />
+			</not>
+			<then>
+				<ant antfile="build-dist.xml" target="build-dist-jbosseap" />
+			</then>
+		</if>
+
+		<antcall target="revert-test-properties" />
+
+		<antcall target="record-test-generated-properties" />
+
+		<antcall target="prepare-virtual-host-name-properties" />
+
+		<antcall target="run-jbosseap" inheritAll="false">
+			<param name="test.class" value="${test.class}" />
+		</antcall>
+	</target>
+</project>

@@ -24,7 +24,7 @@ public class ServerDetector {
 
 	public static final String GLASSFISH_ID = "glassfish";
 
-	public static final String JBOSS_ID = "jboss";
+	public static final String JBOSSEAP_ID = "jbosseap";
 
 	public static final String JETTY_ID = "jetty";
 
@@ -64,7 +64,7 @@ public class ServerDetector {
 		if (serverId.equals(GLASSFISH_ID)) {
 			serverDetector._glassfish = true;
 		}
-		else if (serverId.equals(JBOSS_ID)) {
+		else if (serverId.equals(JBOSSEAP_ID)) {
 			serverDetector._jBoss = true;
 		}
 		else if (serverId.equals(JETTY_ID)) {
@@ -196,7 +196,7 @@ public class ServerDetector {
 			_glassfish = true;
 		}
 		else if (_isJBoss()) {
-			_serverId = JBOSS_ID;
+			_serverId = JBOSSEAP_ID;
 			_jBoss = true;
 		}
 		else if (_isJOnAS()) {

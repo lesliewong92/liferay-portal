@@ -158,7 +158,7 @@ public class DeployUtil {
 		}
 
 		if (!appServerType.equals(ServerDetector.GLASSFISH_ID) &&
-			!appServerType.equals(ServerDetector.JBOSS_ID) &&
+			!appServerType.equals(ServerDetector.JBOSSEAP_ID) &&
 			!appServerType.equals(ServerDetector.JETTY_ID) &&
 			!appServerType.equals(ServerDetector.TOMCAT_ID) &&
 			!appServerType.equals(ServerDetector.WEBLOGIC_ID) &&
@@ -209,7 +209,7 @@ public class DeployUtil {
 				_getJettyHome() + "/contexts/" + deployDir.getName() + ".xml");
 		}
 
-		if (appServerType.equals(ServerDetector.JBOSS_ID) ||
+		if (appServerType.equals(ServerDetector.JBOSSEAP_ID) ||
 			appServerType.equals(ServerDetector.WILDFLY_ID)) {
 
 			File deployedFile = new File(

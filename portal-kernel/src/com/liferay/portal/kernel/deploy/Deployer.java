@@ -79,7 +79,7 @@ public interface Deployer {
 
 	public void setJars(List<String> jars);
 
-	public void setJbossPrefix(String jbossPrefix);
+	public void setJbossEAPPrefix(String jbossEAPPrefix);
 
 	public void setPortletExtTaglibDTD(String portletExtTaglibDTD);
 
