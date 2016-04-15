@@ -22,12 +22,12 @@ liferay {
 			version = project.properties["app.server.glassfish.version"] ?: "3.1.2.2"
 		}
 
-		jboss {
-			deployDir = project.properties["app.server.jboss.deploy.dir"] ?: "${->liferay.appServers.jboss.dir}/standalone/deployments"
-			dir = project.properties["app.server.jboss.dir"] ?: "${->liferay.appServerParentDir}/jboss-eap-${->liferay.appServers.jboss.version}"
-			libGlobalDir = project.properties["app.server.jboss.lib.global.dir"] ?: "${->liferay.appServers.jboss.dir}/modules/com/liferay/portal/main"
-			portalDir = project.properties["app.server.jboss.portal.dir"] ?: "${->liferay.appServers.jboss.dir}/standalone/deployments/ROOT.war"
-			version = project.properties["app.server.jboss.version"] ?: "6.4.0"
+		jbosseap {
+			deployDir = project.properties["app.server.jbosseap.deploy.dir"] ?: "${->liferay.appServers.jboss.dir}/standalone/deployments"
+			dir = project.properties["app.server.jbosseap.dir"] ?: "${->liferay.appServerParentDir}/jboss-eap-${->liferay.appServers.jboss.version}"
+			libGlobalDir = project.properties["app.server.jbosseap.lib.global.dir"] ?: "${->liferay.appServers.jboss.dir}/modules/com/liferay/portal/main"
+			portalDir = project.properties["app.server.jbosseap.portal.dir"] ?: "${->liferay.appServers.jboss.dir}/standalone/deployments/ROOT.war"
+			version = project.properties["app.server.jbosseap.version"] ?: "6.4.0"
 		}
 
 		jetty {
