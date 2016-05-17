@@ -6919,6 +6919,25 @@ cluster.link.bind.addr["cluster-link-udp"]=127.0.0.1</echo>
 				<exec executable="mysql_upgrade" />
 			</then>
 			<elseif>
+				<equals arg1="${database.type}" arg2="oracle" />
+				<then>
+					<get-data-pump-dir />
+
+					<move file="${liferay.home}/${database.type}.dmp" todir="${data.pump.dir}" />
+
+					<chown file="${data.pump.dir}/${database.type}.dmp" owner="oracle" />
+					<chgrp file="${data.pump.dir}/${database.type}.dmp" group="oracle" />
+
+					<exec executable="impdp">
+						<arg value="${oracle.admin.user}/${oracle.admin.password}" />
+						<arg value="dumpfile=${database.type}.dmp" />
+						<arg value="table_exists_action=replace" />
+					</exec>
+
+					<delete file="${data.pump.dir}/${database.type}.dmp" />
+				</then>
+			</elseif>
+			<elseif>
 				<equals arg1="${database.type}" arg2="postgresql" />
 				<then>
 					<get-database-property property.name="database.schema" />
