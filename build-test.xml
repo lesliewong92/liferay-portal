@@ -256,6 +256,34 @@ counter.jdbc.prefix=jdbc.counter.]]></echo>
 		</sequential>
 	</macrodef>
 
+	<macrodef name="get-data-pump-dir">
+		<sequential>
+			<if>
+				<not>
+					<equals arg1="${database.type}" arg2="oracle" />
+				</not>
+				<then>
+					<fail message="Data pump directory exists only for the Oracle database" />
+				</then>
+			</if>
+
+			<echo file="getdatapumpdir.sql"><![CDATA[SELECT directory_name, directory_path FROM dba_directories WHERE directory_name='DATA_PUMP_DIR';]]></echo>
+
+			<exec executable="su" outputproperty="data.pump.dir" failonerror="true">
+				<arg value="-c" />
+				<arg value="${oracle.sqlplus.executable} ${oracle.admin.user}/${oracle.admin.password} @getdatapumpdir.sql" />
+			</exec>
+
+			<propertyregex
+				input="${data.pump.dir}"
+				override="true"
+				property="data.pump.dir"
+				regexp="[\s\S]+DATA_PUMP_DIR\n(.*)[\s\S]+"
+				replace="\1"
+			/>
+		</sequential>
+	</macrodef>
+
 	<macrodef name="get-database-property">
 		<attribute name="property.name" />
 
