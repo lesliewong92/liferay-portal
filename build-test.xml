@@ -7756,6 +7756,10 @@ jdbc.default.password=${database.mysql.password}</echo>
 			</then>
 		</if>
 
+		<antcall inheritAll="false" target="copy-optional-jars">
+			<param name="todir" value="${app.server.lib.global.dir}" />
+		</antcall>
+
 		<get-testcase-property property.name="portal.version" />
 
 		<if>
@@ -7769,10 +7773,6 @@ jdbc.default.password=${database.mysql.password}</echo>
 				<antcall inheritAll="false" target="rebuild-database" />
 			</else>
 		</if>
-
-		<antcall inheritAll="false" target="copy-optional-jars">
-			<param name="todir" value="${app.server.lib.global.dir}" />
-		</antcall>
 
 		<get-testcase-property property.name="skip.clean-app-server-deploy-dir" />
 
