@@ -1050,6 +1050,33 @@ app.server.type=@{app.server.type}]]></echo>
 		<run-modules-integration-test database.type="sybase" />
 	</target>
 
+	<target name="modules-plugins-compile-jdk7">
+		<run-batch-test>
+			<test-action>
+				<ant antfile="build-test-plugins.xml" target="test-plugin-group">
+					<property name="test.modules.plugins" value="true" />
+					<property name="test.plugin.group.index" value="${axis.variable}" />
+				</ant>
+			</test-action>
+
+			<test-set-up>
+				<if>
+					<isset property="env.DIST_PATH" />
+					<then>
+						<prepare-test-environment />
+					</then>
+					<else>
+						<prepare-test-build />
+					</else>
+				</if>
+
+				<antcall inheritAll="false" target="record-test-modules-plugin-names">
+					<param name="test.plugin.groups.size" value="${test.batch.size}" />
+				</antcall>
+			</test-set-up>
+		</run-batch-test>
+	</target>
+
 	<target name="modules-unit-jdk7">
 		<run-batch-test>
 			<test-action>
