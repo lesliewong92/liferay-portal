@@ -7477,6 +7477,14 @@ if (ppstate.equals("normal")) {
 		</if>
 	</target>
 
+	<target name="record-test-modules-plugin-names">
+		<record-test-plugin-names
+			file.name="test.modules.plugin.names.properties"
+			plugins.base.dir="${project.dir}/modules/apps"
+			plugins.includes="**/build.xml"
+		/>
+	</target>
+
 	<target name="record-test-plugin-names">
 		<loadproperties srcFile="${lp.plugins.dir}/build.properties">
 			<filterchain>
