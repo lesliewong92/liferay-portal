@@ -1062,15 +1062,15 @@ app.server.type=@{app.server.type}]]></echo>
 					<isset property="env.DIST_PATH" />
 					<then>
 						<prepare-test-environment />
-
-						<antcall inheritAll="false" target="record-test-modules-plugin-names">
-							<param name="test.plugin.groups.size" value="${test.batch.size}" />
-						</antcall>
 					</then>
 					<else>
 						<prepare-test-build />
 					</else>
 				</if>
+
+				<antcall inheritAll="false" target="record-test-modules-plugin-names">
+					<param name="test.plugin.groups.size" value="${test.batch.size}" />
+				</antcall>
 			</test-set-up>
 		</run-batch-test>
 	</target>
