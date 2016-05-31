@@ -249,7 +249,7 @@ app.server.tomcat.dir=${app.server.parent.dir}/tomcat-7.0.42</echo>
 			<path>
 				<fileset
 					dir="${project.dir}/modules/apps"
-					includes="**/${test.modules.plugin}/build.xml"
+					includes="**/${test.modules.plugin}/build.gradle,**/${test.modules.plugin}/build.xml"
 				/>
 			</path>
 		</pathconvert>
@@ -269,14 +269,22 @@ app.server.tomcat.dir=${app.server.parent.dir}/tomcat-7.0.42</echo>
 			override="true"
 			property="modules.compile.task.name"
 			regexp="(.*/modules)(/.*)"
-			replace="\2:compile"
+			replace="\2"
 		/>
 
 		<antelope:stringutil property="modules.compile.task.name" string="${modules.compile.task.name}">
 			<antelope:replace regex="/" replacement=":" />
 		</antelope:stringutil>
 
-		<gradle-execute dir="${modules.base.dir.name}" task="${modules.compile.task.name}" />
+		<if>
+			<available file="${test.modules.plugin.dir}/build.gradle" />
+			<then>
+				<gradle-execute dir="${project.dir}/modules" task="${modules.compile.task.name}:compileJava" />
+			</then>
+			<else>
+				<gradle-execute dir="${project.dir}/modules" task="${modules.compile.task.name}:compile" />
+			</else>
+		</if>
 	</target>
 
 	<target name="test-plugin">

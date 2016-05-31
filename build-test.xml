@@ -2279,17 +2279,23 @@ ${tomcat-gc-log}
 						String pluginsExcludes = project.getProperty("plugins.excludes");
 
 						for (String fileName : fileNames) {
-							int x = fileName.indexOf("/");
-							int y = fileName.lastIndexOf("/");
+							int x = fileName.indexOf(File.separator);
+							int y = fileName.lastIndexOf(File.separator);
 
-							if (File.separator.equals("\\")) {
-								x = fileName.indexOf("\\");
-								y = fileName.lastIndexOf("\\");
+							File lfrBuildPortalFile = new File(project.getProperty("plugins.base.dir") + File.separator + fileName.substring(0, y) + File.separator + ".lfrbuild-portal");
+
+							File gitRepoFile = new File(project.getProperty("plugins.base.dir") + File.separator + fileName.substring(0, y) + File.separator + ".gitrepo");
+
+							String pluginName = "";
+
+							if (x == y) {
+								pluginName = fileName.substring(x + 1);
+							}
+							else {
+								pluginName = fileName.substring(x + 1, y);
 							}
 
-							String pluginName = fileName.substring(x + 1, y);
-
-							if ((pluginsExcludes == null) || !pluginsExcludes.contains(pluginName)) {
+							if (((pluginsExcludes == null) || !pluginsExcludes.contains(pluginName)) && !lfrBuildPortalFile.exists() && !gitRepoFile.exists()) {
 								pluginNames.add(pluginName);
 							}
 						}
@@ -7483,7 +7489,7 @@ if (ppstate.equals("normal")) {
 		<record-test-plugin-names
 			file.name="test.modules.plugin.names.properties"
 			plugins.base.dir="${project.dir}/modules/apps"
-			plugins.includes="**/build.xml"
+			plugins.includes="**/build.gradle,**/build.xml"
 		/>
 	</target>
 
