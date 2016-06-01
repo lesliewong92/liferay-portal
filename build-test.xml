@@ -717,6 +717,8 @@ counter.jdbc.prefix=jdbc.counter.]]></echo>
 
 			<property name="module.list" refid="dirset" />
 
+			<echo>${module.list}</echo>
+
 			<beanshell>
 				<![CDATA[
 					import org.apache.commons.lang.StringUtils;
@@ -7532,6 +7534,31 @@ if (ppstate.equals("normal")) {
 				<echo></echo>
 			</then>
 		</if>
+	</target>
+
+	<target name="record-test-module-names">
+		<selector id="module.pattern">
+			<and>
+				<or>
+					<present targetdir="${project.dir}/modules">
+						<mapper type="glob" from="*" to="*/build.gradle" />
+					</present>
+					<present targetdir="${project.dir}/modules">
+						<mapper type="glob" from="*" to="*/build.xml" />
+					</present>
+				</or>
+				<present present="srconly" targetdir="${project.dir}/modules" >
+					<mapper type="glob" from="*" to="*/settings.gradle" />
+				</present>
+			</and>
+		</selector>
+
+		<get-test-module-names
+			module.base.dir="${project.dir}/modules"
+			pattern.id="module.pattern"
+		/>
+
+		<echo file="test.module.names.properties">${test.module.names.properties.content}</echo>
 	</target>
 
 	<target name="record-test-plugin-names">
