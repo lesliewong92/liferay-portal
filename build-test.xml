@@ -2282,9 +2282,11 @@ ${tomcat-gc-log}
 							int x = fileName.indexOf(File.separator);
 							int y = fileName.lastIndexOf(File.separator);
 
-							File lfrBuildPortalFile = new File(project.getProperty("plugins.base.dir") + File.separator + fileName.substring(0, y) + File.separator + ".lfrbuild-portal");
+							String pluginsDir = project.getProperty("plugins.base.dir") + File.separator + fileName.substring(0, y);
 
-							File gitRepoFile = new File(project.getProperty("plugins.base.dir") + File.separator + fileName.substring(0, y) + File.separator + ".gitrepo");
+							File gitRepoFile = new File(pluginsDir + File.separator + ".gitrepo");
+
+							File lfrBuildPortalFile = new File(pluginsDir + File.separator + ".lfrbuild-portal");
 
 							String pluginName = "";
 
@@ -2295,7 +2297,7 @@ ${tomcat-gc-log}
 								pluginName = fileName.substring(x + 1, y);
 							}
 
-							if (((pluginsExcludes == null) || !pluginsExcludes.contains(pluginName)) && !lfrBuildPortalFile.exists() && !gitRepoFile.exists()) {
+							if (((pluginsExcludes == null) || !pluginsExcludes.contains(pluginName)) && !lfrBuildPortalFile.exists() && !gitRepoFile.exists() && !pluginName.contains("theme")) {
 								pluginNames.add(pluginName);
 							}
 						}
