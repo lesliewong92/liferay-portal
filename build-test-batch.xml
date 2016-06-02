@@ -1092,6 +1092,13 @@ app.server.type=@{app.server.type}]]></echo>
 											</then>
 											<else>
 												<echo>modules/@{test.module}/gulpfile.js DOES NOT CONTAIN "require('liferay-theme-tasks')"</echo>
+
+												<var name="gulpfile.content" unset="true" />
+
+												<loadfile property="gulpfile.content" srcFile="modules/@{test.module}/gulpfile.js" />
+
+												<echo>GULPFILE CONTENT:
+${gulpfile.content}</echo>
 											</else>
 										</if>
 									</then>
