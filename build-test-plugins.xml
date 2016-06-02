@@ -319,6 +319,8 @@ plugins.includes=${test.plugin}</echo>
 				<property file="${project.dir}/test.module.plugin.names.properties" />
 
 				<propertycopy from="TEST_MODULE_GROUP_${test.plugin.group.index}" name="test.plugins" />
+
+				<echo>TEST_MODULE_GROUP_${test.plugin.group.index} - ${test.plugins}</echo>
 			</then>
 			<else>
 				<property file="${project.dir}/test.plugin.names.properties" />
