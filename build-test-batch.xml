@@ -1077,6 +1077,8 @@ app.server.type=@{app.server.type}]]></echo>
 							<antelope:replace regex="/" replacement=":" />
 						</antelope:stringutil>
 
+						<echo>Searching for file modules/@{test.module}/gulpfile.js</echo>
+
 						<if>
 							<and>
 								<available file="modules/@{test.module}/gulpfile.js" />
