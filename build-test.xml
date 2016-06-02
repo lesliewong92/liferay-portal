@@ -685,6 +685,8 @@ counter.jdbc.prefix=jdbc.counter.]]></echo>
 
 			<property name="module.list" refid="dirset" />
 
+			<echo>module-list: ${module.list}</echo>
+
 			<beanshell>
 				<![CDATA[
 					import org.apache.commons.lang.StringUtils;
