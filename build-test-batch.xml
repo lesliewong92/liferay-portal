@@ -1067,65 +1067,66 @@ app.server.type=@{app.server.type}]]></echo>
 	<target name="modules-compile-jdk7">
 		<run-batch-test>
 			<test-action>
+				<antcall inheritAll="false" target="record-test-module-names">
+					<param name="test.module.groups.size" value="${test.batch.size}" />
+				</antcall>
+
 				<property file="test.module.names.properties" />
 
 				<propertycopy from="TEST_MODULE_GROUP_${axis.variable}" name="test.modules" />
 
 				<for list="${test.modules}" param="test.module">
 					<sequential>
+						<antelope:stringutil property="module.compile.task.name" string="@{test.module}">
+							<antelope:replace regex="/" replacement=":" />
+						</antelope:stringutil>
+
 						<if>
-							<contains string="@{test.module}" substring="frontend-theme" />
+							<available file="modules/@{test.module}/gulpfile.js" />
 							<then>
-								<antelope:stringutil property="module.compile.task.name" string="@{test.module}">
-									<antelope:replace regex="/" replacement=":" />
-								</antelope:stringutil>
+								<echo>FOUND modules/@{test.module}/gulpfile.js</echo>
 
 								<if>
-									<available file="modules/@{test.module}/gulpfile.js" />
+									<resourcecontains resource="modules/@{test.module}/gulpfile.js" substring="require('liferay-theme-tasks')" />
 									<then>
-										<echo>FOUND modules/@{test.module}/gulpfile.js</echo>
+										<echo>THEN I HAVE NO IDEA WHAT'S WRONG</echo>
+									</then>
+									<else>
+										<echo>modules/@{test.module}/gulpfile.js DOES NOT CONTAIN "require('liferay-theme-tasks')"</echo>
 
-										<if>
-											<resourcecontains resource="modules/@{test.module}/gulpfile.js" substring="require('liferay-theme-tasks')" />
-											<then>
-												<echo>THEN I HAVE NO IDEA WHAT'S WRONG</echo>
-											</then>
-											<else>
-												<echo>modules/@{test.module}/gulpfile.js DOES NOT CONTAIN "require('liferay-theme-tasks')"</echo>
+										<var name="gulpfile.content" unset="true" />
 
-												<var name="gulpfile.content" unset="true" />
+										<loadfile property="gulpfile.content" srcFile="modules/@{test.module}/gulpfile.js" />
 
-												<loadfile property="gulpfile.content" srcFile="modules/@{test.module}/gulpfile.js" />
-
-												<echo>GULPFILE CONTENT:
+										<echo>GULPFILE CONTENT:
 ${gulpfile.content}</echo>
-											</else>
-										</if>
-									</then>
-									<else>
-										<echo>CANNOT FIND modules/@{test.module}/gulpfile.js</echo>
-									</else>
-								</if>
-
-								<if>
-									<and>
-										<available file="modules/@{test.module}/gulpfile.js" />
-										<resourcecontains resource="modules/@{test.module}/gulpfile.js" substring="require('liferay-theme-tasks')" />
-									</and>
-									<then>
-										<gradle-execute dir="modules" task=":${module.compile.task.name}:assemble" />
-									</then>
-									<else>
-										<gradle-execute dir="modules" task=":${module.compile.task.name}:compileJava" />
 									</else>
 								</if>
 							</then>
+							<else>
+								<echo>CANNOT FIND modules/@{test.module}/gulpfile.js</echo>
+							</else>
+						</if>
+
+						<if>
+							<and>
+								<available file="modules/@{test.module}/gulpfile.js" />
+								<resourcecontains resource="modules/@{test.module}/gulpfile.js" substring="require('liferay-theme-tasks')" />
+							</and>
+							<then>
+								<echo>:${module.compile.task.name}:assemble</echo>
+								<!-- <gradle-execute dir="modules" task=":${module.compile.task.name}:assemble" /> -->
+							</then>
+							<else>
+								<echo>:${module.compile.task.name}:compileJava</echo>
+								<!-- <gradle-execute dir="modules" task=":${module.compile.task.name}:compileJava" /> -->
+							</else>
 						</if>
 					</sequential>
 				</for>
 			</test-action>
 
-			<test-set-up>
+			<!-- <test-set-up>
 				<if>
 					<isset property="env.DIST_PATH" />
 					<then>
@@ -1139,7 +1140,7 @@ ${gulpfile.content}</echo>
 						<prepare-test-build />
 					</else>
 				</if>
-			</test-set-up>
+			</test-set-up> -->
 		</run-batch-test>
 	</target>
 
