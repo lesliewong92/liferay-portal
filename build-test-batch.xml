@@ -1077,7 +1077,20 @@ app.server.type=@{app.server.type}]]></echo>
 							<antelope:replace regex="/" replacement=":" />
 						</antelope:stringutil>
 
-						<echo>Searching for file modules/@{test.module}/gulpfile.js</echo>
+						<if>
+							<available file="modules/@{test.module}/gulpfile.js" />
+							<then>
+								<if>
+									<resourcecontains resource="modules/@{test.module}/gulpfile.js" substring="require('liferay-theme-tasks')" />
+									<then>
+										<echo>modules/@{test.module}/gulpfile.js DOES NOT CONTAIN "require('liferay-theme-tasks')"</echo>
+									</then>
+								</if>
+							</then>
+							<else>
+								<echo>CANNOT FIND modules/@{test.module}/gulpfile.js</echo>
+							</else>
+						</if>
 
 						<if>
 							<and>
