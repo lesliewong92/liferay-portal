@@ -1087,12 +1087,12 @@ app.server.type=@{app.server.type}]]></echo>
 								<echo>FOUND modules/@{test.module}/gulpfile.js</echo>
 
 								<if>
-									<resourcecontains resource="modules/@{test.module}/gulpfile.js" substring="require('liferay-theme-tasks')" />
+									<resourcecontains resource="modules/@{test.module}/gulpfile.js" substring="require(liferay-theme-tasks)" />
 									<then>
 										<echo>THEN I HAVE NO IDEA WHAT'S WRONG</echo>
 									</then>
 									<else>
-										<echo>modules/@{test.module}/gulpfile.js DOES NOT CONTAIN "require('liferay-theme-tasks')"</echo>
+										<echo>modules/@{test.module}/gulpfile.js DOES NOT CONTAIN "require(liferay-theme-tasks)"</echo>
 
 										<var name="gulpfile.content" unset="true" />
 
@@ -1111,7 +1111,7 @@ ${gulpfile.content}</echo>
 						<if>
 							<and>
 								<available file="modules/@{test.module}/gulpfile.js" />
-								<resourcecontains resource="modules/@{test.module}/gulpfile.js" substring="require('liferay-theme-tasks')" />
+								<resourcecontains resource="modules/@{test.module}/gulpfile.js" substring="require(liferay-theme-tasks)" />
 							</and>
 							<then>
 								<echo>:${module.compile.task.name}:assemble</echo>
