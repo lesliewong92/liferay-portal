@@ -1062,6 +1062,17 @@ app.server.type=@{app.server.type}]]></echo>
 		<run-lpkg-startup-test />
 	</target>
 
+	<target name="modules-compile-jdk7">
+		<for param="apps.dir">
+			<dirset dir="modules">
+				<include name="**/apps" />
+			</dirset>
+			<sequential>
+				<gradle-execute dir="@{apps.dir}" task="assemble" />
+			</sequential>
+		</for>
+	</target>
+
 	<target name="modules-functional-jdk7">
 		<run-batch-test>
 			<test-action>
