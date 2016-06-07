@@ -1063,14 +1063,25 @@ app.server.type=@{app.server.type}]]></echo>
 	</target>
 
 	<target name="modules-compile-jdk7">
-		<for param="apps.dir">
-			<dirset dir="modules">
-				<include name="**/apps" />
-			</dirset>
-			<sequential>
-				<gradle-execute dir="@{apps.dir}" task="assemble" />
-			</sequential>
-		</for>
+		<run-batch-test>
+			<test-action>
+				<gradle-execute dir="modules/apps" task="assemble">
+					<arg value="-Dno.portal.build=true" />
+				</gradle-execute>
+			</test-action>
+
+			<test-set-up>
+				<if>
+					<isset property="env.DIST_PATH" />
+					<then>
+						<prepare-test-environment />
+					</then>
+					<else>
+						<prepare-test-build />
+					</else>
+				</if>
+			</test-set-up>
+		</run-batch-test>
 	</target>
 
 	<target name="modules-functional-jdk7">
