@@ -21,6 +21,7 @@ import java.util.List;
  */
 public interface BuddyFinder {
 
+	//Test comment
 	public List<Object[]> getBuddies(long companyId, long userId);
 
 }
