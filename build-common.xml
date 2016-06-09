@@ -908,7 +908,7 @@ Please set the environment variable ANT_OPTS to the recommended value of
 				<arg value="-Dforced.cache.enabled=@{forcedcacheenabled}" />
 				<arg value="-Dliferay.home=${liferay.home}" />
 				<arg value="@{task}" />
-				<env key="GRADLE_OPTS" value="${env.ANT_OPTS}" />
+				<env key="GRADLE_OPTS" value="-Dfile.encoding=UTF-8 ${env.ANT_OPTS}" />
 			</exec>
 		</sequential>
 	</macrodef>
