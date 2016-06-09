@@ -1,6 +1,14 @@
 FileTree modulesFileTree
 
 if (Boolean.getBoolean("portal.build")) {
+	println "AAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+	println "AAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+	println "AAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+	println "AAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+	println "AAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+	println "AAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+	println "AAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+
 	modulesFileTree = fileTree(dir: rootDir, include: "*/**/.lfrbuild-portal")
 }
 else {

@@ -885,9 +885,7 @@ app.server.type=@{app.server.type}]]></echo>
 			<test-action>
 				<ant dir="portal-web" target="compile-tomcat" />
 
-				<gradle-execute dir="modules" task="compileJSP">
-					<arg value="-Dmodules.only.build=true" />
-				</gradle-execute>
+				<gradle-execute dir="modules" task="compileJSP" />
 			</test-action>
 
 			<test-set-up>
@@ -1104,7 +1102,6 @@ app.server.type=@{app.server.type}]]></echo>
 		<run-batch-test>
 			<test-action>
 				<gradle-execute dir="modules" task="test">
-					<arg value="-Dmodules.only.build=true" />
 					<arg value="-Dtest.class.group.index=${axis.variable}" />
 				</gradle-execute>
 			</test-action>
