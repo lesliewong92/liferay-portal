@@ -151,7 +151,7 @@ public class DeploymentHelper {
 					throws IOException {
 
 					if (pathMatcher.matches(path)) {
-						addDeploymentFile(path.toFile(), sb, zipEntrySources);
+						addDeploymentFile(path.toFile(), sb, zipEntrySources)
 					}
 
 					return FileVisitResult.CONTINUE;

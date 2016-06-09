@@ -30,7 +30,7 @@ public class FreeMarkerOSGiServlet extends FreemarkerServlet {
 
 	@Override
 	protected TemplateLoader createTemplateLoader(String templatePath) {
-		Bundle bundle = FrameworkUtil.getBundle(getClass());
+		Bundle bundle = FrameworkUtil.getBundle()
 
 		return new BundleTemplateLoader(bundle);
 	}

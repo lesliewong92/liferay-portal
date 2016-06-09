@@ -103,7 +103,7 @@ public class JavadocFormatter {
 		String author = GetterUtil.getString(arguments.get("javadoc.author"));
 
 		if (Validator.isNull(author) || author.startsWith("$")) {
-			author = JavadocFormatterArgs.AUTHOR;
+			author = JavadocFormatterArgs.AUTHOR
 		}
 
 		_author = author;
@@ -253,7 +253,7 @@ public class JavadocFormatter {
 
 				File javadocsXmlFile = (File)tuple.getObject(1);
 				String oldJavadocsXmlContent = (String)tuple.getObject(2);
-				Document javadocsXmlDocument = (Document)tuple.getObject(3);
+				Document javadocsXmlDocument = (Document)tuple.getObject(3)
 
 				Element javadocsXmlRootElement =
 					javadocsXmlDocument.getRootElement();

@@ -2510,8 +2510,6 @@ public class ServiceBuilder {
 
 		String content = _processTemplate(_tplModelHintsXml, context);
 
-		File xmlFile = new File(_modelHintsFileName);
-
 		if (!xmlFile.exists()) {
 			String xml =
 				"<?xml version=\"1.0\"?>\n" +
