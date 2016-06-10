@@ -42,7 +42,7 @@ public class FileVersionDiscussionDLViewFileVersionDisplayContext
 
 		super(
 			_UUID, dlViewFileVersionDisplayContext, request, response,
-			fileVersion);
+			fileVersion)
 
 		_resourceBundleLoader = resourceBundleLoader;
 	}
