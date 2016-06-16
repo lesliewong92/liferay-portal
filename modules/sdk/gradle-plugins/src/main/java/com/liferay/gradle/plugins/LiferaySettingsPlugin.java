@@ -82,6 +82,7 @@ public class LiferaySettingsPlugin implements Plugin<Settings> {
 
 		final boolean modulesOnlyBuild = Boolean.getBoolean(
 			"modules.only.build");
+		final boolean noPortalBuild = Boolean.getBoolean("no.portal.build");
 		final boolean portalBuild = Boolean.getBoolean("portal.build");
 
 		Files.walkFileTree(
@@ -112,6 +113,12 @@ public class LiferaySettingsPlugin implements Plugin<Settings> {
 
 					if (!moduleProjectDir && !otherProjectDir) {
 						return FileVisitResult.CONTINUE;
+					}
+
+					if (noPortalBuild &&
+						Files.exists(dirPath.resolve(".lfrbuild-portal"))) {
+
+						return FileVisitResult.SKIP_SUBTREE;
 					}
 
 					if (portalBuild &&
