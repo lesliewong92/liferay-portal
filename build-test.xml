@@ -8556,7 +8556,7 @@ jdbc.default.password=${database.password}</echo>
 		</if>
 
 		<first id="first">
-			<fileset dir="${liferay.home}/logs" includes="*.log" />
+			<fileset dir="/opt/dev/projects/github/liferay-bundles-master/logs" includes="*.log" />
 		</first>
 
 		<var name="log.file.path" value="${toString:first}" />
@@ -8597,46 +8597,34 @@ jdbc.default.password=${database.password}</echo>
 					replace=""
 				/>
 
-				<antelope:stringutil property="poshi.dir.name" string="${poshi.test.name}">
+				<antelope:stringutil property="extraapps.jars" string="${extraapps.jars}">
 					<antelope:replace regex="-" replacement="_" />
 				</antelope:stringutil>
 
-				<!-- <for delimiter=":" list="extraapps.jars" param="extraapps.jar">
-					<sequential>
-						<local name="missing.jar" />
-
-						<waitfor maxwait="2" maxwaitunit="minute" timeoutproperty="missing.jar">
-							<resourcecontains resource="${log.file.path}" substring="STARTED @{extraapps.jar}" />
-						</waitfor>
-
-						<if>
-							<isset property="missing.jar" />
-							<then>
-								<echo>Timed out waiting for ${missing.jar} to deploy</echo>
-							</then>
-						</if>
-					</sequential>
-				</for> -->
-
 				<beanshell>
 					<![CDATA[
+						import org.apache.commons.io.FileUtils;
 						import org.apache.commons.lang.StringUtils;
 
-						ArrayList extraappsJars = new ArrayList(Arrays.asList(StringUtil.split(project.getProperty("extraapps.jars"), ":")));
+						String[] extraappsJars = StringUtils.split(project.getProperty("extraapps.jars"), ":");
+
+						Set deployedJars = new HashSet();
 
 						String logFilePath = project.getProperty("log.file.path");
 
 						logFilePath = logFilePath.replaceAll("\\\\", "/");
 
-						while (!extraappsJars.empty()) {
+						int second = 0;
+
+						while (deployedJars.size() != extraappsJars.length) {
 							try {
 								File file = new File(logFilePath);
 
 								String content = FileUtils.readFileToString(file);
 
 								for (String extraappsJar : extraappsJars) {
-									if (content.contains("STARTED " + extraappsJar) {
-										extraappsJars.remove();
+									if (content.contains("STARTED " + extraappsJar)) {
+										deployedJars.add(extraappsJar);
 									}
 								}
 							}
@@ -8644,8 +8632,8 @@ jdbc.default.password=${database.password}</echo>
 								e.printStackTrace();
 							}
 
-							if (second >= 300) {
-								break;
+							if (second >= 240) {
+								throw new Exception("Timed out waiting for plugins");
 							}
 
 							second++;
@@ -8656,7 +8644,6 @@ jdbc.default.password=${database.password}</echo>
 				</beanshell>
 			</sequential>	
 		</for>
-
 	</target>
 
 	<target name="wait-for-plugins-deployment">
