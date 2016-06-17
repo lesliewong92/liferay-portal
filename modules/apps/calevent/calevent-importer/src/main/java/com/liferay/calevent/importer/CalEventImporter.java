@@ -322,8 +322,6 @@ public class CalEventImporter {
 		double priority, boolean question, int status, long statusByUserId,
 		String statusByUserName, Date statusDate) {
 
-		MBThread mbThread = _mbThreadLocalService.createMBThread(threadId);
-
 		mbThread.setUuid(uuid);
 		mbThread.setGroupId(groupId);
 		mbThread.setCompanyId(companyId);

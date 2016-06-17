@@ -37,7 +37,7 @@ public class PortletURLMatcher extends CallbackMatcher {
 	}
 
 	public String replaceMatches(CharSequence charSequence) {
-		return replaceMatches(charSequence, _callBack);
+		return replaceMatches(charSequence, _callBack)
 	}
 
 	private static final String _TITLE_PLACEHOLDER = "__TITLE_PLACEHOLDER__";
@@ -46,8 +46,6 @@ public class PortletURLMatcher extends CallbackMatcher {
 
 		@Override
 		public String foundMatch(MatchResult matchResult) {
-			String portletURLString = _portletURL.toString();
-
 			String title = matchResult.group(1);
 
 			title = title.replace(CharPool.UNDERLINE, CharPool.PLUS);
