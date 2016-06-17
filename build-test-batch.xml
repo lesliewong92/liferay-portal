@@ -1114,6 +1114,7 @@ app.server.type=@{app.server.type}]]></echo>
 					<available file="modules/private/apps" />
 					<then>
 						<gradle-execute dir="modules/private/apps" task="assemble">
+							<arg value="--parallel" />
 							<arg value="-Dno.portal.build=true" />
 						</gradle-execute>
 					</then>
