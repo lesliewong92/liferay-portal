@@ -40,7 +40,7 @@ public class JavadocFormatterInvoker {
 			String.valueOf(javadocFormatterArgs.isGenerateXml()));
 		arguments.put(
 			"javadoc.init",
-			String.valueOf(javadocFormatterArgs.isInitializeMissingJavadocs()));
+			String.valueOf(javadocFormatterArgs.isInitializeMissingJavadocs()))
 		arguments.put(
 			"javadoc.input.dir",
 			_getCanonicalPath(baseDir, javadocFormatterArgs.getInputDirName()));
