@@ -8543,6 +8543,122 @@ jdbc.default.password=${database.password}</echo>
 		<echo file="${liferay.home}/osgi/configs/com.liferay.portal.search.configuration.IndexStatusManagerConfiguration.cfg">indexReadOnly=false</echo>
 	</target>
 
+	<target name="wait-for-extraapps-deployment">
+		<fail message="Please set the property ${test.class}." unless="test.class" />
+
+		<if>
+			<not>
+				<available file="${liferay.home}/logs" type="dir" />
+			</not>
+			<then>
+				<fail message="${liferay.home}/logs is not available." />
+			</then>
+		</if>
+
+		<first id="first">
+			<fileset dir="${liferay.home}/logs" includes="*.log" />
+		</first>
+
+		<var name="log.file.path" value="${toString:first}" />
+
+		<get-testcase-property property.name="extraapps.plugins.includes" />
+
+		<echo>Ensuring the following plugins have been deployed:</echo>
+		<echo>${extraapps.plugins.includes}</echo>
+
+		<for list="${extraapps.plugins.includes}" param="extraapps.plugin">
+			<sequential>
+				<local name="extraapps.jars" />
+				<local name="extraapps.zip" />
+
+				<pathconvert property="extraapps.zip" setonempty="false">
+					<path>
+						<fileset
+							dir="extraapps"
+							includes="@{extraapps.plugin}*"
+						/>
+					</path>
+				</pathconvert>
+
+				<path id="extraapps.jars">
+					<zipfileset src="${extraapps.zip}">
+						<include name="*.jar" />
+					</zipfileset>
+				</path>
+
+				<property name="extraapps.jars" refid="extraapps.jars" />
+
+				<propertyregex
+					global="true"
+					input="${extraapps.jars}"
+					override="true"
+					property="extraapps.jars"
+					regexp="${extraapps.zip}:"
+					replace=""
+				/>
+
+				<antelope:stringutil property="poshi.dir.name" string="${poshi.test.name}">
+					<antelope:replace regex="-" replacement="_" />
+				</antelope:stringutil>
+
+				<!-- <for delimiter=":" list="extraapps.jars" param="extraapps.jar">
+					<sequential>
+						<local name="missing.jar" />
+
+						<waitfor maxwait="2" maxwaitunit="minute" timeoutproperty="missing.jar">
+							<resourcecontains resource="${log.file.path}" substring="STARTED @{extraapps.jar}" />
+						</waitfor>
+
+						<if>
+							<isset property="missing.jar" />
+							<then>
+								<echo>Timed out waiting for ${missing.jar} to deploy</echo>
+							</then>
+						</if>
+					</sequential>
+				</for> -->
+
+				<beanshell>
+					<![CDATA[
+						import org.apache.commons.lang.StringUtils;
+
+						ArrayList extraappsJars = new ArrayList(Arrays.asList(StringUtil.split(project.getProperty("extraapps.jars"), ":")));
+
+						String logFilePath = project.getProperty("log.file.path");
+
+						logFilePath = logFilePath.replaceAll("\\\\", "/");
+
+						while (!extraappsJars.empty()) {
+							try {
+								File file = new File(logFilePath);
+
+								String content = FileUtils.readFileToString(file);
+
+								for (String extraappsJar : extraappsJars) {
+									if (content.contains("STARTED " + extraappsJar) {
+										extraappsJars.remove();
+									}
+								}
+							}
+							catch (Exception e) {
+								e.printStackTrace();
+							}
+
+							if (second >= 300) {
+								break;
+							}
+
+							second++;
+
+							Thread.sleep(1000);
+						}
+					]]>
+				</beanshell>
+			</sequential>	
+		</for>
+
+	</target>
+
 	<target name="wait-for-plugins-deployment">
 		<fail message="Please set the property ${test.class}." unless="test.class" />
 
