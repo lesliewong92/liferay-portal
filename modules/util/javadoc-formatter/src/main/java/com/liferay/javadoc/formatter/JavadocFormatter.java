@@ -2264,6 +2264,6 @@ public class JavadocFormatter {
 	private String _packagePath;
 	private final Pattern _paragraphTagPattern = Pattern.compile(
 		"(^.*?(?=\n\n|$)+|(?<=<p>\n).*?(?=\n</p>))", Pattern.DOTALL);
-	private final boolean _updateJavadocs;
+	private final int _updateJavadocs;
 
 }
