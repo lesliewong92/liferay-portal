@@ -47,6 +47,8 @@
 	</tear-down>
 
 	<command name="AddBlankCP" priority="5">
+		<property name="testray.main.component.name" value="Audience Targeting" />
+
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
