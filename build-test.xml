@@ -8633,6 +8633,20 @@ jdbc.default.password=${database.password}</echo>
 							}
 
 							if (second >= 240) {
+								System.out.println("Plugins we need to wait for:");
+
+								for (String extraappsJar : extraappsJars) {
+									System.out.println(extraappsJar);
+								}
+
+								System.out.println();
+
+								System.out.println("Plugins we found:");
+
+								for (String deployedJar : deployedJars) {
+									System.out.println(deployedJar);
+								}
+
 								throw new Exception("Timed out waiting for plugins");
 							}
 
