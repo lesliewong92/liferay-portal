@@ -7534,13 +7534,13 @@ if (ppstate.equals("normal")) {
 		<selector id="module.pattern">
 			<and>
 				<present targetdir="${project.dir}/modules">
-					<mapper type="regexp" from="(private/)?apps/.*" to="\0/build.gradle" />
+					<mapper type="glob" from="*" to="*/build.gradle" />
 				</present>
 				<present present="srconly" targetdir="${project.dir}/modules" >
-					<mapper type="regexp" from="(private/)?apps/.*" to="\0/.lfrbuild-portal" />
+					<mapper type="glob" from="*" to="*/.lfrbuild-portal" />
 				</present>
 				<present present="srconly" targetdir="${project.dir}/modules" >
-					<mapper type="regexp" from="(private/)?apps/.*" to="\0/settings.gradle" />
+					<mapper type="glob" from="*" to="*/settings.gradle" />
 				</present>
 			</and>
 		</selector>
