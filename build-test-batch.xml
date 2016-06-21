@@ -1117,24 +1117,7 @@ app.server.type=@{app.server.type}]]></echo>
 							<antelope:replace regex="/" replacement=":" />
 						</antelope:stringutil>
 
-						<var name="gulpfile.content" unset="true" />
-
-						<if>
-							<available file="modules/@{test.module}/gulpfile.js" />
-							<then>
-								<loadfile srcFile="modules/@{test.module}/gulpfile.js" property="gulpfile.content" />
-							</then>
-						</if>
-
-						<if>
-							<contains string="${gulpfile.content}" substring="require('liferay-theme-tasks')" />
-							<then>
-								<gradle-execute dir="modules" task=":${module.compile.task.name}:assemble" />
-							</then>
-							<else>
-								<gradle-execute dir="modules" task=":${module.compile.task.name}:compileJava" />
-							</else>
-						</if>
+						<gradle-execute dir="modules" task=":${module.compile.task.name}:assemble" />
 					</sequential>
 				</for>
 			</test-action>
