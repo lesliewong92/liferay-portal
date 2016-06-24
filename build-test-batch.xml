@@ -1113,15 +1113,11 @@ app.server.type=@{app.server.type}]]></echo>
 			</test-action>
 
 			<test-set-up>
-				<if>
-					<isset property="env.DIST_PATH" />
-					<then>
-						<prepare-test-environment />
-					</then>
-					<else>
-						<prepare-test-build />
-					</else>
-				</if>
+				<antcall target="compile" />
+
+				<antcall target="install-portal-snapshots" />
+
+				<antcall target="setup-sdk" />
 			</test-set-up>
 		</run-batch-test>
 	</target>
