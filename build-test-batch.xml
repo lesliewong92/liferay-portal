@@ -1103,6 +1103,25 @@ app.server.type=@{app.server.type}]]></echo>
 		<run-lpkg-startup-test />
 	</target>
 
+	<target name="modules-compile-jdk7">
+		<run-batch-test>
+			<test-action>
+				<gradle-execute dir="modules" task="assemble">
+					<arg value="--continue" />
+					<arg value="--parallel" />
+				</gradle-execute>
+			</test-action>
+
+			<test-set-up>
+				<antcall target="compile" />
+
+				<antcall target="install-portal-snapshots" />
+
+				<antcall target="setup-sdk" />
+			</test-set-up>
+		</run-batch-test>
+	</target>
+
 	<target name="modules-functional-jdk7">
 		<run-batch-test>
 			<test-action>
