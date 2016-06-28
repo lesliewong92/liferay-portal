@@ -5481,6 +5481,9 @@ auto.deploy.dest.dir=C:/WINDOWS/system32/config/systemprofile/liferay/websphere-
 
 		<propertycopy from="browser.firefox.bin.file[${browser.firefox.version}]" name="browser.firefox.bin.file" silent="true" />
 
+		<echo>FF VERSION: ${browser.firefox.version}</echo>
+		<echo>FF BIN FILE: ${browser.firefox.bin.file}</echo>
+
 		<if>
 			<isset property="browser.firefox.bin.file" />
 			<then>
