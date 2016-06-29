@@ -1154,6 +1154,12 @@ app.server.type=@{app.server.type}]]></echo>
 			</test-action>
 
 			<test-set-up>
+				<antcall target="compile" />
+
+				<antcall target="install-portal-snapshots" />
+
+				<antcall target="setup-sdk" />
+
 				<antcall inheritAll="false" target="record-test-module-names">
 					<param name="test.module.groups.size" value="${test.batch.size}" />
 				</antcall>
