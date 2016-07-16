@@ -1181,10 +1181,46 @@ app.server.type=@{app.server.type}]]></echo>
 		<run-modules-integration-test database.type="sybase" />
 	</target>
 
-	<target name="modules-unit-jdk8">
+	<target name="modules-subrepo-unit-jdk8">
 		<run-batch-test>
 			<test-action>
-				<gradle-execute dir="modules" task="test">
+				<!-- <run-batch-test>
+					<gradle-execute dir="${modules.dir}" task="test">
+						<arg value="-Dmodules.only.build=true" />
+						<arg value="-Dtest.class.group.index=${axis.variable}" />
+					</gradle-execute>
+				</run-batch-test> -->
+
+				<echo></echo>
+			</test-action>
+
+			<test-set-up>
+				<dirset id="dirset" dir="modules">
+					<include name="**/${subrepo.name}" />
+				</dirset>
+
+				<property name="module.dir" refid="dirset" />
+
+				<echo>${module.dir}</echo>
+
+				<!-- <copy file="subrepo.dir" overwrite="true" tofile="${module.dir}" /> -->
+			</test-set-up>
+		</run-batch-test>
+	</target>
+
+	<target name="modules-central-unit-jdk8">
+		<run-batch-test>
+			<test-action>
+				<if>
+					<not>
+						<isset property="modules.dir" />
+					</not>
+					<then>
+						<property name="modules.dir" value="modules" />
+					</then>
+				</if>
+
+				<gradle-execute dir="${modules.dir}" task="test">
 					<arg value="-Dmodules.only.build=true" />
 					<arg value="-Dtest.class.group.index=${axis.variable}" />
 				</gradle-execute>
@@ -1201,7 +1237,14 @@ app.server.type=@{app.server.type}]]></echo>
 						</antcall>
 					</then>
 					<else>
-						<prepare-test-build />
+						<if>
+							<not>
+								<isset property="modules.dir" />
+							</not>
+							<then>
+								<prepare-test-build />
+							</then>
+						</if>
 					</else>
 				</if>
 			</test-set-up>
