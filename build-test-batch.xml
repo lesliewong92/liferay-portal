@@ -1702,6 +1702,10 @@ information. Make sure to commit in all build services results.
 
 		<echo file="build.${user.name}.properties">baseline.jar.report.level=persist</echo>
 
+		<antcall inheritAll="false" target="compile" />
+
+		<antcall inheritAll="false" target="install-portal-snapshots" />
+
 		<echo>Executing 'compileJava' on ${modules.base.dir.name}.</echo>
 
 		<gradle-execute dir="${modules.base.dir.name}" forcedcacheenabled="false" task="compileJava" />
