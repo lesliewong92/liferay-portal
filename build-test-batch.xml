@@ -1689,6 +1689,56 @@ information. Make sure to commit in all build services results.
 		</run-batch-test>
 	</target>
 
+	<target name="subrepository-initial-test">
+		<for param="log.file">
+			<fileset dir="${project.dir}">
+				<include name="baseline-reports/*.log" />
+				<include name="modules/**/baseline.log" />
+			</fileset>
+			<sequential>
+				<delete file="@{log.file}" />
+			</sequential>
+		</for>
+
+		<echo file="build.${user.name}.properties">baseline.jar.report.level=persist</echo>
+
+		<echo>Executing 'compileJava' on ${modules.base.dir.name}.</echo>
+
+		<gradle-execute dir="${modules.base.dir.name}" forcedcacheenabled="false" task="compileJava" />
+
+		<echo>Executing 'baseline' on ${modules.base.dir.name}.</echo>
+
+		<gradle-execute dir="${modules.base.dir.name}" forcedcacheenabled="false" task="baseline" />
+
+		<echo>Checking for baseline log files.</echo>
+
+		<var name="log.files" unset="true" />
+
+		<fileset dir="${project.dir}" id="log.files">
+			<include name="baseline-reports/*.log" />
+			<include name="modules/**/baseline.log" />
+		</fileset>
+
+		<pathconvert pathsep="," property="log.files" refid="log.files" />
+
+		<if>
+			<not>
+				<equals arg1="${log.files}" arg2="" />
+			</not>
+			<then>
+				<for list="${log.files}" param="log.file">
+					<sequential>
+						<print-file file.name="@{log.file}" />
+					</sequential>
+				</for>
+
+				<fail message="Semantic versioning is incorrect." />
+			</then>
+		</if>
+
+		<echo>Check for baseline log files completed.</echo>
+	</target>
+
 	<target name="sybase-service-start">
 		<local name="database.type" />
 
