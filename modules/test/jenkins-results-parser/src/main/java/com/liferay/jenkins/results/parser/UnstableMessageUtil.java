@@ -33,9 +33,23 @@ public class UnstableMessageUtil {
 				buildURL + "testReport/api/json"));
 
 		int failCount = testReportJSONObject.getInt("failCount");
-		int totalCount = testReportJSONObject.getInt("totalCount");
 
-		int passCount = totalCount - failCount;
+		int totalCount;
+		int passCount;
+
+		if (testReportJSONObject.has("totalCount") &&
+			!testReportJSONObject.has("passCount")) {
+
+			totalCount = testReportJSONObject.getInt("totalCount");
+
+			passCount = totalCount - failCount -
+				testReportJSONObject.getInt("skipCount");
+		}
+		else {
+			passCount = testReportJSONObject.getInt("passCount");
+
+			totalCount = failCount + passCount;
+		}
 
 		sb.append("<h6>Job Results:</h6><p>");
 		sb.append(passCount);
@@ -94,7 +108,7 @@ public class UnstableMessageUtil {
 
 		sb.append("</ol>");
 
-		if (failureCount > 3) {
+		if (failureCount > _maxDisplayCount) {
 			sb.append("<p><strong>Click <a href=\"");
 			sb.append(buildURL);
 			sb.append("/testReport/\">here</a> for more failures.</strong>");
@@ -150,7 +164,7 @@ public class UnstableMessageUtil {
 			String result = runBuildURLJSONObject.getString("result");
 
 			if (result.equals("FAILURE")) {
-				if (failureCount == 3) {
+				if (failureCount == _maxDisplayCount) {
 					failureCount++;
 
 					sb.append("<li>...</li>");
@@ -190,7 +204,7 @@ public class UnstableMessageUtil {
 						continue;
 					}
 
-					if (failureCount == 3) {
+					if (failureCount == _maxDisplayCount) {
 						failureCount++;
 
 						sb.append("<li>...</li>");
@@ -292,5 +306,7 @@ public class UnstableMessageUtil {
 
 		return failureCount;
 	}
+
+	private static final int _maxDisplayCount = 3;
 
 }
