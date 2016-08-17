@@ -16,6 +16,9 @@ package com.liferay.jenkins.results.parser;
 
 import java.io.File;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ListIterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -66,16 +69,49 @@ public class GitHubSubRepositoryMessageUtil {
 
 		String progressiveText = JenkinsResultsParserUtil.toString(
 			JenkinsResultsParserUtil.getLocalURL(
-				buildURL + "/logText/progressiveText"), false);
+				buildURL + "/logText/progressiveText"),
+			false);
 
-		Matcher matcher = pattern.matcher(progressiveText);
+		Matcher matcher = _pattern.matcher(progressiveText);
+
+		List<Integer> indexes = new ArrayList<>();
 
 		while (matcher.find()) {
+			indexes.add(matcher.start());
+		}
+
+		ListIterator<Integer> listIterator = indexes.listIterator();
+
+		while (listIterator.hasNext()) {
 			sb.append("<li><strong><a href=\"");
 			sb.append(project.getProperty("top.level.shared.dir.url"));
 			sb.append("/");
 
-			String taskName = matcher.group(1);
+			int x = listIterator.next();
+
+			String console;
+
+			if (!listIterator.hasNext()) {
+				console = progressiveText.substring(x);
+			}
+			else {
+				console = progressiveText.substring(
+					x, indexes.get(listIterator.nextIndex()));
+			}
+
+			matcher = _pattern.matcher(console);
+
+			String taskName = "";
+
+			if (matcher.find()) {
+				taskName = matcher.group(1);
+			}
+
+			JenkinsResultsParserUtil.write(
+				new File(
+					project.getProperty("top.level.shared.dir") + "/" +
+						taskName + ".log"),
+				console);
 
 			sb.append(taskName);
 			sb.append(".log");
@@ -84,11 +120,12 @@ public class GitHubSubRepositoryMessageUtil {
 			sb.append("</a></strong> ");
 			sb.append("- ");
 
-			String console = matcher.group(0);
-
 			SubRepositoryTask subRepositoryTask;
 
-			if (console.contains("merge-test-results:")) {
+			if (console.contains(
+					"A report with all the test results can be found at " +
+						"test-results/html/index.html")) {
+
 				subRepositoryTask = new SubRepositoryTaskReport(
 					buildURL, taskName);
 			}
@@ -118,12 +155,14 @@ public class GitHubSubRepositoryMessageUtil {
 			sb.append("</li>");
 		}
 
-		sb.append("</ul>");
+		sb.append("</ul><h5>For more details click <a href=\"");
+		sb.append(buildURL);
+		sb.append("\">here</a>.</h5>");
 
 		project.setProperty("report.html.content", sb.toString());
 	}
 
-	private static final Pattern pattern = Pattern.compile(
-		"Executing task ([\\w-]+)[\\s\\S]+?Task (SUCCESSFUL|FAILED)");
+	private static final Pattern _pattern = Pattern.compile(
+		"Executing task ([\\w-]+)");
 
 }

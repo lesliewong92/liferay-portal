@@ -42,8 +42,8 @@ public class UnstableMessageUtil {
 
 			totalCount = testReportJSONObject.getInt("totalCount");
 
-			passCount = totalCount - failCount -
-				testReportJSONObject.getInt("skipCount");
+			passCount = totalCount - failCount - testReportJSONObject.getInt(
+				"skipCount");
 		}
 		else {
 			passCount = testReportJSONObject.getInt("passCount");

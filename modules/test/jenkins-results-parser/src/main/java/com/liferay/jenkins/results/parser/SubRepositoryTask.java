@@ -14,9 +14,6 @@
 
 package com.liferay.jenkins.results.parser;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-
 /**
  * @author Leslie Wong
  */

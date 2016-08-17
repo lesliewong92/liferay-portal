@@ -14,8 +14,6 @@
 
 package com.liferay.jenkins.results.parser;
 
-import java.io.File;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -64,8 +62,7 @@ public class SubRepositoryTaskNoReport extends SubRepositoryTask {
 		sb.append("<pre><code>");
 
 		sb.append(
-			genericFailureMessageGenerator.getMessage(
-				null, console, null));
+			genericFailureMessageGenerator.getMessage(null, console, null));
 
 		sb.append("</code></pre>");
 
@@ -75,4 +72,5 @@ public class SubRepositoryTaskNoReport extends SubRepositoryTask {
 	protected static String console;
 	protected static final Pattern pattern = Pattern.compile(
 		"Task (SUCCESSFUL|FAILED)(.*)");
+
 }
