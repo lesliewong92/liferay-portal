@@ -1384,11 +1384,24 @@ public class LiferaySeleniumHelper {
 
 		Keyboard keyboard = new DesktopKeyboard();
 
-		keyboard.keyDown(Key.CTRL);
+		if (OSDetector.isApple()) {
+			keyboard.keyDown(Key.CMD);
 
-		keyboard.type("a");
+			keyboard.keyDown(Key.SHIFT);
 
-		keyboard.keyUp(Key.CTRL);
+			keyboard.type("g");
+
+			keyboard.keyUp(Key.SHIFT);
+
+			keyboard.keyUp(Key.CMD);
+		}
+		else {
+			keyboard.keyDown(Key.CTRL);
+
+			keyboard.type("a");
+
+			keyboard.keyUp(Key.CTRL);
+		}
 
 		String filePath =
 			FileUtil.getSeparator() + _TEST_DEPENDENCIES_DIR_NAME +
