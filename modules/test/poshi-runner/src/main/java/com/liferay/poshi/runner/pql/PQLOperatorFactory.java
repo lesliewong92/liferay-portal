@@ -14,6 +14,8 @@
 
 package com.liferay.poshi.runner.pql;
 
+import com.liferay.poshi.runner.util.Validator;
+
 import java.util.Properties;
 
 /**
@@ -67,6 +69,38 @@ public class PQLOperatorFactory {
 					throw new Exception("Unsupported operator: " + operator);
 				}
 
+			};
+		}
+		else if (operator.equals("IS")) {
+			return new PQLOperator(operator) {
+
+				public Object getPQLResult(
+						PQLEntity pqlEntity1, PQLEntity pqlEntity2,
+						Properties properties)
+					throws Exception {
+
+					String operator = getOperator();
+					Object pqlResultObject1 = pqlEntity1.getPQLResult(
+						properties);
+					Object pqlResultObject2 = pqlEntity2.getPQLResult(
+						properties);
+
+					if (!(pqlResultObject2 instanceof String)) {
+
+						throw new Exception(
+							"2nd argument must be a string value for " +
+								"operator: " + operator);
+					}
+
+					String pqlResultString2 = (String)pqlResultObject2;
+
+					if (pqlResultString2.equals("EMPTY")) {
+						return pqlResultObject1 == null;
+					}
+
+					throw new Exception("Unsupported field: " +
+						pqlResultObject2);
+				}
 			};
 		}
 		else if (operator.equals("~") || operator.equals("!~")) {
