@@ -3,6 +3,8 @@
 	<property name="testray.main.component.name" value="Smoke" />
 
 	<set-up>
+		<execute function="SikuliAssertElementPresent" locator1="Drools#SCREENSHOTS_SAMPLEDROOLS_WEB_CONTENT_IMAGE_FIELD_PNG" />
+
 		<execute macro="TestCase#setUpPortalInstance" />
 
 		<execute macro="SignIn#signInTestSetup" />
