@@ -1094,6 +1094,22 @@ public class WebDriverHelper {
 		}
 	}
 
+	public static void highlightWebElement(
+		WebDriver webDriver, WebElement webElement) {
+
+		WrapsDriver wrapsDriver = (WrapsDriver)webElement;
+
+		JavascriptExecutor javascriptExecutor =
+			(JavascriptExecutor)wrapsDriver.getWrappedDriver();
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("var element = arguments[0];");
+		sb.append("element.style.border=element.style.border + '2px dashed red';");
+
+		javascriptExecutor.executeScript(sb.toString(), webElement);
+	}
+
 	protected static boolean isAlertPresent(WebDriver webDriver) {
 		WebDriverWait webDriverWait = new WebDriverWait(webDriver, 1);
 
