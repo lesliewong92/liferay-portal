@@ -24,9 +24,12 @@ import org.json.JSONObject;
 /**
  * @author Leslie Wong
  */
-public class OAuthResponseUtil {
+public abstract class OAuth {
+	public abstract String createRequest(String requestURL);
 
-	public static String getValueFromResponse(String response, String field)
+	public abstract OAuthService getOAuthService();
+
+	public String getValueFromResponse(String response, String field)
 		throws IOException {
 
 		JSONObject jsonObject = new JSONObject(response);
@@ -36,7 +39,7 @@ public class OAuthResponseUtil {
 		return value.toString();
 	}
 
-	public static void writeResponseToFile(String response, String dest)
+	public void writeResponseToFile(String response, String dest)
 		throws IOException {
 
 		File destFile = new File(dest);

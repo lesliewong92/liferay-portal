@@ -16,45 +16,37 @@ package com.liferay.poshi.runner.util.oauth;
 
 import com.github.scribejava.core.builder.ServiceBuilder;
 import com.github.scribejava.core.model.OAuth1AccessToken;
+import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.github.scribejava.core.model.OAuthRequest;
 import com.github.scribejava.core.model.Response;
+import com.github.scribejava.core.model.Token;
 import com.github.scribejava.core.model.Verb;
-import com.github.scribejava.core.oauth.OAuth10aService;
+import com.github.scribejava.core.oauth.OAuthService;
 
 /**
  * @author Leslie Wong
  */
-public class OAuth10aUtil {
+public class OAuth {
 
-	public static String createRequest(
-			String accessTokenEndpoint, String accessTokenString,
-			String accessTokenSecret, String apiKey, String apiSecret,
-			String authorizationURL, String requestTokenEndpoint,
-			String requestURL)
-		throws Exception {
+	public OAuth(
+		String accessTokenEndpoint, String accessTokenString, String apiKey,
+		String apiSecret, String authorizationBaseURL, String callbackURL) {
 
-		OAuth10aService oAuthService = getOAuthService(
-			accessTokenEndpoint, apiKey, apiSecret, authorizationURL,
-			requestTokenEndpoint);
+		ServiceBuilder serviceBuilder = new ServiceBuilder();
 
-		OAuthRequest oAuthRequest = new OAuthRequest(
-			Verb.GET, requestURL, oAuthService);
+		serviceBuilder.apiKey(apiKey);
+		serviceBuilder.apiSecret(apiSecret);
+		serviceBuilder.callback(callbackURL);
 
-		oAuthService.signRequest(
-			new OAuth1AccessToken(accessTokenString, accessTokenSecret),
-			oAuthRequest);
+		_oAuthService = serviceBuilder.build(
+			new OAuth20APIImpl(accessTokenEndpoint, authorizationBaseURL));
 
-		Response response = oAuthRequest.send();
-
-		if (!response.isSuccessful()) {
-			throw new Exception("Request failed");
-		}
-
-		return response.getBody();
+		_oAuthAccessToken = new OAuth2AccessToken(accessTokenString);
 	}
 
-	public static OAuth10aService getOAuthService(
-		String accessTokenEndpoint, String apiKey, String apiSecret,
+	public OAuth(
+		String accessTokenEndpoint, String accessTokenString,
+		String accessTokenSecret, String apiKey, String apiSecret,
 		String authorizationURL, String requestTokenEndpoint) {
 
 		ServiceBuilder serviceBuilder = new ServiceBuilder();
@@ -62,9 +54,23 @@ public class OAuth10aUtil {
 		serviceBuilder.apiKey(apiKey);
 		serviceBuilder.apiSecret(apiSecret);
 
-		return serviceBuilder.build(
+		_oAuthService = serviceBuilder.build(
 			new OAuth10aAPIImpl(
 				accessTokenEndpoint, authorizationURL, requestTokenEndpoint));
+
+		_oAuthAccessToken =
+			new OAuth1AccessToken(accessTokenString, accessTokenSecret);
 	}
+
+	public static OAuthService getOAuthService() {
+		return _getOAuthService;
+	}
+
+	public OAuthAccessToken getOAuthAccessToken() {
+		return _oAuthRequest;
+	}
+
+	private static OAuthService _oAuthService;
+	private static Token _oAuthAccessToken;
 
 }
