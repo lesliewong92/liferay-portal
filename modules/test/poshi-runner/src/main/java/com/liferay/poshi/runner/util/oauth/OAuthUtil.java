@@ -14,32 +14,26 @@
 
 package com.liferay.poshi.runner.util.oauth;
 
-import com.github.scribejava.core.builder.ServiceBuilder;
-import com.github.scribejava.core.model.OAuth1AccessToken;
-import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.github.scribejava.core.model.OAuthRequest;
 import com.github.scribejava.core.model.Response;
-import com.github.scribejava.core.model.Verb;
-import com.github.scribejava.core.oauth.OAuth10aService;
-import com.github.scribejava.core.oauth.OAuth20Service;
 
 /**
  * @author Leslie Wong
  */
 public class OAuthUtil {
 
-	public static Response createRequest(
-			String protocolVersion, String requestURL. String... arguments)
+	public static Response createRequest10a(
+			String protocolVersion, String requestURL,
+			String accessTokenEndpoint, String accessTokenString,
+			String accessTokenSecret, String apiKey, String apiSecret,
+			String authorizationURL, String requestTokenEndpoint)
 		throws Exception {
 
-		OAuthUtil oAuthUtil = getOAuthUtil(protocolVersion, arguments);
+		OAuth oAuth = new OAuth10a(
+			accessTokenEndpoint, accessTokenString, accessTokenSecret,
+			apiKey, apiSecret, authorizationURL, requestTokenEndpoint);
 
-		OAuthService oAuthService = oAuthUtil.getOAuthService();
-
-		OAuthRequest oAuthRequest = new OAuthRequest(
-			Verb.GET, requestURL, oAuthService);
-
-		oAuthService.signRequest(oAuthUtil.getOAuthAccessToken(), oAuthRequest);
+		OAuthRequest oAuthRequest = oAuth.getOAuthRequest(requestURL);
 
 		Response response = oAuthRequest.send();
 
@@ -50,38 +44,26 @@ public class OAuthUtil {
 		return response;
 	}
 
-	// Rename
-	public static OAuthUtil getOAuthSet(
-			String protocolVersion, String... arguments)
+	public static Response createRequest20(
+			String protocolVersion, String requestURL,
+			String accessTokenEndpoint, String accessTokenString,
+			String apiKey, String apiSecret, String authorizationBaseURL,
+			String callbackURL)
 		throws Exception {
 
-		if (protocolVersion.equals("1.0a")) {
-			String accessTokenEndpoint = arguments[0];
-			String accessTokenString = arguments[1];
-			String accessTokenSecret = arguments[2];
-			String apiKey = arguments[3];
-			String apiSecret = arguments[4];
-			String authorizationURL = arguments[5];
-			String requestTokenEndpoint = arguments[6];
+		OAuth oAuth = new OAuth20(
+			accessTokenEndpoint, accessTokenString, apiKey, apiSecret,
+			authorizationBaseURL, callbackURL);
 
-			return new OAuthSet(
-				accessTokenEndpoint, accessTokenString, accessTokenSecret,
-				apiKey, apiSecret, authorizationURL, requestTokenEndpoint);
-		}
-		else if (protocolVersion.equals("2.0")) {
-			String accessTokenEndpoint = arguments[0];
-			String accessTokenString = arguments[1];
-			String apiKey = arguments[2];
-			String apiSecret = arguments[3];
-			String authorizationBaseURL = arguments[4];
-			String callbackURL = arguments[5];
+		OAuthRequest oAuthRequest = oAuth.getOAuthRequest(requestURL);
 
-			return new OAuthSet(
-				accessTokenEndpoint, accessTokenString, apiKey, apiSecret,
-				authorizationBaseURL, callbackURL);
+		Response response = oAuthRequest.send();
+
+		if (!response.isSuccessful()) {
+			throw new Exception("Request failed");
 		}
 
-		throw new Exception("Invalid OAuth protocol version");
+		return response;
 	}
 
 }
