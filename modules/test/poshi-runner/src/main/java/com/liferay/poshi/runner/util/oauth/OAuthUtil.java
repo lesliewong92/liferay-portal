@@ -14,26 +14,31 @@
 
 package com.liferay.poshi.runner.util.oauth;
 
-import com.github.scribejava.core.model.OAuthRequest;
-import com.github.scribejava.core.model.Response;
+import org.scribe.model.OAuthRequest;
+import org.scribe.model.Response;
+import org.scribe.model.Verb;
 
 /**
  * @author Leslie Wong
  */
 public class OAuthUtil {
 
-	public static Response createRequest10a(
-			String protocolVersion, String requestURL,
+	public static String createRequest10a(
 			String accessTokenEndpoint, String accessTokenString,
 			String accessTokenSecret, String apiKey, String apiSecret,
-			String authorizationURL, String requestTokenEndpoint)
+			String authorizationURL, String requestTokenEndpoint,
+			String requestURL)
 		throws Exception {
 
-		OAuth oAuth = new OAuth10a(
-			accessTokenEndpoint, accessTokenString, accessTokenSecret,
-			apiKey, apiSecret, authorizationURL, requestTokenEndpoint);
+		OAuthManager oAuthManager = new OAuthManager(
+			accessTokenEndpoint, accessTokenSecret, accessTokenString, apiKey,
+			apiSecret, authorizationURL, requestTokenEndpoint);
 
-		OAuthRequest oAuthRequest = oAuth.getOAuthRequest(requestURL);
+		System.out.println(requestURL);
+
+		OAuthRequest oAuthRequest = new OAuthRequest(Verb.GET, requestURL);
+
+		oAuthManager.signRequest(oAuthRequest);
 
 		Response response = oAuthRequest.send();
 
@@ -41,29 +46,29 @@ public class OAuthUtil {
 			throw new Exception("Request failed");
 		}
 
-		return response;
+		return response.getBody();
 	}
 
-	public static Response createRequest20(
-			String protocolVersion, String requestURL,
-			String accessTokenEndpoint, String accessTokenString,
-			String apiKey, String apiSecret, String authorizationBaseURL,
-			String callbackURL)
-		throws Exception {
+	// public static Response createRequest20(
+	// 		String protocolVersion, String requestURL,
+	// 		String accessTokenEndpoint, String accessTokenString,
+	// 		String apiKey, String apiSecret, String authorizationBaseURL,
+	// 		String callbackURL)
+	// 	throws Exception {
 
-		OAuth oAuth = new OAuth20(
-			accessTokenEndpoint, accessTokenString, apiKey, apiSecret,
-			authorizationBaseURL, callbackURL);
+	// 	OAuth oAuth = new OAuth20(
+	// 		accessTokenEndpoint, accessTokenString, apiKey, apiSecret,
+	// 		authorizationBaseURL, callbackURL);
 
-		OAuthRequest oAuthRequest = oAuth.getOAuthRequest(requestURL);
+	// 	OAuthRequest oAuthRequest = oAuth.getOAuthRequest(requestURL);
 
-		Response response = oAuthRequest.send();
+	// 	Response response = oAuthRequest.send();
 
-		if (!response.isSuccessful()) {
-			throw new Exception("Request failed");
-		}
+	// 	if (!response.isSuccessful()) {
+	// 		throw new Exception("Request failed");
+	// 	}
 
-		return response;
-	}
+	// 	return response;
+	// }
 
 }

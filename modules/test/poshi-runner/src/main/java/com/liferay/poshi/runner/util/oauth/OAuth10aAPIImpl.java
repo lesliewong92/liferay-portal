@@ -14,8 +14,8 @@
 
 package com.liferay.poshi.runner.util.oauth;
 
-import com.github.scribejava.core.builder.api.DefaultApi10a;
-import com.github.scribejava.core.model.OAuth1RequestToken;
+import org.scribe.builder.api.DefaultApi10a;
+import org.scribe.model.Token;
 
 /**
  * @author Leslie Wong
@@ -37,8 +37,8 @@ public class OAuth10aAPIImpl extends DefaultApi10a {
 	}
 
 	@Override
-	public String getAuthorizationUrl(OAuth1RequestToken oAuth1RequestToken) {
-		return _authorizationURL.replace("{0}", oAuth1RequestToken.getToken());
+	public String getAuthorizationUrl(Token token) {
+		return _authorizationURL.replace("{0}", token.getToken());
 	}
 
 	@Override

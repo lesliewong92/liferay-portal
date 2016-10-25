@@ -2,34 +2,19 @@
 	<property name="portal.release" value="true" />
 	<property name="testray.main.component.name" value="Smoke" />
 
-	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
-
-		<execute macro="SignIn#signInTestSetup" />
-	</set-up>
-
-	<tear-down>
-		<var method="TestPropsUtil#get('test.portal.instance')" name="testPortalInstance" />
-
-		<if>
-			<equals arg1="${testPortalInstance}" arg2="true" />
-			<then>
-				<execute macro="PortalInstances#tearDownCP" />
-			</then>
-			<else>
-				<execute macro="Page#tearDownPG" />
-
-				<execute macro="WebContent#tearDownCP" />
-			</else>
-		</if>
-	</tear-down>
-
 	<command description="Ensure that the super admin can add pages, add portlets, navigate to the product menu, use the WYSIWYG editor, and view alert messages." name="Smoke" priority="5">
-		<property name="portal.smoke" value="true" />
-		<property name="test.assert.warning.exceptions" value="true" />
+		<execute class="com.liferay.poshi.runner.util.oauth.OAuthUtil" method="createRequest10a">
+			<arg value="http://lcs-qa.liferay.com:80/c/portal/oauth/access_token" />
+			<arg value="c28d17d0e3f6060c39f2e8c119b2cec9" />
+			<arg value="4f2e2d6e9634168c3ef4e32544303dc7" />
+			<arg value="e2a653a6-f36c-4416-81f3-df41dcecf07b" />
+			<arg value="fc075c03b57de24ca93d98ff69da3346" />
+			<arg value="http://lcs-qa.liferay.com:80/c/portal/oauth/authorize?oauth_token={0}" />
+			<arg value="http://lcs-qa.liferay.com:80/c/portal/oauth/request_token" />
+			<arg value="http://lcs-qa.liferay.com/api/jsonws/osb-lcs-portlet.lcsproject/get-user-lcs-projects" />
+			<return name="response" />
+		</execute>
 
-		<execute macro="Smoke#viewWelcomePage" />
-
-		<execute macro="Smoke#runSmoke" />
+		<echo>${response}</echo>
 	</command>
 </definition>
