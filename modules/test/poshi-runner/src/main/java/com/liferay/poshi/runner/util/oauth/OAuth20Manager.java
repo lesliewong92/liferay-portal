@@ -25,9 +25,9 @@ import com.github.scribejava.core.oauth.OAuth20Service;
 /**
  * @author Leslie Wong
  */
-public class OAuth20 implements OAuth {
+public class OAuth20Manager implements OAuthManager {
 
-	public OAuth20(
+	public OAuth20Manager(
 		String accessTokenEndpoint, String accessTokenString, String apiKey,
 		String apiSecret, String authorizationBaseURL, String callbackURL) {
 

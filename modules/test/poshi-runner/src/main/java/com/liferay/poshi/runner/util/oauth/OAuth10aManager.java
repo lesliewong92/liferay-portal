@@ -25,9 +25,9 @@ import com.github.scribejava.core.oauth.OAuth10aService;
 /**
  * @author Leslie Wong
  */
-public class OAuth10a implements OAuth {
+public class OAuth10aManager implements OAuthManager {
 
-	public OAuth10a(
+	public OAuth10aManager(
 		String accessTokenEndpoint, String accessTokenString,
 		String accessTokenSecret, String apiKey, String apiSecret,
 		String authorizationURL, String requestTokenEndpoint) {

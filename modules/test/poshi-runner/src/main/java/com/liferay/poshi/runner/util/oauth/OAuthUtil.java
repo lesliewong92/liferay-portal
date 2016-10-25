@@ -22,18 +22,18 @@ import com.github.scribejava.core.model.Response;
  */
 public class OAuthUtil {
 
-	public static Response createRequest10a(
-			String protocolVersion, String requestURL,
+	public static String createRequest10a(
 			String accessTokenEndpoint, String accessTokenString,
 			String accessTokenSecret, String apiKey, String apiSecret,
-			String authorizationURL, String requestTokenEndpoint)
+			String authorizationURL, String requestTokenEndpoint,
+			String requestURL)
 		throws Exception {
 
-		OAuth oAuth = new OAuth10a(
+		OAuthManager oAuthManager = new OAuth10aManager(
 			accessTokenEndpoint, accessTokenString, accessTokenSecret,
 			apiKey, apiSecret, authorizationURL, requestTokenEndpoint);
 
-		OAuthRequest oAuthRequest = oAuth.getOAuthRequest(requestURL);
+		OAuthRequest oAuthRequest = oAuthManager.getOAuthRequest(requestURL);
 
 		Response response = oAuthRequest.send();
 
@@ -41,21 +41,20 @@ public class OAuthUtil {
 			throw new Exception("Request failed");
 		}
 
-		return response;
+		return response.getBody();
 	}
 
-	public static Response createRequest20(
-			String protocolVersion, String requestURL,
-			String accessTokenEndpoint, String accessTokenString,
-			String apiKey, String apiSecret, String authorizationBaseURL,
-			String callbackURL)
+	public static String createRequest20(
+			String accessTokenEndpoint, String accessTokenString, String apiKey,
+			String apiSecret, String authorizationBaseURL, String callbackURL,
+			String requestURL)
 		throws Exception {
 
-		OAuth oAuth = new OAuth20(
+		OAuthManager oAuthManager = new OAuth20Manager(
 			accessTokenEndpoint, accessTokenString, apiKey, apiSecret,
 			authorizationBaseURL, callbackURL);
 
-		OAuthRequest oAuthRequest = oAuth.getOAuthRequest(requestURL);
+		OAuthRequest oAuthRequest = oAuthManager.getOAuthRequest(requestURL);
 
 		Response response = oAuthRequest.send();
 
@@ -63,7 +62,7 @@ public class OAuthUtil {
 			throw new Exception("Request failed");
 		}
 
-		return response;
+		return response.getBody();
 	}
 
 }

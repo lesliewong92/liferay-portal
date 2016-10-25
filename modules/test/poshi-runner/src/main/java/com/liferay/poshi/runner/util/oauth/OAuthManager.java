@@ -19,7 +19,7 @@ import com.github.scribejava.core.model.OAuthRequest;
 /**
  * @author Leslie Wong
  */
-public interface OAuth {
+public interface OAuthManager {
 
 	public OAuthRequest getOAuthRequest(String requestURL);
 
