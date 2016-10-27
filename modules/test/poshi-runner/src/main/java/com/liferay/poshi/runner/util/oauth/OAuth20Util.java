@@ -44,7 +44,10 @@ public class OAuth20Util {
 
 		OAuth2AccessToken oAuthAccessToken = new OAuth2AccessToken(accessTokenString);
 
-		OAuthRequest oAuthRequest = oAuthManager.getOAuthRequest(requestURL);
+		OAuthRequest oAuthRequest = new OAuthRequest(
+			Verb.GET, requestURL, oAuthService);
+
+		oAuthService.signRequest(oAuthAccessToken, oAuthRequest);
 
 		Response response = oAuthRequest.send();
 
