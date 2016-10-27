@@ -14,47 +14,42 @@
 
 package com.liferay.poshi.runner.util.oauth;
 
+import com.github.scribejava.core.builder.ServiceBuilder;
+import com.github.scribejava.core.model.OAuth1AccessToken;
 import com.github.scribejava.core.model.OAuthRequest;
 import com.github.scribejava.core.model.Response;
+import com.github.scribejava.core.model.Token;
+import com.github.scribejava.core.model.Verb;
+import com.github.scribejava.core.oauth.OAuth10aService;
 
 /**
  * @author Leslie Wong
  */
-public class OAuthUtil {
+public class OAuth10aUtil {
 
-	public static String createRequest10a(
+	public static String createRequest(
 			String accessTokenEndpoint, String accessTokenString,
 			String accessTokenSecret, String apiKey, String apiSecret,
 			String authorizationURL, String requestTokenEndpoint,
 			String requestURL)
 		throws Exception {
 
-		OAuthManager oAuthManager = new OAuth10aManager(
-			accessTokenEndpoint, accessTokenString, accessTokenSecret,
-			apiKey, apiSecret, authorizationURL, requestTokenEndpoint);
+		ServiceBuilder serviceBuilder = new ServiceBuilder();
 
-		OAuthRequest oAuthRequest = oAuthManager.getOAuthRequest(requestURL);
+		serviceBuilder.apiKey(apiKey);
+		serviceBuilder.apiSecret(apiSecret);
 
-		Response response = oAuthRequest.send();
+		OAuth10aService oAuthService = serviceBuilder.build(
+			new OAuth10aAPIImpl(
+				accessTokenEndpoint, authorizationURL, requestTokenEndpoint));
 
-		if (!response.isSuccessful()) {
-			throw new Exception("Request failed");
-		}
+		OAuth1AccessToken oAuthAccessToken =
+			new OAuth1AccessToken(accessTokenString, accessTokenSecret);
 
-		return response.getBody();
-	}
+		OAuthRequest oAuthRequest = new OAuthRequest(
+			Verb.GET, requestURL, oAuthService);
 
-	public static String createRequest20(
-			String accessTokenEndpoint, String accessTokenString, String apiKey,
-			String apiSecret, String authorizationBaseURL, String callbackURL,
-			String requestURL)
-		throws Exception {
-
-		OAuthManager oAuthManager = new OAuth20Manager(
-			accessTokenEndpoint, accessTokenString, apiKey, apiSecret,
-			authorizationBaseURL, callbackURL);
-
-		OAuthRequest oAuthRequest = oAuthManager.getOAuthRequest(requestURL);
+		oAuthService.signRequest(oAuthAccessToken, oAuthRequest);
 
 		Response response = oAuthRequest.send();
 
@@ -63,10 +58,6 @@ public class OAuthUtil {
 		}
 
 		return response.getBody();
-	}
-
-	createRequest() {
-		
 	}
 
 }

@@ -25,11 +25,13 @@ import com.github.scribejava.core.oauth.OAuth20Service;
 /**
  * @author Leslie Wong
  */
-public class OAuth20Manager implements OAuthManager {
+public class OAuth20Util {
 
-	public OAuth20Manager(
-		String accessTokenEndpoint, String accessTokenString, String apiKey,
-		String apiSecret, String authorizationBaseURL, String callbackURL) {
+	public static String createRequest(
+			String accessTokenEndpoint, String accessTokenString, String apiKey,
+			String apiSecret, String authorizationBaseURL, String callbackURL,
+			String requestURL)
+		throws Exception {
 
 		ServiceBuilder serviceBuilder = new ServiceBuilder();
 
@@ -37,23 +39,20 @@ public class OAuth20Manager implements OAuthManager {
 		serviceBuilder.apiSecret(apiSecret);
 		serviceBuilder.callback(callbackURL);
 
-		_oAuthService = serviceBuilder.build(
+		OAuth20Service oAuthService = serviceBuilder.build(
 			new OAuth20APIImpl(accessTokenEndpoint, authorizationBaseURL));
 
-		_oAuthAccessToken = new OAuth2AccessToken(accessTokenString);
+		OAuth2AccessToken oAuthAccessToken = new OAuth2AccessToken(accessTokenString);
+
+		OAuthRequest oAuthRequest = oAuthManager.getOAuthRequest(requestURL);
+
+		Response response = oAuthRequest.send();
+
+		if (!response.isSuccessful()) {
+			throw new Exception("Request failed");
+		}
+
+		return response.getBody();
 	}
-
-	@Override
-	public OAuthRequest getOAuthRequest(String requestURL) {
-		OAuthRequest oAuthRequest = new OAuthRequest(
-			Verb.GET, requestURL, _oAuthService);
-
-		_oAuthService.signRequest(_oAuthAccessToken, oAuthRequest);
-
-		return oAuthRequest;
-	}
-
-	private OAuth20Service _oAuthService;
-	private OAuth2AccessToken _oAuthAccessToken;
 
 }
