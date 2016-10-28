@@ -52,15 +52,39 @@ public class PoshiRunnerVariablesUtil {
 		return _staticMap.containsKey(replaceCommandVars(key));
 	}
 
-	public static String getValueFromCommandMap(String key) throws Exception {
+	public static String getStringValueFromCommandMap(String key) throws Exception {
+		if (containsKeyInCommandMap(replaceCommandVars(key))) {
+			return getValueFromCommandMap(key).toString();
+		}
+
+		return null;
+	}
+
+	public static String getStringValueFromExecuteMap(String key) throws Exception {
+		if (containsKeyInExecuteMap(replaceCommandVars(key))) {
+			return getValueFromExecuteMap(key).toString();
+		}
+
+		return null;
+	}
+
+	public static String getStringValueFromReturnMap(String key) throws Exception {
+		if (containsKeyInReturnMap(replaceCommandVars(key))) {
+			return getValueFromReturnMap(key).toString();
+		}
+
+		return null;
+	}
+
+	public static Object getValueFromCommandMap(String key) throws Exception {
 		return _commandMap.get(replaceCommandVars(key));
 	}
 
-	public static String getValueFromExecuteMap(String key) throws Exception {
+	public static Object getValueFromExecuteMap(String key) throws Exception {
 		return _executeMap.get(replaceCommandVars(key));
 	}
 
-	public static String getValueFromReturnMap(String key) throws Exception {
+	public static Object getValueFromReturnMap(String key) throws Exception {
 		return _returnMap.get(replaceCommandVars(key));
 	}
 
@@ -116,7 +140,7 @@ public class PoshiRunnerVariablesUtil {
 		Matcher matcher = _pattern.matcher(token);
 
 		while (matcher.find() && _commandMap.containsKey(matcher.group(1))) {
-			String varValue = getValueFromCommandMap(matcher.group(1));
+			String varValue = getStringValueFromCommandMap(matcher.group(1));
 
 			token = StringUtil.replace(token, matcher.group(), varValue);
 		}
@@ -128,7 +152,7 @@ public class PoshiRunnerVariablesUtil {
 		Matcher matcher = _pattern.matcher(token);
 
 		while (matcher.find() && _executeMap.containsKey(matcher.group(1))) {
-			String varValue = getValueFromExecuteMap(matcher.group(1));
+			String varValue = getStringValueFromExecuteMap(matcher.group(1));
 
 			token = StringUtil.replace(token, matcher.group(), varValue);
 		}
@@ -136,12 +160,12 @@ public class PoshiRunnerVariablesUtil {
 		return token;
 	}
 
-	private static Map<String, String> _commandMap = new HashMap<>();
-	private static final Stack<Map<String, String>> _commandMapStack =
+	private static Map<String, Object> _commandMap = new HashMap<>();
+	private static final Stack<Map<String, Object>> _commandMapStack =
 		new Stack<>();
-	private static Map<String, String> _executeMap = new HashMap<>();
+	private static Map<String, Object> _executeMap = new HashMap<>();
 	private static final Pattern _pattern = Pattern.compile("\\$\\{([^}]*)\\}");
-	private static Map<String, String> _returnMap = new HashMap<>();
-	private static final Map<String, String> _staticMap = new HashMap<>();
+	private static Map<String, Object> _returnMap = new HashMap<>();
+	private static final Map<String, Object> _staticMap = new HashMap<>();
 
 }

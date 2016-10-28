@@ -327,12 +327,12 @@ public class PoshiRunnerExecutor {
 		int locatorCount = PoshiRunnerContext.getFunctionLocatorCount(
 			className);
 
-		for (int i = 0; i < locatorCount; i++) {
-			String locator = executeElement.attributeValue("locator" + (i + 1));
+		for (int i = 1; i <= locatorCount; i++) {
+			String locator = executeElement.attributeValue("locator" + i);
 
 			if (locator == null) {
-				locator = PoshiRunnerVariablesUtil.getValueFromCommandMap(
-					"locator" + (i + 1));
+				locator = PoshiRunnerVariablesUtil.getStringValueFromCommandMap(
+					"locator" + i);
 			}
 
 			if (locator != null) {
@@ -349,7 +349,7 @@ public class PoshiRunnerExecutor {
 								getCommandNameFromClassCommandName(locator));
 
 					PoshiRunnerVariablesUtil.putIntoExecuteMap(
-						"locator-key" + (i + 1), locatorKey);
+						"locator-key" + i, locatorKey);
 
 					try {
 						locator = PoshiRunnerContext.getPathLocator(
@@ -364,19 +364,19 @@ public class PoshiRunnerExecutor {
 				}
 
 				PoshiRunnerVariablesUtil.putIntoExecuteMap(
-					"locator" + (i + 1), locator);
+					"locator" + i, locator);
 			}
 
-			String value = executeElement.attributeValue("value" + (i + 1));
+			String value = executeElement.attributeValue("value" + i);
 
 			if (value == null) {
-				value = PoshiRunnerVariablesUtil.getValueFromCommandMap(
-					"value" + (i + 1));
+				value = PoshiRunnerVariablesUtil.getStringValueFromCommandMap(
+					"value" + i);
 			}
 
 			if (value != null) {
 				PoshiRunnerVariablesUtil.putIntoExecuteMap(
-					"value" + (i + 1), value);
+					"value" + i, value);
 			}
 		}
 
@@ -607,7 +607,7 @@ public class PoshiRunnerExecutor {
 						returnName)) {
 
 					String returnValue =
-						PoshiRunnerVariablesUtil.getValueFromReturnMap(
+						PoshiRunnerVariablesUtil.getStringValueFromReturnMap(
 							returnName);
 
 					macroReturns.put(returnName, returnValue);
@@ -790,17 +790,17 @@ public class PoshiRunnerExecutor {
 						selenium.equals("waitForTextPresent")) {
 
 						argument =
-							PoshiRunnerVariablesUtil.getValueFromCommandMap(
+							PoshiRunnerVariablesUtil.getStringValueFromCommandMap(
 								"value1");
 					}
 					else {
 						argument =
-							PoshiRunnerVariablesUtil.getValueFromCommandMap(
+							PoshiRunnerVariablesUtil.getStringValueFromCommandMap(
 								"locator1");
 					}
 				}
 				else if (i == 1) {
-					argument = PoshiRunnerVariablesUtil.getValueFromCommandMap(
+					argument = PoshiRunnerVariablesUtil.getStringValueFromCommandMap(
 						"value1");
 
 					if (selenium.equals("clickAt")) {
@@ -810,12 +810,12 @@ public class PoshiRunnerExecutor {
 				else if (i == 2) {
 					if (selenium.equals("assertCssValue")) {
 						argument =
-							PoshiRunnerVariablesUtil.getValueFromCommandMap(
+							PoshiRunnerVariablesUtil.getStringValueFromCommandMap(
 								"value1");
 					}
 					else {
 						argument =
-							PoshiRunnerVariablesUtil.getValueFromCommandMap(
+							PoshiRunnerVariablesUtil.getStringValueFromCommandMap(
 								"locator2");
 					}
 				}
@@ -1107,7 +1107,7 @@ public class PoshiRunnerExecutor {
 							variable)) {
 
 						variable =
-							PoshiRunnerVariablesUtil.getValueFromCommandMap(
+							PoshiRunnerVariablesUtil.getStringValueFromCommandMap(
 								variable);
 					}
 					else {

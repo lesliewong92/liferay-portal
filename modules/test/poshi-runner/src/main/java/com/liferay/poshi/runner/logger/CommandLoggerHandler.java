@@ -378,7 +378,8 @@ public final class CommandLoggerHandler {
 				sb.append(_getLineItemText("param-type", locatorKey));
 
 				String paramValue =
-					PoshiRunnerVariablesUtil.getValueFromExecuteMap(locatorKey);
+					PoshiRunnerVariablesUtil.getStringValueFromExecuteMap(
+						locatorKey);
 
 				sb.append(
 					_getLineItemText(
@@ -392,7 +393,8 @@ public final class CommandLoggerHandler {
 				sb.append(_getLineItemText("param-type", valueKey));
 
 				String paramValue =
-					PoshiRunnerVariablesUtil.getValueFromExecuteMap(valueKey);
+					PoshiRunnerVariablesUtil.getStringValueFromExecuteMap(
+						valueKey);
 
 				sb.append(
 					_getLineItemText(
