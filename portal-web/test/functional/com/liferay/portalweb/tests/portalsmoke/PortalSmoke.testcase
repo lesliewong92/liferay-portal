@@ -1,4 +1,4 @@
-<definition component-name="portal-smoke">
+<!-- <definition component-name="portal-smoke">
 	<property name="testray.main.component.name" value="Smoke" />
 
 	<command description="Ensure that the super admin can add pages, add portlets, navigate to the product menu, use the WYSIWYG editor, and view alert messages." name="Smoke" priority="5">
@@ -15,5 +15,80 @@
 		</execute>
 
 		<echo>${response}</echo>
+	</command>
+</definition>
+
+ -->
+<!-- <definition component-name="portal-smoke">
+	<property name="portal.release" value="true" />
+	<property name="testray.main.component.name" value="Smoke" />
+
+	<set-up>
+		<execute macro="TestCase#setUpPortalInstance" />
+
+		<execute macro="SignIn#signInTestSetup" />
+	</set-up>
+
+	<tear-down>
+		<var method="TestPropsUtil#get('test.portal.instance')" name="testPortalInstance" />
+
+		<if>
+			<equals arg1="${testPortalInstance}" arg2="true" />
+			<then>
+				<execute macro="PortalInstances#tearDownCP" />
+			</then>
+			<else>
+				<execute macro="Page#tearDownPG" />
+
+				<execute macro="WebContent#tearDownCP" />
+			</else>
+		</if>
+	</tear-down>
+
+	<command description="Ensure that the super admin can add pages, add portlets, navigate to the product menu, use the WYSIWYG editor, and view alert messages." name="Smoke" priority="5">
+		<property name="portal.smoke" value="true" />
+		<property name="test.assert.warning.exceptions" value="true" />
+
+		<execute macro="Smoke#viewWelcomePage" />
+
+		<execute macro="Smoke#runSmoke" />
+	</command>
+</definition> -->
+
+<!-- <definition component-name="portal-smoke">
+	<property name="testray.main.component.name" value="Smoke" />
+
+	<command description="Ensure that the super admin can add pages, add portlets, navigate to the product menu, use the WYSIWYG editor, and view alert messages." name="Smoke" priority="5">
+		<var name="phrase" value="Hello World" />
+		<var method="StringUtil#replace('${phrase}','World','Mundo')" name="word" />
+
+		<echo>${word}</echo>
+	</command>
+</definition> -->
+
+<definition component-name="portal-smoke">
+	<property name="testray.main.component.name" value="Smoke" />
+
+	<command description="Ensure that the super admin can add pages, add portlets, navigate to the product menu, use the WYSIWYG editor, and view alert messages." name="Smoke" priority="5">
+		<var name="phrase" value="Hello World" />
+		<!-- <var method="StringUtil#replace('${phrase}','World','Mundo')" name="word" /> -->
+
+		<!-- <execute class="com.liferay.poshi.runner.util.StringUtil" method="replace">
+			<arg value="${phrase}" />
+			<arg value="World" />
+			<arg value="Mundo" />
+			<return name="word" />
+		</execute> -->
+
+		<var method="MathUtil#quotient('4', '1')" name="four" />
+		<var method="MathUtil#quotient('24', '3')" name="eight" />
+
+		<!-- <execute class="com.liferay.poshi.runner.util.MathUtil" method="quotient">
+			<arg value="${eight}" />
+			<arg value="${four}" />
+			<return name="word" />
+		</execute> -->
+
+		<echo>${word}</echo>
 	</command>
 </definition>

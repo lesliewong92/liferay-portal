@@ -298,23 +298,27 @@ public class PoshiRunnerGetterUtil {
 		return rootElement;
 	}
 
-	public static String getVarMethodValue(String classCommandName)
+	public static Object getVarMethodValue(String classCommandName)
 		throws Exception {
 
 		int x = classCommandName.indexOf("(");
 		int y = classCommandName.lastIndexOf(")");
 
-		String[] parameters = null;
+		String className = getClassNameFromClassCommandName(classCommandName);
+		String commandName = getCommandNameFromClassCommandName(
+			classCommandName);
+
+		Object[] parameters = new Object[0];
 
 		if ((x + 1) < y) {
 			String parameterString = classCommandName.substring(x + 1, y);
 
-			Matcher matcher = _parameterPattern.matcher(parameterString);
+			Matcher parameterMatcher = _parameterPattern.matcher(parameterString);
 
-			List<String> params = new ArrayList<>();
+			List<Object> params = new ArrayList<>();
 
-			while (matcher.find()) {
-				String parameterValue = matcher.group();
+			while (parameterMatcher.find()) {
+				String parameterValue = parameterMatcher.group();
 
 				if (parameterValue.startsWith("'") &&
 					parameterValue.endsWith("'")) {
@@ -331,122 +335,90 @@ public class PoshiRunnerGetterUtil {
 					parameterValue = parameterValue.replaceAll("\\\\'", "'");
 				}
 
-				params.add(parameterValue);
-			}
+				Matcher variableMatcher = _variablePattern.matcher(parameterValue);
 
-			parameters = params.toArray(new String[params.size()]);
-		}
-
-		String className = getClassNameFromClassCommandName(classCommandName);
-		String commandName = getCommandNameFromClassCommandName(
-			classCommandName);
-
-		if (className.equals("MathUtil")) {
-			Integer[] integers = new Integer[parameters.length];
-
-			for (int i = 0; i < parameters.length; i++) {
-				integers[i] = Integer.parseInt(parameters[i].trim());
-			}
-
-			Method[] methods = MathUtil.class.getDeclaredMethods();
-
-			for (Method method : methods) {
-				String methodName = method.getName();
-
-				if (methodName.equals(commandName)) {
-					Class<?>[] parameterTypes = method.getParameterTypes();
-
-					try {
-						if (parameterTypes.length > 1) {
-							return String.valueOf(
-								method.invoke(null, (Object[])integers));
-						}
-
-						return String.valueOf(
-							method.invoke(null, new Object[] {integers}));
-					}
-					catch (Exception e) {
-						Throwable throwable = e.getCause();
-
-						throw new Exception(throwable.getMessage(), e);
-					}
+				if (variableMatcher.matches()) {
+					params.add(
+						PoshiRunnerVariablesUtil.getValueFromCommandMap(
+							variableMatcher.group(1)));
 				}
-			}
-		}
-		else {
-			List<Class<?>> parameterClasses = new ArrayList<>();
-
-			if (parameters != null) {
-				for (int i = 0; i < parameters.length; i++) {
-					parameterClasses.add(String.class);
-				}
-			}
-
-			Class<?> clazz = null;
-			Object object = null;
-
-			if (className.equals("selenium")) {
-				LiferaySelenium liferaySelenium = SeleniumUtil.getSelenium();
-
-				clazz = liferaySelenium.getClass();
-				object = liferaySelenium;
-			}
-			else {
-				try {
-					clazz = Class.forName(
-						"com.liferay.poshi.runner.util." + className);
-				}
-				catch (Exception e) {
-					throw new Exception("No such class " + className, e);
-				}
-			}
-
-			Method method = clazz.getMethod(
-				commandName,
-				parameterClasses.toArray(new Class[parameterClasses.size()]));
-
-			Object returnObject = null;
-
-			try {
-				returnObject = method.invoke(object, (Object[])parameters);
-			}
-			catch (Exception e1) {
-				Throwable throwable = e1.getCause();
-
-				if (throwable instanceof StaleElementReferenceException) {
-					StringBuilder sb = new StringBuilder();
-
-					sb.append("\nElement turned stale while running ");
-					sb.append(commandName);
-					sb.append(". Retrying in ");
-					sb.append(PropsValues.TEST_RETRY_COMMAND_WAIT_TIME);
-					sb.append("seconds.");
-
-					System.out.println(sb.toString());
-
-					try {
-						returnObject = method.invoke(
-							object, (Object[])parameters);
-					}
-					catch (Exception e2) {
-						throwable = e2.getCause();
-
-						throw new Exception(throwable.getMessage(), e2);
-					}
+				else if (className.equals("MathUtil")) {
+					params.add(Integer.parseInt(parameterValue));
 				}
 				else {
-					throw new Exception(throwable.getMessage(), e1);
+					params.add(parameterValue);
 				}
 			}
 
-			if (returnObject == null) {
-				returnObject = "";
-			}
-
-			return returnObject.toString();
+			parameters = params.toArray(new Object[params.size()]);
 		}
 
-		return null;
+		Class<?> clazz = null;
+		Object object = null;
+
+		if (className.equals("selenium")) {
+			LiferaySelenium liferaySelenium = SeleniumUtil.getSelenium();
+
+			clazz = liferaySelenium.getClass();
+			object = liferaySelenium;
+		}
+		else {
+			try {
+				clazz = Class.forName(
+					"com.liferay.poshi.runner.util." + className);
+			}
+			catch (Exception e) {
+				throw new Exception("No such class " + className, e);
+			}
+		}
+
+		Class parameterClasses[] = new Class[parameters.length];
+
+		for (int i = 0; i < parameters.length; i++) {
+			Object parameter = parameters[i];
+
+			parameterClasses[i] = parameter.getClass();
+		}
+
+		System.out.println("Command name: " + commandName);
+
+		Method method = clazz.getMethod(commandName, parameterClasses);
+
+		Object returnObject = null;
+
+		try {
+			returnObject = method.invoke(object, parameters);
+		}
+		catch (Exception e1) {
+			Throwable throwable = e1.getCause();
+
+			if (throwable instanceof StaleElementReferenceException) {
+				StringBuilder sb = new StringBuilder();
+
+				sb.append("\nElement turned stale while running ");
+				sb.append(commandName);
+				sb.append(". Retrying in ");
+				sb.append(PropsValues.TEST_RETRY_COMMAND_WAIT_TIME);
+				sb.append("seconds.");
+
+				System.out.println(sb.toString());
+
+				try {
+					returnObject = method.invoke(
+						object, (Object[])parameters);
+				}
+				catch (Exception e2) {
+					throwable = e2.getCause();
+
+					throw new Exception(throwable.getMessage(), e2);
+				}
+			}
+			else {
+				throw new Exception(throwable.getMessage(), e1);
+			}
+		}
+
+		return returnObject;
 	}
 
 	private static final Pattern _parameterPattern = Pattern.compile(
@@ -461,5 +433,7 @@ public class PoshiRunnerGetterUtil {
 			"then", "title", "toggle", "tr", "var", "while"
 		});
 	private static final Pattern _tagPattern = Pattern.compile("<[a-z\\-]+");
+	private static final Pattern _variablePattern = Pattern.compile(
+		"\\$\\{([^}]*)\\}");
 
 }

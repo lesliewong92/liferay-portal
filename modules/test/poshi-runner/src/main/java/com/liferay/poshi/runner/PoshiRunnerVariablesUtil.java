@@ -112,28 +112,54 @@ public class PoshiRunnerVariablesUtil {
 		_returnMap = new HashMap<>();
 	}
 
-	public static void putIntoCommandMap(String key, String value)
+	public static void putIntoCommandMap(String key, Object value)
 		throws Exception {
 
-		_commandMap.put(replaceCommandVars(key), replaceCommandVars(value));
+
+		if (value instanceof String) {
+			_commandMap.put(
+				replaceCommandVars(key), replaceCommandVars(value.toString()));
+		}
+		else {
+			_commandMap.put(replaceCommandVars(key), value);
+		}
 	}
 
-	public static void putIntoExecuteMap(String key, String value)
+	public static void putIntoExecuteMap(String key, Object value)
 		throws Exception {
 
-		_executeMap.put(replaceCommandVars(key), replaceCommandVars(value));
+		if (value instanceof String) {
+			_executeMap.put(
+				replaceCommandVars(key), replaceCommandVars(value.toString()));
+		}
+		else {
+			_executeMap.put(replaceCommandVars(key), value);
+		}
+
 	}
 
-	public static void putIntoReturnMap(String key, String value)
+	public static void putIntoReturnMap(String key, Object value)
 		throws Exception {
 
-		_returnMap.put(replaceCommandVars(key), replaceCommandVars(value));
+		if (value instanceof String) {
+			_returnMap.put(
+				replaceCommandVars(key), replaceCommandVars(value.toString()));
+		}
+		else {
+			_returnMap.put(replaceCommandVars(key), value);
+		}
 	}
 
-	public static void putIntoStaticMap(String key, String value)
+	public static void putIntoStaticMap(String key, Object value)
 		throws Exception {
 
-		_staticMap.put(replaceCommandVars(key), replaceCommandVars(value));
+		if (value instanceof String) {
+			_staticMap.put(
+				replaceCommandVars(key), replaceCommandVars(value.toString()));
+		}
+		else {
+			_staticMap.put(replaceCommandVars(key), value);
+		}
 	}
 
 	public static String replaceCommandVars(String token) throws Exception {

@@ -79,7 +79,7 @@ public final class CommandLoggerHandler {
 	}
 
 	public static void logExternalMethodCommand(
-			Element element, List<String> arguments, String returnValue)
+			Element element, List<Object> arguments, String returnValue)
 		throws Exception {
 
 		LoggerElement loggerElement = new LoggerElement();
@@ -298,7 +298,7 @@ public final class CommandLoggerHandler {
 	}
 
 	private static LoggerElement _getExternalMethodLineLoggerElement(
-			Element element, List<String> arguments, String returnValue)
+			Element element, List<Object> arguments, String returnValue)
 		throws Exception {
 
 		LoggerElement loggerElement = new LoggerElement();
@@ -311,7 +311,7 @@ public final class CommandLoggerHandler {
 	}
 
 	private static String _getExternalMethodLineText(
-			Element element, List<String> arguments, String returnValue)
+			Element element, List<Object> arguments, String returnValue)
 		throws Exception {
 
 		StringBuilder sb = new StringBuilder();
@@ -323,11 +323,12 @@ public final class CommandLoggerHandler {
 		if (!arguments.isEmpty()) {
 			sb.append(_getLineItemText("misc", " with parameters"));
 
-			for (String argument : arguments) {
-				argument = "Arg: " + argument;
+			for (Object argument : arguments) {
+				String argumentString = "Arg: " + argument.toString();
 
 				sb.append(
-					_getLineItemText("param-value", HtmlUtil.escape(argument)));
+					_getLineItemText(
+						"param-value", HtmlUtil.escape(argumentString)));
 			}
 		}
 
