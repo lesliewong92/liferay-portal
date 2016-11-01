@@ -17,6 +17,8 @@ package com.liferay.poshi.runner.util;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
+import org.openqa.selenium.StaleElementReferenceException;
+
 /**
  * @author Kevin Yen
  */
@@ -46,7 +48,7 @@ public class ExternalMethod {
 				System.out.println(sb.toString());
 
 				try {
-					returnObject = method.invoke(object, parameters);
+					returnObject = method.invoke(object, (Object[])parameters);
 				}
 				catch (Exception e2) {
 					throwable = e2.getCause();
@@ -66,24 +68,18 @@ public class ExternalMethod {
 		return returnObject;
 	}
 
-	public static String execute(
-			Object object, String methodName, Object[] parameters)
+	public static Object execute(
+			String methodName, Object object, Object[] parameters)
 		throws Exception {
 
 		Class<?> clazz = object.getClass();
 
 		Method method = getMethod(clazz, methodName, parameters);
 
-		Object returnObject = method.invoke(object, parameters);
-
-		if (returnObject == null) {
-			returnObject = "";
-		}
-
-		return returnObject.toString();
+		return execute(method, object, parameters);
 	}
 
-	public static String execute(String className, String methodName)
+	public static Object execute(String className, String methodName)
 		throws Exception {
 
 		Object[] parameters = {};
@@ -91,7 +87,7 @@ public class ExternalMethod {
 		return execute(className, methodName, parameters);
 	}
 
-	public static String execute(
+	public static Object execute(
 			String className, String methodName, Object[] parameters)
 		throws Exception {
 
@@ -107,13 +103,7 @@ public class ExternalMethod {
 			object = clazz.newInstance();
 		}
 
-		Object returnObject = method.invoke(object, parameters);
-
-		if (returnObject == null) {
-			returnObject = "";
-		}
-
-		return returnObject.toString();
+		return execute(method, object, parameters);
 	}
 
 	public static Method getMethod(
@@ -126,7 +116,7 @@ public class ExternalMethod {
 	}
 
 	private static Class<?>[] _getTypes(Object[] objects) {
-		if (objects == null) {
+		if ((objects == null) || (objects.length == 0)) {
 			return new Class<?>[0];
 		}
 
