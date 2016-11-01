@@ -67,14 +67,14 @@ public class ExternalMethod {
 	}
 
 	public static String execute(
-			Object object, String methodName, String[] parameters)
+			Object object, String methodName, Object[] parameters)
 		throws Exception {
 
 		Class<?> clazz = object.getClass();
 
 		Method method = getMethod(clazz, methodName, parameters);
 
-		Object returnObject = method.invoke(object, (Object[])parameters);
+		Object returnObject = method.invoke(object, parameters);
 
 		if (returnObject == null) {
 			returnObject = "";
@@ -86,13 +86,13 @@ public class ExternalMethod {
 	public static String execute(String className, String methodName)
 		throws Exception {
 
-		String[] parameters = {};
+		Object[] parameters = {};
 
 		return execute(className, methodName, parameters);
 	}
 
 	public static String execute(
-			String className, String methodName, String[] parameters)
+			String className, String methodName, Object[] parameters)
 		throws Exception {
 
 		Class<?> clazz = Class.forName(className);
@@ -107,7 +107,7 @@ public class ExternalMethod {
 			object = clazz.newInstance();
 		}
 
-		Object returnObject = method.invoke(object, (Object[])parameters);
+		Object returnObject = method.invoke(object, parameters);
 
 		if (returnObject == null) {
 			returnObject = "";
