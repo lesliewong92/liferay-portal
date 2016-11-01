@@ -16,6 +16,7 @@ package com.liferay.poshi.runner;
 
 import com.liferay.poshi.runner.selenium.LiferaySelenium;
 import com.liferay.poshi.runner.selenium.SeleniumUtil;
+import com.liferay.poshi.runner.util.ExternalMethod;
 import com.liferay.poshi.runner.util.FileUtil;
 import com.liferay.poshi.runner.util.MathUtil;
 import com.liferay.poshi.runner.util.OSDetector;
@@ -200,6 +201,51 @@ public class PoshiRunnerGetterUtil {
 		String fileExtension = getFileExtensionFromFilePath(filePath);
 
 		return className + "." + fileExtension;
+	}
+
+	public static Object getMethodReturnValue(
+			List<String> args, String className, String methodName,
+			Object object)
+		throws Exception {
+
+		Object[] parameters = new Object[args.size()];
+
+		for (int i = 0; i < args.size(); i++) {
+			String arg = args.get(i);
+
+			Matcher matcher = _variablePattern.matcher(arg);
+
+			Object parameter;
+
+			if (matcher.matches()) {
+				parameter = PoshiRunnerVariablesUtil.getValueFromCommandMap(
+					matcher.group(1));
+			}
+			else {
+				parameter = PoshiRunnerVariablesUtil.replaceCommandVars(arg);
+			}
+
+			if (className.endsWith("MathUtil") &&
+				(parameter instanceof String)) {
+
+				parameter = Integer.parseInt((String)parameter);
+			}
+
+			parameters[i] = parameter;
+		}
+
+		Object returnObject = null;
+
+		if (object != null) {
+			returnObject = ExternalMethod.execute(
+				methodName, object, parameters);
+		}
+		else {
+			returnObject = ExternalMethod.execute(
+				className, methodName, parameters);
+		}
+
+		return returnObject;
 	}
 
 	public static String getProjectDirName() {
