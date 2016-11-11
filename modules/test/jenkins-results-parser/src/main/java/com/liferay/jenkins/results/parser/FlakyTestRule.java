@@ -16,13 +16,35 @@ package com.liferay.jenkins.results.parser;
 
 import java.sql.Date;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.apache.tools.ant.Project;
 
 /**
  * @author Leslie Wong
  */
 public class FlakyTestRule {
+
+	public static final int STATUS_BLOCKED = 4;
+
+	public static final int STATUS_DID_NOT_RUN = 6;
+
+	public static final int STATUS_FAILED = 3;
+
+	public static final int STATUS_IN_PROGRESS = 1;
+
+	public static final int STATUS_PASSED = 2;
+
+	public static final int STATUS_RETEST = 5;
+
+	public static final int STATUS_TEST_FIX = 7;
+
+	public static final int STATUS_UNTESTED = 0;
 
 	public FlakyTestRule(String ruleData) {
 		this.ruleData = ruleData;
@@ -45,6 +67,29 @@ public class FlakyTestRule {
 		rulePercentage = Integer.parseInt(percentage) / 100;
 	}
 
+	protected String convertToEnvironmentHash(List<String> testrayFactors)
+		throws Exception {
+
+		StringBuilder sb = new StringBuilder();
+
+		for (String testrayFactor : testrayFactors) {
+			List<Map<String, Object>> queryResult;
+
+			queryResult = DBUtil.executeQuery(
+				"select testrayFactorCategoryId, testrayFactorOptionId from " +
+					"TestrayFactorOption where name='" + testrayFactor + "'");
+
+			Map<String, Object> testrayFactorIds = queryResult.get(0);
+
+			sb.append((String)testrayFactorIds.get("testrayFactorCategoryId"));
+			sb.append((String)testrayFactorIds.get("testrayFactorOptionId"));
+		}
+
+		String testrayFactorsString = sb.toString();
+
+		return String.valueOf(testrayFactorsString.hashCode());
+	}
+
 	protected String getBatchName(Build build) {
 		String batchName = build.getParameterValue("JOB_VARIANT");
 
@@ -53,6 +98,83 @@ public class FlakyTestRule {
 		}
 
 		return batchName;
+	}
+
+	protected String getTestrayEnvironmentHash(Build build, Project project)
+		throws Exception {
+
+		String batchName = getBatchName(build);
+
+		List<String> testrayFactors = new ArrayList<>();
+
+		List<String> environmentTypes = Arrays.asList(
+			"app.server", "browser", "database", "java.jdk",
+			"operating.system");
+
+		for (String environmentType : environmentTypes) {
+			boolean match = false;
+
+			String environments = project.getProperty(
+				environmentType + ".types");
+
+			for (String environment : environments.split(",")) {
+				if (batchName.contains(environment)) {
+					int x = batchName.indexOf(environment);
+
+					int y = batchName.indexOf("-", x);
+
+					String batchEnvironment;
+
+					if (y != -1) {
+						batchEnvironment = batchName.substring(x, y);
+					}
+					else {
+						batchEnvironment = batchName.substring(x);
+					}
+
+					String testrayFactorOption = project.getProperty(
+						"env.option." + environmentType + "." +
+							batchEnvironment);
+
+					testrayFactors.add(testrayFactorOption);
+
+					match = true;
+
+					break;
+				}
+			}
+
+			if (!match) {
+				String environment = project.getProperty(
+					environmentType + ".type");
+
+				String environmentVersion = project.getProperty(
+					environmentType + ".version");
+
+				Matcher matcher = majorVersionPattern.matcher(
+					environmentVersion);
+
+				String environmentMajorVersion;
+
+				if (matcher.matches()) {
+					environmentMajorVersion = matcher.group(1);
+				}
+				else {
+					environmentMajorVersion = environmentVersion;
+				}
+
+				environmentMajorVersion = environmentMajorVersion.replace(
+					".", "");
+
+				String testrayFactorOption = project.getProperty(
+					"env.option." + environmentType + "." + environment +
+						environmentMajorVersion);
+
+				testrayFactors.add(testrayFactorOption);
+			}
+		}
+
+		return convertToEnvironmentHash(testrayFactors);
 	}
 
 	protected boolean isMatchingBuild(Build build) {
@@ -71,6 +193,8 @@ public class FlakyTestRule {
 		return false;
 	}
 
+	protected Pattern majorVersionPattern = Pattern.compile(
+		"((\\d+)\\.?(\\d+?)).*");
 	protected String ruleData;
 	protected Date ruleDuration;
 	protected Pattern rulePattern;
