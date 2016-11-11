@@ -67,6 +67,22 @@ public class FlakyTestRule {
 		rulePercentage = Integer.parseInt(percentage) / 100;
 	}
 
+	public boolean isFlaky(Build build, Project project, String testName)
+		throws Exception {
+
+		if (!isMatchingBuild(build)) {
+			return false;
+		}
+
+		int percentage = getFailurePercentage(build, project, testName);
+
+		if (percentage > rulePercentage) {
+			return true;
+		}
+
+		return false;
+	}
+
 	protected String convertToEnvironmentHash(List<String> testrayFactors)
 		throws Exception {
 
@@ -98,6 +114,58 @@ public class FlakyTestRule {
 		}
 
 		return batchName;
+	}
+
+	protected int getFailurePercentage(
+			Build build, Project project, String testcaseName)
+		throws Exception {
+
+		List<Map<String, Object>> testIDQueryResult = DBUtil.executeQuery(
+			"select testrayCaseId from TestrayCase where name = '" +
+				testcaseName + "'");
+
+		String testID;
+
+		if (testIDQueryResult.isEmpty()) {
+			throw new Exception("Cannot find test id of " + testcaseName);
+		}
+
+		Map<String, Object> testIDMap = testIDQueryResult.get(0);
+
+		String testrayCaseID = (String)testIDMap.get("testrayCaseId");
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("SELECT TestrayCaseResult.status, COUNT(*) ");
+		sb.append("FROM TestrayCaseResult JOIN TestrayRun ");
+		sb.append("JOIN TestrayBuild ");
+		sb.append("JOIN TestrayBuildType ");
+		sb.append("WHERE TestrayCaseResult.testrayCaseId = '");
+		sb.append(testrayCaseID);
+		sb.append("' AND TestrayBuildType.name = '");
+		sb.append(project.getProperty("testray.build.type"));
+		sb.append("' AND TestrayRun.environmentHash = '");
+		sb.append(getTestrayEnvironmentHash(build, project));
+		sb.append("' AND TestrayCaseResult.startDate > DATE'");
+		sb.append(ruleDuration.toString());
+		sb.append("' GROUP BY TestrayCaseResult.status;");
+
+		List<Map<String, Object>> statuses = DBUtil.executeQuery(sb.toString());
+
+		int total = 0;
+		int failureCount = 0;
+
+		for (Map<String, Object> status : statuses) {
+			Integer statusCount = (Integer)status.get("count(*)");
+
+			if ((Integer)status.get("status") == STATUS_FAILED) {
+				failureCount = statusCount;
+			}
+
+			total += statusCount;
+		}
+
+		return failureCount / total;
 	}
 
 	protected String getTestrayEnvironmentHash(Build build, Project project)
