@@ -177,7 +177,7 @@ public class FlakyTestRule {
 
 		List<String> environmentTypes = Arrays.asList(
 			"app.server", "browser", "database", "java.jdk",
-			"operating,system");
+			"operating.system");
 
 		for (String environmentType : environmentTypes) {
 			boolean match = false;
