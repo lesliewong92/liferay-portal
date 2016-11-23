@@ -20,9 +20,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.tools.ant.Project;
 
 /**
@@ -179,6 +181,16 @@ public class FlakyTestRule {
 			"app.server", "browser", "database", "java.jdk",
 			"operating.system");
 
+		List<String> batchParameters = new ArrayList<String>(StringUtils.split(batchName, "-"));
+
+		List<Environment> environments = new ArrayList<>();
+
+		for (String environmentType : environmentTypes) {
+			for (String batchParameter : batchParameters) {
+				environments.add()
+			}
+		}
+
 		for (String environmentType : environmentTypes) {
 			boolean match = false;
 
@@ -261,7 +273,21 @@ public class FlakyTestRule {
 		return false;
 	}
 
-	protected Pattern majorVersionPattern = Pattern.compile(
+	public Pattern getRulePattern() {
+		return rulePattern;
+	}
+
+	public Date getRuleDuration() {
+		return ruleDuration;
+	}
+
+	public double getRulePercentage() {
+		return rulePercentage;
+	}
+
+	protected static final Pattern environmentPattern = Pattern.compile(
+		"(?<name>[A-Za-z]+)(?<version>[0-9]*)");
+	protected static final Pattern majorVersionPattern = Pattern.compile(
 		"((\\d+)\\.?(\\d+?)).*");
 
 	protected String ruleData;
