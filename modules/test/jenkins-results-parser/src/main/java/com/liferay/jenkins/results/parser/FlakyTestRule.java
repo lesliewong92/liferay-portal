@@ -64,7 +64,7 @@ public class FlakyTestRule {
 			percentage = percentage.substring(0, percentage.length() - 1);
 		}
 
-		rulePercentage = Integer.parseInt(percentage) / 100;
+		rulePercentage = Double.parseDouble(percentage) / 100;
 	}
 
 	public boolean isFlaky(Build build, Project project, String testName)
@@ -74,7 +74,7 @@ public class FlakyTestRule {
 			return false;
 		}
 
-		int percentage = getFailurePercentage(build, project, testName);
+		double percentage = getFailurePercentage(build, project, testName);
 
 		if (percentage > rulePercentage) {
 			return true;
@@ -116,7 +116,7 @@ public class FlakyTestRule {
 		return batchName;
 	}
 
-	protected int getFailurePercentage(
+	protected double getFailurePercentage(
 			Build build, Project project, String testcaseName)
 		throws Exception {
 
@@ -165,7 +165,7 @@ public class FlakyTestRule {
 			total += statusCount;
 		}
 
-		return failureCount / total;
+		return (double)failureCount / (double)total;
 	}
 
 	protected String getTestrayEnvironmentHash(Build build, Project project)
@@ -263,9 +263,10 @@ public class FlakyTestRule {
 
 	protected Pattern majorVersionPattern = Pattern.compile(
 		"((\\d+)\\.?(\\d+?)).*");
+
 	protected String ruleData;
 	protected Date ruleDuration;
 	protected Pattern rulePattern;
-	protected int rulePercentage;
+	protected double rulePercentage;
 
 }
