@@ -29,6 +29,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.validator.routines.UrlValidator;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -915,6 +917,68 @@ public abstract class BaseBuild implements Build {
 			false);
 
 		return jsonObject.getJSONArray("builds");
+	}
+
+	protected List<TestResult> getDownstreamTestResults() throws Exception {
+		List<TestResult> downstreamTestResults = new ArrayList<>();
+
+		if (!downstreamBuilds.isEmpty()) {
+			for (Build downstreamBuild : downstreamBuilds) {
+				downstreamTestResults.add(
+					downstreamBuilds.getDownstreamTestResults());
+			}
+		}
+		else {
+			String testReportURL = getBuildURL() + "/testReport/api/json");
+
+			if (UrlValidator.isValid(testReportURL)) {
+				JSONObject testReportJSONObject =
+					JenkinsResultsParserUtil.toJSONObject();
+
+				JSONArray suitesJSONArray = testReportJSONObject.getJSONArray(
+					"suites");
+
+				for (int i = 0; i < suitesJSONArray.length(); i++) {
+					JSONObject suiteJSONArray =
+						suitesJSONArray.getJSONObject(i);
+
+					JSONArray casesJSONArray = suiteJSONObject.getJSONArray(
+						"cases");
+
+					for (int j = 0; j < casesJSONArray.length(); j++) {
+						JSONObject caseJSONObject =
+							casesJSONArray.getJSONObject(j);
+
+						String testClassName = caseJSONObject.getString(
+							"className");
+
+						int x = testClassName.lastIndexOf(".");
+
+						String testSimpleClassName = testClassName.substring(
+							x + 1);
+
+						String testPackageName = testClassName.substring(0, x);
+
+						String testMethodName = caseJSONObject.getString(
+							"name");
+
+						testMethodName = testMethodName.replace("[", "_");
+						testMethodName = testMethodName.replace("]", "_");
+						testMethodName = testMethodName.replace("#", "_");
+
+						if (testPackageName.equals("junit.framework")) {
+							testMethodName = testMethodName.replace(".", "_");
+						}
+
+						TestResult testResult = new TestResult(
+							testSimpleClassName, null, testMethodName,
+							caseJSONObject.getString("status"));
+					}
+				}
+			}
+		}
+
+		return downstreamTestResults;
 	}
 
 	protected ExecutorService getExecutorService() {
