@@ -14,37 +14,39 @@
 
 package com.liferay.jenkins.results.parser;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 /**
  * @author Leslie Wong
  */
 public class TestResult {
 
-	public TestResult(Build build) {
-		String buildURL = JenkinsResultsParserUtil.getLocalURL(
-			build.getBuildURL());
+	public TestResult(
+		String className, String duration, String testName, String testStatus) {
 
-		JSONObject jsonObject = JenkinsResultsParserUtil.toJSONObject(
-			buildURL + "/testReport/api/json");
+		this.className = className;
+		this.duration = duration;
+		this.testName = testName;
+		this.testStatus = testStatus;
+	}
 
-		
+	public String getClassName() {
+		return className;
 	}
 
 	public String getDuration() {
 		return duration;
 	}
 
-	public String getTestName() {
-		return testName;
+	public String getTestNames() {
+		return testNames;
 	}
 
 	public String getTestStatus() {
 		return testStatus;
 	}
 
+	public String className;
+	public String duration;
 	public String testName;
 	public String testStatus;
-	public String duration;
+
 }
