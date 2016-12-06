@@ -45,6 +45,10 @@ public class AutoCloseRule {
 		}
 	}
 
+	// Need to find only do the flaky test evalution on tests that we want, i.e. not on functional or lpkg, etc.
+	// Edge case - new testcase / testcase that doesn't exist on Testray Integration results server
+	// Check performance
+
 	public List<Build> evaluate(List<Build> downstreamBuilds, Project project)
 		throws Exception {
 
@@ -80,19 +84,28 @@ public class AutoCloseRule {
 			String result = downstreamBuild.getResult();
 
 			if ((result != null) && !result.equals("SUCCESS")) {
-				List<TestResult> testResults =
-					downstreamBuild.getDownstreamTestResults();
+				String batchName = getBatchName(downstreamBuild);
 
-				for (TestResult testResult : testResults) {
-					String testName = testResult.getTestName();
+				if (batchName.contains("integration") ||
+					batchName.contains("unit")) {
 
-					if (!FlakinessEvaluatorUtil.isFlaky(
-						downstreamBuild, project, testName)) {
+					List<TestResult> testResults = 
+						downstreamBuild.getDownstreamTestResults();
 
-						failedDownstreamBuilds.add(downstreamBuild);
+					for (TestResult testResult : testResults) {
+						String testName = testResult.getTestName();
 
-						break;
+						if (!FlakinessEvaluatorUtil.isFlaky(
+							downstreamBuild, project, testName)) {
+
+							failedDownstreamBuilds.add(downstreamBuild);
+
+							break;
+						}
 					}
+				}
+				else {
+					failedDownstreamBuilds.add(downstreamBuild);
 				}
 			}
 		}
