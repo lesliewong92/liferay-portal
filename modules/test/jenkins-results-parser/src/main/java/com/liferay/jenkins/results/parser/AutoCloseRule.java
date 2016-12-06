@@ -84,11 +84,10 @@ public class AutoCloseRule {
 			String result = downstreamBuild.getResult();
 
 			if ((result != null) && !result.equals("SUCCESS")) {
-				String batchName = getBatchName(downstreamBuild);
+				String testrayTestType = getTestrayTestType(
+					downstreamBuild, project);
 
-				if (batchName.contains("integration") ||
-					batchName.contains("unit")) {
-
+				if (testrayTestType) {
 					List<TestResult> testResults = 
 						downstreamBuild.getDownstreamTestResults();
 
@@ -152,6 +151,35 @@ public class AutoCloseRule {
 		}
 
 		return filteredDownstreamBuilds;
+	}
+
+	protected String getTestrayTestType(Build build, Project project) {
+		String batchName = getBatchName(build);
+
+		String testrayTestTypes = project.getProperty("testray.test.types");
+
+		for (String testrayTestType : testrayTestTypes.split(",")) {
+			if (batchName.startsWith(testrayTestType)) {
+				return testrayTestType;
+			}
+		}
+
+		return "";
+	}
+
+	protected String getTestrayServerNames(Build build, Project project) {
+		StringBuild sb = new StringBuilder();
+
+		sb.append("testray.server.names[");
+
+		TopLevelBuild topLevelJob = build.getTopLevelBuild();
+
+		sb.append(topLevelJob.getJobName());
+		sb.append("/");
+		sb.append(getTestrayTestType(build, project));
+		sb.append("]");
+
+		return project.getProperty(sb.toString());
 	}
 
 	protected int maxFailCount = -1;
