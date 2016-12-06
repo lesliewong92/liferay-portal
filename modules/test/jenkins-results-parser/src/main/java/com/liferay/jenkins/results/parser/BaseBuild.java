@@ -929,7 +929,7 @@ public abstract class BaseBuild implements Build {
 			}
 		}
 		else {
-			String testReportURL = getBuildURL() + "/testReport/api/json");
+			String testReportURL = getBuildURL() + "/testReport/api/json";
 
 			if (UrlValidator.isValid(testReportURL)) {
 				JSONObject testReportJSONObject =
