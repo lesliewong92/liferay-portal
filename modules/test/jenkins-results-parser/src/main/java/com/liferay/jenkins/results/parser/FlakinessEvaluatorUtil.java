@@ -69,17 +69,18 @@ public class FlakinessEvaluatorUtil {
 	}
 
 	protected static String convertToEnvironmentHash(
-			List<String> testrayFactors)
+			List<Environment> environments)
 		throws Exception {
 
 		StringBuilder sb = new StringBuilder();
 
-		for (String testrayFactor : testrayFactors) {
+		for (Environment environment : environments) {
 			List<Map<String, Object>> queryResult;
 
 			queryResult = DBUtil.executeQuery(
 				"select testrayFactorCategoryId, testrayFactorOptionId from " +
-					"TestrayFactorOption where name='" + testrayFactor + "'");
+					"TestrayFactorOption where name='" +
+						environment.getFactor() + "'");
 
 			Map<String, Object> testrayFactorIds = queryResult.get(0);
 
@@ -164,81 +165,14 @@ public class FlakinessEvaluatorUtil {
 			"app.server", "browser", "database", "java.jdk",
 			"operating.system");
 
-		List<String> batchParameters = new ArrayList<String>(
-			StringUtils.split(batchName, "-"));
-
 		List<Environment> environments = new ArrayList<>();
 
 		for (String environmentType : environmentTypes) {
-			for (String batchParameter : batchParameters) {
-				environments.add()
-			}
+			environment.add(
+				new Environment(project, batchName, environmentType));
 		}
 
-		for (String environmentType : environmentTypes) {
-			boolean match = false;
-
-			String environments = project.getProperty(
-				environmentType + ".types");
-
-			for (String environment : environments.split(",")) {
-				if (batchName.contains(environment)) {
-					int x = batchName.indexOf(environment);
-
-					int y = batchName.indexOf("-", x);
-
-					String batchEnvironment;
-
-					if (y != -1) {
-						batchEnvironment = batchName.substring(x, y);
-					}
-					else {
-						batchEnvironment = batchName.substring(x);
-					}
-
-					String testrayFactorOption = project.getProperty(
-						"env.option." + environmentType + "." +
-							batchEnvironment);
-
-					testrayFactors.add(testrayFactorOption);
-
-					match = true;
-
-					break;
-				}
-			}
-
-			if (!match) {
-				String environment = project.getProperty(
-					environmentType + ".type");
-
-				String environmentVersion = project.getProperty(
-					environmentType + ".version");
-
-				Matcher matcher = majorVersionPattern.matcher(
-					environmentVersion);
-
-				String environmentMajorVersion;
-
-				if (matcher.matches()) {
-					environmentMajorVersion = matcher.group(1);
-				}
-				else {
-					environmentMajorVersion = environmentVersion;
-				}
-
-				environmentMajorVersion = environmentMajorVersion.replace(
-					".", "");
-
-				String testrayFactorOption = project.getProperty(
-					"env.option." + environmentType + "." + environment +
-						environmentMajorVersion);
-
-				testrayFactors.add(testrayFactorOption);
-			}
-		}
-
-		return convertToEnvironmentHash(testrayFactors);
+		return convertToEnvironmentHash(environments);
 	}
 
 	protected static boolean isMatchingBuild(Build build) {

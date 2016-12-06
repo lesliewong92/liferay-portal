@@ -22,6 +22,8 @@ import java.util.Properties;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
+import org.apache.commons.lang.StringUtils;
+
 import org.apache.tools.ant.Project;
 
 /**
@@ -30,7 +32,7 @@ import org.apache.tools.ant.Project;
 public class Environment {
 
 	public Environment(
-		Project project, String batchParameter, String environmentType) {
+		Project project, String batchName, String environmentType) {
 
 		Map<String, String> propertiesMap = new HashMap<>();
 
@@ -40,11 +42,11 @@ public class Environment {
 			propertiesMap.put(entry.getKey(), (String)entry.getValue());
 		}
 
-		init(propertiesMap, batchParameter, environmentType);
+		init(propertiesMap, batchName, environmentType);
 	}
 
 	public Environment(
-		Properties properties, String batchParameter, String environmentType) {
+		Properties properties, String batchName, String environmentType) {
 
 		Map<String, String> propertiesMap = new HashMap<>();
 
@@ -52,54 +54,48 @@ public class Environment {
 		    propertiesMap.put((String)entry.getKey(), (String)entry.getValue());
 		}
 
-		init(propertiesMap, batchParameter, environmentType);
+		init(propertiesMap, batchName, environmentType);
 	}
 
 	public Environment(
-			Map<String, String> properties, String batchParameter,
+			Map<String, String> properties, String batchName,
 		String environmentType) {
 
-		init(properties, batchParameter, environmentType);
+		init(properties, batchName, environmentType);
 	}
 
 	protected void init(
-			Map<String, String> properties, String batchParameter,
+			Map<String, String> properties, String batchName,
 		String environmentType) {
-
-		Matcher javaEnvironmentMatcher = javaEnvironmentPattern.matcher(
-			batchParameter);
 
 		_type = environmentType;
 
-		if (javaEnvironmentMatcher.find()) {
-			_name = "jdk";
-			_version = javaEnvironmentMatcher.group("version");
+		if (environmentType.equals("java.jdk")) {
+			_name = "x32";
 
-			_factor = properties.get(
-				"env.option.java.jdk.x64." + _version);
+			String batchComponent = getBatchComponent(batchName, "jdk");
+
+			_version = batchName.substring(3);
+
+			_factor = properties.get("env.option.java.jdk.x32." + _version);
 
 			return;
 		}
 
-		Pattern environmentOptionPattern = Pattern.compile(
-			"env\\.option\\." + environmentType + "\\.(?<tag>" +
-				batchParameter + ".*)");
+		List<String> environmentOptions = new ArrayList(
+			StringUtils.split(properties.get(environmentType + ".types"), ","));
 
-		for (String propertyName : properties.keySet()) {
-			Matcher environmentOptionMatcher = environmentOptionPattern.matcher(
-				propertyName);
+		for (String environmentOption : environmentOptions) {
+			if (batchName.contains(environmentOption)) {
+				_name = environmentOption;
 
-			if (environmentOptionMatcher.find()) {
-				_factor = properties.get(propertyName);
+				String batchComponent = getBatchComponent(
+					batchName, environmentOption);
 
-				String tag = environmentOptionMatcher.group("tag");
+				_factor = _factor = properties.get(
+					"env.option." + environmentType + "." + batchComponent);
 
-				Matcher environmentMatcher = environmentPattern.matcher(tag);
-
-				if (environmentMatcher.find()) {
-					_name = environmentMatcher.group("shortName");
-					_version = environmentMatcher.group("version");
-				}
+				_version = batchComponent.substring(environmentOption.length());
 
 				return;
 			}
@@ -127,6 +123,19 @@ public class Environment {
 			+ _version);
 	}
 
+	protected String getBatchComponent(
+		String batchName, String environmentOption) {
+
+		int x = batchName.indexOf(environmentOption);
+		int y = batchName.indexOf("-", x);
+
+		if (y == -1) {
+			y = batchName.length();
+		}
+
+		return batchName.substring(x, y);
+	}
+
 	public String getFactor() {
 		return _factor;
 	}
@@ -142,13 +151,6 @@ public class Environment {
 	public String getVersion() {
 		return _version;
 	}
-
-	protected static final Pattern environmentPattern = Pattern.compile(
-		"(?<shortName>[A-Za-z]+)(?<version>[0-9]*.*)");
-	protected static final Pattern javaEnvironmentPattern = Pattern.compile(
-		"jdk(?<version>[0-9]+)");
-	protected static final Pattern majorVersionPattern = Pattern.compile(
-		"((\\d+)\\.?(\\d+?)).*");
 
 	private String _factor;
 	private String _name;
