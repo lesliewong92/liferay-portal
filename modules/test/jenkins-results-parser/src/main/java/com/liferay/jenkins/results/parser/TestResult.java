@@ -36,7 +36,7 @@ public class TestResult {
 		return duration;
 	}
 
-	public String testName() {
+	public String getTestName() {
 		return testName;
 	}
 
