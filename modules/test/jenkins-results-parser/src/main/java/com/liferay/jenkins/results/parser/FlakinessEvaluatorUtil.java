@@ -51,10 +51,6 @@ public class FlakinessEvaluatorUtil {
 	public static boolean isFlaky(Build build, Project project, String testName)
 		throws Exception {
 
-		if (!isMatchingBuild(build)) {
-			return false;
-		}
-
 		double percentage = getFailurePercentage(
 			getBatchName(build), project, testName);
 
@@ -133,8 +129,17 @@ public class FlakinessEvaluatorUtil {
 		sb.append(project.getProperty("testray.build.type"));
 		sb.append("' AND TestrayRun.environmentHash = '");
 		sb.append(getTestrayEnvironmentHash(batchName, project));
+
+		String testrayCheckDuration = project.getProperty(
+			"testray.check.duration");
+
+		long timeInMilliseconds = System.currentTimeMillis() -
+			(long)(Integer.parseInt(testrayCheckDuration) * 86400000);
+
+		Date duration = new Date(timeInMilliseconds);
+
 		sb.append("' AND TestrayCaseResult.startDate > DATE'");
-		sb.append(ruleDuration.toString());
+		sb.append(duration.toString());
 		sb.append("' GROUP BY TestrayCaseResult.status;");
 
 		List<Map<String, Object>> statuses = DBUtil.executeQuery(sb.toString());
@@ -168,34 +173,16 @@ public class FlakinessEvaluatorUtil {
 		List<Environment> environments = new ArrayList<>();
 
 		for (String environmentType : environmentTypes) {
-			environment.add(
+			environments.add(
 				new Environment(project, batchName, environmentType));
 		}
 
 		return convertToEnvironmentHash(environments);
 	}
 
-	protected static boolean isMatchingBuild(Build build) {
-		String batchName = getBatchName(build);
-
-		if ((batchName == null) || batchName.isEmpty()) {
-			return false;
-		}
-
-		Matcher matcher = rulePattern.matcher(batchName);
-
-		if (matcher.matches()) {
-			return true;
-		}
-
-		return false;
-	}
-
 	protected static final Pattern environmentPattern = Pattern.compile(
 		"(?<name>[A-Za-z]+)(?<version>[0-9]*)");
 	protected static final Pattern majorVersionPattern = Pattern.compile(
 		"((\\d+)\\.?(\\d+?)).*");
-
-	protected Date ruleDuration;
 
 }

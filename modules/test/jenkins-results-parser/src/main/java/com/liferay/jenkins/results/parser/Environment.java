@@ -22,7 +22,8 @@ import java.util.Map.Entry;
 import java.util.Map;
 import java.util.Properties;
 
-import org.apache.commons.lang.StringUtils;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.tools.ant.Project;
 
@@ -82,10 +83,9 @@ public class Environment {
 			return;
 		}
 
-		List<String> environmentOptions = new ArrayList(
-			StringUtils.split(properties.get(environmentType + ".types"), ","));
+		String environmentOptions = properties.get(environmentType + ".types");
 
-		for (String environmentOption : environmentOptions) {
+		for (String environmentOption : environmentOptions.split(",")) {
 			if (batchName.contains(environmentOption)) {
 				_name = environmentOption;
 
@@ -151,6 +151,9 @@ public class Environment {
 	public String getVersion() {
 		return _version;
 	}
+
+	protected static final Pattern majorVersionPattern = Pattern.compile(
+		"((\\d+)\\.?(\\d+?)).*");
 
 	private String _factor;
 	private String _name;

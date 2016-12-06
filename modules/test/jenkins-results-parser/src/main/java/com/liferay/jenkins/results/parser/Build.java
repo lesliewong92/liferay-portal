@@ -42,6 +42,8 @@ public interface Build {
 
 	public List<Build> getDownstreamBuilds(String status);
 
+	public List<TestResult> getDownstreamTestResults() throws Exception;
+
 	public String getInvocationURL();
 
 	public String getJobName();
