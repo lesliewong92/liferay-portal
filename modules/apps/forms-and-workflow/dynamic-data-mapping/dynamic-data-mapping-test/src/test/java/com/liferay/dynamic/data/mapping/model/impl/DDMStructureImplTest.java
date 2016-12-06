@@ -68,7 +68,7 @@ public class DDMStructureImplTest extends BaseDDMTestCase {
 		String[] actualAvailableLanguageIds =
 			structure.getAvailableLanguageIds();
 
-		Assert.assertEquals(2, actualAvailableLanguageIds.length);
+		Assert.assertEquals(7, actualAvailableLanguageIds.length);
 
 		for (String actualAvailableLanguageId : actualAvailableLanguageIds) {
 			Locale actualAvailableLocale = LocaleUtil.fromLanguageId(

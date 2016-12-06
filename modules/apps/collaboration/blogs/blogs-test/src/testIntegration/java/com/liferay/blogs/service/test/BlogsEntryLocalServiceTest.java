@@ -511,7 +511,7 @@ public class BlogsEntryLocalServiceTest {
 				_user.getCompanyId(), _group.getGroupId(), new Date(),
 				_statusInTrashQueryDefinition);
 
-		Assert.assertEquals(initialCount + 1, groupsEntriesInTrash.size());
+		Assert.assertEquals(initialCount, groupsEntriesInTrash.size());
 
 		for (BlogsEntry groupsEntry : groupsEntriesInTrash) {
 			Assert.assertEquals(
