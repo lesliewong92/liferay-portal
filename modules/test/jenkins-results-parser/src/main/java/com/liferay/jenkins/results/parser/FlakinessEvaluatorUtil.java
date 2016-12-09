@@ -64,6 +64,8 @@ public class FlakinessEvaluatorUtil {
 		return false;
 	}
 
+	// use the same logic to determine which batches to send/get test results to integration server 
+
 	protected static String convertToEnvironmentHash(
 			List<Environment> environments)
 		throws Exception {
