@@ -36,17 +36,17 @@ public class TestResult {
 		return duration;
 	}
 
-	public String getTestName() {
-		return testName;
+	public String getStatus() {
+		return testStatus;
 	}
 
-	public String getTestStatus() {
-		return testStatus;
+	public String getTestName() {
+		return testName;
 	}
 
 	public String className;
 	public String duration;
 	public String testName;
-	public String testStatus;
+	public String status;
 
 }
