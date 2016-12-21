@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.microsofttranslator;
+package com.liferay.microsoft.translator.internal;
 
 import com.liferay.portal.kernel.microsofttranslator.MicrosoftTranslator;
 import com.liferay.portal.kernel.microsofttranslator.MicrosoftTranslatorException;
@@ -28,14 +28,9 @@ import com.liferay.portal.kernel.util.Validator;
  */
 public class MicrosoftTranslatorImpl implements MicrosoftTranslator {
 
-	public MicrosoftTranslatorImpl() {
+	public MicrosoftTranslatorImpl(String subscriptionKey) {
 		_microsoftTranslatorAuthenticator =
-			new MicrosoftTranslatorAuthenticator();
-	}
-
-	public MicrosoftTranslatorImpl(String clientId, String clientSecret) {
-		_microsoftTranslatorAuthenticator =
-			new MicrosoftTranslatorAuthenticator(clientId, clientSecret);
+			new MicrosoftTranslatorAuthenticator(subscriptionKey);
 	}
 
 	public MicrosoftTranslatorAuthenticator
@@ -71,7 +66,7 @@ public class MicrosoftTranslatorImpl implements MicrosoftTranslator {
 
 		StringBundler sb = new StringBundler(7);
 
-		sb.append("http://api.microsofttranslator.com/v2/Http.svc/Translate?");
+		sb.append("https://api.microsofttranslator.com/v2/http.svc/Translate?");
 		sb.append("text=");
 		sb.append(HttpUtil.encodeURL(fromText));
 		sb.append("&from=");

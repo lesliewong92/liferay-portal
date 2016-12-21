@@ -767,8 +767,6 @@ found.
 OSGi projects, Ant plugins and themes if the `-PsnapshotIfStale` argument is
 provided.
 
-### Changed
-
 ## 2.3.0 - 2016-12-15
 
 ### Fixed
@@ -814,7 +812,12 @@ versions of Git.
 ## 2.3.8 - 2016-12-20
 
 ### Changed
-- [LPS-69802]: Update the [Liferay Gradle Plugins] dependency to version 3.0.59.
+- [LPS-67352]: Update the [Liferay Gradle Plugins] dependency to version 3.0.59.
+
+## 2.3.9 - 2016-12-21
+
+### Changed
+- [LPS-69802]: Update the [Liferay Gradle Plugins] dependency to version 3.0.60.
 
 [Liferay CDN]: https://cdn.lfrs.sl/repository.liferay.com/nexus/content/groups/public
 [Liferay Gradle Plugins]: https://github.com/liferay/liferay-portal/tree/master/modules/sdk/gradle-plugins
