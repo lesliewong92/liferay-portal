@@ -151,6 +151,17 @@ public abstract class BaseBuild implements Build {
 	}
 
 	@Override
+	public JSONObject getBuildJSONObject() {
+		try {
+			return JenkinsResultsParserUtil.toJSONObject(
+				getBuildURL() + "api/json", false);
+		}
+		catch (IOException ioe) {
+			throw new RuntimeException("Unable to get build JSONObject", ioe);
+		}
+	}
+
+	@Override
 	public int getBuildNumber() {
 		return _buildNumber;
 	}
@@ -472,6 +483,67 @@ public abstract class BaseBuild implements Build {
 	@Override
 	public Map<String, String> getStopPropertiesMap() {
 		return getTempMap("stop.properties");
+	}
+
+	@Override
+	public JSONObject getTestReportJSONObject() {
+		try {
+			return JenkinsResultsParserUtil.toJSONObject(
+				getBuildURL() + "testReport/api/json", false);
+		}
+		catch (IOException ioe) {
+			throw new RuntimeException(
+				"Unbale to get testReport JSONObject", ioe);
+		}
+	}
+
+	@Override
+	public List<TestResult> getTestResults() {
+		String status = getStatus();
+
+		if (!status.equals("completed")) {
+			return null;
+		}
+
+		JSONObject testReportJSONObject = getTestReportJSONObject();
+		List<TestResult> testResults = new ArrayList<>();
+
+		JSONArray suitesJSONArray = testReportJSONObject.getJSONArray("suites");
+
+		for (int i = 0; i < suitesJSONArray.length(); i++) {
+			JSONObject suiteJSONObject = suitesJSONArray.getJSONObject(i);
+
+			JSONArray casesJSONArray = suiteJSONObject.getJSONArray("cases");
+
+			for (int j = 0; j < casesJSONArray.length(); j++) {
+				JSONObject caseJSONObject = casesJSONArray.getJSONObject(j);
+
+				String testClassName = caseJSONObject.getString("className");
+
+				int x = testClassName.lastIndexOf(".");
+
+				String testSimpleClassName = testClassName.substring(x + 1);
+
+				String testPackageName = testClassName.substring(0, x);
+
+				String testMethodName = caseJSONObject.getString("name");
+
+				testMethodName = testMethodName.replace("[", "_");
+				testMethodName = testMethodName.replace("]", "_");
+				testMethodName = testMethodName.replace("#", "_");
+
+				if (testPackageName.equals("junit.framework")) {
+					testMethodName = testMethodName.replace(".", "_");
+				}
+
+				testResults.add(
+					new TestResult(
+						testSimpleClassName, null, testMethodName,
+						caseJSONObject.getString("status")));
+			}
+		}
+
+		return testResults;
 	}
 
 	@Override
