@@ -648,6 +648,8 @@ app.server.type=@{app.server.type}]]></echo>
 							<matches pattern="https?://" string="@{test.sql.zip.url}" />
 						</and>
 						<then>
+							<antcall inheritAll="false" target="setup-sdk" />
+
 							<propertycopy from="app.server.${app.server.type}.bin.dir" name="test.app.server.bin.dir" />
 
 							<antcall inheritAll="false" target="prepare-test-bundle">
