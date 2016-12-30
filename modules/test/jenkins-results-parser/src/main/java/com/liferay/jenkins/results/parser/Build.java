@@ -51,6 +51,8 @@ public interface Build {
 	public Environment getEnvironment(String environmentType, Project project)
 		throws Exception;
 
+	public String getEnvironmentHash(Project project) throws Exception;
+
 	public String getInvocationURL();
 
 	public String getJobName();

@@ -145,6 +145,13 @@ public class AxisBuild extends BaseBuild {
 	}
 
 	@Override
+	public String getEnvironmentHash(Project project) throws Exception {
+		Build parentBuild = getParentBuild();
+
+		return parentBuild.getEnvironmentHash(project);
+	}
+
+	@Override
 	public List<TestResult> getTestResults(String testStatus) {
 		String status = getStatus();
 

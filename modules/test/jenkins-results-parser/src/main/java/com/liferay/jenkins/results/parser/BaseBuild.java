@@ -262,6 +262,11 @@ public abstract class BaseBuild implements Build {
 	}
 
 	@Override
+	public String getEnvironmentHash(Project project) throws Exception {
+		return null;
+	}
+
+	@Override
 	public String getInvocationURL() {
 		String jobURL = getJobURL();
 

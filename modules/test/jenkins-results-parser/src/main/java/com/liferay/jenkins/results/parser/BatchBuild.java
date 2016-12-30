@@ -17,6 +17,7 @@ package com.liferay.jenkins.results.parser;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 
 import org.apache.tools.ant.Project;
@@ -45,6 +46,23 @@ public class BatchBuild extends BaseBuild {
 
 		return new Environment(
 			environmentType, project.getProperties(), getBatchName());
+	}
+
+	@Override
+	public String getEnvironmentHash(Project project) throws Exception {
+		List<Environment> environments = new ArrayList<>();
+
+		String[] environmentTypes = {
+			"app.server", "browser", "database", "java.jdk", "operating.system"
+		};
+
+		for (String environmentType : environmentTypes) {
+			environments.add(
+				new Environment(
+					environmentType, project.getProperties(), getBatchName()));
+		}
+
+		return convertToEnvironmentHash(environments);
 	}
 
 	@Override
@@ -89,6 +107,31 @@ public class BatchBuild extends BaseBuild {
 		}
 
 		return testResults;
+	}
+
+	protected static String convertToEnvironmentHash(
+			List<Environment> environments)
+		throws Exception {
+
+		StringBuilder sb = new StringBuilder();
+
+		for (Environment environment : environments) {
+			List<Map<String, Object>> queryResult;
+
+			queryResult = DBUtil.executeQuery(
+				"select testrayFactorCategoryId, testrayFactorOptionId from " +
+					"TestrayFactorOption where name='" +
+						environment.getEnvironmentOption() + "'");
+
+			Map<String, Object> testrayFactorIds = queryResult.get(0);
+
+			sb.append((String)testrayFactorIds.get("testrayFactorCategoryId"));
+			sb.append((String)testrayFactorIds.get("testrayFactorOptionId"));
+		}
+
+		String testrayFactorsString = sb.toString();
+
+		return String.valueOf(testrayFactorsString.hashCode());
 	}
 
 	protected BatchBuild(String url) {
