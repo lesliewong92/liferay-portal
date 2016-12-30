@@ -14,8 +14,14 @@
 
 package com.liferay.jenkins.results.parser;
 
+import java.sql.Date;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+
+import org.apache.tools.ant.Project;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -92,9 +98,75 @@ public class TestResult {
 		return testName;
 	}
 
+	protected void calculateFailurePercentage(Project project)
+		throws Exception {
+
+		List<Map<String, Object>> testIDQueryResult = DBUtil.executeQuery(
+			"select testrayCaseId from TestrayCase where name = '" + testName +
+				"'");
+
+		String testID;
+
+		if (testIDQueryResult.isEmpty()) {
+			failurePercentage = 0;
+		}
+
+		Map<String, Object> testIDMap = testIDQueryResult.get(0);
+
+		String testrayCaseID = (String)testIDMap.get("testrayCaseId");
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("SELECT TestrayCaseResult.status, COUNT(*) ");
+		sb.append("FROM TestrayCaseResult JOIN TestrayRun ");
+		sb.append("JOIN TestrayBuild ");
+		sb.append("JOIN TestrayBuildType ");
+		sb.append("WHERE TestrayCaseResult.testrayCaseId = '");
+		sb.append(testrayCaseID);
+		sb.append("' AND TestrayBuildType.name = '");
+		sb.append(project.getProperty("testray.build.type"));
+		sb.append("' AND TestrayRun.environmentHash = '");
+		sb.append(axisBuild.getEnvironmentHash(project));
+
+		Properties buildProperties =
+			JenkinsResultsParserUtil.getBuildProperties();
+
+		String history = project.getProperty("testray.check.history");
+
+		long timeInMilliseconds =
+			System.currentTimeMillis() -
+				(long)(Integer.parseInt(history) * 86400000);
+
+		Date historyDate = new Date(timeInMilliseconds);
+
+		sb.append("' AND TestrayCaseResult.startDate > DATE'");
+		sb.append(historyDate.toString());
+		sb.append("' GROUP BY TestrayCaseResult.status;");
+
+		List<Map<String, Object>> statuses = DBUtil.executeQuery(sb.toString());
+
+		int total = 0;
+		int failureCount = 0;
+
+		for (Map<String, Object> status : statuses) {
+			Integer statusCount = (Integer)status.get("count(*)");
+
+			if ((Integer)status.get("status") == STATUS_FAILED) {
+				failureCount = statusCount;
+			}
+
+			total += statusCount;
+		}
+
+		failurePercentage = (failureCount / total) * 100;
+	}
+
+	protected static final int STATUS_FAILED = 3;
+
 	protected AxisBuild axisBuild;
 	protected String className;
 	protected long duration;
+	protected int failurePercentage = -1;
 	protected String packageName;
 	protected String simpleClassName;
 	protected String status;
