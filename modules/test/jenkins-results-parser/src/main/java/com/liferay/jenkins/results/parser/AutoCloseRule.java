@@ -20,6 +20,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.tools.ant.Project;
+
 /**
  * @author Peter Yoo
  */
@@ -43,7 +45,7 @@ public class AutoCloseRule {
 		}
 	}
 
-	public List<Build> evaluate(List<Build> downstreamBuilds) {
+	public List<Build> evaluate(List<Build> downstreamBuilds, Project project) {
 		downstreamBuilds = getMatchingBuilds(downstreamBuilds);
 
 		if (downstreamBuilds.isEmpty()) {
@@ -76,7 +78,16 @@ public class AutoCloseRule {
 			String result = downstreamBuild.getResult();
 
 			if ((result != null) && !result.equals("SUCCESS")) {
-				failedDownstreamBuilds.add(downstreamBuild);
+				List<TestResult> testResults = downstreamBuild.getTestResults(
+					"UNSTABLE");
+
+				for (TestResult testResult : testResults) {
+					if (!testResult.isFlaky(project)) {
+						failedDownstreamBuilds.add(downstreamBuild);
+
+						break;
+					}
+				}
 			}
 		}
 
