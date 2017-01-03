@@ -98,6 +98,29 @@ public class TestResult {
 		return testName;
 	}
 
+	public boolean isFlaky(Project project) {
+		try {
+			Properties buildProperties =
+				JenkinsResultsParserUtil.getBuildProperties();
+
+			if (failurePercentage == -1) {
+				calculateFailurePercentage(project);
+			}
+
+			int failureThreshold = Integer.parseInt(
+				buildProperties.getProperty("testray.failure.threshold"));
+
+			if (failurePercentage > failureThreshold) {
+				return true;
+			}
+
+			return false;
+		}
+		catch (Exception e) {
+			return false;
+		}
+	}
+
 	protected void calculateFailurePercentage(Project project)
 		throws Exception {
 
