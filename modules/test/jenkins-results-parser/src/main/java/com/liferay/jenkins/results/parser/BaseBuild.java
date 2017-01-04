@@ -115,7 +115,7 @@ public abstract class BaseBuild implements Build {
 
 	@Override
 	public String getAppServer() throws Exception {
-		return null;
+		return appServer;
 	}
 
 	@Override
@@ -157,7 +157,7 @@ public abstract class BaseBuild implements Build {
 
 	@Override
 	public String getBrowser() throws Exception {
-		return null;
+		return browser;
 	}
 
 	@Override
@@ -240,7 +240,7 @@ public abstract class BaseBuild implements Build {
 
 	@Override
 	public String getDatabase() throws Exception {
-		return null;
+		return database;
 	}
 
 	@Override
@@ -306,7 +306,7 @@ public abstract class BaseBuild implements Build {
 
 	@Override
 	public String getJavaJDK() throws Exception {
-		return null;
+		return javaJDK;
 	}
 
 	@Override
@@ -341,7 +341,7 @@ public abstract class BaseBuild implements Build {
 
 	@Override
 	public String getOperatingSystem() throws Exception {
-		return null;
+		return operatingSystem;
 	}
 
 	@Override
@@ -1281,6 +1281,16 @@ public abstract class BaseBuild implements Build {
 	}
 
 	protected void reset() {
+		appServer = null;
+
+		browser = null;
+
+		database = null;
+
+		javaJDK = null;
+
+		operatingSystem = null;
+
 		result = null;
 
 		badBuildNumbers.add(getBuildNumber());
@@ -1405,12 +1415,17 @@ public abstract class BaseBuild implements Build {
 		"\\w+://(?<master>[^/]+)/+job/+(?<jobName>[^/]+).*/" +
 			"buildWithParameters\\?(?<queryString>.*)");
 
+	protected String appServer;
 	protected String archiveName;
 	protected List<Integer> badBuildNumbers = new ArrayList<>();
+	protected String browser;
+	protected String database;
 	protected List<Build> downstreamBuilds = new ArrayList<>();
 	protected boolean fromArchive;
+	protected String javaJDK;
 	protected String jobName;
 	protected String master;
+	protected String operatingSystem;
 	protected String result;
 	protected long statusModifiedTime;
 

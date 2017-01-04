@@ -14,6 +14,8 @@
 
 package com.liferay.jenkins.results.parser;
 
+import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -32,11 +34,6 @@ import org.json.JSONObject;
  */
 public class BatchBuild extends BaseBuild {
 
-	@Override
-	public String getAppServer() throws Exception {
-		return getEnvironment("app.server");
-	}
-
 	public String getBatchName() {
 		String batchName = getParameterValue("JOB_VARIANT");
 
@@ -45,26 +42,6 @@ public class BatchBuild extends BaseBuild {
 		}
 
 		return batchName;
-	}
-
-	@Override
-	public String getBrowser() throws Exception {
-		return getEnvironment("browser");
-	}
-
-	@Override
-	public String getDatabase() throws Exception {
-		return getEnvironment("database");
-	}
-
-	@Override
-	public String getJavaJDK() throws Exception {
-		return getEnvironment("java.jdk");
-	}
-
-	@Override
-	public String getOperatingSystem() throws Exception {
-		return getEnvironment("operating.system");
 	}
 
 	@Override
@@ -117,6 +94,12 @@ public class BatchBuild extends BaseBuild {
 
 	protected BatchBuild(String url, TopLevelBuild topLevelBuild) {
 		super(url, topLevelBuild);
+
+		appServer = getEnvironment("app.server");
+		browser = getEnvironment("browser");
+		database = getEnvironment("database");
+		javaJDK = getEnvironment("java.jdk");
+		operatingSystem = getEnvironment("operating.system");
 	}
 
 	@Override
@@ -150,9 +133,15 @@ public class BatchBuild extends BaseBuild {
 		return batchName.substring(x, y);
 	}
 
-	protected String getEnvironment(String environmentType) throws Exception {
-		Properties buildProperties =
-			JenkinsResultsParserUtil.getBuildProperties();
+	protected String getEnvironment(String environmentType) {
+		Properties buildProperties;
+
+		try {
+			buildProperties = JenkinsResultsParserUtil.getBuildProperties();
+		}
+		catch (IOException ioe) {
+			throw new RuntimeException("Unable to get build.properties.", ioe);
+		}
 
 		List<String> environmentOptions = new ArrayList(
 			Arrays.asList(
