@@ -24,8 +24,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.tools.ant.Project;
-
 import org.json.JSONObject;
 
 /**
@@ -35,6 +33,13 @@ public class AxisBuild extends BaseBuild {
 
 	@Override
 	public void findDownstreamBuilds() {
+	}
+
+	@Override
+	public String getAppServer() throws Exception {
+		Build parentBuild = getParentBuild();
+
+		return parentBuild.getAppServer();
 	}
 
 	@Override
@@ -74,6 +79,13 @@ public class AxisBuild extends BaseBuild {
 
 	public String getAxisVariable() {
 		return axisVariable;
+	}
+
+	@Override
+	public String getBrowser() throws Exception {
+		Build parentBuild = getParentBuild();
+
+		return parentBuild.getBrowser();
 	}
 
 	@Override
@@ -136,12 +148,24 @@ public class AxisBuild extends BaseBuild {
 	}
 
 	@Override
-	public Environment getEnvironment(String environmentType, Project project)
-		throws Exception {
-
+	public String getDatabase() throws Exception {
 		Build parentBuild = getParentBuild();
 
-		return parentBuild.getEnvironment(environmentType, project);
+		return parentBuild.getDatabase();
+	}
+
+	@Override
+	public String getJavaJDK() throws Exception {
+		Build parentBuild = getParentBuild();
+
+		return parentBuild.getJavaJDK();
+	}
+
+	@Override
+	public String getOperatingSystem() throws Exception {
+		Build parentBuild = getParentBuild();
+
+		return parentBuild.getOperatingSystem();
 	}
 
 	@Override

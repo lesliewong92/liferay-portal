@@ -29,8 +29,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.tools.ant.Project;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -116,6 +114,11 @@ public abstract class BaseBuild implements Build {
 	}
 
 	@Override
+	public String getAppServer() throws Exception {
+		return null;
+	}
+
+	@Override
 	public String getArchivePath() {
 		StringBuilder sb = new StringBuilder(archiveName);
 
@@ -150,6 +153,11 @@ public abstract class BaseBuild implements Build {
 		}
 
 		return badBuildURLs;
+	}
+
+	@Override
+	public String getBrowser() throws Exception {
+		return null;
 	}
 
 	@Override
@@ -231,6 +239,11 @@ public abstract class BaseBuild implements Build {
 	}
 
 	@Override
+	public String getDatabase() throws Exception {
+		return null;
+	}
+
+	@Override
 	public int getDownstreamBuildCount(String status) {
 		List<Build> downstreamBuilds = getDownstreamBuilds(status);
 
@@ -252,13 +265,6 @@ public abstract class BaseBuild implements Build {
 		}
 
 		return filteredDownstreamBuilds;
-	}
-
-	@Override
-	public Environment getEnvironment(String environmentType, Project project)
-		throws Exception {
-
-		return null;
 	}
 
 	@Override
@@ -299,6 +305,11 @@ public abstract class BaseBuild implements Build {
 	}
 
 	@Override
+	public String getJavaJDK() throws Exception {
+		return null;
+	}
+
+	@Override
 	public String getJobName() {
 		return jobName;
 	}
@@ -326,6 +337,11 @@ public abstract class BaseBuild implements Build {
 	@Override
 	public String getMaster() {
 		return master;
+	}
+
+	@Override
+	public String getOperatingSystem() throws Exception {
+		return null;
 	}
 
 	@Override
