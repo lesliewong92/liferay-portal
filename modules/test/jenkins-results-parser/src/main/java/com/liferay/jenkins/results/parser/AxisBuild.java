@@ -168,10 +168,10 @@ public class AxisBuild extends BaseBuild {
 	}
 
 	@Override
-	public String getJavaJDK() {
+	public String getJDK() {
 		Build parentBuild = getParentBuild();
 
-		return parentBuild.getJavaJDK();
+		return parentBuild.getJDK();
 	}
 
 	@Override
