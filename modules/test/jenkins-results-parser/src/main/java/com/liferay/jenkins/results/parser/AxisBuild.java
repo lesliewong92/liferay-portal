@@ -175,6 +175,13 @@ public class AxisBuild extends BaseBuild {
 		return parentBuild.getJavaJDK();
 	}
 
+	@Override
+	public String getOperatingSystem() throws Exception {
+		Build parentBuild = getParentBuild();
+
+		return parentBuild.getOperatingSystem();
+	}
+
 	public String getTestRayLogsURL() {
 		StringBuilder sb = new StringBuilder();
 
@@ -218,13 +225,6 @@ public class AxisBuild extends BaseBuild {
 		sb.append(getAxisVariable());
 
 		return sb.toString();
-	}
-
-	@Override
-	public String getOperatingSystem() throws Exception {
-		Build parentBuild = getParentBuild();
-
-		return parentBuild.getOperatingSystem();
 	}
 
 	@Override
