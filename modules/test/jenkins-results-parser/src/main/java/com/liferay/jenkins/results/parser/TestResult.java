@@ -16,10 +16,13 @@ package com.liferay.jenkins.results.parser;
 
 import java.io.IOException;
 
+import java.sql.Date;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -191,6 +194,82 @@ public class TestResult {
 		return !liferayLog.isEmpty();
 	}
 
+	protected void calculateFailurePercentage() throws Exception {
+		Properties buildProperties;
+
+		try {
+			buildProperties = JenkinsResultsParserUtil.getBuildProperties();
+		}
+		catch (IOException ioe) {
+			throw new RuntimeException("Unable to get build.properties.", ioe);
+		}
+
+		List<Object> arguments = new ArrayList<>();
+
+		arguments.add(simpleClassName + "#" + testName);
+
+		List<Map<String, Object>> testCaseIDs = DBUtil.executeQuery(
+			buildProperties.getProperty(
+				"testray.integration.testcase.id.query"),
+			arguments);
+
+		Map<String, Object> testCaseId = testCaseIDs.get(0);
+
+		long testrayCaseId = (Long)testCaseId.get("testrayCaseId");
+
+		arguments.clear();
+
+		arguments.add(buildProperties.getProperty("testray.build.type"));
+
+		List<Map<String, Object>> buildTypes = DBUtil.executeQuery(
+			buildProperties.getProperty(
+				"testray.integration.build.type.id.query"),
+			arguments);
+
+		Map<String, Object> buildType = buildTypes.get(0);
+
+		long buildTypeId = (Long)buildType.get("testrayBuildTypeId");
+
+		arguments.clear();
+
+		arguments.add(testrayCaseId);
+		arguments.add(buildTypeId);
+		arguments.add(getEnvironmentHash(buildProperties));
+
+		long durationInMillis = TimeUnit.DAYS.toMillis(
+			Long.valueOf(
+				buildProperties.getProperty("flakiness.assertion.duration")));
+
+		arguments.add(new Date(System.currentTimeMillis() - durationInMillis));
+
+		List<Map<String, Object>> statuses = DBUtil.executeQuery(
+			buildProperties.getProperty("testray.integration.status.query"),
+			arguments);
+
+		if (statuses.isEmpty()) {
+			failurePercentage = 0;
+
+			return;
+		}
+
+		int total = 0;
+		int failureCount = 0;
+
+		for (Map<String, Object> status : statuses) {
+			Long count = (Long)status.get("COUNT(*)");
+
+			int statusCount = count.intValue();
+
+			if ((Integer)status.get("status") == STATUS_FAILED) {
+				failureCount = statusCount;
+			}
+
+			total += statusCount;
+		}
+
+		failurePercentage = ((double)failureCount / (double)total) * 100;
+	}
+
 	protected String getEnvironmentHash(Properties properties)
 		throws Exception {
 
@@ -226,9 +305,12 @@ public class TestResult {
 		return String.valueOf(testrayFactors.hashCode());
 	}
 
+	protected static final int STATUS_FAILED = 3;
+
 	protected AxisBuild axisBuild;
 	protected String className;
 	protected long duration;
+	protected double failurePercentage = -1.0;
 	protected String packageName;
 	protected String simpleClassName;
 	protected String status;
