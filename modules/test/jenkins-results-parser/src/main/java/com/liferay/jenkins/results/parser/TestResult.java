@@ -18,6 +18,8 @@ import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -187,6 +189,41 @@ public class TestResult {
 		}
 
 		return !liferayLog.isEmpty();
+	}
+
+	protected String getEnvironmentHash(Properties properties)
+		throws Exception {
+
+		List<Map<String, Object>> environmentOptions = DBUtil.executeQuery(
+			properties.getProperty("testray.integration.environment.query"),
+			new ArrayList<>());
+
+		List<String> environments = new ArrayList<>();
+
+		environments.add(axisBuild.getAppServer());
+		environments.add(axisBuild.getBrowser());
+		environments.add(axisBuild.getDatabase());
+		environments.add(axisBuild.getJDK());
+		environments.add(axisBuild.getOperatingSystem());
+
+		StringBuilder sb = new StringBuilder();
+
+		for (String environment : environments) {
+			for (Map<String, Object> environmentOption : environmentOptions) {
+				String name = (String)environmentOption.get("name");
+
+				if (environment.equals(name)) {
+					sb.append(environmentOption.get("testrayFactorCategoryId"));
+					sb.append(environmentOption.get("testrayFactorOptionId"));
+
+					break;
+				}
+			}
+		}
+
+		String testrayFactors = sb.toString();
+
+		return String.valueOf(testrayFactors.hashCode());
 	}
 
 	protected AxisBuild axisBuild;
