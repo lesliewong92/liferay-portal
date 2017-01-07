@@ -76,7 +76,23 @@ public class AutoCloseRule {
 			String result = downstreamBuild.getResult();
 
 			if ((result != null) && !result.equals("SUCCESS")) {
-				failedDownstreamBuilds.add(downstreamBuild);
+				List<TestResult> testResults = downstreamBuild.getTestResults(
+					"UNSTABLE");
+
+				for (TestResult testResult : testResults) {
+					try {
+						if (!testResult.isFlaky()) {
+							failedDownstreamBuilds.add(downstreamBuild);
+
+							break;
+						}
+					}
+					catch (Exception e) {
+						failedDownstreamBuilds.add(downstreamBuild);
+
+						break;
+					}
+				}
 			}
 		}
 
