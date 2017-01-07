@@ -194,6 +194,30 @@ public class TestResult {
 		return !liferayLog.isEmpty();
 	}
 
+	public boolean isFlaky() throws Exception {
+		Properties buildProperties;
+
+		try {
+			buildProperties = JenkinsResultsParserUtil.getBuildProperties();
+		}
+		catch (IOException ioe) {
+			throw new RuntimeException("Unable to get build.properties.", ioe);
+		}
+
+		if (failurePercentage == -1.0) {
+			calculateFailurePercentage();
+		}
+
+		if (failurePercentage > Double.valueOf(
+				buildProperties.getProperty(
+					"flakiness.threshold.percentage"))) {
+
+			return true;
+		}
+
+		return false;
+	}
+
 	protected void calculateFailurePercentage() throws Exception {
 		Properties buildProperties;
 
