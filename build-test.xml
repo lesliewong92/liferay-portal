@@ -5523,6 +5523,11 @@ go]]></replacevalue>
 	<target name="merge-test-results">
 		<mkdir dir="test-results" />
 
+		<echo>${project.dir}</echo>
+		<echo>${project.dir}</echo>
+		<echo>${project.dir}</echo>
+		<echo>${project.dir}</echo>
+
 		<parallel timeout="1800000">
 			<junitreport todir="test-results">
 				<fileset dir="modules" erroronmissingdir="false">

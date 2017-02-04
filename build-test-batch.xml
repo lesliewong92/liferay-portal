@@ -2527,10 +2527,6 @@ information. Make sure to commit in all build services results.
 			<finally>
 				<merge-test-results />
 
-				<loadfile property="test.results.file.content" srcfile="test-results/TESTS-TestSuites.xml" />
-
-				<echo>${test.results.file.content}</echo>
-
 				<move file="${module.base.dir}/settings.gradle.temp" tofile="${module.base.dir}/settings.gradle" />
 			</finally>
 		</trycatch>
