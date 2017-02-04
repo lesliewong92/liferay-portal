@@ -5530,19 +5530,19 @@ go]]></replacevalue>
 
 		<parallel timeout="1800000">
 			<junitreport todir="test-results">
-				<fileset dir="modules" erroronmissingdir="false">
+				<fileset dir="/opt/dev/projects/github/liferay-portal/modules" erroronmissingdir="false">
 					<include name="**/TEST-*.xml" />
 				</fileset>
-				<fileset dir="portal-impl/test-results" erroronmissingdir="false">
+				<fileset dir="/opt/dev/projects/github/liferay-portal/portal-impl/test-results" erroronmissingdir="false">
 					<include name="**/TEST-*.xml" />
 				</fileset>
-				<fileset dir="portal-kernel/test-results" erroronmissingdir="false">
+				<fileset dir="/opt/dev/projects/github/liferay-portal/portal-kernel/test-results" erroronmissingdir="false">
 					<include name="**/TEST-*.xml" />
 				</fileset>
-				<fileset dir="portal-web/test-results" erroronmissingdir="false">
+				<fileset dir="/opt/dev/projects/github/liferay-portal/portal-web/test-results" erroronmissingdir="false">
 					<include name="**/TEST-*.xml" />
 				</fileset>
-				<fileset dir="util-java/test-results" erroronmissingdir="false">
+				<fileset dir="/opt/dev/projects/github/liferay-portal/util-java/test-results" erroronmissingdir="false">
 					<include name="**/TEST-*.xml" />
 				</fileset>
 				<report format="frames" todir="test-results/html" />
