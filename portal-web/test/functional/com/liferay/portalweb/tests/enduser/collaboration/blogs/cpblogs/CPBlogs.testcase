@@ -119,6 +119,8 @@
 	</command>
 
 	<command name="AddBlogsEntry" priority="4">
+		<property name="portal.test" value="test" />
+
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">

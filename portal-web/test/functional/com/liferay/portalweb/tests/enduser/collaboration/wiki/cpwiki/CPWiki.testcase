@@ -29,6 +29,8 @@
 		<property name="osgi.app.includes" value="wiki-engine-mediawiki" />
 		<property name="test.assert.warning.exceptions" value="true" />
 
+		<property name="portal.test" value="test" />
+
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">

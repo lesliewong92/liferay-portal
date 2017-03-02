@@ -33,6 +33,8 @@
 	</command>
 
 	<command name="ViewEntry" priority="5">
+		<property name="portal.test" value="test" />
+
 		<execute macro="UserBar#gotoProfile" />
 
 		<execute macro="Portlet#addPG">
