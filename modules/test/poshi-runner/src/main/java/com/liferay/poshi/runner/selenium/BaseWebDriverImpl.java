@@ -1120,7 +1120,12 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 
 		text = text.trim();
 
-		return text.replace("\n", " ");
+		if (locator.contains("Editor")) {
+			return text.replace("\n", "");
+		}
+		else {
+			return text.replace("\n", " ");
+		}
 	}
 
 	public String getTextAceEditor(String locator) throws Exception {

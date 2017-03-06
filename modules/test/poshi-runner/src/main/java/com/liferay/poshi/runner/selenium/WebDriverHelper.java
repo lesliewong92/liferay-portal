@@ -700,6 +700,13 @@ public class WebDriverHelper {
 
 		String text = webElement.getText();
 
+		if (locator.contains("Editor")) {
+			text = text.replace("\n", "");
+		}
+		else {
+			text = replace("\n", "");
+		}
+
 		return text.contains(value);
 	}
 
