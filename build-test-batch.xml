@@ -2421,20 +2421,13 @@ information. Make sure to commit in all build services results.
 	<target name="subrepository-compile-jdk8">
 		<fail message="Please set the property ${subrepository.name}." unless="subrepository.name" />
 
-		<get-module-base-dir-from-subrepository-name subrepository.name="${subrepository.name}" />
-
 		<trycatch property="failure.property">
 			<try>
-				<move file="${module.base.dir}/settings.gradle" tofile="${module.base.dir}/settings.gradle.temp" />
-
 				<gradle-execute dir="${module.base.dir}" task="compileJava" />
 			</try>
 			<catch>
 				<fail message="${failure.property}" />
 			</catch>
-			<finally>
-				<move file="${module.base.dir}/settings.gradle.temp" tofile="${module.base.dir}/settings.gradle" />
-			</finally>
 		</trycatch>
 	</target>
 
@@ -2455,8 +2448,6 @@ information. Make sure to commit in all build services results.
 
 		<trycatch property="failure.property">
 			<try>
-				<move file="${module.base.dir}/settings.gradle" tofile="${module.base.dir}/settings.gradle.temp" />
-
 				<gradle-execute dir="${module.base.dir}" task="pmdMain">
 					<arg value="pmdTest" />
 					<arg value="pmdTestIntegration" />
@@ -2465,81 +2456,27 @@ information. Make sure to commit in all build services results.
 			<catch>
 				<fail message="${failure.property}" />
 			</catch>
-			<finally>
-				<move file="${module.base.dir}/settings.gradle.temp" tofile="${module.base.dir}/settings.gradle" />
-			</finally>
 		</trycatch>
 	</target>
 
 	<target name="subrepository-semantic-versioning-jdk8">
 		<fail message="Please set the property ${subrepository.name}." unless="subrepository.name" />
 
-		<get-module-base-dir-from-subrepository-name subrepository.name="${subrepository.name}" />
-
-		<echo>Deleting stale baseline log files.</echo>
-
-		<delete failonerror="false">
-			<fileset dir="${project.dir}">
-				<include name="baseline-reports/*.log" />
-				<include name="modules/**/baseline.log" />
-			</fileset>
-		</delete>
-
-		<echo file="build.${user.name}.properties">baseline.jar.report.level=persist</echo>
-
-		<echo>Executing baseline on ${module.base.dir}.</echo>
 		<trycatch property="failure.property">
 			<try>
-				<move file="${module.base.dir}/settings.gradle" tofile="${module.base.dir}/settings.gradle.temp" />
-
 				<gradle-execute dir="${module.base.dir}" forcedcacheenabled="false" task="baseline" />
 			</try>
 			<catch>
 				<fail message="${failure.property}" />
 			</catch>
-			<finally>
-				<move file="${module.base.dir}/settings.gradle.temp" tofile="${module.base.dir}/settings.gradle" />
-			</finally>
 		</trycatch>
-
-		<echo>Checking for baseline log files.</echo>
-
-		<var name="log.files" unset="true" />
-
-		<fileset dir="${project.dir}" id="log.files">
-			<include name="baseline-reports/*.log" />
-			<include name="modules/**/baseline.log" />
-		</fileset>
-
-		<pathconvert pathsep="," property="log.files" refid="log.files" />
-
-		<for list="${log.files}" param="log.file">
-			<sequential>
-				<print-file file.name="@{log.file}" />
-			</sequential>
-		</for>
-
-		<if>
-			<not>
-				<equals arg1="${log.files}" arg2="" />
-			</not>
-			<then>
-				<fail message="Semantic versioning is incorrect." />
-			</then>
-		</if>
-
-		<echo>Check for baseline log files completed.</echo>
 	</target>
 
 	<target name="subrepository-source-format-jdk8">
 		<fail message="Please set the property ${subrepository.name}." unless="subrepository.name" />
 
-		<get-module-base-dir-from-subrepository-name subrepository.name="${subrepository.name}" />
-
 		<trycatch property="failure.property">
 			<try>
-				<move file="${module.base.dir}/settings.gradle" tofile="${module.base.dir}/settings.gradle.temp" />
-
 				<gradle-execute dir="${module.base.dir}" task="checkSourceFormatting">
 					<arg value="-PdependencyCheckerIgnoreFailures=false" />
 				</gradle-execute>
@@ -2547,21 +2484,14 @@ information. Make sure to commit in all build services results.
 			<catch>
 				<fail message="${failure.property}" />
 			</catch>
-			<finally>
-				<move file="${module.base.dir}/settings.gradle.temp" tofile="${module.base.dir}/settings.gradle" />
-			</finally>
 		</trycatch>
 	</target>
 
 	<target name="subrepository-unit-jdk8">
 		<fail message="Please set the property ${subrepository.name}." unless="subrepository.name" />
 
-		<get-module-base-dir-from-subrepository-name subrepository.name="${subrepository.name}" />
-
 		<trycatch property="failure.property">
 			<try>
-				<move file="${module.base.dir}/settings.gradle" tofile="${module.base.dir}/settings.gradle.temp" />
-
 				<gradle-execute dir="${module.base.dir}" task="test" />
 			</try>
 			<catch>
@@ -2569,8 +2499,6 @@ information. Make sure to commit in all build services results.
 			</catch>
 			<finally>
 				<merge-test-results />
-
-				<move file="${module.base.dir}/settings.gradle.temp" tofile="${module.base.dir}/settings.gradle" />
 			</finally>
 		</trycatch>
 	</target>
