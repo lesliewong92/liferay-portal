@@ -29,7 +29,8 @@ public class SafariWebDriverImpl extends BaseWebDriverImpl {
 	}
 
 	@Override
-	public void assertConfirmation(String pattern) throws Exception {
+	public void assertConfirmation(String pattern, String value)
+		throws Exception {
 	}
 
 	@Override

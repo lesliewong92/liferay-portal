@@ -938,18 +938,23 @@ public class PoshiRunnerContext {
 
 				String xml = rootElement.asXML();
 
-				for (int i = 1;; i++) {
-					if (xml.contains("${locator" + i + "}")) {
-						continue;
+				if (className.contains("Confirm")) {
+					_functionLocatorCounts.put(className, 2);
+				}
+				else {
+					for (int i = 1;; i++) {
+						if (xml.contains("${locator" + i + "}")) {
+							continue;
+						}
+
+						if (i > 1) {
+							i--;
+						}
+
+						_functionLocatorCounts.put(className, i);
+
+						break;
 					}
-
-					if (i > 1) {
-						i--;
-					}
-
-					_functionLocatorCounts.put(className, i);
-
-					break;
 				}
 			}
 		}

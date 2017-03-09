@@ -228,11 +228,6 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 	}
 
 	@Override
-	public void assertConfirmation(String pattern) throws Exception {
-		assertConfirmation(pattern, null);
-	}
-
-	@Override
 	public void assertConfirmation(String pattern, String value)
 		throws Exception {
 
@@ -441,11 +436,6 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 		if (isVisible(locator)) {
 			throw new Exception("Element is visible at \"" + locator + "\"");
 		}
-	}
-
-	@Override
-	public void assertPartialConfirmation(String pattern) throws Exception {
-		assertPartialConfirmation(pattern, null);
 	}
 
 	@Override
@@ -869,11 +859,6 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 	}
 
 	@Override
-	public String getConfirmation() {
-		return getConfirmation(null);
-	}
-
-	@Override
 	public String getConfirmation(String value) {
 		return WebDriverHelper.getConfirmation(this, value);
 	}
@@ -1232,11 +1217,6 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 		scrollWebElementIntoView(webElement);
 
 		return webElement.isSelected();
-	}
-
-	@Override
-	public boolean isConfirmation(String pattern) {
-		return isConfirmation(pattern, null);
 	}
 
 	@Override
@@ -2505,11 +2485,11 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 
 		for (int second = 0;; second++) {
 			if (second >= timeout) {
-				assertConfirmation(pattern);
+				assertConfirmation(pattern, null);
 			}
 
 			try {
-				if (isConfirmation(pattern)) {
+				if (isConfirmation(pattern, null)) {
 					break;
 				}
 			}
