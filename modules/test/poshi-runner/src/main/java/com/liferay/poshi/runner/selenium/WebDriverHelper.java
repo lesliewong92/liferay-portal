@@ -270,7 +270,7 @@ public class WebDriverHelper {
 		}
 	}
 
-	public static String getConfirmation(WebDriver webDriver) {
+	public static String getConfirmation(WebDriver webDriver, String value) {
 		webDriver.switchTo();
 
 		WebDriverWait webDriverWait = new WebDriverWait(webDriver, 1);
@@ -280,6 +280,10 @@ public class WebDriverHelper {
 				ExpectedConditions.alertIsPresent());
 
 			String confirmation = alert.getText();
+
+			if (value != null) {
+				alert.sendKeys(value);
+			}
 
 			alert.accept();
 
@@ -770,7 +774,7 @@ public class WebDriverHelper {
 		navigation.refresh();
 
 		if (isAlertPresent(webDriver)) {
-			getConfirmation(webDriver);
+			getConfirmation(webDriver, null);
 		}
 	}
 

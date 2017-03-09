@@ -34,6 +34,9 @@ public interface LiferaySelenium {
 
 	public void assertConfirmation(String pattern) throws Exception;
 
+	public void assertConfirmation(String pattern, String value)
+		throws Exception;
+
 	public void assertConsoleErrors() throws Exception;
 
 	public void assertConsoleTextNotPresent(String text) throws Exception;
@@ -91,6 +94,9 @@ public interface LiferaySelenium {
 	public void assertNotVisible(String locator) throws Exception;
 
 	public void assertPartialConfirmation(String pattern) throws Exception;
+
+	public void assertPartialConfirmation(String pattern, String value)
+		throws Exception;
 
 	public void assertPartialLocation(String pattern) throws Exception;
 
@@ -156,6 +162,8 @@ public interface LiferaySelenium {
 
 	public String getConfirmation();
 
+	public String getConfirmation(String value);
+
 	public String getCurrentDay();
 
 	public String getCurrentDayName();
@@ -215,6 +223,8 @@ public interface LiferaySelenium {
 	public boolean isChecked(String locator);
 
 	public boolean isConfirmation(String pattern);
+
+	public boolean isConfirmation(String pattern, String value);
 
 	public boolean isConsoleTextNotPresent(String text) throws Exception;
 

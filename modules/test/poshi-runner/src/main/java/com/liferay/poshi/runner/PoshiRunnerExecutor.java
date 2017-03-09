@@ -799,8 +799,18 @@ public class PoshiRunnerExecutor {
 					}
 				}
 				else if (i == 1) {
-					argument = PoshiRunnerVariablesUtil.getStringFromCommandMap(
-						"value1");
+					if (selenium.equals("assertConfirmation") ||
+						selenium.equals("waitForConfirmation")) {
+
+						argument =
+							PoshiRunnerVariablesUtil.getStringFromCommandMap(
+								"value2");
+					}
+					else {
+						argument =
+							PoshiRunnerVariablesUtil.getStringFromCommandMap(
+								"value1");
+					}
 
 					if (selenium.equals("clickAt")) {
 						argument = "";

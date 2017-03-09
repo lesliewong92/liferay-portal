@@ -229,7 +229,14 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 
 	@Override
 	public void assertConfirmation(String pattern) throws Exception {
-		String confirmation = getConfirmation();
+		assertConfirmation(pattern, null);
+	}
+
+	@Override
+	public void assertConfirmation(String pattern, String value)
+		throws Exception {
+
+		String confirmation = getConfirmation(value);
 
 		if (!pattern.equals(confirmation)) {
 			throw new Exception(
@@ -438,7 +445,14 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 
 	@Override
 	public void assertPartialConfirmation(String pattern) throws Exception {
-		String confirmation = getConfirmation();
+		assertPartialConfirmation(pattern, null);
+	}
+
+	@Override
+	public void assertPartialConfirmation(String pattern, String value)
+		throws Exception {
+
+		String confirmation = getConfirmation(value);
 
 		if (!confirmation.contains(pattern)) {
 			throw new Exception(
@@ -856,7 +870,12 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 
 	@Override
 	public String getConfirmation() {
-		return WebDriverHelper.getConfirmation(this);
+		return getConfirmation(null);
+	}
+
+	@Override
+	public String getConfirmation(String value) {
+		return WebDriverHelper.getConfirmation(this, value);
 	}
 
 	@Override
@@ -1217,7 +1236,12 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 
 	@Override
 	public boolean isConfirmation(String pattern) {
-		String confirmation = getConfirmation();
+		return isConfirmation(pattern, null);
+	}
+
+	@Override
+	public boolean isConfirmation(String pattern, String value) {
+		String confirmation = getConfirmation(value);
 
 		return pattern.equals(confirmation);
 	}
