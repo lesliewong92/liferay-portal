@@ -70,7 +70,7 @@ public class JenkinsResultsParserUtil {
 			"/liferay-portal/test.properties"
 	};
 
-	public static boolean debug;
+	public static boolean debug = true;
 
 	public static String combine(String...strings) {
 		if ((strings == null) || (strings.length == 0)) {
@@ -162,7 +162,7 @@ public class JenkinsResultsParserUtil {
 
 		String[] bashCommands = new String[3];
 
-		bashCommands[0] = "/bin/sh";
+		bashCommands[0] = "/bin/bash";
 		bashCommands[1] = "-c";
 
 		String commandTerminator = ";";

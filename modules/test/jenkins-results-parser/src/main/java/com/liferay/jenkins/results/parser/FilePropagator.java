@@ -150,7 +150,11 @@ public class FilePropagator {
 		}
 
 		try {
-			if (_executeBashCommands(commands, targetSlave) != 0) {
+			int responseCode = _executeBashCommands(commands, targetSlave);
+
+			System.out.println(responseCode);
+
+			if (responseCode != 0) {
 				_errorSlaves.add(targetSlave);
 				_targetSlaves.remove(targetSlave);
 
@@ -266,6 +270,8 @@ public class FilePropagator {
 					commands, _targetSlave) == 0;
 			}
 			catch (Exception e) {
+				e.printStackTrace();
+
 				_successful = false;
 			}
 
