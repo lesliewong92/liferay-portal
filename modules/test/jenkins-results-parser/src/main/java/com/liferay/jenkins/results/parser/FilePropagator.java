@@ -182,6 +182,10 @@ public class FilePropagator {
 
 		StringBuffer sb = new StringBuffer("ssh -o PasswordAuthentication=no ");
 
+		if (targetSlave.contains("test-")) {
+			sb.append("-i ~/.ssh/id_rsa_jenkins-master@liferay.com ");
+		}
+
 		sb.append(targetSlave);
 		sb.append(" '");
 
