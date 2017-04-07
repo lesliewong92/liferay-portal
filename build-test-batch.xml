@@ -1254,6 +1254,8 @@ app.server.type=@{app.server.type}]]></echo>
 										<try>
 											<move file="${module.base.dir}/settings.gradle" tofile="${module.base.dir}/settings.gradle.temp" />
 
+											<gradle-execute dir="${module.base.dir}" task="deploy" />
+
 											<gradle-execute dir="${module.base.dir}" task="testIntegration">
 												<arg value="-Ddatabase.type=@{database.type}" />
 												<arg value="-Dbuild.exclude.ant.plugin=true" />
