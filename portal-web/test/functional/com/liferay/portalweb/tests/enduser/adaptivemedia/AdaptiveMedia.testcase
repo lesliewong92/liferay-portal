@@ -3,6 +3,7 @@
 	<property name="portal.upstream" value="false" />
 	<property name="custom.properties" value="default.layout.template.id=1_column" />
 	<property name="testray.main.component.name" value="Adaptive Media" />
+	<property name="osgi.app.includes" value="adaptive-media" />
 
 	<set-up>
 		<execute macro="TestCase#setUpPortalInstance" />
