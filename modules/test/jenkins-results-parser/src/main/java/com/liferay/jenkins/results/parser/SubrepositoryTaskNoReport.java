@@ -17,12 +17,14 @@ package com.liferay.jenkins.results.parser;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.dom4j.Element;
+
 /**
  * @author Leslie Wong
  */
 public class SubrepositoryTaskNoReport extends SubrepositoryTask {
 
-	public SubrepositoryTaskNoReport(String consoleSnippet) throws Exception {
+	public SubrepositoryTaskNoReport(String consoleSnippet) {
 		this.consoleSnippet = consoleSnippet;
 
 		Matcher matcher = consoleResultPattern.matcher(consoleSnippet);
@@ -50,19 +52,19 @@ public class SubrepositoryTaskNoReport extends SubrepositoryTask {
 	}
 
 	@Override
-	public String getGitHubMessage() throws Exception {
-		StringBuilder sb = new StringBuilder();
-
+	public Element getFailureMessageElement() {
 		GenericFailureMessageGenerator genericFailureMessageGenerator =
 			new GenericFailureMessageGenerator();
 
-		sb.append("<pre><code>");
-		sb.append(
-			genericFailureMessageGenerator.getMessage(
-				null, consoleSnippet, null));
-		sb.append("</code></pre>");
+		Element element = Dom4JUtil.getNewElement("pre");
 
-		return sb.toString();
+		Dom4JUtil.addToElement(
+			element, Dom4JUtil.getNewElement(
+				"code", null,
+				genericFailureMessageGenerator.getMessage(
+					null, consoleSnippet, null)));
+
+		return element;
 	}
 
 	protected static final Pattern consoleResultPattern = Pattern.compile(

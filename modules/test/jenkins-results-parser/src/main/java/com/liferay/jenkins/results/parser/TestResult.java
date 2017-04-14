@@ -19,6 +19,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.dom4j.Element;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -28,7 +30,7 @@ import org.json.JSONObject;
 public class TestResult {
 
 	public static List<TestResult> getTestResults(
-		AxisBuild axisBuild, JSONArray suitesJSONArray, String testStatus) {
+		Build build, JSONArray suitesJSONArray, String testStatus) {
 
 		List<TestResult> testResults = new ArrayList<>();
 
@@ -39,7 +41,7 @@ public class TestResult {
 
 			for (int j = 0; j < casesJSONArray.length(); j++) {
 				TestResult testResult = new TestResult(
-					axisBuild, casesJSONArray.getJSONObject(j));
+					build, casesJSONArray.getJSONObject(j));
 
 				if ((testStatus == null) ||
 					testStatus.equals(testResult.getStatus())) {
@@ -52,12 +54,12 @@ public class TestResult {
 		return testResults;
 	}
 
-	public TestResult(AxisBuild axisBuild, JSONObject caseJSONObject) {
-		if (axisBuild == null) {
-			throw new IllegalArgumentException("Axis build may not be null");
+	public TestResult(Build build, JSONObject caseJSONObject) {
+		if (build == null) {
+			throw new IllegalArgumentException("Build may be null");
 		}
 
-		this.axisBuild = axisBuild;
+		this.build = build;
 
 		className = caseJSONObject.getString("className");
 
@@ -74,18 +76,52 @@ public class TestResult {
 		status = caseJSONObject.getString("status");
 	}
 
-	public AxisBuild getAxisBuild() {
-		return axisBuild;
+	public Element getGitHubListItemElement(String testRayLogsURL) {
+		String testReportURL = getTestReportURL();
+
+		Element downstreamBuildListItemElement = Dom4JUtil.getNewElement(
+			"li", null);
+
+		downstreamBuildListItemElement.add(
+			Dom4JUtil.getNewAnchorElement(testReportURL, getDisplayName()));
+
+		if (testReportURL.contains(
+				"com.liferay.poshi.runner/PoshiRunner")) {
+
+			Dom4JUtil.addToElement(
+				downstreamBuildListItemElement, " - ",
+				Dom4JUtil.getNewAnchorElement(
+					getPoshiReportURL(testRayLogsURL), "Poshi Report"),
+				" - ",
+				Dom4JUtil.getNewAnchorElement(
+					getPoshiSummaryURL(testRayLogsURL), "Poshi Summary"),
+				" - ",
+				Dom4JUtil.getNewAnchorElement(
+					getConsoleOutputURL(testRayLogsURL), "Console Output"));
+
+			if (hasLiferayLog()) {
+				Dom4JUtil.addToElement(
+					downstreamBuildListItemElement, " - ",
+					Dom4JUtil.getNewAnchorElement(
+						getLiferayLogURL(testRayLogsURL), "Liferay Log"));
+			}
+		}
+
+		return downstreamBuildListItemElement;
+	}
+
+	public Build getAxisBuild() {
+		return build;
 	}
 
 	public String getClassName() {
 		return className;
 	}
 
-	public String getConsoleOutputURL() {
+	public String getConsoleOutputURL(String testRayLogsURL) {
 		StringBuilder sb = new StringBuilder();
 
-		sb.append(axisBuild.getTestRayLogsURL());
+		sb.append(testRayLogsURL);
 		sb.append("/jenkins-console.txt.gz");
 
 		return sb.toString();
@@ -103,12 +139,12 @@ public class TestResult {
 		return duration;
 	}
 
-	public String getLiferayLogURL() {
+	public String getLiferayLogURL(String testRayLogsURL) {
 		StringBuilder sb = new StringBuilder();
 
 		String name = getDisplayName();
 
-		sb.append(axisBuild.getTestRayLogsURL());
+		sb.append(testRayLogsURL);
 		sb.append("/");
 		sb.append(name.replace("#", "_"));
 		sb.append("/liferay-log.txt.gz");
@@ -116,12 +152,12 @@ public class TestResult {
 		return sb.toString();
 	}
 
-	public String getPoshiReportURL() {
+	public String getPoshiReportURL(String testRayLogsURL) {
 		StringBuilder sb = new StringBuilder();
 
 		String name = getDisplayName();
 
-		sb.append(axisBuild.getTestRayLogsURL());
+		sb.append(testRayLogsURL);
 		sb.append("/");
 		sb.append(name.replace("#", "_"));
 		sb.append("/index.html.gz");
@@ -129,12 +165,12 @@ public class TestResult {
 		return sb.toString();
 	}
 
-	public String getPoshiSummaryURL() {
+	public String getPoshiSummaryURL(String testRayLogsURL) {
 		StringBuilder sb = new StringBuilder();
 
 		String name = getDisplayName();
 
-		sb.append(axisBuild.getTestRayLogsURL());
+		sb.append(testRayLogsURL);
 		sb.append("/");
 		sb.append(name.replace("#", "_"));
 		sb.append("/summary.html.gz");
@@ -153,7 +189,7 @@ public class TestResult {
 	public String getTestReportURL() {
 		StringBuilder sb = new StringBuilder();
 
-		sb.append(axisBuild.getBuildURL());
+		sb.append(build.getBuildURL());
 		sb.append("/testReport/");
 		sb.append(packageName);
 		sb.append("/");
@@ -175,12 +211,12 @@ public class TestResult {
 		return sb.toString();
 	}
 
-	public boolean hasLiferayLog() {
+	public boolean hasLiferayLog(String testRayLogsURL) {
 		String liferayLog = null;
 
 		try {
 			liferayLog = JenkinsResultsParserUtil.toString(
-				getLiferayLogURL(), false, 0, 0, 0);
+				getLiferayLogURL(testRayLogsURL), false, 0, 0, 0);
 		}
 		catch (IOException ioe) {
 			return false;
@@ -189,7 +225,7 @@ public class TestResult {
 		return !liferayLog.isEmpty();
 	}
 
-	protected AxisBuild axisBuild;
+	protected Build build;
 	protected String className;
 	protected long duration;
 	protected String packageName;

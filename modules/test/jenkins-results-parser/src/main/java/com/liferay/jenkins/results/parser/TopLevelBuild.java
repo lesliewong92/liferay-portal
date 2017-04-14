@@ -401,6 +401,15 @@ public class TopLevelBuild extends BaseBuild {
 		return resultElement;
 	}
 
+	protected Element getRootElement() {
+		return Dom4JUtil.getNewElement(
+			"html", null, getResultElement(), getBuildTimeElement(),
+			Dom4JUtil.getNewElement("h4", null, "Base Branch:"),
+			getBaseBranchDetailsElement(),
+			Dom4JUtil.getNewElement("h4", null, "Job Summary:"),
+			getJobSummaryListElement(), getMoreDetailsElement());
+	}
+
 	@Override
 	protected String getStartPropertiesTempMapURL() {
 		if (fromArchive) {
@@ -446,12 +455,7 @@ public class TopLevelBuild extends BaseBuild {
 	protected Element getTopGitHubMessageElement() {
 		update();
 
-		Element rootElement = Dom4JUtil.getNewElement(
-			"html", null, getResultElement(), getBuildTimeElement(),
-			Dom4JUtil.getNewElement("h4", null, "Base Branch:"),
-			getBaseBranchDetailsElement(),
-			Dom4JUtil.getNewElement("h4", null, "Job Summary:"),
-			getJobSummaryListElement(), getMoreDetailsElement());
+		Element rootElement = getRootElement();
 
 		String result = getResult();
 

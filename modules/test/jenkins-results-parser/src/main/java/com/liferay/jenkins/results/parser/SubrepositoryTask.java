@@ -14,20 +14,61 @@
 
 package com.liferay.jenkins.results.parser;
 
+import java.io.IOException;
+
+import java.util.Properties;
+
+import org.dom4j.Element;
+
 /**
  * @author Leslie Wong
  */
 public abstract class SubrepositoryTask {
 
-	public SubrepositoryTask() throws Exception {
+	public SubrepositoryTask() {
 	}
 
-	public abstract String getGitHubMessage() throws Exception;
+	public Element getTaskSummaryListIndexElement() {
+		Properties buildProperties;
+
+		try {
+			buildProperties = JenkinsResultsParserUtil.getBuildProperties();
+		}
+		catch (IOException ioe) {
+			throw new RuntimeException("Unable to get build properties");
+		}
+
+		String logFileName =
+			buildProperties.getProperty("top.level.user.content.url") + "/" +
+				taskName + ".log";
+
+		Element element = Dom4JUtil.getNewElement(
+			"li", null, Dom4JUtil.getNewAnchorElement(logFileName, taskName));
+
+		if (result.equals("SUCCESS")) {
+			Dom4JUtil.addToElement(element, " - :white_check_mark:");
+		}
+
+		if (result.equals("ABORTED")) {
+			Dom4JUtil.addToElement(
+				element, " -  :no_entry:", getFailureMessageElement());
+		}
+
+		if (result.equals("FAILURE")) {
+			Dom4JUtil.addToElement(
+				element, " -  :x:", getFailureMessageElement());
+		}
+
+		return element;
+	}
 
 	public String getResult() {
 		return result;
 	}
 
+	protected abstract Element getFailureMessageElement();
+
 	protected static String result;
+	protected static String taskName;
 
 }
