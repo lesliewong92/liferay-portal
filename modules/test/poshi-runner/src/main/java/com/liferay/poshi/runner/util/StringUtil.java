@@ -363,6 +363,38 @@ public class StringUtil {
 		return true;
 	}
 
+	public static String padLeft(Integer s, String len, String pad) {
+		return padLeft(String.valueOf(s), Integer.valueOf(len), pad);
+	}
+
+	public static String padLeft(String s, Integer len, String pad) {
+		while (s.length() < len) {
+			s = pad + s;
+		}
+
+		return s;
+	}
+
+	public static String padLeft(String s, String len, String pad) {
+		return padLeft(s, Integer.valueOf(len), pad);
+	}
+
+	public static String padRight(Integer s, String len, String pad) {
+		return padRight(String.valueOf(s), Integer.valueOf(len), pad);
+	}
+
+	public static String padRight(String s, Integer len, String pad) {
+		while (s.length() < len) {
+			s = s + pad;
+		}
+
+		return s;
+	}
+
+	public static String padRight(String s, String len, String pad) {
+		return padRight(s, Integer.valueOf(len), pad);
+	}
+
 	public static String quote(String s, String quote) {
 		if (s == null) {
 			return null;
