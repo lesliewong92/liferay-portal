@@ -16,8 +16,6 @@ package com.liferay.jenkins.results.parser.failure.message.generator;
 
 import com.liferay.jenkins.results.parser.Build;
 
-import java.util.Hashtable;
-
 import org.dom4j.Element;
 
 /**
@@ -27,34 +25,12 @@ public class GenericFailureMessageGenerator
 	extends BaseFailureMessageGenerator {
 
 	@Override
-	public String getMessage(
-		String buildURL, String consoleOutput, Hashtable<?, ?> properties) {
-
-		String message = getExceptionSnippet(consoleOutput);
-
-		if (message != null) {
-			return message;
-		}
-
-		message = getMergeTestResultsSnippet(consoleOutput);
-
-		if (message != null) {
-			return message;
-		}
-
-		message = getBuildFailedSnippet(consoleOutput);
-
-		if (message != null) {
-			return message;
-		}
-
-		return getConsoleOutputSnippet(consoleOutput, true, -1);
+	public Element getMessageElement(Build build) {
+		return getMessageElement(build.getConsoleText());
 	}
 
 	@Override
-	public Element getMessageElement(Build build) {
-		String consoleText = build.getConsoleText();
-
+	public Element getMessageElement(String consoleText) {
 		Element message = getExceptionSnippetElement(consoleText);
 
 		if (message != null) {
