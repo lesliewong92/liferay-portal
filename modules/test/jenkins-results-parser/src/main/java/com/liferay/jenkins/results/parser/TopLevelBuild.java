@@ -410,10 +410,10 @@ public class TopLevelBuild extends BaseBuild {
 		return jobSummaryListElement;
 	}
 
-	protected Element getMoreDetailsElement() {
+	protected Element getMoreDetailsElement(String url) {
 		Element moreDetailsElement = Dom4JUtil.getNewElement(
 			"h5", null, "For more details click ",
-			Dom4JUtil.getNewAnchorElement(getJenkinsReportURL(), "here"), ".");
+			Dom4JUtil.getNewAnchorElement(url, "here"), ".");
 
 		return moreDetailsElement;
 	}
@@ -489,7 +489,8 @@ public class TopLevelBuild extends BaseBuild {
 
 		Dom4JUtil.addToElement(
 			rootElement, Dom4JUtil.getNewElement("h4", null, "Job Summary:"),
-			getJobSummaryListElement(), getMoreDetailsElement());
+			getJobSummaryListElement(),
+			getMoreDetailsElement(getJenkinsReportURL()));
 
 		String result = getResult();
 
