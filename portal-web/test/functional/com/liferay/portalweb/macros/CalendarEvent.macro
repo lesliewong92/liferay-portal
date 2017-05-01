@@ -1005,7 +1005,7 @@
 			</else>
 		</if>
 
-		<var method="DateUtil#getCurrentDayName()" name="currentDay" />
+		<var method="DateUtil#getCurrentDayOfWeek()" name="currentDay" />
 		<var method="DateUtil#getCurrentHour()" name="currentHour" />
 
 		<if>
@@ -2075,7 +2075,7 @@
 							<execute function="AssertTextEquals#assertPartialText" locator1="CalendarViewEventDetails#REPEAT_OCCURRENCE_SUMMARY" value1=", ${numberOfOccurrences} Times" />
 						</then>
 						<else>
-							<var method="DateUtil#getCurrentDayName()" name="today" />
+							<var method="DateUtil#getCurrentDayOfWeek()" name="today" />
 
 							<execute function="AssertTextEquals" locator1="CalendarViewEventDetails#REPEAT_OCCURRENCE_SUMMARY" value1="Weekly, on ${today}, ${numberOfOccurrences} Times" />
 						</else>
@@ -2091,7 +2091,7 @@
 			<elseif>
 				<equals arg1="${frequency}" arg2="Monthly" />
 				<then>
-					<var method="DateUtil#getCurrentDayName()" name="today" />
+					<var method="DateUtil#getCurrentDayOfWeek()" name="today" />
 
 					<execute function="AssertTextEquals#assertPartialText" locator1="CalendarViewEventDetails#REPEAT_OCCURRENCE_SUMMARY" value1="Monthly" />
 					<execute function="AssertTextEquals#assertPartialText" locator1="CalendarViewEventDetails#REPEAT_OCCURRENCE_SUMMARY" value1="${numberOfOccurrences} Times" />
