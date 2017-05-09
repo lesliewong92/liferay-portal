@@ -69,8 +69,13 @@ public class TopLevelBuild extends BaseBuild {
 		}
 
 		try {
-			writeArchiveFile(
-				getJenkinsReport(), getArchivePath() + "/jenkins-report.html");
+			if (!jobName.startsWith(
+					"test-subrepository-acceptance-pullrequest")) {
+
+				writeArchiveFile(
+					getJenkinsReport(),
+					getArchivePath() + "/jenkins-report.html");
+			}
 		}
 		catch (IOException ioe) {
 			throw new RuntimeException("Unable to archive Jenkins report", ioe);
