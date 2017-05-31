@@ -963,6 +963,31 @@ public class PoshiRunnerContext {
 							commandElement.attributeValue("description"));
 					}
 				}
+				else if (classType.equals("function")) {
+					List<Element> executeElements = commandElement.elements(
+						"execute");
+
+					for (Element executeElement : executeElements) {
+						String seleniumCommand = executeElement.attributeValue(
+							"selenium");
+
+						if (Validator.isNull(seleniumCommand)) {
+							continue;
+						}
+
+						if (!PropsValues.TEST_ASSERT_CONSOLE_ERRORS &&
+							seleniumCommand.equals("assertLiferayErrors")) {
+
+							commandElement.remove(executeElement);
+						}
+
+						if (!PropsValues.TEST_ASSERT_JAVASCRIPT_ERRORS &&
+							seleniumCommand.equals("assertJavaScriptErrors")) {
+
+							commandElement.remove(executeElement);
+						}
+					}
+				}
 			}
 
 			if (classType.equals("function")) {
