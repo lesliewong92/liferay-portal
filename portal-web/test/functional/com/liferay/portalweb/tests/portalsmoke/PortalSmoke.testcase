@@ -3,7 +3,7 @@
 	<property name="portal.upstream" value="true" />
 	<property name="testray.main.component.name" value="Smoke" />
 
-	<set-up>
+	<!-- <set-up>
 		<execute macro="TestCase#setUpPortalInstance" />
 
 		<execute macro="SignIn#signInTestSetup" />
@@ -23,14 +23,18 @@
 				<execute macro="WebContent#tearDownCP" />
 			</else>
 		</if>
-	</tear-down>
+	</tear-down> -->
 
 	<command description="Ensure that the super admin can add pages, add portlets, navigate to the product menu, use the WYSIWYG editor, and view alert messages." name="Smoke" priority="5">
-		<property name="portal.smoke" value="true" />
-		<property name="test.assert.warning.exceptions" value="true" />
+		<!-- <property name="portal.smoke" value="true" />
+		<property name="test.assert.warning.exceptions" value="true" /> -->
 
-		<execute macro="Smoke#viewWelcomePage" />
+		<!-- <execute macro="Smoke#viewWelcomePage" />
 
-		<execute macro="Smoke#runSmoke" />
+		<execute macro="Smoke#runSmoke" /> -->
+
+		<property name="test.assert.console.errors" value="true" />
+
+		<execute function="Open" locator1="https://google.com" />
 	</command>
 </definition>

@@ -6744,7 +6744,6 @@ auto.deploy.dest.dir=C:/WINDOWS/system32/config/systemprofile/liferay/websphere-
 			product.names=${product.names}
 			project.dir=${project.dir}
 			test.case.available.property.names=${test.case.available.property.names}
-			test.console.log.file.name=${liferay.home}/logs/liferay.*.xml
 			test.console.shut.down.file.name=${project.dir}/console-shut-down
 			test.dependencies.dir.name=dependencies
 			test.poshi.warnings.file.name=${project.dir}/poshi-warnings.xml
@@ -6767,6 +6766,49 @@ auto.deploy.dest.dir=C:/WINDOWS/system32/config/systemprofile/liferay/websphere-
 			<then>
 				<echo append="true" file="${test.ext.properties.file}">
 					print.java.process.on.fail=${print.java.process.on.fail}
+				</echo>
+			</then>
+		</if>
+
+		<if>
+			<not>
+				<isset property="test.assert.console.errors" />
+			</not>
+			<then>
+				<get-testcase-property property.name="test.assert.console.errors" />
+			</then>
+		</if>
+
+		<if>
+			<or>
+				<equals arg1="${test.assert.console.errors}" arg2="false" />
+				<equals arg1="${test.assert.console.errors}" arg2="true" />
+			</or>
+			<then>
+				<echo append="true" file="${test.ext.properties.file}">
+					test.assert.console.errors=${test.assert.console.errors}
+				</echo>
+			</then>
+		</if>
+
+		<get-testcase-property property.name="test.assert.javascript.errors" />
+
+		<if>
+			<equals arg1="${test.assert.javascript.errors}" arg2="false" />
+			<then>
+				<echo append="true" file="${test.ext.properties.file}">
+					test.assert.javascript.errors=false
+				</echo>
+			</then>
+		</if>
+
+		<get-testcase-property property.name="test.assert.warning.exceptions" />
+
+		<if>
+			<isset property="test.assert.warning.exceptions" />
+			<then>
+				<echo append="true" file="${test.ext.properties.file}">
+					test.assert.warning.exceptions=${test.assert.warning.exceptions}
 				</echo>
 			</then>
 		</if>
@@ -7062,27 +7104,6 @@ auto.deploy.dest.dir=C:/WINDOWS/system32/config/systemprofile/liferay/websphere-
 			<then>
 				<echo append="true" file="${test.ext.properties.file}">
 					tear.down.before.test=true
-				</echo>
-			</then>
-		</if>
-
-		<if>
-			<not>
-				<isset property="test.assert.console.errors" />
-			</not>
-			<then>
-				<get-testcase-property property.name="test.assert.console.errors" />
-			</then>
-		</if>
-
-		<if>
-			<or>
-				<equals arg1="${test.assert.console.errors}" arg2="false" />
-				<equals arg1="${test.assert.console.errors}" arg2="true" />
-			</or>
-			<then>
-				<echo append="true" file="${test.ext.properties.file}">
-					test.assert.console.errors=${test.assert.console.errors}
 				</echo>
 			</then>
 		</if>
@@ -7922,28 +7943,6 @@ auto.deploy.dest.dir=C:/WINDOWS/system32/config/systemprofile/liferay/websphere-
 			<then>
 				<echo append="true" file="${test.ext.properties.file}">
 					ignore.errors.delimiter=${ignore.errors.delimiter}
-				</echo>
-			</then>
-		</if>
-
-		<get-testcase-property property.name="test.assert.javascript.errors" />
-
-		<if>
-			<equals arg1="${test.assert.javascript.errors}" arg2="false" />
-			<then>
-				<echo append="true" file="${test.ext.properties.file}">
-					test.assert.javascript.errors=false
-				</echo>
-			</then>
-		</if>
-
-		<get-testcase-property property.name="test.assert.warning.exceptions" />
-
-		<if>
-			<isset property="test.assert.warning.exceptions" />
-			<then>
-				<echo append="true" file="${test.ext.properties.file}">
-					test.assert.warning.exceptions=${test.assert.warning.exceptions}
 				</echo>
 			</then>
 		</if>

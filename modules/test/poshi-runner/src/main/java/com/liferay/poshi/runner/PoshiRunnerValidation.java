@@ -56,6 +56,15 @@ public class PoshiRunnerValidation {
 	}
 
 	public static void validate() throws Exception {
+		if (Validator.isNull(PropsValues.TEST_CONSOLE_LOG_FILE_NAME) &&
+			PropsValues.TEST_ASSERT_CONSOLE_ERRORS) {
+			
+			_exceptions.add(
+				new Exception(
+					"Please set the property 'test.console.log.file.name', " +
+						"or set 'test.assert.console.log' to 'false'"));
+		}
+
 		List<String> filePaths = PoshiRunnerContext.getFilePathsList();
 
 		for (String filePath : filePaths) {
@@ -1328,6 +1337,20 @@ public class PoshiRunnerValidation {
 				new Exception(
 					"Invalid property name " + propertyName + "\n" + filePath +
 						":" + element.attributeValue("line-number")));
+		}
+
+		if (propertyName.equals("test.assert.console.errors")) {
+			String propertyValue = element.attributeValue("value");
+
+			if (Validator.isNull(PropsValues.TEST_CONSOLE_LOG_FILE_NAME) &&
+				Boolean.valueOf(propertyValue)) {
+				
+				_exceptions.add(
+					new Exception(
+						"Please set the property " +
+							"'test.console.log.file.name', or set " +
+								"'test.assert.console.log' to 'false'."));
+			}
 		}
 	}
 
