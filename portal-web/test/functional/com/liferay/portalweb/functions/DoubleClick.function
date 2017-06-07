@@ -1,12 +1,10 @@
 <definition default="doubleClick">
+
 	<command name="doubleClick">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="waitForVisible" />
-
-		<execute selenium="mouseOver" />
-
-		<execute selenium="doubleClick" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 
@@ -14,13 +12,10 @@
 	</command>
 
 	<command name="doubleClickAt">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="waitForVisible" />
-
-		<execute selenium="mouseOver" />
-
-		<execute selenium="doubleClickAt" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 

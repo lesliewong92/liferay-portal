@@ -1,8 +1,10 @@
 <definition default="sikuliDragAndDrop">
+
 	<command name="sikuliDragAndDrop">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="sikuliDragAndDrop" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 

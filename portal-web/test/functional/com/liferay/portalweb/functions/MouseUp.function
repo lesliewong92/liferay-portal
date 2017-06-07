@@ -1,8 +1,10 @@
 <definition default="mouseUp">
+
 	<command name="javaScriptMouseUp">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="javaScriptMouseUp" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 
@@ -10,9 +12,10 @@
 	</command>
 
 	<command name="mouseRelease">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="mouseRelease" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 
@@ -20,9 +23,10 @@
 	</command>
 
 	<command name="mouseUp">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="mouseUp" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 
@@ -30,9 +34,10 @@
 	</command>
 
 	<command name="mouseUpAt">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="mouseUpAt" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 

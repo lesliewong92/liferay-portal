@@ -1,8 +1,10 @@
 <definition default="refresh">
+
 	<command name="refresh">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="refresh" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 

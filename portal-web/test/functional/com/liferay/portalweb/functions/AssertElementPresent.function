@@ -1,10 +1,10 @@
 <definition default="assertElementPresent" summary="Assert that '${locator1}' is available">
+
 	<command name="assertElementPresent">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="waitForElementPresent" />
-
-		<execute selenium="assertElementPresent" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 
@@ -12,11 +12,10 @@
 	</command>
 
 	<command name="assertVisible">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="waitForVisible" />
-
-		<execute selenium="assertVisible" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 
@@ -24,11 +23,12 @@
 	</command>
 
 	<command name="pauseAssertVisible">
+
 		<execute function="WaitForSPARefresh" />
 
 		<execute argument1="2000" selenium="pause" />
 
-		<execute function="AssertElementPresent#assertVisible" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 

@@ -1,5 +1,7 @@
 <definition default="clickAt">
+
 	<command name="checkAll">
+
 		<execute function="WaitForSPARefresh" />
 
 		<execute selenium="waitForVisible" />
@@ -7,8 +9,11 @@
 		<execute selenium="mouseOver" />
 
 		<if>
+
 			<condition selenium="isNotChecked" />
+
 			<then>
+
 				<execute selenium="clickAt" />
 			</then>
 		</if>
@@ -21,6 +26,7 @@
 	</command>
 
 	<command name="checkHiddenToggleSwitch">
+
 		<execute function="WaitForSPARefresh" />
 
 		<execute selenium="waitForElementPresent" />
@@ -28,8 +34,11 @@
 		<execute selenium="mouseOver" />
 
 		<if>
+
 			<condition argument1="xpath=(${locator1})/../../input" selenium="isNotChecked" />
+
 			<then>
+
 				<execute selenium="clickAt" />
 			</then>
 		</if>
@@ -42,20 +51,10 @@
 	</command>
 
 	<command name="checkToggleSwitch">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="waitForElementPresent" />
-
-		<execute selenium="mouseOver" />
-
-		<if>
-			<condition selenium="isNotChecked" />
-			<then>
-				<execute selenium="clickAt" />
-			</then>
-		</if>
-
-		<execute function="AssertChecked#assertCheckedToggleSwitch" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 
@@ -63,20 +62,10 @@
 	</command>
 
 	<command name="clickAt">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="waitForVisible" />
-
-		<execute selenium="mouseOver" />
-
-		<if>
-			<condition selenium="isNotChecked" />
-			<then>
-				<execute selenium="clickAt" />
-			</then>
-		</if>
-
-		<execute function="AssertChecked#assertChecked" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 
@@ -84,20 +73,10 @@
 	</command>
 
 	<command name="toggleSwitch">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="waitForElementPresent" />
-
-		<execute selenium="mouseOver" />
-
-		<if>
-			<condition selenium="isNotChecked" />
-			<then>
-				<execute selenium="clickAt" />
-			</then>
-		</if>
-
-		<execute function="AssertElementPresent" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 

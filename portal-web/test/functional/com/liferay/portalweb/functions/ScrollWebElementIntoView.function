@@ -1,8 +1,10 @@
 <definition default="scrollWebElementIntoView">
+
 	<command name="scrollWebElementIntoView">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="scrollWebElementIntoView" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 

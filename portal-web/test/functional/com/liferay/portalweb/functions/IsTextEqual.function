@@ -1,45 +1,30 @@
 <definition default="isTextEqual">
+
 	<command name="isPartialText">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="waitForElementPresent" />
-
-		<execute selenium="waitForVisible" />
-
-		<execute selenium="isPartialText" />
+		<super />
 	</command>
 
 	<command name="isText">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="waitForElementPresent" />
-
-		<execute selenium="waitForVisible" />
-
-		<execute selenium="isText" />
+		<super />
 	</command>
 
 	<command name="isTextEqual">
+
 		<execute function="WaitForSPARefresh" />
 
-		<if>
-			<contains string="${locator1}" substring="/input" />
-			<then>
-				<execute function="IsTextEqual#isValue" />
-			</then>
-			<else>
-				<execute function="IsTextEqual#isText" />
-			</else>
-		</if>
+		<super />
 	</command>
 
 	<command name="isValue">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="waitForElementPresent" />
-
-		<execute selenium="waitForVisible" />
-
-		<execute selenium="isValue" />
+		<super />
 	</command>
 </definition>

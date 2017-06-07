@@ -1,8 +1,10 @@
 <definition default="assertAccessible">
+
 	<command name="assertAccessible">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="assertAccessible" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 

@@ -1,7 +1,9 @@
 <definition default="isNotChecked">
+
 	<command name="isNotChecked">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="isNotChecked" />
+		<super />
 	</command>
 </definition>

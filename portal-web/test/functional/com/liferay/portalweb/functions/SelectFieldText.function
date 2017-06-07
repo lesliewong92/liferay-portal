@@ -1,10 +1,10 @@
 <definition default="selectFieldText" summary="Selecting all text at '${locator1}'">
+
 	<command name="selectFieldText">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute function="Click" />
-
-		<execute selenium="selectFieldText" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 
@@ -12,10 +12,9 @@
 	</command>
 
 	<command name="selectFieldTextNoError">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute function="Click" />
-
-		<execute selenium="selectFieldText" />
+		<super />
 	</command>
 </definition>

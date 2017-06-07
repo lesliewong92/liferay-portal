@@ -1,8 +1,10 @@
 <definition default="sikuliAssertElementNotPresent">
+
 	<command name="sikuliAssertElementNotPresent">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="sikuliAssertElementNotPresent" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 

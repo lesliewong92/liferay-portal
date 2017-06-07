@@ -1,7 +1,9 @@
 <definition default="pause">
+
 	<command name="pause" summary-ignore="true">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="pause" />
+		<super />
 	</command>
 </definition>

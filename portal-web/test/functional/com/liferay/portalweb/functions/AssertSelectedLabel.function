@@ -1,10 +1,10 @@
 <definition default="assertSelectedLabel">
+
 	<command name="assertPartialSelectedLabel">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="waitForVisible" />
-
-		<execute argument1="xpath=(${locator1})/option[@selected='']" argument2="${value1}" selenium="assertPartialText" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 
@@ -12,11 +12,10 @@
 	</command>
 
 	<command name="assertSelectedLabel">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="waitForVisible" />
-
-		<execute selenium="assertSelectedLabel" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 

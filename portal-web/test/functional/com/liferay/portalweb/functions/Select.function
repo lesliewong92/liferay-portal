@@ -1,10 +1,12 @@
 <definition default="select">
+
 	<command name="pauseSelect">
+
 		<execute function="WaitForSPARefresh" />
 
 		<execute argument1="5000" selenium="pause" />
 
-		<execute selenium="select" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 
@@ -12,13 +14,10 @@
 	</command>
 
 	<command name="select">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="waitForVisible" />
-
-		<execute selenium="mouseOver" />
-
-		<execute selenium="select" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 
@@ -26,13 +25,10 @@
 	</command>
 
 	<command name="selectByClick">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="waitForVisible" />
-
-		<execute argument1="${locator1}" selenium="click" />
-
-		<execute argument1="//option[contains(.,'${value1}')]" selenium="click" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 

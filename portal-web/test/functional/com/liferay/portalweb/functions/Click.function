@@ -1,12 +1,10 @@
 <definition default="click" summary="Click on '${locator1}'">
+
 	<command name="click">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="waitForVisible" />
-
-		<execute selenium="mouseOver" />
-
-		<execute selenium="click" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 
@@ -14,13 +12,10 @@
 	</command>
 
 	<command name="clickAt">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="waitForVisible" />
-
-		<execute selenium="mouseOver" />
-
-		<execute selenium="clickAt" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 
@@ -28,6 +23,7 @@
 	</command>
 
 	<command name="clickAtSidebarClickAtWaitForScript">
+
 		<execute function="WaitForSPARefresh" />
 
 		<execute argument1="1000" selenium="pause" />
@@ -42,15 +38,14 @@
 
 		<execute function="Click#clickAt" />
 
-		<execute argument1="//script[contains(@src,'/liferay/dockbar_add_application.js')] | //script[contains(	@src,'/js/product_navigation_control_menu_add_content.js')] | //script[contains(@src,'js/product_navigation_control_menu_add_application.js')]" selenium="waitForElementPresent" />
+		<execute argument1="//script[contains(@src,'/liferay/dockbar_add_application.js')] | //script[contains( @src,'/js/product_navigation_control_menu_add_content.js')] | //script[contains(@src,'js/product_navigation_control_menu_add_application.js')]" selenium="waitForElementPresent" />
 	</command>
 
 	<command name="clickNoMouseOver">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="waitForVisible" />
-
-		<execute selenium="click" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 
@@ -58,11 +53,10 @@
 	</command>
 
 	<command name="clickNoWaitForVisible">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="mouseOver" />
-
-		<execute selenium="click" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 
@@ -70,11 +64,15 @@
 	</command>
 
 	<command name="clickWaitForInlineCKEditor">
+
 		<execute function="WaitForSPARefresh" />
 
 		<if>
+
 			<condition argument1="//div[contains(@class,'cke_editable_inline')]" selenium="isElementPresent" />
+
 			<then>
+
 				<execute argument1="//script[contains(@src,'http://localhost:8080/o/frontend-editors-web/ckeditor/plugins/wsc/lang/en.js')]" selenium="waitForElementPresent" />
 			</then>
 		</if>
@@ -87,11 +85,15 @@
 	</command>
 
 	<command name="clickWaitForInlineCKEditorNoMouseOver">
+
 		<execute function="WaitForSPARefresh" />
 
 		<if>
+
 			<condition argument1="//div[contains(@class,'cke_editable_inline')]" selenium="isElementPresent" />
+
 			<then>
+
 				<execute argument1="//script[contains(@src,'http://localhost:8080/o/frontend-editors-web/ckeditor/plugins/wsc/lang/en.js')]" selenium="waitForElementPresent" />
 			</then>
 		</if>
@@ -102,19 +104,10 @@
 	</command>
 
 	<command name="makeVisibleClickAt">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="waitForElementPresent" />
-
-		<execute selenium="mouseOver" />
-
-		<execute argument1="1000" selenium="pause" />
-
-		<execute selenium="makeVisible" />
-
-		<execute selenium="waitForVisible" />
-
-		<execute selenium="clickAt" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 
@@ -122,15 +115,10 @@
 	</command>
 
 	<command name="mouseOverClick">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="waitForElementPresent" />
-
-		<execute selenium="mouseOver" />
-
-		<execute selenium="waitForVisible" />
-
-		<execute selenium="click" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 
@@ -138,13 +126,12 @@
 	</command>
 
 	<command name="pauseClickAt">
+
 		<execute function="WaitForSPARefresh" />
 
 		<execute argument1="1000" selenium="pause" />
 
-		<execute selenium="mouseOver" />
-
-		<execute function="Click#clickAt" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 
@@ -152,11 +139,12 @@
 	</command>
 
 	<command name="pauseMakeVisibleClickAt">
+
 		<execute function="WaitForSPARefresh" />
 
 		<execute argument1="1000" selenium="pause" />
 
-		<execute function="Click#makeVisibleClickAt" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 
@@ -164,6 +152,7 @@
 	</command>
 
 	<command name="waitForMenuToggleJSClick">
+
 		<execute function="WaitForSPARefresh" />
 
 		<execute argument1="//script[contains(@src,'/o/frontend-js-web/liferay/menu_toggle.js')]" selenium="waitForElementPresent" />
@@ -178,6 +167,7 @@
 	</command>
 
 	<command name="waitForNavigationInteractionTouchScriptTap">
+
 		<execute function="WaitForSPARefresh" />
 
 		<execute argument1="//script[contains(@src,'liferay/dockbar_keyboard_interaction.js')]" selenium="waitForElementPresent" />

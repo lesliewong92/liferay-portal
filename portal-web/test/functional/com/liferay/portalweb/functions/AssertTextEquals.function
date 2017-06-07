@@ -1,18 +1,10 @@
 <definition default="assertTextEquals" summary="Assert that '${locator1}' equals the value '${value1}'">
+
 	<command name="assertCKEditorText">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute argument1="//a[contains(@class,'cke_button__unlink') and contains(@class,'cke_button_disabled')]" selenium="waitForVisible" />
-
-		<execute argument1="1000" selenium="pause" />
-
-		<execute selenium="selectFrame" />
-
-		<execute argument1="//html/body" selenium="waitForVisible" />
-
-		<execute argument1="//html/body" selenium="assertText" />
-
-		<execute argument1="relative=parent" selenium="selectFrame" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 
@@ -20,13 +12,10 @@
 	</command>
 
 	<command name="assertPartialText" summary="Assert that '${locator1}' contains the value '${value1}'">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="waitForVisible" />
-
-		<execute selenium="waitForPartialText" />
-
-		<execute selenium="assertPartialText" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 
@@ -34,13 +23,10 @@
 	</command>
 
 	<command name="assertPartialTextAceEditor">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="waitForVisible" />
-
-		<execute selenium="waitForPartialTextAceEditor" />
-
-		<execute selenium="assertPartialTextAceEditor" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 
@@ -48,13 +34,10 @@
 	</command>
 
 	<command name="assertText">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="waitForVisible" />
-
-		<execute selenium="waitForText" />
-
-		<execute selenium="assertText" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 
@@ -62,25 +45,17 @@
 	</command>
 
 	<command name="assertTextEquals">
+
 		<execute function="WaitForSPARefresh" />
 
-		<if>
-			<contains string="${locator1}" substring="/input" />
-			<then>
-				<execute function="AssertTextEquals#assertValue" />
-			</then>
-			<else>
-				<execute function="AssertTextEquals#assertText" />
-			</else>
-		</if>
+		<super />
 	</command>
 
 	<command name="assertTextWaitForCKEditor">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute argument1="//a[contains(@class,'cke_button__unlink') and contains(@class,'cke_button_disabled')]" selenium="waitForVisible" />
-
-		<execute function="AssertTextEquals#assertText" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 
@@ -88,11 +63,15 @@
 	</command>
 
 	<command name="assertTextWaitForInlineCKEditor">
+
 		<execute function="WaitForSPARefresh" />
 
 		<if>
+
 			<condition argument1="//div[contains(@class,'cke_editable_inline')]" selenium="isElementPresent" />
+
 			<then>
+
 				<execute argument1="//script[contains(@src,'http://localhost:8080/o/frontend-editors-web/ckeditor/plugins/wsc/lang/en.js')]" selenium="waitForElementPresent" />
 			</then>
 		</if>
@@ -105,13 +84,10 @@
 	</command>
 
 	<command name="assertValue">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="waitForVisible" />
-
-		<execute selenium="waitForValue" />
-
-		<execute selenium="assertValue" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 

@@ -1,10 +1,10 @@
 <definition default="assertEditable">
+
 	<command name="assertEditable">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="waitForVisible" />
-
-		<execute selenium="assertEditable" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 

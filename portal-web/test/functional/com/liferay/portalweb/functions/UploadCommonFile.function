@@ -1,12 +1,10 @@
 <definition default="uploadCommonFile">
+
 	<command name="uploadCommonFile">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="waitForVisible" />
-
-		<execute selenium="mouseOver" />
-
-		<execute selenium="uploadCommonFile" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 
@@ -14,11 +12,10 @@
 	</command>
 
 	<command name="uploadCommonFileHidden">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="mouseOver" />
-
-		<execute selenium="uploadCommonFile" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 

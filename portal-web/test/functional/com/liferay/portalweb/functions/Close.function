@@ -1,10 +1,10 @@
 <definition default="close">
+
 	<command name="close">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute argument1="null" selenium="selectWindow" />
-
-		<execute argument1="relative=top" selenium="selectFrame" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 
@@ -12,15 +12,12 @@
 	</command>
 
 	<command name="closeAndSelectWindow">
+
 		<execute function="WaitForSPARefresh" />
 
 		<execute argument1="1000" selenium="pause" />
 
-		<execute selenium="close" />
-
-		<execute argument1="5000" selenium="pause" />
-
-		<execute selenium="selectWindow" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 
@@ -28,15 +25,12 @@
 	</command>
 
 	<command name="closeWindow">
+
 		<execute function="WaitForSPARefresh" />
 
 		<execute argument1="1000" selenium="pause" />
 
-		<execute selenium="close" />
-
-		<execute argument1="null" selenium="selectWindow" />
-
-		<execute argument1="relative=top" selenium="selectFrame" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 

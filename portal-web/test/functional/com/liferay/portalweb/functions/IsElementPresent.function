@@ -1,17 +1,21 @@
 <definition default="isElementPresent">
+
 	<command name="isElementPresent">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="isElementPresent" />
+		<super />
 	</command>
 
 	<command name="isElementPresentAfterWait">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="isElementPresentAfterWait" />
+		<super />
 	</command>
 
 	<command name="isElementPresentClickNavigation">
+
 		<execute function="WaitForSPARefresh" />
 
 		<execute argument1="//nav[@id='navigation']" selenium="clickAt" />
@@ -20,6 +24,7 @@
 	</command>
 
 	<command name="isElementPresentCPNavigation">
+
 		<execute function="WaitForSPARefresh" />
 
 		<execute argument1="//script[contains(@src,'/liferay/message.js')]" selenium="waitForElementPresent" />
@@ -28,12 +33,14 @@
 	</command>
 
 	<command name="isVisible">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="isVisible" />
+		<super />
 	</command>
 
 	<command name="pauseIsElementPresent">
+
 		<execute function="WaitForSPARefresh" />
 
 		<execute argument1="1000" selenium="pause" />
@@ -42,10 +49,9 @@
 	</command>
 
 	<command name="waitForVisible">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="waitForVisible" />
-
-		<execute function="IsElementPresent#isVisible" />
+		<super />
 	</command>
 </definition>

@@ -1,10 +1,10 @@
 <definition default="assertTextNotPresent">
+
 	<command name="assertTextNotPresent">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="waitForTextNotPresent" />
-
-		<execute selenium="assertTextNotPresent" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 

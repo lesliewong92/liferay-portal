@@ -1,7 +1,9 @@
 <definition default="setWindowSize">
+
 	<command name="setWindowSize">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="setWindowSize" />
+		<super />
 	</command>
 </definition>

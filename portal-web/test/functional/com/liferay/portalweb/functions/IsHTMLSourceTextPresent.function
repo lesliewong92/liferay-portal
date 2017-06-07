@@ -1,7 +1,9 @@
 <definition default="isHTMLSourceTextPresent">
+
 	<command name="isHTMLSourceTextPresent">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="isHTMLSourceTextPresent" />
+		<super />
 	</command>
 </definition>

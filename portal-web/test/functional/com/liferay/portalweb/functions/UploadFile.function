@@ -1,10 +1,10 @@
 <definition default="uploadFile">
+
 	<command name="uploadFile">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="waitForVisible" />
-
-		<execute selenium="uploadFile" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 

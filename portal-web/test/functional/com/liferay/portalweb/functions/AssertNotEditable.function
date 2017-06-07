@@ -1,10 +1,10 @@
 <definition default="assertNotEditable">
+
 	<command name="assertNotEditable">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="waitForVisible" />
-
-		<execute selenium="assertNotEditable" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 

@@ -1,10 +1,10 @@
 <definition default="assertChecked">
+
 	<command name="assertChecked">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="waitForVisible" />
-
-		<execute selenium="assertChecked" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 
@@ -12,6 +12,7 @@
 	</command>
 
 	<command name="assertCheckedHiddenToggleSwitch">
+
 		<execute function="WaitForSPARefresh" />
 
 		<execute selenium="waitForElementPresent" />
@@ -24,11 +25,10 @@
 	</command>
 
 	<command name="assertCheckedToggleSwitch">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="waitForElementPresent" />
-
-		<execute selenium="assertChecked" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 
@@ -36,11 +36,10 @@
 	</command>
 
 	<command name="waitForElementPresentAssertChecked">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="waitForElementPresent" />
-
-		<execute selenium="assertChecked" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 

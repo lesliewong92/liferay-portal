@@ -1,10 +1,10 @@
 <definition default="keyPress">
+
 	<command name="keyDown">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="mouseOver" />
-
-		<execute selenium="keyDown" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 
@@ -12,11 +12,10 @@
 	</command>
 
 	<command name="keyPress">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="mouseOver" />
-
-		<execute selenium="keyPress" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 
@@ -24,19 +23,17 @@
 	</command>
 
 	<command name="keyPressNoError">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="mouseOver" />
-
-		<execute selenium="keyPress" />
+		<super />
 	</command>
 
 	<command name="keyUp">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="mouseOver" />
-
-		<execute selenium="keyUp" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 

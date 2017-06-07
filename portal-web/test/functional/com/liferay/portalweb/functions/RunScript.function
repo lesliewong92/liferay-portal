@@ -1,8 +1,10 @@
 <definition default="runScript">
+
 	<command name="runScript">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="runScript" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 

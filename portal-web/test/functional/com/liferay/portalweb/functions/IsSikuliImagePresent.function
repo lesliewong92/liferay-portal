@@ -1,7 +1,9 @@
 <definition default="isSikuliImagePresent">
+
 	<command name="isSikuliImagePresent">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="isSikuliImagePresent" />
+		<super />
 	</command>
 </definition>

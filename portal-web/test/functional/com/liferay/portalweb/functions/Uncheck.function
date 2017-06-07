@@ -1,19 +1,10 @@
 <definition default="clickAt">
+
 	<command name="clickAt">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="waitForVisible" />
-
-		<execute selenium="mouseOver" />
-
-		<if>
-			<condition selenium="isChecked" />
-			<then>
-				<execute selenium="clickAt" />
-			</then>
-		</if>
-
-		<execute function="AssertNotChecked#assertNotChecked" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 
@@ -21,6 +12,7 @@
 	</command>
 
 	<command name="uncheckHiddenToggleSwitch">
+
 		<execute function="WaitForSPARefresh" />
 
 		<execute selenium="waitForElementPresent" />
@@ -28,8 +20,11 @@
 		<execute selenium="mouseOver" />
 
 		<if>
+
 			<condition argument1="xpath=(${locator1})/../../input" selenium="isChecked" />
+
 			<then>
+
 				<execute selenium="clickAt" />
 			</then>
 		</if>
@@ -42,37 +37,17 @@
 	</command>
 
 	<command name="uncheckNoError">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="waitForVisible" />
-
-		<execute selenium="mouseOver" />
-
-		<if>
-			<condition selenium="isChecked" />
-			<then>
-				<execute selenium="clickAt" />
-			</then>
-		</if>
-
-		<execute function="AssertNotChecked#assertNotChecked" />
+		<super />
 	</command>
 
 	<command name="uncheckToggleSwitch">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="waitForElementPresent" />
-
-		<execute selenium="mouseOver" />
-
-		<if>
-			<condition selenium="isChecked" />
-			<then>
-				<execute selenium="clickAt" />
-			</then>
-		</if>
-
-		<execute function="AssertNotChecked#assertNotCheckedToggleSwitch" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 
@@ -80,17 +55,9 @@
 	</command>
 
 	<command name="uncheckToggleSwitchNoErrorNoAssert">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="waitForElementPresent" />
-
-		<execute selenium="mouseOver" />
-
-		<if>
-			<condition selenium="isChecked" />
-			<then>
-				<execute selenium="clickAt" />
-			</then>
-		</if>
+		<super />
 	</command>
 </definition>

@@ -1,8 +1,10 @@
 <definition default="sikuliClick">
+
 	<command name="sikuliClick">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="sikuliClick" />
+		<super />
 
 		<execute argument1="2000" selenium="pause" />
 

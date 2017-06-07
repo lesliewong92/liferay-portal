@@ -1,10 +1,10 @@
 <definition default="mouseOver" summary="Mouse over '${locator1}'">
+
 	<command name="mouseOver">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="waitForVisible" />
-
-		<execute selenium="mouseOver" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 
@@ -12,6 +12,7 @@
 	</command>
 
 	<command name="mouseOverClickNavigation">
+
 		<execute function="WaitForSPARefresh" />
 
 		<execute argument1="//nav[@id='navigation']" argument2="" selenium="clickAt" />
@@ -28,13 +29,10 @@
 	</command>
 
 	<command name="mouseOverNotVisible">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="waitForElementPresent" />
-
-		<execute selenium="mouseOver" />
-
-		<execute selenium="waitForVisible" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 
@@ -42,11 +40,10 @@
 	</command>
 
 	<command name="partialTextMouseOver">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute function="AssertTextEquals#assertPartialText" />
-
-		<execute selenium="mouseOver" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 
@@ -54,11 +51,10 @@
 	</command>
 
 	<command name="textMouseOver">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute function="AssertTextEquals#assertText" />
-
-		<execute selenium="mouseOver" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 
@@ -66,6 +62,7 @@
 	</command>
 
 	<command name="textMouseOverClickNavigation">
+
 		<execute function="WaitForSPARefresh" />
 
 		<execute argument1="//nav[@id='navigation']" argument2="" selenium="clickAt" />
@@ -80,11 +77,10 @@
 	</command>
 
 	<command name="valueMouseOver">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute function="AssertTextEquals#assertValue" />
-
-		<execute selenium="mouseOver" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 

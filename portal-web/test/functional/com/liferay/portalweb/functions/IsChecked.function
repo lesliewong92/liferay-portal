@@ -1,7 +1,9 @@
 <definition default="isChecked">
+
 	<command name="isChecked">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="isChecked" />
+		<super />
 	</command>
 </definition>

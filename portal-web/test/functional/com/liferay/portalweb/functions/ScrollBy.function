@@ -1,7 +1,9 @@
 <definition default="scrollBy">
+
 	<command name="scrollBy">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="scrollBy" />
+		<super />
 	</command>
 </definition>

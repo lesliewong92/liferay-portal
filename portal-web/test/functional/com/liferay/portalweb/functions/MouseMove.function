@@ -1,8 +1,10 @@
 <definition default="mouseMove">
+
 	<command name="mouseMove">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="mouseMove" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 
@@ -10,9 +12,10 @@
 	</command>
 
 	<command name="mouseMoveAt">
+
 		<execute function="WaitForSPARefresh" />
 
-		<execute selenium="mouseMoveAt" />
+		<super />
 
 		<execute selenium="assertJavaScriptErrors" />
 
