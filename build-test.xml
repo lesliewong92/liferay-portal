@@ -2925,6 +2925,12 @@ go</echo>
 		<attribute name="liferay.portal.bundle" />
 
 		<sequential>
+			<echo>-------------------------------------------------------</echo>
+			<echo>set-tomcat-version-number</echo>
+			<echo>-------------------------------------------------------</echo>
+			
+			<echo>1: ${app.server.tomcat.version}</echo>
+
 			<if>
 				<equals arg1="@{liferay.portal.bundle}" arg2="6.0.6" />
 				<then>
@@ -2987,6 +2993,8 @@ go</echo>
 				</elseif>
 			</if>
 
+			<echo>2: ${app.server.tomcat.version}</echo>
+
 			<var name="app.server.tomcat.bin.dir" value="${app.server.parent.dir}/tomcat-${app.server.tomcat.version}/bin" />
 			<var name="app.server.tomcat.lib.global.dir" value="${app.server.parent.dir}/tomcat-${app.server.tomcat.version}/lib/ext" />
 
@@ -2995,16 +3003,40 @@ go</echo>
 				app.server.tomcat.lib.global.dir=${app.server.tomcat.lib.global.dir}
 				app.server.tomcat.version=${app.server.tomcat.version}
 			</echo>
+
+			<echo>3: app.server.tomcat.bin.dir=${app.server.tomcat.bin.dir}</echo>
+			<echo>3: app.server.tomcat.lib.global.dir=${app.server.tomcat.lib.global.dir}</echo>
+			<echo>3: app.server.tomcat.version=${app.server.tomcat.version}</echo>
 		</sequential>
 	</macrodef>
 
 	<macrodef name="setup-testable-tomcat">
 		<sequential>
+			<echo>-------------------------------------------------------</echo>
+			<echo>setup-testable-tomcat</echo>
+			<echo>-------------------------------------------------------</echo>
+
+			<echo>1: app.server.tomcat.bin.dir=${app.server.tomcat.bin.dir}</echo>
+			<echo>1: app.server.tomcat.lib.global.dir=${app.server.tomcat.lib.global.dir}</echo>
+			<echo>1: app.server.tomcat.version=${app.server.tomcat.version}</echo>
+
 			<setup-testable-tomcat-logging />
+
+			<echo>2: app.server.tomcat.bin.dir=${app.server.tomcat.bin.dir}</echo>
+			<echo>2: app.server.tomcat.lib.global.dir=${app.server.tomcat.lib.global.dir}</echo>
+			<echo>2: app.server.tomcat.version=${app.server.tomcat.version}</echo>
 
 			<setup-testable-tomcat-manager />
 
+			<echo>3: app.server.tomcat.bin.dir=${app.server.tomcat.bin.dir}</echo>
+			<echo>3: app.server.tomcat.lib.global.dir=${app.server.tomcat.lib.global.dir}</echo>
+			<echo>3: app.server.tomcat.version=${app.server.tomcat.version}</echo>
+
 			<setup-testable-tomcat-osgi-modules />
+
+			<echo>4: app.server.tomcat.bin.dir=${app.server.tomcat.bin.dir}</echo>
+			<echo>4: app.server.tomcat.lib.global.dir=${app.server.tomcat.lib.global.dir}</echo>
+			<echo>4: app.server.tomcat.version=${app.server.tomcat.version}</echo>
 
 			<setup-testable-tomcat-setenv />
 		</sequential>
@@ -8172,6 +8204,14 @@ ANT_OPTS=${env.ANT_OPTS}</echo>
 	</target>
 
 	<target name="prepare-test-bundle">
+		<echo>-------------------------------------------------------</echo>
+		<echo>prepare-test-bundle</echo>
+		<echo>-------------------------------------------------------</echo>
+
+		<echo>1: app.server.tomcat.bin.dir=${app.server.tomcat.bin.dir}</echo>
+		<echo>1: app.server.tomcat.lib.global.dir=${app.server.tomcat.lib.global.dir}</echo>
+		<echo>1: app.server.tomcat.version=${app.server.tomcat.version}</echo>
+
 		<setup-libs />
 
 		<if>
@@ -8182,6 +8222,10 @@ ANT_OPTS=${env.ANT_OPTS}</echo>
 				<property name="app.server.name" value="${app.server.type}" />
 			</then>
 		</if>
+
+		<echo>2: app.server.tomcat.bin.dir=${app.server.tomcat.bin.dir}</echo>
+		<echo>2: app.server.tomcat.lib.global.dir=${app.server.tomcat.lib.global.dir}</echo>
+		<echo>2: app.server.tomcat.version=${app.server.tomcat.version}</echo>
 
 		<if>
 			<matches pattern="https?://" string="${test.build.bundle.zip.url}" />
@@ -8298,6 +8342,10 @@ ANT_OPTS=${env.ANT_OPTS}</echo>
 				<delete file="liferay-portal-osgi.zip" />
 			</else>
 		</if>
+
+		<echo>3: app.server.tomcat.bin.dir=${app.server.tomcat.bin.dir}</echo>
+		<echo>3: app.server.tomcat.lib.global.dir=${app.server.tomcat.lib.global.dir}</echo>
+		<echo>3: app.server.tomcat.version=${app.server.tomcat.version}</echo>
 
 		<if>
 			<matches pattern="https?://" string="${test.build.fix.pack.zip.url}" />
