@@ -33,7 +33,11 @@ import java.io.InputStream;
 
 import java.lang.reflect.Method;
 
+import java.net.URI;
 import java.net.URL;
+
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
 
 import java.text.SimpleDateFormat;
 
@@ -41,6 +45,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -855,6 +860,10 @@ public class PoshiRunnerContext {
 			"**/*.testcase"
 		};
 
+		_readPoshiFilesFromClassPath(
+			poshiFileNames, "default/testFunctional",
+			"override/testFunctional");
+
 		List<URL> urls = new ArrayList<>();
 
 		urls.addAll(
@@ -885,6 +894,43 @@ public class PoshiRunnerContext {
 		}
 
 		_initComponentCommandNamesMap();
+	}
+
+	private static void _readPoshiFilesFromClassPath(
+			String[] includes, String... resourceNames)
+		throws Exception {
+
+		ClassLoader classLoader = PoshiRunnerContext.class.getClassLoader();
+
+		List<URL> urls = new ArrayList<>();
+
+		for (String resourceName : resourceNames) {
+			Enumeration<URL> resources = classLoader.getResources(resourceName);
+
+			while (resources.hasMoreElements()) {
+				URL resource = resources.nextElement();
+
+				String resourceString = resource.toString();
+
+				int x = resourceString.indexOf("!");
+
+				try (FileSystem fileSystem = FileSystems.newFileSystem(
+						URI.create(resourceString.substring(0, x)),
+						new HashMap<String, String>(), classLoader)) {
+
+					urls.addAll(
+						FileUtil.getIncludedResources(
+							fileSystem, includes,
+							resourceString.substring(x + 1)));
+				}
+			}
+		}
+
+		for (URL url : urls) {
+			_storeRootElement(
+				PoshiRunnerGetterUtil.getRootElementFromURL(url),
+				url.getFile());
+		}
 	}
 
 	private static void _readSeleniumFiles() throws Exception {
