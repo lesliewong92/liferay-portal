@@ -838,9 +838,7 @@ public class PoshiRunnerContext {
 			"**/*.testcase"
 		};
 
-		_readPoshiFilesFromClassPath(
-			poshiFileNames, "default/testFunctional",
-			"override/testFunctional");
+		_readPoshiFilesFromClassPath(poshiFileNames);
 
 		List<URL> urls = new ArrayList<>();
 
@@ -870,10 +868,54 @@ public class PoshiRunnerContext {
 		_initComponentCommandNamesMap();
 	}
 
-	private static void _readPoshiFilesFromClassPath(
-			String[] includes, String... resourceNames)
-		throws Exception {
+	private static void _readPoshiFilesFromClassPath(String[] includes)
+		throws IOException {
 
+		for (URL url : _getPoshiURLFromClassPath("default/testFunctional")) {
+			_storeRootElement(
+				PoshiRunnerGetterUtil.getRootElementFromURL(url),
+				url.getFile());
+		}
+
+		for (URL url : _getPoshiURLFromClassPath("override/testFunctional")) {
+			String filePath = url.getFile();
+
+			String className = PoshiRunnerGetterUtil.getClassNameFromFilePath(
+				filePath);
+			String classType = PoshiRunnerGetterUtil.getClassTypeFromFilePath(
+				filePath);
+
+			Element rootElement = PoshiRunnerGetterUtil.getRootElementFromURL(
+				url);
+
+			if (_rootElements.containsKey(classType + "#" + className)) {
+				Element parentElement = _commandElements.get(
+					classType + "#" + className + "#" + commandName);
+
+				rootElement = _getInheritedElement(parentElement, rootElement);
+			}
+
+			_storeRootElement(rootElement, filePath);
+		}
+	}
+
+	private static Element _getInheritedElement(
+		Element parentElement, Element rootElement) {
+
+		for (Element commandElement : rootElement.elements("command")) {
+			for (Element element : commandElement.elements()) {
+				String commandName = element.getName();
+
+				if (elementName.equals("super")) {
+					
+
+					
+				}
+			}
+		}
+	}
+
+	private static List<URL> _getPoshiURLFromClassPath(String resourceName) {
 		ClassLoader classLoader = PoshiRunnerContext.class.getClassLoader();
 
 		List<URL> urls = new ArrayList<>();
@@ -900,11 +942,7 @@ public class PoshiRunnerContext {
 			}
 		}
 
-		for (URL url : urls) {
-			_storeRootElement(
-				PoshiRunnerGetterUtil.getRootElementFromURL(url),
-				url.getFile());
-		}
+		return urls;
 	}
 
 	private static void _readSeleniumFiles() throws Exception {
@@ -1067,14 +1105,10 @@ public class PoshiRunnerContext {
 		String classType = PoshiRunnerGetterUtil.getClassTypeFromFilePath(
 			filePath);
 
+		_rootElements.put(classType + "#" + className, rootElement);
+
 		if (classType.equals("test-case")) {
 			_testCaseClassNames.add(className);
-		}
-
-		if (classType.equals("action") || classType.equals("function") ||
-			classType.equals("macro") || classType.equals("test-case")) {
-
-			_rootElements.put(classType + "#" + className, rootElement);
 
 			if (rootElement.element("set-up") != null) {
 				Element setUpElement = rootElement.element("set-up");
@@ -1093,6 +1127,10 @@ public class PoshiRunnerContext {
 				_commandElements.put(
 					classType + "#" + classCommandName, tearDownElement);
 			}
+		}
+
+		if (classType.equals("action") || classType.equals("function") ||
+			classType.equals("macro") || classType.equals("test-case")) {
 
 			List<Element> commandElements = rootElement.elements("command");
 
@@ -1134,42 +1172,42 @@ public class PoshiRunnerContext {
 					}
 				}
 			}
-
-			if (classType.equals("function")) {
-				String defaultClassCommandName =
-					className + "#" + rootElement.attributeValue("default");
-
-				Element defaultCommandElement = getFunctionCommandElement(
-					defaultClassCommandName);
-
-				_commandElements.put(
-					classType + "#" + className, defaultCommandElement);
-
-				_commandSummaries.put(
-					classType + "#" + className,
-					_getCommandSummary(
-						defaultClassCommandName, classType,
-						defaultCommandElement));
-
-				String xml = rootElement.asXML();
-
-				for (int i = 1;; i++) {
-					if (xml.contains("${locator" + i + "}")) {
-						continue;
-					}
-
-					if (i > 1) {
-						i--;
-					}
-
-					_functionLocatorCounts.put(className, i);
-
-					break;
-				}
-			}
 		}
 		else if (classType.equals("path")) {
 			_storePathElement(rootElement, className, null);
+		}
+
+		if (classType.equals("function")) {
+			String defaultClassCommandName =
+				className + "#" + rootElement.attributeValue("default");
+
+			Element defaultCommandElement = getFunctionCommandElement(
+				defaultClassCommandName);
+
+			_commandElements.put(
+				classType + "#" + className, defaultCommandElement);
+
+			_commandSummaries.put(
+				classType + "#" + className,
+				_getCommandSummary(
+					defaultClassCommandName, classType,
+					defaultCommandElement));
+
+			String xml = rootElement.asXML();
+
+			for (int i = 1;; i++) {
+				if (xml.contains("${locator" + i + "}")) {
+					continue;
+				}
+
+				if (i > 1) {
+					i--;
+				}
+
+				_functionLocatorCounts.put(className, i);
+
+				break;
+			}
 		}
 	}
 
