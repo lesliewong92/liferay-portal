@@ -409,6 +409,56 @@ public class PoshiRunnerContext {
 		return classCommandName;
 	}
 
+	private static Element _getInterpretedElement(
+		Element parentElement, Element element) {
+
+		List<Element> childElements = element.elements();
+
+		for (Element childElement : childElements) {
+			String elementName = childElement.getName();
+
+			if (elementName.equals("super")) {
+				childElement = parentElement;
+
+				continue;
+			}
+
+			childElement = _getInterpretedElement(parentElement, childElement);
+		}
+
+		return element;
+	}
+
+	private static List<URL> _getPoshiURLFromClassPath(
+			String[] includes, String resourceName)
+		throws IOException {
+
+		ClassLoader classLoader = PoshiRunnerContext.class.getClassLoader();
+
+		List<URL> urls = new ArrayList<>();
+
+		Enumeration<URL> resources = classLoader.getResources(resourceName);
+
+		while (resources.hasMoreElements()) {
+			URL resource = resources.nextElement();
+
+			String resourceString = resource.toString();
+
+			int x = resourceString.indexOf("!");
+
+			try (FileSystem fileSystem = FileSystems.newFileSystem(
+					URI.create(resourceString.substring(0, x)),
+					new HashMap<String, String>(), classLoader)) {
+
+				urls.addAll(
+					_getPoshiURLs(
+						fileSystem, includes, resourceString.substring(x + 1)));
+			}
+		}
+
+		return urls;
+	}
+
 	private static List<URL> _getPoshiURLs(
 			FileSystem fileSystem, String[] includes, String... baseDirs)
 		throws IOException {
@@ -869,15 +919,19 @@ public class PoshiRunnerContext {
 	}
 
 	private static void _readPoshiFilesFromClassPath(String[] includes)
-		throws IOException {
+		throws Exception {
 
-		for (URL url : _getPoshiURLFromClassPath("default/testFunctional")) {
+		for (URL url : _getPoshiURLFromClassPath(
+				includes, "default/testFunctional")) {
+
 			_storeRootElement(
 				PoshiRunnerGetterUtil.getRootElementFromURL(url),
 				url.getFile());
 		}
 
-		for (URL url : _getPoshiURLFromClassPath("override/testFunctional")) {
+		for (URL url : _getPoshiURLFromClassPath(
+				includes, "override/testFunctional")) {
+
 			String filePath = url.getFile();
 
 			String className = PoshiRunnerGetterUtil.getClassNameFromFilePath(
@@ -889,60 +943,21 @@ public class PoshiRunnerContext {
 				url);
 
 			if (_rootElements.containsKey(classType + "#" + className)) {
-				Element parentElement = _commandElements.get(
-					classType + "#" + className + "#" + commandName);
+				List<Element> commandElements = rootElement.elements("command");
 
-				rootElement = _getInheritedElement(parentElement, rootElement);
+				for (Element commandElement : commandElements) {
+					String commandName = commandElement.getName();
+
+					Element parentElement = _commandElements.get(
+						classType + "#" + className + "#" + commandName);
+
+					commandElement = _getInterpretedElement(
+						parentElement, commandElement);
+				}
 			}
 
 			_storeRootElement(rootElement, filePath);
 		}
-	}
-
-	private static Element _getInheritedElement(
-		Element parentElement, Element rootElement) {
-
-		for (Element commandElement : rootElement.elements("command")) {
-			for (Element element : commandElement.elements()) {
-				String commandName = element.getName();
-
-				if (elementName.equals("super")) {
-					
-
-					
-				}
-			}
-		}
-	}
-
-	private static List<URL> _getPoshiURLFromClassPath(String resourceName) {
-		ClassLoader classLoader = PoshiRunnerContext.class.getClassLoader();
-
-		List<URL> urls = new ArrayList<>();
-
-		for (String resourceName : resourceNames) {
-			Enumeration<URL> resources = classLoader.getResources(resourceName);
-
-			while (resources.hasMoreElements()) {
-				URL resource = resources.nextElement();
-
-				String resourceString = resource.toString();
-
-				int x = resourceString.indexOf("!");
-
-				try (FileSystem fileSystem = FileSystems.newFileSystem(
-						URI.create(resourceString.substring(0, x)),
-						new HashMap<String, String>(), classLoader)) {
-
-					urls.addAll(
-						_getPoshiURLs(
-							fileSystem, includes,
-							resourceString.substring(x + 1)));
-				}
-			}
-		}
-
-		return urls;
 	}
 
 	private static void _readSeleniumFiles() throws Exception {
@@ -1190,8 +1205,7 @@ public class PoshiRunnerContext {
 			_commandSummaries.put(
 				classType + "#" + className,
 				_getCommandSummary(
-					defaultClassCommandName, classType,
-					defaultCommandElement));
+					defaultClassCommandName, classType, defaultCommandElement));
 
 			String xml = rootElement.asXML();
 
