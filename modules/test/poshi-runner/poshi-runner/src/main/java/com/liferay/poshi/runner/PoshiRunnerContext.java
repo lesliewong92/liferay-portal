@@ -410,20 +410,34 @@ public class PoshiRunnerContext {
 	}
 
 	private static Element _getInterpretedElement(
-		Element parentElement, Element element) {
+		Element defaultElement, Element element) {
 
 		List<Element> childElements = element.elements();
 
-		for (Element childElement : childElements) {
+		for (int i = 0; i < childElements.size(); i++) {
+			Element childElement = childElements.get(i);
+
 			String elementName = childElement.getName();
 
 			if (elementName.equals("super")) {
-				childElement = parentElement;
+				childElement.detach();
+
+				childElements = element.elements();
+
+				List<Element> defaultChildElements = defaultElement.elements();
+
+				for (int j = 0; j < defaultChildElements.size(); j++) {
+					Element defaultChildElement = defaultChildElements.get(j);
+
+					childElements.add(i + j, defaultChildElement.createCopy());
+				}
+
+				i += defaultChildElements.size();
 
 				continue;
 			}
 
-			childElement = _getInterpretedElement(parentElement, childElement);
+			childElement = _getInterpretedElement(defaultElement, childElement);
 		}
 
 		return element;
@@ -942,17 +956,22 @@ public class PoshiRunnerContext {
 			Element rootElement = PoshiRunnerGetterUtil.getRootElementFromURL(
 				url);
 
-			if (_rootElements.containsKey(classType + "#" + className)) {
+			if (classType.equals("function")) {
 				List<Element> commandElements = rootElement.elements("command");
 
 				for (Element commandElement : commandElements) {
-					String commandName = commandElement.getName();
+					String commandName = commandElement.attributeValue("name");
 
 					Element parentElement = _commandElements.get(
 						classType + "#" + className + "#" + commandName);
 
-					commandElement = _getInterpretedElement(
-						parentElement, commandElement);
+					if (parentElement != null) {
+						commandElement = _getInterpretedElement(
+							parentElement, commandElement);
+
+						_commandElements.remove(
+							classType + "#" + className + "#" + commandName);
+					}
 				}
 			}
 
