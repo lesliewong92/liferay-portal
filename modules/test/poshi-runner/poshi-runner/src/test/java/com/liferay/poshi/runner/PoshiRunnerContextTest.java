@@ -16,8 +16,6 @@ package com.liferay.poshi.runner;
 
 import java.io.File;
 
-import java.util.List;
-
 import junit.framework.TestCase;
 
 import org.dom4j.Element;
@@ -43,18 +41,6 @@ public class PoshiRunnerContextTest extends TestCase {
 	@Override
 	public void tearDown() throws Exception {
 		PoshiRunnerContext.clear();
-	}
-
-	@Test
-	public void testGetActionCaseElements() {
-		List<Element> elements = PoshiRunnerContext.getActionCaseElements(
-			"Action1#test2");
-
-		for (Element element : elements) {
-			Assert.assertEquals(
-				"getActionCaseElements is failing", "/test2",
-				element.attributeValue("locator1"));
-		}
 	}
 
 	@Test

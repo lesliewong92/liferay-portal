@@ -23,7 +23,6 @@ import com.liferay.poshi.runner.pql.PQLEntityFactory;
 import com.liferay.poshi.runner.selenium.LiferaySelenium;
 import com.liferay.poshi.runner.util.FileUtil;
 import com.liferay.poshi.runner.util.MathUtil;
-import com.liferay.poshi.runner.util.OSDetector;
 import com.liferay.poshi.runner.util.PropsValues;
 import com.liferay.poshi.runner.util.StringUtil;
 import com.liferay.poshi.runner.util.Validator;
@@ -70,7 +69,6 @@ import org.dom4j.io.SAXReader;
 public class PoshiRunnerContext {
 
 	public static void clear() {
-		_actionExtendClassName.clear();
 		_commandElements.clear();
 		_commandReturns.clear();
 		_commandSummaries.clear();
@@ -80,28 +78,6 @@ public class PoshiRunnerContext {
 		_resourceURLs.clear();
 		_rootElements.clear();
 		_seleniumParameterCounts.clear();
-	}
-
-	public static List<Element> getActionCaseElements(String classCommandName) {
-		List<Element> actionCaseElements = new ArrayList<>();
-
-		List<String> relatedClassCommandNames =
-			_getRelatedActionClassCommandNames(classCommandName);
-
-		for (String relatedClassCommandName : relatedClassCommandNames) {
-			Element commandElement = getActionCommandElement(
-				relatedClassCommandName);
-
-			if (commandElement != null) {
-				List<Element> caseElements = commandElement.elements();
-
-				for (Element caseElement : caseElements) {
-					actionCaseElements.add(caseElement);
-				}
-			}
-		}
-
-		return actionCaseElements;
 	}
 
 	public static Element getActionCommandElement(String classCommandName) {
@@ -442,33 +418,6 @@ public class PoshiRunnerContext {
 		throws Exception {
 
 		return _getPoshiURLs(null, includes, baseDirNames);
-	}
-
-	private static List<String> _getRelatedActionClassCommandNames(
-		String classCommandName) {
-
-		List<String> relatedClassCommandNames = new ArrayList<>();
-
-		relatedClassCommandNames.add(classCommandName);
-
-		String className =
-			PoshiRunnerGetterUtil.getClassNameFromClassCommandName(
-				classCommandName);
-		String commandName =
-			PoshiRunnerGetterUtil.getCommandNameFromClassCommandName(
-				classCommandName);
-
-		while (_actionExtendClassName.get(className) != null) {
-			String extendClassName = _actionExtendClassName.get(className);
-
-			relatedClassCommandNames.add(extendClassName + "#" + commandName);
-
-			className = extendClassName;
-		}
-
-		relatedClassCommandNames.add("BaseLiferay#" + commandName);
-
-		return relatedClassCommandNames;
 	}
 
 	private static String _getTestBatchGroups() throws Exception {
@@ -1063,8 +1012,6 @@ public class PoshiRunnerContext {
 						break;
 					}
 				}
-
-				_actionExtendClassName.put(className, locator);
 			}
 
 			_pathLocators.put(className + "#" + locatorKey, locator);
@@ -1265,8 +1212,6 @@ public class PoshiRunnerContext {
 	private static final String _TEST_BASE_DIR_NAME =
 		PoshiRunnerGetterUtil.getCanonicalPath(PropsValues.TEST_BASE_DIR_NAME);
 
-	private static final Map<String, String> _actionExtendClassName =
-		new HashMap<>();
 	private static final Map<String, Properties>
 		_classCommandNamePropertiesMap = new HashMap<>();
 	private static final Map<String, Element> _commandElements =
