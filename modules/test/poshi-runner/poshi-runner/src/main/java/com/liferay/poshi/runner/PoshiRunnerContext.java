@@ -1259,7 +1259,9 @@ public class PoshiRunnerContext {
 			}
 		}
 
-		FileUtil.write("test.generated.properties", sb.toString());
+		String content = sb.toString();
+
+		FileUtil.write("test.generated.properties", content);
 	}
 
 	private static final String _TEST_BASE_DIR_NAME =
