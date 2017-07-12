@@ -204,8 +204,6 @@ public class PoshiRunnerValidation {
 		Element element, String classCommandName, String classType,
 		String filePath) {
 
-		String namespace = PoshiRunnerContext.getNamespace(filePath);
-
 		String className =
 			PoshiRunnerGetterUtil.getClassNameFromClassCommandName(
 				classCommandName);
@@ -1524,6 +1522,11 @@ public class PoshiRunnerValidation {
 	}
 
 	protected static void validateTestName(String testName) {
+		if (!testName.contains(".")) {
+			testName = PoshiRunnerContext.getDefaultNamespace() + "." +
+				testName;
+		}
+
 		validateTestName(testName, "");
 	}
 

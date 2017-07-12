@@ -59,6 +59,7 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.UUID;
 
 import org.dom4j.Document;
 import org.dom4j.Element;
@@ -101,6 +102,10 @@ public class PoshiRunnerContext {
 
 	public static Element getActionRootElement(String className) {
 		return _rootElements.get("action#" + className);
+	}
+
+	public static String getDefaultNamespace() {
+		return _defaultNamespace;
 	}
 
 	public static String getFilePathFromClassKey(String classKey) {
@@ -850,10 +855,12 @@ public class PoshiRunnerContext {
 		throws Exception {
 
 		for (String baseDirName : baseDirNames) {
-			for (URL url : _getPoshiURLs(includes, baseDirName, "local")) {
+			for (URL url : _getPoshiURLs(
+					includes, baseDirName, _defaultNamespace)) {
+
 				_storeRootElement(
 					PoshiRunnerGetterUtil.getRootElementFromURL(url),
-					url.getFile(), "local");
+					url.getFile(), _defaultNamespace);
 			}
 		}
 	}
@@ -1015,13 +1022,6 @@ public class PoshiRunnerContext {
 			Element rootElement, String className, String namespace)
 		throws Exception {
 
-		// if (extendedClassName != null) {
-		// 	_rootElements.put("path#" + extendedClassName, rootElement);
-		// }
-		// else {
-		// 	_rootElements.put("path#" + className, rootElement);
-		// }
-
 		_rootElements.put("path#" + namespace + "." + className, rootElement);
 
 		Element bodyElement = rootElement.element("body");
@@ -1103,9 +1103,6 @@ public class PoshiRunnerContext {
 						"Duplicate command name\n" + filePath + ":" +
 							commandElement.attributeValue("line-number"));
 				}
-
-				System.out.println(
-					classType + "#" + namespace + "." + classCommandName);
 
 				_commandElements.put(
 					classType + "#" + namespace + "." + classCommandName,
@@ -1269,6 +1266,7 @@ public class PoshiRunnerContext {
 	private static final Map<String, Set<String>> _componentClassCommandNames =
 		new TreeMap<>();
 	private static final Set<String> _componentNames = new TreeSet<>();
+	private static String _defaultNamespace = null;
 	private static final Map<String, String> _filePaths = new HashMap<>();
 	private static final Map<String, String> _filePathToNamespace =
 		new HashMap();
@@ -1290,8 +1288,8 @@ public class PoshiRunnerContext {
 		new HashMap<>();
 	private static final List<String> _testCaseRequiredPropertyNames =
 		new ArrayList<>();
-	private static String _testClassCommandName;
-	private static String _testClassName;
+	private static String _testClassCommandName = null;
+	private static String _testClassName = null;
 	private static final Set<String> _testToggleNames = new HashSet<>();
 	private static final SimpleDateFormat _toggleDateFormat =
 		new SimpleDateFormat("YYYY-MM-dd");
@@ -1329,6 +1327,10 @@ public class PoshiRunnerContext {
 				_testCaseRequiredPropertyNames,
 				StringUtil.split(testCaseRequiredPropertyNames));
 		}
+
+		UUID randomUUID = UUID.randomUUID();
+
+		_defaultNamespace = randomUUID.toString();
 	}
 
 }
