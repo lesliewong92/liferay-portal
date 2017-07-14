@@ -220,7 +220,7 @@ public class PoshiRunnerValidation {
 
 		String commandElementKey = _getElementKey(
 			classType, classCommandName, filePath);
-			
+
 		if (!PoshiRunnerContext.isCommandElement(commandElementKey)) {
 			_exceptions.add(
 				new Exception(
@@ -724,7 +724,9 @@ public class PoshiRunnerValidation {
 							"Invalid path name " + pathName + "\n" + filePath +
 								":" + element.attributeValue("line-number")));
 				}
-				else if (!PoshiRunnerContext.isPathLocator(namespace + "." + locator)) {
+				else if (!PoshiRunnerContext.isPathLocator(
+							namespace + "." + locator)) {
+
 					_exceptions.add(
 						new Exception(
 							"Invalid path locator " + locator + "\n" +
@@ -1523,8 +1525,8 @@ public class PoshiRunnerValidation {
 
 	protected static void validateTestName(String testName) {
 		if (!testName.contains(".")) {
-			testName = PoshiRunnerContext.getDefaultNamespace() + "." +
-				testName;
+			testName =
+				PoshiRunnerContext.getDefaultNamespace() + "." + testName;
 		}
 
 		validateTestName(testName, "");

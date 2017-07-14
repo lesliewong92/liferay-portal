@@ -77,7 +77,8 @@ public final class XMLLoggerHandler {
 					classCommandName);
 
 			Element setUpElement = PoshiRunnerContext.getTestCaseCommandElement(
-				className + "#set-up");
+				PoshiRunnerContext.getDefaultNamespace() + "." + className +
+					"#set-up");
 
 			if (setUpElement != null) {
 				PoshiRunnerStackTraceUtil.startStackTrace(
@@ -95,13 +96,15 @@ public final class XMLLoggerHandler {
 			childContainerLoggerElement.addChildLoggerElement(
 				_getLoggerElementFromElement(
 					PoshiRunnerContext.getTestCaseCommandElement(
-						classCommandName)));
+						PoshiRunnerContext.getDefaultNamespace() + "." +
+							classCommandName)));
 
 			PoshiRunnerStackTraceUtil.emptyStackTrace();
 
 			Element tearDownElement =
 				PoshiRunnerContext.getTestCaseCommandElement(
-					className + "#tear-down");
+					PoshiRunnerContext.getDefaultNamespace() + "." + className +
+						"#tear-down");
 
 			if (tearDownElement != null) {
 				PoshiRunnerStackTraceUtil.startStackTrace(
@@ -610,13 +613,15 @@ public final class XMLLoggerHandler {
 		throws Exception {
 
 		Element commandElement = PoshiRunnerContext.getMacroCommandElement(
-			classCommandName);
+			PoshiRunnerStackTraceUtil.getCurrentNamespace() + "." +
+				classCommandName);
 
 		String className =
 			PoshiRunnerGetterUtil.getClassNameFromClassCommandName(
 				classCommandName);
 
-		Element rootElement = PoshiRunnerContext.getMacroRootElement(className);
+		Element rootElement = PoshiRunnerContext.getMacroRootElement(
+			PoshiRunnerStackTraceUtil.getCurrentNamespace() + "." + className);
 
 		return _getChildContainerLoggerElement(commandElement, rootElement);
 	}

@@ -84,8 +84,7 @@ public class FileUtil {
 		Path path = fileSystem.getPath(baseDirName);
 
 		if (!Files.exists(path)) {
-			System.out.println(
-				"Directory " + baseDirName + " does not exist.");
+			System.out.println("Directory " + baseDirName + " does not exist.");
 
 			return filePaths;
 		}
@@ -96,8 +95,7 @@ public class FileUtil {
 
 				@Override
 				public FileVisitResult visitFile(
-						Path filePath,
-						BasicFileAttributes basicFileAttributes)
+						Path filePath, BasicFileAttributes basicFileAttributes)
 					throws IOException {
 
 					for (PathMatcher pathMatcher : pathMatchers) {

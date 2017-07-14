@@ -36,9 +36,9 @@ import java.lang.reflect.Method;
 import java.net.URI;
 import java.net.URL;
 
-import java.nio.file.Files;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
+import java.nio.file.Files;
 import java.nio.file.Path;
 
 import java.text.ParseException;
@@ -443,7 +443,8 @@ public class PoshiRunnerContext {
 			String filePath = url.getFile();
 
 			_filePaths.put(
-				PoshiRunnerGetterUtil.getFileNameFromFilePath(filePath),
+				namespace + "." +
+					PoshiRunnerGetterUtil.getFileNameFromFilePath(filePath),
 				filePath);
 
 			_resourceURLs.add(url);
@@ -1069,8 +1070,8 @@ public class PoshiRunnerContext {
 		if (classType.equals("action") || classType.equals("function") ||
 			classType.equals("macro") || classType.equals("test-case")) {
 
-			_rootElements.put(classType + "#" + namespace + "." + className,
-				rootElement);
+			_rootElements.put(
+				classType + "#" + namespace + "." + className, rootElement);
 
 			if (rootElement.element("set-up") != null) {
 				Element setUpElement = rootElement.element("set-up");
@@ -1129,7 +1130,7 @@ public class PoshiRunnerContext {
 							commandElement.attributeValue("description"))) {
 
 						_testCaseDescriptions.put(
-							namespace + "."  + classCommandName,
+							namespace + "." + classCommandName,
 							commandElement.attributeValue("description"));
 					}
 				}
@@ -1138,7 +1139,7 @@ public class PoshiRunnerContext {
 			if (classType.equals("function")) {
 				String defaultClassCommandName =
 					namespace + "." + className + "#" +
-					rootElement.attributeValue("default");
+						rootElement.attributeValue("default");
 
 				Element defaultCommandElement = getFunctionCommandElement(
 					defaultClassCommandName);
@@ -1266,7 +1267,7 @@ public class PoshiRunnerContext {
 	private static final Map<String, Set<String>> _componentClassCommandNames =
 		new TreeMap<>();
 	private static final Set<String> _componentNames = new TreeSet<>();
-	private static String _defaultNamespace = null;
+	private static final String _defaultNamespace;
 	private static final Map<String, String> _filePaths = new HashMap<>();
 	private static final Map<String, String> _filePathToNamespace =
 		new HashMap();
@@ -1288,8 +1289,8 @@ public class PoshiRunnerContext {
 		new HashMap<>();
 	private static final List<String> _testCaseRequiredPropertyNames =
 		new ArrayList<>();
-	private static String _testClassCommandName = null;
-	private static String _testClassName = null;
+	private static String _testClassCommandName;
+	private static String _testClassName;
 	private static final Set<String> _testToggleNames = new HashSet<>();
 	private static final SimpleDateFormat _toggleDateFormat =
 		new SimpleDateFormat("YYYY-MM-dd");
