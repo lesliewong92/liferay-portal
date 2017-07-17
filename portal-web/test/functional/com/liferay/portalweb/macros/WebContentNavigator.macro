@@ -16,26 +16,26 @@
 			<var name="displayStyle" value="Descriptive" />
 		</execute>
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="WC#ENTRY_DESCRIPTIVE_TITLE" value1="${webContentTitle}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="WC#ENTRY_DESCRIPTIVE_TITLE" value1="${webContentTitle}" />
 
-		<execute function="Click" locator1="WC#ENTRY_DESCRIPTIVE_MENULIST_ICON" />
+		<execute function="Portal.Click" locator1="WC#ENTRY_DESCRIPTIVE_MENULIST_ICON" />
 	</command>
 
 	<command name="gotoAddCP">
-		<execute function="AssertVisible" locator1="Button#PLUS" />
+		<execute function="Portal.AssertVisible" locator1="Button#PLUS" />
 
-		<execute function="Pause" locator1="3000" />
+		<execute function="Portal.Pause" locator1="3000" />
 
 		<execute macro="LexiconEntry#gotoAdd" />
 
 		<if>
-			<condition function="IsElementPresent" locator1="MenuItem#BASIC_WEB_CONTENT" />
+			<condition function="Portal.IsElementPresent" locator1="MenuItem#BASIC_WEB_CONTENT" />
 			<then>
-				<execute function="AssertClick" locator1="MenuItem#BASIC_WEB_CONTENT" value1="Basic Web Content" />
+				<execute function="Portal.AssertClick" locator1="MenuItem#BASIC_WEB_CONTENT" value1="Basic Web Content" />
 			</then>
 		</if>
 
-		<execute function="AssertVisible" locator1="TextInput#TITLE" />
+		<execute function="Portal.AssertVisible" locator1="TextInput#TITLE" />
 	</command>
 
 	<command name="gotoAddFeed">
@@ -45,7 +45,7 @@
 	</command>
 
 	<command name="gotoAddPGViaWCD">
-		<execute function="Click#clickNoWaitForVisible" locator1="WCD#ADD_WEB_CONTENT" />
+		<execute function="Portal.Click#clickNoWaitForVisible" locator1="WCD#ADD_WEB_CONTENT" />
 
 		<if>
 			<not>
@@ -61,19 +61,19 @@
 
 		<var name="key_structureName" value="${structureName}" />
 
-		<execute function="AssertVisible" locator1="WCD#ADD_STRUCTURED_WEB_CONTENT" value1="${structureName}" />
+		<execute function="Portal.AssertVisible" locator1="WCD#ADD_STRUCTURED_WEB_CONTENT" value1="${structureName}" />
 
-		<execute function="AssertClick" locator1="WCD#ADD_STRUCTURED_WEB_CONTENT" value1="${structureName}" />
+		<execute function="Portal.AssertClick" locator1="WCD#ADD_STRUCTURED_WEB_CONTENT" value1="${structureName}" />
 
-		<execute function="SelectFrame" locator1="IFrame#MODAL_IFRAME" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#MODAL_IFRAME" />
 
-		<execute function="AssertVisible" locator1="TextInput#TITLE" />
+		<execute function="Portal.AssertVisible" locator1="TextInput#TITLE" />
 	</command>
 
 	<command name="gotoAddWithStructureCP">
 		<execute macro="LexiconEntry#gotoAdd" />
 
-		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="${structureName}">
+		<execute function="Portal.AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="${structureName}">
 			<var name="key_menuItem" value="${structureName}" />
 		</execute>
 	</command>
@@ -84,11 +84,11 @@
 			<var name="webContentTitleEscapeCharacter" value="${webContentTitleEscapeCharacter}" />
 		</execute>
 
-		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Edit">
+		<execute function="Portal.AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Edit">
 			<var name="key_menuItem" value="Edit" />
 		</execute>
 
-		<execute function="AssertElementPresent" locator1="Icon#BACK" />
+		<execute function="Portal.AssertElementPresent" locator1="Icon#BACK" />
 	</command>
 
 	<command name="gotoEditFeed">
@@ -106,17 +106,17 @@
 			<var name="portletOption" value="Edit Web Content" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#MODAL_IFRAME" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#MODAL_IFRAME" />
 
-		<execute function="AssertVisible" locator1="TextInput#TITLE" />
+		<execute function="Portal.AssertVisible" locator1="TextInput#TITLE" />
 	</command>
 
 	<command name="gotoEditStructure">
-		<execute function="AssertClick" locator1="DDMSelectStructure#DDM_STRUCTURE_TABLE_NAME_LINK" value1="${structureName}">
+		<execute function="Portal.AssertClick" locator1="DDMSelectStructure#DDM_STRUCTURE_TABLE_NAME_LINK" value1="${structureName}">
 			<var name="key_ddlDataDefinitionName" value="${structureName}" />
 		</execute>
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 	</command>
 
 	<command name="gotoEditTemplate">
@@ -127,9 +127,9 @@
 	</command>
 
 	<command name="gotoFeeds">
-		<execute function="Click" locator1="Icon#HEADER_VERTICAL_ELLIPSIS" />
+		<execute function="Portal.Click" locator1="Icon#HEADER_VERTICAL_ELLIPSIS" />
 
-		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Feeds">
+		<execute function="Portal.AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Feeds">
 			<var name="key_menuItem" value="Feeds" />
 		</execute>
 	</command>
@@ -140,15 +140,15 @@
 			<var name="portletOption" value="${localizedPortletOption}" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#MODAL_IFRAME" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#MODAL_IFRAME" />
 
-		<execute function="AssertVisible" locator1="TextInput#TITLE" />
+		<execute function="Portal.AssertVisible" locator1="TextInput#TITLE" />
 	</command>
 
 	<command name="gotoManageStructures">
-		<execute function="Click" locator1="Icon#HEADER_VERTICAL_ELLIPSIS" />
+		<execute function="Portal.Click" locator1="Icon#HEADER_VERTICAL_ELLIPSIS" />
 
-		<execute function="AssertClick" locator1="MenuItem#STRUCTURES" value1="Structures" />
+		<execute function="Portal.AssertClick" locator1="MenuItem#STRUCTURES" value1="Structures" />
 
 		<execute macro="SiteAdmin#viewPortletTitle">
 			<var name="portletTitle" value="Structures" />
@@ -156,9 +156,9 @@
 	</command>
 
 	<command name="gotoManageTemplates">
-		<execute function="Click" locator1="Icon#HEADER_VERTICAL_ELLIPSIS" />
+		<execute function="Portal.Click" locator1="Icon#HEADER_VERTICAL_ELLIPSIS" />
 
-		<execute function="AssertClick" locator1="MenuItem#TEMPLATES" value1="Templates" />
+		<execute function="Portal.AssertClick" locator1="MenuItem#TEMPLATES" value1="Templates" />
 
 		<execute macro="SiteAdmin#viewPortletTitle">
 			<var name="portletTitle" value="Templates" />
@@ -182,19 +182,19 @@
 		<var name="key_menuItem" value="More" />
 
 		<if>
-			<condition function="IsElementPresent" locator1="MenuItem#ANY_MENU_ITEM" />
+			<condition function="Portal.IsElementPresent" locator1="MenuItem#ANY_MENU_ITEM" />
 			<then>
-				<execute function="AssertTextEquals" locator1="Pagination#SHOWING_TOTAL_ITEMS" value1="Showing ${pageMod} Items">
+				<execute function="Portal.AssertTextEquals" locator1="Pagination#SHOWING_TOTAL_ITEMS" value1="Showing ${pageMod} Items">
 					<var name="key_pageMod" value="${pageMod}" />
 				</execute>
 			</then>
 		</if>
 
-		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="More">
+		<execute function="Portal.AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="More">
 			<var name="key_menuItem" value="More" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#DIALOG" />
 	</command>
 
 	<command name="gotoPreviewEntryCP">
@@ -203,7 +203,7 @@
 			<var name="webContentTitleEscapeCharacter" value="${webContentTitleEscapeCharacter}" />
 		</execute>
 
-		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Preview">
+		<execute function="Portal.AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Preview">
 			<var name="key_menuItem" value="Preview" />
 		</execute>
 	</command>
@@ -213,9 +213,9 @@
 			<var name="portletTitle" value="${webContentTitle}" />
 		</execute>
 
-		<execute function="Click" locator1="Icon#HEADER_VERTICAL_ELLIPSIS" />
+		<execute function="Portal.Click" locator1="Icon#HEADER_VERTICAL_ELLIPSIS" />
 
-		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Preview">
+		<execute function="Portal.AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Preview">
 			<var name="key_menuItem" value="Preview" />
 		</execute>
 	</command>
@@ -227,8 +227,8 @@
 			<var name="displayStyle" value="Descriptive" />
 		</execute>
 
-		<execute function="AssertElementPresent#pauseAssertVisible" locator1="WC#ENTRY_DESCRIPTIVE_THUMBNAIL" />
-		<execute function="AssertTextEquals" locator1="WC#ENTRY_DESCRIPTIVE_WORKFLOW_STATUS" value1="${webContentStatus}" />
+		<execute function="Portal.AssertElementPresent#pauseAssertVisible" locator1="WC#ENTRY_DESCRIPTIVE_THUMBNAIL" />
+		<execute function="Portal.AssertTextEquals" locator1="WC#ENTRY_DESCRIPTIVE_WORKFLOW_STATUS" value1="${webContentStatus}" />
 
 		<execute macro="WebContentNavigator#gotoEditCP">
 			<var name="webContentTitle" value="${webContentTitle}" />
@@ -236,7 +236,7 @@
 	</command>
 
 	<command name="gotoViewTemplate">
-		<execute function="AssertClick" locator1="DDMSelectTemplate#TEMPLATE_TABLE_NAME_LINK" value1="${templateName}">
+		<execute function="Portal.AssertClick" locator1="DDMSelectTemplate#TEMPLATE_TABLE_NAME_LINK" value1="${templateName}">
 			<var name="key_ddlTemplateName" value="${templateName}" />
 		</execute>
 	</command>

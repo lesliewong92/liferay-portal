@@ -68,7 +68,7 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="Button#PLUS" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Button#PLUS" />
 	</command>
 
 	<command name="AddFolderSiteRoleDefinePermission" priority="5">
@@ -149,7 +149,7 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="Button#PLUS" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Button#PLUS" />
 	</command>
 
 	<command name="AddStructureSiteRoleDefaultPermission" priority="5">
@@ -185,7 +185,7 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="Toolbar#MANAGE" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Toolbar#MANAGE" />
 	</command>
 
 	<command name="AddStructureSiteRoleDefinePermission" priority="5">
@@ -278,7 +278,7 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="Toolbar#MANAGE" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Toolbar#MANAGE" />
 	</command>
 
 	<command name="AddTemplateSiteRoleDefaultPermission" priority="5">
@@ -314,7 +314,7 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="Toolbar#MANAGE" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Toolbar#MANAGE" />
 	</command>
 
 	<command name="AddTemplateSiteRoleDefinePermission" priority="5">
@@ -399,7 +399,7 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="Toolbar#MANAGE" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Toolbar#MANAGE" />
 	</command>
 
 	<command name="AddWebContentSiteRoleDefaultPermission" priority="5">
@@ -435,7 +435,7 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="Button#PLUS" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Button#PLUS" />
 	</command>
 
 	<command name="AddWebContentSiteRoleDefinePermission" priority="5">
@@ -524,7 +524,7 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="Button#PLUS" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Button#PLUS" />
 	</command>
 
 	<command name="ViewWebContentPortletRegRole" priority="4">

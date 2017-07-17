@@ -17,26 +17,26 @@
 		<if>
 			<isset var="userSegmentSelect" />
 			<then>
-				<execute function="Click" locator1="EditCampaign#CAMPAIGN_USER_SEGMENT_SELECT" />
+				<execute function="Portal.Click" locator1="EditCampaign#CAMPAIGN_USER_SEGMENT_SELECT" />
 
-				<execute function="Click" locator1="EditCampaign#SELECT_USER_SEGMENT_CHECKBOX">
+				<execute function="Portal.Click" locator1="EditCampaign#SELECT_USER_SEGMENT_CHECKBOX">
 					<var name="key_userSegmentName" value="${userSegmentSelect}" />
 				</execute>
 
-				<execute function="Click" locator1="Button#OK" />
+				<execute function="Portal.Click" locator1="Button#OK" />
 			</then>
 		</if>
 
-		<execute function="Type" locator1="EditCampaign#CAMPAIGN_START_DATE_FIELD" value1="${campaignStartDate}" />
-		<execute function="Type" locator1="EditCampaign#CAMPAIGN_START_TIME_FIELD" value1="${campaignStartTime}" />
-		<execute function="Type" locator1="EditCampaign#CAMPAIGN_END_DATE_FIELD" value1="${campaignEndDate}" />
-		<execute function="Type" locator1="EditCampaign#CAMPAIGN_END_TIME_FIELD" value1="${campaignEndTime}" />
-		<execute function="Type" locator1="EditCampaign#CAMPAIGN_PRIORITY_FIELD" value1="${campaignPriorityField}" />
+		<execute function="Portal.Type" locator1="EditCampaign#CAMPAIGN_START_DATE_FIELD" value1="${campaignStartDate}" />
+		<execute function="Portal.Type" locator1="EditCampaign#CAMPAIGN_START_TIME_FIELD" value1="${campaignStartTime}" />
+		<execute function="Portal.Type" locator1="EditCampaign#CAMPAIGN_END_DATE_FIELD" value1="${campaignEndDate}" />
+		<execute function="Portal.Type" locator1="EditCampaign#CAMPAIGN_END_TIME_FIELD" value1="${campaignEndTime}" />
+		<execute function="Portal.Type" locator1="EditCampaign#CAMPAIGN_PRIORITY_FIELD" value1="${campaignPriorityField}" />
 
 		<if>
 			<equals arg1="${campaignInactive}" arg2="true" />
 			<then>
-				<execute function="Uncheck#uncheckHiddenToggleSwitch" locator1="ToggleSwitch#ACTIVE" />
+				<execute function="Portal.Uncheck#uncheckHiddenToggleSwitch" locator1="ToggleSwitch#ACTIVE" />
 			</then>
 		</if>
 	</command>
@@ -56,25 +56,25 @@
 			<var name="campaignTrackingAction" value="Content" />
 		</execute>
 
-		<execute function="AssertElementPresent" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_CONTENT_SELECT_CONTENT_BUTTON" />
+		<execute function="Portal.AssertElementPresent" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_CONTENT_SELECT_CONTENT_BUTTON" />
 
-		<execute function="Type" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_CONTENT_NAME_FIELD" value1="${contentMetricName}" />
+		<execute function="Portal.Type" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_CONTENT_NAME_FIELD" value1="${contentMetricName}" />
 
-		<execute function="Click" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_CONTENT_SELECT_CONTENT_BUTTON" />
+		<execute function="Portal.Click" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_CONTENT_SELECT_CONTENT_BUTTON" />
 
 		<var name="key_menuItem" value="${menulistContent}" />
 
-		<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM" />
+		<execute function="Portal.Click" locator1="MenuItem#ANY_MENU_ITEM" />
 
-		<execute function="SelectFrame" locator1="IFrame#SELECT_CONTENT" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#SELECT_CONTENT" />
 
 		<var name="key_rowEntry" value="${contentTitle}" />
 
-		<execute function="Click" locator1="ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK" />
+		<execute function="Portal.Click" locator1="ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_CONTENT_TRACKING_ACTION" value1="View" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_CONTENT_TRACKING_ACTION" value1="View" />
 	</command>
 
 	<command name="addTrackingActionCustomFormCP">
@@ -82,10 +82,10 @@
 			<var name="campaignTrackingAction" value="Custom Form" />
 		</execute>
 
-		<execute function="Type" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_CUSTOM_FORM_NAME_FIELD" value1="${formAlias}" />
-		<execute function="Type" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_CUSTOM_FORM_FORM_ID_FIELD" value1="${formId}" />
+		<execute function="Portal.Type" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_CUSTOM_FORM_NAME_FIELD" value1="${formAlias}" />
+		<execute function="Portal.Type" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_CUSTOM_FORM_FORM_ID_FIELD" value1="${formId}" />
 
-		<execute function="Select" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_CUSTOM_FORM_TRACKING_ACTION_SELECT" value1="${formTrackingActionSelect}" />
+		<execute function="Portal.Select" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_CUSTOM_FORM_TRACKING_ACTION_SELECT" value1="${formTrackingActionSelect}" />
 	</command>
 
 	<command name="addTrackingActionDDLFormCP">
@@ -93,25 +93,25 @@
 			<var name="campaignTrackingAction" value="Form" />
 		</execute>
 
-		<execute function="Type" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_DDL_FORM_NAME_FIELD" value1="${formAlias}" />
+		<execute function="Portal.Type" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_DDL_FORM_NAME_FIELD" value1="${formAlias}" />
 
-		<execute function="Click" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_DDL_FORM_FORM_NAME_FIELD" />
+		<execute function="Portal.Click" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_DDL_FORM_FORM_NAME_FIELD" />
 
-		<execute function="Click" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_DDL_FORM_SELECT_BUTTON" />
+		<execute function="Portal.Click" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_DDL_FORM_SELECT_BUTTON" />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#DIALOG" />
 
 		<execute macro="FormsAdmin#searchFormEntry">
 			<var name="searchTerm" value="${formName}" />
 		</execute>
 
-		<execute function="Click" locator1="ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK">
+		<execute function="Portal.Click" locator1="ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK">
 			<var name="key_rowEntry" value="${formName}" />
 		</execute>
 
-		<execute function="SelectFrameTop" />
+		<execute function="Portal.SelectFrameTop" />
 
-		<execute function="Select" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_DDL_FORM_TRACKING_ACTION_SELECT" value1="${formTrackingActionSelect}" />
+		<execute function="Portal.Select" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_DDL_FORM_TRACKING_ACTION_SELECT" value1="${formTrackingActionSelect}" />
 	</command>
 
 	<command name="addTrackingActionLinkCP">
@@ -119,9 +119,9 @@
 			<var name="campaignTrackingAction" value="Link" />
 		</execute>
 
-		<execute function="Type" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_LINK_ALIAS_FIELD" value1="${linkAlias}" />
-		<execute function="Type" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_LINK_ID_FIELD" value1="${linkId}" />
-		<execute function="AssertTextEquals" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_LINK_TRACKING_ACTION" value1="Click" />
+		<execute function="Portal.Type" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_LINK_ALIAS_FIELD" value1="${linkAlias}" />
+		<execute function="Portal.Type" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_LINK_ID_FIELD" value1="${linkId}" />
+		<execute function="Portal.AssertTextEquals" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_LINK_TRACKING_ACTION" value1="Click" />
 	</command>
 
 	<command name="addTrackingActionPageCP">
@@ -129,16 +129,16 @@
 			<var name="campaignTrackingAction" value="Page" />
 		</execute>
 
-		<execute function="Type" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_PAGE_ALIAS_FIELD" value1="${pageAlias}" />
-		<execute function="Type" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_PAGE_FRIENDLY_URL_FIELD" value1="${pageFriendlyURL}" />
+		<execute function="Portal.Type" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_PAGE_ALIAS_FIELD" value1="${pageAlias}" />
+		<execute function="Portal.Type" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_PAGE_FRIENDLY_URL_FIELD" value1="${pageFriendlyURL}" />
 	</command>
 
 	<command name="addTrackingActionsCmd">
-		<execute function="Type" locator1="ContentTargeting#FORM_SEARCH_FIELD" value1="${campaignTrackingAction}" />
+		<execute function="Portal.Type" locator1="ContentTargeting#FORM_SEARCH_FIELD" value1="${campaignTrackingAction}" />
 
 		<var name="key_campaignTrackingAction" value="${campaignTrackingAction}" />
 
-		<execute function="DragAndDrop" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS" locator2="ContentTargeting#FORM_BUILDER" value1="${campaignTrackingAction}" />
+		<execute function="Portal.DragAndDrop" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS" locator2="ContentTargeting#FORM_BUILDER" value1="${campaignTrackingAction}" />
 	</command>
 
 	<command name="addTrackingActionYoutubevideosCP">
@@ -146,10 +146,10 @@
 			<var name="campaignTrackingAction" value="YouTube Videos" />
 		</execute>
 
-		<execute function="Type" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_YOUTUBE_VIDEOS_ALIAS_FIELD" value1="${youtubeAlias}" />
-		<execute function="Type" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_YOUTUBE_VIDEOS_VIDEO_ID_FIELD" value1="${youtubeVideoId}" />
+		<execute function="Portal.Type" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_YOUTUBE_VIDEOS_ALIAS_FIELD" value1="${youtubeAlias}" />
+		<execute function="Portal.Type" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_YOUTUBE_VIDEOS_VIDEO_ID_FIELD" value1="${youtubeVideoId}" />
 
-		<execute function="Select" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_YOUTUBE_VIDEOS_TRACKING_ACTION_SELECT" value1="${youtubeTrackingActionSelect}" />
+		<execute function="Portal.Select" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_YOUTUBE_VIDEOS_TRACKING_ACTION_SELECT" value1="${youtubeTrackingActionSelect}" />
 	</command>
 
 	<command name="deleteAllCP">
@@ -157,11 +157,11 @@
 			<var name="navItem" value="Campaigns" />
 		</execute>
 
-		<execute function="Check#checkAll" locator1="Checkbox#SELECT_ALL" />
+		<execute function="Portal.Check#checkAll" locator1="Checkbox#SELECT_ALL" />
 
-		<execute function="ClickNoError" locator1="Icon#DELETE" />
+		<execute function="Portal.ClickNoError" locator1="Icon#DELETE" />
 
-		<execute function="Confirm" value1="Are you sure you want to delete this? It will be deleted immediately." />
+		<execute function="Portal.Confirm" value1="Are you sure you want to delete this? It will be deleted immediately." />
 
 		<execute macro="Alert#viewSuccessMessage" />
 	</command>
@@ -173,11 +173,11 @@
 
 		<var name="key_rowEntry" value="${campaignName}" />
 
-		<execute function="Click#waitForMenuToggleJSClick" locator1="Icon#BODY_VERTICAL_ELLIPSIS" />
+		<execute function="Portal.Click#waitForMenuToggleJSClick" locator1="Icon#BODY_VERTICAL_ELLIPSIS" />
 
-		<execute function="ClickNoError" locator1="MenuItem#DELETE" />
+		<execute function="Portal.ClickNoError" locator1="MenuItem#DELETE" />
 
-		<execute function="Confirm" value1="Are you sure you want to delete this? It will be deleted immediately." />
+		<execute function="Portal.Confirm" value1="Are you sure you want to delete this? It will be deleted immediately." />
 	</command>
 
 	<command name="editCampaignCP">
@@ -187,9 +187,9 @@
 
 		<var name="key_rowEntry" value="${campaignName}" />
 
-		<execute function="Click#waitForMenuToggleJSClick" locator1="Icon#BODY_VERTICAL_ELLIPSIS" />
+		<execute function="Portal.Click#waitForMenuToggleJSClick" locator1="Icon#BODY_VERTICAL_ELLIPSIS" />
 
-		<execute function="Click" locator1="MenuItem#EDIT" />
+		<execute function="Portal.Click" locator1="MenuItem#EDIT" />
 
 		<execute macro="PortletEntry#inputName">
 			<var name="name" value="${campaignNameEdit}" />
@@ -202,43 +202,43 @@
 		<if>
 			<isset var="userSegmentSelectEdit" />
 			<then>
-				<execute function="Click" locator1="EditCampaign#CAMPAIGN_USER_SEGMENT_SELECT" />
+				<execute function="Portal.Click" locator1="EditCampaign#CAMPAIGN_USER_SEGMENT_SELECT" />
 
-				<execute function="Click" locator1="EditCampaign#SELECT_USER_SEGMENT_CHECKBOX">
+				<execute function="Portal.Click" locator1="EditCampaign#SELECT_USER_SEGMENT_CHECKBOX">
 					<var name="key_userSegmentName" value="${userSegmentSelectEdit}" />
 				</execute>
 
-				<execute function="Click" locator1="Button#OK" />
+				<execute function="Portal.Click" locator1="Button#OK" />
 			</then>
 		</if>
 
 		<if>
 			<isset var="campaignStartDateEdit" />
 			<then>
-				<execute function="Type" locator1="EditCampaign#CAMPAIGN_START_DATE_FIELD" value1="${campaignStartDateEdit}" />
+				<execute function="Portal.Type" locator1="EditCampaign#CAMPAIGN_START_DATE_FIELD" value1="${campaignStartDateEdit}" />
 			</then>
 			<elseif>
 				<isset var="campaignStartTimeEdit" />
 				<then>
-					<execute function="Type" locator1="EditCampaign#CAMPAIGN_START_TIME_FIELD" value1="${campaignStartTimeEdit}" />
+					<execute function="Portal.Type" locator1="EditCampaign#CAMPAIGN_START_TIME_FIELD" value1="${campaignStartTimeEdit}" />
 				</then>
 			</elseif>
 			<elseif>
 				<isset var="campaignEndDateEdit" />
 				<then>
-					<execute function="Type" locator1="EditCampaign#CAMPAIGN_END_DATE_FIELD" value1="${campaignEndDateEdit}" />
+					<execute function="Portal.Type" locator1="EditCampaign#CAMPAIGN_END_DATE_FIELD" value1="${campaignEndDateEdit}" />
 				</then>
 			</elseif>
 			<elseif>
 				<isset var="campaignEndTimeEdit" />
 				<then>
-					<execute function="Type" locator1="EditCampaign#CAMPAIGN_END_TIME_FIELD" value1="${campaignEndTimeEdit}" />
+					<execute function="Portal.Type" locator1="EditCampaign#CAMPAIGN_END_TIME_FIELD" value1="${campaignEndTimeEdit}" />
 				</then>
 			</elseif>
 			<elseif>
 				<isset var="campaignPriorityFieldEdit" />
 				<then>
-					<execute function="Type" locator1="EditCampaign#CAMPAIGN_PRIORITY_FIELD" value1="${campaignPriorityFieldEdit}" />
+					<execute function="Portal.Type" locator1="EditCampaign#CAMPAIGN_PRIORITY_FIELD" value1="${campaignPriorityFieldEdit}" />
 				</then>
 			</elseif>
 		</if>
@@ -251,9 +251,9 @@
 				<for list="${trackingActionDeleteList}" param="trackingActionDelete">
 					<var name="key_trackingAction" value="${trackingActionDelete}" />
 
-					<execute function="ClickNoError" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_DELETE" />
+					<execute function="Portal.ClickNoError" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_DELETE" />
 
-					<execute function="Confirm" value1="Are you sure you want to delete the selected field(s)?" />
+					<execute function="Portal.Confirm" value1="Are you sure you want to delete the selected field(s)?" />
 				</for>
 			</then>
 		</if>
@@ -336,7 +336,7 @@
 			<var name="navItem" value="Reports" />
 		</execute>
 
-		<execute function="Click" locator1="Button#PLUS" />
+		<execute function="Portal.Click" locator1="Button#PLUS" />
 	</command>
 
 	<command name="gotoEditReport">
@@ -352,17 +352,17 @@
 			<var name="navItem" value="Reports" />
 		</execute>
 
-		<execute function="Click" locator1="ContentRow#ENTRY_CONTENT_ENTRY_ELLIPSIS">
+		<execute function="Portal.Click" locator1="ContentRow#ENTRY_CONTENT_ENTRY_ELLIPSIS">
 			<var name="key_rowEntry" value="${reportName}" />
 		</execute>
 
-		<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM">
+		<execute function="Portal.Click" locator1="MenuItem#ANY_MENU_ITEM">
 			<var name="key_menuItem" value="Edit" />
 		</execute>
 	</command>
 
 	<command name="saveCP">
-		<execute function="Pause" locator1="5000" />
+		<execute function="Portal.Pause" locator1="5000" />
 
 		<execute macro="PortletEntry#save" />
 	</command>
@@ -383,7 +383,7 @@
 		<if>
 			<equals arg1="contentViewsDescription" arg2="true" />
 			<then>
-				<execute function="AssertTextEquals" locator1="ContentRow#ENTRY_CONTENT_ENTRY_DESCRIPTION_TD3" value1="Displays the number of times that content has been viewed by users in the context of the current campaign.">
+				<execute function="Portal.AssertTextEquals" locator1="ContentRow#ENTRY_CONTENT_ENTRY_DESCRIPTION_TD3" value1="Displays the number of times that content has been viewed by users in the context of the current campaign.">
 					<var name="key_rowEntry" value="Content Views" />
 				</execute>
 			</then>
@@ -395,27 +395,27 @@
 
 		<var name="key_reportType" value="${viewReportType}" />
 
-		<execute function="Click" locator1="Icon#HEADER_VERTICAL_ELLIPSIS" />
+		<execute function="Portal.Click" locator1="Icon#HEADER_VERTICAL_ELLIPSIS" />
 
-		<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM">
+		<execute function="Portal.Click" locator1="MenuItem#ANY_MENU_ITEM">
 			<var name="key_menuItem" value="Update" />
 		</execute>
 
-		<execute function="Pause" locator1="1000" />
+		<execute function="Portal.Pause" locator1="1000" />
 
 		<execute macro="Alert#viewSuccessMessage" />
 
 		<if>
 			<equals arg1="${notEnoughInfoContentView}" arg2="true" />
 			<then>
-				<execute function="AssertTextEquals" locator1="Message#EMPTY_INFO" value1="There is not enough data to generate a content views report for the campaign ${campaignName}. Please make sure the Campaign Content Display application is available on any site page." />
+				<execute function="Portal.AssertTextEquals" locator1="Message#EMPTY_INFO" value1="There is not enough data to generate a content views report for the campaign ${campaignName}. Please make sure the Campaign Content Display application is available on any site page." />
 			</then>
 		</if>
 
 		<if>
 			<equals arg1="${notEnoughInfoTrackingAction}" arg2="true" />
 			<then>
-				<execute function="AssertTextEquals" locator1="Message#EMPTY_INFO" value1="There is not enough data to generate this report. Please, make sure that at least one metric has been set for this report." />
+				<execute function="Portal.AssertTextEquals" locator1="Message#EMPTY_INFO" value1="There is not enough data to generate this report. Please, make sure that at least one metric has been set for this report." />
 			</then>
 		</if>
 	</command>
@@ -427,19 +427,19 @@
 
 		<var name="key_rowEntry" value="${campaignName}" />
 
-		<execute function="AssertTextEquals" locator1="ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK" value1="${campaignName}" />
-		<execute function="AssertTextEquals" locator1="ContentRow#ENTRY_CONTENT_ENTRY_DESCRIPTION_TD3" value1="${campaignDescription}" />
-		<execute function="AssertTextEquals" locator1="EditCampaign#CAMPAIGN_TABLE_PRIORITY" value1="${campaignPriority}" />
-		<execute function="AssertTextEquals" locator1="EditCampaign#CAMPAIGN_TABLE_STATUS" value1="${campaignStatus}" />
+		<execute function="Portal.AssertTextEquals" locator1="ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK" value1="${campaignName}" />
+		<execute function="Portal.AssertTextEquals" locator1="ContentRow#ENTRY_CONTENT_ENTRY_DESCRIPTION_TD3" value1="${campaignDescription}" />
+		<execute function="Portal.AssertTextEquals" locator1="EditCampaign#CAMPAIGN_TABLE_PRIORITY" value1="${campaignPriority}" />
+		<execute function="Portal.AssertTextEquals" locator1="EditCampaign#CAMPAIGN_TABLE_STATUS" value1="${campaignStatus}" />
 
 		<if>
 			<isset var="userSegmentSelect" />
 			<then>
-				<execute function="Click#waitForMenuToggleJSClick" locator1="Icon#BODY_VERTICAL_ELLIPSIS" />
+				<execute function="Portal.Click#waitForMenuToggleJSClick" locator1="Icon#BODY_VERTICAL_ELLIPSIS" />
 
-				<execute function="Click" locator1="MenuItem#EDIT" />
+				<execute function="Portal.Click" locator1="MenuItem#EDIT" />
 
-				<execute function="AssertTextEquals" locator1="EditCampaign#CAMPAIGN_USER_SEGMENT_APPLIED" value1="${userSegmentSelect}" />
+				<execute function="Portal.AssertTextEquals" locator1="EditCampaign#CAMPAIGN_USER_SEGMENT_APPLIED" value1="${userSegmentSelect}" />
 			</then>
 		</if>
 	</command>
@@ -447,12 +447,12 @@
 	<command name="viewContentReportCP">
 		<var name="key_reportTitle" value="${reportTitle}" />
 
-		<execute function="AssertTextEquals" locator1="CampaignReports#CONTENT_GRAPH_CONTENT_TITLE" value1="${reportTitle}" />
+		<execute function="Portal.AssertTextEquals" locator1="CampaignReports#CONTENT_GRAPH_CONTENT_TITLE" value1="${reportTitle}" />
 
 		<for list="${reportsContentTableList}" param="contentReports">
 			<var name="key_contentReports" value="${contentReports}" />
 
-			<execute function="AssertTextEquals" locator1="ContentTargeting#REPORT_TABLE_CONTENT" value1="${contentReports}" />
+			<execute function="Portal.AssertTextEquals" locator1="ContentTargeting#REPORT_TABLE_CONTENT" value1="${contentReports}" />
 		</for>
 	</command>
 
@@ -471,7 +471,7 @@
 
 		<var name="key_rowEntry" value="${metricName}" />
 
-		<execute function="AssertElementNotPresent" locator1="ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK" value1="${metricName}" />
+		<execute function="Portal.AssertElementNotPresent" locator1="ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK" value1="${metricName}" />
 	</command>
 
 	<command name="viewMetricReport">
@@ -480,7 +480,7 @@
 		<for list="${metricReportsTableList}" param="metricReports">
 			<var name="key_metricReports" value="${metricReports}" />
 
-			<execute function="AssertTextEquals" locator1="CampaignReports#METRIC_TABLE_CONTENT" value1="${metricReports}" />
+			<execute function="Portal.AssertTextEquals" locator1="CampaignReports#METRIC_TABLE_CONTENT" value1="${metricReports}" />
 		</for>
 	</command>
 
@@ -491,75 +491,75 @@
 
 		<var name="key_campaignName" value="${campaignName}" />
 
-		<execute function="AssertElementNotPresent" locator1="ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK" value1="${campaignName}" />
+		<execute function="Portal.AssertElementNotPresent" locator1="ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK" value1="${campaignName}" />
 	</command>
 
 	<command name="viewTrackingActionsCP">
 		<for list="${viewTrackingActionsList}" param="trackingAction">
 			<var name="key_trackingAction" value="${trackingAction}" />
 
-			<execute function="AssertTextEquals#assertPartialText" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_APPLIED" value1="${trackingAction}" />
+			<execute function="Portal.AssertTextEquals#assertPartialText" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_APPLIED" value1="${trackingAction}" />
 
 			<var name="key_fieldName" value="${trackingAction}" />
 
 			<if>
-				<condition function="IsElementPresent" locator1="ContentTargeting#FORM_FIELD_COLLAPSED" />
+				<condition function="Portal.IsElementPresent" locator1="ContentTargeting#FORM_FIELD_COLLAPSED" />
 				<then>
-					<execute function="Click" locator1="ContentTargeting#FORM_FIELD_COLLAPSED" />
+					<execute function="Portal.Click" locator1="ContentTargeting#FORM_FIELD_COLLAPSED" />
 				</then>
 			</if>
 
 			<if>
 				<equals arg1="${trackingAction}" arg2="Page" />
 				<then>
-					<execute function="AssertTextEquals" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_PAGE_ALIAS_FIELD" value1="${pageAlias}" />
+					<execute function="Portal.AssertTextEquals" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_PAGE_ALIAS_FIELD" value1="${pageAlias}" />
 
-					<execute function="AssertTextEquals" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_PAGE_FRIENDLY_URL_FIELD" value1="${pageFriendlyURL}" />
+					<execute function="Portal.AssertTextEquals" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_PAGE_FRIENDLY_URL_FIELD" value1="${pageFriendlyURL}" />
 
-					<execute function="AssertTextEquals" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_PAGE_TRACKING_ACTION" value1="View" />
+					<execute function="Portal.AssertTextEquals" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_PAGE_TRACKING_ACTION" value1="View" />
 				</then>
 				<elseif>
 					<equals arg1="${trackingAction}" arg2="Custom Form" />
 					<then>
-						<execute function="AssertTextEquals" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_CUSTOM_FORM_NAME_FIELD" value1="${formAlias}" />
-						<execute function="AssertTextEquals" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_CUSTOM_FORM_FORM_ID_FIELD" value1="${formId}" />
-						<execute function="AssertSelectedLabel" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_CUSTOM_FORM_TRACKING_ACTION_SELECT" value1="${formTrackingActionSelect}" />
+						<execute function="Portal.AssertTextEquals" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_CUSTOM_FORM_NAME_FIELD" value1="${formAlias}" />
+						<execute function="Portal.AssertTextEquals" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_CUSTOM_FORM_FORM_ID_FIELD" value1="${formId}" />
+						<execute function="Portal.AssertSelectedLabel" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_CUSTOM_FORM_TRACKING_ACTION_SELECT" value1="${formTrackingActionSelect}" />
 					</then>
 				</elseif>
 				<elseif>
 					<equals arg1="${trackngAction}" arg2="Form" />
 					<then>
-						<execute function="AssertTextEquals" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_DDL_FORM_NAME_FIELD" value1="${formAlias}" />
-						<execute function="AssertTextEquals" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_DDL_FORM_FORM_NAME_FIELD" value1="${formName}" />
-						<execute function="AssertSelectedLabel" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_DDL_FORM_TRACKING_ACTION_SELECT" value1="${formTrackingActionSelect}" />
+						<execute function="Portal.AssertTextEquals" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_DDL_FORM_NAME_FIELD" value1="${formAlias}" />
+						<execute function="Portal.AssertTextEquals" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_DDL_FORM_FORM_NAME_FIELD" value1="${formName}" />
+						<execute function="Portal.AssertSelectedLabel" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_DDL_FORM_TRACKING_ACTION_SELECT" value1="${formTrackingActionSelect}" />
 					</then>
 				</elseif>
 				<elseif>
 					<equals arg1="${trackingAction}" arg2="Youtube" />
 					<then>
-						<execute function="AssertTextEquals" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_YOUTUBE_VIDEOS_ALIAS_FIELD" value1="${youtubeAlias}" />
-						<execute function="AssertTextEquals" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_YOUTUBE_VIDEOS_VIDEO_ID_FIELD" value1="${youtubeVideoId}" />
-						<execute function="AssertSelectedLabel" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_YOUTUBE_VIDEOS_TRACKING_ACTION_SELECT" value1="${youtubeTrackingActionSelect}" />
+						<execute function="Portal.AssertTextEquals" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_YOUTUBE_VIDEOS_ALIAS_FIELD" value1="${youtubeAlias}" />
+						<execute function="Portal.AssertTextEquals" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_YOUTUBE_VIDEOS_VIDEO_ID_FIELD" value1="${youtubeVideoId}" />
+						<execute function="Portal.AssertSelectedLabel" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_YOUTUBE_VIDEOS_TRACKING_ACTION_SELECT" value1="${youtubeTrackingActionSelect}" />
 					</then>
 				</elseif>
 				<elseif>
 					<equals arg1="${trackingAction}" arg2="Content" />
 					<then>
-						<execute function="AssertValue" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_CONTENT_NAME_FIELD" value1="${contentMetricName}" />
+						<execute function="Portal.AssertValue" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_CONTENT_NAME_FIELD" value1="${contentMetricName}" />
 
-						<execute function="AssertTextEquals" locator1="ContentTargeting#CARD_CONTENT_TITLE" value1="${contentTitle}">
+						<execute function="Portal.AssertTextEquals" locator1="ContentTargeting#CARD_CONTENT_TITLE" value1="${contentTitle}">
 							<var name="key_contentTitle" value="${contentTitle}" />
 						</execute>
 
-						<execute function="AssertTextEquals" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_CONTENT_TRACKING_ACTION" value1="View" />
+						<execute function="Portal.AssertTextEquals" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_CONTENT_TRACKING_ACTION" value1="View" />
 					</then>
 				</elseif>
 				<elseif>
 					<equals arg1="${trackingAction}" arg2="Link" />
 					<then>
-						<execute function="AssertTextEquals" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_LINK_ALIAS_FIELD" value1="${linkAlias}" />
-						<execute function="AssertTextEquals" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_LINK_ID_FIELD" value1="${linkId}" />
-						<execute function="AssertTextEquals" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_LINK_TRACKING_ACTION" value1="Click" />
+						<execute function="Portal.AssertTextEquals" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_LINK_ALIAS_FIELD" value1="${linkAlias}" />
+						<execute function="Portal.AssertTextEquals" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_LINK_ID_FIELD" value1="${linkId}" />
+						<execute function="Portal.AssertTextEquals" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_LINK_TRACKING_ACTION" value1="Click" />
 					</then>
 				</elseif>
 			</if>

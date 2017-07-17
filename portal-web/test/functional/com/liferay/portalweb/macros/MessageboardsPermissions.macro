@@ -1,15 +1,15 @@
 <definition>
 	<command name="checkReplyToMessageForGuestPG">
-		<execute function="AssertClick" locator1="Button#PERMISSIONS" value1="Permissions" />
+		<execute function="Portal.AssertClick" locator1="Button#PERMISSIONS" value1="Permissions" />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#DIALOG" />
 
-		<execute function="Check" locator1="AssetPermissions#GUEST_REPLY_TO_MESSAGE_CHECKBOX" />
+		<execute function="Portal.Check" locator1="AssetPermissions#GUEST_REPLY_TO_MESSAGE_CHECKBOX" />
 
 		<execute macro="PortletEntry#save" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 
-		<execute function="Click" locator1="Icon#CLOSE" />
+		<execute function="Portal.Click" locator1="Icon#CLOSE" />
 	</command>
 </definition>

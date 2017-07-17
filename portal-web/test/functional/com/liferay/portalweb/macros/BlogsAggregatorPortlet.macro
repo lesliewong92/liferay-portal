@@ -5,20 +5,20 @@
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#CONFIGURATION" />
 
-		<execute function="Select" locator1="Configuration#SELECTION_METHOD_SELECT" value1="${selectionMethod}" />
+		<execute function="Portal.Select" locator1="Configuration#SELECTION_METHOD_SELECT" value1="${selectionMethod}" />
 
 		<execute macro="PortletEntry#save" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 	</command>
 
 	<command name="viewBlogsEntryViaBAPortletPG">
 		<for list="${viewEntryTitle}" param="entryTitle">
 			<var name="key_entryTitle" value="${entryTitle}" />
 
-			<execute function="AssertTextEquals" locator1="BlogsAggregator#ENTRY_TITLE" value1="${entryTitle}" />
+			<execute function="Portal.AssertTextEquals" locator1="BlogsAggregator#ENTRY_TITLE" value1="${entryTitle}" />
 		</for>
 	</command>
 
@@ -28,19 +28,19 @@
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#CONFIGURATION" />
 
-		<execute function="AssertClick" locator1="Button#SELECT" value1="Select" />
+		<execute function="Portal.AssertClick" locator1="Button#SELECT" value1="Select" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 
-		<execute function="SelectFrame" locator1="UsersAndOrganizationsSelectOrganization#SELECT_ORGANIZATION_IFRAME" />
+		<execute function="Portal.SelectFrame" locator1="UsersAndOrganizationsSelectOrganization#SELECT_ORGANIZATION_IFRAME" />
 
 		<var name="key_orgName" value="${orgName}" />
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizationsSelectOrganization#ORGANIZATION_TABLE_NAME" value1="${orgName}" />
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizationsSelectOrganization#ORGANIZATION_TABLE_PARENT_ORGANIZATION" value1="${parentOrgName}" />
+		<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizationsSelectOrganization#ORGANIZATION_TABLE_NAME" value1="${orgName}" />
+		<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizationsSelectOrganization#ORGANIZATION_TABLE_PARENT_ORGANIZATION" value1="${parentOrgName}" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 	</command>
 </definition>

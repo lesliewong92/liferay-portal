@@ -110,7 +110,7 @@
 			<var name="structureName" value="WC Structure Name" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#DIALOG" />
 
 		<execute macro="PermissionsInline#addOrRemoveViewPermissionFromAllRoles">
 			<var name="addOrRemoveViewPermission" value="Remove" />
@@ -139,13 +139,13 @@
 
 		<execute macro="WebContentTemplates#save" />
 
-		<execute function="Click" locator1="Icon#ROW_VERTICAL_ELLIPSIS">
+		<execute function="Portal.Click" locator1="Icon#ROW_VERTICAL_ELLIPSIS">
 			<var name="key_rowEntry" value="WC Template Name" />
 		</execute>
 
-		<execute function="AssertClick" locator1="MenuItem#PERMISSIONS" value1="Permissions" />
+		<execute function="Portal.AssertClick" locator1="MenuItem#PERMISSIONS" value1="Permissions" />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#DIALOG" />
 
 		<execute macro="PermissionsInline#addOrRemoveViewPermissionFromAllRoles">
 			<var name="addOrRemoveViewPermission" value="Add" />
@@ -157,9 +157,9 @@
 			<var name="roleList" value="Guest,Site Member" />
 		</execute>
 
-		<execute function="SelectFrameTop" />
+		<execute function="Portal.SelectFrameTop" />
 
-		<execute function="Refresh" />
+		<execute function="Portal.Refresh" />
 
 		<for list="1,2" param="number">
 			<execute macro="ProductMenu#gotoControlPanelUsers">
@@ -256,7 +256,7 @@
 
 		<execute macro="WebContentNavigator#gotoManageStructures" />
 
-		<execute function="AssertTextNotPresent" value1="WC Structure Name" />
+		<execute function="Portal.AssertTextNotPresent" value1="WC Structure Name" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Web Content" />
@@ -264,7 +264,7 @@
 
 		<execute macro="WebContentNavigator#gotoManageTemplates" />
 
-		<execute function="AssertTextNotPresent" value1="WC Template Name" />
+		<execute function="Portal.AssertTextNotPresent" value1="WC Template Name" />
 	</command>
 
 	<command name="AddAudioViaWebContent" priority="5">
@@ -418,11 +418,11 @@
 
 		<var name="templateScript"><![CDATA[<@liferay_portlet["runtime"] portletName="com_liferay_currency_converter_web_portlet_CurrencyConverterPortlet" />]]></var>
 
-		<execute function="Type#typeAceEditor" locator1="DDMEditTemplate#SCRIPT_CONTENT_FIELD_TEXT_AREA" value1="${templateScript}" />
+		<execute function="Portal.Type#typeAceEditor" locator1="DDMEditTemplate#SCRIPT_CONTENT_FIELD_TEXT_AREA" value1="${templateScript}" />
 
 		<execute macro="PortletEntry#save" />
 
-		<execute function="SelectFrameTop" />
+		<execute function="Portal.SelectFrameTop" />
 
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Test Site Name" />
@@ -441,7 +441,7 @@
 			<var name="webContentTitle" value="WC Title" />
 		</execute>
 
-		<execute function="AssertElementPresent" locator1="Button#CONVERT" />
+		<execute function="Portal.AssertElementPresent" locator1="Button#CONVERT" />
 	</command>
 
 	<command name="AddEmbeddedPortletVelocityTemplate" priority="3">
@@ -514,11 +514,11 @@
 
 		<var name="templateScript"><![CDATA[$theme.runtime("com_liferay_currency_converter_web_portlet_CurrencyConverterPortlet")]]></var>
 
-		<execute function="Type#typeAceEditor" locator1="DDMEditTemplate#SCRIPT_CONTENT_FIELD_TEXT_AREA" value1="${templateScript}" />
+		<execute function="Portal.Type#typeAceEditor" locator1="DDMEditTemplate#SCRIPT_CONTENT_FIELD_TEXT_AREA" value1="${templateScript}" />
 
 		<execute macro="PortletEntry#save" />
 
-		<execute function="SelectFrameTop" />
+		<execute function="Portal.SelectFrameTop" />
 
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Test Site Name" />
@@ -537,7 +537,7 @@
 			<var name="webContentTitle" value="WC Title" />
 		</execute>
 
-		<execute function="AssertElementPresent" locator1="Button#CONVERT" />
+		<execute function="Portal.AssertElementPresent" locator1="Button#CONVERT" />
 	</command>
 
 	<command name="AddExistingPageAsDisplayPageInSiteCP" priority="5">
@@ -677,7 +677,7 @@
 			<var name="webContentContent" value="WC WebContent Content" />
 		</execute>
 
-		<execute function="AssertElementPresent" locator1="WCD#WEB_CONTENT_INLINE_IMAGE" />
+		<execute function="Portal.AssertElementPresent" locator1="WCD#WEB_CONTENT_INLINE_IMAGE" />
 	</command>
 
 	<command name="AddVideoViaWebContent" priority="4">
@@ -829,11 +829,11 @@
 
 		<execute macro="PermissionsInline#gotoConfigurationPG" />
 
-		<execute function="AssertChecked" locator1="Permissions#CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX">
+		<execute function="Portal.AssertChecked" locator1="Permissions#CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX">
 			<var name="key_roleTitle" value="guest" />
 		</execute>
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 
 		<execute macro="WebContent#viewPGViaWCD">
 			<var name="webContentContent" value="WC WebContent Content" />
@@ -845,9 +845,9 @@
 			<var name="pageName" value="WCD Page" />
 		</execute>
 
-		<execute function="AssertTextNotPresent" value1="Web Content Display" />
+		<execute function="Portal.AssertTextNotPresent" value1="Web Content Display" />
 
-		<execute function="AssertTextNotPresent" value1="WC WebContent Content" />
+		<execute function="Portal.AssertTextNotPresent" value1="WC WebContent Content" />
 	</command>
 
 	<command name="AddWebContentViaWCDWithGlobalStructureAndLocalTemplate" priority="4">
@@ -1908,7 +1908,7 @@
 			<var name="structureName" value="WC Structure Name" />
 		</execute>
 
-		<execute function="Click" locator1="TextInput#TITLE" />
+		<execute function="Portal.Click" locator1="TextInput#TITLE" />
 
 		<execute macro="WebContent#addCP">
 			<var name="webContentContent" value="WC WebContent Content" />
@@ -2652,11 +2652,11 @@
 			<var name="webContentTitle" value="WC WebContent Title" />
 		</execute>
 
-		<execute function="AssertClickNoError" locator1="Button#SAVE_AS_DRAFT" value1="Save as Draft" />
+		<execute function="Portal.AssertClickNoError" locator1="Button#SAVE_AS_DRAFT" value1="Save as Draft" />
 
 		<execute macro="WebContentStructures#viewTemplateValidation" />
 
-		<execute function="AssertClickNoError" locator1="Button#PUBLISH" value1="Publish" />
+		<execute function="Portal.AssertClickNoError" locator1="Button#PUBLISH" value1="Publish" />
 
 		<execute macro="WebContentStructures#viewTemplateValidation" />
 	</command>

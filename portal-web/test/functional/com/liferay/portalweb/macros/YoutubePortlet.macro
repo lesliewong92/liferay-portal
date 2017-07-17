@@ -1,21 +1,21 @@
 <definition>
 	<command name="addVideoId">
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#DIALOG" />
 
-		<execute function="Type" locator1="TextInput#URL" value1="${videoId}" />
+		<execute function="Portal.Type" locator1="TextInput#URL" value1="${videoId}" />
 	</command>
 
 	<command name="assertVideoTitle">
-		<execute function="SelectFrame" locator1="YoutubePortlet#VIDEO_IFRAME" />
+		<execute function="Portal.SelectFrame" locator1="YoutubePortlet#VIDEO_IFRAME" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="YoutubePortlet#VIDEO_TITLE" value1="${videoTitle}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="YoutubePortlet#VIDEO_TITLE" value1="${videoTitle}" />
 
-		<execute function="SelectFrameTop" />
+		<execute function="Portal.SelectFrameTop" />
 	</command>
 
 	<command name="viewPortletConfiguration">
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#DIALOG" />
 
-		<execute function="AssertTextEquals" locator1="TextInput#URL" value1="${videoId}" />
+		<execute function="Portal.AssertTextEquals" locator1="TextInput#URL" value1="${videoId}" />
 	</command>
 </definition>

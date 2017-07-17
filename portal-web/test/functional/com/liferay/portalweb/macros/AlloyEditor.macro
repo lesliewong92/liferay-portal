@@ -1,10 +1,10 @@
 <definition>
 	<command name="addContent">
-		<execute function="Type#typeEditor" locator1="AlloyEditor#CONTENT_FIELD" value1="${content}" />
+		<execute function="Portal.Type#typeEditor" locator1="AlloyEditor#CONTENT_FIELD" value1="${content}" />
 	</command>
 
 	<command name="addTitle">
-		<execute function="Type#typeEditor" locator1="AlloyEditor#TITLE_FIELD" value1="${title}" />
+		<execute function="Portal.Type#typeEditor" locator1="AlloyEditor#TITLE_FIELD" value1="${title}" />
 	</command>
 
 	<command name="addTitleAndContent">

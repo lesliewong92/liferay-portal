@@ -377,7 +377,7 @@
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute function="AssertElementPresent" locator1="Staging#STAGING_PUBLISH_TO_LIVE_BUTTON" />
+		<execute function="Portal.AssertElementPresent" locator1="Staging#STAGING_PUBLISH_TO_LIVE_BUTTON" />
 
 		<execute macro="Page#selectSitePagesVariationName">
 			<var name="sitePagesVariationName" value="Main Variation" />
@@ -394,11 +394,11 @@
 	</command>
 
 	<command name="StagingVersionHistory" priority="4">
-		<execute function="Click" locator1="Icon#STAGING_BAR_VERTICAL_ELLIPSIS" />
+		<execute function="Portal.Click" locator1="Icon#STAGING_BAR_VERTICAL_ELLIPSIS" />
 
-		<execute function="Click" locator1="Staging#HISTORY_BUTTON" />
+		<execute function="Portal.Click" locator1="Staging#HISTORY_BUTTON" />
 
-		<execute function="SelectFrame" locator1="IFrame#METADATA_SETS_IFRAME" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#METADATA_SETS_IFRAME" />
 
 		<var locator="Staging#HISTORY_VERSION" name="historyVersion" />
 

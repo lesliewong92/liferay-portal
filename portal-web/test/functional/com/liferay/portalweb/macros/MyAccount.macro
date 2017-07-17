@@ -12,13 +12,13 @@
 	</command>
 
 	<command name="changeUserLanguage">
-		<execute function="Select" locator1="MyAccount#LANGUAGE_SELECT" value1="${languageName}" />
+		<execute function="Portal.Select" locator1="MyAccount#LANGUAGE_SELECT" value1="${languageName}" />
 
 		<var name="key_saveButton" value="${saveButton}" />
 
-		<execute function="AssertClick" locator1="Button#SAVE_LOCALIZED" value1="${saveButton}" />
+		<execute function="Portal.AssertClick" locator1="Button#SAVE_LOCALIZED" value1="${saveButton}" />
 
-		<execute function="AssertElementPresent" locator1="Message#SUCCESS" />
+		<execute function="Portal.AssertElementPresent" locator1="Message#SUCCESS" />
 	</command>
 
 	<command name="configureDisplaySettingsLanguage">
@@ -26,11 +26,11 @@
 			<var name="portletName" value="Account Settings" />
 		</execute>
 
-		<execute function="Select" locator1="MyAccount#LANGUAGE_SELECT" value1="${languageName}" />
+		<execute function="Portal.Select" locator1="MyAccount#LANGUAGE_SELECT" value1="${languageName}" />
 
-		<execute function="AssertClick" locator1="Button#SAVE" value1="Save" />
+		<execute function="Portal.AssertClick" locator1="Button#SAVE" value1="Save" />
 
-		<execute function="AssertElementPresent" locator1="Message#SUCCESS" />
+		<execute function="Portal.AssertElementPresent" locator1="Message#SUCCESS" />
 	</command>
 
 	<command name="configureDisplaySettingsLanguageLocalized">
@@ -39,18 +39,18 @@
 			<var name="portlet" value="${portlet}" />
 		</execute>
 
-		<execute function="Select" locator1="MyAccount#LANGUAGE_SELECT" value1="${languageName}" />
+		<execute function="Portal.Select" locator1="MyAccount#LANGUAGE_SELECT" value1="${languageName}" />
 
 		<var name="key_saveButton" value="${saveButton}" />
 
-		<execute function="AssertClick" locator1="Button#SAVE_LOCALIZED" value1="${saveButton}" />
+		<execute function="Portal.AssertClick" locator1="Button#SAVE_LOCALIZED" value1="${saveButton}" />
 
-		<execute function="AssertElementPresent" locator1="Message#SUCCESS" />
+		<execute function="Portal.AssertElementPresent" locator1="Message#SUCCESS" />
 	</command>
 
 	<command name="view">
 		<for list="Password,Organizations,Sites,User Groups,Roles,Categorization" param="key_panelHeading">
-			<execute function="AssertElementPresent" locator1="Panel#PANEL_HEADING_COLLAPSED" />
+			<execute function="Portal.AssertElementPresent" locator1="Panel#PANEL_HEADING_COLLAPSED" />
 		</for>
 	</command>
 </definition>

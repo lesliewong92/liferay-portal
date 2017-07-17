@@ -32,7 +32,7 @@
 		<property name="custom.properties" value="dl.store.impl=com.liferay.portal.store.db.DBStore" />
 		<property name="test.name.skip.portal.instance" value="ClusteringCE#ClusteringSmoke" />
 
-		<execute function="AssertConsoleTextNotPresent" value1="cluster=liferay-channel-control" />
-		<execute function="AssertConsoleTextNotPresent" value1="com.liferay.portal.cluster.multiple" />
+		<execute function="Portal.AssertConsoleTextNotPresent" value1="cluster=liferay-channel-control" />
+		<execute function="Portal.AssertConsoleTextNotPresent" value1="com.liferay.portal.cluster.multiple" />
 	</command>
 </definition>

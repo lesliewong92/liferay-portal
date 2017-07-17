@@ -50,7 +50,7 @@
 	<command name="gotoLiveSite" summary="Navigate to the Live site">
 		<execute macro="ProductMenuHelper#expandPanelSites" />
 
-		<execute function="AssertClick" locator1="ProductMenu#LIVE_LINK" value1="Live" />
+		<execute function="Portal.AssertClick" locator1="ProductMenu#LIVE_LINK" value1="Live" />
 	</command>
 
 	<command name="gotoLocalizedControlPanel" summary="Navigate to Product Menu > Control Panel > ${category} > ${portlet}">
@@ -74,9 +74,9 @@
 
 		<var name="key_page" value="${page}" />
 
-		<execute function="Click#mouseOverClick" locator1="SitePages#SPECIFIC_PAGE_ELLIPSIS" />
+		<execute function="Portal.Click#mouseOverClick" locator1="SitePages#SPECIFIC_PAGE_ELLIPSIS" />
 
-		<execute function="Click" locator1="SitePages#EDIT_SPECIFIC_PAGE" />
+		<execute function="Portal.Click" locator1="SitePages#EDIT_SPECIFIC_PAGE" />
 	</command>
 
 	<command name="gotoLocalizedSitesAdministration" summary="Navigate to Product Menu > Sites > ${category} > ${portlet}">
@@ -106,7 +106,7 @@
 	<command name="gotoPersonalSite" summary="Navigate to Product Menu > Profile" >
 		<execute macro="ProductMenuHelper#expandPanelUser" />
 
-		<execute function="Click" locator1="ProductMenu#USER_PROFILE" />
+		<execute function="Portal.Click" locator1="ProductMenu#USER_PROFILE" />
 	</command>
 
 	<command name="gotoPrivatePages" summary="Navigate to Product Menu > Sites > Navigation > Private Pages">
@@ -117,13 +117,13 @@
 		</execute>
 
 		<if>
-			<condition function="IsElementNotPresent" locator1="ProductMenu#PRIVATE_PAGES_SELECTED" />
+			<condition function="Portal.IsElementNotPresent" locator1="ProductMenu#PRIVATE_PAGES_SELECTED" />
 			<then>
-				<execute function="AssertClick" locator1="ProductMenu#PRIVATE_PAGES" value1="Private Pages" />
+				<execute function="Portal.AssertClick" locator1="ProductMenu#PRIVATE_PAGES" value1="Private Pages" />
 			</then>
 		</if>
 
-		<execute function="Pause" locator1="5000" />
+		<execute function="Portal.Pause" locator1="5000" />
 
 		<execute macro="ProductMenuHelper#openProductMenu" />
 
@@ -140,9 +140,9 @@
 		</execute>
 
 		<if>
-			<condition function="IsElementNotPresent" locator1="ProductMenu#PUBLIC_PAGES_SELECTED" />
+			<condition function="Portal.IsElementNotPresent" locator1="ProductMenu#PUBLIC_PAGES_SELECTED" />
 			<then>
-				<execute function="Click" locator1="ProductMenu#PUBLIC_PAGES" />
+				<execute function="Portal.Click" locator1="ProductMenu#PUBLIC_PAGES" />
 			</then>
 		</if>
 
@@ -160,7 +160,7 @@
 
 		<var name="key_site" value="${site}" />
 
-		<execute function="AssertClick" locator1="ProductMenu#PUBLIC_SITE_LINK" value1="${site}" />
+		<execute function="Portal.AssertClick" locator1="ProductMenu#PUBLIC_SITE_LINK" value1="${site}" />
 	</command>
 
 	<command name="gotoSite" summary="Navigate to Product Menu > Sites > Sites Modal > ${site}">
@@ -168,7 +168,7 @@
 
 		<execute macro="ProductMenuHelper#openSitesPopup" />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#DIALOG" />
 
 		<execute macro="Navigator#gotoNavItem">
 			<var name="navItem" value="My Sites" />
@@ -180,7 +180,7 @@
 
 		<execute macro="ProductMenuHelper#expandPanelSites" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="ProductMenu#PRODUCT_MENU_PANEL_SITE_ADMINISTRATION_SITE_NAME" value1="${site}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="ProductMenu#PRODUCT_MENU_PANEL_SITE_ADMINISTRATION_SITE_NAME" value1="${site}" />
 	</command>
 
 	<command name="gotoSitesConfiguration" summary="Navigate to Product Menu > Sites > Configuration > ${portlet}">
@@ -234,20 +234,20 @@
 	<command name="gotoSiteViaLink" summary="Navigate to ${site} via the 'Go to Site' link">
 		<execute macro="ProductMenuHelper#expandPanelSites" />
 
-		<execute function="AssertClick" locator1="ProductMenu#GO_TO_SITES_LINK" value1="Go to Site" />
+		<execute function="Portal.AssertClick" locator1="ProductMenu#GO_TO_SITES_LINK" value1="Go to Site" />
 	</command>
 
 	<command name="gotoStagingSite" summary="Navigate to the Staging site">
 		<if>
-			<condition function="IsElementNotPresent" locator1="ProductMenu#STAGING_SELECTED" />
+			<condition function="Portal.IsElementNotPresent" locator1="ProductMenu#STAGING_SELECTED" />
 			<then>
 				<execute macro="ProductMenuHelper#expandPanelSites" />
 
-				<execute function="AssertClick" locator1="ProductMenu#STAGING_LINK" value1="Staging" />
+				<execute function="Portal.AssertClick" locator1="ProductMenu#STAGING_LINK" value1="Staging" />
 			</then>
 		</if>
 
-		<execute function="AssertVisible" locator1="ProductMenu#STAGING_SELECTED" />
+		<execute function="Portal.AssertVisible" locator1="ProductMenu#STAGING_SELECTED" />
 	</command>
 
 	<command name="gotoUserMyAccount" summary="Navigate to Product Menu > User > My Account > ${portlet}">
@@ -267,11 +267,11 @@
 
 		<if>
 			<and>
-				<condition function="IsElementPresent" locator1="ProductMenu#BACK_ARROW" />
-				<condition function="IsVisible" locator1="ProductMenu#BACK_ARROW" />
+				<condition function="Portal.IsElementPresent" locator1="ProductMenu#BACK_ARROW" />
+				<condition function="Portal.IsVisible" locator1="ProductMenu#BACK_ARROW" />
 			</and>
 			<then>
-				<execute function="Click" locator1="ProductMenu#BACK_ARROW" />
+				<execute function="Portal.Click" locator1="ProductMenu#BACK_ARROW" />
 			</then>
 		</if>
 
@@ -285,13 +285,13 @@
 
 		<if>
 			<and>
-				<condition function="IsElementPresent" locator1="ProductMenu#SITES_POPUP" />
-				<condition function="IsNotVisible" locator1="ProductMenu#SITES_POPUP" />
+				<condition function="Portal.IsElementPresent" locator1="ProductMenu#SITES_POPUP" />
+				<condition function="Portal.IsNotVisible" locator1="ProductMenu#SITES_POPUP" />
 			</and>
 			<then>
-				<execute function="Click" locator1="ProductMenu#SITES_COMPASS" />
+				<execute function="Portal.Click" locator1="ProductMenu#SITES_COMPASS" />
 
-				<execute function="AssertVisible" locator1="ProductMenu#SITES_POPUP" />
+				<execute function="Portal.AssertVisible" locator1="ProductMenu#SITES_POPUP" />
 			</then>
 		</if>
 

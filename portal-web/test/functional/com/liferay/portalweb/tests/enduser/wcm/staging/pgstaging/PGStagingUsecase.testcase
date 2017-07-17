@@ -267,7 +267,7 @@
 			<var name="siteName" value="Organization Name" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="Portlet#TITLE" value1="Blogs">
+		<execute function="Portal.AssertElementNotPresent" locator1="Portlet#TITLE" value1="Blogs">
 			<var name="key_portletName" value="Blogs" />
 		</execute>
 
@@ -291,7 +291,7 @@
 			<var name="siteName" value="Organization Name" />
 		</execute>
 
-		<execute function="AssertElementPresent" locator1="Portlet#TITLE" value1="Blogs">
+		<execute function="Portal.AssertElementPresent" locator1="Portlet#TITLE" value1="Blogs">
 			<var name="key_portletName" value="Blogs" />
 		</execute>
 
@@ -316,7 +316,7 @@
 			<var name="siteName" value="Organization Name" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="BlogsEntry#TITLE">
+		<execute function="Portal.AssertElementNotPresent" locator1="BlogsEntry#TITLE">
 			<var name="key_entryTitle" value="Blogs Entry Title" />
 		</execute>
 
@@ -347,7 +347,7 @@
 			<var name="siteName" value="Organization Name" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="BlogsEntry#TITLE">
+		<execute function="Portal.AssertElementNotPresent" locator1="BlogsEntry#TITLE">
 			<var name="key_entryTitle" value="Blogs Entry Title" />
 		</execute>
 
@@ -371,7 +371,7 @@
 			<var name="siteName" value="Organization Name" />
 		</execute>
 
-		<execute function="AssertElementPresent" locator1="BlogsEntry#TITLE">
+		<execute function="Portal.AssertElementPresent" locator1="BlogsEntry#TITLE">
 			<var name="key_entryTitle" value="Blogs Entry Title" />
 		</execute>
 

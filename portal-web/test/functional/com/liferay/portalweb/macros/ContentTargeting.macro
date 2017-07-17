@@ -5,7 +5,7 @@
 		</execute>
 
 		<for list="${analyticsList}" param="analytic">
-			<execute function="Check#checkToggleSwitch" locator1="ToggleSwitch#ANY_TOGGLE_SWITCH">
+			<execute function="Portal.Check#checkToggleSwitch" locator1="ToggleSwitch#ANY_TOGGLE_SWITCH">
 				<var name="key_toggleSwitchLabel" value="${analytic}" />
 			</execute>
 		</for>
@@ -15,13 +15,13 @@
 		<var name="key_portletName" value="${portletName}" />
 
 		<if>
-			<condition function="IsElementNotPresent" locator1="ContentTargeting#PREVIEW_BUTTON_EXPANDED" />
+			<condition function="Portal.IsElementNotPresent" locator1="ContentTargeting#PREVIEW_BUTTON_EXPANDED" />
 			<then>
-				<execute function="Click#makeVisibleClickAt" locator1="Portlet#SPECIFIC_BORDERLESS_BAR" />
+				<execute function="Portal.Click#makeVisibleClickAt" locator1="Portlet#SPECIFIC_BORDERLESS_BAR" />
 
-				<execute function="Click" locator1="ContentTargeting#PREVIEW_BUTTON" />
+				<execute function="Portal.Click" locator1="ContentTargeting#PREVIEW_BUTTON" />
 
-				<execute function="AssertElementPresent" locator1="ContentTargeting#PREVIEW_BUTTON_EXPANDED" />
+				<execute function="Portal.AssertElementPresent" locator1="ContentTargeting#PREVIEW_BUTTON_EXPANDED" />
 			</then>
 		</if>
 	</command>
@@ -30,13 +30,13 @@
 		<var name="key_portletName" value="${portletName}" />
 
 		<if>
-			<condition function="IsElementNotPresent" locator1="ContentTargeting#PREVIEW_BUTTON_EXPANDED" />
+			<condition function="Portal.IsElementNotPresent" locator1="ContentTargeting#PREVIEW_BUTTON_EXPANDED" />
 			<then>
-				<execute function="MouseOver" locator1="ContentTargeting#PREVIEW_BUTTON_STAGING_LIVE_MODE" />
+				<execute function="Portal.MouseOver" locator1="ContentTargeting#PREVIEW_BUTTON_STAGING_LIVE_MODE" />
 
-				<execute function="Click" locator1="ContentTargeting#PREVIEW_BUTTON" />
+				<execute function="Portal.Click" locator1="ContentTargeting#PREVIEW_BUTTON" />
 
-				<execute function="AssertElementPresent" locator1="ContentTargeting#PREVIEW_BUTTON_EXPANDED" />
+				<execute function="Portal.AssertElementPresent" locator1="ContentTargeting#PREVIEW_BUTTON_EXPANDED" />
 			</then>
 		</if>
 	</command>
@@ -44,7 +44,7 @@
 	<command name="viewEntryOnStagingLiveMode">
 		<var name="key_portletName" value="${portletName}" />
 
-		<execute function="AssertTextEquals" locator1="ContentTargeting#VIEW_ENTRY_CONTENT" value1="${entryContentText}" />
+		<execute function="Portal.AssertTextEquals" locator1="ContentTargeting#VIEW_ENTRY_CONTENT" value1="${entryContentText}" />
 
 		<for list="${previewContentList}" param="previewEntry">
 			<execute macro="ContentTargeting#expandPreviewOnStagingLiveMode">
@@ -54,8 +54,8 @@
 			<var name="key_previewEntry" value="${previewEntry}" />
 			<var name="key_viewEntrySelected" value="${viewSelectedContent}" />
 
-			<execute function="AssertElementPresent" locator1="ContentTargeting#PREVIEW_ENTRY_SELECTED" />
-			<execute function="AssertTextEquals" locator1="ContentTargeting#PREVIEW" value1="${previewEntry}" />
+			<execute function="Portal.AssertElementPresent" locator1="ContentTargeting#PREVIEW_ENTRY_SELECTED" />
+			<execute function="Portal.AssertTextEquals" locator1="ContentTargeting#PREVIEW" value1="${previewEntry}" />
 		</for>
 	</command>
 </definition>

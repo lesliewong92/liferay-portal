@@ -2,9 +2,9 @@
 	<var name="assetType" value="Bookmarks Folder" />
 
 	<command name="addCP">
-		<execute function="Click" locator1="Button#PLUS" />
+		<execute function="Portal.Click" locator1="Button#PLUS" />
 
-		<execute function="AssertClick" locator1="MenuItem#FOLDER" value1="Folder" />
+		<execute function="Portal.AssertClick" locator1="MenuItem#FOLDER" value1="Folder" />
 
 		<execute macro="PortletEntry#inputName">
 			<var name="name" value="${folderName}" />
@@ -23,14 +23,14 @@
 	</command>
 
 	<command name="addNullCP">
-		<execute function="Click" locator1="Button#PLUS" />
+		<execute function="Portal.Click" locator1="Button#PLUS" />
 
-		<execute function="AssertClick" locator1="MenuItem#FOLDER" value1="Folder" />
+		<execute function="Portal.AssertClick" locator1="MenuItem#FOLDER" value1="Folder" />
 
 		<execute macro="Button#clickSave" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="TextInput#REQUIRED_ALERT" value1="Name" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="TextInput#REQUIRED_ALERT" value1="Required" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="TextInput#REQUIRED_ALERT" value1="Name" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="TextInput#REQUIRED_ALERT" value1="Required" />
 		<execute macro="Alert#viewRequiredField" />
 	</command>
 
@@ -38,18 +38,18 @@
 		<var name="key_assetName" value="${folderName}" />
 		<var name="key_folderName" value="${folderName}" />
 
-		<execute function="AssertClick" locator1="Bookmarks#DESCRIPTIVE_ENTRY_TITLE" value1="${folderName}" />
+		<execute function="Portal.AssertClick" locator1="Bookmarks#DESCRIPTIVE_ENTRY_TITLE" value1="${folderName}" />
 
-		<execute function="AssertTextEquals" locator1="Portlet#HEADER" value1="${folderName}" />
+		<execute function="Portal.AssertTextEquals" locator1="Portlet#HEADER" value1="${folderName}" />
 
-		<execute function="Click" locator1="Button#PLUS" />
+		<execute function="Portal.Click" locator1="Button#PLUS" />
 
-		<execute function="AssertClick" locator1="MenuItem#SUBFOLDER" value1="Subfolder" />
+		<execute function="Portal.AssertClick" locator1="MenuItem#SUBFOLDER" value1="Subfolder" />
 
 		<execute macro="Button#clickSave" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="TextInput#REQUIRED_ALERT" value1="Name" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="TextInput#REQUIRED_ALERT" value1="Required" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="TextInput#REQUIRED_ALERT" value1="Name" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="TextInput#REQUIRED_ALERT" value1="Required" />
 		<execute macro="Alert#viewRequiredField" />
 	</command>
 
@@ -58,7 +58,7 @@
 			<var name="portletName" value="Bookmarks" />
 		</execute>
 
-		<execute function="AssertClick" locator1="MenuItem#FOLDER" value1="Folder" />
+		<execute function="Portal.AssertClick" locator1="MenuItem#FOLDER" value1="Folder" />
 
 		<execute macro="PortletEntry#inputName">
 			<var name="name" value="${folderName}" />
@@ -79,13 +79,13 @@
 	<command name="addSubfolderCP">
 		<var name="key_assetName" value="${folderName}" />
 
-		<execute function="AssertClick" locator1="Bookmarks#DESCRIPTIVE_ENTRY_TITLE" value1="${folderName}" />
+		<execute function="Portal.AssertClick" locator1="Bookmarks#DESCRIPTIVE_ENTRY_TITLE" value1="${folderName}" />
 
-		<execute function="AssertTextEquals" locator1="Portlet#HEADER" value1="${folderName}" />
+		<execute function="Portal.AssertTextEquals" locator1="Portlet#HEADER" value1="${folderName}" />
 
-		<execute function="Click" locator1="Button#PLUS" />
+		<execute function="Portal.Click" locator1="Button#PLUS" />
 
-		<execute function="AssertClick" locator1="MenuItem#SUBFOLDER" value1="Subfolder" />
+		<execute function="Portal.AssertClick" locator1="MenuItem#SUBFOLDER" value1="Subfolder" />
 
 		<var name="key_folderName" value="${subfolderName}" />
 
@@ -104,7 +104,7 @@
 			<var name="folderName" value="${subfolderName}" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="Portlet#HEADER" value1="${folderName}" />
+		<execute function="Portal.AssertTextEquals" locator1="Portlet#HEADER" value1="${folderName}" />
 	</command>
 
 	<command name="addSubfolderPG">
@@ -112,7 +112,7 @@
 			<var name="portletName" value="Bookmarks" />
 		</execute>
 
-		<execute function="AssertClick" locator1="MenuItem#SUBFOLDER" value1="Subfolder" />
+		<execute function="Portal.AssertClick" locator1="MenuItem#SUBFOLDER" value1="Subfolder" />
 
 		<execute macro="PortletEntry#inputName">
 			<var name="name" value="${folderName}" />
@@ -134,13 +134,13 @@
 		<var name="key_assetName" value="${folderName}" />
 		<var name="key_rowEntry" value="${folderName}" />
 
-		<execute function="AssertTextEquals" locator1="Bookmarks#DESCRIPTIVE_ENTRY_TITLE" value1="${folderName}" />
+		<execute function="Portal.AssertTextEquals" locator1="Bookmarks#DESCRIPTIVE_ENTRY_TITLE" value1="${folderName}" />
 
-		<execute function="Click#waitForMenuToggleJSClick" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
+		<execute function="Portal.Click#waitForMenuToggleJSClick" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
 
 		<execute macro="PortletEntry#clickMoveToRecycleBin" />
 
-		<execute function="AssertElementPresent" locator1="Message#SUCCESS" />
+		<execute function="Portal.AssertElementPresent" locator1="Message#SUCCESS" />
 
 		<execute macro="Navigator#openURL" />
 
@@ -154,9 +154,9 @@
 	<command name="editCP">
 		<var name="key_rowEntry" value="${folderName}" />
 
-		<execute function="Click#waitForMenuToggleJSClick" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
+		<execute function="Portal.Click#waitForMenuToggleJSClick" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
 
-		<execute function="AssertClick" locator1="MenuItem#EDIT" value1="Edit" />
+		<execute function="Portal.AssertClick" locator1="MenuItem#EDIT" value1="Edit" />
 
 		<execute macro="PortletEntry#inputName">
 			<var name="name" value="${folderNameEdit}" />
@@ -177,9 +177,9 @@
 	<command name="editPG">
 		<var name="key_rowEntry" value="${folderName}" />
 
-		<execute function="Click#waitForMenuToggleJSClick" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
+		<execute function="Portal.Click#waitForMenuToggleJSClick" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
 
-		<execute function="AssertClick" locator1="MenuItem#EDIT" value1="Edit" />
+		<execute function="Portal.AssertClick" locator1="MenuItem#EDIT" value1="Edit" />
 
 		<execute macro="PortletEntry#inputName">
 			<var name="name" value="${folderNameEdit}" />
@@ -201,15 +201,15 @@
 		<var name="key_assetName" value="${folderName}" />
 		<var name="key_rowEntry" value="${folderName}" />
 
-		<execute function="AssertClick" locator1="Bookmarks#DESCRIPTIVE_ENTRY_TITLE" value1="${folderName}" />
+		<execute function="Portal.AssertClick" locator1="Bookmarks#DESCRIPTIVE_ENTRY_TITLE" value1="${folderName}" />
 
-		<execute function="AssertTextEquals" locator1="Portlet#HEADER" value1="${folderName}" />
+		<execute function="Portal.AssertTextEquals" locator1="Portlet#HEADER" value1="${folderName}" />
 
 		<var name="key_rowEntry" value="${subfolderName}" />
 
-		<execute function="Click#waitForMenuToggleJSClick" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
+		<execute function="Portal.Click#waitForMenuToggleJSClick" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
 
-		<execute function="AssertClick" locator1="MenuItem#EDIT" value1="Edit" />
+		<execute function="Portal.AssertClick" locator1="MenuItem#EDIT" value1="Edit" />
 
 		<var name="key_folderName" value="${editSubfolderName}" />
 
@@ -232,7 +232,7 @@
 	<command name="gotoPG">
 		<var name="key_assetName" value="${folderName}" />
 
-		<execute function="AssertClick#assertPartialTextClickAt" locator1="Bookmarks#DESCRIPTIVE_ENTRY_TITLE" value1="${folderName}" />
+		<execute function="Portal.AssertClick#assertPartialTextClickAt" locator1="Bookmarks#DESCRIPTIVE_ENTRY_TITLE" value1="${folderName}" />
 
 		<execute macro="Breadcrumb#viewActiveEntry">
 			<var name="breadcrumbName" value="${folderName}" />
@@ -246,19 +246,19 @@
 		</execute>
 
 		<while>
-			<condition function="IsElementPresent#pauseIsElementPresent" locator1="Icon#BACK" />
+			<condition function="Portal.IsElementPresent#pauseIsElementPresent" locator1="Icon#BACK" />
 			<then>
-				<execute function="Click" locator1="Icon#BACK" />
+				<execute function="Portal.Click" locator1="Icon#BACK" />
 			</then>
 		</while>
 
 		<var name="key_assetName" value="${folderName}" />
 
-		<execute function="AssertClick#assertPartialTextClickAt" locator1="Bookmarks#DESCRIPTIVE_ENTRY_TITLE" value1="${folderName}" />
+		<execute function="Portal.AssertClick#assertPartialTextClickAt" locator1="Bookmarks#DESCRIPTIVE_ENTRY_TITLE" value1="${folderName}" />
 
 		<var name="key_assetName" value="${subfolderName}" />
 
-		<execute function="AssertClick#assertPartialTextClickAt" locator1="Bookmarks#DESCRIPTIVE_ENTRY_TITLE" value1="${subfolderName}" />
+		<execute function="Portal.AssertClick#assertPartialTextClickAt" locator1="Bookmarks#DESCRIPTIVE_ENTRY_TITLE" value1="${subfolderName}" />
 
 		<execute macro="Breadcrumb#viewActiveEntry">
 			<var name="breadcrumbName" value="${subfolderName}" />
@@ -268,21 +268,21 @@
 	<command name="mergeSubfolderToFolderCP">
 		<var name="key_assetName" value="${folderName}" />
 
-		<execute function="AssertClick" locator1="Bookmarks#DESCRIPTIVE_ENTRY_TITLE" value1="${folderName}" />
+		<execute function="Portal.AssertClick" locator1="Bookmarks#DESCRIPTIVE_ENTRY_TITLE" value1="${folderName}" />
 
-		<execute function="AssertTextEquals" locator1="Portlet#HEADER" value1="${folderName}" />
+		<execute function="Portal.AssertTextEquals" locator1="Portlet#HEADER" value1="${folderName}" />
 
 		<var name="key_rowEntry" value="${subfolderName}" />
 
-		<execute function="Click#waitForMenuToggleJSClick" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
+		<execute function="Portal.Click#waitForMenuToggleJSClick" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
 
-		<execute function="AssertClick" locator1="MenuItem#EDIT" value1="Edit" />
+		<execute function="Portal.AssertClick" locator1="MenuItem#EDIT" value1="Edit" />
 
 		<var name="key_folderName" value="${editSubfolderName}" />
 
-		<execute function="Click" locator1="Bookmarks#PARENT_FOLDER_PANEL" />
+		<execute function="Portal.Click" locator1="Bookmarks#PARENT_FOLDER_PANEL" />
 
-		<execute function="Check#checkToggleSwitch" locator1="Checkbox#MERGE_WITH_PARENT_FOLDER" />
+		<execute function="Portal.Check#checkToggleSwitch" locator1="Checkbox#MERGE_WITH_PARENT_FOLDER" />
 
 		<execute macro="Button#clickSave" />
 
@@ -300,13 +300,13 @@
 	<command name="moveSubfolderToRecycleBinPG">
 		<var name="key_rowEntry" value="${subfolderName}" />
 
-		<execute function="Click#waitForMenuToggleJSClick" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
+		<execute function="Portal.Click#waitForMenuToggleJSClick" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
 
 		<execute macro="PortletEntry#clickMoveToRecycleBin" />
 
 		<var name="key_assetType" value="Bookmarks Folder" />
 
-		<execute function="AssertElementPresent" locator1="Message#SUCCESS" />
+		<execute function="Portal.AssertElementPresent" locator1="Message#SUCCESS" />
 	</command>
 
 	<command name="moveToRecycleBinCP">
@@ -318,27 +318,27 @@
 
 		<var name="key_assetName" value="${folderName}" />
 
-		<execute function="AssertTextEquals" locator1="Bookmarks#DESCRIPTIVE_ENTRY_TITLE" value1="${folderName}" />
+		<execute function="Portal.AssertTextEquals" locator1="Bookmarks#DESCRIPTIVE_ENTRY_TITLE" value1="${folderName}" />
 
 		<var name="key_rowEntry" value="${folderName}" />
 
-		<execute function="Click#waitForMenuToggleJSClick" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
+		<execute function="Portal.Click#waitForMenuToggleJSClick" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
 
 		<execute macro="PortletEntry#clickMoveToRecycleBin" />
 
-		<execute function="AssertElementPresent" locator1="Message#SUCCESS" />
+		<execute function="Portal.AssertElementPresent" locator1="Message#SUCCESS" />
 	</command>
 
 	<command name="subscribePG">
 		<var name="key_assetDescription" value="${folderDescription}" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="Bookmarks#DESCRIPTIVE_ENTRY_DESCRIPTION" value1="${folderDescription}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Bookmarks#DESCRIPTIVE_ENTRY_DESCRIPTION" value1="${folderDescription}" />
 
-		<execute function="Click#clickAt" locator1="Icon#INFO" />
+		<execute function="Portal.Click#clickAt" locator1="Icon#INFO" />
 
-		<execute function="Pause" locator1="1000" />
+		<execute function="Portal.Pause" locator1="1000" />
 
-		<execute function="Click" locator1="Icon#SUBSCRIBE" />
+		<execute function="Portal.Click" locator1="Icon#SUBSCRIBE" />
 
 		<execute macro="Alert#viewSuccessMessage" />
 	</command>
@@ -351,14 +351,14 @@
 		</execute>
 
 		<if>
-			<condition function="IsElementNotPresent" locator1="Message#EMPTY_INFO" />
+			<condition function="Portal.IsElementNotPresent" locator1="Message#EMPTY_INFO" />
 			<then>
-				<execute function="Check#checkAll" locator1="Checkbox#SELECT_ALL" />
+				<execute function="Portal.Check#checkAll" locator1="Checkbox#SELECT_ALL" />
 
-				<execute function="Click" locator1="Icon#MOVE_TO_RECYCLE_BIN" />
+				<execute function="Portal.Click" locator1="Icon#MOVE_TO_RECYCLE_BIN" />
 
-				<execute function="AssertElementPresent" locator1="Message#SUCCESS" />
-				<execute function="AssertElementPresent" locator1="Message#EMPTY_INFO" />
+				<execute function="Portal.AssertElementPresent" locator1="Message#SUCCESS" />
+				<execute function="Portal.AssertElementPresent" locator1="Message#EMPTY_INFO" />
 			</then>
 		</if>
 
@@ -374,10 +374,10 @@
 	<command name="viewFolder">
 		<var name="key_assetName" value="${folderName}" />
 
-		<execute function="AssertTextEquals" locator1="Bookmarks#DESCRIPTIVE_ENTRY_TITLE" value1="${folderName}" />
+		<execute function="Portal.AssertTextEquals" locator1="Bookmarks#DESCRIPTIVE_ENTRY_TITLE" value1="${folderName}" />
 
 		<var name="key_assetDescription" value="${folderDescription}" />
 
-		<execute function="AssertTextEquals" locator1="Bookmarks#DESCRIPTIVE_ENTRY_DESCRIPTION" value1="${folderDescription}" />
+		<execute function="Portal.AssertTextEquals" locator1="Bookmarks#DESCRIPTIVE_ENTRY_DESCRIPTION" value1="${folderDescription}" />
 	</command>
 </definition>

@@ -4,7 +4,7 @@
 			<var name="portlet" value="Forms" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="Message#EMPTY_INFO" value1="There are no forms. Click on the plus button to add the first one." />
+		<execute function="Portal.AssertTextEquals" locator1="Message#EMPTY_INFO" value1="There are no forms. Click on the plus button to add the first one." />
 
 		<execute macro="FormsAdminNavigator#gotoAddForm" />
 
@@ -101,7 +101,7 @@
 
 		<execute macro="WebContentNavigator#gotoManageStructures" />
 
-		<execute function="AssertElementNotPresent" locator1="Message#ERROR" value1="Structures is temporarily unavailable" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Message#ERROR" value1="Structures is temporarily unavailable" />
 
 		<execute macro="WebContentStructures#addCP">
 			<var name="structureDescription" value="WC Structure Description" />
@@ -373,7 +373,7 @@
 			<var name="siteName" value="Staging Site Staging" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="Home#PORTLET" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Home#PORTLET" />
 
 		<execute macro="ProductMenu#gotoStagingSite" />
 
@@ -437,23 +437,23 @@
 			<var name="portlet" value="Server Administration" />
 		</execute>
 
-		<execute function="AssertClick" locator1="NavBar#RESOURCES" value1="Resources" />
+		<execute function="Portal.AssertClick" locator1="NavBar#RESOURCES" value1="Resources" />
 
 		<execute macro="Panel#expandPanel">
 			<var name="panelHeading" value="Clean Up Actions" />
 		</execute>
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="ServerAdministrationResources#ACTIONS_TABLE_DESCRIPTION" value1="Reindex all search indexes.">
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="ServerAdministrationResources#ACTIONS_TABLE_DESCRIPTION" value1="Reindex all search indexes.">
 			<var name="key_actionsDescription" value="Reindex all search indexes." />
 		</execute>
 
-		<execute function="AssertClick" locator1="ServerAdministrationResources#ACTIONS_TABLE_EXECUTE" value1="Execute">
+		<execute function="Portal.AssertClick" locator1="ServerAdministrationResources#ACTIONS_TABLE_EXECUTE" value1="Execute">
 			<var name="key_actionsDescription" value="Reindex all search indexes." />
 		</execute>
 
 		<execute macro="Alert#viewSuccessMessage" />
 
-		<execute function="Pause" locator1="10000" />
+		<execute function="Portal.Pause" locator1="10000" />
 	</command>
 
 	<command name="searchForAssetsAfterUpgrade">
@@ -516,7 +516,7 @@
 
 		<var name="key_portletName" value="Asset Publisher" />
 
-		<execute function="AssertTextEquals" locator1="Portlet#TITLE" value1="Asset Publisher" />
+		<execute function="Portal.AssertTextEquals" locator1="Portlet#TITLE" value1="Asset Publisher" />
 
 		<execute macro="WebContent#viewPGViaAP">
 			<var name="webContentContent" value="Web Content Content" />
@@ -630,9 +630,9 @@
 
 		<var name="key_portletName" value="Nested Applications" />
 
-		<execute function="AssertTextEquals" locator1="Portlet#TITLE" value1="Nested Applications" />
+		<execute function="Portal.AssertTextEquals" locator1="Portlet#TITLE" value1="Nested Applications" />
 
-		<execute function="AssertTextNotEquals" locator1="Message#INFO" value1="Drag applications below to nest them." />
+		<execute function="Portal.AssertTextNotEquals" locator1="Message#INFO" value1="Drag applications below to nest them." />
 
 		<execute macro="NestedPortlets#viewPG">
 			<var name="portletColumnNumberTo" value="1" />
@@ -645,7 +645,7 @@
 			<var name="pageName" value="Polls" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="Message#INFO" value1="Please configure this portlet to make it visible to all users" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Message#INFO" value1="Please configure this portlet to make it visible to all users" />
 
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Polls" />
@@ -691,16 +691,16 @@
 			<var name="dmDocumentTitle" value="Document1" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="DocumentsAndMediaDocument#DOCUMENT_INFO_UPLOADED_BY" value1="Test Test" />
+		<execute function="Portal.AssertTextEquals" locator1="DocumentsAndMediaDocument#DOCUMENT_INFO_UPLOADED_BY" value1="Test Test" />
 
 		<execute macro="DMDocument#expandInfo" />
 
-		<execute function="AssertTextEquals" locator1="DocumentsAndMediaDocument#DOCUMENT_DETAILS_VERSION" value1="1.0">
+		<execute function="Portal.AssertTextEquals" locator1="DocumentsAndMediaDocument#DOCUMENT_DETAILS_VERSION" value1="1.0">
 			<var name="key_dmDocumentVersionNumber" value="1.0" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="DocumentsAndMediaDocument#DOCUMENT_INFO_WORKFLOW_STATUS" value1="Approved" />
-		<execute function="AssertTextEquals" locator1="DocumentsAndMediaDocument#DOCUMENT_DETAILS_DOWNLOAD" value1="Download (22KB)">
+		<execute function="Portal.AssertTextEquals" locator1="DocumentsAndMediaDocument#DOCUMENT_INFO_WORKFLOW_STATUS" value1="Approved" />
+		<execute function="Portal.AssertTextEquals" locator1="DocumentsAndMediaDocument#DOCUMENT_DETAILS_DOWNLOAD" value1="Download (22KB)">
 			<var name="key_dmDocumentSize" value="22KB" />
 		</execute>
 
@@ -743,7 +743,7 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute function="AssertVisible" locator1="Home#PAGE_ACTIVE">
+		<execute function="Portal.AssertVisible" locator1="Home#PAGE_ACTIVE">
 			<var name="key_pageName" value="Site Page" />
 		</execute>
 

@@ -6,9 +6,9 @@
 
 		<var name="key_entryComment" value="${commentBody}" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="Message#SUCCESS" value1="Your request completed successfully." />
-		<execute function="AssertTextEquals" locator1="Comments#COMMENT_BODY_SPECIFIC" value1="${commentBody}" />
-		<execute function="AssertTextEquals" locator1="Comments#COMMENT_AUTHOR" value1="${commentAuthor}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Message#SUCCESS" value1="Your request completed successfully." />
+		<execute function="Portal.AssertTextEquals" locator1="Comments#COMMENT_BODY_SPECIFIC" value1="${commentBody}" />
+		<execute function="Portal.AssertTextEquals" locator1="Comments#COMMENT_AUTHOR" value1="${commentAuthor}" />
 	</command>
 
 	<command name="addWithWorkflowPG">
@@ -18,28 +18,28 @@
 
 		<var name="key_commentBody" value="${commentBody}" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="Message#SUCCESS" value1="Your request completed successfully." />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Message#SUCCESS" value1="Your request completed successfully." />
 
-		<execute function="AssertElementPresent" locator1="Comments#WORKFLOW_STATUS" />
+		<execute function="Portal.AssertElementPresent" locator1="Comments#WORKFLOW_STATUS" />
 
 		<if>
-			<condition function="IsTextEqual" locator1="Comments#WORKFLOW_STATUS" value1="Pending (Review)" />
+			<condition function="Portal.IsTextEqual" locator1="Comments#WORKFLOW_STATUS" value1="Pending (Review)" />
 			<then>
-				<execute function="AssertTextEquals" locator1="Comments#WORKFLOW_STATUS" value1="Pending (Review)" />
+				<execute function="Portal.AssertTextEquals" locator1="Comments#WORKFLOW_STATUS" value1="Pending (Review)" />
 			</then>
 			<else>
-				<execute function="AssertTextEquals" locator1="Comments#WORKFLOW_STATUS" value1="Pending (Created)" />
+				<execute function="Portal.AssertTextEquals" locator1="Comments#WORKFLOW_STATUS" value1="Pending (Created)" />
 			</else>
 		</if>
 
 		<var name="key_entryComment" value="${commentBody}" />
 
-		<execute function="AssertTextEquals" locator1="Comments#COMMENT_BODY_SPECIFIC" value1="${commentBody}" />
-		<execute function="AssertTextEquals" locator1="Comments#COMMENT_AUTHOR" value1="${commentAuthor}" />
+		<execute function="Portal.AssertTextEquals" locator1="Comments#COMMENT_BODY_SPECIFIC" value1="${commentBody}" />
+		<execute function="Portal.AssertTextEquals" locator1="Comments#COMMENT_AUTHOR" value1="${commentAuthor}" />
 	</command>
 
 	<command name="editCommentField">
-		<execute function="Type#typeEditor" locator1="Comments#COMMENT_FIELD" value1="${commentBody}" />
+		<execute function="Portal.Type#typeEditor" locator1="Comments#COMMENT_FIELD" value1="${commentBody}" />
 	</command>
 
 	<command name="reply">
@@ -47,7 +47,7 @@
 			<var name="commentBody" value="${commentBody}" />
 		</execute>
 
-		<execute function="AssertClick" locator1="Button#REPLY" value1="Reply" />
+		<execute function="Portal.AssertClick" locator1="Button#REPLY" value1="Reply" />
 	</command>
 
 	<command name="tearDownPG">
@@ -56,15 +56,15 @@
 		</execute>
 
 		<while>
-			<condition function="IsElementPresent" locator1="Icon#BODY_VERTICAL_ELLIPSIS" />
+			<condition function="Portal.IsElementPresent" locator1="Icon#BODY_VERTICAL_ELLIPSIS" />
 			<then>
-				<execute function="Click" locator1="Icon#BODY_VERTICAL_ELLIPSIS" />
+				<execute function="Portal.Click" locator1="Icon#BODY_VERTICAL_ELLIPSIS" />
 
-				<execute function="ClickNoError" locator1="MenuItem#DELETE" />
+				<execute function="Portal.ClickNoError" locator1="MenuItem#DELETE" />
 
-				<execute function="Confirm" value1="Are you sure you want to delete this? It will be deleted immediately." />
+				<execute function="Portal.Confirm" value1="Are you sure you want to delete this? It will be deleted immediately." />
 
-				<execute function="AssertTextEquals#assertPartialText" locator1="Message#SUCCESS" value1="Your request completed successfully." />
+				<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Message#SUCCESS" value1="Your request completed successfully." />
 			</then>
 		</while>
 	</command>
@@ -76,28 +76,28 @@
 
 		<var name="key_commentBody" value="${commentBody}" />
 
-		<execute function="AssertTextEquals" locator1="Comments#COMMENT_BODY_ASSET" value1="${commentBody}" />
+		<execute function="Portal.AssertTextEquals" locator1="Comments#COMMENT_BODY_ASSET" value1="${commentBody}" />
 	</command>
 
 	<command name="viewPG">
 		<var name="key_commentBody" value="${commentBody}" />
 
-		<execute function="AssertElementNotPresent" locator1="Comments#WORKFLOW_STATUS" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Comments#WORKFLOW_STATUS" />
 
 		<var name="key_entryComment" value="${commentBody}" />
 
-		<execute function="AssertTextEquals" locator1="Comments#COMMENT_BODY_SPECIFIC" value1="${commentBody}" />
-		<execute function="AssertTextEquals" locator1="Comments#COMMENT_AUTHOR" value1="${commentAuthor}" />
+		<execute function="Portal.AssertTextEquals" locator1="Comments#COMMENT_BODY_SPECIFIC" value1="${commentBody}" />
+		<execute function="Portal.AssertTextEquals" locator1="Comments#COMMENT_AUTHOR" value1="${commentAuthor}" />
 	</command>
 
 	<command name="viewWithWorkflowPG">
 		<var name="key_commentBody" value="${commentBody}" />
 
-		<execute function="AssertTextEquals" locator1="Comments#WORKFLOW_STATUS" value1="${commentStatus}" />
+		<execute function="Portal.AssertTextEquals" locator1="Comments#WORKFLOW_STATUS" value1="${commentStatus}" />
 
 		<var name="key_entryComment" value="${commentBody}" />
 
-		<execute function="AssertTextEquals" locator1="Comments#COMMENT_BODY_SPECIFIC" value1="${commentBody}" />
-		<execute function="AssertTextEquals" locator1="Comments#COMMENT_AUTHOR" value1="${commentAuthor}" />
+		<execute function="Portal.AssertTextEquals" locator1="Comments#COMMENT_BODY_SPECIFIC" value1="${commentBody}" />
+		<execute function="Portal.AssertTextEquals" locator1="Comments#COMMENT_AUTHOR" value1="${commentAuthor}" />
 	</command>
 </definition>

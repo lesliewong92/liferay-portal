@@ -22,7 +22,7 @@
 	</tear-down>
 
 	<command name="AssertChatBar" priority="3">
-		<execute function="AssertVisible" locator1="Chat#CHAT_BAR" />
-		<execute function="AssertVisible" locator1="Chat#CHAT_BAR_BUDDY_LIST" />
+		<execute function="Portal.AssertVisible" locator1="Chat#CHAT_BAR" />
+		<execute function="Portal.AssertVisible" locator1="Chat#CHAT_BAR_BUDDY_LIST" />
 	</command>
 </definition>

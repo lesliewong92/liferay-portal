@@ -5,12 +5,12 @@
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#CONFIGURATION" />
 
-		<execute function="Click" locator1="Radio#ADVANCED" />
-		<execute function="Type" locator1="SearchConfiguration#ADVANCED_SEARCH_CONFIGURATION" value1="${advancedSearchConfiguration}" />
+		<execute function="Portal.Click" locator1="Radio#ADVANCED" />
+		<execute function="Portal.Type" locator1="SearchConfiguration#ADVANCED_SEARCH_CONFIGURATION" value1="${advancedSearchConfiguration}" />
 		<execute macro="Button#clickSave" />
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 	</command>
 
 	<command name="configureAssetType">
@@ -19,18 +19,18 @@
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#CONFIGURATION" />
 
 		<var name="key_searchAssetType" value="${searchAssetType}" />
 
-		<execute function="AssertClick" locator1="SearchConfiguration#SEARCH_PORTLET_TAG_CONFIGURATION" value1="Configure" />
+		<execute function="Portal.AssertClick" locator1="SearchConfiguration#SEARCH_PORTLET_TAG_CONFIGURATION" value1="Configure" />
 
-		<execute function="AssertClick" locator1="SearchConfiguration#SEARCH_PORTLET_ASSET_TYPE_TAG_CONFIGURATION" value1="${searchAssetType}" />
+		<execute function="Portal.AssertClick" locator1="SearchConfiguration#SEARCH_PORTLET_ASSET_TYPE_TAG_CONFIGURATION" value1="${searchAssetType}" />
 
-		<execute function="AssertClick" locator1="SearchConfiguration#SEARCH_PORTLET_CONFIGURATION_MOVE_TO_AVAILABLE_BUTTON" />
+		<execute function="Portal.AssertClick" locator1="SearchConfiguration#SEARCH_PORTLET_CONFIGURATION_MOVE_TO_AVAILABLE_BUTTON" />
 
 		<execute macro="PortletEntry#save" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 	</command>
 </definition>

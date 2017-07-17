@@ -70,14 +70,14 @@
 			<var name="portlet" value="Dynamic Data Lists" />
 		</execute>
 
-		<execute function="Click" locator1="Button#PLUS" />
+		<execute function="Portal.Click" locator1="Button#PLUS" />
 
-		<execute function="Type#clickAtType" locator1="TextInput#NAME" value1="List Name" />
+		<execute function="Portal.Type#clickAtType" locator1="TextInput#NAME" value1="List Name" />
 		<execute macro="Button#clickSave" />
 
 		<execute macro="Alert#viewRequestFailedToComplete" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="Please enter a valid definition." />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="Please enter a valid definition." />
 	</command>
 
 	<command name="AddListWithXSSWorkflowDefinition" priority="4">
@@ -1306,10 +1306,10 @@
 
 		<var name="key_fieldName" value="Decimal" />
 
-		<execute function="Type" locator1="DDLEditRecord#DECIMAL_FIELD" value1="0.987a" />
+		<execute function="Portal.Type" locator1="DDLEditRecord#DECIMAL_FIELD" value1="0.987a" />
 
-		<execute function="AssertClick" locator1="Button#PUBLISH" value1="Publish" />
-		<execute function="AssertTextEquals" locator1="DDLEditRecord#RECORD_FIELD_ALERT" value1="Please enter a valid number." />
+		<execute function="Portal.AssertClick" locator1="Button#PUBLISH" value1="Publish" />
+		<execute function="Portal.AssertTextEquals" locator1="DDLEditRecord#RECORD_FIELD_ALERT" value1="Please enter a valid number." />
 	</command>
 
 	<command name="AssertFieldAfterNavigatingToManageTemplates" priority="3">
@@ -1333,20 +1333,20 @@
 
 		<execute macro="DDLDataDefinition#save" />
 
-		<execute function="Type" locator1="NavBar#BASIC_SEARCH_FIELD" value1="Data Definition Title" />
-		<execute function="Click" locator1="Icon#BASIC_SEARCH" />
-		<execute function="Click#waitForMenuToggleJSClick" locator1="DDMSelectStructure#DDM_STRUCTURE_ELLIPSIS_1" />
-		<execute function="AssertClick" locator1="MenuItem#MANAGE_TEMPLATES" value1="Manage Templates" />
+		<execute function="Portal.Type" locator1="NavBar#BASIC_SEARCH_FIELD" value1="Data Definition Title" />
+		<execute function="Portal.Click" locator1="Icon#BASIC_SEARCH" />
+		<execute function="Portal.Click#waitForMenuToggleJSClick" locator1="DDMSelectStructure#DDM_STRUCTURE_ELLIPSIS_1" />
+		<execute function="Portal.AssertClick" locator1="MenuItem#MANAGE_TEMPLATES" value1="Manage Templates" />
 
-		<execute function="Click" locator1="Icon#ANGLE_LEFT_BACK" />
+		<execute function="Portal.Click" locator1="Icon#ANGLE_LEFT_BACK" />
 
 		<var name="key_ddlDataDefinitionName" value="Data Definition Title" />
 
-		<execute function="Click" locator1="DDMSelectStructure#DDM_STRUCTURE_TABLE_NAME_LINK" value1="Data Definition Title" />
+		<execute function="Portal.Click" locator1="DDMSelectStructure#DDM_STRUCTURE_TABLE_NAME_LINK" value1="Data Definition Title" />
 
-		<execute function="AssertTextEquals" locator1="Portlet#HEADER" value1="Data Definition Title" />
+		<execute function="Portal.AssertTextEquals" locator1="Portlet#HEADER" value1="Data Definition Title" />
 
-		<execute function="AssertTextEquals" locator1="TextInput#NAME" value1="Data Definition Title" />
+		<execute function="Portal.AssertTextEquals" locator1="TextInput#NAME" value1="Data Definition Title" />
 
 		<execute macro="DynamicDataMapping#viewField">
 			<var name="fieldFieldLabel" value="Text" />
@@ -1449,7 +1449,7 @@
 
 		<execute macro="DDLNavigator#gotoView" />
 
-		<execute function="Pause" locator1="1000" />
+		<execute function="Portal.Pause" locator1="1000" />
 
 		<execute macro="Navigator#getCurrentURL">
 			<return from="currentURL" name="adminViewURL" />
@@ -1462,7 +1462,7 @@
 
 		<execute macro="DDLRecord#editPG" />
 
-		<execute function="Pause" locator1="1000" />
+		<execute function="Portal.Pause" locator1="1000" />
 
 		<execute macro="Navigator#getCurrentURL">
 			<return from="currentURL" name="adminEditURL" />
@@ -1607,10 +1607,10 @@
 
 		<var name="key_fieldName" value="Integer" />
 
-		<execute function="Type" locator1="DDLEditRecord#INTEGER_FIELD" value1="aaaa" />
+		<execute function="Portal.Type" locator1="DDLEditRecord#INTEGER_FIELD" value1="aaaa" />
 
-		<execute function="AssertClick" locator1="Button#PUBLISH" value1="Publish" />
-		<execute function="AssertTextEquals" locator1="DDLEditRecord#RECORD_FIELD_ALERT" value1="Please enter only digits." />
+		<execute function="Portal.AssertClick" locator1="Button#PUBLISH" value1="Publish" />
+		<execute function="Portal.AssertTextEquals" locator1="DDLEditRecord#RECORD_FIELD_ALERT" value1="Please enter only digits." />
 	</command>
 
 	<command name="AssertNumberFieldInvalidDataErrorMessage" priority="4">
@@ -1669,9 +1669,9 @@
 
 		<var name="key_fieldName" value="Number" />
 
-		<execute function="Type" locator1="DDLEditRecord#NUMBER_FIELD" value1="555b" />
-		<execute function="AssertClick" locator1="Button#PUBLISH" value1="Publish" />
-		<execute function="AssertTextEquals" locator1="DDLEditRecord#RECORD_FIELD_ALERT" value1="Please enter a valid number." />
+		<execute function="Portal.Type" locator1="DDLEditRecord#NUMBER_FIELD" value1="555b" />
+		<execute function="Portal.AssertClick" locator1="Button#PUBLISH" value1="Publish" />
+		<execute function="Portal.AssertTextEquals" locator1="DDLEditRecord#RECORD_FIELD_ALERT" value1="Please enter a valid number." />
 	</command>
 
 	<command name="AssertUserCannotDeleteEntryAfterPermissionRemoved" priority="4">
@@ -2906,20 +2906,20 @@
 			<if>
 				<equals arg1="${fieldName}" arg2="PermissionChecker" />
 				<then>
-					<execute function="MouseOver" locator1="DDMEditTemplate#SCRIPT_UTIL" />
+					<execute function="Portal.MouseOver" locator1="DDMEditTemplate#SCRIPT_UTIL" />
 				</then>
 				<else>
-					<execute function="MouseOver" locator1="DDMEditTemplate#SCRIPT_VARIABLE" />
+					<execute function="Portal.MouseOver" locator1="DDMEditTemplate#SCRIPT_VARIABLE" />
 				</else>
 			</if>
 
-			<execute function="AssertClick" locator1="JavaDocs#TOOLTIP_JAVA_CLASS_LINK" value1="${fieldName}" />
+			<execute function="Portal.AssertClick" locator1="JavaDocs#TOOLTIP_JAVA_CLASS_LINK" value1="${fieldName}" />
 
-			<execute function="SelectWindow#selectPopUp" locator1="null" />
+			<execute function="Portal.SelectWindow#selectPopUp" locator1="null" />
 
-			<execute function="AssertTextEquals" locator1="JavaDocs#JAVA_CLASS_NAME" value1="${fieldName}" />
+			<execute function="Portal.AssertTextEquals" locator1="JavaDocs#JAVA_CLASS_NAME" value1="${fieldName}" />
 
-			<execute function="Close#closeAndSelectWindow" locator1="title=New Template for Structure: Contacts - ${siteName}" />
+			<execute function="Portal.Close#closeAndSelectWindow" locator1="title=New Template for Structure: Contacts - ${siteName}" />
 		</for>
 	</command>
 

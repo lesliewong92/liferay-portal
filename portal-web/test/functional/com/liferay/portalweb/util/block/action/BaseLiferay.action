@@ -1,13 +1,13 @@
 <definition>
 	<command name="addSelection">
 		<default>
-			<execute function="AddSelection#addSelection" />
+			<execute function="Portal.AddSelection#addSelection" />
 		</default>
 	</command>
 
 	<command name="antCommand">
 		<default>
-			<execute function="AntCommand#antCommand" />
+			<execute function="Portal.AntCommand#antCommand" />
 		</default>
 	</command>
 
@@ -15,37 +15,37 @@
 		<default>
 			<description message="Fail if the alert is present." />
 
-			<execute function="AssertAlertNotPresent#assertAlertNotPresent" />
+			<execute function="Portal.AssertAlertNotPresent#assertAlertNotPresent" />
 		</default>
 	</command>
 
 	<command name="assertChecked">
 		<default>
-			<execute function="AssertChecked#assertChecked" />
+			<execute function="Portal.AssertChecked#assertChecked" />
 		</default>
 	</command>
 
 	<command name="assertClick">
 		<case comparator="contains" locator1="/input">
-			<execute function="AssertClick#assertValueClickAt" />
+			<execute function="Portal.AssertClick#assertValueClickAt" />
 		</case>
 
 		<default>
 			<description message="Click on the ${locator1} with the value ${value1}." />
 
-			<execute function="AssertClick#assertTextClickAt" />
+			<execute function="Portal.AssertClick#assertTextClickAt" />
 		</default>
 	</command>
 
 	<command name="assertClickNoError">
 		<case comparator="contains" locator1="/input">
-			<execute function="AssertClickNoError#assertValueClick" />
+			<execute function="Portal.AssertClickNoError#assertValueClick" />
 		</case>
 
 		<default>
 			<description message="Click on the ${locator1} with the value ${value1}." />
 
-			<execute function="AssertClickNoError#assertTextClick" />
+			<execute function="Portal.AssertClickNoError#assertTextClick" />
 		</default>
 	</command>
 
@@ -53,7 +53,7 @@
 		<default>
 			<description message="Assert that the text ${value1} is NOT present within the console output." />
 
-			<execute function="AssertConsoleTextNotPresent#assertConsoleTextNotPresent" />
+			<execute function="Portal.AssertConsoleTextNotPresent#assertConsoleTextNotPresent" />
 		</default>
 	</command>
 
@@ -61,7 +61,7 @@
 		<default>
 			<description message="Assert that the text ${value1} is present within the console output." />
 
-			<execute function="AssertConsoleTextPresent#assertConsoleTextPresent" />
+			<execute function="Portal.AssertConsoleTextPresent#assertConsoleTextPresent" />
 		</default>
 	</command>
 
@@ -69,7 +69,7 @@
 		<default>
 			<description message="Assert that the ${locator1} is NOT present." />
 
-			<execute function="AssertElementNotPresent#assertElementNotPresent" />
+			<execute function="Portal.AssertElementNotPresent#assertElementNotPresent" />
 		</default>
 	</command>
 
@@ -77,31 +77,31 @@
 		<default>
 			<description message="Assert that the ${locator1} is present." />
 
-			<execute function="AssertElementPresent#assertVisible" />
+			<execute function="Portal.AssertElementPresent#assertVisible" />
 		</default>
 	</command>
 
 	<command name="assertHTMLSourceTextNotPresent">
 		<default>
-			<execute function="AssertHTMLSourceTextNotPresent#assertHTMLSourceTextNotPresent" />
+			<execute function="Portal.AssertHTMLSourceTextNotPresent#assertHTMLSourceTextNotPresent" />
 		</default>
 	</command>
 
 	<command name="assertHTMLSourceTextPresent">
 		<default>
-			<execute function="AssertHTMLSourceTextPresent#assertHTMLSourceTextPresent" />
+			<execute function="Portal.AssertHTMLSourceTextPresent#assertHTMLSourceTextPresent" />
 		</default>
 	</command>
 
 	<command name="assertLocation">
 		<default>
-			<execute function="AssertLocation#assertLocation" />
+			<execute function="Portal.AssertLocation#assertLocation" />
 		</default>
 	</command>
 
 	<command name="assertNotChecked">
 		<default>
-			<execute function="AssertNotChecked#assertNotChecked" />
+			<execute function="Portal.AssertNotChecked#assertNotChecked" />
 		</default>
 	</command>
 
@@ -109,37 +109,37 @@
 		<default>
 			<description message="Assert that the ${locator1} is NOT visible." />
 
-			<execute function="AssertNotVisible#assertNotVisible" />
+			<execute function="Portal.AssertNotVisible#assertNotVisible" />
 		</default>
 	</command>
 
 	<command name="assertSelectedLabel">
 		<default>
-			<execute function="AssertSelectedLabel#assertSelectedLabel" />
+			<execute function="Portal.AssertSelectedLabel#assertSelectedLabel" />
 		</default>
 	</command>
 
 	<command name="assertTextEquals">
 		<case comparator="contains" locator1="/input">
-			<execute function="AssertTextEquals#assertValue" />
+			<execute function="Portal.AssertTextEquals#assertValue" />
 		</case>
 
 		<default>
 			<description message="Assert that the text at the ${locator1} is ${value1}." />
 
-			<execute function="AssertTextEquals#assertText" />
+			<execute function="Portal.AssertTextEquals#assertText" />
 		</default>
 	</command>
 
 	<command name="assertTextNotEquals">
 		<case comparator="contains" locator1="/input">
-			<execute function="AssertTextNotEquals#assertNotValue" />
+			<execute function="Portal.AssertTextNotEquals#assertNotValue" />
 		</case>
 
 		<default>
 			<description message="Assert that the text at the ${locator1} is NOT ${value1}." />
 
-			<execute function="AssertTextNotEquals#assertNotText" />
+			<execute function="Portal.AssertTextNotEquals#assertNotText" />
 		</default>
 	</command>
 
@@ -147,7 +147,7 @@
 		<default>
 			<description message="Assert that the text ${value1} is NOT present." />
 
-			<execute function="AssertTextNotPresent#assertTextNotPresent" />
+			<execute function="Portal.AssertTextNotPresent#assertTextNotPresent" />
 		</default>
 	</command>
 
@@ -155,13 +155,13 @@
 		<default>
 			<description message="Assert that the text ${value1} is present." />
 
-			<execute function="AssertTextPresent#assertTextPresent" />
+			<execute function="Portal.AssertTextPresent#assertTextPresent" />
 		</default>
 	</command>
 
 	<command name="assertValue">
 		<default>
-			<execute function="AssertValue#assertValue" />
+			<execute function="Portal.AssertValue#assertValue" />
 		</default>
 	</command>
 
@@ -169,13 +169,13 @@
 		<default>
 			<description message="Assert that the ${locator1} is visible." />
 
-			<execute function="AssertVisible#assertVisible" />
+			<execute function="Portal.AssertVisible#assertVisible" />
 		</default>
 	</command>
 
 	<command name="check">
 		<default>
-			<execute function="Check#clickAt" />
+			<execute function="Portal.Check#clickAt" />
 		</default>
 	</command>
 
@@ -183,7 +183,7 @@
 		<default>
 			<description message="Click on the ${locator1}." />
 
-			<execute function="Click#clickAt" />
+			<execute function="Portal.Click#clickAt" />
 		</default>
 	</command>
 
@@ -191,13 +191,13 @@
 		<default>
 			<description message="Click on the ${locator1}." />
 
-			<execute function="ClickNoError#click" />
+			<execute function="Portal.ClickNoError#click" />
 		</default>
 	</command>
 
 	<command name="close">
 		<default>
-			<execute function="Close#close" />
+			<execute function="Portal.Close#close" />
 		</default>
 	</command>
 
@@ -205,109 +205,109 @@
 		<default>
 			<description message="Assert confirmation window has the value ${value1}." />
 
-			<execute function="Confirm#assertConfirmation" />
+			<execute function="Portal.Confirm#assertConfirmation" />
 		</default>
 	</command>
 
 	<command name="copy">
 		<case comparator="contains" locator1="/input">
-			<execute function="Copy#valueCopy" />
+			<execute function="Portal.Copy#valueCopy" />
 		</case>
 
 		<default>
-			<execute function="Copy#textCopy" />
+			<execute function="Portal.Copy#textCopy" />
 		</default>
 	</command>
 
 	<command name="doubleClick">
 		<default>
-			<execute function="DoubleClick#doubleClickAt" />
+			<execute function="Portal.DoubleClick#doubleClickAt" />
 		</default>
 	</command>
 
 	<command name="downloadTempFile">
 		<default>
-			<execute function="DownloadTempFile#downloadTempFile" />
+			<execute function="Portal.DownloadTempFile#downloadTempFile" />
 		</default>
 	</command>
 
 	<command name="dragAndDrop">
 		<default>
-			<execute function="DragAndDrop#dragAndDropToObject" />
+			<execute function="Portal.DragAndDrop#dragAndDropToObject" />
 		</default>
 	</command>
 
 	<command name="isElementNotPresent">
 		<default>
-			<execute function="IsElementNotPresent#isElementNotPresent" />
+			<execute function="Portal.IsElementNotPresent#isElementNotPresent" />
 		</default>
 	</command>
 
 	<command name="isElementPresent">
 		<default>
-			<execute function="IsElementPresent#isElementPresent" />
+			<execute function="Portal.IsElementPresent#isElementPresent" />
 		</default>
 	</command>
 
 	<command name="isHTMLSourceTextPresent">
 		<default>
-			<execute function="IsHTMLSourceTextPresent#isHTMLSourceTextPresent" />
+			<execute function="Portal.IsHTMLSourceTextPresent#isHTMLSourceTextPresent" />
 		</default>
 	</command>
 
 	<command name="isNotVisible">
 		<default>
-			<execute function="IsNotVisible#isNotVisible" />
+			<execute function="Portal.IsNotVisible#isNotVisible" />
 		</default>
 	</command>
 
 	<command name="isTextEqual">
 		<case comparator="contains" locator1="/input">
-			<execute function="IsTextEqual#isValue" />
+			<execute function="Portal.IsTextEqual#isValue" />
 		</case>
 
 		<default>
-			<execute function="IsTextEqual#isText" />
+			<execute function="Portal.IsTextEqual#isText" />
 		</default>
 	</command>
 
 	<command name="isTextNotEqual">
 		<case comparator="contains" locator1="/input">
-			<execute function="IsTextNotEqual#isNotValue" />
+			<execute function="Portal.IsTextNotEqual#isNotValue" />
 		</case>
 
 		<default>
-			<execute function="IsTextNotEqual#isNotText" />
+			<execute function="Portal.IsTextNotEqual#isNotText" />
 		</default>
 	</command>
 
 	<command name="isVisible">
 		<default>
-			<execute function="IsVisible#isVisible" />
+			<execute function="Portal.IsVisible#isVisible" />
 		</default>
 	</command>
 
 	<command name="keyPress">
 		<default>
-			<execute function="KeyPress#keyPress" />
+			<execute function="Portal.KeyPress#keyPress" />
 		</default>
 	</command>
 
 	<command name="makeVisible">
 		<default>
-			<execute function="MakeVisible#makeVisible" />
+			<execute function="Portal.MakeVisible#makeVisible" />
 		</default>
 	</command>
 
 	<command name="mouseDown">
 		<default>
-			<execute function="MouseDown#mouseDown" />
+			<execute function="Portal.MouseDown#mouseDown" />
 		</default>
 	</command>
 
 	<command name="mouseMove">
 		<default>
-			<execute function="MouseMove#mouseMove" />
+			<execute function="Portal.MouseMove#mouseMove" />
 		</default>
 	</command>
 
@@ -315,19 +315,19 @@
 		<default>
 			<description message="Mouse over the ${locator1}." />
 
-			<execute function="MouseOver#mouseOver" />
+			<execute function="Portal.MouseOver#mouseOver" />
 		</default>
 	</command>
 
 	<command name="mouseOverNoError">
 		<default>
-			<execute function="MouseOverNoError#mouseOverNoError" />
+			<execute function="Portal.MouseOverNoError#mouseOverNoError" />
 		</default>
 	</command>
 
 	<command name="mouseUp">
 		<default>
-			<execute function="MouseUp#mouseUp" />
+			<execute function="Portal.MouseUp#mouseUp" />
 		</default>
 	</command>
 
@@ -335,83 +335,83 @@
 		<default>
 			<description message="Open the browser to the URL ${locator1}." />
 
-			<execute function="Open#open" />
+			<execute function="Portal.Open#open" />
 		</default>
 	</command>
 
 	<command name="paste">
 		<default>
-			<execute function="Paste#paste" />
+			<execute function="Portal.Paste#paste" />
 		</default>
 	</command>
 
 	<command name="pause">
 		<default>
-			<execute function="Pause#pause" />
+			<execute function="Portal.Pause#pause" />
 		</default>
 	</command>
 
 	<command name="refresh">
 		<default>
-			<execute function="Refresh#refresh" />
+			<execute function="Portal.Refresh#refresh" />
 		</default>
 	</command>
 
 	<command name="scrollWebElementIntoView">
 		<default>
-			<execute function="ScrollWebElementIntoView#scrollWebElementIntoView" />
+			<execute function="Portal.ScrollWebElementIntoView#scrollWebElementIntoView" />
 		</default>
 	</command>
 
 	<command name="select">
 		<default>
-			<execute function="Select#select" />
+			<execute function="Portal.Select#select" />
 		</default>
 	</command>
 
 	<command name="selectFrame">
 		<case comparator="contains" locator1="/iframe">
-			<execute function="SelectFrame#selectFrame" />
+			<execute function="Portal.SelectFrame#selectFrame" />
 		</case>
 
 		<default>
-			<execute function="SelectFrame#selectFrameTop" />
+			<execute function="Portal.SelectFrame#selectFrameTop" />
 		</default>
 	</command>
 
 	<command name="selectFrameTop">
 		<default>
-			<execute function="SelectFrameTop#selectFrameTop" />
+			<execute function="Portal.SelectFrameTop#selectFrameTop" />
 		</default>
 	</command>
 
 	<command name="selectNoError">
 		<default>
-			<execute function="SelectNoError#select" />
+			<execute function="Portal.SelectNoError#select" />
 		</default>
 	</command>
 
 	<command name="selectWindow">
 		<default>
-			<execute function="SelectWindow#selectWindow" />
+			<execute function="Portal.SelectWindow#selectWindow" />
 		</default>
 	</command>
 
 	<command name="setWindowSize">
 		<default>
-			<execute function="SetWindowSize#setWindowSize" />
+			<execute function="Portal.SetWindowSize#setWindowSize" />
 		</default>
 	</command>
 
 	<command name="sikuliAssertElementNotPresent">
 		<default>
-			<execute function="SikuliAssertElementNotPresent#sikuliAssertElementNotPresent" />
+			<execute function="Portal.SikuliAssertElementNotPresent#sikuliAssertElementNotPresent" />
 		</default>
 	</command>
 
 	<command name="sikuliAssertElementPresent">
 		<default>
-			<execute function="SikuliAssertElementPresent#sikuliAssertElementPresent" />
+			<execute function="Portal.SikuliAssertElementPresent#sikuliAssertElementPresent" />
 		</default>
 	</command>
 
@@ -419,13 +419,13 @@
 		<default>
 			<description message="Click on the ${locator1}." />
 
-			<execute function="SikuliClick#sikuliClick" />
+			<execute function="Portal.SikuliClick#sikuliClick" />
 		</default>
 	</command>
 
 	<command name="sikuliDragAndDrop">
 		<default>
-			<execute function="SikuliDragAndDrop#sikuliDragAndDrop" />
+			<execute function="Portal.SikuliDragAndDrop#sikuliDragAndDrop" />
 		</default>
 	</command>
 
@@ -433,7 +433,7 @@
 		<default>
 			<description message="Push left mouse button down." />
 
-			<execute function="SikuliLeftMouseDown#sikuliLeftMouseDown" />
+			<execute function="Portal.SikuliLeftMouseDown#sikuliLeftMouseDown" />
 		</default>
 	</command>
 
@@ -441,7 +441,7 @@
 		<default>
 			<description message="Lift left mouse button up." />
 
-			<execute function="SikuliLeftMouseUp#sikuliLeftMouseUp" />
+			<execute function="Portal.SikuliLeftMouseUp#sikuliLeftMouseUp" />
 		</default>
 	</command>
 
@@ -449,7 +449,7 @@
 		<default>
 			<description message="Mouse over the ${locator1}." />
 
-			<execute function="SikuliMouseMove#sikuliMouseMove" />
+			<execute function="Portal.SikuliMouseMove#sikuliMouseMove" />
 		</default>
 	</command>
 
@@ -457,7 +457,7 @@
 		<default>
 			<description message="Push right mouse button down." />
 
-			<execute function="SikuliRightMouseDown#sikuliRightMouseDown" />
+			<execute function="Portal.SikuliRightMouseDown#sikuliRightMouseDown" />
 		</default>
 	</command>
 
@@ -465,7 +465,7 @@
 		<default>
 			<description message="Lift right mouse button up." />
 
-			<execute function="SikuliRightMouseUp#sikuliRightMouseUp" />
+			<execute function="Portal.SikuliRightMouseUp#sikuliRightMouseUp" />
 		</default>
 	</command>
 
@@ -473,25 +473,25 @@
 		<default>
 			<description message="Uses Sikuli to type into the ${locator1} with the value ${value1}." />
 
-			<execute function="SikuliType#sikuliType" />
+			<execute function="Portal.SikuliType#sikuliType" />
 		</default>
 	</command>
 
 	<command name="sikuliUploadCommonFile">
 		<default>
-			<execute function="SikuliUploadCommonFile#sikuliUploadCommonFile" />
+			<execute function="Portal.SikuliUploadCommonFile#sikuliUploadCommonFile" />
 		</default>
 	</command>
 
 	<command name="sikuliUploadTCatFile">
 		<default>
-			<execute function="SikuliUploadTCatFile#sikuliUploadTCatFile" />
+			<execute function="Portal.SikuliUploadTCatFile#sikuliUploadTCatFile" />
 		</default>
 	</command>
 
 	<command name="sikuliUploadTempFile">
 		<default>
-			<execute function="SikuliUploadTempFile#sikuliUploadTempFile" />
+			<execute function="Portal.SikuliUploadTempFile#sikuliUploadTempFile" />
 		</default>
 	</command>
 
@@ -499,7 +499,7 @@
 		<default>
 			<description message="Type into the ${locator1} with the value ${value1}." />
 
-			<execute function="Type#type" />
+			<execute function="Portal.Type#type" />
 		</default>
 	</command>
 
@@ -507,31 +507,31 @@
 		<default>
 			<description message="Type the value ${value1}." />
 
-			<execute function="TypeScreen#typeScreen" />
+			<execute function="Portal.TypeScreen#typeScreen" />
 		</default>
 	</command>
 
 	<command name="uncheck">
 		<default>
-			<execute function="Uncheck#clickAt" />
+			<execute function="Portal.Uncheck#clickAt" />
 		</default>
 	</command>
 
 	<command name="uploadCommonFile">
 		<default>
-			<execute function="UploadCommonFile#uploadCommonFile" />
+			<execute function="Portal.UploadCommonFile#uploadCommonFile" />
 		</default>
 	</command>
 
 	<command name="uploadFile">
 		<default>
-			<execute function="UploadFile#uploadFile" />
+			<execute function="Portal.UploadFile#uploadFile" />
 		</default>
 	</command>
 
 	<command name="uploadTempFile">
 		<default>
-			<execute function="UploadTempFile#uploadTempFile" />
+			<execute function="Portal.UploadTempFile#uploadTempFile" />
 		</default>
 	</command>
 </definition>

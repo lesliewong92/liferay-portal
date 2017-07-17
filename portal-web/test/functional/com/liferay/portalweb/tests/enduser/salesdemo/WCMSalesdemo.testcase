@@ -56,9 +56,9 @@
 			<var name="pageName" value="IFrame Page" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#IFRAME_PORTLET" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#IFRAME_PORTLET" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="Embedded#EMBEDDED_TEXT_UPDATED" value1="updated" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Embedded#EMBEDDED_TEXT_UPDATED" value1="updated" />
 	</command>
 
 	<command name="SalesDemo" priority="4">
