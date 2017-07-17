@@ -1144,7 +1144,7 @@ public class PoshiRunnerContext {
 					defaultCommandElement);
 
 				_commandSummaries.put(
-					classType + "#" + className,
+					classType + "#" + namespace + "." + className,
 					_getCommandSummary(
 						defaultClassCommandName, classType,
 						defaultCommandElement, rootElement));

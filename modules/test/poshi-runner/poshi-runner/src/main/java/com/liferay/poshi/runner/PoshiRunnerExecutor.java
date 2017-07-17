@@ -393,23 +393,11 @@ public class PoshiRunnerExecutor {
 
 		PoshiRunnerStackTraceUtil.pushStackTrace(executeElement);
 
-		System.out.println("-------------------------------------------------");
-		System.out.println(classCommandName);
-		System.out.println(classCommandName);
-		System.out.println(classCommandName);
-		System.out.println(classCommandName);
-		System.out.println("-------------------------------------------------");
-
 		if (!classCommandName.contains(".")) {
 			classCommandName =
 				PoshiRunnerStackTraceUtil.getCurrentNamespace() + "." +
 					classCommandName;
 		}
-
-		System.out.println(classCommandName);
-		System.out.println(classCommandName);
-		System.out.println(classCommandName);
-		System.out.println(classCommandName);
 
 		Element commandElement = PoshiRunnerContext.getFunctionCommandElement(
 			classCommandName);
