@@ -323,8 +323,14 @@ public class PoshiRunnerExecutor {
 
 		Exception exception = null;
 
+		if (!className.contains(".")) {
+			className =
+				PoshiRunnerStackTraceUtil.getCurrentNamespace() + "." +
+					className;
+		}
+
 		int locatorCount = PoshiRunnerContext.getFunctionLocatorCount(
-			PoshiRunnerStackTraceUtil.getCurrentNamespace() + "." + className);
+			className);
 
 		for (int i = 1; i <= locatorCount; i++) {
 			String locator = executeElement.attributeValue("locator" + i);
@@ -387,9 +393,26 @@ public class PoshiRunnerExecutor {
 
 		PoshiRunnerStackTraceUtil.pushStackTrace(executeElement);
 
+		System.out.println("-------------------------------------------------");
+		System.out.println(classCommandName);
+		System.out.println(classCommandName);
+		System.out.println(classCommandName);
+		System.out.println(classCommandName);
+		System.out.println("-------------------------------------------------");
+
+		if (!classCommandName.contains(".")) {
+			classCommandName =
+				PoshiRunnerStackTraceUtil.getCurrentNamespace() + "." +
+					classCommandName;
+		}
+
+		System.out.println(classCommandName);
+		System.out.println(classCommandName);
+		System.out.println(classCommandName);
+		System.out.println(classCommandName);
+
 		Element commandElement = PoshiRunnerContext.getFunctionCommandElement(
-			PoshiRunnerStackTraceUtil.getCurrentNamespace() + "." +
-				classCommandName);
+			classCommandName);
 
 		try {
 			if (exception != null) {

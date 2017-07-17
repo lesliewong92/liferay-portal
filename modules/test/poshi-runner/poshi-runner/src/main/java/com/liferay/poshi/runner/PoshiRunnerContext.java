@@ -411,14 +411,10 @@ public class PoshiRunnerContext {
 			return commandElement.attributeValue("summary");
 		}
 
-		if (classType.equals("function")) {
-			String className =
-				PoshiRunnerGetterUtil.getClassNameFromClassCommandName(
-					classCommandName);
+		String rootSummary = rootElement.attributeValue("summary");
 
-			if (Validator.isNotNull(rootElement.attributeValue("summary"))) {
-				return rootElement.attributeValue("summary");
-			}
+		if (classType.equals("function") && Validator.isNotNull(rootSummary)) {
+			return rootSummary;
 		}
 
 		return classCommandName;
@@ -1137,12 +1133,11 @@ public class PoshiRunnerContext {
 			}
 
 			if (classType.equals("function")) {
-				String defaultClassCommandName =
-					namespace + "." + className + "#" +
+				String defaultClassCommandName = className + "#" +
 						rootElement.attributeValue("default");
 
 				Element defaultCommandElement = getFunctionCommandElement(
-					defaultClassCommandName);
+					namespace + "." + defaultClassCommandName);
 
 				_commandElements.put(
 					classType + "#" + namespace + "." + className,

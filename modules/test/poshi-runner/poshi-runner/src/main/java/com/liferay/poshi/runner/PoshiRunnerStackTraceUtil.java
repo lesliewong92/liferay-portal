@@ -183,11 +183,15 @@ public final class PoshiRunnerStackTraceUtil {
 			PoshiRunnerGetterUtil.getClassNameFromClassCommandName(
 				classCommandName);
 
+		if (!className.contains(".")) {
+			className = getCurrentNamespace() + "." + className;
+		}
+
 		String fileExtension =
 			PoshiRunnerGetterUtil.getFileExtensionFromClassType(classType);
 
 		String filePath = PoshiRunnerContext.getFilePathFromFileName(
-			getCurrentNamespace() + "." + className + "." + fileExtension);
+			className + "." + fileExtension);
 
 		String commandName =
 			PoshiRunnerGetterUtil.getCommandNameFromClassCommandName(
