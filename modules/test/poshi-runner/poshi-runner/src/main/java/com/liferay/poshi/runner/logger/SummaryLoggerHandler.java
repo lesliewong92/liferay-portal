@@ -524,8 +524,9 @@ public final class SummaryLoggerHandler {
 				String action = element.attributeValue("action");
 
 				if (!action.contains(".")) {
-					action = PoshiRunnerStackTraceUtil.getCurrentNamespace() +
-						"." + action;
+					action =
+						PoshiRunnerStackTraceUtil.getCurrentNamespace() + "." +
+							action;
 				}
 
 				summary = PoshiRunnerContext.getActionCommandSummary(action);
@@ -546,8 +547,9 @@ public final class SummaryLoggerHandler {
 				String function = element.attributeValue("function");
 
 				if (!function.contains(".")) {
-					function = PoshiRunnerStackTraceUtil.getCurrentNamespace() +
-						"." + function;
+					function =
+						PoshiRunnerStackTraceUtil.getCurrentNamespace() + "." +
+							function;
 				}
 
 				summary = PoshiRunnerContext.getFunctionCommandSummary(
@@ -570,8 +572,9 @@ public final class SummaryLoggerHandler {
 				String macro = element.attributeValue("macro");
 
 				if (!macro.contains(".")) {
-					macro = PoshiRunnerStackTraceUtil.getCurrentNamespace() +
-						"." + macro;
+					macro =
+						PoshiRunnerStackTraceUtil.getCurrentNamespace() + "." +
+							macro;
 				}
 
 				summary = PoshiRunnerContext.getMacroCommandSummary(macro);

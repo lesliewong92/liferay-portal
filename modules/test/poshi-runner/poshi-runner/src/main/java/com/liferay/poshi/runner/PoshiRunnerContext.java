@@ -1133,8 +1133,8 @@ public class PoshiRunnerContext {
 			}
 
 			if (classType.equals("function")) {
-				String defaultClassCommandName = className + "#" +
-						rootElement.attributeValue("default");
+				String defaultClassCommandName =
+					className + "#" + rootElement.attributeValue("default");
 
 				Element defaultCommandElement = getFunctionCommandElement(
 					namespace + "." + defaultClassCommandName);
