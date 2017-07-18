@@ -323,6 +323,12 @@ public class PoshiRunnerExecutor {
 
 		Exception exception = null;
 
+		if (!className.contains(".")) {
+			className =
+				PoshiRunnerStackTraceUtil.getCurrentNamespace() + "." +
+					className;
+		}
+
 		int locatorCount = PoshiRunnerContext.getFunctionLocatorCount(
 			className);
 
@@ -352,7 +358,8 @@ public class PoshiRunnerExecutor {
 
 					try {
 						locator = PoshiRunnerContext.getPathLocator(
-							pathClassName + "#" + locatorKey);
+							PoshiRunnerStackTraceUtil.getCurrentNamespace() +
+								"." + pathClassName + "#" + locatorKey);
 					}
 					catch (Exception e) {
 						exception = e;
@@ -385,6 +392,12 @@ public class PoshiRunnerExecutor {
 		CommandLoggerHandler.startCommand(executeElement);
 
 		PoshiRunnerStackTraceUtil.pushStackTrace(executeElement);
+
+		if (!classCommandName.contains(".")) {
+			classCommandName =
+				PoshiRunnerStackTraceUtil.getCurrentNamespace() + "." +
+					classCommandName;
+		}
 
 		Element commandElement = PoshiRunnerContext.getFunctionCommandElement(
 			classCommandName);
@@ -634,7 +647,8 @@ public class PoshiRunnerExecutor {
 
 		PoshiRunnerStackTraceUtil.pushStackTrace(executeElement);
 
-		Element rootElement = PoshiRunnerContext.getMacroRootElement(className);
+		Element rootElement = PoshiRunnerContext.getMacroRootElement(
+			PoshiRunnerStackTraceUtil.getCurrentNamespace() + "." + className);
 
 		List<Element> rootVarElements = rootElement.elements("var");
 
@@ -655,7 +669,8 @@ public class PoshiRunnerExecutor {
 		SummaryLoggerHandler.startSummary(executeElement);
 
 		Element commandElement = PoshiRunnerContext.getMacroCommandElement(
-			classCommandName);
+			PoshiRunnerStackTraceUtil.getCurrentNamespace() + "." +
+				classCommandName);
 
 		try {
 			Map<String, String> macroReturns = runMacroCommandElement(

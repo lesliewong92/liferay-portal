@@ -84,7 +84,7 @@
 		<task summary="Add a web content article with '${webContentTitle}' as the title and '${webContentContent}' as the content">
 			<execute macro="WebContentNavigator#gotoAddCP" />
 
-			<execute function="Pause" locator1="30000" />
+			<execute function="Portal.Pause" locator1="30000" />
 
 			<execute macro="WebContent#addCP">
 				<var name="webContentContent" value="${webContentContent}" />
@@ -100,7 +100,7 @@
 	</command>
 
 	<command name="viewWelcomePage" summary="View default welcome page while signed in as '${userFirstName} ${userLastName}'">
-		<execute function="AssertTextEquals#assertText" locator1="HelloWorld#PORTLET_TITLE" value1="Hello World" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="HelloWorld#PORTLET_CONTENT" value1="Welcome to Liferay" />
+		<execute function="Portal.AssertTextEquals#assertText" locator1="HelloWorld#PORTLET_TITLE" value1="Hello World" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="HelloWorld#PORTLET_CONTENT" value1="Welcome to Liferay" />
 	</command>
 </definition>

@@ -7,21 +7,21 @@
 		<execute macro="Navigator#openURL" />
 
 		<if>
-			<condition function="IsElementNotPresent" locator1="ProductMenu#PRODUCT_MENU_TABS_USER_EXPANDED" />
+			<condition function="Portal.IsElementNotPresent" locator1="ProductMenu#PRODUCT_MENU_TABS_USER_EXPANDED" />
 			<then>
 				<if>
-					<condition function="IsElementPresent" locator1="UserBar#USER_AVATAR_IMAGE" />
+					<condition function="Portal.IsElementPresent" locator1="UserBar#USER_AVATAR_IMAGE" />
 					<then>
-						<execute function="Click" locator1="UserBar#USER_AVATAR_IMAGE" />
+						<execute function="Portal.Click" locator1="UserBar#USER_AVATAR_IMAGE" />
 
-						<execute function="Pause" locator1="5000" />
+						<execute function="Portal.Pause" locator1="5000" />
 
-						<execute function="AssertClick" locator1="UserBar#USER_DASHBOARD" value1="My Dashboard" />
+						<execute function="Portal.AssertClick" locator1="UserBar#USER_DASHBOARD" value1="My Dashboard" />
 					</then>
 				</if>
 			</then>
 			<else>
-				<execute function="AssertClick" locator1="UserBar#USER_DASHBOARD" value1="My Dashboard" />
+				<execute function="Portal.AssertClick" locator1="UserBar#USER_DASHBOARD" value1="My Dashboard" />
 			</else>
 		</if>
 	</command>
@@ -32,12 +32,12 @@
 		<execute macro="Navigator#openURL" />
 
 		<if>
-			<condition function="IsElementNotPresent" locator1="ProductMenu#PRODUCT_MENU_TABS_USER_EXPANDED" />
+			<condition function="Portal.IsElementNotPresent" locator1="ProductMenu#PRODUCT_MENU_TABS_USER_EXPANDED" />
 			<then>
 				<if>
-					<condition function="IsElementPresent" locator1="UserBar#USER_AVATAR_IMAGE" />
+					<condition function="Portal.IsElementPresent" locator1="UserBar#USER_AVATAR_IMAGE" />
 					<then>
-						<execute function="Click" locator1="UserBar#USER_AVATAR_IMAGE" />
+						<execute function="Portal.Click" locator1="UserBar#USER_AVATAR_IMAGE" />
 
 						<execute macro="ProductMenuHelper#expandCategory">
 							<var name="category" value="My Account" />
@@ -67,37 +67,37 @@
 		<execute macro="Navigator#openURL" />
 
 		<if>
-			<condition function="IsElementNotPresent" locator1="ProductMenu#PRODUCT_MENU_TABS_USER_EXPANDED" />
+			<condition function="Portal.IsElementNotPresent" locator1="ProductMenu#PRODUCT_MENU_TABS_USER_EXPANDED" />
 			<then>
 				<if>
-					<condition function="IsElementPresent" locator1="UserBar#USER_AVATAR_IMAGE" />
+					<condition function="Portal.IsElementPresent" locator1="UserBar#USER_AVATAR_IMAGE" />
 					<then>
-						<execute function="Click" locator1="UserBar#USER_AVATAR_IMAGE" />
+						<execute function="Portal.Click" locator1="UserBar#USER_AVATAR_IMAGE" />
 
-						<execute function="AssertClick" locator1="UserBar#USER_PROFILE" value1="My Profile" />
+						<execute function="Portal.AssertClick" locator1="UserBar#USER_PROFILE" value1="My Profile" />
 					</then>
 				</if>
 			</then>
 			<else>
-				<execute function="AssertClick" locator1="UserBar#USER_PROFILE" value1="My Profile" />
+				<execute function="Portal.AssertClick" locator1="UserBar#USER_PROFILE" value1="My Profile" />
 			</else>
 		</if>
 	</command>
 
 	<command name="signOut">
 		<if>
-			<condition function="IsElementPresent" locator1="UserBar#USER_AVATAR_IMAGE" />
+			<condition function="Portal.IsElementPresent" locator1="UserBar#USER_AVATAR_IMAGE" />
 			<then>
 				<if>
-					<condition function="IsElementNotPresent" locator1="ProductMenu#PRODUCT_MENU_TABS_USER_EXPANDED" />
+					<condition function="Portal.IsElementNotPresent" locator1="ProductMenu#PRODUCT_MENU_TABS_USER_EXPANDED" />
 					<then>
-						<execute function="Click" locator1="UserBar#USER_AVATAR_IMAGE" />
+						<execute function="Portal.Click" locator1="UserBar#USER_AVATAR_IMAGE" />
 					</then>
 				</if>
 
-				<execute function="AssertVisible" locator1="ProductMenu#PRODUCT_MENU_TABS_EXPANDED_PANEL" />
+				<execute function="Portal.AssertVisible" locator1="ProductMenu#PRODUCT_MENU_TABS_EXPANDED_PANEL" />
 
-				<execute function="Click" locator1="UserBar#USER_SIGN_OUT" />
+				<execute function="Portal.Click" locator1="UserBar#USER_SIGN_OUT" />
 			</then>
 		</if>
 	</command>
@@ -105,9 +105,9 @@
 	<command name="viewUserPageLayoutPG">
 		<execute macro="Navigator#openURL" />
 
-		<execute function="Click" locator1="UserBar#USER_AVATAR_IMAGE" />
+		<execute function="Portal.Click" locator1="UserBar#USER_AVATAR_IMAGE" />
 
-		<execute function="AssertTextNotPresent" locator1="UserBar#USER_PROFILE" value1="My Profile" />
-		<execute function="AssertTextNotPresent" locator1="UserBar#USER_DASHBOARD" value1="My Dashboard" />
+		<execute function="Portal.AssertTextNotPresent" locator1="UserBar#USER_PROFILE" value1="My Profile" />
+		<execute function="Portal.AssertTextNotPresent" locator1="UserBar#USER_DASHBOARD" value1="My Dashboard" />
 	</command>
 </definition>

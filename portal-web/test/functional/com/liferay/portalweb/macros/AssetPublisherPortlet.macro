@@ -1,12 +1,12 @@
 <definition>
 	<command name="addAsset">
-		<execute function="Click#makeVisibleClickAt" locator1="AP#ADD_ASSET_PLUS_ICON" />
+		<execute function="Portal.Click#makeVisibleClickAt" locator1="AP#ADD_ASSET_PLUS_ICON" />
 
-		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="${assetType}">
+		<execute function="Portal.AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="${assetType}">
 			<var name="key_menuItem" value="${assetType}" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#DIALOG" />
 	</command>
 
 	<command name="assertSiteScopeSearch">
@@ -16,13 +16,13 @@
 			<var name="panelHeading" value="Scope" />
 		</execute>
 
-		<execute function="AssertClick" locator1="Configuration#SCOPE_SELECT" value1="Select" />
+		<execute function="Portal.AssertClick" locator1="Configuration#SCOPE_SELECT" value1="Select" />
 
-		<execute function="AssertClick" locator1="MenuItem#OTHER_SITE" value1="Other Site..." />
+		<execute function="Portal.AssertClick" locator1="MenuItem#OTHER_SITE" value1="Other Site..." />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 
-		<execute function="SelectFrame" locator1="IFrame#SELECT_SITES" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#SELECT_SITES" />
 
 		<execute macro="SiteSelector#viewSite">
 			<var name="site" value="${siteName}" />
@@ -39,22 +39,22 @@
 		<if>
 			<isset var="globalSite" />
 			<then>
-				<execute function="Click" locator1="Configuration#SCOPE_SELECT" />
+				<execute function="Portal.Click" locator1="Configuration#SCOPE_SELECT" />
 
-				<execute function="Click" locator1="MenuItem#GLOBAL" />
+				<execute function="Portal.Click" locator1="MenuItem#GLOBAL" />
 			</then>
 		</if>
 
 		<if>
 			<isset var="otherSite" />
 			<then>
-				<execute function="Click" locator1="Configuration#SCOPE_SELECT" />
+				<execute function="Portal.Click" locator1="Configuration#SCOPE_SELECT" />
 
-				<execute function="Click" locator1="MenuItem#OTHER_SITE" />
+				<execute function="Portal.Click" locator1="MenuItem#OTHER_SITE" />
 
-				<execute function="SelectFrame" value1="relative=top" />
+				<execute function="Portal.SelectFrame" value1="relative=top" />
 
-				<execute function="SelectFrame" locator1="IFrame#SELECT_SITES" />
+				<execute function="Portal.SelectFrame" locator1="IFrame#SELECT_SITES" />
 
 				<execute macro="SiteSelector#selectSite">
 					<var name="site" value="${otherSite}" />
@@ -65,15 +65,15 @@
 		<if>
 			<isset var="defaultSite" />
 			<then>
-				<execute function="Click" locator1="Configuration#SCOPE_SELECT" />
+				<execute function="Portal.Click" locator1="Configuration#SCOPE_SELECT" />
 
-				<execute function="Click" locator1="APConfiguration#SOURCE_CURRENT_SCOPE_NAME" />
+				<execute function="Portal.Click" locator1="APConfiguration#SOURCE_CURRENT_SCOPE_NAME" />
 			</then>
 		</if>
 
-		<execute function="SelectFrameTop" />
+		<execute function="Portal.SelectFrameTop" />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#DIALOG" />
 
 		<execute macro="Alert#viewSuccessMessage" />
 	</command>
@@ -87,20 +87,20 @@
 			<var name="panelHeading" value="Source" />
 		</execute>
 
-		<execute function="Select" locator1="APConfiguration#SOURCE_SCOPE_ASSET_TYPE_SELECT" value1="Select More Than One..." />
+		<execute function="Portal.Select" locator1="APConfiguration#SOURCE_SCOPE_ASSET_TYPE_SELECT" value1="Select More Than One..." />
 
 		<for list="${selectContent}" param="contentName">
 			<var name="key_contentName" value="${contentName}" />
 
-			<execute function="Click" locator1="APConfiguration#SELECT_MORE_THAN_ONE_ASSET_TYPE_CONTENT" />
+			<execute function="Portal.Click" locator1="APConfiguration#SELECT_MORE_THAN_ONE_ASSET_TYPE_CONTENT" />
 
 			<if>
 				<equals arg1="${moveSelected}" arg2="true" />
 				<then>
-					<execute function="Click" locator1="APConfiguration#SELECT_MORE_THAN_ONE_ASSET_TYPE_MOVE_SELECTED" />
+					<execute function="Portal.Click" locator1="APConfiguration#SELECT_MORE_THAN_ONE_ASSET_TYPE_MOVE_SELECTED" />
 				</then>
 				<else>
-					<execute function="Click" locator1="APConfiguration#SELECT_MORE_THAN_ONE_ASSET_TYPE_MOVE_AVAILABLE" />
+					<execute function="Portal.Click" locator1="APConfiguration#SELECT_MORE_THAN_ONE_ASSET_TYPE_MOVE_AVAILABLE" />
 				</else>
 			</if>
 		</for>
@@ -119,18 +119,18 @@
 			<var name="panelHeading" value="Ordering and Grouping" />
 		</execute>
 
-		<execute function="Select" locator1="APConfiguration#ORDERING_AND_GROUPING_ORDER_BY_SELECT" value1="${fieldNameOrder}" />
+		<execute function="Portal.Select" locator1="APConfiguration#ORDERING_AND_GROUPING_ORDER_BY_SELECT" value1="${fieldNameOrder}" />
 
 		<var name="key_sortOrder" value="${sortOrder}" />
 
 		<if>
-			<condition function="IsNotVisible" locator1="APConfiguration#ORDERING_AND_GROUPING_ORDER_DIRECTIONAL_ICON" />
+			<condition function="Portal.IsNotVisible" locator1="APConfiguration#ORDERING_AND_GROUPING_ORDER_DIRECTIONAL_ICON" />
 			<then>
-				<execute function="Click" locator1="APConfiguration#ORDERING_AND_GROUPING_ORDER_GENERIC_ICON" />
+				<execute function="Portal.Click" locator1="APConfiguration#ORDERING_AND_GROUPING_ORDER_GENERIC_ICON" />
 			</then>
 		</if>
 
-		<execute function="AssertVisible" locator1="APConfiguration#ORDERING_AND_GROUPING_ORDER_DIRECTIONAL_ICON" />
+		<execute function="Portal.AssertVisible" locator1="APConfiguration#ORDERING_AND_GROUPING_ORDER_DIRECTIONAL_ICON" />
 
 		<execute macro="PortletEntry#save" />
 	</command>
@@ -145,13 +145,13 @@
 		<if>
 			<isset var="disableConfiguration" />
 			<then>
-				<execute function="Uncheck#uncheckToggleSwitch" locator1="ToggleSwitch#ANY_TOGGLE_SWITCH">
+				<execute function="Portal.Uncheck#uncheckToggleSwitch" locator1="ToggleSwitch#ANY_TOGGLE_SWITCH">
 					<var name="key_toggleSwitchLabel" value="${disableConfiguration}" />
 				</execute>
 			</then>
 		</if>
 
-		<execute function="Select" locator1="APConfigurationDisplaysettings#ASSET_LINK_BEHAVIOR_SELECT" value1="${assetLinkBehavior}" />
+		<execute function="Portal.Select" locator1="APConfigurationDisplaysettings#ASSET_LINK_BEHAVIOR_SELECT" value1="${assetLinkBehavior}" />
 
 		<execute macro="PortletEntry#save" />
 	</command>
@@ -163,9 +163,9 @@
 			<var name="panelHeading" value="Source" />
 		</execute>
 
-		<execute function="Select" locator1="APConfiguration#SOURCE_SCOPE_ASSET_TYPE_SELECT" value1="${selectedAsset}" />
+		<execute function="Portal.Select" locator1="APConfiguration#SOURCE_SCOPE_ASSET_TYPE_SELECT" value1="${selectedAsset}" />
 
-		<execute function="Select" locator1="APConfiguration#SOURCE_SCOPE_ASSET_SUBTYPE_SELECT" value1="${assetSubtype}" />
+		<execute function="Portal.Select" locator1="APConfiguration#SOURCE_SCOPE_ASSET_SUBTYPE_SELECT" value1="${assetSubtype}" />
 
 		<execute macro="PortletEntry#save" />
 	</command>
@@ -177,7 +177,7 @@
 			<var name="panelHeading" value="Filter" />
 		</execute>
 
-		<execute function="Select" locator1="APConfiguration#FILTER_CATEGORIZATION_SELECT" value1="Categories" />
+		<execute function="Portal.Select" locator1="APConfiguration#FILTER_CATEGORIZATION_SELECT" value1="Categories" />
 
 		<execute macro="AssetCategorization#addCategory">
 			<var name="categoryName" value="${categoryName}" />
@@ -206,12 +206,12 @@
 			<if>
 				<equals arg1="${check}" arg2="true" />
 				<then>
-					<execute function="Check#checkToggleSwitch" locator1="APConfigurationDisplaysettings#ENABLE_CONVERSION_${documentTypeUppercase}_CHECKBOX" />
+					<execute function="Portal.Check#checkToggleSwitch" locator1="APConfigurationDisplaysettings#ENABLE_CONVERSION_${documentTypeUppercase}_CHECKBOX" />
 				</then>
 				<elseif>
 					<equals arg1="${uncheck}" arg2="true" />
 					<then>
-						<execute function="Uncheck#uncheckToggleSwitch" locator1="APConfigurationDisplaysettings#ENABLE_CONVERSION_${documentTypeUppercase}_CHECKBOX" />
+						<execute function="Portal.Uncheck#uncheckToggleSwitch" locator1="APConfigurationDisplaysettings#ENABLE_CONVERSION_${documentTypeUppercase}_CHECKBOX" />
 					</then>
 				</elseif>
 			</if>
@@ -237,10 +237,10 @@
 			<if>
 				<contains string="${displaySetting}" substring="Social Bookmarks" />
 				<then>
-					<execute function="Check#checkHiddenToggleSwitch" locator1="ToggleSwitch#ENABLE_SOCIAL_BOOKMARKS" />
+					<execute function="Portal.Check#checkHiddenToggleSwitch" locator1="ToggleSwitch#ENABLE_SOCIAL_BOOKMARKS" />
 				</then>
 				<else>
-					<execute function="Check" locator1="Checkbox#ANY_CHECKBOX">
+					<execute function="Portal.Check" locator1="Checkbox#ANY_CHECKBOX">
 						<var name="checkboxName" value="${displaySetting}" />
 					</execute>
 				</else>
@@ -249,21 +249,21 @@
 
 		<execute macro="PortletEntry#save" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 	</command>
 
 	<command name="configureDisplayTemplatePG">
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#DIALOG" />
 
 		<execute macro="Navigator#gotoNavTab">
 			<var name="navTab" value="Display Settings" />
 		</execute>
 
-		<execute function="Select" locator1="APConfigurationDisplaysettings#DISPLAY_TEMPLATE_SELECT" value1="${displayTemplate}" />
+		<execute function="Portal.Select" locator1="APConfigurationDisplaysettings#DISPLAY_TEMPLATE_SELECT" value1="${displayTemplate}" />
 
 		<execute macro="PortletEntry#save" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 	</command>
 
 	<command name="configureFilterByCategories">
@@ -279,7 +279,7 @@
 			<var name="panelHeading" value="Filter" />
 		</execute>
 
-		<execute function="Select" locator1="APConfiguration#FILTER_CATEGORIZATION_SELECT" value1="Categories" />
+		<execute function="Portal.Select" locator1="APConfiguration#FILTER_CATEGORIZATION_SELECT" value1="Categories" />
 
 		<execute macro="AssetCategorization#addCategory">
 			<var name="categoryName" value="${categoryName}" />
@@ -288,7 +288,7 @@
 
 		<execute macro="PortletEntry#save" />
 
-		<execute function="SelectFrameTop" />
+		<execute function="Portal.SelectFrameTop" />
 	</command>
 
 	<command name="configureFilterByFieldPG">
@@ -298,44 +298,44 @@
 			<var name="panelHeading" value="Source" />
 		</execute>
 
-		<execute function="Select" locator1="APConfiguration#SOURCE_SCOPE_ASSET_TYPE_SELECT" value1="${selectedAsset}" />
+		<execute function="Portal.Select" locator1="APConfiguration#SOURCE_SCOPE_ASSET_TYPE_SELECT" value1="${selectedAsset}" />
 
-		<execute function="Select" locator1="APConfiguration#SOURCE_SCOPE_ASSET_SUBTYPE_SELECT" value1="${assetSubtype}" />
+		<execute function="Portal.Select" locator1="APConfiguration#SOURCE_SCOPE_ASSET_SUBTYPE_SELECT" value1="${assetSubtype}" />
 
-		<execute function="Check#checkToggleSwitch" locator1="APConfiguration#SOURCE_SCOPE_FILTER_BY_FIELD_CHECKBOX" />
+		<execute function="Portal.Check#checkToggleSwitch" locator1="APConfiguration#SOURCE_SCOPE_FILTER_BY_FIELD_CHECKBOX" />
 
-		<execute function="AssertClick" locator1="APConfiguration#SOURCE_SCOPE_FILTER_BY_FIELD_SELECT_BUTTON" value1="Select" />
+		<execute function="Portal.AssertClick" locator1="APConfiguration#SOURCE_SCOPE_FILTER_BY_FIELD_SELECT_BUTTON" value1="Select" />
 
-		<execute function="SelectFrame" />
+		<execute function="Portal.SelectFrame" />
 
-		<execute function="SelectFrame" locator1="IFrame#SELECT_STRUCTURE_FIELD" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#SELECT_STRUCTURE_FIELD" />
 
 		<var name="key_fieldName" value="${fieldFilter}" />
 
 		<if>
 			<isset var="fieldFilter" />
 			<then>
-				<execute function="Check" locator1="APConfigurationFilterbyfield#FIELD_FILTER_RADIO_BUTTON" />
+				<execute function="Portal.Check" locator1="APConfigurationFilterbyfield#FIELD_FILTER_RADIO_BUTTON" />
 			</then>
 		</if>
 
 		<if>
 			<isset var="fieldValue" />
 			<then>
-				<execute function="Type" locator1="TextInput#FIELD_FILTER_INPUT" value1="${fieldValue}" />
+				<execute function="Portal.Type" locator1="TextInput#FIELD_FILTER_INPUT" value1="${fieldValue}" />
 			</then>
 		</if>
 
-		<execute function="AssertClick" locator1="Button#FIELD_FILTER_APPLY" value1="Apply" />
+		<execute function="Portal.AssertClick" locator1="Button#FIELD_FILTER_APPLY" value1="Apply" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#DIALOG" />
 
 		<if>
 			<isset var="fieldValue" />
 			<then>
-				<execute function="AssertTextEquals#assertPartialText" locator1="APConfiguration#SOURCE_SCOPE_FIELD_FILTER_AND_VALUE" value1="${fieldFilter}: ${fieldValue}" />
+				<execute function="Portal.AssertTextEquals#assertPartialText" locator1="APConfiguration#SOURCE_SCOPE_FIELD_FILTER_AND_VALUE" value1="${fieldFilter}: ${fieldValue}" />
 			</then>
 		</if>
 
@@ -345,8 +345,8 @@
 			<var name="panelHeading" value="Source" />
 		</execute>
 
-		<execute function="AssertSelectedLabel" locator1="APConfiguration#SOURCE_SCOPE_ASSET_TYPE_SELECT" value1="${selectedAsset}" />
-		<execute function="AssertSelectedLabel" locator1="APConfiguration#SOURCE_SCOPE_ASSET_SUBTYPE_SELECT" value1="${assetSubtype}" />
+		<execute function="Portal.AssertSelectedLabel" locator1="APConfiguration#SOURCE_SCOPE_ASSET_TYPE_SELECT" value1="${selectedAsset}" />
+		<execute function="Portal.AssertSelectedLabel" locator1="APConfiguration#SOURCE_SCOPE_ASSET_SUBTYPE_SELECT" value1="${assetSubtype}" />
 	</command>
 
 	<command name="configureManualAssetSelectionPG">
@@ -354,7 +354,7 @@
 			<var name="portletName" value="${portletName}" />
 		</execute>
 
-		<execute function="Click" locator1="APConfiguration#ASSET_SELECTION_MANUAL" />
+		<execute function="Portal.Click" locator1="APConfiguration#ASSET_SELECTION_MANUAL" />
 
 		<if>
 			<isset var="assetTitle" />
@@ -363,29 +363,29 @@
 					<var name="panelHeading" value="Asset Entries" />
 				</execute>
 
-				<execute function="Click" locator1="APConfiguration#ASSET_SELECTION_MANUAL_ASSET_ENTRIES_SELECT_BUTTON" />
+				<execute function="Portal.Click" locator1="APConfiguration#ASSET_SELECTION_MANUAL_ASSET_ENTRIES_SELECT_BUTTON" />
 
 				<var name="key_assetType" value="${assetType}" />
 
-				<execute function="AssertClick" locator1="APConfiguration#ASSET_SELECTION_MANUAL_ASSET_ENTRIES_ASSET" value1="${assetType}" />
+				<execute function="Portal.AssertClick" locator1="APConfiguration#ASSET_SELECTION_MANUAL_ASSET_ENTRIES_ASSET" value1="${assetType}" />
 
-				<execute function="SelectFrameTop" />
+				<execute function="Portal.SelectFrameTop" />
 
-				<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+				<execute function="Portal.SelectFrame" locator1="IFrame#DIALOG" />
 
 				<var name="key_assetTitle" value="${assetTitle}" />
 
-				<execute function="AssertClick" locator1="APConfiguration#ASSET_SELECTION_MANUAL_ASSET_ENTRIES_SELECT_CONTENT_LINK" value1="${assetTitle}" />
+				<execute function="Portal.AssertClick" locator1="APConfiguration#ASSET_SELECTION_MANUAL_ASSET_ENTRIES_SELECT_CONTENT_LINK" value1="${assetTitle}" />
 
-				<execute function="SelectFrameTop" />
+				<execute function="Portal.SelectFrameTop" />
 
-				<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+				<execute function="Portal.SelectFrame" locator1="IFrame#DIALOG" />
 			</then>
 		</if>
 
 		<execute macro="Alert#viewSuccessMessage" />
 
-		<execute function="SelectFrameTop" />
+		<execute function="Portal.SelectFrameTop" />
 	</command>
 
 	<command name="configurePaginationPG">
@@ -395,9 +395,9 @@
 			<var name="navTab" value="Display Settings" />
 		</execute>
 
-		<execute function="Type" locator1="APConfigurationDisplaysettings#NUMBER_OF_ITEMS_TO_DISPLAY_FIELD" value1="${paginationNumber}" />
+		<execute function="Portal.Type" locator1="APConfigurationDisplaysettings#NUMBER_OF_ITEMS_TO_DISPLAY_FIELD" value1="${paginationNumber}" />
 
-		<execute function="Select" locator1="APConfigurationDisplaysettings#PAGINATION_TYPE_SELECT" value1="${paginationType}" />
+		<execute function="Portal.Select" locator1="APConfigurationDisplaysettings#PAGINATION_TYPE_SELECT" value1="${paginationType}" />
 
 		<execute macro="PortletEntry#save" />
 	</command>
@@ -409,7 +409,7 @@
 			<var name="panelHeading" value="Source" />
 		</execute>
 
-		<execute function="Select" locator1="APConfiguration#SOURCE_SCOPE_ASSET_TYPE_SELECT" value1="${selectedAsset}" />
+		<execute function="Portal.Select" locator1="APConfiguration#SOURCE_SCOPE_ASSET_TYPE_SELECT" value1="${selectedAsset}" />
 
 		<execute macro="PortletEntry#save" />
 	</command>
@@ -431,11 +431,11 @@
 			<if>
 				<equals arg1="${addMetadata}" arg2="true" />
 				<then>
-					<execute function="AddSelection" locator1="APConfigurationDisplaysettings#SHOW_METADATA_AVAILABLE_FIELD_SELECT" value1="${metadataField}" />
+					<execute function="Portal.AddSelection" locator1="APConfigurationDisplaysettings#SHOW_METADATA_AVAILABLE_FIELD_SELECT" value1="${metadataField}" />
 
-					<execute function="Click" locator1="Button#MOVE_AVAILABLE_TO_CURRENT" />
+					<execute function="Portal.Click" locator1="Button#MOVE_AVAILABLE_TO_CURRENT" />
 
-					<execute function="AssertTextEquals" locator1="APConfigurationDisplaysettings#SHOW_METADATA_CURRENT_FIELD_SELECT" value1="${metadataField}" />
+					<execute function="Portal.AssertTextEquals" locator1="APConfigurationDisplaysettings#SHOW_METADATA_CURRENT_FIELD_SELECT" value1="${metadataField}" />
 				</then>
 			</if>
 		</for>
@@ -444,18 +444,18 @@
 			<if>
 				<equals arg1="${removeMetadata}" arg2="true" />
 				<then>
-					<execute function="AddSelection" locator1="APConfigurationDisplaysettings#SHOW_METADATA_CURRENT_FIELD_SELECT" value1="${metadataField}" />
+					<execute function="Portal.AddSelection" locator1="APConfigurationDisplaysettings#SHOW_METADATA_CURRENT_FIELD_SELECT" value1="${metadataField}" />
 
-					<execute function="Click" locator1="Button#MOVE_CURRENT_TO_AVAILABLE" />
+					<execute function="Portal.Click" locator1="Button#MOVE_CURRENT_TO_AVAILABLE" />
 
-					<execute function="AssertTextEquals" locator1="APConfigurationDisplaysettings#SHOW_METADATA_AVAILABLE_FIELD_SELECT" value1="${metadataField}" />
+					<execute function="Portal.AssertTextEquals" locator1="APConfigurationDisplaysettings#SHOW_METADATA_AVAILABLE_FIELD_SELECT" value1="${metadataField}" />
 				</then>
 			</if>
 		</for>
 
 		<execute macro="PortletEntry#save" />
 
-		<execute function="SelectFrameTop" />
+		<execute function="Portal.SelectFrameTop" />
 	</command>
 
 	<command name="configureSiteScopePG">
@@ -467,45 +467,45 @@
 			<var name="panelHeading" value="Scope" />
 		</execute>
 
-		<execute function="AssertClick" locator1="Configuration#SCOPE_SELECT" value1="Select" />
+		<execute function="Portal.AssertClick" locator1="Configuration#SCOPE_SELECT" value1="Select" />
 
 		<if>
 			<equals arg1="${siteName}" arg2="Global" />
 			<then>
-				<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="${siteName}">
+				<execute function="Portal.AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="${siteName}">
 					<var name="key_menuItem" value="${siteName}" />
 				</execute>
 			</then>
 			<else>
-				<execute function="AssertClick" locator1="MenuItem#OTHER_SITE" value1="Other Site..." />
+				<execute function="Portal.AssertClick" locator1="MenuItem#OTHER_SITE" value1="Other Site..." />
 
-				<execute function="SelectFrame" value1="relative=top" />
+				<execute function="Portal.SelectFrame" value1="relative=top" />
 
-				<execute function="SelectFrame" locator1="IFrame#SELECT_SITES" />
+				<execute function="Portal.SelectFrame" locator1="IFrame#SELECT_SITES" />
 
-				<execute function="AssertTextEquals" locator1="APConfigurationSites#SITES_TABLE_NAME" value1="${siteName}" />
-				<execute function="AssertTextEquals" locator1="APConfigurationSites#SITES_TABLE_TYPE" value1="${siteScopeType}" />
+				<execute function="Portal.AssertTextEquals" locator1="APConfigurationSites#SITES_TABLE_NAME" value1="${siteName}" />
+				<execute function="Portal.AssertTextEquals" locator1="APConfigurationSites#SITES_TABLE_TYPE" value1="${siteScopeType}" />
 
-				<execute function="ClickNoError" locator1="SitesSelectSite#SITES_TABLE_CHOOSE_SITE_LINK" />
+				<execute function="Portal.ClickNoError" locator1="SitesSelectSite#SITES_TABLE_CHOOSE_SITE_LINK" />
 
-				<execute function="SelectFrame" value1="relative=top" />
+				<execute function="Portal.SelectFrame" value1="relative=top" />
 
-				<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+				<execute function="Portal.SelectFrame" locator1="IFrame#DIALOG" />
 			</else>
 		</if>
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="APConfiguration#SOURCE_SCOPE_NAME" value1="${siteName}" />
-		<execute function="AssertTextEquals" locator1="APConfiguration#SOURCE_SCOPE_TYPE" value1="${siteScopeType}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="APConfiguration#SOURCE_SCOPE_NAME" value1="${siteName}" />
+		<execute function="Portal.AssertTextEquals" locator1="APConfiguration#SOURCE_SCOPE_TYPE" value1="${siteScopeType}" />
 
 		<execute macro="Button#clickSave" />
 
 		<execute macro="Alert#viewSuccessMessage" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="APConfiguration#SOURCE_SCOPE_NAME" value1="${siteName}" />
-		<execute function="AssertTextEquals" locator1="APConfiguration#SOURCE_SCOPE_TYPE" value1="${siteScopeType}" />
-		<execute function="AssertElementPresent" locator1="APConfiguration#SOURCE_SCOPE_DELETE" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="APConfiguration#SOURCE_SCOPE_NAME" value1="${siteName}" />
+		<execute function="Portal.AssertTextEquals" locator1="APConfiguration#SOURCE_SCOPE_TYPE" value1="${siteScopeType}" />
+		<execute function="Portal.AssertElementPresent" locator1="APConfiguration#SOURCE_SCOPE_DELETE" />
 
-		<execute function="SelectFrameTop" />
+		<execute function="Portal.SelectFrameTop" />
 	</command>
 
 	<command name="configureSiteScopeRemoveSitePG">
@@ -521,14 +521,14 @@
 
 		<var name="key_siteName" value="${siteName}" />
 
-		<execute function="Click" locator1="APConfiguration#SOURCE_SCOPE_DELETE" />
+		<execute function="Portal.Click" locator1="APConfiguration#SOURCE_SCOPE_DELETE" />
 
 		<execute macro="Alert#viewSuccessMessage" />
 
-		<execute function="AssertTextNotPresent" locator1="APConfiguration#SOURCE_SCOPE_NAME" value1="${siteName}" />
-		<execute function="AssertTextNotPresent" locator1="APConfiguration#SOURCE_SCOPE_TYPE" value1="${siteScopeType}" />
+		<execute function="Portal.AssertTextNotPresent" locator1="APConfiguration#SOURCE_SCOPE_NAME" value1="${siteName}" />
+		<execute function="Portal.AssertTextNotPresent" locator1="APConfiguration#SOURCE_SCOPE_TYPE" value1="${siteScopeType}" />
 
-		<execute function="SelectFrameTop" />
+		<execute function="Portal.SelectFrameTop" />
 	</command>
 
 	<command name="configureTagsFilterPG">
@@ -538,7 +538,7 @@
 			<var name="panelHeading" value="Filter" />
 		</execute>
 
-		<execute function="Select" locator1="APConfiguration#FILTER_CATEGORIZATION_SELECT" value1="Tags" />
+		<execute function="Portal.Select" locator1="APConfiguration#FILTER_CATEGORIZATION_SELECT" value1="Tags" />
 
 		<execute macro="AssetCategorization#selectTag">
 			<var name="tagName" value="${tagName}" />
@@ -555,31 +555,31 @@
 			<var name="portletOption" value="Configuration Templates" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#DIALOG" />
 
 		<var name="key_rowEntry" value="${configurationName}" />
 
-		<execute function="Click" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
+		<execute function="Portal.Click" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
 
-		<execute function="AssertClickNoError" locator1="MenuItem#DELETE" value1="Delete" />
+		<execute function="Portal.AssertClickNoError" locator1="MenuItem#DELETE" value1="Delete" />
 
-		<execute function="Confirm#waitForConfirmation" value1="Are you sure you want to delete this? It will be deleted immediately." />
+		<execute function="Portal.Confirm#waitForConfirmation" value1="Are you sure you want to delete this? It will be deleted immediately." />
 
 		<execute macro="Alert#viewSuccessMessage" />
 
-		<execute function="AssertTextEquals" locator1="Message#EMPTY_INFO" value1="There are no configuration templates." />
+		<execute function="Portal.AssertTextEquals" locator1="Message#EMPTY_INFO" value1="There are no configuration templates." />
 	</command>
 
 	<command name="enableRSSSubscription">
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#DIALOG" />
 
 		<execute macro="Navigator#gotoNavTab">
 			<var name="navTab" value="Subscriptions" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="APConfiguration#SUBSCRIPTIONS_ENABLE_RSS_SUBSCRIPTION_LABEL" value1="Enable RSS Subscription" />
+		<execute function="Portal.AssertTextEquals" locator1="APConfiguration#SUBSCRIPTIONS_ENABLE_RSS_SUBSCRIPTION_LABEL" value1="Enable RSS Subscription" />
 
-		<execute function="Check#checkToggleSwitch" locator1="APConfiguration#SUBSCRIPTIONS_ENABLE_RSS_SUBSCRIPTION" />
+		<execute function="Portal.Check#checkToggleSwitch" locator1="APConfiguration#SUBSCRIPTIONS_ENABLE_RSS_SUBSCRIPTION" />
 	</command>
 
 	<command name="gotoConfigurationPG">
@@ -595,15 +595,15 @@
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#DIALOG" />
 	</command>
 
 	<command name="gotoViewInContext">
-		<execute function="AssertClick" locator1="Link#VIEW_IN_CONTEXT" value1="View in Context »" />
+		<execute function="Portal.AssertClick" locator1="Link#VIEW_IN_CONTEXT" value1="View in Context »" />
 	</command>
 
 	<command name="rateAssetPG">
-		<execute function="Click#clickNoMouseOver" locator1="Ratings#YOUR_RATING_STAR_EMPTY">
+		<execute function="Portal.Click#clickNoMouseOver" locator1="Ratings#YOUR_RATING_STAR_EMPTY">
 			<var name="key_emptyStarPosition" value="${rating}" />
 		</execute>
 	</command>
@@ -618,12 +618,12 @@
 		<for list="${removeSiteScopes}" param="removeSiteScope">
 			<var name="key_siteName" value="${removeSiteScope}" />
 
-			<execute function="Click" locator1="APConfiguration#SOURCE_SCOPE_DELETE" />
+			<execute function="Portal.Click" locator1="APConfiguration#SOURCE_SCOPE_DELETE" />
 		</for>
 
 		<execute macro="Alert#viewSuccessMessage" />
 
-		<execute function="SelectFrameTop" />
+		<execute function="Portal.SelectFrameTop" />
 	</command>
 
 	<command name="restoreConfigurationTemplatePG">
@@ -632,13 +632,13 @@
 			<var name="portletOption" value="Configuration Templates" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#DIALOG" />
 
 		<var name="key_rowEntry" value="${configurationName}" />
 
-		<execute function="Click" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
+		<execute function="Portal.Click" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
 
-		<execute function="AssertClick" locator1="MenuItem#APPLY" value1="Apply" />
+		<execute function="Portal.AssertClick" locator1="MenuItem#APPLY" value1="Apply" />
 
 		<execute macro="Alert#viewSuccessMessage" />
 	</command>
@@ -649,11 +649,11 @@
 			<var name="portletOption" value="Configuration Templates" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#DIALOG" />
 
-		<execute function="AssertTextEquals" locator1="Message#EMPTY_INFO" value1="There are no configuration templates." />
+		<execute function="Portal.AssertTextEquals" locator1="Message#EMPTY_INFO" value1="There are no configuration templates." />
 
-		<execute function="AssertClick" locator1="Configuration#SAVE_CONFIGURATION_TEMPLATE" value1="Save Current Configuration as Template" />
+		<execute function="Portal.AssertClick" locator1="Configuration#SAVE_CONFIGURATION_TEMPLATE" value1="Save Current Configuration as Template" />
 
 		<execute macro="PortletEntry#inputName">
 			<var name="name" value="${configurationName}" />
@@ -663,51 +663,51 @@
 
 		<var name="key_configurationName" value="${configurationName}" />
 
-		<execute function="AssertTextEquals" locator1="Configuration#CONFIGURATION_TEMPLATE_TABLE_NAME" value1="${configurationName}" />
+		<execute function="Portal.AssertTextEquals" locator1="Configuration#CONFIGURATION_TEMPLATE_TABLE_NAME" value1="${configurationName}" />
 
 		<execute macro="Alert#viewSuccessMessage" />
 
-		<execute function="SelectFrameTop" />
+		<execute function="Portal.SelectFrameTop" />
 	</command>
 
 	<command name="viewAssetDetailsPG">
 		<var name="key_assetTitle" value="${assetTitle}" />
 
-		<execute function="AssertTextEquals" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${assetTitle}" />
+		<execute function="Portal.AssertTextEquals" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${assetTitle}" />
 
-		<execute function="AssertClick" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${assetTitle}" />
+		<execute function="Portal.AssertClick" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${assetTitle}" />
 
-		<execute function="AssertTextEquals" locator1="APAsset#ASSET_TITLE_HEADER" value1="${assetTitle}" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="AP#ASSET_ABSTRACT_DETAIL_CONTENT" value1="${assetContent}" />
+		<execute function="Portal.AssertTextEquals" locator1="APAsset#ASSET_TITLE_HEADER" value1="${assetTitle}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="AP#ASSET_ABSTRACT_DETAIL_CONTENT" value1="${assetContent}" />
 	</command>
 
 	<command name="viewAssetMetadataPG">
 		<var name="key_categoryName" value="${categoryName}" />
 		<var name="key_vocabularyName" value="${vocabularyName}" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="AP#METADATA_VOCABULARY" value1="${vocabularyName}" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="AP#METADATA_CATEGORY" value1="${categoryName}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="AP#METADATA_VOCABULARY" value1="${vocabularyName}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="AP#METADATA_CATEGORY" value1="${categoryName}" />
 	</command>
 
 	<command name="viewAssetNotPresentPG">
 		<var name="key_assetTitle" value="${assetTitle}" />
 
-		<execute function="AssertTextNotPresent" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${assetTitle}" />
-		<execute function="AssertTextNotPresent" locator1="AP#ASSET_ABSTRACT_DESCRIPTION" value1="${assetContent}" />
+		<execute function="Portal.AssertTextNotPresent" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${assetTitle}" />
+		<execute function="Portal.AssertTextNotPresent" locator1="AP#ASSET_ABSTRACT_DESCRIPTION" value1="${assetContent}" />
 	</command>
 
 	<command name="viewAssetPG">
 		<var name="key_assetTitle" value="${assetTitle}" />
 
-		<execute function="AssertTextEquals" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${assetTitle}" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="AP#ASSET_ABSTRACT_DESCRIPTION" value1="${assetContent}" />
+		<execute function="Portal.AssertTextEquals" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${assetTitle}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="AP#ASSET_ABSTRACT_DESCRIPTION" value1="${assetContent}" />
 	</command>
 
 	<command name="viewAssetRatingPG">
 		<if>
 			<equals arg1="${rating}" arg2="0" />
 			<then>
-				<execute function="AssertElementNotPresent" locator1="Ratings#YOUR_RATING_STAR">
+				<execute function="Portal.AssertElementNotPresent" locator1="Ratings#YOUR_RATING_STAR">
 					<var name="key_ratingStarPosition" value="1" />
 				</execute>
 			</then>
@@ -719,7 +719,7 @@
 						<equals arg1="${ratingPosition}" arg2="${rating}" />
 					</not>
 					<then>
-						<execute function="AssertElementPresent" locator1="Ratings#YOUR_RATING_STAR">
+						<execute function="Portal.AssertElementPresent" locator1="Ratings#YOUR_RATING_STAR">
 							<var name="key_ratingStarPosition" value="${ratingPosition}" />
 						</execute>
 
@@ -727,7 +727,7 @@
 					</then>
 				</while>
 
-				<execute function="AssertElementNotPresent" locator1="Ratings#YOUR_RATING_STAR">
+				<execute function="Portal.AssertElementNotPresent" locator1="Ratings#YOUR_RATING_STAR">
 					<var name="key_ratingStarPosition" value="${ratingPosition}" />
 					<var method="MathUtil#sum('${ratingPosition}', '1')" name="key_ratingStarPosition" />
 				</execute>
@@ -737,7 +737,7 @@
 		<if>
 			<equals arg1="${rating}" arg2="5" />
 			<then>
-				<execute function="AssertElementNotPresent" locator1="Ratings#YOUR_RATING_STAR_EMPTY">
+				<execute function="Portal.AssertElementNotPresent" locator1="Ratings#YOUR_RATING_STAR_EMPTY">
 					<var name="key_emptyStarPosition" value="1" />
 				</execute>
 			</then>
@@ -750,7 +750,7 @@
 						<equals arg1="${emptyStarPosition}" arg2="${emptyRating}" />
 					</not>
 					<then>
-						<execute function="AssertElementPresent" locator1="Ratings#YOUR_RATING_STAR_EMPTY">
+						<execute function="Portal.AssertElementPresent" locator1="Ratings#YOUR_RATING_STAR_EMPTY">
 							<var name="key_emptyStarPosition" value="${emptyStarPosition}" />
 						</execute>
 
@@ -758,7 +758,7 @@
 					</then>
 				</while>
 
-				<execute function="AssertElementNotPresent" locator1="Ratings#YOUR_RATING_STAR_EMPTY">
+				<execute function="Portal.AssertElementNotPresent" locator1="Ratings#YOUR_RATING_STAR_EMPTY">
 					<var method="MathUtil#sum('${emptyStarPosition}', '1')" name="key_emptyStarPosition" />
 				</execute>
 			</else>
@@ -766,19 +766,19 @@
 	</command>
 
 	<command name="viewAssetTypeNotAvailable">
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#CONFIGURATION" />
 
 		<execute macro="Panel#expandPanel">
 			<var name="panelHeading" value="Source" />
 		</execute>
 
-		<execute function="AssertTextNotEquals" locator1="APConfiguration#SOURCE_SCOPE_ASSET_TYPE_SELECT" value1="${assetType}" />
+		<execute function="Portal.AssertTextNotEquals" locator1="APConfiguration#SOURCE_SCOPE_ASSET_TYPE_SELECT" value1="${assetType}" />
 
-		<execute function="SelectFrameTop" />
+		<execute function="Portal.SelectFrameTop" />
 	</command>
 
 	<command name="viewAssetViewCount">
-		<execute function="AssertTextEquals#assertPartialText" locator1="APAsset#ASSET_VIEW_COUNT" value1="${viewCount}">
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="APAsset#ASSET_VIEW_COUNT" value1="${viewCount}">
 			<var name="key_assetTitle" value="${assetTitle}" />
 			<var name="key_viewCount" value="${viewCount}" />
 		</execute>
@@ -788,7 +788,7 @@
 		<if>
 			<equals arg1="${averageRating}" arg2="0" />
 			<then>
-				<execute function="AssertElementNotPresent" locator1="Ratings#AVERAGE_STAR">
+				<execute function="Portal.AssertElementNotPresent" locator1="Ratings#AVERAGE_STAR">
 					<var name="key_averageRatingStar" value="1" />
 				</execute>
 			</then>
@@ -800,7 +800,7 @@
 						<equals arg1="${ratingPosition}" arg2="${averageRating}" />
 					</not>
 					<then>
-						<execute function="AssertElementPresent" locator1="Ratings#AVERAGE_STAR">
+						<execute function="Portal.AssertElementPresent" locator1="Ratings#AVERAGE_STAR">
 							<var name="key_averageRatingStar" value="${ratingPosition}" />
 						</execute>
 
@@ -808,7 +808,7 @@
 					</then>
 				</while>
 
-				<execute function="AssertElementNotPresent" locator1="Ratings#AVERAGE_STAR">
+				<execute function="Portal.AssertElementNotPresent" locator1="Ratings#AVERAGE_STAR">
 					<var method="MathUtil#sum('${ratingPosition}', '1')" name="key_averageRatingStar" />
 				</execute>
 			</else>
@@ -817,7 +817,7 @@
 		<if>
 			<equals arg1="${averageRating}" arg2="5" />
 			<then>
-				<execute function="AssertElementNotPresent" locator1="Ratings#AVERAGE_STAR_EMPTY">
+				<execute function="Portal.AssertElementNotPresent" locator1="Ratings#AVERAGE_STAR_EMPTY">
 					<var name="key_averageEmptyStar" value="1" />
 				</execute>
 			</then>
@@ -830,7 +830,7 @@
 						<equals arg1="${emptyStarPosition}" arg2="${emptyRating}" />
 					</not>
 					<then>
-						<execute function="AssertElementPresent" locator1="Ratings#AVERAGE_STAR_EMPTY">
+						<execute function="Portal.AssertElementPresent" locator1="Ratings#AVERAGE_STAR_EMPTY">
 							<var name="key_averageEmptyStar" value="${emptyStarPosition}" />
 						</execute>
 
@@ -838,52 +838,52 @@
 					</then>
 				</while>
 
-				<execute function="AssertElementNotPresent" locator1="Ratings#AVERAGE_STAR_EMPTY">
+				<execute function="Portal.AssertElementNotPresent" locator1="Ratings#AVERAGE_STAR_EMPTY">
 					<var method="MathUtil#sum('${emptyStarPosition}', '1')" name="key_averageEmptyStar" />
 				</execute>
 			</else>
 		</if>
 
-		<execute function="AssertTextEquals" locator1="Ratings#AVERAGE_LABEL" value1="Average (1 Vote)" />
+		<execute function="Portal.AssertTextEquals" locator1="Ratings#AVERAGE_LABEL" value1="Average (1 Vote)" />
 	</command>
 
 	<command name="viewConfigureAPDisplayTemplateFullContentBookmarksPG">
 		<var name="key_assetTitle" value="${assetTitle}" />
 
-		<execute function="Click" locator1="Icon#SHARE" />
+		<execute function="Portal.Click" locator1="Icon#SHARE" />
 
-		<execute function="AssertElementNotPresent" locator1="Link#READ_MORE" />
-		<execute function="AssertElementPresent" locator1="Icon#TWITTER" />
-		<execute function="AssertElementPresent" locator1="Icon#GOOGLE_PLUS" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Link#READ_MORE" />
+		<execute function="Portal.AssertElementPresent" locator1="Icon#TWITTER" />
+		<execute function="Portal.AssertElementPresent" locator1="Icon#GOOGLE_PLUS" />
 	</command>
 
 	<command name="viewConfigureAPDisplayTemplateTableBookmarksPG">
 		<var name="key_assetTitle" value="${assetTitle}" />
 		<var name="key_bookmarkName" value="${bookmarkName}" />
 
-		<execute function="AssertElementNotPresent" locator1="Link#READ_MORE" />
-		<execute function="AssertTextNotPresent" locator1="AP#ASSET_ABSTRACT_DESCRIPTION" value1="${bookmarkDescription}" />
-		<execute function="AssertElementNotPresent" locator1="AP#ASSET_ABSTRACT_BOOKMARK_TABLE_DISPLAY_TEMPLATE_BOOKMARK_ICON" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Link#READ_MORE" />
+		<execute function="Portal.AssertTextNotPresent" locator1="AP#ASSET_ABSTRACT_DESCRIPTION" value1="${bookmarkDescription}" />
+		<execute function="Portal.AssertElementNotPresent" locator1="AP#ASSET_ABSTRACT_BOOKMARK_TABLE_DISPLAY_TEMPLATE_BOOKMARK_ICON" />
 	</command>
 
 	<command name="viewConfigureAPDisplayTemplateTitleListBookmarksPG">
 		<var name="key_assetTitle" value="${assetTitle}" />
 		<var name="key_bookmarkName" value="${bookmarkName}" />
 
-		<execute function="AssertElementNotPresent" locator1="Link#READ_MORE" />
-		<execute function="AssertTextNotPresent" locator1="AP#ASSET_ABSTRACT_DESCRIPTION" value1="${bookmarkDescription}" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Link#READ_MORE" />
+		<execute function="Portal.AssertTextNotPresent" locator1="AP#ASSET_ABSTRACT_DESCRIPTION" value1="${bookmarkDescription}" />
 	</command>
 
 	<command name="viewConfigureAPMoveToAvailablePG">
 		<var name="key_assetTitle" value="${assetTitle}" />
 
-		<execute function="AssertTextNotPresent" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${assetTitle}" />
+		<execute function="Portal.AssertTextNotPresent" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${assetTitle}" />
 	</command>
 
 	<command name="viewConfigureAPMoveToSelectedPG">
 		<var name="key_assetTitle" value="${assetTitle}" />
 
-		<execute function="AssertTextEquals" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${assetTitle}" />
+		<execute function="Portal.AssertTextEquals" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${assetTitle}" />
 	</command>
 
 	<command name="viewConfigureSiteScopeContentSharingPG">
@@ -893,18 +893,18 @@
 			<var name="panelHeading" value="Scope" />
 		</execute>
 
-		<execute function="AssertClick" locator1="Configuration#SCOPE_SELECT" value1="Select" />
+		<execute function="Portal.AssertClick" locator1="Configuration#SCOPE_SELECT" value1="Select" />
 
 		<if>
 			<equals arg1="${contentSharingAcrossSitesEnabled}" arg2="true" />
 			<then>
-				<execute function="AssertTextEquals" locator1="MenuItem#GLOBAL" value1="Global" />
+				<execute function="Portal.AssertTextEquals" locator1="MenuItem#GLOBAL" value1="Global" />
 
-				<execute function="AssertClick" locator1="MenuItem#OTHER_SITE" value1="Other Site..." />
+				<execute function="Portal.AssertClick" locator1="MenuItem#OTHER_SITE" value1="Other Site..." />
 
-				<execute function="SelectFrame" value1="relative=top" />
+				<execute function="Portal.SelectFrame" value1="relative=top" />
 
-				<execute function="SelectFrame" locator1="IFrame#SELECT_SITES" />
+				<execute function="Portal.SelectFrame" locator1="IFrame#SELECT_SITES" />
 
 				<var name="key_siteName" value="${liferaySiteName}" />
 
@@ -915,92 +915,92 @@
 				<if>
 					<isset var="currentSite" />
 					<then>
-						<execute function="AssertElementNotPresent" locator1="APConfigurationSites#SITES_TABLE_NAME" />
-						<execute function="AssertElementNotPresent" locator1="APConfigurationSites#SITES_TABLE_TYPE" />
+						<execute function="Portal.AssertElementNotPresent" locator1="APConfigurationSites#SITES_TABLE_NAME" />
+						<execute function="Portal.AssertElementNotPresent" locator1="APConfigurationSites#SITES_TABLE_TYPE" />
 					</then>
 					<else>
-						<execute function="AssertTextEquals" locator1="APConfigurationSites#SITES_TABLE_NAME" value1="${liferaySiteName}" />
-						<execute function="AssertTextEquals" locator1="APConfigurationSites#SITES_TABLE_TYPE" value1="${liferaySiteType}" />
-						<execute function="AssertElementPresent" locator1="SitesSelectSite#SITES_TABLE_CHOOSE_SITE_LINK" />
+						<execute function="Portal.AssertTextEquals" locator1="APConfigurationSites#SITES_TABLE_NAME" value1="${liferaySiteName}" />
+						<execute function="Portal.AssertTextEquals" locator1="APConfigurationSites#SITES_TABLE_TYPE" value1="${liferaySiteType}" />
+						<execute function="Portal.AssertElementPresent" locator1="SitesSelectSite#SITES_TABLE_CHOOSE_SITE_LINK" />
 					</else>
 				</if>
 			</then>
 			<elseif>
 				<equals arg1="${contentSharingAcrossSitesEnabled}" arg2="false" />
 				<then>
-					<execute function="AssertTextEquals" locator1="MenuItem#GLOBAL" value1="Global" />
+					<execute function="Portal.AssertTextEquals" locator1="MenuItem#GLOBAL" value1="Global" />
 
 					<if>
 						<equals arg1="${childSite}" arg2="true" />
 						<then>
-							<execute function="AssertTextEquals" locator1="MenuItem#OTHER_SITE" value1="Other Site..." />
+							<execute function="Portal.AssertTextEquals" locator1="MenuItem#OTHER_SITE" value1="Other Site..." />
 						</then>
 						<else>
-							<execute function="AssertElementNotPresent" locator1="MenuItem#OTHER_SITE" />
+							<execute function="Portal.AssertElementNotPresent" locator1="MenuItem#OTHER_SITE" />
 						</else>
 					</if>
 				</then>
 			</elseif>
 		</if>
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 	</command>
 
 	<command name="viewContentSharingPG">
-		<execute function="Click#makeVisibleClickAt" locator1="AP#ADD_ASSET_PLUS_ICON" />
+		<execute function="Portal.Click#makeVisibleClickAt" locator1="AP#ADD_ASSET_PLUS_ICON" />
 
-		<execute function="AssertClick" locator1="AP#ADD_ASSET_SCOPED" value1="Add Content (Select Scope and Type)" />
+		<execute function="Portal.AssertClick" locator1="AP#ADD_ASSET_SCOPED" value1="Add Content (Select Scope and Type)" />
 
-		<execute function="SelectFrame" locator1="IFrame#MODAL_IFRAME" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#MODAL_IFRAME" />
 
-		<execute function="Select" locator1="Select#SCOPE" value1="${siteScope1}" />
+		<execute function="Portal.Select" locator1="Select#SCOPE" value1="${siteScope1}" />
 
-		<execute function="AssertSelectedLabel" locator1="Select#SCOPE" value1="${siteScope1}" />
+		<execute function="Portal.AssertSelectedLabel" locator1="Select#SCOPE" value1="${siteScope1}" />
 
-		<execute function="Select" locator1="Select#SCOPE" value1="${siteScope2}" />
+		<execute function="Portal.Select" locator1="Select#SCOPE" value1="${siteScope2}" />
 
-		<execute function="AssertSelectedLabel" locator1="Select#SCOPE" value1="${siteScope2}" />
+		<execute function="Portal.AssertSelectedLabel" locator1="Select#SCOPE" value1="${siteScope2}" />
 
-		<execute function="Refresh" />
+		<execute function="Portal.Refresh" />
 
 		<execute macro="AssetPublisherPortlet#viewPG">
 			<var name="assetContent" value="${assetContent}" />
 			<var name="assetTitle" value="${assetTitle}" />
 		</execute>
 
-		<execute function="Click" locator1="APAsset#ASSET_BACK_TO_ICON" />
+		<execute function="Portal.Click" locator1="APAsset#ASSET_BACK_TO_ICON" />
 	</command>
 
 	<command name="viewCustomADTRichSummaryPG">
 		<var name="key_assetTitle" value="${assetTitle}" />
 
-		<execute function="AssertTextEquals" locator1="AP#ASSET_RICH_SUMMARY_TITLE" value1="${assetTitle}" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="AP#CUSTOM_ASSET_ABSTRACT_DESCRIPTION" value1="${assetDescription}" />
-		<execute function="AssertElementPresent" locator1="Link#READ_MORE" />
-		<execute function="AssertElementPresent" locator1="Icon#PRINT" />
-		<execute function="AssertElementPresent" locator1="Icon#FLAG" />
-		<execute function="AssertElementPresent" locator1="Ratings#YOUR_RATING_LABEL" />
-		<execute function="AssertElementPresent" locator1="Ratings#AVERAGE_LABEL" />
-		<execute function="AssertElementPresent" locator1="Comments#SUBSCRIBE_TO_COMMENTS_LINK" />
-		<execute function="AssertElementPresent" locator1="Icon#CUSTOM_EDIT" />
+		<execute function="Portal.AssertTextEquals" locator1="AP#ASSET_RICH_SUMMARY_TITLE" value1="${assetTitle}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="AP#CUSTOM_ASSET_ABSTRACT_DESCRIPTION" value1="${assetDescription}" />
+		<execute function="Portal.AssertElementPresent" locator1="Link#READ_MORE" />
+		<execute function="Portal.AssertElementPresent" locator1="Icon#PRINT" />
+		<execute function="Portal.AssertElementPresent" locator1="Icon#FLAG" />
+		<execute function="Portal.AssertElementPresent" locator1="Ratings#YOUR_RATING_LABEL" />
+		<execute function="Portal.AssertElementPresent" locator1="Ratings#AVERAGE_LABEL" />
+		<execute function="Portal.AssertElementPresent" locator1="Comments#SUBSCRIBE_TO_COMMENTS_LINK" />
+		<execute function="Portal.AssertElementPresent" locator1="Icon#CUSTOM_EDIT" />
 
-		<execute function="Click" locator1="Icon#SHARE" value1="Share" />
+		<execute function="Portal.Click" locator1="Icon#SHARE" value1="Share" />
 
-		<execute function="AssertElementPresent" locator1="Icon#TWITTER" />
-		<execute function="AssertElementPresent" locator1="Icon#FACEBOOK" />
-		<execute function="AssertElementPresent" locator1="Icon#GOOGLE_PLUS" />
+		<execute function="Portal.AssertElementPresent" locator1="Icon#TWITTER" />
+		<execute function="Portal.AssertElementPresent" locator1="Icon#FACEBOOK" />
+		<execute function="Portal.AssertElementPresent" locator1="Icon#GOOGLE_PLUS" />
 	</command>
 
 	<command name="viewDefaultWithAllDisplaySettingsCheckboxesPG">
 		<var name="key_assetTitle" value="${assetTitle}" />
 
-		<execute function="AssertTextEquals" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${assetTitle}" />
-		<execute function="AssertElementPresent" locator1="AP#ASSET_ABSTRACT_EDIT" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="AP#ASSET_ABSTRACT_DESCRIPTION" value1="${assetDescription}" />
+		<execute function="Portal.AssertTextEquals" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${assetTitle}" />
+		<execute function="Portal.AssertElementPresent" locator1="AP#ASSET_ABSTRACT_EDIT" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="AP#ASSET_ABSTRACT_DESCRIPTION" value1="${assetDescription}" />
 	</command>
 
 	<command name="viewDisplayOrderPG">
-		<execute function="AssertTextEquals" locator1="APAsset#ASSET_ROW_ENTRY_TITLE" value1="${assetTitle}">
+		<execute function="Portal.AssertTextEquals" locator1="APAsset#ASSET_ROW_ENTRY_TITLE" value1="${assetTitle}">
 			<var name="key_rowNumber" value="${rowNumber}" />
 		</execute>
 	</command>
@@ -1022,10 +1022,10 @@
 			<if>
 				<contains string="${displaySetting}" substring="Social Bookmarks" />
 				<then>
-					<execute function="AssertChecked#assertCheckedHiddenToggleSwitch" locator1="ToggleSwitch#ENABLE_SOCIAL_BOOKMARKS" />
+					<execute function="Portal.AssertChecked#assertCheckedHiddenToggleSwitch" locator1="ToggleSwitch#ENABLE_SOCIAL_BOOKMARKS" />
 				</then>
 				<else>
-					<execute function="AssertChecked" locator1="Checkbox#ANY_CHECKBOX">
+					<execute function="Portal.AssertChecked" locator1="Checkbox#ANY_CHECKBOX">
 						<var name="checkboxName" value="${displaySetting}" />
 					</execute>
 				</else>
@@ -1034,7 +1034,7 @@
 
 		<execute macro="PortletEntry#save" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 	</command>
 
 	<command name="viewDynamicAssetSelectionConfigurationPG">
@@ -1042,23 +1042,23 @@
 			<var name="portletName" value="${portletName}" />
 		</execute>
 
-		<execute function="Click" locator1="APConfiguration#ASSET_SELECTION_DYNAMIC" />
+		<execute function="Portal.Click" locator1="APConfiguration#ASSET_SELECTION_DYNAMIC" />
 
 		<for list="Source,Filter,Custom User Attributes,Ordering and Grouping" param="panelHeading">
 			<var name="key_panelHeading" value="${panelHeading}" />
 
-			<execute function="AssertElementPresent" locator1="Panel#PANEL_HEADING_COLLAPSED" value1="${panelHeading}" />
+			<execute function="Portal.AssertElementPresent" locator1="Panel#PANEL_HEADING_COLLAPSED" value1="${panelHeading}" />
 		</for>
 
-		<execute function="SelectFrameTop" />
+		<execute function="Portal.SelectFrameTop" />
 	</command>
 
 	<command name="viewEditLinkPG">
 		<var name="key_assetTitle" value="${entryTitle}" />
 
-		<execute function="AssertTextEquals" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${entryTitle}" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="AP#ASSET_ABSTRACT_DESCRIPTION" value1="${entryContent}" />
-		<execute function="AssertElementPresent" locator1="AP#ASSET_ABSTRACT_EDIT" />
+		<execute function="Portal.AssertTextEquals" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${entryTitle}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="AP#ASSET_ABSTRACT_DESCRIPTION" value1="${entryContent}" />
+		<execute function="Portal.AssertElementPresent" locator1="AP#ASSET_ABSTRACT_EDIT" />
 	</command>
 
 	<command name="viewFilterAndFieldsPG">
@@ -1070,34 +1070,34 @@
 			<var name="panelHeading" value="Source" />
 		</execute>
 
-		<execute function="Select" locator1="APConfiguration#SOURCE_SCOPE_ASSET_TYPE_SELECT" value1="${selectedAsset}" />
+		<execute function="Portal.Select" locator1="APConfiguration#SOURCE_SCOPE_ASSET_TYPE_SELECT" value1="${selectedAsset}" />
 
-		<execute function="Select" locator1="APConfiguration#SOURCE_SCOPE_ASSET_SUBTYPE_SELECT" value1="${assetSubtype}" />
+		<execute function="Portal.Select" locator1="APConfiguration#SOURCE_SCOPE_ASSET_SUBTYPE_SELECT" value1="${assetSubtype}" />
 
 		<if>
 			<equals arg1="${noneIndexable}" arg2="true" />
 			<then>
-				<execute function="AssertElementNotPresent#assertNotVisible" locator1="APConfiguration#SOURCE_SCOPE_FILTER_BY_FIELD_CHECKBOX" />
-				<execute function="AssertElementNotPresent" locator1="APConfiguration#SOURCE_SCOPE_FILTER_BY_FIELD_SELECT_BUTTON" value1="Select" />
+				<execute function="Portal.AssertElementNotPresent#assertNotVisible" locator1="APConfiguration#SOURCE_SCOPE_FILTER_BY_FIELD_CHECKBOX" />
+				<execute function="Portal.AssertElementNotPresent" locator1="APConfiguration#SOURCE_SCOPE_FILTER_BY_FIELD_SELECT_BUTTON" value1="Select" />
 			</then>
 			<else>
-				<execute function="Check#checkToggleSwitch" locator1="APConfiguration#SOURCE_SCOPE_FILTER_BY_FIELD_CHECKBOX" />
+				<execute function="Portal.Check#checkToggleSwitch" locator1="APConfiguration#SOURCE_SCOPE_FILTER_BY_FIELD_CHECKBOX" />
 
-				<execute function="AssertClick" locator1="APConfiguration#SOURCE_SCOPE_FILTER_BY_FIELD_SELECT_BUTTON" value1="Select" />
+				<execute function="Portal.AssertClick" locator1="APConfiguration#SOURCE_SCOPE_FILTER_BY_FIELD_SELECT_BUTTON" value1="Select" />
 
-				<execute function="SelectFrame" />
+				<execute function="Portal.SelectFrame" />
 
-				<execute function="SelectFrame" locator1="IFrame#SELECT_STRUCTURE_FIELD" />
+				<execute function="Portal.SelectFrame" locator1="IFrame#SELECT_STRUCTURE_FIELD" />
 
 				<for list="${assetSubtypeFields}" param="assetSubtypeField">
 					<var name="key_fieldName" value="${assetSubtypeField}" />
 
-					<execute function="AssertTextEquals#assertPartialText" locator1="APConfigurationFilterbyfield#FIELD_FILTER_FIELD_NAME" value1="${assetSubtypeField}" />
+					<execute function="Portal.AssertTextEquals#assertPartialText" locator1="APConfigurationFilterbyfield#FIELD_FILTER_FIELD_NAME" value1="${assetSubtypeField}" />
 				</for>
 			</else>
 		</if>
 
-		<execute function="SelectFrameTop" />
+		<execute function="Portal.SelectFrameTop" />
 	</command>
 
 	<command name="viewManualAssetSelectionConfigurationPG">
@@ -1109,31 +1109,31 @@
 			<var name="panelHeading" value="Asset Entries" />
 		</execute>
 
-		<execute function="Click" locator1="APConfiguration#ASSET_SELECTION_MANUAL" />
+		<execute function="Portal.Click" locator1="APConfiguration#ASSET_SELECTION_MANUAL" />
 
-		<execute function="AssertElementNotPresent" locator1="APConfiguration#SOURCE_DROPDOWN" />
-		<execute function="AssertElementNotPresent" locator1="APConfiguration#SOURCE_DROPDOWN_COLLAPSED" />
-		<execute function="AssertElementNotPresent" locator1="APConfiguration#FILTER_DROPDOWN" />
-		<execute function="AssertElementNotPresent" locator1="APConfiguration#FILTER_DROPDOWN_COLLAPSED" />
-		<execute function="AssertElementNotPresent" locator1="APConfiguration#CUSTOM_USER_DROPDOWN" />
-		<execute function="AssertElementNotPresent" locator1="APConfiguration#CUSTOM_USER_DROPDOWN_COLLAPSED" />
-		<execute function="AssertElementNotPresent" locator1="APConfiguration#ORDERING_AND_GROUPING_DROPDOWN" />
-		<execute function="AssertElementNotPresent" locator1="APConfiguration#ORDERING_AND_GROUPING_DROPDOWN_COLLAPSED" />
+		<execute function="Portal.AssertElementNotPresent" locator1="APConfiguration#SOURCE_DROPDOWN" />
+		<execute function="Portal.AssertElementNotPresent" locator1="APConfiguration#SOURCE_DROPDOWN_COLLAPSED" />
+		<execute function="Portal.AssertElementNotPresent" locator1="APConfiguration#FILTER_DROPDOWN" />
+		<execute function="Portal.AssertElementNotPresent" locator1="APConfiguration#FILTER_DROPDOWN_COLLAPSED" />
+		<execute function="Portal.AssertElementNotPresent" locator1="APConfiguration#CUSTOM_USER_DROPDOWN" />
+		<execute function="Portal.AssertElementNotPresent" locator1="APConfiguration#CUSTOM_USER_DROPDOWN_COLLAPSED" />
+		<execute function="Portal.AssertElementNotPresent" locator1="APConfiguration#ORDERING_AND_GROUPING_DROPDOWN" />
+		<execute function="Portal.AssertElementNotPresent" locator1="APConfiguration#ORDERING_AND_GROUPING_DROPDOWN_COLLAPSED" />
 
-		<execute function="SelectFrameTop" />
+		<execute function="Portal.SelectFrameTop" />
 	</command>
 
 	<command name="viewManualAssetTypesPG">
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#DIALOG" />
 
 		<execute macro="Panel#expandPanel">
 			<var name="panelHeading" value="Asset Entries" />
 		</execute>
 
-		<execute function="Click" locator1="APConfigurationManual#ASSET_SELECTION_MANUAL_ASSET_ENTRIES_SELECT" />
+		<execute function="Portal.Click" locator1="APConfigurationManual#ASSET_SELECTION_MANUAL_ASSET_ENTRIES_SELECT" />
 
 		<for list="${assetEntryTypes}" param="assetEntryType">
-			<execute function="AssertTextEquals#assertPartialText" locator1="MenuItem#ANY_MENU_ITEM" value1="${assetEntryType}">
+			<execute function="Portal.AssertTextEquals#assertPartialText" locator1="MenuItem#ANY_MENU_ITEM" value1="${assetEntryType}">
 				<var name="key_menuItem" value="${assetEntryType}" />
 			</execute>
 		</for>
@@ -1142,54 +1142,54 @@
 	</command>
 
 	<command name="viewManualNoAssetsMessagePG">
-		<execute function="AssertTextEquals" locator1="Message#INFO" value1="There are no results." />
+		<execute function="Portal.AssertTextEquals" locator1="Message#INFO" value1="There are no results." />
 	</command>
 
 	<command name="viewMultipleAssetOrderPGViaAP">
-		<execute function="AssertTextEquals" locator1="AP#ASSET_ABSTRACT_GENERIC_TITLE_1" value1="${assetTitle1}" />
-		<execute function="AssertTextEquals" locator1="AP#ASSET_ABSTRACT_GENERIC_TITLE_2" value1="${assetTitle2}" />
-		<execute function="AssertTextEquals" locator1="AP#ASSET_ABSTRACT_GENERIC_TITLE_3" value1="${assetTitle3}" />
+		<execute function="Portal.AssertTextEquals" locator1="AP#ASSET_ABSTRACT_GENERIC_TITLE_1" value1="${assetTitle1}" />
+		<execute function="Portal.AssertTextEquals" locator1="AP#ASSET_ABSTRACT_GENERIC_TITLE_2" value1="${assetTitle2}" />
+		<execute function="Portal.AssertTextEquals" locator1="AP#ASSET_ABSTRACT_GENERIC_TITLE_3" value1="${assetTitle3}" />
 	</command>
 
 	<command name="viewMultipleDDLRecordsViaAP">
-		<execute function="AssertTextEquals#assertPartialText" locator1="AP#ASSET_ABSTRACT_DDL_RECORD_1" value1="${ddlRecordFieldData1}" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="AP#ASSET_ABSTRACT_DDL_RECORD_2" value1="${ddlRecordFieldData2}" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="AP#ASSET_ABSTRACT_DDL_RECORD_3" value1="${ddlRecordFieldData3}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="AP#ASSET_ABSTRACT_DDL_RECORD_1" value1="${ddlRecordFieldData1}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="AP#ASSET_ABSTRACT_DDL_RECORD_2" value1="${ddlRecordFieldData2}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="AP#ASSET_ABSTRACT_DDL_RECORD_3" value1="${ddlRecordFieldData3}" />
 	</command>
 
 	<command name="viewMultipleSiteScopesAddDropdowns">
 		<var name="key_siteScope" value="${siteName1}" />
 
-		<execute function="Click#makeVisibleClickAt" locator1="AP#ADD_ASSET_PLUS_ICON" />
+		<execute function="Portal.Click#makeVisibleClickAt" locator1="AP#ADD_ASSET_PLUS_ICON" />
 
-		<execute function="AssertClick" locator1="AP#ADD_ASSET_SCOPED" value1="Add Content (Select Scope and Type)" />
+		<execute function="Portal.AssertClick" locator1="AP#ADD_ASSET_SCOPED" value1="Add Content (Select Scope and Type)" />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#DIALOG" />
 
-		<execute function="Select" locator1="Select#SCOPE" value1="${siteName1}" />
+		<execute function="Portal.Select" locator1="Select#SCOPE" value1="${siteName1}" />
 
-		<execute function="AssertSelectedLabel" locator1="Select#SCOPE" value1="${siteName1}" />
+		<execute function="Portal.AssertSelectedLabel" locator1="Select#SCOPE" value1="${siteName1}" />
 
-		<execute function="Select" locator1="Select#SCOPE" value1="${siteName2}" />
+		<execute function="Portal.Select" locator1="Select#SCOPE" value1="${siteName2}" />
 
-		<execute function="AssertSelectedLabel" locator1="Select#SCOPE" value1="${siteName2}" />
+		<execute function="Portal.AssertSelectedLabel" locator1="Select#SCOPE" value1="${siteName2}" />
 	</command>
 
 	<command name="viewNoEditLinkPG">
 		<var name="key_assetTitle" value="${entryTitle}" />
 
-		<execute function="AssertTextEquals" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${entryTitle}" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="AP#ASSET_ABSTRACT_DESCRIPTION" value1="${entryContent}" />
+		<execute function="Portal.AssertTextEquals" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${entryTitle}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="AP#ASSET_ABSTRACT_DESCRIPTION" value1="${entryContent}" />
 
-		<execute function="Click" locator1="AP#ASSET_ABSTRACT_EDIT" />
+		<execute function="Portal.Click" locator1="AP#ASSET_ABSTRACT_EDIT" />
 
-		<execute function="AssertElementNotPresent" locator1="AP#ASSET_EDIT" />
+		<execute function="Portal.AssertElementNotPresent" locator1="AP#ASSET_EDIT" />
 	</command>
 
 	<command name="viewOrderedFieldPG">
-		<execute function="AssertTextEquals" locator1="AP#ASSET_ORDER_FIRST" value1="${firstAsset}" />
-		<execute function="AssertTextEquals" locator1="AP#ASSET_ORDER_SECOND" value1="${secondAsset}" />
-		<execute function="AssertTextEquals" locator1="AP#ASSET_ORDER_THIRD" value1="${thirdAsset}" />
+		<execute function="Portal.AssertTextEquals" locator1="AP#ASSET_ORDER_FIRST" value1="${firstAsset}" />
+		<execute function="Portal.AssertTextEquals" locator1="AP#ASSET_ORDER_SECOND" value1="${secondAsset}" />
+		<execute function="Portal.AssertTextEquals" locator1="AP#ASSET_ORDER_THIRD" value1="${thirdAsset}" />
 	</command>
 
 	<command name="viewPaginatedAssetsPG">
@@ -1197,14 +1197,14 @@
 		<var name="key_pageNumber" value="${pageNumber}" />
 		<var name="key_paginationNumber" value="${paginationNumber}" />
 
-		<execute function="AssertTextEquals" locator1="Pagination#PARTICULAR_PAGE" value1="Page ${pageNumber}" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="Pagination#VARIABLE_ITEMS_PER_PAGE" value1="${paginationNumber} Items per Page" />
-		<execute function="AssertTextEquals" locator1="Pagination#VARIABLE_TOTAL_ITEMS" value1="Showing ${key_pageMod} results." />
+		<execute function="Portal.AssertTextEquals" locator1="Pagination#PARTICULAR_PAGE" value1="Page ${pageNumber}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Pagination#VARIABLE_ITEMS_PER_PAGE" value1="${paginationNumber} Items per Page" />
+		<execute function="Portal.AssertTextEquals" locator1="Pagination#VARIABLE_TOTAL_ITEMS" value1="Showing ${key_pageMod} results." />
 
 		<if>
 			<equals arg1="${nextPageClick}" arg2="true" />
 			<then>
-				<execute function="AssertClick" locator1="Pagination#NEXT_LINK" value1="Next" />
+				<execute function="Portal.AssertClick" locator1="Pagination#NEXT_LINK" value1="Next" />
 			</then>
 		</if>
 	</command>
@@ -1213,43 +1213,43 @@
 		<var name="key_assetContent" value="${assetContent}" />
 		<var name="key_assetTitle" value="${assetTitle}" />
 
-		<execute function="AssertTextEquals" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${assetTitle}" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="AP#ASSET_ABSTRACT_DESCRIPTION" value1="${assetContent}" />
+		<execute function="Portal.AssertTextEquals" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${assetTitle}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="AP#ASSET_ABSTRACT_DESCRIPTION" value1="${assetContent}" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="APAsset#ASSET_CONTENT" value1="${assetContent}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="APAsset#ASSET_CONTENT" value1="${assetContent}" />
 
-		<execute function="AssertClick" locator1="APAsset#ASSET_TITLE" value1="${assetTitle}" />
+		<execute function="Portal.AssertClick" locator1="APAsset#ASSET_TITLE" value1="${assetTitle}" />
 
 		<if>
 			<isset var="relatedAssetTitle" />
 			<then>
-				<execute function="AssertTextEquals" locator1="AssetRelatedAssets#HEADER" value1="Related Assets:" />
-				<execute function="AssertTextEquals" locator1="AssetRelatedAssets#ASSET_TITLE" value1="${relatedAssetTitle}" />
+				<execute function="Portal.AssertTextEquals" locator1="AssetRelatedAssets#HEADER" value1="Related Assets:" />
+				<execute function="Portal.AssertTextEquals" locator1="AssetRelatedAssets#ASSET_TITLE" value1="${relatedAssetTitle}" />
 			</then>
 		</if>
 
 		<if>
 			<isset var="relatedAssetTitleHidden" />
 			<then>
-				<execute function="AssertTextEquals" locator1="AssetRelatedAssets#HEADER" value1="Related Assets:" />
-				<execute function="AssertTextNotPresent" value1="${relatedAssetTitleHidden}" />
+				<execute function="Portal.AssertTextEquals" locator1="AssetRelatedAssets#HEADER" value1="Related Assets:" />
+				<execute function="Portal.AssertTextNotPresent" value1="${relatedAssetTitleHidden}" />
 			</then>
 		</if>
 
 		<if>
 			<isset var="tagName" />
 			<then>
-				<execute function="AssertTextEquals" locator1="AP#METADATA_TAGS" value1="${tagName}" />
+				<execute function="Portal.AssertTextEquals" locator1="AP#METADATA_TAGS" value1="${tagName}" />
 			</then>
 		</if>
 	</command>
 
 	<command name="viewPlusIconNotPresentPG">
-		<execute function="AssertElementNotPresent" locator1="AP#ADD_ASSET_PLUS_ICON" />
+		<execute function="Portal.AssertElementNotPresent" locator1="AP#ADD_ASSET_PLUS_ICON" />
 	</command>
 
 	<command name="viewReadMoreLinkNotPresentPG">
-		<execute function="AssertTextNotPresent" locator1="Link#READ_MORE" value1="Read More" />
+		<execute function="Portal.AssertTextNotPresent" locator1="Link#READ_MORE" value1="Read More" />
 	</command>
 
 	<command name="viewRestoredSetupPG">
@@ -1261,17 +1261,17 @@
 			<var name="panelHeading" value="Asset Entries" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="APConfigurationManual#ASSET_SELECTION_MANUAL_NONE" value1="None" />
+		<execute function="Portal.AssertTextEquals" locator1="APConfigurationManual#ASSET_SELECTION_MANUAL_NONE" value1="None" />
 
-		<execute function="SelectFrameTop" />
+		<execute function="Portal.SelectFrameTop" />
 	</command>
 
 	<command name="viewSelectedPG">
 		<var name="key_selectedAsset" value="${selectedAsset}" />
 
-		<execute function="Click#makeVisibleClickAt" locator1="AP#ADD_ASSET_PLUS_ICON" />
+		<execute function="Portal.Click#makeVisibleClickAt" locator1="AP#ADD_ASSET_PLUS_ICON" />
 
-		<execute function="AssertTextEquals" locator1="MenuItem#SELECTED_ASSET" value1="${selectedAsset}" />
+		<execute function="Portal.AssertTextEquals" locator1="MenuItem#SELECTED_ASSET" value1="${selectedAsset}" />
 
 		<execute macro="AssetPublisherPortlet#gotoConfigurationPG" />
 
@@ -1279,16 +1279,16 @@
 			<var name="panelHeading" value="Source" />
 		</execute>
 
-		<execute function="AssertSelectedLabel" locator1="APConfiguration#SOURCE_SCOPE_ASSET_TYPE_SELECT" value1="${selectedAssetConfiguration}" />
+		<execute function="Portal.AssertSelectedLabel" locator1="APConfiguration#SOURCE_SCOPE_ASSET_TYPE_SELECT" value1="${selectedAssetConfiguration}" />
 
-		<execute function="SelectFrameTop" />
+		<execute function="Portal.SelectFrameTop" />
 	</command>
 
 	<command name="viewTagFocusPG">
 		<for list="${assetTitleList}" param="assetTitle">
 			<var name="key_assetTitle" value="${assetTitle}" />
 
-			<execute function="AssertTextEquals" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${assetTitle}" />
+			<execute function="Portal.AssertTextEquals" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${assetTitle}" />
 		</for>
 
 		<if>
@@ -1296,7 +1296,7 @@
 			<then>
 				<var name="key_assetTitle" value="${nonTaggedAsset}" />
 
-				<execute function="AssertTextNotPresent" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${nonTaggedAsset}" />
+				<execute function="Portal.AssertTextNotPresent" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${nonTaggedAsset}" />
 			</then>
 		</if>
 	</command>

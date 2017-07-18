@@ -1,6 +1,6 @@
 <definition>
 	<command name="addCategory">
-		<execute function="AssertClick" locator1="AssetCategorization#CATEGORY_SELECT" value1="Select" >
+		<execute function="Portal.AssertClick" locator1="AssetCategorization#CATEGORY_SELECT" value1="Select" >
 			<var name="key_vocabularyName" value="${vocabularyName}" />
 		</execute>
 
@@ -9,28 +9,28 @@
 			<var name="vocabularyName" value="${vocabularyName}" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="AssetCategorization#CATEGORY" value1="${categoryName}">
+		<execute function="Portal.AssertTextEquals" locator1="AssetCategorization#CATEGORY" value1="${categoryName}">
 			<var name="key_categoryName" value="${categoryName}" />
 		</execute>
 	</command>
 
 	<command name="addDuplicateTag">
-		<execute function="Type" locator1="AssetCategorization#TAGS_FIELD" value1="${tagName}" />
+		<execute function="Portal.Type" locator1="AssetCategorization#TAGS_FIELD" value1="${tagName}" />
 
 		<if>
-			<condition function="IsElementPresent" locator1="AssetCategorization#TAG_AUTOCOMPLETE_CONTAINER" />
+			<condition function="Portal.IsElementPresent" locator1="AssetCategorization#TAG_AUTOCOMPLETE_CONTAINER" />
 			<then>
-				<execute function="Click" locator1="AssetCategorization#TAG_AUTOCOMPLETE" />
+				<execute function="Portal.Click" locator1="AssetCategorization#TAG_AUTOCOMPLETE" />
 			</then>
 		</if>
 
-		<execute function="AssertClick" locator1="Button#ADD_TAGS" value1="Add" />
+		<execute function="Portal.AssertClick" locator1="Button#ADD_TAGS" value1="Add" />
 
-		<execute function="AssertTextEquals" locator1="//div[contains(@class,'help-block')]" value1="Duplicate Tag: ${tagName}" />
+		<execute function="Portal.AssertTextEquals" locator1="//div[contains(@class,'help-block')]" value1="Duplicate Tag: ${tagName}" />
 	</command>
 
 	<command name="addMultipleCategories">
-		<execute function="AssertClick" locator1="AssetCategorization#CATEGORY_SELECT" value1="Select" >
+		<execute function="Portal.AssertClick" locator1="AssetCategorization#CATEGORY_SELECT" value1="Select" >
 			<var name="key_vocabularyName" value="${vocabularyName}" />
 		</execute>
 
@@ -42,33 +42,33 @@
 			</execute>
 		</for>
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 
-		<execute function="AssertClick" locator1="Button#DONE" value1="Done" />
+		<execute function="Portal.AssertClick" locator1="Button#DONE" value1="Done" />
 	</command>
 
 	<command name="addTag">
 		<var name="key_tagName" value="${tagName}" />
 
-		<execute function="Type" locator1="AssetCategorization#TAGS_FIELD" value1="${tagName}" />
+		<execute function="Portal.Type" locator1="AssetCategorization#TAGS_FIELD" value1="${tagName}" />
 
 		<if>
-			<condition function="IsElementPresent" locator1="AssetCategorization#TAG_AUTOCOMPLETE_CONTAINER" />
+			<condition function="Portal.IsElementPresent" locator1="AssetCategorization#TAG_AUTOCOMPLETE_CONTAINER" />
 			<then>
-				<execute function="Click" locator1="AssetCategorization#TAG_AUTOCOMPLETE" />
+				<execute function="Portal.Click" locator1="AssetCategorization#TAG_AUTOCOMPLETE" />
 			</then>
 		</if>
 
-		<execute function="AssertClick" locator1="Button#ADD_TAGS" value1="Add" />
+		<execute function="Portal.AssertClick" locator1="Button#ADD_TAGS" value1="Add" />
 
-		<execute function="AssertTextEquals" locator1="AssetCategorization#TAG" value1="${tagName}" />
+		<execute function="Portal.AssertTextEquals" locator1="AssetCategorization#TAG" value1="${tagName}" />
 	</command>
 
 	<command name="gotoSelectCategory">
-		<execute function="SelectFrameTop" />
+		<execute function="Portal.SelectFrameTop" />
 
 		<if>
-			<condition function="IsElementPresent" locator1="IFrame#SELECT_CATEGORY" />
+			<condition function="Portal.IsElementPresent" locator1="IFrame#SELECT_CATEGORY" />
 			<then>
 				<execute macro="IFrame#selectCategoryFrame" />
 			</then>
@@ -80,11 +80,11 @@
 	<command name="removeTag">
 		<var name="key_tagName" value="${tagName}" />
 
-		<execute function="AssertTextEquals" locator1="AssetCategorization#TAG" value1="${tagName}" />
+		<execute function="Portal.AssertTextEquals" locator1="AssetCategorization#TAG" value1="${tagName}" />
 
-		<execute function="Click" locator1="AssetCategorization#TAG_REMOVE" />
+		<execute function="Portal.Click" locator1="AssetCategorization#TAG_REMOVE" />
 
-		<execute function="AssertElementNotPresent" locator1="AssetCategorization#TAG" />
+		<execute function="Portal.AssertElementNotPresent" locator1="AssetCategorization#TAG" />
 	</command>
 
 	<command name="selectCategory">
@@ -94,20 +94,20 @@
 			<var name="nodeName" value="${categoryName}" />
 		</execute>
 
-		<execute function="SelectFrameTop" />
+		<execute function="Portal.SelectFrameTop" />
 
 		<if>
-			<condition function="IsElementPresent" locator1="Button#DONE" />
+			<condition function="Portal.IsElementPresent" locator1="Button#DONE" />
 			<then>
-				<execute function="AssertClick" locator1="Button#DONE" value1="Done" />
+				<execute function="Portal.AssertClick" locator1="Button#DONE" value1="Done" />
 			</then>
 			<else>
-				<execute function="Click" locator1="Icon#CLOSE" />
+				<execute function="Portal.Click" locator1="Icon#CLOSE" />
 			</else>
 		</if>
 
 		<if>
-			<condition function="IsElementPresent" locator1="IFrame#MODAL_IFRAME" />
+			<condition function="Portal.IsElementPresent" locator1="IFrame#MODAL_IFRAME" />
 			<then>
 				<execute macro="IFrame#selectModalFrame" />
 			</then>
@@ -115,41 +115,41 @@
 	</command>
 
 	<command name="selectTag">
-		<execute function="Click" locator1="AssetCategorization#TAGS_SELECT_BUTTON" />
+		<execute function="Portal.Click" locator1="AssetCategorization#TAGS_SELECT_BUTTON" />
 
-		<execute function="SelectFrameTop" />
+		<execute function="Portal.SelectFrameTop" />
 
 		<if>
-			<condition function="IsElementPresent" locator1="IFrame#SELECT_TAG" />
+			<condition function="Portal.IsElementPresent" locator1="IFrame#SELECT_TAG" />
 			<then>
-				<execute function="SelectFrame" locator1="IFrame#SELECT_TAG" />
+				<execute function="Portal.SelectFrame" locator1="IFrame#SELECT_TAG" />
 			</then>
 		</if>
 
-		<execute function="Click" locator1="AssetCategorization#TAG_CHECKBOX">
+		<execute function="Portal.Click" locator1="AssetCategorization#TAG_CHECKBOX">
 			<var name="key_tagName" value="${tagName}" />
 		</execute>
 
-		<execute function="SelectFrameTop" />
+		<execute function="Portal.SelectFrameTop" />
 
 		<if>
-			<condition function="IsElementPresent" locator1="Button#DONE" />
+			<condition function="Portal.IsElementPresent" locator1="Button#DONE" />
 			<then>
-				<execute function="AssertClick" locator1="Button#DONE" value1="Done" />
+				<execute function="Portal.AssertClick" locator1="Button#DONE" value1="Done" />
 			</then>
 			<else>
-				<execute function="Click" locator1="Icon#CLOSE" />
+				<execute function="Portal.Click" locator1="Icon#CLOSE" />
 			</else>
 		</if>
 
 		<if>
-			<condition function="IsElementPresent" locator1="IFrame#MODAL_IFRAME" />
+			<condition function="Portal.IsElementPresent" locator1="IFrame#MODAL_IFRAME" />
 			<then>
 				<execute macro="IFrame#selectModalFrame" />
 			</then>
 		</if>
 
-		<execute function="AssertTextEquals" locator1="AssetCategorization#TAG" value1="${tagName}">
+		<execute function="Portal.AssertTextEquals" locator1="AssetCategorization#TAG" value1="${tagName}">
 			<var name="key_tagName" value="${tagName}" />
 		</execute>
 	</command>

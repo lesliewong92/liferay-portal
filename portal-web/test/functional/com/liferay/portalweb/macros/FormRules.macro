@@ -1,36 +1,36 @@
 <definition>
 	<command name="addAction">
-		<execute function="Click" locator1="FormRules#RULE_BUILDER_ADD_ACTION" />
+		<execute function="Portal.Click" locator1="FormRules#RULE_BUILDER_ADD_ACTION" />
 	</command>
 
 	<command name="addCondition">
-		<execute function="Click" locator1="FormRules#RULE_BUILDER_ADD_CONDITION" />
+		<execute function="Portal.Click" locator1="FormRules#RULE_BUILDER_ADD_CONDITION" />
 	</command>
 
 	<command name="addRule">
-		<execute function="Click" locator1="FormRules#RULE_BUILDER_ADD_RULE_BUTTON" />
+		<execute function="Portal.Click" locator1="FormRules#RULE_BUILDER_ADD_RULE_BUTTON" />
 
 		<execute macro="FormRules#viewInactiveSaveButton" />
 	</command>
 
 	<command name="chooseCalculateAdvancedOperator">
-		<execute function="Click" locator1="FormRules#RULE_BUILDER_CALCULATE_ELLIPSIS" />
+		<execute function="Portal.Click" locator1="FormRules#RULE_BUILDER_CALCULATE_ELLIPSIS" />
 
 		<var name="key_calculateAdvancedOperator" value="${calculateAdvancedOperator}" />
 
-		<execute function="AssertClick" locator1="FormRules#RULE_BUILDER_CALCULATE_ADVANCED_OPERATOR" value1="${calculateAdvancedOperator}" />
+		<execute function="Portal.AssertClick" locator1="FormRules#RULE_BUILDER_CALCULATE_ADVANCED_OPERATOR" value1="${calculateAdvancedOperator}" />
 	</command>
 
 	<command name="chooseCalculateNumericValue">
 		<var name="key_calculateNumericValue" value="${calculateNumericValue}" />
 
-		<execute function="AssertClick" locator1="FormRules#RULE_BUILDER_CALCULATE_NUMERIC_VALUE" value1="${calculateNumericValue}" />
+		<execute function="Portal.AssertClick" locator1="FormRules#RULE_BUILDER_CALCULATE_NUMERIC_VALUE" value1="${calculateNumericValue}" />
 	</command>
 
 	<command name="chooseCalculateOperator">
 		<var name="key_calculateOperator" value="${calculateOperator}" />
 
-		<execute function="AssertClick" locator1="FormRules#RULE_BUILDER_CALCULATE_OPERATOR" value1="${calculateOperator}" />
+		<execute function="Portal.AssertClick" locator1="FormRules#RULE_BUILDER_CALCULATE_OPERATOR" value1="${calculateOperator}" />
 	</command>
 
 	<command name="configureActionOptions">
@@ -76,7 +76,7 @@
 			<then>
 				<var name="key_conditionRowNumber" value="${conditionRowNumber}" />
 
-				<execute function="Type" locator1="FormRules#RULE_BUILDER_CONDITION_VALUE_TEXT_FIELD" value1="${conditionFieldValue}" />
+				<execute function="Portal.Type" locator1="FormRules#RULE_BUILDER_CONDITION_VALUE_TEXT_FIELD" value1="${conditionFieldValue}" />
 			</then>
 		</if>
 
@@ -86,9 +86,9 @@
 				<var name="key_conditionRowNumber" value="${conditionRowNumber}" />
 				<var name="key_conditionValueField" value="${conditionValueField}" />
 
-				<execute function="Click" locator1="FormRules#RULE_BUILDER_CONDITION_VALUE_FIELD" />
+				<execute function="Portal.Click" locator1="FormRules#RULE_BUILDER_CONDITION_VALUE_FIELD" />
 
-				<execute function="AssertClick" locator1="FormRules#RULE_BUILDER_SELECT_CONDITION_VALUE_FIELD" value1="${conditionValueField}" />
+				<execute function="Portal.AssertClick" locator1="FormRules#RULE_BUILDER_SELECT_CONDITION_VALUE_FIELD" value1="${conditionValueField}" />
 			</then>
 		</if>
 	</command>
@@ -96,22 +96,22 @@
 	<command name="gotoEdit">
 		<var name="key_ruleNumber" value="${ruleNumber}" />
 
-		<execute function="Click#waitForMenuToggleJSClick" locator1="FormRules#RULE_BUILDER_ROW_VERTICAL_ELLIPSIS" />
+		<execute function="Portal.Click#waitForMenuToggleJSClick" locator1="FormRules#RULE_BUILDER_ROW_VERTICAL_ELLIPSIS" />
 
-		<execute function="AssertClick" locator1="MenuItem#EDIT" value1="Edit" />
+		<execute function="Portal.AssertClick" locator1="MenuItem#EDIT" value1="Edit" />
 	</command>
 
 	<command name="save">
-		<execute function="AssertClick" locator1="FormRules#RULE_BUILDER_SAVE_BUTTON" value1="Save" />
+		<execute function="Portal.AssertClick" locator1="FormRules#RULE_BUILDER_SAVE_BUTTON" value1="Save" />
 	</command>
 
 	<command name="selectAction">
 		<var name="key_action" value="${action}" />
 		<var name="key_actionRowNumber" value="${actionRowNumber}" />
 
-		<execute function="Click" locator1="FormRules#RULE_BUILDER_ACTION_FIELD" />
+		<execute function="Portal.Click" locator1="FormRules#RULE_BUILDER_ACTION_FIELD" />
 
-		<execute function="AssertClick" locator1="FormRules#RULE_BUILDER_SELECT_ACTION" value1="${action}" />
+		<execute function="Portal.AssertClick" locator1="FormRules#RULE_BUILDER_SELECT_ACTION" value1="${action}" />
 	</command>
 
 	<command name="selectActionTarget">
@@ -121,56 +121,56 @@
 		<if>
 			<equals arg1="${action}" arg2="Jump to Page" />
 			<then>
-				<execute function="Click" locator1="FormRules#RULE_BUILDER_JUMP_TO_PAGE_ACTION_TARGET" />
+				<execute function="Portal.Click" locator1="FormRules#RULE_BUILDER_JUMP_TO_PAGE_ACTION_TARGET" />
 			</then>
 			<else>
-				<execute function="Click" locator1="FormRules#RULE_BUILDER_ACTION_TARGET_FIELD" />
+				<execute function="Portal.Click" locator1="FormRules#RULE_BUILDER_ACTION_TARGET_FIELD" />
 			</else>
 		</if>
 
-		<execute function="AssertClick" locator1="FormRules#RULE_BUILDER_SELECT_ACTION_TARGET" value1="${actionTarget}" />
+		<execute function="Portal.AssertClick" locator1="FormRules#RULE_BUILDER_SELECT_ACTION_TARGET" value1="${actionTarget}" />
 	</command>
 
 	<command name="selectAutofillOutput">
 		<var name="key_dataProviderOutput" value="${dataProviderOutput}" />
 
-		<execute function="Click" locator1="FormRules#RULE_BUILDER_AUTOFILL_OUTPUT_FIELD" />
+		<execute function="Portal.Click" locator1="FormRules#RULE_BUILDER_AUTOFILL_OUTPUT_FIELD" />
 
-		<execute function="AssertClick" locator1="FormRules#RULE_BUILDER_AUTOFILL_SELECT_OUTPUT_FIELD" value1="${dataProviderOutput}" />
+		<execute function="Portal.AssertClick" locator1="FormRules#RULE_BUILDER_AUTOFILL_SELECT_OUTPUT_FIELD" value1="${dataProviderOutput}" />
 	</command>
 
 	<command name="selectCalculateField">
-		<execute function="AssertClick" locator1="FormRules#RULE_BUILDER_CALCULATE_ADD_FIELD_BUTTON" value1="Add Field" />
+		<execute function="Portal.AssertClick" locator1="FormRules#RULE_BUILDER_CALCULATE_ADD_FIELD_BUTTON" value1="Add Field" />
 
 		<var name="key_calculateFieldOption" value="${calculateFieldOption}" />
 
-		<execute function="AssertClick" locator1="FormRules#RULE_BUILDER_CALCULATE_ADD_FIELD_LIST" value1="${calculateFieldOption}" />
+		<execute function="Portal.AssertClick" locator1="FormRules#RULE_BUILDER_CALCULATE_ADD_FIELD_LIST" value1="${calculateFieldOption}" />
 	</command>
 
 	<command name="selectCalculateResultField">
-		<execute function="Click" locator1="FormRules#RULE_BUILDER_CALCULATE_RESULT_FIELD" />
+		<execute function="Portal.Click" locator1="FormRules#RULE_BUILDER_CALCULATE_RESULT_FIELD" />
 
 		<var name="key_calculateResultField" value="${calculateResultField}" />
 
-		<execute function="AssertClick" locator1="FormRules#RULE_BUILDER_CALCULATE_RESULT_FIELD_LIST" value1="${calculateResultField}" />
+		<execute function="Portal.AssertClick" locator1="FormRules#RULE_BUILDER_CALCULATE_RESULT_FIELD_LIST" value1="${calculateResultField}" />
 	</command>
 
 	<command name="selectConditionField">
 		<var name="key_conditionField" value="${conditionField}" />
 		<var name="key_conditionRowNumber" value="${conditionRowNumber}" />
 
-		<execute function="Click" locator1="FormRules#RULE_BUILDER_CONDITION_FIELD" />
+		<execute function="Portal.Click" locator1="FormRules#RULE_BUILDER_CONDITION_FIELD" />
 
-		<execute function="AssertClick" locator1="FormRules#RULE_BUILDER_SELECT_CONDITION_FIELD" value1="${conditionField}" />
+		<execute function="Portal.AssertClick" locator1="FormRules#RULE_BUILDER_SELECT_CONDITION_FIELD" value1="${conditionField}" />
 	</command>
 
 	<command name="selectConditionOperator">
 		<var name="key_conditionOperator" value="${conditionOperator}" />
 		<var name="key_conditionRowNumber" value="${conditionRowNumber}" />
 
-		<execute function="Click" locator1="FormRules#RULE_BUILDER_CONDITION_OPERATOR_FIELD" />
+		<execute function="Portal.Click" locator1="FormRules#RULE_BUILDER_CONDITION_OPERATOR_FIELD" />
 
-		<execute function="AssertClick" locator1="FormRules#RULE_BUILDER_SELECT_CONDITION_OPERATOR" value1="${conditionOperator}" />
+		<execute function="Portal.AssertClick" locator1="FormRules#RULE_BUILDER_SELECT_CONDITION_OPERATOR" value1="${conditionOperator}" />
 	</command>
 
 	<command name="selectConditionValue">
@@ -179,11 +179,11 @@
 		<if>
 			<isset var="conditionValueType" />
 			<then>
-				<execute function="Click" locator1="FormRules#RULE_BUILDER_CONDITION_VALUE_TYPE_FIELD" />
+				<execute function="Portal.Click" locator1="FormRules#RULE_BUILDER_CONDITION_VALUE_TYPE_FIELD" />
 
 				<var name="key_conditionValueType" value="${conditionValueType}" />
 
-				<execute function="AssertClick" locator1="FormRules#RULE_BUILDER_SELECT_CONDITION_VALUE_TYPE" value1="${conditionValueType}" />
+				<execute function="Portal.AssertClick" locator1="FormRules#RULE_BUILDER_SELECT_CONDITION_VALUE_TYPE" value1="${conditionValueType}" />
 			</then>
 		</if>
 	</command>
@@ -193,16 +193,16 @@
 
 		<var method="StringUtil#upperCase('${condition}')" name="condition" />
 
-		<execute function="Click" locator1="FormRules#RULE_BUILDER_RULE_CONDITION_DROPDOWN" />
+		<execute function="Portal.Click" locator1="FormRules#RULE_BUILDER_RULE_CONDITION_DROPDOWN" />
 
-		<execute function="AssertClick" locator1="FormRules#RULE_BUILDER_SELECT_RULE_CONDITION" value1="${condition}" />
+		<execute function="Portal.AssertClick" locator1="FormRules#RULE_BUILDER_SELECT_RULE_CONDITION" value1="${condition}" />
 	</command>
 
 	<command name="viewActionSummary">
 		<var name="key_action" value="${action}" />
 		<var name="key_ruleNumber" value="${ruleNumber}" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="FormRules#RULE_BUILDER_SUMMARY_ACTION" value1="${action}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="FormRules#RULE_BUILDER_SUMMARY_ACTION" value1="${action}" />
 	</command>
 
 	<command name="viewActionTargetSummary">
@@ -210,32 +210,32 @@
 		<var name="key_actionTarget" value="${actionTarget}" />
 		<var name="key_ruleNumber" value="${ruleNumber}" />
 
-		<execute function="AssertTextEquals" locator1="FormRules#RULE_BUILDER_SUMMARY_ACTION_TARGET" value1="${actionTarget}" />
+		<execute function="Portal.AssertTextEquals" locator1="FormRules#RULE_BUILDER_SUMMARY_ACTION_TARGET" value1="${actionTarget}" />
 	</command>
 
 	<command name="viewConditionFieldConstantSummary">
 		<var name="key_conditionFieldConstant" value="${conditionFieldConstant}" />
 		<var name="key_ruleNumber" value="${ruleNumber}" />
 
-		<execute function="AssertTextEquals" locator1="FormRules#RULE_BUILDER_SUMMARY_CONDITION_FIELD_CONSTANT" value1="${conditionFieldConstant}" />
+		<execute function="Portal.AssertTextEquals" locator1="FormRules#RULE_BUILDER_SUMMARY_CONDITION_FIELD_CONSTANT" value1="${conditionFieldConstant}" />
 	</command>
 
 	<command name="viewConditionFieldSummary">
 		<var name="key_conditionField" value="${conditionField}" />
 		<var name="key_ruleNumber" value="${ruleNumber}" />
 
-		<execute function="AssertTextEquals" locator1="FormRules#RULE_BUILDER_SUMMARY_CONDITION_FIELD" value1="${conditionField}" />
+		<execute function="Portal.AssertTextEquals" locator1="FormRules#RULE_BUILDER_SUMMARY_CONDITION_FIELD" value1="${conditionField}" />
 	</command>
 
 	<command name="viewConditionOperatorOptionsIsPresent">
 		<var name="key_conditionRowNumber" value="${conditionRowNumber}" />
 
-		<execute function="Click" locator1="FormRules#RULE_BUILDER_CONDITION_OPERATOR_FIELD" />
+		<execute function="Portal.Click" locator1="FormRules#RULE_BUILDER_CONDITION_OPERATOR_FIELD" />
 
 		<for list="Is equal to,Is not equal to,Contains,Does not contain" param="conditionOperator">
 			<var name="key_conditionOperator" value="${conditionOperator}" />
 
-			<execute function="AssertElementPresent" locator1="FormRules#RULE_BUILDER_SELECT_CONDITION_OPERATOR" value1="${conditionOperator}" />
+			<execute function="Portal.AssertElementPresent" locator1="FormRules#RULE_BUILDER_SELECT_CONDITION_OPERATOR" value1="${conditionOperator}" />
 		</for>
 	</command>
 
@@ -243,12 +243,12 @@
 		<var name="key_conditionOperator" value="${conditionOperator}" />
 		<var name="key_conditionRowNumber" value="${conditionRowNumber}" />
 
-		<execute function="Click" locator1="FormRules#RULE_BUILDER_CONDITION_OPERATOR_FIELD" />
+		<execute function="Portal.Click" locator1="FormRules#RULE_BUILDER_CONDITION_OPERATOR_FIELD" />
 
 		<for list="Is equal to,Is not equal to,Contains,Does not contain" param="conditionOperator">
 			<var name="key_conditionOperator" value="${conditionOperator}" />
 
-			<execute function="AssertElementNotPresent" locator1="FormRules#RULE_BUILDER_SELECT_CONDITION_OPERATOR" value1="${conditionOperator}" />
+			<execute function="Portal.AssertElementNotPresent" locator1="FormRules#RULE_BUILDER_SELECT_CONDITION_OPERATOR" value1="${conditionOperator}" />
 		</for>
 	</command>
 
@@ -258,18 +258,18 @@
 
 		<var method="StringUtil#lowerCase('${conditionOperator}')" name="conditionOperator" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="FormRules#RULE_BUILDER_SUMMARY_CONDITION_OPERATOR" value1="${conditionOperator}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="FormRules#RULE_BUILDER_SUMMARY_CONDITION_OPERATOR" value1="${conditionOperator}" />
 	</command>
 
 	<command name="viewInactiveSaveButton">
-		<execute function="AssertElementPresent" locator1="FormRules#RULE_BUILDER_SAVE_BUTTON_DISABLED" />
+		<execute function="Portal.AssertElementPresent" locator1="FormRules#RULE_BUILDER_SAVE_BUTTON_DISABLED" />
 	</command>
 
 	<command name="viewRuleCondition">
 		<var name="key_condition" value="${condition}" />
 		<var name="key_conditonRowNumber" value="${conditonRowNumber}" />
 
-		<execute function="AssertTextEquals" locator1="FormRules#RULE_BUILDER_TIMELINE_RULE_CONDITION" value1="${condition}" />
+		<execute function="Portal.AssertTextEquals" locator1="FormRules#RULE_BUILDER_TIMELINE_RULE_CONDITION" value1="${condition}" />
 	</command>
 
 	<command name="viewSummary">

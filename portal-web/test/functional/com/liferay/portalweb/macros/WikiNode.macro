@@ -2,7 +2,7 @@
 	<var name="assetType" value="Wiki Node" />
 
 	<command name="addCP">
-		<execute function="Click" locator1="Button#PLUS" />
+		<execute function="Portal.Click" locator1="Button#PLUS" />
 
 		<execute macro="PortletEntry#inputName">
 			<var name="name" value="${wikiNodeName}" />
@@ -29,7 +29,7 @@
 		</execute>
 
 		<if>
-			<condition function="IsElementNotPresent" locator1="Wiki#NODE_TABLE" />
+			<condition function="Portal.IsElementNotPresent" locator1="Wiki#NODE_TABLE" />
 			<then>
 				<execute macro="WikiNode#addCP">
 					<var name="wikiNodeName" value="Main" />
@@ -45,17 +45,17 @@
 	</command>
 
 	<command name="deleteCP">
-		<execute function="Click" locator1="Icon#DISPLAY_STYLE_LIST" />
+		<execute function="Portal.Click" locator1="Icon#DISPLAY_STYLE_LIST" />
 
 		<var name="key_wikiNodeName" value="${wikiNodeName}" />
 
-		<execute function="AssertTextEquals" locator1="Wiki#NODE_TABLE_WIKI_NAME" value1="${wikiNodeName}" />
+		<execute function="Portal.AssertTextEquals" locator1="Wiki#NODE_TABLE_WIKI_NAME" value1="${wikiNodeName}" />
 
-		<execute function="Click" locator1="Wiki#NODE_TABLE_ACTIONS_DROPDOWN" />
+		<execute function="Portal.Click" locator1="Wiki#NODE_TABLE_ACTIONS_DROPDOWN" />
 
 		<execute macro="PortletEntry#clickMoveToRecycleBin" />
 
-		<execute function="AssertElementPresent" locator1="Message#SUCCESS" />
+		<execute function="Portal.AssertElementPresent" locator1="Message#SUCCESS" />
 
 		<execute macro="RecycleBin#emptyCP" />
 	</command>
@@ -63,13 +63,13 @@
 	<command name="editCP">
 		<var name="key_wikiNodeName" value="${wikiNodeName}" />
 
-		<execute function="Click" locator1="Icon#DISPLAY_STYLE_LIST" />
+		<execute function="Portal.Click" locator1="Icon#DISPLAY_STYLE_LIST" />
 
-		<execute function="AssertTextEquals" locator1="Wiki#NODE_TABLE_WIKI_NAME" value1="${wikiNodeName}" />
+		<execute function="Portal.AssertTextEquals" locator1="Wiki#NODE_TABLE_WIKI_NAME" value1="${wikiNodeName}" />
 
-		<execute function="Click" locator1="Wiki#NODE_TABLE_ACTIONS_DROPDOWN" />
+		<execute function="Portal.Click" locator1="Wiki#NODE_TABLE_ACTIONS_DROPDOWN" />
 
-		<execute function="AssertClick" locator1="MenuItem#EDIT" value1="Edit" />
+		<execute function="Portal.AssertClick" locator1="MenuItem#EDIT" value1="Edit" />
 
 		<execute macro="PortletEntry#inputName">
 			<var name="name" value="${wikiNodeNameEdit}" />
@@ -94,14 +94,14 @@
 		</execute>
 
 		<while>
-			<condition function="IsElementPresent" locator1="Wiki#NODE_TABLE_ACTIONS_GENERIC_DROPDOWN_2" />
+			<condition function="Portal.IsElementPresent" locator1="Wiki#NODE_TABLE_ACTIONS_GENERIC_DROPDOWN_2" />
 			<then>
-				<execute function="Click" locator1="Wiki#NODE_TABLE_ACTIONS_GENERIC_DROPDOWN_2" />
+				<execute function="Portal.Click" locator1="Wiki#NODE_TABLE_ACTIONS_GENERIC_DROPDOWN_2" />
 
 				<execute macro="PortletEntry#clickMoveToRecycleBin" />
 
-				<execute function="AssertElementPresent" locator1="Message#SUCCESS" />
-				<execute function="AssertElementPresent" locator1="Message#SUCCESS" />
+				<execute function="Portal.AssertElementPresent" locator1="Message#SUCCESS" />
+				<execute function="Portal.AssertElementPresent" locator1="Message#SUCCESS" />
 			</then>
 		</while>
 
@@ -111,12 +111,12 @@
 	<command name="viewCP">
 		<var name="key_wikiNodeName" value="${wikiNodeName}" />
 
-		<execute function="Click" locator1="Icon#DISPLAY_STYLE_LIST" />
+		<execute function="Portal.Click" locator1="Icon#DISPLAY_STYLE_LIST" />
 
-		<execute function="AssertTextEquals" locator1="Wiki#NODE_TABLE_WIKI_NAME" value1="${wikiNodeName}" />
-		<execute function="AssertTextEquals" locator1="Wiki#NODE_TABLE_NUMBER_OF_PAGES" value1="${numberOfWikiPages}" />
+		<execute function="Portal.AssertTextEquals" locator1="Wiki#NODE_TABLE_WIKI_NAME" value1="${wikiNodeName}" />
+		<execute function="Portal.AssertTextEquals" locator1="Wiki#NODE_TABLE_NUMBER_OF_PAGES" value1="${numberOfWikiPages}" />
 
-		<execute function="AssertClick" locator1="Wiki#NODE_TABLE_WIKI_NAME" value1="${wikiNodeName}" />
+		<execute function="Portal.AssertClick" locator1="Wiki#NODE_TABLE_WIKI_NAME" value1="${wikiNodeName}" />
 
 		<execute macro="SiteAdmin#viewPortletTitle">
 			<var name="portletTitle" value="${wikiNodeName}" />
@@ -126,14 +126,14 @@
 	<command name="viewMainNode">
 		<var name="key_wikiNodeName" value="${wikiNodeName}" />
 
-		<execute function="AssertTextEquals" locator1="Wiki#NODE_TABLE_WIKI_NAME" value1="${wikiNodeName}" />
-		<execute function="AssertElementNotPresent" locator1="Wiki#NODE_TABLE_WIKI_GENERIC_2" />
+		<execute function="Portal.AssertTextEquals" locator1="Wiki#NODE_TABLE_WIKI_NAME" value1="${wikiNodeName}" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Wiki#NODE_TABLE_WIKI_GENERIC_2" />
 	</command>
 
 	<command name="viewNoCP">
 		<var name="key_wikiNodeName" value="${wikiNodeName}" />
 
-		<execute function="AssertTextNotPresent" value1="${wikiNodeName}" />
-		<execute function="AssertElementNotPresent" locator1="Wiki#NODE_TABLE_WIKI_NAME" value1="${wikiNodeName}" />
+		<execute function="Portal.AssertTextNotPresent" value1="${wikiNodeName}" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Wiki#NODE_TABLE_WIKI_NAME" value1="${wikiNodeName}" />
 	</command>
 </definition>

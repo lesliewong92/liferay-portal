@@ -1,6 +1,6 @@
 <definition>
 	<command name="configureDisplayContent">
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION_DIALOG" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#CONFIGURATION_DIALOG" />
 
 		<var method="selenium#getNumberDecrement('${rowNumber}')" name="rowIndexNumber" />
 
@@ -11,7 +11,7 @@
 			<then>
 				<var name="key_indexNumber" value="${rowIndexNumber}" />
 
-				<execute function="Click" locator1="ContentTargeting#PLUS_LINK" />
+				<execute function="Portal.Click" locator1="ContentTargeting#PLUS_LINK" />
 			</then>
 		</if>
 
@@ -20,39 +20,39 @@
 		<if>
 			<equals arg1="${belongs}" arg2="true" />
 			<then>
-				<execute function="Click" locator1="UserSegmentContentDisplay#RULE_PANEL_BELONGS_RADIO" />
+				<execute function="Portal.Click" locator1="UserSegmentContentDisplay#RULE_PANEL_BELONGS_RADIO" />
 			</then>
 		</if>
 
 		<if>
 			<equals arg1="${doesNotBelong}" arg2="true" />
 			<then>
-				<execute function="Click" locator1="UserSegmentContentDisplay#RULE_PANEL_DOES_NOT_BELONG_RADIO" />
+				<execute function="Portal.Click" locator1="UserSegmentContentDisplay#RULE_PANEL_DOES_NOT_BELONG_RADIO" />
 			</then>
 		</if>
 
 		<if>
 			<equals arg1="${toAll}" arg2="true" />
 			<then>
-				<execute function="Click" locator1="UserSegmentContentDisplay#RULE_PANEL_ALL_RADIO" />
+				<execute function="Portal.Click" locator1="UserSegmentContentDisplay#RULE_PANEL_ALL_RADIO" />
 			</then>
 		</if>
 
 		<if>
 			<equals arg1="${toAny}" arg2="true" />
 			<then>
-				<execute function="Click" locator1="UserSegmentContentDisplay#RULE_PANEL_ANY_RADIO" />
+				<execute function="Portal.Click" locator1="UserSegmentContentDisplay#RULE_PANEL_ANY_RADIO" />
 			</then>
 		</if>
 
-		<execute function="Click" locator1="UserSegmentContentDisplay#RULE_PANEL_USER_SEGMENT_SELECT_BUTTON" />
+		<execute function="Portal.Click" locator1="UserSegmentContentDisplay#RULE_PANEL_USER_SEGMENT_SELECT_BUTTON" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 
 		<for list="${userSegmentName}" param="userSegmentName">
 			<var name="key_userSegmentName" value="${userSegmentName}" />
 
-			<execute function="Click" locator1="UserSegmentContentDisplay#RULE_PANEL_USER_SEGMENT_SELECT_USER_SEGMENT_CHECKBOX" />
+			<execute function="Portal.Click" locator1="UserSegmentContentDisplay#RULE_PANEL_USER_SEGMENT_SELECT_USER_SEGMENT_CHECKBOX" />
 		</for>
 
 		<if>
@@ -60,81 +60,81 @@
 			<then>
 				<var name="key_siteScope" value="${siteScope}" />
 
-				<execute function="AssertTextEquals#assertPartialText" locator1="UserSegmentContentDisplay#RULE_PANEL_USER_SEGMENT_SELECT_USER_SEGMENT_SCOPE" value1="User Segment (${siteScope})" />
+				<execute function="Portal.AssertTextEquals#assertPartialText" locator1="UserSegmentContentDisplay#RULE_PANEL_USER_SEGMENT_SELECT_USER_SEGMENT_SCOPE" value1="User Segment (${siteScope})" />
 			</then>
 		</if>
 
-		<execute function="Click" locator1="Icon#CLOSE" />
+		<execute function="Portal.Click" locator1="Icon#CLOSE" />
 
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#CONFIGURATION" />
 
-		<execute function="Click" locator1="UserSegmentContentDisplay#RULE_PANEL_DISPLAY_CONTENT_SELECT" />
+		<execute function="Portal.Click" locator1="UserSegmentContentDisplay#RULE_PANEL_DISPLAY_CONTENT_SELECT" />
 
 		<var name="key_menuItem" value="${contentType}" />
 
-		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="${contentType}" />
+		<execute function="Portal.AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="${contentType}" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#DIALOG" />
 
 		<var name="key_rowEntry" value="${contentTitle}" />
 
-		<execute function="ClickNoError" locator1="ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK" />
+		<execute function="Portal.ClickNoError" locator1="ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#CONFIGURATION" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 	</command>
 
 	<command name="configureOtherwiseContentDisplayRule">
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#CONFIGURATION" />
 
 		<if>
 			<isset var="otherwiseContentType" />
 			<then>
-				<execute function="ClickNoError" locator1="ContentTargeting#OTHERWISE_PANEL" />
+				<execute function="Portal.ClickNoError" locator1="ContentTargeting#OTHERWISE_PANEL" />
 
-				<execute function="ScrollWebElementIntoView" locator1="ContentTargeting#OTHERWISE_PANEL_DISPLAY_THIS_CONTENT_RADIO" />
+				<execute function="Portal.ScrollWebElementIntoView" locator1="ContentTargeting#OTHERWISE_PANEL_DISPLAY_THIS_CONTENT_RADIO" />
 
-				<execute function="Click" locator1="ContentTargeting#OTHERWISE_PANEL_DISPLAY_THIS_CONTENT_RADIO" />
+				<execute function="Portal.Click" locator1="ContentTargeting#OTHERWISE_PANEL_DISPLAY_THIS_CONTENT_RADIO" />
 
-				<execute function="ClickNoError" locator1="ContentTargeting#OTHERWISE_PANEL_SELECT_CONTENT" />
+				<execute function="Portal.ClickNoError" locator1="ContentTargeting#OTHERWISE_PANEL_SELECT_CONTENT" />
 
 				<var name="key_menuItem" value="${otherwiseContentType}" />
 
-				<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM" />
+				<execute function="Portal.Click" locator1="MenuItem#ANY_MENU_ITEM" />
 
-				<execute function="SelectFrame" value1="relative=top" />
+				<execute function="Portal.SelectFrame" value1="relative=top" />
 
-				<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+				<execute function="Portal.SelectFrame" locator1="IFrame#DIALOG" />
 
 				<var name="key_rowEntry" value="${otherwiseContentTitle}" />
 
-				<execute function="ClickNoError" locator1="ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK" />
+				<execute function="Portal.ClickNoError" locator1="ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK" />
 
-				<execute function="SelectFrame" value1="relative=top" />
+				<execute function="Portal.SelectFrame" value1="relative=top" />
 			</then>
 			<else>
-				<execute function="ClickNoError" locator1="ContentTargeting#OTHERWISE_PANEL" />
+				<execute function="Portal.ClickNoError" locator1="ContentTargeting#OTHERWISE_PANEL" />
 
-				<execute function="Click" locator1="ContentTargeting#OTHERWISE_PANEL_DONT_DISPLAY_ANYTHING_RADIO" />
+				<execute function="Portal.Click" locator1="ContentTargeting#OTHERWISE_PANEL_DONT_DISPLAY_ANYTHING_RADIO" />
 
-				<execute function="SelectFrame" value1="relative=top" />
+				<execute function="Portal.SelectFrame" value1="relative=top" />
 			</else>
 		</if>
 	</command>
 
 	<command name="savePG">
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#CONFIGURATION" />
 
-		<execute function="ClickNoError" locator1="Button#SAVE" />
+		<execute function="Portal.ClickNoError" locator1="Button#SAVE" />
 
 		<execute macro="Alert#viewSuccessMessage" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 	</command>
 
 	<command name="viewConfiguredDisplayContent">
@@ -143,70 +143,70 @@
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#CONFIGURATION" />
 
 		<var name="key_rowNumber" value="${rowNumber}" />
 
 		<if>
 			<equals arg1="${belongs}" arg2="true" />
 			<then>
-				<execute function="AssertChecked" locator1="UserSegmentContentDisplay#RULE_PANEL_BELONGS_RADIO" />
+				<execute function="Portal.AssertChecked" locator1="UserSegmentContentDisplay#RULE_PANEL_BELONGS_RADIO" />
 			</then>
 		</if>
 
 		<if>
 			<equals arg1="${doesNotBelong}" arg2="true" />
 			<then>
-				<execute function="AssertChecked" locator1="UserSegmentContentDisplay#RULE_PANEL_DOES_NOT_BELONG_RADIO" />
+				<execute function="Portal.AssertChecked" locator1="UserSegmentContentDisplay#RULE_PANEL_DOES_NOT_BELONG_RADIO" />
 			</then>
 		</if>
 
 		<if>
 			<equals arg1="${toAll}" arg2="true" />
 			<then>
-				<execute function="AssertChecked" locator1="UserSegmentContentDisplay#RULE_PANEL_ALL_RADIO" />
+				<execute function="Portal.AssertChecked" locator1="UserSegmentContentDisplay#RULE_PANEL_ALL_RADIO" />
 			</then>
 		</if>
 
 		<if>
 			<equals arg1="${toAny}" arg2="true" />
 			<then>
-				<execute function="AssertChecked" locator1="UserSegmentContentDisplay#RULE_PANEL_ANY_RADIO" />
+				<execute function="Portal.AssertChecked" locator1="UserSegmentContentDisplay#RULE_PANEL_ANY_RADIO" />
 			</then>
 		</if>
 
 		<var name="key_userSegmentName" value="${userSegmentName}" />
 
-		<execute function="AssertTextEquals" locator1="UserSegmentContentDisplay#RULE_PANEL_SELECTED_USER_SEGMENT" value1="${userSegmentName}" />
+		<execute function="Portal.AssertTextEquals" locator1="UserSegmentContentDisplay#RULE_PANEL_SELECTED_USER_SEGMENT" value1="${userSegmentName}" />
 
 		<var name="key_contentTitle" value="${contentTitle}" />
 
-		<execute function="AssertTextEquals" locator1="ContentTargeting#CARD_CONTENT_TITLE" value1="${contentTitle}" />
+		<execute function="Portal.AssertTextEquals" locator1="ContentTargeting#CARD_CONTENT_TITLE" value1="${contentTitle}" />
 
 		<var name="key_contentType" value="${contentType}" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="ContentTargeting#CARD_CONTENT_TYPE" value1="${contentType}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="ContentTargeting#CARD_CONTENT_TYPE" value1="${contentType}" />
 
 		<if>
 			<isset var="otherwiseContentType" />
 			<then>
-				<execute function="Click" locator1="ContentTargeting#OTHERWISE_PANEL" />
+				<execute function="Portal.Click" locator1="ContentTargeting#OTHERWISE_PANEL" />
 
-				<execute function="AssertChecked" locator1="ContentTargeting#OTHERWISE_PANEL_DISPLAY_THIS_CONTENT_RADIO" />
+				<execute function="Portal.AssertChecked" locator1="ContentTargeting#OTHERWISE_PANEL_DISPLAY_THIS_CONTENT_RADIO" />
 
 				<var name="key_contentType" value="${otherwiseContentType}" />
 
-				<execute function="AssertTextEquals#assertPartialText" locator1="ContentTargeting#OTHERWISE_PANEL_SELECTED_CONTENT_TYPE" value1="${otherwiseContentType}" />
+				<execute function="Portal.AssertTextEquals#assertPartialText" locator1="ContentTargeting#OTHERWISE_PANEL_SELECTED_CONTENT_TYPE" value1="${otherwiseContentType}" />
 
 				<var name="key_contentTitle" value="${otherwiseContentTitle}" />
 
-				<execute function="AssertTextEquals" locator1="ContentTargeting#OTHERWISE_PANEL_SELECTED_CONTENT_TITLE" value1="${otherwiseContentTitle}" />
+				<execute function="Portal.AssertTextEquals" locator1="ContentTargeting#OTHERWISE_PANEL_SELECTED_CONTENT_TITLE" value1="${otherwiseContentTitle}" />
 			</then>
 		</if>
 	</command>
 
 	<command name="viewContentOnly">
-		<execute function="AssertTextEquals" locator1="UserSegmentContentDisplay#ENTRY_CONTENT" value1="${entryContentText}" />
+		<execute function="Portal.AssertTextEquals" locator1="UserSegmentContentDisplay#ENTRY_CONTENT" value1="${entryContentText}" />
 	</command>
 
 	<command name="viewEntryPG">
@@ -219,7 +219,7 @@
 			<then>
 				<var name="key_viewEntrySelected" value="${viewUserSegmentSelected}" />
 
-				<execute function="AssertElementPresent" locator1="ContentTargeting#PREVIEW_ENTRY_SELECTED" />
+				<execute function="Portal.AssertElementPresent" locator1="ContentTargeting#PREVIEW_ENTRY_SELECTED" />
 			</then>
 		</if>
 
@@ -241,7 +241,7 @@
 							</not>
 						</and>
 						<then>
-							<execute function="AssertTextEquals" locator1="UserSegmentContentDisplay#ENTRY_CONTENT" value1="${entryContentText}" />
+							<execute function="Portal.AssertTextEquals" locator1="UserSegmentContentDisplay#ENTRY_CONTENT" value1="${entryContentText}" />
 						</then>
 					</if>
 
@@ -251,7 +251,7 @@
 							<equals arg1="${previewEntry}" arg2="default" />
 						</and>
 						<then>
-							<execute function="AssertTextEquals" locator1="UserSegmentContentDisplay#ENTRY_CONTENT" value1="There are no matching rules" />
+							<execute function="Portal.AssertTextEquals" locator1="UserSegmentContentDisplay#ENTRY_CONTENT" value1="There are no matching rules" />
 						</then>
 					</if>
 				</for>
@@ -260,6 +260,6 @@
 	</command>
 
 	<command name="viewNoContentPG">
-		<execute function="AssertTextEquals" locator1="UserSegmentContentDisplay#ENTRY_CONTENT" value1="The selected content no longer exists" />
+		<execute function="Portal.AssertTextEquals" locator1="UserSegmentContentDisplay#ENTRY_CONTENT" value1="The selected content no longer exists" />
 	</command>
 </definition>

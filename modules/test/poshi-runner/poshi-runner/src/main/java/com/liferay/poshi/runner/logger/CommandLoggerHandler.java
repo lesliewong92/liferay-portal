@@ -367,6 +367,12 @@ public final class CommandLoggerHandler {
 			PoshiRunnerGetterUtil.getClassNameFromClassCommandName(
 				classCommandName);
 
+		if (!className.contains(".")) {
+			className =
+				PoshiRunnerStackTraceUtil.getCurrentNamespace() + "." +
+					className;
+		}
+
 		int functionLocatorCount = PoshiRunnerContext.getFunctionLocatorCount(
 			className);
 

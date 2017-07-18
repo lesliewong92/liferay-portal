@@ -69,7 +69,7 @@
 			<var name="entryTitle" value="${entryTitle}" />
 		</execute>
 
-		<execute function="AssertClick" locator1="BlogsEntry#ENTRY_COVER_IMAGE_SELECT_FILE" value1="Select File" />
+		<execute function="Portal.AssertClick" locator1="BlogsEntry#ENTRY_COVER_IMAGE_SELECT_FILE" value1="Select File" />
 
 		<execute macro="ItemSelector#selectDMImage">
 			<var name="dmFolderName" value="${dmFolderName}" />
@@ -77,7 +77,7 @@
 			<var name="imageFileName" value="${imageFileName}" />
 		</execute>
 
-		<execute function="Pause" locator1="1000" />
+		<execute function="Portal.Pause" locator1="1000" />
 
 		<execute macro="PortletEntry#publish" />
 	</command>
@@ -93,11 +93,11 @@
 			<var name="entrySubtitle" value="${entrySubtitle}" />
 		</execute>
 
-		<execute function="Click" locator1="AlloyEditor#CONTENT_FIELD" />
+		<execute function="Portal.Click" locator1="AlloyEditor#CONTENT_FIELD" />
 
-		<execute function="Click" locator1="Button#EDITOR_SWITCH" />
+		<execute function="Portal.Click" locator1="Button#EDITOR_SWITCH" />
 
-		<execute function="Type#sendKeysAceEditor" locator1="TextArea#ACE_EDITOR" value1="${entryContent}" />
+		<execute function="Portal.Type#sendKeysAceEditor" locator1="TextArea#ACE_EDITOR" value1="${entryContent}" />
 
 		<execute macro="PortletEntry#publish" />
 	</command>
@@ -139,7 +139,7 @@
 			<var name="tagName" value="${tagName}" />
 		</execute>
 
-		<execute function="SelectFrameTop" value1="relative=top" />
+		<execute function="Portal.SelectFrameTop" value1="relative=top" />
 
 		<execute macro="PortletEntry#publish" />
 	</command>
@@ -163,7 +163,7 @@
 			</execute>
 		</for>
 
-		<execute function="SelectFrameTop" value1="relative=top" />
+		<execute function="Portal.SelectFrameTop" value1="relative=top" />
 
 		<execute macro="PortletEntry#publish" />
 	</command>
@@ -171,14 +171,14 @@
 	<command name="addEntryWithUploadedCoverImage">
 		<execute macro="BlogsNavigator#gotoAddEntry" />
 
-		<execute function="AssertClick" locator1="BlogsEntry#ENTRY_COVER_IMAGE_SELECT_FILE" value1="Select File" />
+		<execute function="Portal.AssertClick" locator1="BlogsEntry#ENTRY_COVER_IMAGE_SELECT_FILE" value1="Select File" />
 
 		<execute macro="ItemSelector#uploadFile">
 			<var name="navTab" value="${navTab}" />
 			<var name="uploadFileName" value="${uploadFileName}" />
 		</execute>
 
-		<execute function="Pause" locator1="5000" />
+		<execute function="Portal.Pause" locator1="5000" />
 
 		<execute macro="BlogsEntry#addTitle">
 			<var name="entryTitle" value="${entryTitle}" />
@@ -190,61 +190,61 @@
 			<var name="entryTitle" value="${entryTitle}" />
 		</execute>
 
-		<execute function="AssertVisible" locator1="BlogsEntry#ENTRY_COVER_IMAGE_UNPUBLISHED">
+		<execute function="Portal.AssertVisible" locator1="BlogsEntry#ENTRY_COVER_IMAGE_UNPUBLISHED">
 			<var name="key_coverImageName" value="${coverImageName}" />
 		</execute>
 	</command>
 
 	<command name="addViaAP">
-		<execute function="Click#makeVisibleClickAt" locator1="AP#ADD_ASSET_PLUS_ICON" />
+		<execute function="Portal.Click#makeVisibleClickAt" locator1="AP#ADD_ASSET_PLUS_ICON" />
 
-		<execute function="AssertClick" locator1="MenuItem#BLOGS_ENTRY" value1="Blogs Entry" />
+		<execute function="Portal.AssertClick" locator1="MenuItem#BLOGS_ENTRY" value1="Blogs Entry" />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#DIALOG" />
 
 		<execute macro="AlloyEditor#addTitleAndContent">
 			<var name="content" value="${entryContent}" />
 			<var name="title" value="${entryTitle}" />
 		</execute>
 
-		<execute function="AssertClick" locator1="Button#PUBLISH" value1="Publish" />
+		<execute function="Portal.AssertClick" locator1="Button#PUBLISH" value1="Publish" />
 
-		<execute function="SelectFrameTop" value1="relative=top" />
+		<execute function="Portal.SelectFrameTop" value1="relative=top" />
 
-		<execute function="Pause" locator1="5000" />
+		<execute function="Portal.Pause" locator1="5000" />
 
 		<var name="key_assetTitle" value="${entryTitle}" />
 
-		<execute function="AssertTextEquals" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${entryTitle}" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="AP#ASSET_ABSTRACT_DESCRIPTION" value1="${entryContent}" />
+		<execute function="Portal.AssertTextEquals" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${entryTitle}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="AP#ASSET_ABSTRACT_DESCRIPTION" value1="${entryContent}" />
 	</command>
 
 	<command name="addViaAPSelectScope">
-		<execute function="Click#makeVisibleClickAt" locator1="AP#ADD_ASSET_PLUS_ICON" />
+		<execute function="Portal.Click#makeVisibleClickAt" locator1="AP#ADD_ASSET_PLUS_ICON" />
 
-		<execute function="Click" locator1="AP#ADD_ASSET_SCOPED" />
+		<execute function="Portal.Click" locator1="AP#ADD_ASSET_SCOPED" />
 
-		<execute function="SelectFrame" locator1="IFrame#MODAL_IFRAME" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#MODAL_IFRAME" />
 
-		<execute function="Select" locator1="Select#TYPE" value1="Blogs Entry" />
+		<execute function="Portal.Select" locator1="Select#TYPE" value1="Blogs Entry" />
 
-		<execute function="AssertClick" locator1="Button#ADD" value1="Add" />
+		<execute function="Portal.AssertClick" locator1="Button#ADD" value1="Add" />
 
 		<execute macro="AlloyEditor#addTitleAndContent">
 			<var name="content" value="${entryContent}" />
 			<var name="title" value="${entryTitle}" />
 		</execute>
 
-		<execute function="AssertClick" locator1="Button#PUBLISH" value1="Publish" />
+		<execute function="Portal.AssertClick" locator1="Button#PUBLISH" value1="Publish" />
 
-		<execute function="SelectFrameTop" value1="relative=top" />
+		<execute function="Portal.SelectFrameTop" value1="relative=top" />
 
-		<execute function="Pause" locator1="5000" />
+		<execute function="Portal.Pause" locator1="5000" />
 
 		<var name="key_assetTitle" value="${entryTitle}" />
 
-		<execute function="AssertTextEquals" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${entryTitle}" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="AP#ASSET_ABSTRACT_DESCRIPTION" value1="${entryContent}" />
+		<execute function="Portal.AssertTextEquals" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${entryTitle}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="AP#ASSET_ABSTRACT_DESCRIPTION" value1="${entryContent}" />
 	</command>
 
 	<command name="addWithCustomAbstract">
@@ -280,13 +280,13 @@
 			<var name="panelHeading" value="Configuration" />
 		</execute>
 
-		<execute function="Click" locator1="Radio#CUSTOM_ABSTRACT" />
+		<execute function="Portal.Click" locator1="Radio#CUSTOM_ABSTRACT" />
 
-		<execute function="Click" locator1="Button#SELECT" />
+		<execute function="Portal.Click" locator1="Button#SELECT" />
 
-		<execute function="AssertClick" locator1="MenuItem#BASIC_DOCUMENT" value1="Basic Document" />
+		<execute function="Portal.AssertClick" locator1="MenuItem#BASIC_DOCUMENT" value1="Basic Document" />
 
-		<execute function="UploadCommonFile" locator1="TextInput#FILE" value1="${dmDocumentFile}" />
+		<execute function="Portal.UploadCommonFile" locator1="TextInput#FILE" value1="${dmDocumentFile}" />
 
 		<execute macro="PortletEntry#inputTitle">
 			<var name="title" value="${dmDocumentTitle}" />
@@ -312,7 +312,7 @@
 			<var name="panelHeading" value="Configuration" />
 		</execute>
 
-		<execute function="AssertChecked" locator1="Radio#FIRST_400_ABSTRACT" value1="Use the first 400 characters of the entry content." />
+		<execute function="Portal.AssertChecked" locator1="Radio#FIRST_400_ABSTRACT" value1="Use the first 400 characters of the entry content." />
 
 		<execute macro="PortletEntry#publish" />
 	</command>
@@ -366,22 +366,22 @@
 	</command>
 
 	<command name="addWithWorkflowViaAP">
-		<execute function="Click#makeVisibleClickAt" locator1="AP#ADD_ASSET_PLUS_ICON" />
+		<execute function="Portal.Click#makeVisibleClickAt" locator1="AP#ADD_ASSET_PLUS_ICON" />
 
-		<execute function="AssertClick" locator1="MenuItem#BLOGS_ENTRY" value1="Blogs Entry" />
+		<execute function="Portal.AssertClick" locator1="MenuItem#BLOGS_ENTRY" value1="Blogs Entry" />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#DIALOG" />
 
 		<execute macro="AlloyEditor#addTitleAndContent">
 			<var name="content" value="${entryContent}" />
 			<var name="title" value="${entryTitle}" />
 		</execute>
 
-		<execute function="AssertClick" locator1="Button#SUBMIT_FOR_PUBLICATION" value1="Submit for Publication" />
+		<execute function="Portal.AssertClick" locator1="Button#SUBMIT_FOR_PUBLICATION" value1="Submit for Publication" />
 
-		<execute function="Pause" locator1="5000" />
+		<execute function="Portal.Pause" locator1="5000" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 	</command>
 
 	<command name="disableSocialBookmarkSites">
@@ -415,7 +415,7 @@
 			<var name="entryTitleEdit" value="${entryTitleEdit}" />
 		</execute>
 
-		<execute function="AssertClick" locator1="Button#SAVE_AS_DRAFT" value1="Save as Draft" />
+		<execute function="Portal.AssertClick" locator1="Button#SAVE_AS_DRAFT" value1="Save as Draft" />
 
 		<execute macro="Alert#viewSuccessMessage" />
 	</command>
@@ -476,7 +476,7 @@
 	</command>
 
 	<command name="subscribePG">
-		<execute function="AssertClick" locator1="Blogs#SUBSCRIBE_LINK" value1="Subscribe" />
+		<execute function="Portal.AssertClick" locator1="Blogs#SUBSCRIBE_LINK" value1="Subscribe" />
 
 		<execute macro="Alert#viewSuccessMessage" />
 	</command>
@@ -517,13 +517,13 @@
 		</execute>
 
 		<if>
-			<condition function="IsElementPresent#isVisible" locator1="Blogs#ENTRY_TABLE_ALL_CHECKBOX" />
+			<condition function="Portal.IsElementPresent#isVisible" locator1="Blogs#ENTRY_TABLE_ALL_CHECKBOX" />
 			<then>
-				<execute function="Click" locator1="Blogs#ENTRY_TABLE_ALL_CHECKBOX" />
+				<execute function="Portal.Click" locator1="Blogs#ENTRY_TABLE_ALL_CHECKBOX" />
 
-				<execute function="AssertClick" locator1="Button#MOVE_TO_THE_RECYCLE_BIN" value1="Move to the Recycle Bin" />
+				<execute function="Portal.AssertClick" locator1="Button#MOVE_TO_THE_RECYCLE_BIN" value1="Move to the Recycle Bin" />
 
-				<execute function="AssertElementPresent" locator1="Message#SUCCESS" />
+				<execute function="Portal.AssertElementPresent" locator1="Message#SUCCESS" />
 			</then>
 		</if>
 
@@ -541,41 +541,41 @@
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute function="AssertClick" locator1="Link#UNSUBSCRIBE" value1="Unsubscribe" />
+		<execute function="Portal.AssertClick" locator1="Link#UNSUBSCRIBE" value1="Unsubscribe" />
 		<execute macro="Alert#viewSuccessMessage" />
 	</command>
 
 	<command name="unsubscribePG">
-		<execute function="AssertClick" locator1="Link#UNSUBSCRIBE" value1="Unsubscribe" />
+		<execute function="Portal.AssertClick" locator1="Link#UNSUBSCRIBE" value1="Unsubscribe" />
 
 		<execute macro="Alert#viewSuccessMessage" />
 	</command>
 
 	<command name="viewControlsPG">
-		<execute function="AssertTextEquals" locator1="Blogs#ADD_BLOGS_ENTRY" value1="Add Blog Entry" />
-		<execute function="AssertTextEquals" locator1="Link#SUBSCRIBE" value1="Subscribe" />
-		<execute function="AssertTextEquals" locator1="Link#RSS" value1="RSS" />
+		<execute function="Portal.AssertTextEquals" locator1="Blogs#ADD_BLOGS_ENTRY" value1="Add Blog Entry" />
+		<execute function="Portal.AssertTextEquals" locator1="Link#SUBSCRIBE" value1="Subscribe" />
+		<execute function="Portal.AssertTextEquals" locator1="Link#RSS" value1="RSS" />
 	</command>
 
 	<command name="viewNoEntryCP">
-		<execute function="AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No entries were found." />
+		<execute function="Portal.AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No entries were found." />
 	</command>
 
 	<command name="viewNoPermissionCP">
-		<execute function="AssertTextEquals" locator1="Portlet#HEADER" value1="Blogs" />
-		<execute function="AssertElementPresent" locator1="NavBar#CONTAINER" />
-		<execute function="AssertTextEquals" locator1="Message#INFO" value1="No entries were found." />
+		<execute function="Portal.AssertTextEquals" locator1="Portlet#HEADER" value1="Blogs" />
+		<execute function="Portal.AssertElementPresent" locator1="NavBar#CONTAINER" />
+		<execute function="Portal.AssertTextEquals" locator1="Message#INFO" value1="No entries were found." />
 	</command>
 
 	<command name="viewNoPermissionPG">
-		<execute function="AssertTextEquals" locator1="Portlet#HEADER" value1="Blogs" />
-		<execute function="AssertElementNotPresent" locator1="Blogs#ADD_BLOGS_ENTRY" value1="Add Blog Entry" />
-		<execute function="AssertElementNotPresent" locator1="MenuItem#PERMISSIONS" value1="Permissions" />
-		<execute function="AssertElementNotPresent" locator1="Link#SUBSCRIBE" />
-		<execute function="AssertTextEquals" locator1="Link#RSS" value1="RSS" />
+		<execute function="Portal.AssertTextEquals" locator1="Portlet#HEADER" value1="Blogs" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Blogs#ADD_BLOGS_ENTRY" value1="Add Blog Entry" />
+		<execute function="Portal.AssertElementNotPresent" locator1="MenuItem#PERMISSIONS" value1="Permissions" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Link#SUBSCRIBE" />
+		<execute function="Portal.AssertTextEquals" locator1="Link#RSS" value1="RSS" />
 	</command>
 
 	<command name="viewPermissionCP">
-		<execute function="AssertTextEquals" locator1="Blogs#PERMISSIONS" value1="Permissions" />
+		<execute function="Portal.AssertTextEquals" locator1="Blogs#PERMISSIONS" value1="Permissions" />
 	</command>
 </definition>

@@ -115,9 +115,9 @@
 			<var name="userScreenName" value="${userScreenName}" />
 		</execute>
 
-		<execute function="Pause" locator1="5000" />
+		<execute function="Portal.Pause" locator1="5000" />
 
-		<execute function="AssertLocation" value1="${spURL}" />
+		<execute function="Portal.AssertLocation" value1="${spURL}" />
 	</command>
 
 	<command name="executeSPInitiatedSSO">
@@ -134,8 +134,8 @@
 			<var name="userScreenName" value="${userScreenName}" />
 		</execute>
 
-		<execute function="Pause" locator1="5000" />
+		<execute function="Portal.Pause" locator1="5000" />
 
-		<execute function="AssertLocation" value1="${spURL}" />
+		<execute function="Portal.AssertLocation" value1="${spURL}" />
 	</command>
 </definition>

@@ -28,7 +28,7 @@
 			<var name="rowEntry" value="${site}" />
 		</execute>
 
-		<execute function="SelectFrameTop" />
+		<execute function="Portal.SelectFrameTop" />
 	</command>
 
 	<command name="viewSite">
@@ -40,10 +40,10 @@
 			<var name="site" value="${site}" />
 		</execute>
 
-		<execute function="AssertElementPresent" locator1="ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK">
+		<execute function="Portal.AssertElementPresent" locator1="ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK">
 			<var name="key_rowEntry" value="${site}" />
 		</execute>
 
-		<execute function="SelectFrameTop" />
+		<execute function="Portal.SelectFrameTop" />
 	</command>
 </definition>

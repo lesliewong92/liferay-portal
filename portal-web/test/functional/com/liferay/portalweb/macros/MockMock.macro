@@ -1,12 +1,12 @@
 <definition>
 	<command name="_backtoInbox">
-		<execute function="AssertClick#assertPartialTextClickAt" locator1="MockMock#MOCKMOCK_HOME_LINK" value1="Home" />
+		<execute function="Portal.AssertClick#assertPartialTextClickAt" locator1="MockMock#MOCKMOCK_HOME_LINK" value1="Home" />
 	</command>
 
 	<command name="_gotoMail">
-		<execute function="Open" locator1="http://localhost:8282" />
+		<execute function="Portal.Open" locator1="http://localhost:8282" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="MockMock#MOCKMOCK_HEADER_LINK" value1="MockMock" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="MockMock#MOCKMOCK_HEADER_LINK" value1="MockMock" />
 	</command>
 
 	<command name="_gotoMailMessage">
@@ -17,10 +17,10 @@
 			<then>
 				<var name="key_recipient" value="${recipient}" />
 
-				<execute function="AssertClick#assertPartialTextClickAt" locator1="MockMock#MOCKMOCK_SPECIFIC_RECIPIENT_SUBJECT_FIELD_LINK" value1="${asset}" />
+				<execute function="Portal.AssertClick#assertPartialTextClickAt" locator1="MockMock#MOCKMOCK_SPECIFIC_RECIPIENT_SUBJECT_FIELD_LINK" value1="${asset}" />
 			</then>
 			<else>
-				<execute function="AssertClick#assertPartialTextClickAt" locator1="MockMock#MOCKMOCK_SUBJECT_FIELD_LINK" value1="${asset}" />
+				<execute function="Portal.AssertClick#assertPartialTextClickAt" locator1="MockMock#MOCKMOCK_SUBJECT_FIELD_LINK" value1="${asset}" />
 			</else>
 		</if>
 	</command>
@@ -30,17 +30,17 @@
 		<var name="key_recipient" value="${recipient}" />
 		<var name="key_sender" value="${sender}" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="MockMock#MOCKMOCK_HAVE_EMAILS_MESSAGE" value1="You have" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="MockMock#MOCKMOCK_FROM_FIELD" value1="${sender}" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="MockMock#MOCKMOCK_TO_FIELD" value1="${recipient}" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="MockMock#MOCKMOCK_SUBJECT_FIELD" value1="${asset}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="MockMock#MOCKMOCK_HAVE_EMAILS_MESSAGE" value1="You have" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="MockMock#MOCKMOCK_FROM_FIELD" value1="${sender}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="MockMock#MOCKMOCK_TO_FIELD" value1="${recipient}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="MockMock#MOCKMOCK_SUBJECT_FIELD" value1="${asset}" />
 	</command>
 
 	<command name="_viewMailMessage">
 		<var name="key_asset" value="${subject}" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="MockMock#MOCKMOCK_MESSAGE_BODY" value1="${subject}" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="MockMock#MOCKMOCK_MESSAGE_BODY" value1="${content}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="MockMock#MOCKMOCK_MESSAGE_BODY" value1="${subject}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="MockMock#MOCKMOCK_MESSAGE_BODY" value1="${content}" />
 	</command>
 
 	<command name="clickBodyLink">
@@ -50,7 +50,7 @@
 
 		<var name="key_bodyLink" value="${bodyLink}" />
 
-		<execute function="AssertClick" locator1="MockMock#MOCKMOCK_HTML_BODY_LINK" value1="${bodyLink}" />
+		<execute function="Portal.AssertClick" locator1="MockMock#MOCKMOCK_HTML_BODY_LINK" value1="${bodyLink}" />
 	</command>
 
 	<command name="viewMail">
@@ -78,17 +78,17 @@
 	<command name="viewMailCount">
 		<var name="key_emailCount" value="${emailCount}" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="MockMock#MOCKMOCK_EMAIL_COUNT_MESSAGE" value1="You have ${emailCount}!" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="MockMock#MOCKMOCK_EMAIL_COUNT_MESSAGE" value1="You have ${emailCount}!" />
 	</command>
 
 	<command name="viewNoMailCount">
-		<execute function="AssertTextEquals#assertPartialText" locator1="MockMock#MOCKMOCK_NO_EMAILS_MESSAGE" value1="No emails in queue" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="MockMock#MOCKMOCK_NO_EMAILS_MESSAGE" value1="No emails in queue" />
 	</command>
 
 	<command name="viewNoMailFromInbox">
 		<var name="key_columnEntry" value="${asset}" />
 		<var name="key_recipient" value="${recipient}" />
 
-		<execute function="AssertTextNotPresent" locator1="MockMock#MOCKMOCK_TO_FIELD" value1="${recipient}" />
+		<execute function="Portal.AssertTextNotPresent" locator1="MockMock#MOCKMOCK_TO_FIELD" value1="${recipient}" />
 	</command>
 </definition>

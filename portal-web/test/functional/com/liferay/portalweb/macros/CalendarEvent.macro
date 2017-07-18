@@ -5,10 +5,10 @@
 		<if>
 			<equals arg1="${schedulerEventDialogBox}" arg2="false" />
 			<then>
-				<execute function="AssertElementNotPresent" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_CALENDAR" value1="${calendarName}" />
+				<execute function="Portal.AssertElementNotPresent" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_CALENDAR" value1="${calendarName}" />
 			</then>
 			<else>
-				<execute function="AssertSelectedLabel" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_CALENDAR" value1="${calendarName}" />
+				<execute function="Portal.AssertSelectedLabel" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_CALENDAR" value1="${calendarName}" />
 			</else>
 		</if>
 	</command>
@@ -18,23 +18,23 @@
 		<var method="StringUtil#upperCase('${panelNamePath}')" name="panelNamePath" />
 
 		<if>
-			<condition function="IsElementPresent" locator1="CalendarEditEvent#${panelNamePath}_PANEL_COLLAPSED" />
+			<condition function="Portal.IsElementPresent" locator1="CalendarEditEvent#${panelNamePath}_PANEL_COLLAPSED" />
 			<then>
-				<execute function="Click" locator1="CalendarEditEvent#${panelNamePath}_PANEL_COLLAPSED" />
+				<execute function="Portal.Click" locator1="CalendarEditEvent#${panelNamePath}_PANEL_COLLAPSED" />
 
-				<execute function="AssertElementPresent" locator1="CalendarEditEvent#${panelNamePath}_PANEL_EXPANDED" />
+				<execute function="Portal.AssertElementPresent" locator1="CalendarEditEvent#${panelNamePath}_PANEL_EXPANDED" />
 			</then>
 			<elseif>
-				<condition function="IsElementPresent" locator1="CalendarEditEvent#${panelNamePath}_PANEL_EXPANDED" />
+				<condition function="Portal.IsElementPresent" locator1="CalendarEditEvent#${panelNamePath}_PANEL_EXPANDED" />
 				<then>
-					<execute function="Click" locator1="CalendarEditEvent#${panelNamePath}_PANEL_EXPANDED" />
+					<execute function="Portal.Click" locator1="CalendarEditEvent#${panelNamePath}_PANEL_EXPANDED" />
 
 					<if>
-						<condition function="IsElementPresent" locator1="CalendarEditEvent#${panelNamePath}_PANEL_COLLAPSED" />
+						<condition function="Portal.IsElementPresent" locator1="CalendarEditEvent#${panelNamePath}_PANEL_COLLAPSED" />
 						<then>
-							<execute function="Click" locator1="CalendarEditEvent#${panelNamePath}_PANEL_COLLAPSED" />
+							<execute function="Portal.Click" locator1="CalendarEditEvent#${panelNamePath}_PANEL_COLLAPSED" />
 
-							<execute function="AssertElementPresent" locator1="CalendarEditEvent#${panelNamePath}_PANEL_EXPANDED" />
+							<execute function="Portal.AssertElementPresent" locator1="CalendarEditEvent#${panelNamePath}_PANEL_EXPANDED" />
 						</then>
 					</if>
 				</then>
@@ -46,7 +46,7 @@
 		<if>
 			<equals arg1="${optionSetValue}" arg2="viewPermission" />
 			<then>
-				<execute function="Select" locator1="CalendarEditEvent#DETAILS_PERMISSIONS_VIEWABLE_BY_SELECT" value1="${viewPermissionValue}" />
+				<execute function="Portal.Select" locator1="CalendarEditEvent#DETAILS_PERMISSIONS_VIEWABLE_BY_SELECT" value1="${viewPermissionValue}" />
 			</then>
 		</if>
 
@@ -56,7 +56,7 @@
 				<var name="key_permissionDefinitionKey" value="${permissionDefinitionKey}" />
 				<var name="key_roleTitle" value="${roleTitle}" />
 
-				<execute function="Check" locator1="CalendarEditEvent#DETAILS_PERMISSIONS_CHECKBOX" />
+				<execute function="Portal.Check" locator1="CalendarEditEvent#DETAILS_PERMISSIONS_CHECKBOX" />
 			</then>
 		</if>
 
@@ -94,10 +94,10 @@
 	</command>
 
 	<command name="_viewNewEventIframe">
-		<execute function="AssertElementPresent#assertVisible" locator1="CalendarEditEvent#START_DATE" />
-		<execute function="AssertElementPresent#assertVisible" locator1="CalendarEditEvent#START_DATE_TIME" />
-		<execute function="AssertElementPresent#assertVisible" locator1="CalendarEditEvent#END_DATE" />
-		<execute function="AssertElementPresent#assertVisible" locator1="CalendarEditEvent#END_DATE_TIME" />
+		<execute function="Portal.AssertElementPresent#assertVisible" locator1="CalendarEditEvent#START_DATE" />
+		<execute function="Portal.AssertElementPresent#assertVisible" locator1="CalendarEditEvent#START_DATE_TIME" />
+		<execute function="Portal.AssertElementPresent#assertVisible" locator1="CalendarEditEvent#END_DATE" />
+		<execute function="Portal.AssertElementPresent#assertVisible" locator1="CalendarEditEvent#END_DATE_TIME" />
 	</command>
 
 	<command name="_viewResourcesAvailabilityEvent">
@@ -106,7 +106,7 @@
 		<var name="key_startDate" value="${startDate}" />
 		<var name="key_startDateTime" value="${startDateTime}" />
 
-		<execute function="AssertElementPresent" locator1="CalendarEditEvent#RESOURCES_AVAILABILITY_SCHEDULER_EVENT_REGULAR" />
+		<execute function="Portal.AssertElementPresent" locator1="CalendarEditEvent#RESOURCES_AVAILABILITY_SCHEDULER_EVENT_REGULAR" />
 	</command>
 
 	<command name="add">
@@ -220,10 +220,10 @@
 		<var name="endDateTime" value="11:59 PM" />
 		<var name="startDateTime" value="12:00 AM" />
 
-		<execute function="Check" locator1="CalendarEditEvent#ALL_DAY_CHECKBOX" />
+		<execute function="Portal.Check" locator1="CalendarEditEvent#ALL_DAY_CHECKBOX" />
 
-		<execute function="AssertElementNotPresent#assertNotVisible" locator1="CalendarEditEvent#START_DATE_TIME" />
-		<execute function="AssertElementNotPresent#assertNotVisible" locator1="CalendarEditEvent#END_DATE_TIME" />
+		<execute function="Portal.AssertElementNotPresent#assertNotVisible" locator1="CalendarEditEvent#START_DATE_TIME" />
+		<execute function="Portal.AssertElementNotPresent#assertNotVisible" locator1="CalendarEditEvent#END_DATE_TIME" />
 
 		<var locator="CalendarEditEvent#END_DATE" name="endDate" />
 		<var locator="CalendarEditEvent#START_DATE" name="startDate" />
@@ -257,7 +257,7 @@
 		<if>
 			<equals arg1="${workflow}" arg2="true" />
 			<then>
-				<execute function="AssertClick" locator1="Button#SUBMIT_FOR_PUBLICATION" value1="Submit for Publication" />
+				<execute function="Portal.AssertClick" locator1="Button#SUBMIT_FOR_PUBLICATION" value1="Submit for Publication" />
 
 				<execute macro="Alert#viewSuccessMessage" />
 			</then>
@@ -305,19 +305,19 @@
 			<then>
 				<if>
 					<not>
-						<condition function="IsElementPresent" locator1="Calendar#SCHEDULER_EVENT_ALL_DAY_WITH_REMINDER" />
+						<condition function="Portal.IsElementPresent" locator1="Calendar#SCHEDULER_EVENT_ALL_DAY_WITH_REMINDER" />
 					</not>
 					<then>
-						<execute function="Click" locator1="Calendar#VIEW_NEXT_BUTTON" />
+						<execute function="Portal.Click" locator1="Calendar#VIEW_NEXT_BUTTON" />
 					</then>
 				</if>
 
-				<execute function="AssertElementPresent" locator1="Calendar#SCHEDULER_EVENT_ALL_DAY_WITH_REMINDER" />
-				<execute function="AssertTextEquals" locator1="Calendar#SCHEDULER_EVENT_ALL_DAY_TITLE_WITH_REMINDER" value1="${eventTitle}" />
+				<execute function="Portal.AssertElementPresent" locator1="Calendar#SCHEDULER_EVENT_ALL_DAY_WITH_REMINDER" />
+				<execute function="Portal.AssertTextEquals" locator1="Calendar#SCHEDULER_EVENT_ALL_DAY_TITLE_WITH_REMINDER" value1="${eventTitle}" />
 			</then>
 			<else>
-				<execute function="AssertElementPresent" locator1="Calendar#SCHEDULER_EVENT_ALL_DAY" />
-				<execute function="AssertTextEquals" locator1="Calendar#SCHEDULER_EVENT_ALL_DAY_TITLE" value1="${eventTitle}" />
+				<execute function="Portal.AssertElementPresent" locator1="Calendar#SCHEDULER_EVENT_ALL_DAY" />
+				<execute function="Portal.AssertTextEquals" locator1="Calendar#SCHEDULER_EVENT_ALL_DAY_TITLE" value1="${eventTitle}" />
 			</else>
 		</if>
 	</command>
@@ -334,28 +334,28 @@
 			<then>
 				<for list="${eventCommentList}" param="eventComment">
 					<if>
-						<condition function="IsElementPresent" locator1="Comments#ADD_COMMENT_LINK" />
+						<condition function="Portal.IsElementPresent" locator1="Comments#ADD_COMMENT_LINK" />
 						<then>
-							<execute function="AssertClick" locator1="Comments#ADD_COMMENT_LINK" value1="Add Comment" />
+							<execute function="Portal.AssertClick" locator1="Comments#ADD_COMMENT_LINK" value1="Add Comment" />
 
-							<execute function="MakeVisible" locator1="Comments#COMMENT_FIELD" />
+							<execute function="Portal.MakeVisible" locator1="Comments#COMMENT_FIELD" />
 
-							<execute function="Type" locator1="Comments#COMMENT_FIELD" value1="${eventComment}" />
+							<execute function="Portal.Type" locator1="Comments#COMMENT_FIELD" value1="${eventComment}" />
 						</then>
 						<else>
-							<execute function="Type" locator1="Comments#COMMENT_FIELD" value1="${eventComment}" />
+							<execute function="Portal.Type" locator1="Comments#COMMENT_FIELD" value1="${eventComment}" />
 						</else>
 					</if>
 
-					<execute function="AssertClick" locator1="Button#REPLY" value1="Reply" />
+					<execute function="Portal.AssertClick" locator1="Button#REPLY" value1="Reply" />
 
 					<execute macro="Alert#viewSuccessMessage" />
 				</for>
 			</then>
 			<else>
-				<execute function="Type" locator1="Comments#COMMENT_FIELD" value1="${eventComment}" />
+				<execute function="Portal.Type" locator1="Comments#COMMENT_FIELD" value1="${eventComment}" />
 
-				<execute function="AssertClick" locator1="Button#REPLY" value1="Reply" />
+				<execute function="Portal.AssertClick" locator1="Button#REPLY" value1="Reply" />
 
 				<execute macro="Alert#viewSuccessMessage" />
 			</else>
@@ -367,19 +367,19 @@
 				<for list="${eventCommentList}" param="eventComment">
 					<var name="key_entryComment" value="${eventComment}" />
 
-					<execute function="AssertTextEquals" locator1="Comments#USER_NAME" value1="${user} (You)" />
-					<execute function="AssertTextEquals" locator1="Comments#COMMENT_BODY_SPECIFIC" value1="${eventComment}" />
+					<execute function="Portal.AssertTextEquals" locator1="Comments#USER_NAME" value1="${user} (You)" />
+					<execute function="Portal.AssertTextEquals" locator1="Comments#COMMENT_BODY_SPECIFIC" value1="${eventComment}" />
 				</for>
 			</then>
 			<else>
 				<var name="key_entryComment" value="${eventComment}" />
 
-				<execute function="AssertTextEquals" locator1="Comments#USER_NAME" value1="${user} (You)" />
-				<execute function="AssertTextEquals" locator1="Comments#COMMENT_BODY_SPECIFIC" value1="${eventComment}" />
+				<execute function="Portal.AssertTextEquals" locator1="Comments#USER_NAME" value1="${user} (You)" />
+				<execute function="Portal.AssertTextEquals" locator1="Comments#COMMENT_BODY_SPECIFIC" value1="${eventComment}" />
 			</else>
 		</if>
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 	</command>
 
 	<command name="addPGViaAP">
@@ -401,8 +401,8 @@
 			<var name="eventTitle" value="${eventTitle}" />
 		</execute>
 
-		<execute function="AssertNotChecked" locator1="CalendarEditEvent#ALL_DAY_CHECKBOX" />
-		<execute function="AssertNotChecked" locator1="CalendarEditEvent#REPEAT_CHECKBOX" />
+		<execute function="Portal.AssertNotChecked" locator1="CalendarEditEvent#ALL_DAY_CHECKBOX" />
+		<execute function="Portal.AssertNotChecked" locator1="CalendarEditEvent#REPEAT_CHECKBOX" />
 
 		<var locator="CalendarEditEvent#END_DATE" name="endDate" />
 		<var locator="CalendarEditEvent#END_DATE_TIME" name="endDateTime" />
@@ -445,7 +445,7 @@
 		<if>
 			<equals arg1="${workflow}" arg2="true" />
 			<then>
-				<execute function="AssertClick" locator1="Button#SUBMIT_FOR_PUBLICATION" value1="Submit for Publication" />
+				<execute function="Portal.AssertClick" locator1="Button#SUBMIT_FOR_PUBLICATION" value1="Submit for Publication" />
 
 				<execute macro="Alert#viewSuccessMessage" />
 			</then>
@@ -536,7 +536,7 @@
 		<if>
 			<equals arg1="${workflow}" arg2="true" />
 			<then>
-				<execute function="AssertClick" locator1="Button#SUBMIT_FOR_PUBLICATION" value1="Submit for Publication" />
+				<execute function="Portal.AssertClick" locator1="Button#SUBMIT_FOR_PUBLICATION" value1="Submit for Publication" />
 
 				<execute macro="Alert#viewSuccessMessage" />
 			</then>
@@ -581,15 +581,15 @@
 
 		<if>
 			<not>
-				<condition function="IsElementPresent" locator1="Calendar#SCHEDULER_EVENT_REPEAT" />
+				<condition function="Portal.IsElementPresent" locator1="Calendar#SCHEDULER_EVENT_REPEAT" />
 			</not>
 			<then>
-				<execute function="Click" locator1="Calendar#VIEW_NEXT_BUTTON" />
+				<execute function="Portal.Click" locator1="Calendar#VIEW_NEXT_BUTTON" />
 			</then>
 		</if>
 
-		<execute function="AssertElementPresent" locator1="Calendar#SCHEDULER_EVENT_REPEAT" />
-		<execute function="AssertTextEquals" locator1="Calendar#SCHEDULER_EVENT_REPEAT_TITLE" value1="${eventTitle}" />
+		<execute function="Portal.AssertElementPresent" locator1="Calendar#SCHEDULER_EVENT_REPEAT" />
+		<execute function="Portal.AssertTextEquals" locator1="Calendar#SCHEDULER_EVENT_REPEAT_TITLE" value1="${eventTitle}" />
 	</command>
 
 	<command name="addRSVP">
@@ -601,18 +601,18 @@
 			<var name="eventTitle" value="${eventTitle}" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_EVENT_TITLE" value1="${eventTitle}" />
+		<execute function="Portal.AssertTextEquals" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_EVENT_TITLE" value1="${eventTitle}" />
 
 		<var name="key_rsvp" value="${rsvp}" />
 
-		<execute function="AssertClick" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_ATTEND_ACTIVE" value1="${rsvp}" />
+		<execute function="Portal.AssertClick" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_ATTEND_ACTIVE" value1="${rsvp}" />
 
-		<execute function="Pause" value1="3000" />
+		<execute function="Portal.Pause" value1="3000" />
 
 		<if>
-			<condition function="IsElementPresent" locator1="CalendarEditEvent#ENTIRE_SERIES_BUTTON" />
+			<condition function="Portal.IsElementPresent" locator1="CalendarEditEvent#ENTIRE_SERIES_BUTTON" />
 			<then>
-				<execute function="AssertClick" locator1="CalendarEditEvent#ENTIRE_SERIES_BUTTON" value1="Entire Series"  />
+				<execute function="Portal.AssertClick" locator1="CalendarEditEvent#ENTIRE_SERIES_BUTTON" value1="Entire Series"  />
 			</then>
 		</if>
 
@@ -626,7 +626,7 @@
 			<var name="viewType" value="Week" />
 		</execute>
 
-		<execute function="AssertClick" locator1="Calendar#ADD_EVENT_BUTTON" value1="Add Event" />
+		<execute function="Portal.AssertClick" locator1="Calendar#ADD_EVENT_BUTTON" value1="Add Event" />
 
 		<execute macro="CalendarEvent#selectEventIframe" />
 
@@ -639,16 +639,16 @@
 		<if>
 			<equals arg1="${eventType}" arg2="Regular" />
 			<then>
-				<execute function="AssertNotChecked" locator1="CalendarEditEvent#ALL_DAY_CHECKBOX" />
-				<execute function="AssertNotChecked" locator1="CalendarEditEvent#REPEAT_CHECKBOX" />
-				<execute function="Type" locator1="CalendarEditEvent#START_DATE_TIME" value1="${setStartDateTime}" />
-				<execute function="Type" locator1="CalendarEditEvent#END_DATE_TIME" value1="${setEndDateTime}" />
+				<execute function="Portal.AssertNotChecked" locator1="CalendarEditEvent#ALL_DAY_CHECKBOX" />
+				<execute function="Portal.AssertNotChecked" locator1="CalendarEditEvent#REPEAT_CHECKBOX" />
+				<execute function="Portal.Type" locator1="CalendarEditEvent#START_DATE_TIME" value1="${setStartDateTime}" />
+				<execute function="Portal.Type" locator1="CalendarEditEvent#END_DATE_TIME" value1="${setEndDateTime}" />
 
 				<var locator="CalendarEditEvent#START_DATE" name="startDate" />
 
 				<var name="endDate" value="${startDate}" />
 
-				<execute function="Type" locator1="CalendarEditEvent#END_DATE" value1="${endDate}" />
+				<execute function="Portal.Type" locator1="CalendarEditEvent#END_DATE" value1="${endDate}" />
 
 				<execute macro="CalendarEvent#selectCalendar">
 					<var name="calendarName" value="${calendarName}" />
@@ -681,32 +681,32 @@
 			<elseif>
 				<equals arg1="${eventType}" arg2="Repeating" />
 				<then>
-					<execute function="Type" locator1="CalendarEditEvent#START_DATE_TIME" value1="${setStartDateTime}" />
-					<execute function="Type" locator1="CalendarEditEvent#END_DATE_TIME" value1="${setEndDateTime}" />
+					<execute function="Portal.Type" locator1="CalendarEditEvent#START_DATE_TIME" value1="${setStartDateTime}" />
+					<execute function="Portal.Type" locator1="CalendarEditEvent#END_DATE_TIME" value1="${setEndDateTime}" />
 
 					<var locator="CalendarEditEvent#START_DATE" name="startDate" />
 
 					<var name="endDate" value="${startDate}" />
 
-					<execute function="Type" locator1="CalendarEditEvent#END_DATE" value1="${endDate}" />
+					<execute function="Portal.Type" locator1="CalendarEditEvent#END_DATE" value1="${endDate}" />
 
-					<execute function="Check" locator1="CalendarEditEvent#REPEAT_CHECKBOX" />
+					<execute function="Portal.Check" locator1="CalendarEditEvent#REPEAT_CHECKBOX" />
 
-					<execute function="AssertSelectedLabel" locator1="CalendarEditEvent#REPEAT_REPEATS_DROPDOWN" value1="Daily" />
-					<execute function="AssertSelectedLabel" locator1="CalendarEditEvent#REPEAT_REPEAT_EVERY_DROPDOWN" value1="1" />
+					<execute function="Portal.AssertSelectedLabel" locator1="CalendarEditEvent#REPEAT_REPEATS_DROPDOWN" value1="Daily" />
+					<execute function="Portal.AssertSelectedLabel" locator1="CalendarEditEvent#REPEAT_REPEAT_EVERY_DROPDOWN" value1="1" />
 
-					<execute function="Click" locator1="CalendarEditEvent#REPEAT_ENDS_AFTER_RADIO" />
+					<execute function="Portal.Click" locator1="CalendarEditEvent#REPEAT_ENDS_AFTER_RADIO" />
 
-					<execute function="Type" locator1="CalendarEditEvent#REPEAT_ENDS_AFTER_FIELD" value1="1" />
+					<execute function="Portal.Type" locator1="CalendarEditEvent#REPEAT_ENDS_AFTER_FIELD" value1="1" />
 
-					<execute function="Click" locator1="CalendarEditEvent#REPEAT_DIALOG_SUMMARY" />
+					<execute function="Portal.Click" locator1="CalendarEditEvent#REPEAT_DIALOG_SUMMARY" />
 
-					<execute function="AssertTextEquals" locator1="CalendarEditEvent#REPEAT_DIALOG_SUMMARY" value1="Daily, 1 Times" />
-					<execute function="AssertTextEquals" locator1="CalendarEditEvent#REPEAT_DONE_BUTTON" value1="Done" />
+					<execute function="Portal.AssertTextEquals" locator1="CalendarEditEvent#REPEAT_DIALOG_SUMMARY" value1="Daily, 1 Times" />
+					<execute function="Portal.AssertTextEquals" locator1="CalendarEditEvent#REPEAT_DONE_BUTTON" value1="Done" />
 
-					<execute function="AssertTextEquals" locator1="CalendarEditEvent#REPEAT_SUMMARY" value1="Daily, 1 Times" />
+					<execute function="Portal.AssertTextEquals" locator1="CalendarEditEvent#REPEAT_SUMMARY" value1="Daily, 1 Times" />
 
-					<execute function="Check" locator1="CalendarEditEvent#REPEAT_CHECKBOX" />
+					<execute function="Portal.Check" locator1="CalendarEditEvent#REPEAT_CHECKBOX" />
 
 					<execute macro="CalendarEvent#selectCalendar">
 						<var name="calendarName" value="${calendarName}" />
@@ -714,7 +714,7 @@
 
 					<execute macro="CalendarEvent#publish" />
 
-					<execute function="SelectFrame" value1="relative=top" />
+					<execute function="Portal.SelectFrame" value1="relative=top" />
 
 					<execute macro="Navigator#gotoPage">
 						<var name="pageName" value="${pageName}" />
@@ -725,8 +725,8 @@
 					<var name="key_startDate" value="${startDate}" />
 					<var name="key_startDateTime" value="${setStartDateTime}" />
 
-					<execute function="AssertElementPresent" locator1="Calendar#SCHEDULER_EVENT_REPEAT" />
-					<execute function="AssertTextEquals" locator1="Calendar#SCHEDULER_EVENT_REPEAT_TITLE" value1="${eventTitle}" />
+					<execute function="Portal.AssertElementPresent" locator1="Calendar#SCHEDULER_EVENT_REPEAT" />
+					<execute function="Portal.AssertTextEquals" locator1="Calendar#SCHEDULER_EVENT_REPEAT_TITLE" value1="${eventTitle}" />
 				</then>
 			</elseif>
 		</if>
@@ -761,11 +761,11 @@
 	</command>
 
 	<command name="assertEventNotEditable">
-		<execute function="AssertElementNotPresent" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_EDIT_BUTTON" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_EDIT_BUTTON" />
 	</command>
 
 	<command name="clickPublish">
-		<execute function="AssertClick" locator1="Button#SUBMIT" value1="Publish" />
+		<execute function="Portal.AssertClick" locator1="Button#SUBMIT" value1="Publish" />
 	</command>
 
 	<command name="compareEventDateAndTimeToResourcesAvailabilityDateAndTime">
@@ -787,19 +787,19 @@
 			<var name="panelName" value="Reminders" />
 		</execute>
 
-		<execute function="Check" locator1="CalendarEditEvent#REMINDERS_EMAIL_CHECKBOX_1" />
-		<execute function="Check" locator1="CalendarEditEvent#REMINDERS_EMAIL_CHECKBOX_2" />
+		<execute function="Portal.Check" locator1="CalendarEditEvent#REMINDERS_EMAIL_CHECKBOX_1" />
+		<execute function="Portal.Check" locator1="CalendarEditEvent#REMINDERS_EMAIL_CHECKBOX_2" />
 
-		<execute function="Type" locator1="CalendarEditEvent#REMINDERS_VALUE_INPUT_ACTIVE_1" value1="${number1}" />
-		<execute function="Type" locator1="CalendarEditEvent#REMINDERS_VALUE_INPUT_ACTIVE_2" value1="${number2}" />
+		<execute function="Portal.Type" locator1="CalendarEditEvent#REMINDERS_VALUE_INPUT_ACTIVE_1" value1="${number1}" />
+		<execute function="Portal.Type" locator1="CalendarEditEvent#REMINDERS_VALUE_INPUT_ACTIVE_2" value1="${number2}" />
 
-		<execute function="Select" locator1="CalendarEditEvent#REMINDERS_DURATION_SELECT_ACTIVE_1" value1="${duration1}" />
-		<execute function="Select" locator1="CalendarEditEvent#REMINDERS_DURATION_SELECT_ACTIVE_2" value1="${duration2}" />
+		<execute function="Portal.Select" locator1="CalendarEditEvent#REMINDERS_DURATION_SELECT_ACTIVE_1" value1="${duration1}" />
+		<execute function="Portal.Select" locator1="CalendarEditEvent#REMINDERS_DURATION_SELECT_ACTIVE_2" value1="${duration2}" />
 
-		<execute function="AssertElementNotPresent" locator1="CalendarEditEvent#REMINDERS_VALUE_INPUT_INACTIVE_1" />
-		<execute function="AssertElementNotPresent" locator1="CalendarEditEvent#REMINDERS_VALUE_INPUT_INACTIVE_2" />
-		<execute function="AssertElementNotPresent" locator1="CalendarEditEvent#REMINDERS_DURATION_SELECT_INACTIVE_1" />
-		<execute function="AssertElementNotPresent" locator1="CalendarEditEvent#REMINDERS_DURATION_SELECT_INACTIVE_2" />
+		<execute function="Portal.AssertElementNotPresent" locator1="CalendarEditEvent#REMINDERS_VALUE_INPUT_INACTIVE_1" />
+		<execute function="Portal.AssertElementNotPresent" locator1="CalendarEditEvent#REMINDERS_VALUE_INPUT_INACTIVE_2" />
+		<execute function="Portal.AssertElementNotPresent" locator1="CalendarEditEvent#REMINDERS_DURATION_SELECT_INACTIVE_1" />
+		<execute function="Portal.AssertElementNotPresent" locator1="CalendarEditEvent#REMINDERS_DURATION_SELECT_INACTIVE_2" />
 	</command>
 
 	<command name="delete">
@@ -810,49 +810,49 @@
 		<var name="i" value="1" />
 
 		<while>
-			<condition function="IsElementPresent" locator1="xpath=(//div[contains(@class,'scheduler-view-agenda-event') and contains(@data-clientid,'scheduler-event')])[${i}]" />
+			<condition function="Portal.IsElementPresent" locator1="xpath=(//div[contains(@class,'scheduler-view-agenda-event') and contains(@data-clientid,'scheduler-event')])[${i}]" />
 			<then>
-				<execute function="Click" locator1="xpath=(//div[contains(@class,'scheduler-view-agenda-event') and contains(@data-clientid,'scheduler-event')])[${i}]" />
+				<execute function="Portal.Click" locator1="xpath=(//div[contains(@class,'scheduler-view-agenda-event') and contains(@data-clientid,'scheduler-event')])[${i}]" />
 
 				<if>
-					<condition function="IsElementNotPresent" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_DELETE_BUTTON" />
+					<condition function="Portal.IsElementNotPresent" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_DELETE_BUTTON" />
 					<then>
 						<var method="MathUtil#sum('${i}', '1')" name="i" />
 
-						<execute function="Click" locator1="xpath=(//div[contains(@class,'scheduler-view-agenda-event') and contains(@data-clientid,'scheduler-event')])[${i}]" />
+						<execute function="Portal.Click" locator1="xpath=(//div[contains(@class,'scheduler-view-agenda-event') and contains(@data-clientid,'scheduler-event')])[${i}]" />
 					</then>
 					<else>
 						<if>
-							<condition function="IsElementPresent" locator1="xpath=(//input[contains(@value,'Repeating')])" />
+							<condition function="Portal.IsElementPresent" locator1="xpath=(//input[contains(@value,'Repeating')])" />
 							<then>
-								<execute function="Pause" value1="1000" />
+								<execute function="Portal.Pause" value1="1000" />
 
-								<execute function="AssertClickNoError" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_DELETE_BUTTON" value1="Delete" />
+								<execute function="Portal.AssertClickNoError" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_DELETE_BUTTON" value1="Delete" />
 
-								<execute function="AssertClick" locator1="CalendarEditEvent#ENTIRE_SERIES_BUTTON" value1="Entire Series"  />
+								<execute function="Portal.AssertClick" locator1="CalendarEditEvent#ENTIRE_SERIES_BUTTON" value1="Entire Series"  />
 
-								<execute function="Pause" value1="10000" />
+								<execute function="Portal.Pause" value1="10000" />
 							</then>
 							<elseif>
-								<condition function="IsTextEqual" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_USERS_FIELD" value1="—" />
+								<condition function="Portal.IsTextEqual" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_USERS_FIELD" value1="—" />
 								<then>
-									<execute function="Pause" value1="1000" />
+									<execute function="Portal.Pause" value1="1000" />
 
-									<execute function="AssertClickNoError" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_DELETE_BUTTON" value1="Delete" />
+									<execute function="Portal.AssertClickNoError" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_DELETE_BUTTON" value1="Delete" />
 
-									<execute function="Confirm#waitForConfirmation" value1="Would you like to delete this event?" />
+									<execute function="Portal.Confirm#waitForConfirmation" value1="Would you like to delete this event?" />
 
-									<execute function="Pause" value1="2000" />
+									<execute function="Portal.Pause" value1="2000" />
 								</then>
 							</elseif>
 							<else>
-								<execute function="Pause" value1="1000" />
+								<execute function="Portal.Pause" value1="1000" />
 
-								<execute function="AssertClickNoError" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_DELETE_BUTTON" value1="Delete" />
+								<execute function="Portal.AssertClickNoError" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_DELETE_BUTTON" value1="Delete" />
 
-								<execute function="Confirm#waitForConfirmation" value1="Deleting this event will cancel the meeting with your guests. Would you like to delete?" />
+								<execute function="Portal.Confirm#waitForConfirmation" value1="Deleting this event will cancel the meeting with your guests. Would you like to delete?" />
 
-								<execute function="Pause" value1="2000" />
+								<execute function="Portal.Pause" value1="2000" />
 							</else>
 						</if>
 					</else>
@@ -860,9 +860,9 @@
 			</then>
 		</while>
 
-		<execute function="AssertTextEquals" locator1="CalendarAgendaView#EMPTY_MESSAGE" value1="No events." />
-		<execute function="AssertElementNotPresent" locator1="CalendarAgendaView#SCHEDULER_EVENT_GENERIC" />
-		<execute function="AssertElementNotPresent" locator1="CalendarAgendaView#SCHEDULER_EVENT_REPEATING" />
+		<execute function="Portal.AssertTextEquals" locator1="CalendarAgendaView#EMPTY_MESSAGE" value1="No events." />
+		<execute function="Portal.AssertElementNotPresent" locator1="CalendarAgendaView#SCHEDULER_EVENT_GENERIC" />
+		<execute function="Portal.AssertElementNotPresent" locator1="CalendarAgendaView#SCHEDULER_EVENT_REPEATING" />
 
 		<execute macro="CalendarNavigator#gotoView">
 			<var name="viewType" value="Week" />
@@ -888,13 +888,13 @@
 
 		<var name="key_eventComment" value="${eventComment}" />
 
-		<execute function="AssertClickNoError" locator1="CalendarViewEventDetails#COMMENTS_COMMENT_DELETE" value1="Delete" />
+		<execute function="Portal.AssertClickNoError" locator1="CalendarViewEventDetails#COMMENTS_COMMENT_DELETE" value1="Delete" />
 
-		<execute function="Confirm" value1="Are you sure you want to delete this? It will be deleted immediately." />
+		<execute function="Portal.Confirm" value1="Are you sure you want to delete this? It will be deleted immediately." />
 
-		<execute function="AssertTextEquals" locator1="CalendarViewEventDetails#COMMENTS_SUCCESS" value1="Your request completed successfully." />
+		<execute function="Portal.AssertTextEquals" locator1="CalendarViewEventDetails#COMMENTS_SUCCESS" value1="Your request completed successfully." />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 	</command>
 
 	<command name="deleteRepeatingEventViaAgendaView">
@@ -910,51 +910,51 @@
 				<equals arg1="${deleteOptionSet}" arg2="Single Event" />
 			</or>
 			<then>
-				<execute function="AssertClick" locator1="CalendarAgendaView#SCHEDULER_EVENT_SPECIFIC_1" value1="${eventTitle}" />
+				<execute function="Portal.AssertClick" locator1="CalendarAgendaView#SCHEDULER_EVENT_SPECIFIC_1" value1="${eventTitle}" />
 			</then>
 			<elseif>
 				<equals arg1="${deleteOptionSet}" arg2="Following Events" />
 				<then>
-					<execute function="AssertClick" locator1="CalendarAgendaView#SCHEDULER_EVENT_SPECIFIC_2" value1="${eventTitle}" />
+					<execute function="Portal.AssertClick" locator1="CalendarAgendaView#SCHEDULER_EVENT_SPECIFIC_2" value1="${eventTitle}" />
 				</then>
 			</elseif>
 		</if>
 
-		<execute function="AssertElementPresent" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_DELETE_BUTTON" />
+		<execute function="Portal.AssertElementPresent" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_DELETE_BUTTON" />
 
-		<execute function="Pause" value1="1000" />
+		<execute function="Portal.Pause" value1="1000" />
 
-		<execute function="ClickNoError" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_DELETE_BUTTON" value1="Delete" />
+		<execute function="Portal.ClickNoError" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_DELETE_BUTTON" value1="Delete" />
 
 		<if>
 			<equals arg1="${deleteOptionSet}" arg2="Entire Series" />
 			<then>
-				<execute function="AssertClick" locator1="CalendarEditEvent#ENTIRE_SERIES_BUTTON" value1="Entire Series" />
+				<execute function="Portal.AssertClick" locator1="CalendarEditEvent#ENTIRE_SERIES_BUTTON" value1="Entire Series" />
 
-				<execute function="AssertElementNotPresent" locator1="CalendarAgendaView#SCHEDULER_EVENT_SPECIFIC_1" value1="${eventTitle}" />
-				<execute function="AssertElementNotPresent" locator1="CalendarAgendaView#SCHEDULER_EVENT_SPECIFIC_2" value1="${eventTitle}" />
+				<execute function="Portal.AssertElementNotPresent" locator1="CalendarAgendaView#SCHEDULER_EVENT_SPECIFIC_1" value1="${eventTitle}" />
+				<execute function="Portal.AssertElementNotPresent" locator1="CalendarAgendaView#SCHEDULER_EVENT_SPECIFIC_2" value1="${eventTitle}" />
 			</then>
 			<elseif>
 				<equals arg1="${deleteOptionSet}" arg2="Following Events" />
 				<then>
-					<execute function="AssertClick" locator1="CalendarEditEvent#FOLLOWING_EVENTS_BUTTON" value1="Following Events" />
+					<execute function="Portal.AssertClick" locator1="CalendarEditEvent#FOLLOWING_EVENTS_BUTTON" value1="Following Events" />
 
-					<execute function="AssertElementPresent" locator1="CalendarAgendaView#SCHEDULER_EVENT_SPECIFIC_1" value1="${eventTitle}" />
-					<execute function="AssertElementNotPresent" locator1="CalendarAgendaView#SCHEDULER_EVENT_SPECIFIC_2" value1="${eventTitle}" />
+					<execute function="Portal.AssertElementPresent" locator1="CalendarAgendaView#SCHEDULER_EVENT_SPECIFIC_1" value1="${eventTitle}" />
+					<execute function="Portal.AssertElementNotPresent" locator1="CalendarAgendaView#SCHEDULER_EVENT_SPECIFIC_2" value1="${eventTitle}" />
 				</then>
 			</elseif>
 			<elseif>
 				<equals arg1="${deleteOptionSet}" arg2="Single Event" />
 				<then>
-					<execute function="AssertClick" locator1="CalendarEditEvent#SINGLE_EVENT_BUTTON" value1="Single Event" />
+					<execute function="Portal.AssertClick" locator1="CalendarEditEvent#SINGLE_EVENT_BUTTON" value1="Single Event" />
 
-					<execute function="AssertElementPresent" locator1="CalendarAgendaView#SCHEDULER_EVENT_SPECIFIC_1" value1="${eventTitle}" />
-					<execute function="AssertElementNotPresent" locator1="CalendarAgendaView#SCHEDULER_EVENT_SPECIFIC_2" value1="${eventTitle}" />
+					<execute function="Portal.AssertElementPresent" locator1="CalendarAgendaView#SCHEDULER_EVENT_SPECIFIC_1" value1="${eventTitle}" />
+					<execute function="Portal.AssertElementNotPresent" locator1="CalendarAgendaView#SCHEDULER_EVENT_SPECIFIC_2" value1="${eventTitle}" />
 				</then>
 			</elseif>
 		</if>
 
-		<execute function="Refresh" />
+		<execute function="Portal.Refresh" />
 	</command>
 
 	<command name="deleteSpecific">
@@ -971,16 +971,16 @@
 		</execute>
 
 		<if>
-			<condition function="IsTextEqual" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_USERS_FIELD" value1="—" />
+			<condition function="Portal.IsTextEqual" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_USERS_FIELD" value1="—" />
 			<then>
-				<execute function="AssertClickNoError" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_DELETE_BUTTON" value1="Delete" />
+				<execute function="Portal.AssertClickNoError" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_DELETE_BUTTON" value1="Delete" />
 
-				<execute function="Confirm#waitForConfirmation" value1="Would you like to delete this event?" />
+				<execute function="Portal.Confirm#waitForConfirmation" value1="Would you like to delete this event?" />
 			</then>
 			<else>
-				<execute function="AssertClickNoError" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_DELETE_BUTTON" value1="Delete" />
+				<execute function="Portal.AssertClickNoError" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_DELETE_BUTTON" value1="Delete" />
 
-				<execute function="Confirm#waitForConfirmation" value1="Deleting this event will cancel the meeting with your guests. Would you like to delete?" />
+				<execute function="Portal.Confirm#waitForConfirmation" value1="Deleting this event will cancel the meeting with your guests. Would you like to delete?" />
 			</else>
 		</if>
 
@@ -993,7 +993,7 @@
 				<equals arg1="${currentHour}" arg2="22" />
 			</and>
 			<then>
-				<execute function="Refresh" />
+				<execute function="Portal.Refresh" />
 			</then>
 		</if>
 
@@ -1009,15 +1009,15 @@
 			<var name="viewType" value="Agenda" />
 		</execute>
 
-		<execute function="AssertClick#assertPartialTextClickAt" locator1="CalendarAgendaView#SCHEDULER_EVENT_SPECIFIC" value1="${eventTitle}" />
+		<execute function="Portal.AssertClick#assertPartialTextClickAt" locator1="CalendarAgendaView#SCHEDULER_EVENT_SPECIFIC" value1="${eventTitle}" />
 
 		<execute macro="CalendarScheduler#viewEventTitleViaDialogBox">
 			<var name="eventTitle" value="${eventTitle}" />
 		</execute>
 
-		<execute function="AssertClickNoError" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_DELETE_BUTTON" value1="Delete" />
+		<execute function="Portal.AssertClickNoError" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_DELETE_BUTTON" value1="Delete" />
 
-		<execute function="Confirm#waitForConfirmation" value1="Deleting this event will cancel the meeting with your guests. Would you like to delete?" />
+		<execute function="Portal.Confirm#waitForConfirmation" value1="Deleting this event will cancel the meeting with your guests. Would you like to delete?" />
 
 		<execute macro="CalendarScheduler#viewSpecificEventNotPresent">
 			<var name="eventTitle" value="${eventTitle}" />
@@ -1056,21 +1056,21 @@
 				<var name="endDateTime" value="11:59 PM" />
 				<var name="startDateTime" value="12:00 AM" />
 
-				<execute function="AssertChecked" locator1="CalendarEditEvent#ALL_DAY_CHECKBOX" />
-				<execute function="AssertElementNotPresent#assertNotVisible" locator1="CalendarEditEvent#START_DATE_TIME" />
-				<execute function="AssertElementNotPresent#assertNotVisible" locator1="CalendarEditEvent#END_DATE_TIME" />
+				<execute function="Portal.AssertChecked" locator1="CalendarEditEvent#ALL_DAY_CHECKBOX" />
+				<execute function="Portal.AssertElementNotPresent#assertNotVisible" locator1="CalendarEditEvent#START_DATE_TIME" />
+				<execute function="Portal.AssertElementNotPresent#assertNotVisible" locator1="CalendarEditEvent#END_DATE_TIME" />
 
 				<var locator="CalendarEditEvent#END_DATE" name="endDate" />
 				<var locator="CalendarEditEvent#START_DATE" name="startDate" />
 
-				<execute function="AssertTextEquals" locator1="TextInput#TITLE" value1="${eventTitle}" />
+				<execute function="Portal.AssertTextEquals" locator1="TextInput#TITLE" value1="${eventTitle}" />
 
 				<execute macro="PortletEntry#inputTitle">
 					<var name="title" value="${eventTitleEdit}" />
 				</execute>
 
-				<execute function="AssertElementPresent" locator1="CalendarEditEvent#START_DATE" />
-				<execute function="AssertElementPresent" locator1="CalendarEditEvent#END_DATE" />
+				<execute function="Portal.AssertElementPresent" locator1="CalendarEditEvent#START_DATE" />
+				<execute function="Portal.AssertElementPresent" locator1="CalendarEditEvent#END_DATE" />
 
 				<if>
 					<equals arg1="${optionSet}" arg2="true" />
@@ -1085,29 +1085,29 @@
 			<elseif>
 				<equals arg1="${eventType}" arg2="Regular" />
 				<then>
-					<execute function="AssertTextEquals" locator1="TextInput#TITLE" value1="${eventTitle}" />
+					<execute function="Portal.AssertTextEquals" locator1="TextInput#TITLE" value1="${eventTitle}" />
 
 					<execute macro="PortletEntry#inputTitle">
 						<var name="title" value="${eventTitleEdit}" />
 					</execute>
 
-					<execute function="AssertElementPresent" locator1="CalendarEditEvent#START_DATE" />
-					<execute function="AssertElementPresent" locator1="CalendarEditEvent#START_DATE_TIME" />
-					<execute function="AssertElementPresent" locator1="CalendarEditEvent#END_DATE" />
-					<execute function="AssertElementPresent" locator1="CalendarEditEvent#END_DATE_TIME" />
+					<execute function="Portal.AssertElementPresent" locator1="CalendarEditEvent#START_DATE" />
+					<execute function="Portal.AssertElementPresent" locator1="CalendarEditEvent#START_DATE_TIME" />
+					<execute function="Portal.AssertElementPresent" locator1="CalendarEditEvent#END_DATE" />
+					<execute function="Portal.AssertElementPresent" locator1="CalendarEditEvent#END_DATE_TIME" />
 
 					<var locator="CalendarEditEvent#END_DATE" name="endDate" />
 					<var locator="CalendarEditEvent#START_DATE" name="startDate" />
 
-					<execute function="Type" locator1="CalendarEditEvent#START_DATE_TIME" value1="${startDateTime}" />
+					<execute function="Portal.Type" locator1="CalendarEditEvent#START_DATE_TIME" value1="${startDateTime}" />
 
-					<execute function="Click" locator1="CalendarEditEvent#START_DATE_TIME" />
+					<execute function="Portal.Click" locator1="CalendarEditEvent#START_DATE_TIME" />
 
-					<execute function="Type" locator1="CalendarEditEvent#END_DATE_TIME" value1="${endDateTime}" />
+					<execute function="Portal.Type" locator1="CalendarEditEvent#END_DATE_TIME" value1="${endDateTime}" />
 
-					<execute function="Click" locator1="CalendarEditEvent#END_DATE_TIME" />
+					<execute function="Portal.Click" locator1="CalendarEditEvent#END_DATE_TIME" />
 
-					<execute function="Pause" value1="1000" />
+					<execute function="Portal.Pause" value1="1000" />
 
 					<if>
 						<equals arg1="${optionSet}" arg2="true" />
@@ -1123,32 +1123,32 @@
 			<elseif>
 				<equals arg1="${eventType}" arg2="Repeating" />
 				<then>
-					<execute function="AssertTextEquals" locator1="TextInput#TITLE" value1="${eventTitle}" />
+					<execute function="Portal.AssertTextEquals" locator1="TextInput#TITLE" value1="${eventTitle}" />
 
 					<execute macro="PortletEntry#inputTitle">
 						<var name="title" value="${eventTitleEdit}" />
 					</execute>
 
-					<execute function="AssertElementPresent" locator1="CalendarEditEvent#START_DATE" />
-					<execute function="AssertElementPresent" locator1="CalendarEditEvent#START_DATE_TIME" />
-					<execute function="AssertElementPresent" locator1="CalendarEditEvent#END_DATE" />
-					<execute function="AssertElementPresent" locator1="CalendarEditEvent#END_DATE_TIME" />
+					<execute function="Portal.AssertElementPresent" locator1="CalendarEditEvent#START_DATE" />
+					<execute function="Portal.AssertElementPresent" locator1="CalendarEditEvent#START_DATE_TIME" />
+					<execute function="Portal.AssertElementPresent" locator1="CalendarEditEvent#END_DATE" />
+					<execute function="Portal.AssertElementPresent" locator1="CalendarEditEvent#END_DATE_TIME" />
 
 					<var locator="CalendarEditEvent#END_DATE" name="endDate" />
 					<var locator="CalendarEditEvent#START_DATE" name="startDate" />
 
-					<execute function="Type" locator1="CalendarEditEvent#START_DATE_TIME" value1="${startDateTime}" />
+					<execute function="Portal.Type" locator1="CalendarEditEvent#START_DATE_TIME" value1="${startDateTime}" />
 
-					<execute function="Click" locator1="CalendarEditEvent#START_DATE_TIME" />
+					<execute function="Portal.Click" locator1="CalendarEditEvent#START_DATE_TIME" />
 
-					<execute function="Type" locator1="CalendarEditEvent#END_DATE_TIME" value1="${endDateTime}" />
+					<execute function="Portal.Type" locator1="CalendarEditEvent#END_DATE_TIME" value1="${endDateTime}" />
 
-					<execute function="Click" locator1="CalendarEditEvent#END_DATE_TIME" />
+					<execute function="Portal.Click" locator1="CalendarEditEvent#END_DATE_TIME" />
 
-					<execute function="Pause" value1="1000" />
+					<execute function="Portal.Pause" value1="1000" />
 
-					<execute function="AssertChecked" locator1="CalendarEditEvent#REPEAT_CHECKBOX" />
-					<execute function="AssertTextEquals" locator1="CalendarEditEvent#REPEAT_SUMMARY" value1="Daily, 1 Times" />
+					<execute function="Portal.AssertChecked" locator1="CalendarEditEvent#REPEAT_CHECKBOX" />
+					<execute function="Portal.AssertTextEquals" locator1="CalendarEditEvent#REPEAT_SUMMARY" value1="Daily, 1 Times" />
 
 					<if>
 						<equals arg1="${optionSet}" arg2="true" />
@@ -1163,28 +1163,28 @@
 			</elseif>
 		</if>
 
-		<execute function="Click" locator1="Button#PUBLISH" />
+		<execute function="Portal.Click" locator1="Button#PUBLISH" />
 
 		<if>
-			<condition function="IsElementPresent" locator1="CalendarEditEvent#ENTIRE_SERIES_BUTTON" />
+			<condition function="Portal.IsElementPresent" locator1="CalendarEditEvent#ENTIRE_SERIES_BUTTON" />
 			<then>
-				<execute function="AssertClick" locator1="CalendarEditEvent#ENTIRE_SERIES_BUTTON" value1="Entire Series"  />
+				<execute function="Portal.AssertClick" locator1="CalendarEditEvent#ENTIRE_SERIES_BUTTON" value1="Entire Series"  />
 			</then>
 		</if>
 
 		<if>
 			<equals arg1="${optionSetValue}" arg2="inviteResource" />
 			<then>
-				<execute function="AssertElementPresent" locator1="CalendarEditEvent#ARE_YOU_SURE_DIALOG_BOX_HEADER" value1="Are you sure?" />
-				<execute function="AssertTextEquals" locator1="CalendarEditEvent#ARE_YOU_SURE_DIALOG_BOX_BODY" value1="You are about to make changes that will only affect your calendar (${calendarName})." />
+				<execute function="Portal.AssertElementPresent" locator1="CalendarEditEvent#ARE_YOU_SURE_DIALOG_BOX_HEADER" value1="Are you sure?" />
+				<execute function="Portal.AssertTextEquals" locator1="CalendarEditEvent#ARE_YOU_SURE_DIALOG_BOX_BODY" value1="You are about to make changes that will only affect your calendar (${calendarName})." />
 
-				<execute function="AssertClick" locator1="CalendarEditEvent#SAVE_CHANGES_BUTTON" value1="Save changes." />
+				<execute function="Portal.AssertClick" locator1="CalendarEditEvent#SAVE_CHANGES_BUTTON" value1="Save changes." />
 			</then>
 		</if>
 
 		<execute macro="Alert#viewSuccessMessage" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 
 		<execute macro="TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
@@ -1197,7 +1197,7 @@
 
 		<var name="key_eventTitle" value="${eventTitleEdit}" />
 
-		<execute function="AssertTextEquals" locator1="Calendar#SCHEDULER_EVENT_SPECIFIC" value1="${eventTitleEdit}" />
+		<execute function="Portal.AssertTextEquals" locator1="Calendar#SCHEDULER_EVENT_SPECIFIC" value1="${eventTitleEdit}" />
 	</command>
 
 	<command name="editComment">
@@ -1219,17 +1219,17 @@
 
 		<var name="key_eventComment" value="${eventComment}" />
 
-		<execute function="AssertClick" locator1="CalendarViewEventDetails#COMMENTS_COMMENT_EDIT" value1="Edit" />
+		<execute function="Portal.AssertClick" locator1="CalendarViewEventDetails#COMMENTS_COMMENT_EDIT" value1="Edit" />
 
-		<execute function="Type" locator1="CalendarViewEventDetails#COMMENTS_COMMENT_EDIT_BODY_FIELD" value1="${eventCommentEdit}" />
+		<execute function="Portal.Type" locator1="CalendarViewEventDetails#COMMENTS_COMMENT_EDIT_BODY_FIELD" value1="${eventCommentEdit}" />
 
-		<execute function="AssertClick" locator1="CalendarViewEventDetails#COMMENTS_COMMENT_EDIT_PUBLISH_BUTTON" value1="Publish" />
+		<execute function="Portal.AssertClick" locator1="CalendarViewEventDetails#COMMENTS_COMMENT_EDIT_PUBLISH_BUTTON" value1="Publish" />
 
 		<var name="key_eventComment" value="${eventCommentEdit}" />
 
-		<execute function="AssertTextEquals" locator1="CalendarViewEventDetails#COMMENTS_BODY" value1="${eventCommentEdit}" />
+		<execute function="Portal.AssertTextEquals" locator1="CalendarViewEventDetails#COMMENTS_BODY" value1="${eventCommentEdit}" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 	</command>
 
 	<command name="editTitle">
@@ -1265,43 +1265,43 @@
 
 		<var name="key_eventTitle" value="${eventTitle}" />
 
-		<execute function="AssertClick#assertPartialTextClickAt" locator1="CalendarAgendaView#SCHEDULER_EVENT_SPECIFIC" value1="${eventTitle}" />
+		<execute function="Portal.AssertClick#assertPartialTextClickAt" locator1="CalendarAgendaView#SCHEDULER_EVENT_SPECIFIC" value1="${eventTitle}" />
 
 		<execute macro="CalendarScheduler#viewEventTitleViaDialogBox">
 			<var name="eventTitle" value="${eventTitle}" />
 		</execute>
 
-		<execute function="AssertClick" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_EDIT_BUTTON" value1="Edit" />
+		<execute function="Portal.AssertClick" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_EDIT_BUTTON" value1="Edit" />
 
-		<execute function="SelectFrame" locator1="CalendarEditEvent#EDIT_EVENT_IFRAME" />
+		<execute function="Portal.SelectFrame" locator1="CalendarEditEvent#EDIT_EVENT_IFRAME" />
 
-		<execute function="AssertTextEquals" locator1="TextInput#TITLE" value1="${eventTitle}" />
+		<execute function="Portal.AssertTextEquals" locator1="TextInput#TITLE" value1="${eventTitle}" />
 
 		<execute macro="PortletEntry#inputTitle">
 			<var name="title" value="${eventTitleEdit}" />
 		</execute>
 
-		<execute function="AssertElementPresent" locator1="CalendarEditEvent#START_DATE" />
-		<execute function="AssertElementPresent" locator1="CalendarEditEvent#START_DATE_TIME" />
-		<execute function="AssertElementPresent" locator1="CalendarEditEvent#END_DATE" />
-		<execute function="AssertElementPresent" locator1="CalendarEditEvent#END_DATE_TIME" />
+		<execute function="Portal.AssertElementPresent" locator1="CalendarEditEvent#START_DATE" />
+		<execute function="Portal.AssertElementPresent" locator1="CalendarEditEvent#START_DATE_TIME" />
+		<execute function="Portal.AssertElementPresent" locator1="CalendarEditEvent#END_DATE" />
+		<execute function="Portal.AssertElementPresent" locator1="CalendarEditEvent#END_DATE_TIME" />
 
 		<var locator="CalendarEditEvent#END_DATE" name="endDate" />
 		<var locator="CalendarEditEvent#START_DATE" name="startDate" />
 
-		<execute function="Type" locator1="CalendarEditEvent#START_DATE_TIME" value1="${startDateTime}" />
+		<execute function="Portal.Type" locator1="CalendarEditEvent#START_DATE_TIME" value1="${startDateTime}" />
 
-		<execute function="Click" locator1="CalendarEditEvent#START_DATE_TIME" />
+		<execute function="Portal.Click" locator1="CalendarEditEvent#START_DATE_TIME" />
 
-		<execute function="Type" locator1="CalendarEditEvent#END_DATE_TIME" value1="${endDateTime}" />
+		<execute function="Portal.Type" locator1="CalendarEditEvent#END_DATE_TIME" value1="${endDateTime}" />
 
-		<execute function="Click" locator1="CalendarEditEvent#END_DATE_TIME" />
+		<execute function="Portal.Click" locator1="CalendarEditEvent#END_DATE_TIME" />
 
-		<execute function="Pause" value1="1000" />
+		<execute function="Portal.Pause" value1="1000" />
 
 		<execute macro="CalendarEvent#publish" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
@@ -1311,7 +1311,7 @@
 			<var name="viewType" value="Agenda" />
 		</execute>
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="CalendarAgendaView#SCHEDULER_EVENT_SPECIFIC" value1="${eventTitleEdit}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="CalendarAgendaView#SCHEDULER_EVENT_SPECIFIC" value1="${eventTitleEdit}" />
 	</command>
 
 	<command name="gotoConfigureInvitations">
@@ -1327,7 +1327,7 @@
 	</command>
 
 	<command name="gotoRepeatConfiguration">
-		<execute function="Click" locator1="CalendarEditEvent#REPEAT_CHECKBOX" />
+		<execute function="Portal.Click" locator1="CalendarEditEvent#REPEAT_CHECKBOX" />
 	</command>
 
 	<command name="inviteResource">
@@ -1336,11 +1336,11 @@
 		</execute>
 
 		<for list="${resourceNameList}" param="resourceName" >
-			<execute function="Type" locator1="CalendarEditEvent#INVITATIONS_INVITE_RESOURCE_FIELD" value1="${resourceName}" />
+			<execute function="Portal.Type" locator1="CalendarEditEvent#INVITATIONS_INVITE_RESOURCE_FIELD" value1="${resourceName}" />
 
 			<var name="key_resource" value="${resourceName}" />
 
-			<execute function="Click" locator1="CalendarEditEvent#INVITATIONS_INVITE_RESOURCE_FIELD_LIST" value1="${resourceName}" />
+			<execute function="Portal.Click" locator1="CalendarEditEvent#INVITATIONS_INVITE_RESOURCE_FIELD_LIST" value1="${resourceName}" />
 
 			<execute macro="CalendarEvent#viewRSVPPending">
 				<var name="resourceName" value="${resourceName}" />
@@ -1355,28 +1355,28 @@
 	</command>
 
 	<command name="publishRepeating">
-		<execute function="AssertClick" locator1="Button#SUBMIT" value1="Publish" />
+		<execute function="Portal.AssertClick" locator1="Button#SUBMIT" value1="Publish" />
 
-		<execute function="Pause" value1="30000" />
+		<execute function="Portal.Pause" value1="30000" />
 
-		<execute function="AssertElementPresent" locator1="CalendarEditEvent#RECURRING_EVENT_DIALOG_BOX_HEADER" />
+		<execute function="Portal.AssertElementPresent" locator1="CalendarEditEvent#RECURRING_EVENT_DIALOG_BOX_HEADER" />
 
 		<var method="StringUtil#replace('${saveOption}', ' ', '_')" name="saveOptionPath" />
 
 		<var method="StringUtil#upperCase('${saveOptionPath}')" name="saveOptionPath" />
 
-		<execute function="AssertClick" locator1="CalendarEditEvent#${saveOptionPath}_BUTTON" value1="${saveOption}" />
+		<execute function="Portal.AssertClick" locator1="CalendarEditEvent#${saveOptionPath}_BUTTON" value1="${saveOption}" />
 
 		<execute macro="Alert#viewSuccessMessage" />
 	</command>
 
 	<command name="publishWithUserNotification">
-		<execute function="AssertClick" locator1="Button#SUBMIT" value1="Publish" />
+		<execute function="Portal.AssertClick" locator1="Button#SUBMIT" value1="Publish" />
 
-		<execute function="AssertElementPresent" locator1="CalendarEditEvent#ARE_YOU_SURE_DIALOG_BOX_HEADER" value1="Are you sure?" />
-		<execute function="AssertTextEquals" locator1="CalendarEditEvent#ARE_YOU_SURE_DIALOG_BOX_BODY" value1="Invited users will be notified." />
+		<execute function="Portal.AssertElementPresent" locator1="CalendarEditEvent#ARE_YOU_SURE_DIALOG_BOX_HEADER" value1="Are you sure?" />
+		<execute function="Portal.AssertTextEquals" locator1="CalendarEditEvent#ARE_YOU_SURE_DIALOG_BOX_BODY" value1="Invited users will be notified." />
 
-		<execute function="AssertClick" locator1="CalendarEditEvent#SAVE_CHANGES_BUTTON" value1="Save changes." />
+		<execute function="Portal.AssertClick" locator1="CalendarEditEvent#SAVE_CHANGES_BUTTON" value1="Save changes." />
 
 		<execute macro="Alert#viewSuccessMessage" />
 	</command>
@@ -1388,23 +1388,23 @@
 			<var name="eventType" value="${eventType}" />
 		</execute>
 
-		<execute function="Click" locator1="Ratings#YOUR_RATING_STAR_4" />
+		<execute function="Portal.Click" locator1="Ratings#YOUR_RATING_STAR_4" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 	</command>
 
 	<command name="saveEventUserInvite">
-		<execute function="AssertElementPresent" locator1="CalendarEditEvent#ARE_YOU_SURE_DIALOG_BOX_HEADER" value1="Are you sure?" />
-		<execute function="AssertTextEquals" locator1="CalendarEditEvent#ARE_YOU_SURE_DIALOG_BOX_BODY" value1="Invited users will be notified." />
+		<execute function="Portal.AssertElementPresent" locator1="CalendarEditEvent#ARE_YOU_SURE_DIALOG_BOX_HEADER" value1="Are you sure?" />
+		<execute function="Portal.AssertTextEquals" locator1="CalendarEditEvent#ARE_YOU_SURE_DIALOG_BOX_BODY" value1="Invited users will be notified." />
 
-		<execute function="AssertClick" locator1="CalendarEditEvent#SAVE_CHANGES_BUTTON" value1="Save changes." />
+		<execute function="Portal.AssertClick" locator1="CalendarEditEvent#SAVE_CHANGES_BUTTON" value1="Save changes." />
 	</command>
 
 	<command name="saveEventUserInviteCancel">
-		<execute function="AssertElementPresent" locator1="CalendarEditEvent#ARE_YOU_SURE_DIALOG_BOX_HEADER" value1="Are you sure?" />
-		<execute function="AssertTextEquals" locator1="CalendarEditEvent#ARE_YOU_SURE_DIALOG_BOX_BODY" value1="Invited users will be notified." />
+		<execute function="Portal.AssertElementPresent" locator1="CalendarEditEvent#ARE_YOU_SURE_DIALOG_BOX_HEADER" value1="Are you sure?" />
+		<execute function="Portal.AssertTextEquals" locator1="CalendarEditEvent#ARE_YOU_SURE_DIALOG_BOX_BODY" value1="Invited users will be notified." />
 
-		<execute function="AssertClick" locator1="CalendarEditEvent#DO_NOT_CHANGE_THE_EVENT_BUTTON" value1="Do not change the event." />
+		<execute function="Portal.AssertClick" locator1="CalendarEditEvent#DO_NOT_CHANGE_THE_EVENT_BUTTON" value1="Do not change the event." />
 	</command>
 
 	<command name="selectCalendar">
@@ -1415,33 +1415,33 @@
 					<var name="panelName" value="Details" />
 				</execute>
 
-				<execute function="Select" locator1="CalendarEditEvent#DETAILS_CALENDAR_SELECT" value1="${calendarName}" />
+				<execute function="Portal.Select" locator1="CalendarEditEvent#DETAILS_CALENDAR_SELECT" value1="${calendarName}" />
 			</then>
 		</if>
 	</command>
 
 	<command name="selectEventIframe">
-		<execute function="SelectFrame" locator1="CalendarEditEvent#EDIT_EVENT_IFRAME" />
+		<execute function="Portal.SelectFrame" locator1="CalendarEditEvent#EDIT_EVENT_IFRAME" />
 	</command>
 
 	<command name="selectRepeatFrequency">
-		<execute function="Select" locator1="CalendarEditEvent#REPEAT_REPEATS_DROPDOWN" value1="${frequency}" />
+		<execute function="Portal.Select" locator1="CalendarEditEvent#REPEAT_REPEATS_DROPDOWN" value1="${frequency}" />
 
-		<execute function="AssertSelectedLabel" locator1="CalendarEditEvent#REPEAT_REPEATS_DROPDOWN" value1="${frequency}" />
+		<execute function="Portal.AssertSelectedLabel" locator1="CalendarEditEvent#REPEAT_REPEATS_DROPDOWN" value1="${frequency}" />
 	</command>
 
 	<command name="selectTimes">
-		<execute function="Click" locator1="CalendarEditEvent#START_DATE_TIME" />
+		<execute function="Portal.Click" locator1="CalendarEditEvent#START_DATE_TIME" />
 
 		<var name="key_startDateTime" value="${startDateTime}" />
 
-		<execute function="Click" locator1="CalendarEditEvent#START_DATE_TIME_OPTION" />
+		<execute function="Portal.Click" locator1="CalendarEditEvent#START_DATE_TIME_OPTION" />
 
-		<execute function="Click" locator1="CalendarEditEvent#END_DATE_TIME" />
+		<execute function="Portal.Click" locator1="CalendarEditEvent#END_DATE_TIME" />
 
 		<var name="key_endDateTime" value="${endDateTime}" />
 
-		<execute function="Click" locator1="CalendarEditEvent#END_DATE_TIME_OPTION" />
+		<execute function="Portal.Click" locator1="CalendarEditEvent#END_DATE_TIME_OPTION" />
 
 		<execute macro="CalendarEvent#viewTimes">
 			<var name="endDateTime" value="${endDateTime}" />
@@ -1450,28 +1450,28 @@
 	</command>
 
 	<command name="setAllDay">
-		<execute function="Check" locator1="CalendarEditEvent#ALL_DAY_CHECKBOX" />
-		<execute function="AssertElementNotPresent#assertNotVisible" locator1="CalendarEditEvent#START_DATE_TIME" />
-		<execute function="AssertElementNotPresent#assertNotVisible" locator1="CalendarEditEvent#END_DATE_TIME" />
+		<execute function="Portal.Check" locator1="CalendarEditEvent#ALL_DAY_CHECKBOX" />
+		<execute function="Portal.AssertElementNotPresent#assertNotVisible" locator1="CalendarEditEvent#START_DATE_TIME" />
+		<execute function="Portal.AssertElementNotPresent#assertNotVisible" locator1="CalendarEditEvent#END_DATE_TIME" />
 	</command>
 
 	<command name="setDates">
-		<execute function="Type" locator1="CalendarEditEvent#START_DATE" value1="${startDate}" />
-		<execute function="Type" locator1="CalendarEditEvent#END_DATE" value1="${endDate}" />
+		<execute function="Portal.Type" locator1="CalendarEditEvent#START_DATE" value1="${startDate}" />
+		<execute function="Portal.Type" locator1="CalendarEditEvent#END_DATE" value1="${endDate}" />
 	</command>
 
 	<command name="setDatesToday">
 		<var locator="CalendarEditEvent#START_DATE" name="endDate" />
 
-		<execute function="Type" locator1="CalendarEditEvent#END_DATE" value1="${endDate}" />
+		<execute function="Portal.Type" locator1="CalendarEditEvent#END_DATE" value1="${endDate}" />
 	</command>
 
 	<command name="setEndDate">
-		<execute function="Type" locator1="CalendarEditEvent#END_DATE" value1="${endDate}" />
+		<execute function="Portal.Type" locator1="CalendarEditEvent#END_DATE" value1="${endDate}" />
 	</command>
 
 	<command name="setEndDateTomorrow">
-		<execute function="Click" locator1="CalendarEditEvent#END_DATE" />
+		<execute function="Portal.Click" locator1="CalendarEditEvent#END_DATE" />
 
 		<var locator="CalendarEditEvent#MINI_CALENDAR_DAY_SELECTED" name="daySelected" />
 
@@ -1480,16 +1480,16 @@
 		<var name="key_daySpecific" value="${tomorrow}" />
 
 		<if>
-			<condition function="IsElementPresent" locator1="CalendarEditEvent#MINI_CALENDAR_DAY_SPECIFIC" />
+			<condition function="Portal.IsElementPresent" locator1="CalendarEditEvent#MINI_CALENDAR_DAY_SPECIFIC" />
 			<then>
-				<execute function="Click" locator1="CalendarEditEvent#MINI_CALENDAR_DAY_SPECIFIC" />
+				<execute function="Portal.Click" locator1="CalendarEditEvent#MINI_CALENDAR_DAY_SPECIFIC" />
 			</then>
 			<else>
-				<execute function="Click" locator1="CalendarEditEvent#MINI_CALENDAR_NEXT_MONTH_BUTTON" />
+				<execute function="Portal.Click" locator1="CalendarEditEvent#MINI_CALENDAR_NEXT_MONTH_BUTTON" />
 
 				<var name="key_daySpecific" value="1" />
 
-				<execute function="Click" locator1="CalendarEditEvent#MINI_CALENDAR_DAY_SPECIFIC" />
+				<execute function="Portal.Click" locator1="CalendarEditEvent#MINI_CALENDAR_DAY_SPECIFIC" />
 			</else>
 		</if>
 	</command>
@@ -1501,96 +1501,96 @@
 			<var name="frequency" value="${frequency}" />
 		</execute>
 
-		<execute function="AssertSelectedLabel" locator1="CalendarEditEvent#REPEAT_REPEAT_EVERY_DROPDOWN" value1="1" />
+		<execute function="Portal.AssertSelectedLabel" locator1="CalendarEditEvent#REPEAT_REPEAT_EVERY_DROPDOWN" value1="1" />
 
 		<if>
 			<equals arg1="${frequency}" arg2="Monthly" />
 			<then>
-				<execute function="Click" locator1="CalendarEditEvent#REPEAT_REPEAT_ON_DAY_OF_THE_WEEK_RADIO" />
+				<execute function="Portal.Click" locator1="CalendarEditEvent#REPEAT_REPEAT_ON_DAY_OF_THE_WEEK_RADIO" />
 			</then>
 		</if>
 
 		<if>
 			<isset var="numberOfOccurrences" />
 			<then>
-				<execute function="Click" locator1="CalendarEditEvent#REPEAT_ENDS_AFTER_RADIO" />
+				<execute function="Portal.Click" locator1="CalendarEditEvent#REPEAT_ENDS_AFTER_RADIO" />
 
-				<execute function="Type" locator1="CalendarEditEvent#REPEAT_ENDS_AFTER_FIELD" value1="${numberOfOccurrences}" />
+				<execute function="Portal.Type" locator1="CalendarEditEvent#REPEAT_ENDS_AFTER_FIELD" value1="${numberOfOccurrences}" />
 			</then>
 		</if>
 
 		<if>
 			<isset var="endOnDate" />
 			<then>
-				<execute function="Click" locator1="CalendarEditEvent#REPEAT_ENDS_ON_RADIO" />
+				<execute function="Portal.Click" locator1="CalendarEditEvent#REPEAT_ENDS_ON_RADIO" />
 
-				<execute function="Type#clickAtType" locator1="CalendarEditEvent#REPEAT_ENDS_ON_DATE_FIELD" value1="${endOnDate}" />
+				<execute function="Portal.Type#clickAtType" locator1="CalendarEditEvent#REPEAT_ENDS_ON_DATE_FIELD" value1="${endOnDate}" />
 			</then>
 		</if>
 
-		<execute function="Pause" value1="1000" />
+		<execute function="Portal.Pause" value1="1000" />
 
-		<execute function="Click" locator1="CalendarEditEvent#REPEAT_DIALOG_SUMMARY" />
+		<execute function="Portal.Click" locator1="CalendarEditEvent#REPEAT_DIALOG_SUMMARY" />
 
-		<execute function="Pause" value1="1000" />
+		<execute function="Portal.Pause" value1="1000" />
 
 		<if>
 			<equals arg1="${frequency}" arg2="Monthly" />
 			<then>
-				<execute function="AssertTextEquals#assertPartialText" locator1="CalendarEditEvent#REPEAT_DIALOG_SUMMARY" value1="${frequency}" />
+				<execute function="Portal.AssertTextEquals#assertPartialText" locator1="CalendarEditEvent#REPEAT_DIALOG_SUMMARY" value1="${frequency}" />
 
 				<var locator="CalendarEditEvent#REPEAT_MONTHLY_CURRENT_DAY" name="currentDay" />
 				<var method="StringUtil#lowerCase('${currentDay}')" name="currentDay" />
 				<var method="StringUtil#upperCaseFirstLetter('${currentDay}')" name="currentDay" />
 
-				<execute function="AssertTextEquals#assertPartialText" locator1="CalendarEditEvent#REPEAT_DIALOG_SUMMARY" value1="${currentDay}" />
-				<execute function="AssertTextEquals#assertPartialText" locator1="CalendarEditEvent#REPEAT_DIALOG_SUMMARY" value1="${numberOfOccurrences} Times" />
+				<execute function="Portal.AssertTextEquals#assertPartialText" locator1="CalendarEditEvent#REPEAT_DIALOG_SUMMARY" value1="${currentDay}" />
+				<execute function="Portal.AssertTextEquals#assertPartialText" locator1="CalendarEditEvent#REPEAT_DIALOG_SUMMARY" value1="${numberOfOccurrences} Times" />
 
 				<execute macro="CalendarEvent#viewRepeatingMonthPosition" />
 
-				<execute function="AssertClick" locator1="CalendarEditEvent#REPEAT_DONE_BUTTON" value1="Done" />
+				<execute function="Portal.AssertClick" locator1="CalendarEditEvent#REPEAT_DONE_BUTTON" value1="Done" />
 			</then>
 			<elseif>
 				<equals arg1="${frequency}" arg2="Weekly" />
 				<then>
-					<execute function="AssertTextEquals#assertPartialText" locator1="CalendarEditEvent#REPEAT_DIALOG_SUMMARY" value1="${frequency}" />
+					<execute function="Portal.AssertTextEquals#assertPartialText" locator1="CalendarEditEvent#REPEAT_DIALOG_SUMMARY" value1="${frequency}" />
 
 					<var locator="CalendarEditEvent#REPEAT_WEEKLY_CURRENT_DAY" name="currentDay" />
 					<var method="StringUtil#lowerCase('${currentDay}')" name="currentDay" />
 					<var method="StringUtil#upperCaseFirstLetter('${currentDay}')" name="currentDay" />
 
-					<execute function="AssertTextEquals#assertPartialText" locator1="CalendarEditEvent#REPEAT_DIALOG_SUMMARY" value1="${currentDay}" />
-					<execute function="AssertTextEquals#assertPartialText" locator1="CalendarEditEvent#REPEAT_DIALOG_SUMMARY" value1="${numberOfOccurrences} Times" />
+					<execute function="Portal.AssertTextEquals#assertPartialText" locator1="CalendarEditEvent#REPEAT_DIALOG_SUMMARY" value1="${currentDay}" />
+					<execute function="Portal.AssertTextEquals#assertPartialText" locator1="CalendarEditEvent#REPEAT_DIALOG_SUMMARY" value1="${numberOfOccurrences} Times" />
 
-					<execute function="AssertClick" locator1="CalendarEditEvent#REPEAT_DONE_BUTTON" value1="Done" />
+					<execute function="Portal.AssertClick" locator1="CalendarEditEvent#REPEAT_DONE_BUTTON" value1="Done" />
 				</then>
 			</elseif>
 			<elseif>
 				<isset var="numberOfOccurrences" />
 				<then>
-					<execute function="AssertTextEquals" locator1="CalendarEditEvent#REPEAT_DIALOG_SUMMARY" value1="${frequency}, ${numberOfOccurrences} Times" />
+					<execute function="Portal.AssertTextEquals" locator1="CalendarEditEvent#REPEAT_DIALOG_SUMMARY" value1="${frequency}, ${numberOfOccurrences} Times" />
 
-					<execute function="AssertClick" locator1="CalendarEditEvent#REPEAT_DONE_BUTTON" value1="Done" />
+					<execute function="Portal.AssertClick" locator1="CalendarEditEvent#REPEAT_DONE_BUTTON" value1="Done" />
 
-					<execute function="AssertTextEquals" locator1="CalendarEditEvent#REPEAT_SUMMARY" value1="${frequency}, ${numberOfOccurrences} Times" />
+					<execute function="Portal.AssertTextEquals" locator1="CalendarEditEvent#REPEAT_SUMMARY" value1="${frequency}, ${numberOfOccurrences} Times" />
 				</then>
 			</elseif>
 			<elseif>
 				<isset var="endOnDate" />
 				<then>
-					<execute function="AssertTextEquals" locator1="CalendarEditEvent#REPEAT_DIALOG_SUMMARY" value1="${frequency}, Until ${endOnDateSummary}" />
+					<execute function="Portal.AssertTextEquals" locator1="CalendarEditEvent#REPEAT_DIALOG_SUMMARY" value1="${frequency}, Until ${endOnDateSummary}" />
 
-					<execute function="AssertClick" locator1="CalendarEditEvent#REPEAT_DONE_BUTTON" value1="Done" />
+					<execute function="Portal.AssertClick" locator1="CalendarEditEvent#REPEAT_DONE_BUTTON" value1="Done" />
 
-					<execute function="AssertTextEquals" locator1="CalendarEditEvent#REPEAT_SUMMARY" value1="${frequency}, Until ${endOnDateSummary}" />
+					<execute function="Portal.AssertTextEquals" locator1="CalendarEditEvent#REPEAT_SUMMARY" value1="${frequency}, Until ${endOnDateSummary}" />
 				</then>
 			</elseif>
 			<else>
-				<execute function="AssertClick" locator1="CalendarEditEvent#REPEAT_DONE_BUTTON" value1="Done" />
+				<execute function="Portal.AssertClick" locator1="CalendarEditEvent#REPEAT_DONE_BUTTON" value1="Done" />
 			</else>
 		</if>
 
-		<execute function="Check" locator1="CalendarEditEvent#REPEAT_CHECKBOX" />
+		<execute function="Portal.Check" locator1="CalendarEditEvent#REPEAT_CHECKBOX" />
 	</command>
 
 	<command name="setRepeatingYearly">
@@ -1600,36 +1600,36 @@
 			<var name="frequency" value="Yearly" />
 		</execute>
 
-		<execute function="AssertSelectedLabel" locator1="CalendarEditEvent#REPEAT_REPEAT_EVERY_DROPDOWN" value1="1" />
+		<execute function="Portal.AssertSelectedLabel" locator1="CalendarEditEvent#REPEAT_REPEAT_EVERY_DROPDOWN" value1="1" />
 
-		<execute function="Click" locator1="CalendarEditEvent#REPEAT_REPEAT_ON_DAY_OF_THE_WEEK_RADIO" />
+		<execute function="Portal.Click" locator1="CalendarEditEvent#REPEAT_REPEAT_ON_DAY_OF_THE_WEEK_RADIO" />
 
-		<execute function="Pause" value1="1000" />
+		<execute function="Portal.Pause" value1="1000" />
 
-		<execute function="Click" locator1="CalendarEditEvent#REPEAT_DIALOG_SUMMARY" />
+		<execute function="Portal.Click" locator1="CalendarEditEvent#REPEAT_DIALOG_SUMMARY" />
 
-		<execute function="Pause" value1="1000" />
+		<execute function="Portal.Pause" value1="1000" />
 
 		<if>
-			<condition function="IsTextEqual" locator1="CalendarEditEvent#REPEAT_DIALOG_SUMMARY" value1="${yearlyRecurrenceSummary}" />
+			<condition function="Portal.IsTextEqual" locator1="CalendarEditEvent#REPEAT_DIALOG_SUMMARY" value1="${yearlyRecurrenceSummary}" />
 			<then>
-				<execute function="AssertTextEquals" locator1="CalendarEditEvent#REPEAT_DIALOG_SUMMARY" value1="${yearlyRecurrenceSummary}" />
+				<execute function="Portal.AssertTextEquals" locator1="CalendarEditEvent#REPEAT_DIALOG_SUMMARY" value1="${yearlyRecurrenceSummary}" />
 			</then>
 			<else>
-				<execute function="AssertTextEquals" locator1="CalendarEditEvent#REPEAT_DIALOG_SUMMARY" value1="${yearlyRecurrenceSummaryPreviousDay}" />
+				<execute function="Portal.AssertTextEquals" locator1="CalendarEditEvent#REPEAT_DIALOG_SUMMARY" value1="${yearlyRecurrenceSummaryPreviousDay}" />
 			</else>
 		</if>
 
-		<execute function="AssertTextEquals" locator1="CalendarEditEvent#REPEAT_DIALOG_SUMMARY" value1="${yearlyRecurrenceSummary}" />
+		<execute function="Portal.AssertTextEquals" locator1="CalendarEditEvent#REPEAT_DIALOG_SUMMARY" value1="${yearlyRecurrenceSummary}" />
 
-		<execute function="AssertClick" locator1="CalendarEditEvent#REPEAT_DONE_BUTTON" value1="Done" />
+		<execute function="Portal.AssertClick" locator1="CalendarEditEvent#REPEAT_DONE_BUTTON" value1="Done" />
 
-		<execute function="Check" locator1="CalendarEditEvent#REPEAT_CHECKBOX" />
+		<execute function="Portal.Check" locator1="CalendarEditEvent#REPEAT_CHECKBOX" />
 	</command>
 
 	<command name="setTimes">
-		<execute function="Type" locator1="CalendarEditEvent#START_DATE_TIME" value1="${startDateTime}" />
-		<execute function="Type" locator1="CalendarEditEvent#END_DATE_TIME" value1="${endDateTime}" />
+		<execute function="Portal.Type" locator1="CalendarEditEvent#START_DATE_TIME" value1="${startDateTime}" />
+		<execute function="Portal.Type" locator1="CalendarEditEvent#END_DATE_TIME" value1="${endDateTime}" />
 
 		<execute macro="CalendarEvent#viewTimes">
 			<var name="endDateTime" value="${endDateTime}" />
@@ -1642,7 +1642,7 @@
 			<var name="panelName" value="Categorization" />
 		</execute>
 
-		<execute function="AssertElementPresent" locator1="CalendarEditEvent#CATEGORIZATION_TAG_FIELD" />
+		<execute function="Portal.AssertElementPresent" locator1="CalendarEditEvent#CATEGORIZATION_TAG_FIELD" />
 
 		<if>
 			<isset var="tagTextList" />
@@ -1650,21 +1650,21 @@
 				<for list="${tagTextList}" param="tagText">
 					<var name="key_tagText" value="${tagText}" />
 
-					<execute function="Type#typePause" locator1="CalendarEditEvent#CATEGORIZATION_TAG_FIELD" value1="${tagText}" />
+					<execute function="Portal.Type#typePause" locator1="CalendarEditEvent#CATEGORIZATION_TAG_FIELD" value1="${tagText}" />
 
-					<execute function="AssertClick" locator1="CalendarEditEvent#CATEGORIZATION_ADD_TAGS_BUTTON" value1="Add" />
+					<execute function="Portal.AssertClick" locator1="CalendarEditEvent#CATEGORIZATION_ADD_TAGS_BUTTON" value1="Add" />
 
-					<execute function="AssertTextEquals" locator1="CalendarEditEvent#CATEGORIZATION_TAG_SPECIFIC" value1="${tagText}" />
+					<execute function="Portal.AssertTextEquals" locator1="CalendarEditEvent#CATEGORIZATION_TAG_SPECIFIC" value1="${tagText}" />
 				</for>
 			</then>
 			<else>
 				<var name="key_tagText" value="${tagText}" />
 
-				<execute function="Type#typePause" locator1="CalendarEditEvent#CATEGORIZATION_TAG_FIELD" value1="${tagText}" />
+				<execute function="Portal.Type#typePause" locator1="CalendarEditEvent#CATEGORIZATION_TAG_FIELD" value1="${tagText}" />
 
-				<execute function="AssertClick" locator1="CalendarEditEvent#CATEGORIZATION_ADD_TAGS_BUTTON" value1="Add" />
+				<execute function="Portal.AssertClick" locator1="CalendarEditEvent#CATEGORIZATION_ADD_TAGS_BUTTON" value1="Add" />
 
-				<execute function="AssertTextEquals" locator1="CalendarEditEvent#CATEGORIZATION_TAG_SPECIFIC" value1="${tagText}" />
+				<execute function="Portal.AssertTextEquals" locator1="CalendarEditEvent#CATEGORIZATION_TAG_SPECIFIC" value1="${tagText}" />
 			</else>
 		</if>
 	</command>
@@ -1739,7 +1739,7 @@
 
 			<var name="key_eventTitle" value="${eventTitle}" />
 
-			<execute function="AssertElementPresent" locator1="Calendar#SCHEDULER_VIEW_ALL_DAY_EVENT_DAY_WEEK_AND_MONTH_VIEW" value1="${eventTitle}" />
+			<execute function="Portal.AssertElementPresent" locator1="Calendar#SCHEDULER_VIEW_ALL_DAY_EVENT_DAY_WEEK_AND_MONTH_VIEW" value1="${eventTitle}" />
 		</for>
 
 		<execute macro="CalendarScheduler#viewAgenda">
@@ -1748,8 +1748,8 @@
 	</command>
 
 	<command name="viewApprovedEventRSVPButtons">
-		<execute function="AssertTextEquals" locator1="CalendarViewEventDetails#MAYBE_BUTTON" value1="Maybe" />
-		<execute function="AssertTextEquals" locator1="CalendarViewEventDetails#DECLINE_BUTTON" value1="Decline" />
+		<execute function="Portal.AssertTextEquals" locator1="CalendarViewEventDetails#MAYBE_BUTTON" value1="Maybe" />
+		<execute function="Portal.AssertTextEquals" locator1="CalendarViewEventDetails#DECLINE_BUTTON" value1="Decline" />
 	</command>
 
 	<command name="viewApprovedRSVP">
@@ -1761,11 +1761,11 @@
 			<var name="eventTitle" value="${eventTitle}" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_EVENT_TITLE" value1="${eventTitle}" />
+		<execute function="Portal.AssertTextEquals" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_EVENT_TITLE" value1="${eventTitle}" />
 
 		<var name="key_rsvp" value="${rsvp}" />
 
-		<execute function="AssertElementPresent" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_ATTEND_INACTIVE" value1="${rsvp}" />
+		<execute function="Portal.AssertElementPresent" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_ATTEND_INACTIVE" value1="${rsvp}" />
 	</command>
 
 	<command name="viewAvailableCalendars">
@@ -1776,7 +1776,7 @@
 		<for list="${availableCalendarList}" param="availableCalendarName">
 			<var name="key_calendarName" value="${availableCalendarName}" />
 
-			<execute function="AssertElementPresent" locator1="CalendarEditEvent#DETAILS_CALENDAR_SELECT_OPTION" />
+			<execute function="Portal.AssertElementPresent" locator1="CalendarEditEvent#DETAILS_CALENDAR_SELECT_OPTION" />
 		</for>
 	</command>
 
@@ -1793,24 +1793,24 @@
 				<for list="${eventCommentList}" param="eventComment">
 					<var name="key_entryComment" value="${eventComment}" />
 
-					<execute function="AssertTextEquals" locator1="Comments#USER_NAME" value1="${user} (You)" />
-					<execute function="AssertTextEquals" locator1="Comments#COMMENT_BODY_SPECIFIC" value1="${eventComment}" />
+					<execute function="Portal.AssertTextEquals" locator1="Comments#USER_NAME" value1="${user} (You)" />
+					<execute function="Portal.AssertTextEquals" locator1="Comments#COMMENT_BODY_SPECIFIC" value1="${eventComment}" />
 				</for>
 			</then>
 			<else>
 				<var name="key_entryComment" value="${eventComment}" />
 
-				<execute function="AssertTextEquals" locator1="Comments#USER_NAME" value1="${user} (You)" />
-				<execute function="AssertTextEquals" locator1="Comments#COMMENT_BODY_SPECIFIC" value1="${eventComment}" />
+				<execute function="Portal.AssertTextEquals" locator1="Comments#USER_NAME" value1="${user} (You)" />
+				<execute function="Portal.AssertTextEquals" locator1="Comments#COMMENT_BODY_SPECIFIC" value1="${eventComment}" />
 			</else>
 		</if>
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 	</command>
 
 	<command name="viewDefaultTimes">
-		<execute function="AssertTextEquals#assertValue" locator1="CalendarEditEvent#START_DATE_TIME" value1="${startDateTime}" />
-		<execute function="AssertTextEquals#assertValue" locator1="CalendarEditEvent#END_DATE_TIME" value1="${endDateTime}" />
+		<execute function="Portal.AssertTextEquals#assertValue" locator1="CalendarEditEvent#START_DATE_TIME" value1="${startDateTime}" />
+		<execute function="Portal.AssertTextEquals#assertValue" locator1="CalendarEditEvent#END_DATE_TIME" value1="${endDateTime}" />
 	</command>
 
 	<command name="viewDetails">
@@ -1837,20 +1837,20 @@
 	</command>
 
 	<command name="viewDetailsInPortlet">
-		<execute function="AssertTextEquals" locator1="CalendarViewEventDetails#EVENT_TITLE" value1="${eventTitle}" />
+		<execute function="Portal.AssertTextEquals" locator1="CalendarViewEventDetails#EVENT_TITLE" value1="${eventTitle}" />
 
 		<execute macro="CalendarEvent#viewDetailsResources">
 			<var name="calendarName" value="${calendarName}" />
 		</execute>
 
-		<execute function="AssertElementPresent" locator1="CalendarViewEventDetails#START_DATE_FIELD" />
-		<execute function="AssertElementPresent" locator1="CalendarViewEventDetails#END_DATE_FIELD" />
+		<execute function="Portal.AssertElementPresent" locator1="CalendarViewEventDetails#START_DATE_FIELD" />
+		<execute function="Portal.AssertElementPresent" locator1="CalendarViewEventDetails#END_DATE_FIELD" />
 
 		<if>
 			<isset var="relatedAssetTitle" />
 			<then>
-				<execute function="AssertTextEquals" locator1="AssetRelatedAssets#HEADER" value1="Related Assets:" />
-				<execute function="AssertTextEquals" locator1="AssetRelatedAssets#ASSET_TITLE" value1="${relatedAssetTitle}" />
+				<execute function="Portal.AssertTextEquals" locator1="AssetRelatedAssets#HEADER" value1="Related Assets:" />
+				<execute function="Portal.AssertTextEquals" locator1="AssetRelatedAssets#ASSET_TITLE" value1="${relatedAssetTitle}" />
 			</then>
 		</if>
 
@@ -1867,50 +1867,50 @@
 		<if>
 			<equals arg1="${yourRating}" arg2="false" />
 			<then>
-				<execute function="AssertTextEquals" locator1="Ratings#YOUR_RATING_LABEL"  value1="Your Rating" />
-				<execute function="AssertElementNotPresent" locator1="Ratings#YOUR_RATING_STAR_1" />
-				<execute function="AssertElementNotPresent" locator1="Ratings#YOUR_RATING_STAR_2" />
-				<execute function="AssertElementNotPresent" locator1="Ratings#YOUR_RATING_STAR_3" />
-				<execute function="AssertElementNotPresent" locator1="Ratings#YOUR_RATING_STAR_4" />
-				<execute function="AssertElementNotPresent" locator1="Ratings#YOUR_RATING_STAR_5" />
-				<execute function="AssertElementPresent" locator1="Ratings#YOUR_RATING_STAR_EMPTY_1" />
-				<execute function="AssertElementPresent" locator1="Ratings#YOUR_RATING_STAR_EMPTY_2" />
-				<execute function="AssertElementPresent" locator1="Ratings#YOUR_RATING_STAR_EMPTY_3" />
-				<execute function="AssertElementPresent" locator1="Ratings#YOUR_RATING_STAR_EMPTY_4" />
-				<execute function="AssertElementPresent" locator1="Ratings#YOUR_RATING_STAR_EMPTY_5" />
+				<execute function="Portal.AssertTextEquals" locator1="Ratings#YOUR_RATING_LABEL"  value1="Your Rating" />
+				<execute function="Portal.AssertElementNotPresent" locator1="Ratings#YOUR_RATING_STAR_1" />
+				<execute function="Portal.AssertElementNotPresent" locator1="Ratings#YOUR_RATING_STAR_2" />
+				<execute function="Portal.AssertElementNotPresent" locator1="Ratings#YOUR_RATING_STAR_3" />
+				<execute function="Portal.AssertElementNotPresent" locator1="Ratings#YOUR_RATING_STAR_4" />
+				<execute function="Portal.AssertElementNotPresent" locator1="Ratings#YOUR_RATING_STAR_5" />
+				<execute function="Portal.AssertElementPresent" locator1="Ratings#YOUR_RATING_STAR_EMPTY_1" />
+				<execute function="Portal.AssertElementPresent" locator1="Ratings#YOUR_RATING_STAR_EMPTY_2" />
+				<execute function="Portal.AssertElementPresent" locator1="Ratings#YOUR_RATING_STAR_EMPTY_3" />
+				<execute function="Portal.AssertElementPresent" locator1="Ratings#YOUR_RATING_STAR_EMPTY_4" />
+				<execute function="Portal.AssertElementPresent" locator1="Ratings#YOUR_RATING_STAR_EMPTY_5" />
 			</then>
 			<else>
-				<execute function="AssertTextEquals" locator1="Ratings#YOUR_RATING_LABEL"  value1="Your Rating" />
-				<execute function="AssertElementPresent" locator1="Ratings#YOUR_RATING_STAR_1" />
-				<execute function="AssertElementPresent" locator1="Ratings#YOUR_RATING_STAR_2" />
-				<execute function="AssertElementPresent" locator1="Ratings#YOUR_RATING_STAR_3" />
-				<execute function="AssertElementPresent" locator1="Ratings#YOUR_RATING_STAR_4" />
-				<execute function="AssertElementNotPresent" locator1="Ratings#YOUR_RATING_STAR_5" />
-				<execute function="AssertElementPresent" locator1="Ratings#YOUR_RATING_STAR_EMPTY_1" />
-				<execute function="AssertElementNotPresent" locator1="Ratings#YOUR_RATING_STAR_EMPTY_2" />
-				<execute function="AssertElementNotPresent" locator1="Ratings#YOUR_RATING_STAR_EMPTY_3" />
-				<execute function="AssertElementNotPresent" locator1="Ratings#YOUR_RATING_STAR_EMPTY_4" />
-				<execute function="AssertElementNotPresent" locator1="Ratings#YOUR_RATING_STAR_EMPTY_5" />
+				<execute function="Portal.AssertTextEquals" locator1="Ratings#YOUR_RATING_LABEL"  value1="Your Rating" />
+				<execute function="Portal.AssertElementPresent" locator1="Ratings#YOUR_RATING_STAR_1" />
+				<execute function="Portal.AssertElementPresent" locator1="Ratings#YOUR_RATING_STAR_2" />
+				<execute function="Portal.AssertElementPresent" locator1="Ratings#YOUR_RATING_STAR_3" />
+				<execute function="Portal.AssertElementPresent" locator1="Ratings#YOUR_RATING_STAR_4" />
+				<execute function="Portal.AssertElementNotPresent" locator1="Ratings#YOUR_RATING_STAR_5" />
+				<execute function="Portal.AssertElementPresent" locator1="Ratings#YOUR_RATING_STAR_EMPTY_1" />
+				<execute function="Portal.AssertElementNotPresent" locator1="Ratings#YOUR_RATING_STAR_EMPTY_2" />
+				<execute function="Portal.AssertElementNotPresent" locator1="Ratings#YOUR_RATING_STAR_EMPTY_3" />
+				<execute function="Portal.AssertElementNotPresent" locator1="Ratings#YOUR_RATING_STAR_EMPTY_4" />
+				<execute function="Portal.AssertElementNotPresent" locator1="Ratings#YOUR_RATING_STAR_EMPTY_5" />
 			</else>
 		</if>
 
-		<execute function="AssertTextEquals" locator1="Ratings#AVERAGE_LABEL"  value1="Average (1 Vote)" />
-		<execute function="AssertElementPresent" locator1="Ratings#AVERAGE_STAR_1" />
-		<execute function="AssertElementPresent" locator1="Ratings#AVERAGE_STAR_2" />
-		<execute function="AssertElementPresent" locator1="Ratings#AVERAGE_STAR_3" />
-		<execute function="AssertElementPresent" locator1="Ratings#AVERAGE_STAR_4" />
-		<execute function="AssertElementNotPresent" locator1="Ratings#AVERAGE_STAR_5" />
-		<execute function="AssertElementPresent" locator1="Ratings#AVERAGE_STAR_EMPTY_1" />
-		<execute function="AssertElementNotPresent" locator1="Ratings#AVERAGE_STAR_EMPTY_2" />
-		<execute function="AssertElementNotPresent" locator1="Ratings#AVERAGE_STAR_EMPTY_3" />
-		<execute function="AssertElementNotPresent" locator1="Ratings#AVERAGE_STAR_EMPTY_4" />
-		<execute function="AssertElementNotPresent" locator1="Ratings#AVERAGE_STAR_EMPTY_5" />
+		<execute function="Portal.AssertTextEquals" locator1="Ratings#AVERAGE_LABEL"  value1="Average (1 Vote)" />
+		<execute function="Portal.AssertElementPresent" locator1="Ratings#AVERAGE_STAR_1" />
+		<execute function="Portal.AssertElementPresent" locator1="Ratings#AVERAGE_STAR_2" />
+		<execute function="Portal.AssertElementPresent" locator1="Ratings#AVERAGE_STAR_3" />
+		<execute function="Portal.AssertElementPresent" locator1="Ratings#AVERAGE_STAR_4" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Ratings#AVERAGE_STAR_5" />
+		<execute function="Portal.AssertElementPresent" locator1="Ratings#AVERAGE_STAR_EMPTY_1" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Ratings#AVERAGE_STAR_EMPTY_2" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Ratings#AVERAGE_STAR_EMPTY_3" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Ratings#AVERAGE_STAR_EMPTY_4" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Ratings#AVERAGE_STAR_EMPTY_5" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 	</command>
 
 	<command name="viewDetailsResources">
-		<execute function="AssertTextEquals" locator1="CalendarViewEventDetails#RESOURCES_FIELD" value1="${calendarName}" />
+		<execute function="Portal.AssertTextEquals" locator1="CalendarViewEventDetails#RESOURCES_FIELD" value1="${calendarName}" />
 	</command>
 
 	<command name="viewDetailsTags">
@@ -1920,19 +1920,19 @@
 				<for list="${tagTextList}" param="tagText">
 					<var name="key_tagText" value="${tagText}" />
 
-					<execute function="AssertElementPresent" locator1="CalendarViewEventDetails#TAGS_LABEL" />
-					<execute function="AssertTextEquals" locator1="CalendarViewEventDetails#TAGS_TAG_SPECIFIC" value1="Tags: ${tagText}" />
+					<execute function="Portal.AssertElementPresent" locator1="CalendarViewEventDetails#TAGS_LABEL" />
+					<execute function="Portal.AssertTextEquals" locator1="CalendarViewEventDetails#TAGS_TAG_SPECIFIC" value1="Tags: ${tagText}" />
 				</for>
 			</then>
 			<else>
 				<var name="key_tagText" value="${tagText}" />
 
-				<execute function="AssertElementPresent" locator1="CalendarViewEventDetails#TAGS_LABEL" />
-				<execute function="AssertTextEquals" locator1="CalendarViewEventDetails#TAGS_TAG_SPECIFIC" value1="Tags: ${tagText}" />
+				<execute function="Portal.AssertElementPresent" locator1="CalendarViewEventDetails#TAGS_LABEL" />
+				<execute function="Portal.AssertTextEquals" locator1="CalendarViewEventDetails#TAGS_TAG_SPECIFIC" value1="Tags: ${tagText}" />
 			</else>
 		</if>
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 	</command>
 
 	<command name="viewEventNotToday">
@@ -1943,7 +1943,7 @@
 
 			<var name="key_eventTitle" value="${eventTitle}" />
 
-			<execute function="AssertElementPresent" locator1="Calendar#SCHEDULER_VIEW_EVENT_NOT_TODAY" value1="${eventTitle}" />
+			<execute function="Portal.AssertElementPresent" locator1="Calendar#SCHEDULER_VIEW_EVENT_NOT_TODAY" value1="${eventTitle}" />
 		</for>
 
 		<execute macro="CalendarScheduler#viewAgenda">
@@ -1958,11 +1958,11 @@
 		</execute>
 
 		<for list="${resourceNameList}" param="resourceName" >
-			<execute function="Type" locator1="CalendarEditEvent#INVITATIONS_INVITE_RESOURCE_FIELD" value1="${resourceName}" />
+			<execute function="Portal.Type" locator1="CalendarEditEvent#INVITATIONS_INVITE_RESOURCE_FIELD" value1="${resourceName}" />
 
 			<var name="key_resource" value="${resourceName}" />
 
-			<execute function="AssertElementNotPresent" locator1="CalendarEditEvent#INVITATIONS_INVITE_RESOURCE_FIELD_LIST" />
+			<execute function="Portal.AssertElementNotPresent" locator1="CalendarEditEvent#INVITATIONS_INVITE_RESOURCE_FIELD_LIST" />
 		</for>
 	</command>
 
@@ -1975,9 +1975,9 @@
 			<var name="eventTitle" value="${eventTitle}" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_EVENT_TITLE" value1="${eventTitle}" />
+		<execute function="Portal.AssertTextEquals" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_EVENT_TITLE" value1="${eventTitle}" />
 
-		<execute function="AssertElementPresent" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_CALENDAR" value1="${userCalendarName}" />
+		<execute function="Portal.AssertElementPresent" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_CALENDAR" value1="${userCalendarName}" />
 
 		<execute macro="CalendarScheduler#viewNoRSVP">
 			<var name="eventTitle" value="${eventTitle}" />
@@ -1993,23 +1993,23 @@
 		<var name="key_siteCalendarName" value="${siteCalendarName}" />
 		<var name="key_siteName" value="${siteName}" />
 
-		<execute function="AssertClick" locator1="Calendar#CURRENT_SITE_CALENDARS_CALENDAR" value1="${siteCalendarName}" />
+		<execute function="Portal.AssertClick" locator1="Calendar#CURRENT_SITE_CALENDARS_CALENDAR" value1="${siteCalendarName}" />
 
 		<execute macro="CalendarEvent#viewInvitedEventWithWorkflow">
 			<var name="eventTitle" value="${eventTitle}" />
 			<var name="userCalendarName" value="${userCalendarName}" />
 		</execute>
 
-		<execute function="AssertClick" locator1="Calendar#CURRENT_SITE_CALENDARS_CALENDAR" value1="${siteCalendarName}" />
+		<execute function="Portal.AssertClick" locator1="Calendar#CURRENT_SITE_CALENDARS_CALENDAR" value1="${siteCalendarName}" />
 	</command>
 
 	<command name="viewNoRepeating">
-		<execute function="AssertNotVisible" locator1="CalendarEditEvent#REPEAT_SUMMARY" />
-		<execute function="AssertNotChecked" locator1="CalendarEditEvent#REPEAT_CHECKBOX" />
+		<execute function="Portal.AssertNotVisible" locator1="CalendarEditEvent#REPEAT_SUMMARY" />
+		<execute function="Portal.AssertNotChecked" locator1="CalendarEditEvent#REPEAT_CHECKBOX" />
 	</command>
 
 	<command name="viewNotPresentViaAgendaView">
-		<execute function="AssertElementNotPresent" locator1="xpath=(//div[contains(@class,'scheduler-view-agenda-event') and contains(@data-clientid,'scheduler-event')])[${eventNumber}]" />
+		<execute function="Portal.AssertElementNotPresent" locator1="xpath=(//div[contains(@class,'scheduler-view-agenda-event') and contains(@data-clientid,'scheduler-event')])[${eventNumber}]" />
 	</command>
 
 	<command name="viewNoUserInviteWithUnapprovedWorkflow">
@@ -2021,30 +2021,30 @@
 		<var name="key_siteCalendarName" value="${siteCalendarName}" />
 		<var name="key_siteName" value="${siteName}" />
 
-		<execute function="AssertClick" locator1="Calendar#CURRENT_SITE_CALENDARS_CALENDAR" value1="${siteCalendarName}" />
+		<execute function="Portal.AssertClick" locator1="Calendar#CURRENT_SITE_CALENDARS_CALENDAR" value1="${siteCalendarName}" />
 
 		<execute macro="CalendarScheduler#viewSpecificEventNotPresent">
 			<var name="eventTitle" value="${eventTitle}" />
 		</execute>
 
-		<execute function="AssertClick" locator1="Calendar#CURRENT_SITE_CALENDARS_CALENDAR" value1="${siteCalendarName}" />
+		<execute function="Portal.AssertClick" locator1="Calendar#CURRENT_SITE_CALENDARS_CALENDAR" value1="${siteCalendarName}" />
 	</command>
 
 	<command name="viewRepeatingEventErrorMessage">
-		<execute function="Click" locator1="Button#PUBLISH" />
+		<execute function="Portal.Click" locator1="Button#PUBLISH" />
 
 		<execute macro="Alert#viewRequestFailedToComplete" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="The last repeating date should come after the event start date." />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="The last repeating date should come after the event start date." />
 	</command>
 
 	<command name="viewRepeatingEventViaViewDetails">
-		<execute function="AssertTextEquals" locator1="CalendarViewEventDetails#EVENT_TITLE" value1="${eventTitle}" />
+		<execute function="Portal.AssertTextEquals" locator1="CalendarViewEventDetails#EVENT_TITLE" value1="${eventTitle}" />
 
 		<if>
 			<equals arg1="${frequency}" arg2="Daily" />
 			<then>
-				<execute function="AssertTextEquals" locator1="CalendarViewEventDetails#REPEAT_OCCURRENCE_SUMMARY" value1="Daily, ${numberOfOccurrences} Times" />
+				<execute function="Portal.AssertTextEquals" locator1="CalendarViewEventDetails#REPEAT_OCCURRENCE_SUMMARY" value1="Daily, ${numberOfOccurrences} Times" />
 			</then>
 			<elseif>
 				<equals arg1="${frequency}" arg2="Weekly" />
@@ -2054,13 +2054,13 @@
 					<if>
 						<equals arg1="${currentHour}" arg2="23" />
 						<then>
-							<execute function="AssertTextEquals#assertPartialText" locator1="CalendarViewEventDetails#REPEAT_OCCURRENCE_SUMMARY" value1="Weekly, on " />
-							<execute function="AssertTextEquals#assertPartialText" locator1="CalendarViewEventDetails#REPEAT_OCCURRENCE_SUMMARY" value1=", ${numberOfOccurrences} Times" />
+							<execute function="Portal.AssertTextEquals#assertPartialText" locator1="CalendarViewEventDetails#REPEAT_OCCURRENCE_SUMMARY" value1="Weekly, on " />
+							<execute function="Portal.AssertTextEquals#assertPartialText" locator1="CalendarViewEventDetails#REPEAT_OCCURRENCE_SUMMARY" value1=", ${numberOfOccurrences} Times" />
 						</then>
 						<else>
 							<var method="DateUtil#getCurrentDayOfWeek()" name="today" />
 
-							<execute function="AssertTextEquals" locator1="CalendarViewEventDetails#REPEAT_OCCURRENCE_SUMMARY" value1="Weekly, on ${today}, ${numberOfOccurrences} Times" />
+							<execute function="Portal.AssertTextEquals" locator1="CalendarViewEventDetails#REPEAT_OCCURRENCE_SUMMARY" value1="Weekly, on ${today}, ${numberOfOccurrences} Times" />
 						</else>
 					</if>
 				</then>
@@ -2068,7 +2068,7 @@
 			<elseif>
 				<equals arg1="${frequency}" arg2="Yearly" />
 				<then>
-					<execute function="AssertTextEquals" locator1="CalendarViewEventDetails#REPEAT_OCCURRENCE_SUMMARY" value1="${yearlyRecurrenceSummary}" />
+					<execute function="Portal.AssertTextEquals" locator1="CalendarViewEventDetails#REPEAT_OCCURRENCE_SUMMARY" value1="${yearlyRecurrenceSummary}" />
 				</then>
 			</elseif>
 			<elseif>
@@ -2076,9 +2076,9 @@
 				<then>
 					<var method="DateUtil#getCurrentDayOfWeek()" name="today" />
 
-					<execute function="AssertTextEquals#assertPartialText" locator1="CalendarViewEventDetails#REPEAT_OCCURRENCE_SUMMARY" value1="Monthly" />
-					<execute function="AssertTextEquals#assertPartialText" locator1="CalendarViewEventDetails#REPEAT_OCCURRENCE_SUMMARY" value1="${numberOfOccurrences} Times" />
-					<execute function="AssertTextEquals#assertPartialText" locator1="CalendarViewEventDetails#REPEAT_OCCURRENCE_SUMMARY" value1="${today}" />
+					<execute function="Portal.AssertTextEquals#assertPartialText" locator1="CalendarViewEventDetails#REPEAT_OCCURRENCE_SUMMARY" value1="Monthly" />
+					<execute function="Portal.AssertTextEquals#assertPartialText" locator1="CalendarViewEventDetails#REPEAT_OCCURRENCE_SUMMARY" value1="${numberOfOccurrences} Times" />
+					<execute function="Portal.AssertTextEquals#assertPartialText" locator1="CalendarViewEventDetails#REPEAT_OCCURRENCE_SUMMARY" value1="${today}" />
 				</then>
 			</elseif>
 		</if>
@@ -2090,37 +2090,37 @@
 		<if>
 			<equals arg1="${repeatingMonthPosition}" arg2="1" />
 			<then>
-				<execute function="AssertTextEquals#assertPartialText" locator1="CalendarEditEvent#REPEAT_DIALOG_SUMMARY" value1="First" />
+				<execute function="Portal.AssertTextEquals#assertPartialText" locator1="CalendarEditEvent#REPEAT_DIALOG_SUMMARY" value1="First" />
 			</then>
 			<elseif>
 				<equals arg1="${repeatingMonthPosition}" arg2="2" />
 				<then>
-					<execute function="AssertTextEquals#assertPartialText" locator1="CalendarEditEvent#REPEAT_DIALOG_SUMMARY" value1="Second" />
+					<execute function="Portal.AssertTextEquals#assertPartialText" locator1="CalendarEditEvent#REPEAT_DIALOG_SUMMARY" value1="Second" />
 				</then>
 			</elseif>
 			<elseif>
 				<equals arg1="${repeatingMonthPosition}" arg2="3" />
 				<then>
-					<execute function="AssertTextEquals#assertPartialText" locator1="CalendarEditEvent#REPEAT_DIALOG_SUMMARY" value1="Third" />
+					<execute function="Portal.AssertTextEquals#assertPartialText" locator1="CalendarEditEvent#REPEAT_DIALOG_SUMMARY" value1="Third" />
 				</then>
 			</elseif>
 			<elseif>
 				<equals arg1="${repeatingMonthPosition}" arg2="4" />
 				<then>
-					<execute function="AssertTextEquals#assertPartialText" locator1="CalendarEditEvent#REPEAT_DIALOG_SUMMARY" value1="Fourth" />
+					<execute function="Portal.AssertTextEquals#assertPartialText" locator1="CalendarEditEvent#REPEAT_DIALOG_SUMMARY" value1="Fourth" />
 				</then>
 			</elseif>
 			<elseif>
 				<equals arg1="${repeatingMonthPosition}" arg2="-1" />
 				<then>
-					<execute function="AssertTextEquals#assertPartialText" locator1="CalendarEditEvent#REPEAT_DIALOG_SUMMARY" value1="Last" />
+					<execute function="Portal.AssertTextEquals#assertPartialText" locator1="CalendarEditEvent#REPEAT_DIALOG_SUMMARY" value1="Last" />
 				</then>
 			</elseif>
 		</if>
 	</command>
 
 	<command name="viewRepeatWeekStartDay">
-		<execute function="AssertTextEquals" locator1="CalendarEditEvent#REPEAT_REPEAT_ON_DAY_OF_THE_WEEK_WEEKDAY_WEEK_START_DAY" value1="${weekStartDay}" />
+		<execute function="Portal.AssertTextEquals" locator1="CalendarEditEvent#REPEAT_REPEAT_ON_DAY_OF_THE_WEEK_WEEKDAY_WEEK_START_DAY" value1="${weekStartDay}" />
 	</command>
 
 	<command name="viewResourcesAvailability">
@@ -2128,31 +2128,31 @@
 			<var name="panelName" value="Resources Availability" />
 		</execute>
 
-		<execute function="AssertElementPresent" locator1="CalendarEditEvent#RESOURCES_AVAILABILITY_SCHEDULER_EVENT_GENERIC" />
+		<execute function="Portal.AssertElementPresent" locator1="CalendarEditEvent#RESOURCES_AVAILABILITY_SCHEDULER_EVENT_GENERIC" />
 	</command>
 
 	<command name="viewRSVPAccepted">
 		<var name="key_resource" value="${resourceName}" />
 
-		<execute function="AssertTextEquals" locator1="CalendarEditEvent#INVITATIONS_ACCEPTED" value1="${resourceName}" />
+		<execute function="Portal.AssertTextEquals" locator1="CalendarEditEvent#INVITATIONS_ACCEPTED" value1="${resourceName}" />
 	</command>
 
 	<command name="viewRSVPDeclined">
 		<var name="key_resource" value="${resourceName}" />
 
-		<execute function="AssertTextEquals" locator1="CalendarEditEvent#INVITATIONS_DECLINED" value1="${resourceName}" />
+		<execute function="Portal.AssertTextEquals" locator1="CalendarEditEvent#INVITATIONS_DECLINED" value1="${resourceName}" />
 	</command>
 
 	<command name="viewRSVPMaybe">
 		<var name="key_resource" value="${resourceName}" />
 
-		<execute function="AssertTextEquals" locator1="CalendarEditEvent#INVITATIONS_MAYBE" value1="${resourceName}" />
+		<execute function="Portal.AssertTextEquals" locator1="CalendarEditEvent#INVITATIONS_MAYBE" value1="${resourceName}" />
 	</command>
 
 	<command name="viewRSVPPending">
 		<var name="key_resource" value="${resourceName}" />
 
-		<execute function="AssertTextEquals" locator1="CalendarEditEvent#INVITATIONS_PENDING" value1="${resourceName}" />
+		<execute function="Portal.AssertTextEquals" locator1="CalendarEditEvent#INVITATIONS_PENDING" value1="${resourceName}" />
 	</command>
 
 	<command name="viewSiteCalendarEventNotPresent">
@@ -2163,12 +2163,12 @@
 
 		<var name="key_siteName" value="${siteName}" />
 
-		<execute function="AssertElementNotPresent" locator1="Calendar#CURRENT_SITE_CALENDARS_HEADER" value1="${siteName}'s Calendars" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Calendar#CURRENT_SITE_CALENDARS_HEADER" value1="${siteName}'s Calendars" />
 
 		<var name="key_endDateTime" value="${endDateTime}" />
 		<var name="key_startDateTime" value="${startDateTime}" />
 
-		<execute function="AssertElementNotPresent" locator1="Calendar#SCHEDULER_EVENT_SPECIFIC_EVENT_TIMES" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Calendar#SCHEDULER_EVENT_SPECIFIC_EVENT_TIMES" />
 	</command>
 
 	<command name="viewSiteCalendarEventWithDefaultPermissions">
@@ -2179,27 +2179,27 @@
 
 		<var name="key_siteName" value="${siteName}" />
 
-		<execute function="AssertTextEquals" locator1="Calendar#CURRENT_SITE_CALENDARS_HEADER" value1="${siteName}'s Calendars" />
+		<execute function="Portal.AssertTextEquals" locator1="Calendar#CURRENT_SITE_CALENDARS_HEADER" value1="${siteName}'s Calendars" />
 
 		<var name="key_endDateTime" value="${endDateTime}" />
 		<var name="key_startDateTime" value="${startDateTime}" />
 
-		<execute function="Click" locator1="Calendar#SCHEDULER_EVENT_SPECIFIC_EVENT_TIMES" />
+		<execute function="Portal.Click" locator1="Calendar#SCHEDULER_EVENT_SPECIFIC_EVENT_TIMES" />
 
 		<var name="key_calendarName" value="${calendarName}" />
 
-		<execute function="AssertTextEquals" locator1="Calendar#SCHEDULER_EVENT_CALENDAR_NAME" value1="${calendarName}" />
-		<execute function="AssertNotVisible" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_EVENT_TITLE" value1="${eventTitle}" />
+		<execute function="Portal.AssertTextEquals" locator1="Calendar#SCHEDULER_EVENT_CALENDAR_NAME" value1="${calendarName}" />
+		<execute function="Portal.AssertNotVisible" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_EVENT_TITLE" value1="${eventTitle}" />
 	</command>
 
 	<command name="viewSiteRSVPWithApprovedWorkflow">
 		<var name="key_userCalendarName" value="${userCalendarName}" />
 
-		<execute function="AssertClick" locator1="Calendar#MY_CALENDARS_CALENDAR" value1="${userCalendarName}" />
+		<execute function="Portal.AssertClick" locator1="Calendar#MY_CALENDARS_CALENDAR" value1="${userCalendarName}" />
 
-		<execute function="AssertElementNotPresent" locator1="Calendar#SCHEDULER_EVENT_ATTENDING_ROW_OPTIONS" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Calendar#SCHEDULER_EVENT_ATTENDING_ROW_OPTIONS" />
 
-		<execute function="AssertClick" locator1="Calendar#MY_CALENDARS_CALENDAR" value1="${userCalendarName}" />
+		<execute function="Portal.AssertClick" locator1="Calendar#MY_CALENDARS_CALENDAR" value1="${userCalendarName}" />
 	</command>
 
 	<command name="viewSiteRSVPWithUnapprovedWorkflow">
@@ -2207,38 +2207,38 @@
 			<var name="eventTitle" value="${eventTitle}" />
 		</execute>
 
-		<execute function="AssertElementPresent" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_CALENDAR" value1="${siteCalendarName}" />
+		<execute function="Portal.AssertElementPresent" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_CALENDAR" value1="${siteCalendarName}" />
 
-		<execute function="AssertElementNotPresent" locator1="Calendar#SCHEDULER_EVENT_ATTENDING_ROW_OPTIONS" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Calendar#SCHEDULER_EVENT_ATTENDING_ROW_OPTIONS" />
 	</command>
 
 	<command name="viewStatusViaDetails">
-		<execute function="AssertTextEquals#assertPartialText" locator1="CalendarViewEventDetails#STATUS" value1="${status}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="CalendarViewEventDetails#STATUS" value1="${status}" />
 	</command>
 
 	<command name="viewTimes">
-		<execute function="AssertTextEquals#assertValue" locator1="CalendarEditEvent#START_DATE_TIME" value1="${startDateTime}" />
-		<execute function="AssertTextEquals#assertValue" locator1="CalendarEditEvent#END_DATE_TIME" value1="${endDateTime}" />
+		<execute function="Portal.AssertTextEquals#assertValue" locator1="CalendarEditEvent#START_DATE_TIME" value1="${startDateTime}" />
+		<execute function="Portal.AssertTextEquals#assertValue" locator1="CalendarEditEvent#END_DATE_TIME" value1="${endDateTime}" />
 	</command>
 
 	<command name="viewTimes24Hour">
-		<execute function="AssertTextEquals#assertValue" locator1="CalendarEditEvent#START_DATE_TIME_24_HOUR" value1="${startDateTime}" />
-		<execute function="AssertTextEquals#assertValue" locator1="CalendarEditEvent#END_DATE_TIME_24_HOUR" value1="${endDateTime}" />
+		<execute function="Portal.AssertTextEquals#assertValue" locator1="CalendarEditEvent#START_DATE_TIME_24_HOUR" value1="${startDateTime}" />
+		<execute function="Portal.AssertTextEquals#assertValue" locator1="CalendarEditEvent#END_DATE_TIME_24_HOUR" value1="${endDateTime}" />
 	</command>
 
 	<command name="viewTimesViaDetails">
-		<execute function="AssertTextEquals#assertPartialText" locator1="CalendarViewEventDetails#START_DATE_FIELD" value1="${startDateTime}" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="CalendarViewEventDetails#END_DATE_FIELD" value1="${endDateTime}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="CalendarViewEventDetails#START_DATE_FIELD" value1="${startDateTime}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="CalendarViewEventDetails#END_DATE_FIELD" value1="${endDateTime}" />
 	</command>
 
 	<command name="viewTitle">
-		<execute function="AssertTextEquals" locator1="TextInput#TITLE" value1="${eventTitle}" />
+		<execute function="Portal.AssertTextEquals" locator1="TextInput#TITLE" value1="${eventTitle}" />
 	</command>
 
 	<command name="viewTitleViaDetails">
 		<execute macro="CalendarScheduler#gotoDetailsViaDialogBox" />
 
-		<execute function="AssertTextEquals" locator1="CalendarViewEventDetails#EVENT_TITLE" value1="${eventTitle}" />
+		<execute function="Portal.AssertTextEquals" locator1="CalendarViewEventDetails#EVENT_TITLE" value1="${eventTitle}" />
 	</command>
 
 	<command name="viewUnavailableCalendarsNotPresent">
@@ -2249,7 +2249,7 @@
 		<for list="${unavailableCalendarList}" param="unavailableCalendarName">
 			<var name="key_calendarName" value="${unavailableCalendarName}" />
 
-			<execute function="AssertElementNotPresent" locator1="CalendarEditEvent#DETAILS_CALENDAR_SELECT_OPTION" />
+			<execute function="Portal.AssertElementNotPresent" locator1="CalendarEditEvent#DETAILS_CALENDAR_SELECT_OPTION" />
 		</for>
 	</command>
 
@@ -2273,17 +2273,17 @@
 	</command>
 
 	<command name="viewViaAgendaView">
-		<execute function="AssertElementPresent" locator1="xpath=(//div[contains(@class,'scheduler-view-agenda-event') and contains(@data-clientid,'scheduler-event')])[${eventNumber}]" />
+		<execute function="Portal.AssertElementPresent" locator1="xpath=(//div[contains(@class,'scheduler-view-agenda-event') and contains(@data-clientid,'scheduler-event')])[${eventNumber}]" />
 	</command>
 
 	<command name="viewViaAssetPublisher">
 		<var name="key_assetTitle" value="${eventTitle}" />
 
-		<execute function="AssertTextEquals" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${eventTitle}" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="AP#ASSET_ABSTRACT_DESCRIPTION" value1="${calendarName}" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="AP#ASSET_ABSTRACT_DESCRIPTION" value1="Resources:" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="AP#ASSET_ABSTRACT_DESCRIPTION" value1="Starts:" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="AP#ASSET_ABSTRACT_DESCRIPTION" value1="Ends:" />
+		<execute function="Portal.AssertTextEquals" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${eventTitle}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="AP#ASSET_ABSTRACT_DESCRIPTION" value1="${calendarName}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="AP#ASSET_ABSTRACT_DESCRIPTION" value1="Resources:" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="AP#ASSET_ABSTRACT_DESCRIPTION" value1="Starts:" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="AP#ASSET_ABSTRACT_DESCRIPTION" value1="Ends:" />
 	</command>
 
 	<command name="viewYearly">
@@ -2294,7 +2294,7 @@
 
 			<var name="key_eventTitle" value="${eventTitle}" />
 
-			<execute function="AssertElementPresent" locator1="Calendar#SCHEDULER_VIEW_YEARLY_EVENT_DAY_WEEK_AND_MONTH_VIEW" value1="${eventTitle}" />
+			<execute function="Portal.AssertElementPresent" locator1="Calendar#SCHEDULER_VIEW_YEARLY_EVENT_DAY_WEEK_AND_MONTH_VIEW" value1="${eventTitle}" />
 		</for>
 
 		<execute macro="CalendarScheduler#viewAgenda">

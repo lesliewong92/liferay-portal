@@ -197,7 +197,8 @@ public class PoshiRunner {
 		throws Exception {
 
 		Element rootElement = PoshiRunnerContext.getTestCaseRootElement(
-			_testClassName);
+			PoshiRunnerStackTraceUtil.getCurrentNamespace() + "." +
+				_testClassName);
 
 		List<Element> varElements = rootElement.elements("var");
 
@@ -208,7 +209,8 @@ public class PoshiRunner {
 		PoshiRunnerVariablesUtil.pushCommandMap(true);
 
 		Element commandElement = PoshiRunnerContext.getTestCaseCommandElement(
-			classCommandName);
+			PoshiRunnerStackTraceUtil.getCurrentNamespace() + "." +
+				classCommandName);
 
 		if (commandElement != null) {
 			PoshiRunnerStackTraceUtil.startStackTrace(

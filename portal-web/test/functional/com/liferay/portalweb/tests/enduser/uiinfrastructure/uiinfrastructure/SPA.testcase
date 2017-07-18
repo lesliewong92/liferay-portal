@@ -30,6 +30,6 @@
 			<var name="portlet" value="Web Content" />
 		</execute>
 
-		<execute function="AssertVisible#assertVisibleNoSPAWait" locator1="//html[contains(@class,'lfr-spa-loading')]" />
+		<execute function="Portal.AssertVisible#assertVisibleNoSPAWait" locator1="//html[contains(@class,'lfr-spa-loading')]" />
 	</command>
 </definition>

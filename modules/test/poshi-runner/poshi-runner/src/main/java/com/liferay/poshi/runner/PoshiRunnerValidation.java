@@ -69,28 +69,29 @@ public class PoshiRunnerValidation {
 				filePath);
 			String classType = PoshiRunnerGetterUtil.getClassTypeFromFilePath(
 				filePath);
+			String namespace = PoshiRunnerContext.getNamespace(filePath);
 
 			if (classType.equals("function")) {
 				Element element = PoshiRunnerContext.getFunctionRootElement(
-					className);
+					namespace + "." + className);
 
 				validateFunctionFile(element, filePath);
 			}
 			else if (classType.equals("macro")) {
 				Element element = PoshiRunnerContext.getMacroRootElement(
-					className);
+					namespace + "." + className);
 
 				validateMacroFile(element, filePath);
 			}
 			else if (classType.equals("path")) {
 				Element element = PoshiRunnerContext.getPathRootElement(
-					className);
+					namespace + "." + className);
 
 				validatePathFile(element, filePath);
 			}
 			else if (classType.equals("test-case")) {
 				Element element = PoshiRunnerContext.getTestCaseRootElement(
-					className);
+					namespace + "." + className);
 
 				validateTestCaseFile(element, filePath);
 			}
@@ -207,7 +208,9 @@ public class PoshiRunnerValidation {
 			PoshiRunnerGetterUtil.getClassNameFromClassCommandName(
 				classCommandName);
 
-		if (!PoshiRunnerContext.isRootElement(classType + "#" + className)) {
+		String rootElementKey = _getElementKey(classType, className, filePath);
+
+		if (!PoshiRunnerContext.isRootElement(rootElementKey)) {
 			_exceptions.add(
 				new Exception(
 					"Invalid " + classType + " class " + className + "\n" +
@@ -215,7 +218,8 @@ public class PoshiRunnerValidation {
 							element.attributeValue("line-number")));
 		}
 
-		String commandElementKey = classType + "#" + classCommandName;
+		String commandElementKey = _getElementKey(
+			classType, classCommandName, filePath);
 
 		if (!PoshiRunnerContext.isCommandElement(commandElementKey)) {
 			_exceptions.add(
@@ -710,13 +714,19 @@ public class PoshiRunnerValidation {
 					PoshiRunnerGetterUtil.getClassNameFromClassCommandName(
 						locator);
 
-				if (!PoshiRunnerContext.isRootElement("path#" + pathName)) {
+				String pathKey = _getElementKey("path", pathName, filePath);
+
+				String namespace = PoshiRunnerContext.getNamespace(filePath);
+
+				if (!PoshiRunnerContext.isRootElement(pathKey)) {
 					_exceptions.add(
 						new Exception(
 							"Invalid path name " + pathName + "\n" + filePath +
 								":" + element.attributeValue("line-number")));
 				}
-				else if (!PoshiRunnerContext.isPathLocator(locator)) {
+				else if (!PoshiRunnerContext.isPathLocator(
+							namespace + "." + locator)) {
+
 					_exceptions.add(
 						new Exception(
 							"Invalid path locator " + locator + "\n" +
@@ -993,8 +1003,10 @@ public class PoshiRunnerValidation {
 
 		String classCommandName = element.attributeValue(macroType);
 
+		String namespace = PoshiRunnerContext.getNamespace(filePath);
+
 		List<String> returns = PoshiRunnerContext.getMacroCommandReturns(
-			classCommandName);
+			namespace + "." + classCommandName);
 
 		String returnVariable = returnElement.attributeValue("from");
 
@@ -1216,19 +1228,26 @@ public class PoshiRunnerValidation {
 
 				String locatorKey = locatorKeyElement.getText();
 
-				if (Validator.isNull(locator) && Validator.isNull(locatorKey)) {
-					continue;
-				}
-				else if (Validator.isNotNull(locator) &&
-						 Validator.isNotNull(locatorKey)) {
-
-					continue;
+				if (Validator.isNull(locator) != Validator.isNull(locatorKey)) {
+					_exceptions.add(
+						new Exception(
+							"Missing locator\n" + filePath + ":" +
+								trElement.attributeValue("line-number")));
 				}
 
-				_exceptions.add(
-					new Exception(
-						"Missing locator\n" + filePath + ":" +
-							trElement.attributeValue("line-number")));
+				if (locatorKey.equals("EXTEND_ACTION_PATH")) {
+					Element pathRootElement =
+						PoshiRunnerContext.getPathRootElement(locator);
+
+					if (pathRootElement == null) {
+						_exceptions.add(
+							new Exception(
+								"Non-existent parent path file\n" + filePath +
+									":" +
+										trElement.attributeValue(
+											"line-number")));
+					}
+				}
 			}
 		}
 
@@ -1505,6 +1524,11 @@ public class PoshiRunnerValidation {
 	}
 
 	protected static void validateTestName(String testName) {
+		if (!testName.contains(".")) {
+			testName =
+				PoshiRunnerContext.getDefaultNamespace() + "." + testName;
+		}
+
 		validateTestName(testName, "");
 	}
 
@@ -1678,6 +1702,18 @@ public class PoshiRunnerValidation {
 								childElement.attributeValue("line-number")));
 			}
 		}
+	}
+
+	private static String _getElementKey(
+		String classType, String classCommandName, String filePath) {
+
+		if (!classCommandName.contains(".")) {
+			classCommandName =
+				PoshiRunnerContext.getNamespace(filePath) + "." +
+					classCommandName;
+		}
+
+		return classType + "#" + classCommandName;
 	}
 
 	private static void _throwExceptions() throws Exception {

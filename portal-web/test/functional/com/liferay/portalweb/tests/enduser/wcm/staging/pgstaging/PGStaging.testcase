@@ -150,7 +150,7 @@
 
 		<execute macro="Navigator#gotoStagedView" />
 
-		<execute function="Pause" locator1="30000" />
+		<execute function="Portal.Pause" locator1="30000" />
 
 		<execute macro="ProductMenu#gotoSitesPublishing">
 			<var name="portlet" value="Staging" />
@@ -478,7 +478,7 @@
 
 		<execute macro="Navigator#gotoStagedView" />
 
-		<execute function="Pause" locator1="30000" />
+		<execute function="Portal.Pause" locator1="30000" />
 
 		<execute macro="ProductMenu#gotoSitesPublishing">
 			<var name="portlet" value="Staging" />
@@ -520,7 +520,7 @@
 
 		<execute macro="DMDocument#enableActionsMenuOnPortlet" />
 
-		<execute function="Click" locator1="Icon#DISPLAY_STYLE_DESCRIPTIVE" />
+		<execute function="Portal.Click" locator1="Icon#DISPLAY_STYLE_DESCRIPTIVE" />
 
 		<execute macro="Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
@@ -561,8 +561,8 @@
 
 		<var name="key_dmDocumentTitle" value="DM Document Title" />
 
-		<execute function="AssertElementPresent" locator1="DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_ICON" />
-		<execute function="AssertTextEquals" locator1="DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE" value1="DM Document Title" />
+		<execute function="Portal.AssertElementPresent" locator1="DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_ICON" />
+		<execute function="Portal.AssertTextEquals" locator1="DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE" value1="DM Document Title" />
 
 		<execute macro="Navigator#gotoStagedSitePage">
 			<var name="pageName" value="Staging Test Page" />
@@ -593,7 +593,7 @@
 
 		<var name="key_dmDocumentTitle" value="DM Document Title" />
 
-		<execute function="AssertElementNotPresent" locator1="DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_ICON" />
+		<execute function="Portal.AssertElementNotPresent" locator1="DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_ICON" />
 	</command>
 
 	<command name="LayoutScope" priority="4">
@@ -629,7 +629,7 @@
 
 		<execute macro="Navigator#gotoStagedView" />
 
-		<execute function="Pause" locator1="3000" />
+		<execute function="Portal.Pause" locator1="3000" />
 
 		<execute macro="ProductMenu#gotoSitesPublishing">
 			<var name="portlet" value="Staging" />
@@ -706,7 +706,7 @@
 
 		<execute macro="DMNavigator#gotoURLDetail" />
 
-		<execute function="AssertClick" locator1="Link#URL" value1="URL" />
+		<execute function="Portal.AssertClick" locator1="Link#URL" value1="URL" />
 
 		<var method="selenium#getElementValue('//input[contains(@id,\'url\')]')" name="dmDocumentURL" />
 
@@ -877,7 +877,7 @@
 			<var name="sitePagesVariationName" value="Test Site Pages Variation" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="Portlet#TITLE" value1="Web Content Display" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Portlet#TITLE" value1="Web Content Display" />
 
 		<execute macro="Staging#changeSitePageVariationPG">
 			<var name="sitePagesVariationMenulistName" value="Test Site Pages Variation" />
@@ -921,7 +921,7 @@
 			<var name="pageVariationNameMenulistName" value="Main Variation" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="Portlet#TITLE" value1="Blogs" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Portlet#TITLE" value1="Blogs" />
 
 		<execute macro="Staging#changePageVariationPG">
 			<var name="pageVariationName" value="Main Variation" />
@@ -1008,6 +1008,6 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute function="AssertElementPresent" locator1="Home#PORTLET_1" />
+		<execute function="Portal.AssertElementPresent" locator1="Home#PORTLET_1" />
 	</command>
 </definition>

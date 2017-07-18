@@ -1,6 +1,6 @@
 <definition>
 	<command name="configureBreadcrumb">
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#CONFIGURATION" />
 
 		<if>
 			<isset var="checkSetupName" />
@@ -8,7 +8,7 @@
 				<for list="${checkSetupName}" param="checkSetupName">
 					<var name="key_checkSetupName" value="${checkSetupName}" />
 
-					<execute function="Check#checkToggleSwitch" locator1="ToggleSwitch#SHOW_SPECIFIC_TOGGLE_SWITCH" />
+					<execute function="Portal.Check#checkToggleSwitch" locator1="ToggleSwitch#SHOW_SPECIFIC_TOGGLE_SWITCH" />
 				</for>
 			</then>
 		</if>
@@ -19,7 +19,7 @@
 				<for list="${uncheckSetupName}" param="uncheckSetupName">
 					<var name="key_checkSetupName" value="${uncheckSetupName}" />
 
-					<execute function="Uncheck#uncheckToggleSwitch" locator1="ToggleSwitch#SHOW_SPECIFIC_TOGGLE_SWITCH" />
+					<execute function="Portal.Uncheck#uncheckToggleSwitch" locator1="ToggleSwitch#SHOW_SPECIFIC_TOGGLE_SWITCH" />
 				</for>
 			</then>
 		</if>
@@ -27,7 +27,7 @@
 		<if>
 			<isset var="selectADTType" />
 			<then>
-				<execute function="Select" locator1="Configuration#SETUP_DISPLAY_SETTINGS_DISPLAY_TEMPLATE_SELECT" value1="${selectADTType}" />
+				<execute function="Portal.Select" locator1="Configuration#SETUP_DISPLAY_SETTINGS_DISPLAY_TEMPLATE_SELECT" value1="${selectADTType}" />
 			</then>
 		</if>
 
@@ -42,27 +42,27 @@
 			</else>
 		</if>
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 	</command>
 
 	<command name="displayTemplatePreview">
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#CONFIGURATION" />
 
-		<execute function="Select" locator1="Select#DISPLAY_TEMPLATE" value1="${displayStyle}" />
+		<execute function="Portal.Select" locator1="Select#DISPLAY_TEMPLATE" value1="${displayStyle}" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 	</command>
 
 	<command name="saveDisplayPreview">
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#CONFIGURATION" />
 
 		<execute macro="PortletEntry#save" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 	</command>
 
 	<command name="viewActiveEntry">
-		<execute function="AssertTextEquals" locator1="Breadcrumb#BREADCRUMB_ENTRY_ACTIVE_ENTRY" value1="${breadcrumbNameUppercase}">
+		<execute function="Portal.AssertTextEquals" locator1="Breadcrumb#BREADCRUMB_ENTRY_ACTIVE_ENTRY" value1="${breadcrumbNameUppercase}">
 			<var method="StringUtil#upperCase('${breadcrumbName}')" name="breadcrumbNameUppercase" />
 		</execute>
 	</command>
@@ -70,11 +70,11 @@
 	<command name="viewADTApplied">
 		<var name="key_breadcrumbADTType" value="${breadcrumbADTType}" />
 
-		<execute function="AssertElementPresent" locator1="BreadcrumbPortlet#BREADCRUMB_ADT" />
+		<execute function="Portal.AssertElementPresent" locator1="BreadcrumbPortlet#BREADCRUMB_ADT" />
 	</command>
 
 	<command name="viewConfigurationCheckboxes">
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#CONFIGURATION" />
 
 		<if>
 			<isset var="checkSetupName" />
@@ -82,7 +82,7 @@
 				<for list="${checkSetupName}" param="checkSetupName">
 					<var name="key_checkSetupName" value="${checkSetupName}" />
 
-					<execute function="AssertChecked#assertCheckedToggleSwitch" locator1="ToggleSwitch#SHOW_SPECIFIC_TOGGLE_SWITCH" />
+					<execute function="Portal.AssertChecked#assertCheckedToggleSwitch" locator1="ToggleSwitch#SHOW_SPECIFIC_TOGGLE_SWITCH" />
 				</for>
 			</then>
 		</if>
@@ -93,16 +93,16 @@
 				<for list="${uncheckSetupName}" param="uncheckSetupName">
 					<var name="key_checkSetupName" value="${uncheckSetupName}" />
 
-					<execute function="AssertNotChecked#assertNotCheckedToggleSwitch" locator1="ToggleSwitch#SHOW_SPECIFIC_TOGGLE_SWITCH" />
+					<execute function="Portal.AssertNotChecked#assertNotCheckedToggleSwitch" locator1="ToggleSwitch#SHOW_SPECIFIC_TOGGLE_SWITCH" />
 				</for>
 			</then>
 		</if>
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 	</command>
 
 	<command name="viewConfigurationPreview">
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#CONFIGURATION" />
 
 		<if>
 			<isset var="breadcrumbListVisible" />
@@ -121,18 +121,18 @@
 				<for list="${breadcrumbListNotVisible}" param="breadcrumbName">
 					<var name="key_breadcrumbName" value="${breadcrumbName}" />
 
-					<execute function="AssertElementNotPresent" locator1="Breadcrumb#BREADCRUMB_ENTRY">
+					<execute function="Portal.AssertElementNotPresent" locator1="Breadcrumb#BREADCRUMB_ENTRY">
 						<var name="key_breadcrumbName" value="${breadcrumbName}" />
 					</execute>
 				</for>
 			</then>
 		</if>
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 	</command>
 
 	<command name="viewEntry">
-		<execute function="AssertTextEquals" locator1="Breadcrumb#BREADCRUMB_ENTRY" value1="${breadcrumbNameUppercase}">
+		<execute function="Portal.AssertTextEquals" locator1="Breadcrumb#BREADCRUMB_ENTRY" value1="${breadcrumbNameUppercase}">
 			<var method="StringUtil#upperCase('${breadcrumbName}')" name="breadcrumbNameUppercase" />
 			<var name="key_breadcrumbName" value="${breadcrumbName}" />
 		</execute>
@@ -147,7 +147,7 @@
 
 					<var method="StringUtil#upperCase('${breadcrumbName}')" name="breadcrumbNameUppercase" />
 
-					<execute function="AssertTextEquals" locator1="Breadcrumb#BREADCRUMB_ENTRY" value1="${breadcrumbNameUppercase}" />
+					<execute function="Portal.AssertTextEquals" locator1="Breadcrumb#BREADCRUMB_ENTRY" value1="${breadcrumbNameUppercase}" />
 				</for>
 			</then>
 		</if>
@@ -156,7 +156,7 @@
 			<isset var="breadcrumbListNotVisible" />
 			<then>
 				<for list="${breadcrumbListNotVisible}" param="breadcrumbName">
-					<execute function="AssertElementNotPresent" locator1="Breadcrumb#BREADCRUMB_ENTRY">
+					<execute function="Portal.AssertElementNotPresent" locator1="Breadcrumb#BREADCRUMB_ENTRY">
 						<var name="key_breadcrumbName" value="${breadcrumbName}" />
 					</execute>
 				</for>
@@ -169,7 +169,7 @@
 			<isset var="breadcrumbListNotVisible" />
 			<then>
 				<for list="${breadcrumbListNotVisible}" param="breadcrumbName">
-					<execute function="AssertElementNotPresent" locator1="BreadcrumbPortlet#BREADCRUMB_SPECIFIC_ENTRY">
+					<execute function="Portal.AssertElementNotPresent" locator1="BreadcrumbPortlet#BREADCRUMB_SPECIFIC_ENTRY">
 						<var name="key_breadcrumbName" value="${breadcrumbName}" />
 					</execute>
 				</for>
@@ -180,7 +180,7 @@
 			<isset var="breadcrumListVisible" />
 			<then>
 				<for list="${breadcrumbListVisible}" param="breadcrumbName">
-					<execute function="AssertElementPresent" locator1="BreadcrumbPortlet#BREADCRUMB_SPECIFIC_ENTRY">
+					<execute function="Portal.AssertElementPresent" locator1="BreadcrumbPortlet#BREADCRUMB_SPECIFIC_ENTRY">
 						<var name="key_breadcrumbName" value="${breadcrumbName}" />
 					</execute>
 				</for>

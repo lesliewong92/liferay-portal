@@ -1,25 +1,25 @@
 <definition>
 	<command name="addTask">
 		<if>
-			<condition function="IsElementNotPresent" locator1="Tasks#TASK_DESCRIPTION" />
+			<condition function="Portal.IsElementNotPresent" locator1="Tasks#TASK_DESCRIPTION" />
 			<then>
-				<execute function="AssertTextEquals" locator1="Tasks#INFO_MESSAGE" value1="No tasks were found." />
+				<execute function="Portal.AssertTextEquals" locator1="Tasks#INFO_MESSAGE" value1="No tasks were found." />
 			</then>
 		</if>
 
-		<execute function="Click" locator1="Tasks#ADD_TASK_BUTTON" />
+		<execute function="Portal.Click" locator1="Tasks#ADD_TASK_BUTTON" />
 
-		<execute function="SelectFrame" locator1="AddTask#ADD_TASK_IFRAME" />
-		<execute function="Type" locator1="AddTask#TASK_DESCRIPTION_FIELD" value1="${taskDescription}" />
-		<execute function="Select" locator1="AddTask#TASK_ASSIGNEE_SELECT_MENU" value1="${taskAssignee}" />
+		<execute function="Portal.SelectFrame" locator1="AddTask#ADD_TASK_IFRAME" />
+		<execute function="Portal.Type" locator1="AddTask#TASK_DESCRIPTION_FIELD" value1="${taskDescription}" />
+		<execute function="Portal.Select" locator1="AddTask#TASK_ASSIGNEE_SELECT_MENU" value1="${taskAssignee}" />
 
 		<if>
 			<isset var="taskPriority" />
 			<then>
-				<execute function="Select" locator1="AddTask#TASK_PRIORITY_SELECT_MENU" value1="${taskPriority}" />
+				<execute function="Portal.Select" locator1="AddTask#TASK_PRIORITY_SELECT_MENU" value1="${taskPriority}" />
 			</then>
 			<else>
-				<execute function="Select" locator1="AddTask#TASK_PRIORITY_SELECT_MENU" value1="Normal" />
+				<execute function="Portal.Select" locator1="AddTask#TASK_PRIORITY_SELECT_MENU" value1="Normal" />
 			</else>
 		</if>
 
@@ -27,13 +27,13 @@
 			<equals arg1="${dueDate}" arg2="true" />
 			<then>
 				<if>
-					<condition function="IsTextEqual" locator1="AddTask#TASK_ADD_DUE_DATE_LINK" value1="Add Due Date" />
+					<condition function="Portal.IsTextEqual" locator1="AddTask#TASK_ADD_DUE_DATE_LINK" value1="Add Due Date" />
 					<then>
-						<execute function="AssertClick" locator1="AddTask#TASK_ADD_DUE_DATE_LINK" value1="Add Due Date" />
+						<execute function="Portal.AssertClick" locator1="AddTask#TASK_ADD_DUE_DATE_LINK" value1="Add Due Date" />
 					</then>
 				</if>
 
-				<execute function="Type" locator1="AddTask#DUE_DATE_FIELD" value1="3/16/2016" />
+				<execute function="Portal.Type" locator1="AddTask#DUE_DATE_FIELD" value1="3/16/2016" />
 			</then>
 		</if>
 
@@ -41,9 +41,9 @@
 			<equals arg1="${dueTime}" arg2="true" />
 			<then>
 				<if>
-					<condition function="IsElementNotPresent" locator1="AddTask#DUE_DATE_FIELD" />
+					<condition function="Portal.IsElementNotPresent" locator1="AddTask#DUE_DATE_FIELD" />
 					<then>
-						<execute function="AssertClick" locator1="AddTask#TASK_ADD_DUE_DATE_LINK" value1="Add Due Date" />
+						<execute function="Portal.AssertClick" locator1="AddTask#TASK_ADD_DUE_DATE_LINK" value1="Add Due Date" />
 					</then>
 				</if>
 
@@ -74,7 +74,7 @@
 
 				<var name="displayDate" value="${displayDateHour}:${displayDateMinuteFuture} ${displayDateMeridian}" />
 
-				<execute function="Type" locator1="AddTask#DUE_DATE_TIME_FIELD" value1="${displayDate}" />
+				<execute function="Portal.Type" locator1="AddTask#DUE_DATE_TIME_FIELD" value1="${displayDate}" />
 			</then>
 		</if>
 
@@ -90,12 +90,12 @@
 					<then>
 						<var method="MathUtil#sum('${tagNumber}', '1')" name="tagNumber" />
 
-						<execute function="Type" locator1="AddTask#TASK_TAG_FIELD" value1="tag${tagNumber}" />
-						<execute function="Click" locator1="AddTask#TASK_ADD_TAG_BUTTON" />
+						<execute function="Portal.Type" locator1="AddTask#TASK_TAG_FIELD" value1="tag${tagNumber}" />
+						<execute function="Portal.Click" locator1="AddTask#TASK_ADD_TAG_BUTTON" />
 
 						<var name="key_tagNumber" value="${tagNumber}" />
 
-						<execute function="AssertTextEquals" locator1="AddTask#TASK_TAG" value1="tag${tagNumber}" />
+						<execute function="Portal.AssertTextEquals" locator1="AddTask#TASK_TAG" value1="tag${tagNumber}" />
 					</then>
 				</while>
 			</then>
@@ -106,30 +106,30 @@
 			<then>
 				<var name="key_tagNumber" value="${tagNumber}" />
 
-				<execute function="Type" locator1="AddTask#TASK_TAG_FIELD" value1="tag${tagNumber}" />
-				<execute function="Click" locator1="AddTask#TASK_ADD_TAG_BUTTON" />
-				<execute function="AssertTextEquals" locator1="AddTask#TASK_TAG" value1="tag${tagNumber}" />
+				<execute function="Portal.Type" locator1="AddTask#TASK_TAG_FIELD" value1="tag${tagNumber}" />
+				<execute function="Portal.Click" locator1="AddTask#TASK_ADD_TAG_BUTTON" />
+				<execute function="Portal.AssertTextEquals" locator1="AddTask#TASK_TAG" value1="tag${tagNumber}" />
 			</then>
 		</if>
 
-		<execute function="Click" locator1="AddTask#SAVE_BUTTON" />
+		<execute function="Portal.Click" locator1="AddTask#SAVE_BUTTON" />
 
 		<var name="key_taskDescription" value="${taskDescription}" />
 
-		<execute function="AssertTextEquals" locator1="TasksTask#TASK_DESCRIPTION" value1="${taskDescription}" />
+		<execute function="Portal.AssertTextEquals" locator1="TasksTask#TASK_DESCRIPTION" value1="${taskDescription}" />
 
 		<if>
 			<equals arg1="${taskAssignee}" arg2="Unassigned" />
 			<then>
-				<execute function="AssertTextEquals" locator1="TasksTask#TASK_ASSIGNEE" value1="Unassigned" />
+				<execute function="Portal.AssertTextEquals" locator1="TasksTask#TASK_ASSIGNEE" value1="Unassigned" />
 			</then>
 			<else>
-				<execute function="AssertTextEquals" locator1="TasksTask#TASK_ASSIGNEE" value1="Assigned to ${taskAssignee}" />
+				<execute function="Portal.AssertTextEquals" locator1="TasksTask#TASK_ASSIGNEE" value1="Assigned to ${taskAssignee}" />
 			</else>
 		</if>
 
-		<execute function="AssertTextEquals" locator1="TasksTask#TASK_REPORTER" value1="Created by ${taskReporter}" />
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.AssertTextEquals" locator1="TasksTask#TASK_REPORTER" value1="Created by ${taskReporter}" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 
 		<execute macro="Navigator#openURL" />
 	</command>

@@ -1,9 +1,9 @@
 <definition>
 	<command name="_openComments">
 		<if>
-			<condition function="IsElementNotPresent#isNotVisible" locator1="Comments#COMMENT_FIELD" />
+			<condition function="Portal.IsElementNotPresent#isNotVisible" locator1="Comments#COMMENT_FIELD" />
 			<then>
-				<execute function="AssertClick" locator1="MyWorkflowTasksTask#COMMENTS" value1="Comments" />
+				<execute function="Portal.AssertClick" locator1="MyWorkflowTasksTask#COMMENTS" value1="Comments" />
 			</then>
 		</if>
 	</command>
@@ -11,7 +11,7 @@
 	<command name="_viewBody">
 		<var name="key_entryComment" value="${workflowComment}" />
 
-		<execute function="AssertTextEquals" locator1="Comments#COMMENT_BODY_SPECIFIC" value1="${workflowComment}" />
+		<execute function="Portal.AssertTextEquals" locator1="Comments#COMMENT_BODY_SPECIFIC" value1="${workflowComment}" />
 	</command>
 
 	<command name="add">
@@ -41,6 +41,6 @@
 	<command name="viewCommentsNotPresent">
 		<execute macro="WorkflowComment#_openComments" />
 
-		<execute function="AssertElementNotPresent" locator1="Comments#COMMENT_BODY" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Comments#COMMENT_BODY" />
 	</command>
 </definition>

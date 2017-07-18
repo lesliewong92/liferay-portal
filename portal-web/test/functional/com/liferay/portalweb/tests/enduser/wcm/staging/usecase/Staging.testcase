@@ -304,7 +304,7 @@
 
 		<execute macro="Navigator#gotoStagedView" />
 
-		<execute function="Pause" locator1="30000" />
+		<execute function="Portal.Pause" locator1="30000" />
 
 		<execute macro="ProductMenu#gotoSitesPublishing">
 			<var name="portlet" value="Staging" />
@@ -537,9 +537,9 @@
 			<var name="portlet" value="Server Administration" />
 		</execute>
 
-		<execute function="AssertClick" locator1="NavBar#FILE_UPLOADS" value1="File Uploads" />
+		<execute function="Portal.AssertClick" locator1="NavBar#FILE_UPLOADS" value1="File Uploads" />
 
-		<execute function="Type" locator1="ServerAdministrationFileUploads#DOCS_AND_MEDIA_MAX_FILE_SIZE_FIELD" value1="30000000" />
+		<execute function="Portal.Type" locator1="ServerAdministrationFileUploads#DOCS_AND_MEDIA_MAX_FILE_SIZE_FIELD" value1="30000000" />
 		<execute macro="PortletEntry#save" />
 
 		<execute macro="Navigator#gotoSitePage">
@@ -864,7 +864,7 @@
 
 		<var name="key_portletTitleName" value="Web Content Display" />
 
-		<execute function="AssertTextNotPresent" locator1="Portlet#SPECIFIC_TITLE" value1="Web Content Display" />
+		<execute function="Portal.AssertTextNotPresent" locator1="Portlet#SPECIFIC_TITLE" value1="Web Content Display" />
 
 		<execute macro="User#loginPG">
 			<var name="password" value="test" />
@@ -878,14 +878,14 @@
 
 		<var name="key_portletTitleName" value="Web Content Display" />
 
-		<execute function="AssertTextNotPresent" locator1="Portlet#SPECIFIC_TITLE" value1="Web Content Display" />
+		<execute function="Portal.AssertTextNotPresent" locator1="Portlet#SPECIFIC_TITLE" value1="Web Content Display" />
 
 		<execute macro="Navigator#gotoStagedSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="Message#WORKFLOW_UNAPPROVED" value1="Web Content Title is not approved." />
+		<execute function="Portal.AssertTextEquals" locator1="Message#WORKFLOW_UNAPPROVED" value1="Web Content Title is not approved." />
 	</command>
 
 	<command name="StagingMultipleDM" priority="5">
@@ -1061,14 +1061,14 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="WCD#WEB_CONTENT_CONTENT" value1="Web Content Content 1" />
+		<execute function="Portal.AssertTextEquals" locator1="WCD#WEB_CONTENT_CONTENT" value1="Web Content Content 1" />
 
 		<execute macro="Navigator#gotoStagedSitePage">
 			<var name="pageName" value="Staging Test Page 2" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="Message#ERROR_3" value1="Web Content Title 2 is not approved." />
+		<execute function="Portal.AssertTextEquals" locator1="Message#ERROR_3" value1="Web Content Title 2 is not approved." />
 
 		<execute macro="Navigator#gotoStagedSitePage">
 			<var name="pageName" value="Staging Test Page" />
@@ -1091,14 +1091,14 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="WCD#WEB_CONTENT_CONTENT" value1="Web Content Content 1" />
+		<execute function="Portal.AssertTextEquals" locator1="WCD#WEB_CONTENT_CONTENT" value1="Web Content Content 1" />
 
 		<execute macro="Navigator#gotoSitePage">
 			<var name="pageName" value="Staging Test Page 2" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute function="AssertTextNotPresent" locator1="WCD#WEB_CONTENT_CONTENT" value1="Web Content Title 2" />
+		<execute function="Portal.AssertTextNotPresent" locator1="WCD#WEB_CONTENT_CONTENT" value1="Web Content Title 2" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
@@ -1132,7 +1132,7 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="WCD#WEB_CONTENT_CONTENT" value1="Web Content Content 2" />
+		<execute function="Portal.AssertTextEquals" locator1="WCD#WEB_CONTENT_CONTENT" value1="Web Content Content 2" />
 
 		<execute macro="Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
@@ -1358,7 +1358,7 @@
 
 		<var name="key_contentName" value="Web Content" />
 
-		<execute function="AssertElementNotPresent" locator1="PagesConfiguration#CONTENT_CHOOSE_CONTENT_CONTENT_CHECKBOX" />
+		<execute function="Portal.AssertElementNotPresent" locator1="PagesConfiguration#CONTENT_CHOOSE_CONTENT_CONTENT_CHECKBOX" />
 
 		<execute macro="Navigator#gotoSitePage">
 			<var name="pageName" value="Staging Test Page" />
@@ -1385,7 +1385,7 @@
 
 		<var name="key_webContentTitle" value="Web Content Title" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="WC#ENTRY_DESCRIPTIVE_TITLE_ON_LIVE" value1="Web Content Title" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="WC#ENTRY_DESCRIPTIVE_TITLE_ON_LIVE" value1="Web Content Title" />
 
 		<execute macro="WebContentNavigator#gotoManageStructures" />
 
@@ -1520,7 +1520,7 @@
 
 		<execute macro="Navigator#gotoStagedView" />
 
-		<execute function="Pause" locator1="30000" />
+		<execute function="Portal.Pause" locator1="30000" />
 
 		<execute macro="ProductMenu#gotoSitesPublishing">
 			<var name="portlet" value="Staging" />
@@ -1689,11 +1689,11 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute function="Click" locator1="Icon#HISTORY_VERTICAL_ELLIPSIS" />
+		<execute function="Portal.Click" locator1="Icon#HISTORY_VERTICAL_ELLIPSIS" />
 
-		<execute function="Click" locator1="Staging#HISTORY_BUTTON" />
+		<execute function="Portal.Click" locator1="Staging#HISTORY_BUTTON" />
 
-		<execute function="SelectFrame" locator1="IFrame#METADATA_SETS_IFRAME" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#METADATA_SETS_IFRAME" />
 
 		<var locator="Staging#HISTORY_VERSION" name="historyVersion" />
 

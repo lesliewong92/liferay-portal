@@ -2,12 +2,12 @@
 	<command name="addCP">
 		<var name="key_webContentTitle" value="${folderName}" />
 
-		<execute function="Click" locator1="Button#PLUS" />
+		<execute function="Portal.Click" locator1="Button#PLUS" />
 
 		<if>
-			<condition function="IsElementPresent" locator1="MenuItem#FOLDER" />
+			<condition function="Portal.IsElementPresent" locator1="MenuItem#FOLDER" />
 			<then>
-				<execute function="AssertClick" locator1="MenuItem#FOLDER" value1="Folder" />
+				<execute function="Portal.AssertClick" locator1="MenuItem#FOLDER" value1="Folder" />
 			</then>
 		</if>
 
@@ -25,8 +25,8 @@
 			<var name="displayStyle" value="Descriptive" />
 		</execute>
 
-		<execute function="AssertElementPresent#pauseAssertVisible" locator1="WC#ENTRY_DESCRIPTIVE_THUMBNAIL" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="WC#ENTRY_DESCRIPTIVE_TITLE" value1="${folderName}" />
+		<execute function="Portal.AssertElementPresent#pauseAssertVisible" locator1="WC#ENTRY_DESCRIPTIVE_THUMBNAIL" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="WC#ENTRY_DESCRIPTIVE_TITLE" value1="${folderName}" />
 	</command>
 
 	<command name="addSubfolderCP">
@@ -36,13 +36,13 @@
 			<var name="displayStyle" value="Descriptive" />
 		</execute>
 
-		<execute function="Click" locator1="WC#ENTRY_DESCRIPTIVE_TITLE" value1="${folderName}" />
+		<execute function="Portal.Click" locator1="WC#ENTRY_DESCRIPTIVE_TITLE" value1="${folderName}" />
 
-		<execute function="AssertTextEquals" locator1="WC#FILTER_SELECTED" value1="${folderName}" />
+		<execute function="Portal.AssertTextEquals" locator1="WC#FILTER_SELECTED" value1="${folderName}" />
 
-		<execute function="Click" locator1="Button#PLUS" />
+		<execute function="Portal.Click" locator1="Button#PLUS" />
 
-		<execute function="Click" locator1="MenuItem#SUBFOLDER" value1="Subfolder" />
+		<execute function="Portal.Click" locator1="MenuItem#SUBFOLDER" value1="Subfolder" />
 
 		<execute macro="PortletEntry#inputName">
 			<var name="name" value="${subfolderName}" />
@@ -57,8 +57,8 @@
 		<var name="key_webContentTitle" value="${subfolderName}" />
 
 		<execute macro="Alert#viewSuccessMessage" />
-		<execute function="AssertElementPresent#pauseAssertVisible" locator1="WC#ENTRY_DESCRIPTIVE_THUMBNAIL" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="WC#ENTRY_DESCRIPTIVE_TITLE" value1="${subfolderName}" />
+		<execute function="Portal.AssertElementPresent#pauseAssertVisible" locator1="WC#ENTRY_DESCRIPTIVE_THUMBNAIL" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="WC#ENTRY_DESCRIPTIVE_TITLE" value1="${subfolderName}" />
 	</command>
 
 	<command name="configureWorkflowCP">
@@ -68,43 +68,43 @@
 		</execute>
 
 		<if>
-			<condition function="IsElementNotPresent#isNotVisible" locator1="WCEditFolder#WORKFLOW_PARENT_FOLDER_RADIO" />
+			<condition function="Portal.IsElementNotPresent#isNotVisible" locator1="WCEditFolder#WORKFLOW_PARENT_FOLDER_RADIO" />
 			<then>
-				<execute function="Click" locator1="WCEditFolder#WORKFLOW_STRUCTURE_RESTRICTIONS_TOGGLE" />
+				<execute function="Portal.Click" locator1="WCEditFolder#WORKFLOW_STRUCTURE_RESTRICTIONS_TOGGLE" />
 			</then>
 		</if>
 
 		<if>
 			<equals arg1="${workflowRestriction}" arg2="Parent Folder" />
 			<then>
-				<execute function="Click" locator1="WCEditFolder#WORKFLOW_PARENT_FOLDER_RADIO" />
+				<execute function="Portal.Click" locator1="WCEditFolder#WORKFLOW_PARENT_FOLDER_RADIO" />
 			</then>
 			<elseif>
 				<equals arg1="${workflowRestriction}" arg2="Specific Restrictions" />
 				<then>
-					<execute function="Click" locator1="WCEditFolder#WORKFLOW_SPECIFIC_RESTRICTIONS_RADIO" />
+					<execute function="Portal.Click" locator1="WCEditFolder#WORKFLOW_SPECIFIC_RESTRICTIONS_RADIO" />
 
-					<execute function="AssertClick" locator1="WCEditFolder#WORKFLOW_SPECIFIC_RESTRICTIONS_CHOOSE_STRUCTURE_BUTTON" value1="Choose Structure" />
+					<execute function="Portal.AssertClick" locator1="WCEditFolder#WORKFLOW_SPECIFIC_RESTRICTIONS_CHOOSE_STRUCTURE_BUTTON" value1="Choose Structure" />
 
-					<execute function="SelectFrame" value1="relative=top" />
+					<execute function="Portal.SelectFrame" value1="relative=top" />
 
-					<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+					<execute function="Portal.SelectFrame" locator1="IFrame#DIALOG" />
 
 					<var name="key_ddlDataDefinitionName" value="${structureName}" />
 
-					<execute function="AssertClickNoError" locator1="DDMSelectStructure#DDM_STRUCTURE_TABLE_NAME_LINK" value1="${structureName}" />
+					<execute function="Portal.AssertClickNoError" locator1="DDMSelectStructure#DDM_STRUCTURE_TABLE_NAME_LINK" value1="${structureName}" />
 
-					<execute function="SelectFrame" value1="relative=top" />
+					<execute function="Portal.SelectFrame" value1="relative=top" />
 
-					<execute function="Select" locator1="WCEditFolder#WORKFLOW_SPECIFIC_RESTRICTIONS_STRUCTURE_WORKFLOW_SELECT" value1="${workflowDefinition}" />
+					<execute function="Portal.Select" locator1="WCEditFolder#WORKFLOW_SPECIFIC_RESTRICTIONS_STRUCTURE_WORKFLOW_SELECT" value1="${workflowDefinition}" />
 				</then>
 			</elseif>
 			<elseif>
 				<equals arg1="${workflowRestriction}" arg2="Default Workflow" />
 				<then>
-					<execute function="Click" locator1="WCEditFolder#WORKFLOW_DEFAULT_WORKFLOW_RADIO" />
+					<execute function="Portal.Click" locator1="WCEditFolder#WORKFLOW_DEFAULT_WORKFLOW_RADIO" />
 
-					<execute function="Select" locator1="WCEditFolder#WORKFLOW_DEFAULT_WORKFLOW_WORKFLOW_SELECT" value1="${workflowDefinition}" />
+					<execute function="Portal.Select" locator1="WCEditFolder#WORKFLOW_DEFAULT_WORKFLOW_WORKFLOW_SELECT" value1="${workflowDefinition}" />
 				</then>
 			</elseif>
 		</if>
@@ -119,11 +119,11 @@
 
 		<var name="key_webContentTitle" value="${webContentTitle}" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="WC#ENTRY_DESCRIPTIVE_TITLE" value1="${folderName}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="WC#ENTRY_DESCRIPTIVE_TITLE" value1="${folderName}" />
 
-		<execute function="AssertClick" locator1="WC#ENTRY_DESCRIPTIVE_TITLE" value1="${folderName}" />
+		<execute function="Portal.AssertClick" locator1="WC#ENTRY_DESCRIPTIVE_TITLE" value1="${folderName}" />
 
-		<execute function="AssertTextEquals" locator1="Portlet#HEADER" value1="${folderName}" />
+		<execute function="Portal.AssertTextEquals" locator1="Portlet#HEADER" value1="${folderName}" />
 	</command>
 
 	<command name="gotoEditCP">
@@ -133,11 +133,11 @@
 			<var name="displayStyle" value="Descriptive" />
 		</execute>
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="WC#ENTRY_DESCRIPTIVE_TITLE" value1="${webContentTitle}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="WC#ENTRY_DESCRIPTIVE_TITLE" value1="${webContentTitle}" />
 
-		<execute function="Click" locator1="WC#ENTRY_DESCRIPTIVE_MENULIST_ICON" />
+		<execute function="Portal.Click" locator1="WC#ENTRY_DESCRIPTIVE_MENULIST_ICON" />
 
-		<execute function="AssertClick" locator1="MenuItem#EDIT" value1="Edit" />
+		<execute function="Portal.AssertClick" locator1="MenuItem#EDIT" value1="Edit" />
 	</command>
 
 	<command name="moveToRecycleBinCP">
@@ -147,12 +147,12 @@
 
 		<var name="key_webContentTitle" value="${folderName}" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="WC#ENTRY_DESCRIPTIVE_TITLE" value1="${folderName}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="WC#ENTRY_DESCRIPTIVE_TITLE" value1="${folderName}" />
 
-		<execute function="Click" locator1="WC#ENTRY_DESCRIPTIVE_MENULIST_ICON" />
+		<execute function="Portal.Click" locator1="WC#ENTRY_DESCRIPTIVE_MENULIST_ICON" />
 
 		<execute macro="PortletEntry#clickMoveToRecycleBin" />
 
-		<execute function="AssertElementPresent" locator1="Message#SUCCESS" />
+		<execute function="Portal.AssertElementPresent" locator1="Message#SUCCESS" />
 	</command>
 </definition>

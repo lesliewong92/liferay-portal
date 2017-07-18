@@ -15,6 +15,7 @@
 package com.liferay.poshi.runner.logger;
 
 import com.liferay.poshi.runner.PoshiRunnerContext;
+import com.liferay.poshi.runner.PoshiRunnerStackTraceUtil;
 import com.liferay.poshi.runner.PoshiRunnerVariablesUtil;
 import com.liferay.poshi.runner.exception.PoshiRunnerLoggerException;
 import com.liferay.poshi.runner.util.HtmlUtil;
@@ -520,28 +521,75 @@ public final class SummaryLoggerHandler {
 
 		if (summary == null) {
 			if (element.attributeValue("action") != null) {
-				summary = PoshiRunnerContext.getActionCommandSummary(
-					element.attributeValue("action"));
+				String action = element.attributeValue("action");
+
+				if (!action.contains(".")) {
+					action =
+						PoshiRunnerStackTraceUtil.getCurrentNamespace() + "." +
+							action;
+				}
+
+				summary = PoshiRunnerContext.getActionCommandSummary(action);
 			}
 			else if (element.attributeValue("action-summary") != null) {
+				String actionSummary = element.attributeValue("action-summary");
+
+				if (!actionSummary.contains(".")) {
+					actionSummary =
+						PoshiRunnerStackTraceUtil.getCurrentNamespace() + "." +
+							actionSummary;
+				}
+
 				summary = PoshiRunnerContext.getActionCommandSummary(
-					element.attributeValue("action-summary"));
+					actionSummary);
 			}
 			else if (element.attributeValue("function") != null) {
+				String function = element.attributeValue("function");
+
+				if (!function.contains(".")) {
+					function =
+						PoshiRunnerStackTraceUtil.getCurrentNamespace() + "." +
+							function;
+				}
+
 				summary = PoshiRunnerContext.getFunctionCommandSummary(
-					element.attributeValue("function"));
+					function);
 			}
 			else if (element.attributeValue("function-summary") != null) {
+				String functionSummary = element.attributeValue(
+					"function-summary");
+
+				if (!functionSummary.contains(".")) {
+					functionSummary =
+						PoshiRunnerStackTraceUtil.getCurrentNamespace() + "." +
+							functionSummary;
+				}
+
 				summary = PoshiRunnerContext.getFunctionCommandSummary(
-					element.attributeValue("function-summary"));
+					functionSummary);
 			}
 			else if (element.attributeValue("macro") != null) {
-				summary = PoshiRunnerContext.getMacroCommandSummary(
-					element.attributeValue("macro"));
+				String macro = element.attributeValue("macro");
+
+				if (!macro.contains(".")) {
+					macro =
+						PoshiRunnerStackTraceUtil.getCurrentNamespace() + "." +
+							macro;
+				}
+
+				summary = PoshiRunnerContext.getMacroCommandSummary(macro);
 			}
 			else if (element.attributeValue("macro-summary") != null) {
+				String macroSummary = element.attributeValue("macro-summary");
+
+				if (!macroSummary.contains(".")) {
+					macroSummary =
+						PoshiRunnerStackTraceUtil.getCurrentNamespace() + "." +
+							macroSummary;
+				}
+
 				summary = PoshiRunnerContext.getMacroCommandSummary(
-					element.attributeValue("macro-summary"));
+					macroSummary);
 			}
 		}
 

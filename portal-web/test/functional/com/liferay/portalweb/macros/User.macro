@@ -4,30 +4,30 @@
 
 	<command name="acceptEndUserLicenseAgreement">
 		<if>
-			<condition function="IsElementPresent" locator1="Button#I_AGREE" value1="I Agree" />
+			<condition function="Portal.IsElementPresent" locator1="Button#I_AGREE" value1="I Agree" />
 			<then>
-				<execute function="AssertClick" locator1="Button#I_AGREE" value1="I Agree" />
+				<execute function="Portal.AssertClick" locator1="Button#I_AGREE" value1="I Agree" />
 
-				<execute function="AssertElementNotPresent" locator1="Button#I_AGREE" value1="I Agree" />
+				<execute function="Portal.AssertElementNotPresent" locator1="Button#I_AGREE" value1="I Agree" />
 			</then>
 		</if>
 	</command>
 
 	<command name="activateCP">
-		<execute function="Click" locator1="Dropdown#FILTER" />
+		<execute function="Portal.Click" locator1="Dropdown#FILTER" />
 
 		<var name="key_filterValue" value="Inactive" />
 
-		<execute function="AssertClick" locator1="Dropdown#FILTER_VALUES" value1="Inactive" />
+		<execute function="Portal.AssertClick" locator1="Dropdown#FILTER_VALUES" value1="Inactive" />
 
 		<var name="key_rowEntry" value="${userScreenName}" />
 
-		<execute function="Click#waitForMenuToggleJSClick" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
+		<execute function="Portal.Click#waitForMenuToggleJSClick" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
 
-		<execute function="AssertClick" locator1="MenuItem#ACTIVATE" value1="Activate" />
+		<execute function="Portal.AssertClick" locator1="MenuItem#ACTIVATE" value1="Activate" />
 
 		<execute macro="Alert#viewSuccessMessage" />
-		<execute function="AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No users were found." />
+		<execute function="Portal.AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No users were found." />
 
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
@@ -35,124 +35,124 @@
 
 		<var name="key_userScreenName" value="${userScreenName}" />
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_NAME" value1="${userName}" />
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
+		<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_NAME" value1="${userName}" />
+		<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
 	</command>
 
 	<command name="addAdditionalEmailAddressViaMyAccount">
-		<execute function="Click" locator1="NavListItem#ADDITIONAL_EMAIL_ADDRESSES" />
+		<execute function="Portal.Click" locator1="NavListItem#ADDITIONAL_EMAIL_ADDRESSES" />
 
-		<execute function="Type" locator1="MyAccount#ADDITIONAL_EMAIL_ADDRESSES_EMAIL_ADDRESS_FIELD" value1="${userAdditionalEmailAddress}" />
+		<execute function="Portal.Type" locator1="MyAccount#ADDITIONAL_EMAIL_ADDRESSES_EMAIL_ADDRESS_FIELD" value1="${userAdditionalEmailAddress}" />
 
-		<execute function="Select" locator1="MyAccount#ADDITIONAL_EMAIL_ADDRESSES_TYPE_SELECT" value1="Email Address" />
+		<execute function="Portal.Select" locator1="MyAccount#ADDITIONAL_EMAIL_ADDRESSES_TYPE_SELECT" value1="Email Address" />
 
-		<execute function="Click" locator1="MyAccount#ADDITIONAL_EMAIL_ADDRESSES_PRIMARY_RADIO_BUTTON" />
+		<execute function="Portal.Click" locator1="MyAccount#ADDITIONAL_EMAIL_ADDRESSES_PRIMARY_RADIO_BUTTON" />
 
-		<execute function="Click" locator1="Button#SAVE" />
+		<execute function="Portal.Click" locator1="Button#SAVE" />
 
 		<execute macro="Alert#viewSuccessMessage" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 	</command>
 
 	<command name="addAddressViaMyAccount">
-		<execute function="Click" locator1="NavListItem#ADDRESSES" />
+		<execute function="Portal.Click" locator1="NavListItem#ADDRESSES" />
 
-		<execute function="Type" locator1="TextInput#STREET_1" value1="${userAddressStreet1}" />
+		<execute function="Portal.Type" locator1="TextInput#STREET_1" value1="${userAddressStreet1}" />
 
 		<if>
 			<isset var="userAddressCountry" />
 			<then>
-				<execute function="Select" locator1="Select#COUNTRY" value1="${userAddressCountry}" />
+				<execute function="Portal.Select" locator1="Select#COUNTRY" value1="${userAddressCountry}" />
 			</then>
 		</if>
 
 		<if>
 			<isset var="userAddressRegion" />
 			<then>
-				<execute function="Select" locator1="Select#REGION" value1="${userAddressRegion}" />
+				<execute function="Portal.Select" locator1="Select#REGION" value1="${userAddressRegion}" />
 			</then>
 		</if>
 
 		<if>
 			<isset var="userAddressPostalCode" />
 			<then>
-				<execute function="Type" locator1="TextInput#POSTAL_CODE" value1="${userAddressPostalCode}" />
+				<execute function="Portal.Type" locator1="TextInput#POSTAL_CODE" value1="${userAddressPostalCode}" />
 			</then>
 		</if>
 
 		<if>
 			<isset var="userAddressType" />
 			<then>
-				<execute function="Select" locator1="Select#TYPE" value1="${userAddressType}" />
+				<execute function="Portal.Select" locator1="Select#TYPE" value1="${userAddressType}" />
 			</then>
 		</if>
 
-		<execute function="Type" locator1="TextInput#CITY" value1="${userAddressCity}" />
+		<execute function="Portal.Type" locator1="TextInput#CITY" value1="${userAddressCity}" />
 
-		<execute function="Click" locator1="Radio#PRIMARY" />
-		<execute function="Check" locator1="Checkbox#MAILING" />
+		<execute function="Portal.Click" locator1="Radio#PRIMARY" />
+		<execute function="Portal.Check" locator1="Checkbox#MAILING" />
 
-		<execute function="Click" locator1="Button#SAVE" />
+		<execute function="Portal.Click" locator1="Button#SAVE" />
 
 		<execute macro="Alert#viewSuccessMessage" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 	</command>
 
 	<command name="addCommentViaMyAccount">
-		<execute function="Click" locator1="NavListItem#COMMENTS" />
+		<execute function="Portal.Click" locator1="NavListItem#COMMENTS" />
 
-		<execute function="Type" locator1="MyAccount#COMMENTS_FIELD" value1="${userIntroduction}" />
+		<execute function="Portal.Type" locator1="MyAccount#COMMENTS_FIELD" value1="${userIntroduction}" />
 
-		<execute function="Click" locator1="Button#SAVE" />
+		<execute function="Portal.Click" locator1="Button#SAVE" />
 
 		<execute macro="Alert#viewSuccessMessage" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 	</command>
 
 	<command name="addCP">
-		<execute function="Click" locator1="Button#PLUS" />
+		<execute function="Portal.Click" locator1="Button#PLUS" />
 
-		<execute function="Type" locator1="UsersAndOrganizationsEditUser#DETAILS_SCREEN_NAME_FIELD" value1="${userScreenName}" />
-		<execute function="Type" locator1="UsersAndOrganizationsEditUser#DETAILS_EMAIL_ADDRESS_FIELD" value1="${userEmailAddress}" />
-		<execute function="Type" locator1="UsersAndOrganizationsEditUser#DETAILS_FIRST_NAME_FIELD" value1="${userFirstName}" />
+		<execute function="Portal.Type" locator1="UsersAndOrganizationsEditUser#DETAILS_SCREEN_NAME_FIELD" value1="${userScreenName}" />
+		<execute function="Portal.Type" locator1="UsersAndOrganizationsEditUser#DETAILS_EMAIL_ADDRESS_FIELD" value1="${userEmailAddress}" />
+		<execute function="Portal.Type" locator1="UsersAndOrganizationsEditUser#DETAILS_FIRST_NAME_FIELD" value1="${userFirstName}" />
 
 		<if>
 			<isset var="userBirthday" />
 			<then>
-				<execute function="Type" locator1="UsersAndOrganizationsEditUser#DETAILS_BIRTHDAY_FIELD" value1="${userBirthday}" />
+				<execute function="Portal.Type" locator1="UsersAndOrganizationsEditUser#DETAILS_BIRTHDAY_FIELD" value1="${userBirthday}" />
 			</then>
 		</if>
 
 		<if>
 			<isset var="userMiddleName" />
 			<then>
-				<execute function="Type" locator1="UsersAndOrganizationsEditUser#DETAILS_MIDDLE_NAME_FIELD" value1="${userMiddleName}" />
+				<execute function="Portal.Type" locator1="UsersAndOrganizationsEditUser#DETAILS_MIDDLE_NAME_FIELD" value1="${userMiddleName}" />
 			</then>
 		</if>
 
 		<if>
 			<isset var="userGender" />
 			<then>
-				<execute function="Select" locator1="UsersAndOrganizationsEditUser#DETAILS_GENDER_SELECT" value1="${userGender}" />
+				<execute function="Portal.Select" locator1="UsersAndOrganizationsEditUser#DETAILS_GENDER_SELECT" value1="${userGender}" />
 			</then>
 		</if>
 
-		<execute function="Type" locator1="UsersAndOrganizationsEditUser#DETAILS_LAST_NAME_FIELD" value1="${userLastName}" />
+		<execute function="Portal.Type" locator1="UsersAndOrganizationsEditUser#DETAILS_LAST_NAME_FIELD" value1="${userLastName}" />
 
-		<execute function="AssertClick" locator1="Button#SUBMIT" value1="Save" />
+		<execute function="Portal.AssertClick" locator1="Button#SUBMIT" value1="Save" />
 
 		<if>
 			<equals arg1="${userEmailAddressVariation}" arg2="Invalid" />
 			<then>
-				<execute function="AssertTextEquals" locator1="UsersAndOrganizationsEditUser#EMAIL_ADDRESS_FIELD_ALERT" value1="Please enter a valid email address." />
+				<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizationsEditUser#EMAIL_ADDRESS_FIELD_ALERT" value1="Please enter a valid email address." />
 			</then>
 			<elseif>
 				<equals arg1="${userEmailAddressVariation}" arg2="Null" />
 				<then>
-					<execute function="AssertTextEquals" locator1="UsersAndOrganizationsEditUser#EMAIL_ADDRESS_FIELD_ALERT" value1="This field is required." />
+					<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizationsEditUser#EMAIL_ADDRESS_FIELD_ALERT" value1="This field is required." />
 				</then>
 			</elseif>
 			<elseif>
@@ -160,29 +160,29 @@
 				<then>
 					<execute macro="Alert#viewRequestFailedToComplete" />
 
-					<execute function="AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="Please enter a valid email address." />
+					<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="Please enter a valid email address." />
 				</then>
 			</elseif>
 			<elseif>
 				<equals arg1="${userScreenNameVariation}" arg2="Invalid" />
 				<then>
-					<execute function="AssertTextEquals" locator1="UsersAndOrganizationsEditUser#SCREEN_NAME_FIELD_ALERT" value1="The screen name cannot be an email address or a reserved word, such as postfix. It must contain only alphanumeric or the following special characters: -._." />
+					<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizationsEditUser#SCREEN_NAME_FIELD_ALERT" value1="The screen name cannot be an email address or a reserved word, such as postfix. It must contain only alphanumeric or the following special characters: -._." />
 				</then>
 			</elseif>
 			<else>
 				<execute macro="Alert#viewSuccessMessage" />
-				<execute function="AssertTextEquals" locator1="UsersAndOrganizationsEditUser#DETAILS_SCREEN_NAME_FIELD" value1="${userScreenName}" />
-				<execute function="AssertTextEquals" locator1="UsersAndOrganizationsEditUser#DETAILS_EMAIL_ADDRESS_FIELD" value1="${userEmailAddress}" />
-				<execute function="AssertTextEquals" locator1="UsersAndOrganizationsEditUser#DETAILS_FIRST_NAME_FIELD" value1="${userFirstName}" />
+				<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizationsEditUser#DETAILS_SCREEN_NAME_FIELD" value1="${userScreenName}" />
+				<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizationsEditUser#DETAILS_EMAIL_ADDRESS_FIELD" value1="${userEmailAddress}" />
+				<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizationsEditUser#DETAILS_FIRST_NAME_FIELD" value1="${userFirstName}" />
 
 				<if>
 					<isset var="userMiddleName" />
 					<then>
-						<execute function="AssertTextEquals" locator1="UsersAndOrganizationsEditUser#DETAILS_MIDDLE_NAME_FIELD" value1="${userMiddleName}" />
+						<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizationsEditUser#DETAILS_MIDDLE_NAME_FIELD" value1="${userMiddleName}" />
 					</then>
 				</if>
 
-				<execute function="AssertTextEquals" locator1="UsersAndOrganizationsEditUser#DETAILS_LAST_NAME_FIELD" value1="${userLastName}" />
+				<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizationsEditUser#DETAILS_LAST_NAME_FIELD" value1="${userLastName}" />
 			</else>
 		</if>
 	</command>
@@ -195,31 +195,31 @@
 			<var name="userScreenName" value="${userScreenName}" />
 		</execute>
 
-		<execute function="AssertElementPresent" locator1="Message#SUCCESS" />
+		<execute function="Portal.AssertElementPresent" locator1="Message#SUCCESS" />
 	</command>
 
 	<command name="addInstantMessengerViaMyAccount">
-		<execute function="Click" locator1="NavListItem#INSTANT_MESSENGER" />
+		<execute function="Portal.Click" locator1="NavListItem#INSTANT_MESSENGER" />
 
 		<if>
 			<isset var="userInstantMessengerJabber" />
 			<then>
-				<execute function="Type" locator1="TextInput#JABBER" value1="${userInstantMessengerJabber}" />
+				<execute function="Portal.Type" locator1="TextInput#JABBER" value1="${userInstantMessengerJabber}" />
 			</then>
 		</if>
 
 		<if>
 			<isset var="userInstantMessengerSkype" />
 			<then>
-				<execute function="Type" locator1="TextInput#SKYPE" value1="${userInstantMessengerSkype}" />
+				<execute function="Portal.Type" locator1="TextInput#SKYPE" value1="${userInstantMessengerSkype}" />
 			</then>
 		</if>
 
-		<execute function="Click" locator1="Button#SAVE" />
+		<execute function="Portal.Click" locator1="Button#SAVE" />
 
 		<execute macro="Alert#viewSuccessMessage" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 	</command>
 
 	<command name="addMultipleCP">
@@ -248,547 +248,547 @@
 	<command name="addPersonalSiteCP">
 		<var name="key_userScreenName" value="${userScreenName}" />
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
+		<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
 
-		<execute function="AssertClick" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
+		<execute function="Portal.AssertClick" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
 
 		<execute macro="Panel#expandPanel">
 			<var name="panelHeading" value="Personal Site Template" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizationsEditUser#PERSONAL_SITE_PRIVATE_PAGES_LABEL" value1="My Dashboard" />
+		<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizationsEditUser#PERSONAL_SITE_PRIVATE_PAGES_LABEL" value1="My Dashboard" />
 
-		<execute function="Select" locator1="UsersAndOrganizationsEditUser#PERSONAL_SITE_PRIVATE_PAGES" value1="${siteTemplateName}" />
+		<execute function="Portal.Select" locator1="UsersAndOrganizationsEditUser#PERSONAL_SITE_PRIVATE_PAGES" value1="${siteTemplateName}" />
 
 		<execute macro="PortletEntry#save" />
 	</command>
 
 	<command name="addPhoneNumbersViaMyAccount">
-		<execute function="Click" locator1="NavListItem#PHONE_NUMBERS" />
+		<execute function="Portal.Click" locator1="NavListItem#PHONE_NUMBERS" />
 
-		<execute function="Type" locator1="TextInput#NUMBER" value1="${userPhoneNumberNumber}" />
+		<execute function="Portal.Type" locator1="TextInput#NUMBER" value1="${userPhoneNumberNumber}" />
 
 		<if>
 			<isset var="userPhoneNumberExtension" />
 			<then>
-				<execute function="Type" locator1="TextInput#EXTENSION" value1="${userPhoneNumberExtension}" />
+				<execute function="Portal.Type" locator1="TextInput#EXTENSION" value1="${userPhoneNumberExtension}" />
 			</then>
 		</if>
 
-		<execute function="Select" locator1="MyAccount#PHONE_NUMBERS_TYPE_SELECT" value1="${userPhoneNumberType}" />
+		<execute function="Portal.Select" locator1="MyAccount#PHONE_NUMBERS_TYPE_SELECT" value1="${userPhoneNumberType}" />
 
-		<execute function="Click" locator1="MyAccount#PHONE_NUMBERS_PRIMARY_RADIO_BUTTON" />
+		<execute function="Portal.Click" locator1="MyAccount#PHONE_NUMBERS_PRIMARY_RADIO_BUTTON" />
 
-		<execute function="Click" locator1="Button#SAVE" />
+		<execute function="Portal.Click" locator1="Button#SAVE" />
 
 		<execute macro="Alert#viewSuccessMessage" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 	</command>
 
 	<command name="addProfilePictureViaMyAccount">
-		<execute function="Click" locator1="Button#CHANGE" />
+		<execute function="Portal.Click" locator1="Button#CHANGE" />
 
-		<execute function="Pause" locator1="1000" />
+		<execute function="Portal.Pause" locator1="1000" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 
-		<execute function="SelectFrame" locator1="IFrame#UPLOAD_IMAGE" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#UPLOAD_IMAGE" />
 
-		<execute function="UploadCommonFile" locator1="UploadImage#BROWSE_BUTTON" value1="${imageFileName}" />
+		<execute function="Portal.UploadCommonFile" locator1="UploadImage#BROWSE_BUTTON" value1="${imageFileName}" />
 
-		<execute function="Pause" locator1="1000" />
+		<execute function="Portal.Pause" locator1="1000" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 
-		<execute function="SelectFrame" locator1="IFrame#UPLOAD_IMAGE" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#UPLOAD_IMAGE" />
 
-		<execute function="Click" locator1="Button#SAVE" />
+		<execute function="Portal.Click" locator1="Button#SAVE" />
 
-		<execute function="Pause" locator1="1000" />
+		<execute function="Portal.Pause" locator1="1000" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 
-		<execute function="Click" locator1="Button#SAVE" />
+		<execute function="Portal.Click" locator1="Button#SAVE" />
 
 		<execute macro="Alert#viewSuccessMessage" />
 
-		<execute function="Pause" locator1="1000" />
+		<execute function="Portal.Pause" locator1="1000" />
 	</command>
 
 	<command name="addProjectViaMyAccount">
-		<execute function="Click" locator1="NavListItem#PROJECTS" />
+		<execute function="Portal.Click" locator1="NavListItem#PROJECTS" />
 
-		<execute function="Type" locator1="MyAccount#PROJECTS_TITLE_FIELD" value1="${userProjectTitle}" />
+		<execute function="Portal.Type" locator1="MyAccount#PROJECTS_TITLE_FIELD" value1="${userProjectTitle}" />
 
-		<execute function="Select" locator1="MyAccount#PROJECTS_START_DATE_MONTH_SELECT" value1="${userProjectStartDateMonth}" />
+		<execute function="Portal.Select" locator1="MyAccount#PROJECTS_START_DATE_MONTH_SELECT" value1="${userProjectStartDateMonth}" />
 
-		<execute function="Select" locator1="MyAccount#PROJECTS_START_DATE_YEAR_SELECT" value1="${userProjectStartDateYear}" />
+		<execute function="Portal.Select" locator1="MyAccount#PROJECTS_START_DATE_YEAR_SELECT" value1="${userProjectStartDateYear}" />
 
-		<execute function="Check" locator1="MyAccount#PROJECTS_CURRENT_CHECKBOX" />
+		<execute function="Portal.Check" locator1="MyAccount#PROJECTS_CURRENT_CHECKBOX" />
 
 		<if>
 			<isset var="userProjectDescription" />
 			<then>
-				<execute function="Type" locator1="MyAccount#PROJECTS_DESCRIPTION_FIELD" value1="${userProjectDescription}" />
+				<execute function="Portal.Type" locator1="MyAccount#PROJECTS_DESCRIPTION_FIELD" value1="${userProjectDescription}" />
 			</then>
 		</if>
 
-		<execute function="Click" locator1="Button#SAVE" />
+		<execute function="Portal.Click" locator1="Button#SAVE" />
 
 		<execute macro="Alert#viewSuccessMessage" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 	</command>
 
 	<command name="addReservedEmailAddressCP">
-		<execute function="Click" locator1="Button#PLUS" />
+		<execute function="Portal.Click" locator1="Button#PLUS" />
 
-		<execute function="Type" locator1="UsersAndOrganizationsEditUser#DETAILS_SCREEN_NAME_FIELD" value1="${userScreenName}" />
-		<execute function="Type" locator1="UsersAndOrganizationsEditUser#DETAILS_EMAIL_ADDRESS_FIELD" value1="${userEmailAddress}" />
-		<execute function="Type" locator1="UsersAndOrganizationsEditUser#DETAILS_FIRST_NAME_FIELD" value1="${userFirstName}" />
-		<execute function="Type" locator1="UsersAndOrganizationsEditUser#DETAILS_LAST_NAME_FIELD" value1="${userLastName}" />
+		<execute function="Portal.Type" locator1="UsersAndOrganizationsEditUser#DETAILS_SCREEN_NAME_FIELD" value1="${userScreenName}" />
+		<execute function="Portal.Type" locator1="UsersAndOrganizationsEditUser#DETAILS_EMAIL_ADDRESS_FIELD" value1="${userEmailAddress}" />
+		<execute function="Portal.Type" locator1="UsersAndOrganizationsEditUser#DETAILS_FIRST_NAME_FIELD" value1="${userFirstName}" />
+		<execute function="Portal.Type" locator1="UsersAndOrganizationsEditUser#DETAILS_LAST_NAME_FIELD" value1="${userLastName}" />
 
 		<execute macro="Button#clickSave" />
 
 		<execute macro="Alert#viewRequestFailedToComplete" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="The email address you requested is reserved." />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="The email address you requested is reserved." />
 	</command>
 
 	<command name="addReservedScreenNameCP">
-		<execute function="Click" locator1="Button#PLUS" />
+		<execute function="Portal.Click" locator1="Button#PLUS" />
 
-		<execute function="Type" locator1="UsersAndOrganizationsEditUser#DETAILS_SCREEN_NAME_FIELD" value1="${userScreenName}" />
-		<execute function="Type" locator1="UsersAndOrganizationsEditUser#DETAILS_EMAIL_ADDRESS_FIELD" value1="${userEmailAddress}" />
-		<execute function="Type" locator1="UsersAndOrganizationsEditUser#DETAILS_FIRST_NAME_FIELD" value1="${userFirstName}" />
-		<execute function="Type" locator1="UsersAndOrganizationsEditUser#DETAILS_LAST_NAME_FIELD" value1="${userLastName}" />
+		<execute function="Portal.Type" locator1="UsersAndOrganizationsEditUser#DETAILS_SCREEN_NAME_FIELD" value1="${userScreenName}" />
+		<execute function="Portal.Type" locator1="UsersAndOrganizationsEditUser#DETAILS_EMAIL_ADDRESS_FIELD" value1="${userEmailAddress}" />
+		<execute function="Portal.Type" locator1="UsersAndOrganizationsEditUser#DETAILS_FIRST_NAME_FIELD" value1="${userFirstName}" />
+		<execute function="Portal.Type" locator1="UsersAndOrganizationsEditUser#DETAILS_LAST_NAME_FIELD" value1="${userLastName}" />
 
 		<execute macro="Button#clickSave" />
 
 		<execute macro="Alert#viewRequestFailedToComplete" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="The screen name you requested is reserved." />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="The screen name you requested is reserved." />
 	</command>
 
 	<command name="addScreenNameNumberSiteIdCP">
-		<execute function="Click" locator1="Button#PLUS" />
+		<execute function="Portal.Click" locator1="Button#PLUS" />
 
-		<execute function="Paste" locator1="UsersAndOrganizationsEditUser#DETAILS_SCREEN_NAME_FIELD" value1="${siteID}" />
-		<execute function="Type" locator1="UsersAndOrganizationsEditUser#DETAILS_EMAIL_ADDRESS_FIELD" value1="${userEmailAddress}" />
-		<execute function="Type" locator1="UsersAndOrganizationsEditUser#DETAILS_FIRST_NAME_FIELD" value1="${userFirstName}" />
-		<execute function="Type" locator1="UsersAndOrganizationsEditUser#DETAILS_LAST_NAME_FIELD" value1="${userLastName}" />
+		<execute function="Portal.Paste" locator1="UsersAndOrganizationsEditUser#DETAILS_SCREEN_NAME_FIELD" value1="${siteID}" />
+		<execute function="Portal.Type" locator1="UsersAndOrganizationsEditUser#DETAILS_EMAIL_ADDRESS_FIELD" value1="${userEmailAddress}" />
+		<execute function="Portal.Type" locator1="UsersAndOrganizationsEditUser#DETAILS_FIRST_NAME_FIELD" value1="${userFirstName}" />
+		<execute function="Portal.Type" locator1="UsersAndOrganizationsEditUser#DETAILS_LAST_NAME_FIELD" value1="${userLastName}" />
 
 		<execute macro="Button#clickSave" />
 
 		<execute macro="Alert#viewRequestFailedToComplete" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="The screen name cannot contain only numeric values." />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="The screen name cannot contain only numeric values." />
 	</command>
 
 	<command name="addSMSViaMyAccount">
-		<execute function="Click" locator1="NavListItem#SMS" />
+		<execute function="Portal.Click" locator1="NavListItem#SMS" />
 
-		<execute function="Type" locator1="MyAccount#SMS_SMS_FIELD" value1="${userSMS}" />
+		<execute function="Portal.Type" locator1="MyAccount#SMS_SMS_FIELD" value1="${userSMS}" />
 
-		<execute function="Click" locator1="Button#SAVE" />
+		<execute function="Portal.Click" locator1="Button#SAVE" />
 
 		<execute macro="Alert#viewSuccessMessage" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 	</command>
 
 	<command name="addSocialNetworkViaMyAccount">
-		<execute function="Click" locator1="NavListItem#SOCIAL_NETWORK" />
+		<execute function="Portal.Click" locator1="NavListItem#SOCIAL_NETWORK" />
 
 		<if>
 			<isset var="userSocialNetworkFacebook" />
 			<then>
-				<execute function="Type" locator1="TextInput#FACEBOOK" value1="${userSocialNetworkFacebook}" />
+				<execute function="Portal.Type" locator1="TextInput#FACEBOOK" value1="${userSocialNetworkFacebook}" />
 			</then>
 		</if>
 
 		<if>
 			<isset var="userSocialNetworkTwitter" />
 			<then>
-				<execute function="Type" locator1="TextInput#TWITTER" value1="${userSocialNetworkTwitter}" />
+				<execute function="Portal.Type" locator1="TextInput#TWITTER" value1="${userSocialNetworkTwitter}" />
 			</then>
 		</if>
 
-		<execute function="Click" locator1="Button#SAVE" />
+		<execute function="Portal.Click" locator1="Button#SAVE" />
 
 		<execute macro="Alert#viewSuccessMessage" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 	</command>
 
 	<command name="addTagViaMyAccount">
-		<execute function="Click" locator1="NavListItem#CATEGORIZATION" />
+		<execute function="Portal.Click" locator1="NavListItem#CATEGORIZATION" />
 
-		<execute function="Type" locator1="AssetCategorization#CATEGORIES_SEARCH_FIELD" value1="${userTag}" />
+		<execute function="Portal.Type" locator1="AssetCategorization#CATEGORIES_SEARCH_FIELD" value1="${userTag}" />
 
-		<execute function="Click" locator1="Button#ADD" />
+		<execute function="Portal.Click" locator1="Button#ADD" />
 
-		<execute function="Click" locator1="Button#SAVE" />
+		<execute function="Portal.Click" locator1="Button#SAVE" />
 
 		<execute macro="Alert#viewSuccessMessage" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 	</command>
 
 	<command name="addWebsiteViaMyAccount">
-		<execute function="Click" locator1="NavListItem#WEBSITES" />
+		<execute function="Portal.Click" locator1="NavListItem#WEBSITES" />
 
-		<execute function="Type" locator1="MyAccount#WEBSITES_URL_FIELD" value1="${userWebsiteURL}" />
+		<execute function="Portal.Type" locator1="MyAccount#WEBSITES_URL_FIELD" value1="${userWebsiteURL}" />
 
-		<execute function="Select" locator1="MyAccount#WEBSITES_TYPE_SELECT" value1="${userWebsiteType}" />
+		<execute function="Portal.Select" locator1="MyAccount#WEBSITES_TYPE_SELECT" value1="${userWebsiteType}" />
 
-		<execute function="Click" locator1="MyAccount#WEBSITES_PRIMARY_RADIO_BUTTON" />
+		<execute function="Portal.Click" locator1="MyAccount#WEBSITES_PRIMARY_RADIO_BUTTON" />
 
-		<execute function="Click" locator1="Button#SAVE" />
+		<execute function="Portal.Click" locator1="Button#SAVE" />
 
 		<execute macro="Alert#viewSuccessMessage" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 	</command>
 
 	<command name="advancedSearchCP">
-		<execute function="Click" locator1="NavBar#SEARCH_TOGGLE_ADVANCED" />
+		<execute function="Portal.Click" locator1="NavBar#SEARCH_TOGGLE_ADVANCED" />
 
 		<if>
 			<equals arg1="${userAdvancedSearch}" arg2="First Name" />
 			<then>
-				<execute function="Type" locator1="AdvancedSearch#FIRST_NAME_FIELD" value1="${userFirstName}" />
+				<execute function="Portal.Type" locator1="AdvancedSearch#FIRST_NAME_FIELD" value1="${userFirstName}" />
 
-				<execute function="KeyPress" locator1="AdvancedSearch#FIRST_NAME_FIELD" value1="\RETURN" />
+				<execute function="Portal.KeyPress" locator1="AdvancedSearch#FIRST_NAME_FIELD" value1="\RETURN" />
 
 				<var name="key_userScreenName" value="${userScreenName}" />
 
-				<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_NAME" value1="${userName}" />
-				<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
+				<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_NAME" value1="${userName}" />
+				<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
 
-				<execute function="Type" locator1="AdvancedSearch#FIRST_NAME_FIELD" value1="${userFirstName}1" />
+				<execute function="Portal.Type" locator1="AdvancedSearch#FIRST_NAME_FIELD" value1="${userFirstName}1" />
 
-				<execute function="KeyPress" locator1="AdvancedSearch#FIRST_NAME_FIELD" value1="\RETURN" />
+				<execute function="Portal.KeyPress" locator1="AdvancedSearch#FIRST_NAME_FIELD" value1="\RETURN" />
 
-				<execute function="AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No users were found." />
+				<execute function="Portal.AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No users were found." />
 			</then>
 			<elseif>
 				<equals arg1="${userAdvancedSearch}" arg2="Middle Name" />
 				<then>
-					<execute function="Type" locator1="AdvancedSearch#MIDDLE_NAME_FIELD" value1="${userMiddleName}" />
+					<execute function="Portal.Type" locator1="AdvancedSearch#MIDDLE_NAME_FIELD" value1="${userMiddleName}" />
 
-					<execute function="KeyPress" locator1="AdvancedSearch#MIDDLE_NAME_FIELD" value1="\RETURN" />
+					<execute function="Portal.KeyPress" locator1="AdvancedSearch#MIDDLE_NAME_FIELD" value1="\RETURN" />
 
 					<var name="key_userScreenName" value="${userScreenName}" />
 
-					<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_NAME" value1="${userName}" />
-					<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
+					<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_NAME" value1="${userName}" />
+					<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
 
-					<execute function="Type" locator1="AdvancedSearch#MIDDLE_NAME_FIELD" value1="${userMiddleName}1" />
+					<execute function="Portal.Type" locator1="AdvancedSearch#MIDDLE_NAME_FIELD" value1="${userMiddleName}1" />
 
-					<execute function="KeyPress" locator1="AdvancedSearch#MIDDLE_NAME_FIELD" value1="\RETURN" />
+					<execute function="Portal.KeyPress" locator1="AdvancedSearch#MIDDLE_NAME_FIELD" value1="\RETURN" />
 
-					<execute function="AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No users were found." />
+					<execute function="Portal.AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No users were found." />
 				</then>
 			</elseif>
 			<elseif>
 				<equals arg1="${userAdvancedSearch}" arg2="Last Name" />
 				<then>
-					<execute function="Type" locator1="AdvancedSearch#LAST_NAME_FIELD" value1="${userLastName}" />
+					<execute function="Portal.Type" locator1="AdvancedSearch#LAST_NAME_FIELD" value1="${userLastName}" />
 
-					<execute function="KeyPress" locator1="AdvancedSearch#LAST_NAME_FIELD" value1="\RETURN" />
+					<execute function="Portal.KeyPress" locator1="AdvancedSearch#LAST_NAME_FIELD" value1="\RETURN" />
 
 					<var name="key_userScreenName" value="${userScreenName}" />
 
-					<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_NAME" value1="${userName}" />
-					<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
+					<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_NAME" value1="${userName}" />
+					<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
 
-					<execute function="Type" locator1="AdvancedSearch#LAST_NAME_FIELD" value1="${userLastName}1" />
+					<execute function="Portal.Type" locator1="AdvancedSearch#LAST_NAME_FIELD" value1="${userLastName}1" />
 
-					<execute function="KeyPress" locator1="AdvancedSearch#LAST_NAME_FIELD" value1="\RETURN" />
+					<execute function="Portal.KeyPress" locator1="AdvancedSearch#LAST_NAME_FIELD" value1="\RETURN" />
 
-					<execute function="AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No users were found." />
+					<execute function="Portal.AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No users were found." />
 				</then>
 			</elseif>
 			<elseif>
 				<equals arg1="${userAdvancedSearch}" arg2="Screen Name" />
 				<then>
-					<execute function="Type" locator1="AdvancedSearch#SCREEN_NAME_FIELD" value1="${userScreenName}" />
+					<execute function="Portal.Type" locator1="AdvancedSearch#SCREEN_NAME_FIELD" value1="${userScreenName}" />
 
-					<execute function="KeyPress" locator1="AdvancedSearch#SCREEN_NAME_FIELD" value1="\RETURN" />
+					<execute function="Portal.KeyPress" locator1="AdvancedSearch#SCREEN_NAME_FIELD" value1="\RETURN" />
 
 					<var name="key_userScreenName" value="${userScreenName}" />
 
-					<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_NAME" value1="${userName}" />
-					<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
+					<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_NAME" value1="${userName}" />
+					<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
 
-					<execute function="Type" locator1="AdvancedSearch#SCREEN_NAME_FIELD" value1="${userScreenName}1" />
+					<execute function="Portal.Type" locator1="AdvancedSearch#SCREEN_NAME_FIELD" value1="${userScreenName}1" />
 
-					<execute function="KeyPress" locator1="AdvancedSearch#SCREEN_NAME_FIELD" value1="\RETURN" />
+					<execute function="Portal.KeyPress" locator1="AdvancedSearch#SCREEN_NAME_FIELD" value1="\RETURN" />
 
-					<execute function="AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No users were found." />
+					<execute function="Portal.AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No users were found." />
 				</then>
 			</elseif>
 			<elseif>
 				<equals arg1="${userAdvancedSearch}" arg2="Email Address" />
 				<then>
-					<execute function="Type" locator1="AdvancedSearch#EMAIL_ADDRESS_FIELD" value1="${userEmailAddress}" />
+					<execute function="Portal.Type" locator1="AdvancedSearch#EMAIL_ADDRESS_FIELD" value1="${userEmailAddress}" />
 
-					<execute function="KeyPress" locator1="AdvancedSearch#EMAIL_ADDRESS_FIELD" value1="\RETURN" />
+					<execute function="Portal.KeyPress" locator1="AdvancedSearch#EMAIL_ADDRESS_FIELD" value1="\RETURN" />
 
 					<var name="key_userScreenName" value="${userScreenName}" />
 
-					<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_NAME" value1="${userName}" />
-					<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
+					<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_NAME" value1="${userName}" />
+					<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
 
-					<execute function="Type" locator1="AdvancedSearch#EMAIL_ADDRESS_FIELD" value1="${userEmailAddress}1" />
+					<execute function="Portal.Type" locator1="AdvancedSearch#EMAIL_ADDRESS_FIELD" value1="${userEmailAddress}1" />
 
-					<execute function="KeyPress" locator1="AdvancedSearch#EMAIL_ADDRESS_FIELD" value1="\RETURN" />
+					<execute function="Portal.KeyPress" locator1="AdvancedSearch#EMAIL_ADDRESS_FIELD" value1="\RETURN" />
 
-					<execute function="AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No users were found." />
+					<execute function="Portal.AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No users were found." />
 				</then>
 			</elseif>
 		</if>
 	</command>
 
 	<command name="advancedSearchViaFriendsDirectoryPG">
-		<execute function="Click" locator1="NavBar#SEARCH_TOGGLE_ADVANCED" />
+		<execute function="Portal.Click" locator1="NavBar#SEARCH_TOGGLE_ADVANCED" />
 
 		<if>
 			<equals arg1="${searchField}" arg2="First Name" />
 			<then>
-				<execute function="Type" locator1="TextInput#FIRST_NAME" value1="${searchTerm}" />
+				<execute function="Portal.Type" locator1="TextInput#FIRST_NAME" value1="${searchTerm}" />
 			</then>
 			<elseif>
 				<equals arg1="${searchField}" arg2="Middle Name" />
 				<then>
-					<execute function="Type" locator1="TextInput#MIDDLE_NAME" value1="${searchTerm}" />
+					<execute function="Portal.Type" locator1="TextInput#MIDDLE_NAME" value1="${searchTerm}" />
 				</then>
 			</elseif>
 			<elseif>
 				<equals arg1="${searchField}" arg2="Last Name" />
 				<then>
-					<execute function="Type" locator1="TextInput#LAST_NAME" value1="${searchTerm}" />
+					<execute function="Portal.Type" locator1="TextInput#LAST_NAME" value1="${searchTerm}" />
 				</then>
 			</elseif>
 			<elseif>
 				<equals arg1="${searchField}" arg2="Screen Name" />
 				<then>
-					<execute function="Type" locator1="TextInput#SCREEN_NAME" value1="${searchTerm}" />
+					<execute function="Portal.Type" locator1="TextInput#SCREEN_NAME" value1="${searchTerm}" />
 				</then>
 			</elseif>
 			<elseif>
 				<equals arg1="${searchField}" arg2="Email Address" />
 				<then>
-					<execute function="Type" locator1="AdvancedSearch#EMAIL_ADDRESS_FIELD" value1="${searchTerm}" />
+					<execute function="Portal.Type" locator1="AdvancedSearch#EMAIL_ADDRESS_FIELD" value1="${searchTerm}" />
 				</then>
 			</elseif>
 		</if>
 
-		<execute function="KeyPress" locator1="AdvancedSearch#EMAIL_ADDRESS_FIELD" value1="\RETURN" />
+		<execute function="Portal.KeyPress" locator1="AdvancedSearch#EMAIL_ADDRESS_FIELD" value1="\RETURN" />
 
 		<if>
 			<equals arg1="${searchNoResults}" arg2="true" />
 			<then>
-				<execute function="AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No users were found." />
+				<execute function="Portal.AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No users were found." />
 
 				<var name="key_userScreenName" value="${userScreenName}" />
 
-				<execute function="AssertElementNotPresent" locator1="PortalDirectory#USER_TABLE_FIRST_NAME_LINK" value1="${userFirstName}" />
-				<execute function="AssertElementNotPresent" locator1="PortalDirectory#USER_TABLE_LAST_NAME_LINK" value1="${userLastName}" />
-				<execute function="AssertElementNotPresent" locator1="PortalDirectory#USER_TABLE_SCREEN_NAME_LINK" value1="${userScreenName}" />
+				<execute function="Portal.AssertElementNotPresent" locator1="PortalDirectory#USER_TABLE_FIRST_NAME_LINK" value1="${userFirstName}" />
+				<execute function="Portal.AssertElementNotPresent" locator1="PortalDirectory#USER_TABLE_LAST_NAME_LINK" value1="${userLastName}" />
+				<execute function="Portal.AssertElementNotPresent" locator1="PortalDirectory#USER_TABLE_SCREEN_NAME_LINK" value1="${userScreenName}" />
 			</then>
 			<else>
 				<var name="key_userScreenName" value="${userScreenName}" />
 
-				<execute function="AssertTextEquals" locator1="PortalDirectory#USER_TABLE_FIRST_NAME_LINK" value1="${userFirstName}" />
-				<execute function="AssertTextEquals" locator1="PortalDirectory#USER_TABLE_LAST_NAME_LINK" value1="${userLastName}" />
-				<execute function="AssertTextEquals" locator1="PortalDirectory#USER_TABLE_SCREEN_NAME_LINK" value1="${userScreenName}" />
+				<execute function="Portal.AssertTextEquals" locator1="PortalDirectory#USER_TABLE_FIRST_NAME_LINK" value1="${userFirstName}" />
+				<execute function="Portal.AssertTextEquals" locator1="PortalDirectory#USER_TABLE_LAST_NAME_LINK" value1="${userLastName}" />
+				<execute function="Portal.AssertTextEquals" locator1="PortalDirectory#USER_TABLE_SCREEN_NAME_LINK" value1="${userScreenName}" />
 			</else>
 		</if>
 	</command>
 
 	<command name="advancedSearchViaMySitesDirectoryPG" >
-		<execute function="Click" locator1="NavBar#SEARCH_TOGGLE_ADVANCED" />
+		<execute function="Portal.Click" locator1="NavBar#SEARCH_TOGGLE_ADVANCED" />
 
 		<if>
 			<equals arg1="${searchField}" arg2="First Name" />
 			<then>
-				<execute function="Type" locator1="TextInput#FIRST_NAME" value1="${searchTerm}" />
+				<execute function="Portal.Type" locator1="TextInput#FIRST_NAME" value1="${searchTerm}" />
 			</then>
 			<elseif>
 				<equals arg1="${searchField}" arg2="Middle Name" />
 				<then>
-					<execute function="Type" locator1="TextInput#MIDDLE_NAME" value1="${searchTerm}" />
+					<execute function="Portal.Type" locator1="TextInput#MIDDLE_NAME" value1="${searchTerm}" />
 				</then>
 			</elseif>
 			<elseif>
 				<equals arg1="${searchField}" arg2="Last Name" />
 				<then>
-					<execute function="Type" locator1="TextInput#LAST_NAME" value1="${searchTerm}" />
+					<execute function="Portal.Type" locator1="TextInput#LAST_NAME" value1="${searchTerm}" />
 				</then>
 			</elseif>
 			<elseif>
 				<equals arg1="${searchField}" arg2="Screen Name" />
 				<then>
-					<execute function="Type" locator1="TextInput#SCREEN_NAME" value1="${searchTerm}" />
+					<execute function="Portal.Type" locator1="TextInput#SCREEN_NAME" value1="${searchTerm}" />
 				</then>
 			</elseif>
 			<elseif>
 				<equals arg1="${searchField}" arg2="Email Address" />
 				<then>
-					<execute function="Type" locator1="AdvancedSearch#EMAIL_ADDRESS_FIELD" value1="${searchTerm}" />
+					<execute function="Portal.Type" locator1="AdvancedSearch#EMAIL_ADDRESS_FIELD" value1="${searchTerm}" />
 				</then>
 			</elseif>
 		</if>
 
-		<execute function="KeyPress" locator1="AdvancedSearch#EMAIL_ADDRESS_FIELD" value1="\RETURN" />
+		<execute function="Portal.KeyPress" locator1="AdvancedSearch#EMAIL_ADDRESS_FIELD" value1="\RETURN" />
 
 		<if>
 			<equals arg1="${searchNoResults}" arg2="true" />
 			<then>
-				<execute function="AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No users were found." />
+				<execute function="Portal.AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No users were found." />
 
 				<var name="key_userScreenName" value="${userScreenName}" />
 
-				<execute function="AssertElementNotPresent" locator1="PortalDirectory#USER_TABLE_FIRST_NAME_LINK" value1="${userFirstName}" />
-				<execute function="AssertElementNotPresent" locator1="PortalDirectory#USER_TABLE_LAST_NAME_LINK" value1="${userLastName}" />
-				<execute function="AssertElementNotPresent" locator1="PortalDirectory#USER_TABLE_SCREEN_NAME_LINK" value1="${userScreenName}" />
+				<execute function="Portal.AssertElementNotPresent" locator1="PortalDirectory#USER_TABLE_FIRST_NAME_LINK" value1="${userFirstName}" />
+				<execute function="Portal.AssertElementNotPresent" locator1="PortalDirectory#USER_TABLE_LAST_NAME_LINK" value1="${userLastName}" />
+				<execute function="Portal.AssertElementNotPresent" locator1="PortalDirectory#USER_TABLE_SCREEN_NAME_LINK" value1="${userScreenName}" />
 			</then>
 			<else>
 				<var name="key_userScreenName" value="${userScreenName}" />
 
-				<execute function="AssertTextEquals" locator1="PortalDirectory#USER_TABLE_FIRST_NAME_LINK" value1="${userFirstName}" />
-				<execute function="AssertTextEquals" locator1="PortalDirectory#USER_TABLE_LAST_NAME_LINK" value1="${userLastName}" />
-				<execute function="AssertTextEquals" locator1="PortalDirectory#USER_TABLE_SCREEN_NAME_LINK" value1="${userScreenName}" />
+				<execute function="Portal.AssertTextEquals" locator1="PortalDirectory#USER_TABLE_FIRST_NAME_LINK" value1="${userFirstName}" />
+				<execute function="Portal.AssertTextEquals" locator1="PortalDirectory#USER_TABLE_LAST_NAME_LINK" value1="${userLastName}" />
+				<execute function="Portal.AssertTextEquals" locator1="PortalDirectory#USER_TABLE_SCREEN_NAME_LINK" value1="${userScreenName}" />
 			</else>
 		</if>
 	</command>
 
 	<command name="advancedSearchViaPortalDirectoryPG" >
-		<execute function="Click" locator1="NavBar#SEARCH_TOGGLE_ADVANCED" />
+		<execute function="Portal.Click" locator1="NavBar#SEARCH_TOGGLE_ADVANCED" />
 
 		<if>
 			<equals arg1="${searchField}" arg2="First Name" />
 			<then>
-				<execute function="Type" locator1="TextInput#FIRST_NAME" value1="${searchTerm}" />
+				<execute function="Portal.Type" locator1="TextInput#FIRST_NAME" value1="${searchTerm}" />
 			</then>
 			<elseif>
 				<equals arg1="${searchField}" arg2="Middle Name" />
 				<then>
-					<execute function="Type" locator1="TextInput#MIDDLE_NAME" value1="${searchTerm}" />
+					<execute function="Portal.Type" locator1="TextInput#MIDDLE_NAME" value1="${searchTerm}" />
 				</then>
 			</elseif>
 			<elseif>
 				<equals arg1="${searchField}" arg2="Last Name" />
 				<then>
-					<execute function="Type" locator1="TextInput#LAST_NAME" value1="${searchTerm}" />
+					<execute function="Portal.Type" locator1="TextInput#LAST_NAME" value1="${searchTerm}" />
 				</then>
 			</elseif>
 			<elseif>
 				<equals arg1="${searchField}" arg2="Screen Name" />
 				<then>
-					<execute function="Type" locator1="TextInput#SCREEN_NAME" value1="${searchTerm}" />
+					<execute function="Portal.Type" locator1="TextInput#SCREEN_NAME" value1="${searchTerm}" />
 				</then>
 			</elseif>
 			<elseif>
 				<equals arg1="${searchField}" arg2="Email Address" />
 				<then>
-					<execute function="Type" locator1="AdvancedSearch#EMAIL_ADDRESS_FIELD" value1="${searchTerm}" />
+					<execute function="Portal.Type" locator1="AdvancedSearch#EMAIL_ADDRESS_FIELD" value1="${searchTerm}" />
 				</then>
 			</elseif>
 		</if>
 
-		<execute function="KeyPress" locator1="AdvancedSearch#EMAIL_ADDRESS_FIELD" value1="\RETURN" />
+		<execute function="Portal.KeyPress" locator1="AdvancedSearch#EMAIL_ADDRESS_FIELD" value1="\RETURN" />
 
 		<if>
 			<equals arg1="${searchNoResults}" arg2="true" />
 			<then>
-				<execute function="AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No users were found." />
+				<execute function="Portal.AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No users were found." />
 
 				<var name="key_userScreenName" value="${userScreenName}" />
 
-				<execute function="AssertElementNotPresent" locator1="PortalDirectory#USER_TABLE_FIRST_NAME_LINK" value1="${userFirstName}" />
-				<execute function="AssertElementNotPresent" locator1="PortalDirectory#USER_TABLE_LAST_NAME_LINK" value1="${userLastName}" />
-				<execute function="AssertElementNotPresent" locator1="PortalDirectory#USER_TABLE_SCREEN_NAME_LINK" value1="${userScreenName}" />
+				<execute function="Portal.AssertElementNotPresent" locator1="PortalDirectory#USER_TABLE_FIRST_NAME_LINK" value1="${userFirstName}" />
+				<execute function="Portal.AssertElementNotPresent" locator1="PortalDirectory#USER_TABLE_LAST_NAME_LINK" value1="${userLastName}" />
+				<execute function="Portal.AssertElementNotPresent" locator1="PortalDirectory#USER_TABLE_SCREEN_NAME_LINK" value1="${userScreenName}" />
 			</then>
 			<else>
 				<var name="key_userScreenName" value="${userScreenName}" />
 
-				<execute function="AssertTextEquals" locator1="PortalDirectory#USER_TABLE_FIRST_NAME_LINK" value1="${userFirstName}" />
-				<execute function="AssertTextEquals" locator1="PortalDirectory#USER_TABLE_LAST_NAME_LINK" value1="${userLastName}" />
-				<execute function="AssertTextEquals" locator1="PortalDirectory#USER_TABLE_SCREEN_NAME_LINK" value1="${userScreenName}" />
+				<execute function="Portal.AssertTextEquals" locator1="PortalDirectory#USER_TABLE_FIRST_NAME_LINK" value1="${userFirstName}" />
+				<execute function="Portal.AssertTextEquals" locator1="PortalDirectory#USER_TABLE_LAST_NAME_LINK" value1="${userLastName}" />
+				<execute function="Portal.AssertTextEquals" locator1="PortalDirectory#USER_TABLE_SCREEN_NAME_LINK" value1="${userScreenName}" />
 			</else>
 		</if>
 	</command>
 
 	<command name="advancedSearchViaSiteMembersDirectoryPG" >
-		<execute function="Click" locator1="NavBar#SEARCH_TOGGLE_ADVANCED" />
+		<execute function="Portal.Click" locator1="NavBar#SEARCH_TOGGLE_ADVANCED" />
 
 		<if>
 			<equals arg1="${searchField}" arg2="First Name" />
 			<then>
-				<execute function="Type" locator1="TextInput#FIRST_NAME" value1="${searchTerm}" />
+				<execute function="Portal.Type" locator1="TextInput#FIRST_NAME" value1="${searchTerm}" />
 			</then>
 			<elseif>
 				<equals arg1="${searchField}" arg2="Middle Name" />
 				<then>
-					<execute function="Type" locator1="TextInput#MIDDLE_NAME" value1="${searchTerm}" />
+					<execute function="Portal.Type" locator1="TextInput#MIDDLE_NAME" value1="${searchTerm}" />
 				</then>
 			</elseif>
 			<elseif>
 				<equals arg1="${searchField}" arg2="Last Name" />
 				<then>
-					<execute function="Type" locator1="TextInput#LAST_NAME" value1="${searchTerm}" />
+					<execute function="Portal.Type" locator1="TextInput#LAST_NAME" value1="${searchTerm}" />
 				</then>
 			</elseif>
 			<elseif>
 				<equals arg1="${searchField}" arg2="Screen Name" />
 				<then>
-					<execute function="Type" locator1="TextInput#SCREEN_NAME" value1="${searchTerm}" />
+					<execute function="Portal.Type" locator1="TextInput#SCREEN_NAME" value1="${searchTerm}" />
 				</then>
 			</elseif>
 			<elseif>
 				<equals arg1="${searchField}" arg2="Email Address" />
 				<then>
-					<execute function="Type" locator1="AdvancedSearch#EMAIL_ADDRESS_FIELD" value1="${searchTerm}" />
+					<execute function="Portal.Type" locator1="AdvancedSearch#EMAIL_ADDRESS_FIELD" value1="${searchTerm}" />
 				</then>
 			</elseif>
 		</if>
 
-		<execute function="KeyPress" locator1="AdvancedSearch#EMAIL_ADDRESS_FIELD" value1="\RETURN" />
+		<execute function="Portal.KeyPress" locator1="AdvancedSearch#EMAIL_ADDRESS_FIELD" value1="\RETURN" />
 
 		<if>
 			<equals arg1="${searchNoResults}" arg2="true" />
 			<then>
-				<execute function="AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No users were found." />
+				<execute function="Portal.AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No users were found." />
 
 				<var name="key_userScreenName" value="${userScreenName}" />
 
-				<execute function="AssertElementNotPresent" locator1="PortalDirectory#USER_TABLE_FIRST_NAME_LINK" value1="${userFirstName}" />
-				<execute function="AssertElementNotPresent" locator1="PortalDirectory#USER_TABLE_LAST_NAME_LINK" value1="${userLastName}" />
-				<execute function="AssertElementNotPresent" locator1="PortalDirectory#USER_TABLE_SCREEN_NAME_LINK" value1="${userScreenName}" />
+				<execute function="Portal.AssertElementNotPresent" locator1="PortalDirectory#USER_TABLE_FIRST_NAME_LINK" value1="${userFirstName}" />
+				<execute function="Portal.AssertElementNotPresent" locator1="PortalDirectory#USER_TABLE_LAST_NAME_LINK" value1="${userLastName}" />
+				<execute function="Portal.AssertElementNotPresent" locator1="PortalDirectory#USER_TABLE_SCREEN_NAME_LINK" value1="${userScreenName}" />
 			</then>
 			<else>
 				<var name="key_userScreenName" value="${userScreenName}" />
 
-				<execute function="AssertTextEquals" locator1="PortalDirectory#USER_TABLE_FIRST_NAME_LINK" value1="${userFirstName}" />
-				<execute function="AssertTextEquals" locator1="PortalDirectory#USER_TABLE_LAST_NAME_LINK" value1="${userLastName}" />
-				<execute function="AssertTextEquals" locator1="PortalDirectory#USER_TABLE_SCREEN_NAME_LINK" value1="${userScreenName}" />
+				<execute function="Portal.AssertTextEquals" locator1="PortalDirectory#USER_TABLE_FIRST_NAME_LINK" value1="${userFirstName}" />
+				<execute function="Portal.AssertTextEquals" locator1="PortalDirectory#USER_TABLE_LAST_NAME_LINK" value1="${userLastName}" />
+				<execute function="Portal.AssertTextEquals" locator1="PortalDirectory#USER_TABLE_SCREEN_NAME_LINK" value1="${userScreenName}" />
 			</else>
 		</if>
 	</command>
 
 	<command name="answerPasswordReminder">
 		<if>
-			<condition function="IsElementPresent" locator1="TextInput#ANSWER" />
+			<condition function="Portal.IsElementPresent" locator1="TextInput#ANSWER" />
 			<then>
-				<execute function="Type" locator1="TextInput#ANSWER" value1="test" />
+				<execute function="Portal.Type" locator1="TextInput#ANSWER" value1="test" />
 
 				<execute macro="Button#clickSave" />
 
-				<execute function="AssertElementNotPresent" locator1="Button#SAVE" value1="Save" />
+				<execute function="Portal.AssertElementNotPresent" locator1="Button#SAVE" value1="Save" />
 			</then>
 		</if>
 	</command>
@@ -800,27 +800,27 @@
 
 		<var name="key_rowEntry" value="${userScreenName}" />
 
-		<execute function="Click" locator1="ContentRow#ENTRY_CONTENT_ENTRY_ELLIPSIS" />
+		<execute function="Portal.Click" locator1="ContentRow#ENTRY_CONTENT_ENTRY_ELLIPSIS" />
 
-		<execute function="AssertClick" locator1="MenuItem#EDIT" value1="Edit" />
+		<execute function="Portal.AssertClick" locator1="MenuItem#EDIT" value1="Edit" />
 
 		<execute macro="Panel#expandPanel">
 			<var name="panelHeading" value="Roles" />
 		</execute>
 
-		<execute function="AssertClick" locator1="UsersAndOrganizationsEditUser#ROLES_ORGANIZATION_ROLES_SELECT_LINK" value1="Select" />
+		<execute function="Portal.AssertClick" locator1="UsersAndOrganizationsEditUser#ROLES_ORGANIZATION_ROLES_SELECT_LINK" value1="Select" />
 
-		<execute function="SelectFrame" locator1="IFrame#SELECT_ORGANIZATION_ROLE" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#SELECT_ORGANIZATION_ROLE" />
 
 		<var name="key_roleTitle" value="${roleTitle}" />
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizationsEditUser#ROLES_REGULAR_ROLES_TABLE_TITLE" value1="${roleTitle}" />
+		<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizationsEditUser#ROLES_REGULAR_ROLES_TABLE_TITLE" value1="${roleTitle}" />
 
-		<execute function="AssertClick" locator1="UsersAndOrganizationsEditUser#ROLES_ORGANIZATION_SELECT_CHOOSE_BUTTON" value1="Choose" />
+		<execute function="Portal.AssertClick" locator1="UsersAndOrganizationsEditUser#ROLES_ORGANIZATION_SELECT_CHOOSE_BUTTON" value1="Choose" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizationsEditUser#ROLES_ORGANIZATION_ROLES_TABLE_TITLE" value1="${roleTitle}" />
+		<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizationsEditUser#ROLES_ORGANIZATION_ROLES_TABLE_TITLE" value1="${roleTitle}" />
 
 		<execute macro="PortletEntry#save" />
 	</command>
@@ -832,31 +832,31 @@
 
 		<var name="key_rowEntry" value="${userScreenName}" />
 
-		<execute function="Click" locator1="ContentRow#ENTRY_CONTENT_ENTRY_ELLIPSIS" />
+		<execute function="Portal.Click" locator1="ContentRow#ENTRY_CONTENT_ENTRY_ELLIPSIS" />
 
-		<execute function="AssertClick" locator1="MenuItem#EDIT" value1="Edit" />
+		<execute function="Portal.AssertClick" locator1="MenuItem#EDIT" value1="Edit" />
 
-		<execute function="Pause" locator1="5000" />
+		<execute function="Portal.Pause" locator1="5000" />
 
 		<execute macro="Panel#expandPanel">
 			<var name="panelHeading" value="Roles" />
 		</execute>
 
-		<execute function="AssertClick" locator1="UsersAndOrganizationsEditUser#ROLES_REGULAR_ROLES_SELECT_LINK" value1="Select" />
+		<execute function="Portal.AssertClick" locator1="UsersAndOrganizationsEditUser#ROLES_REGULAR_ROLES_SELECT_LINK" value1="Select" />
 
-		<execute function="Pause" locator1="5000" />
+		<execute function="Portal.Pause" locator1="5000" />
 
-		<execute function="SelectFrame" locator1="IFrame#SELECT_REGULAR_ROLE" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#SELECT_REGULAR_ROLE" />
 
 		<var name="key_roleTitle" value="${roleTitle}" />
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizationsEditUser#ROLES_REGULAR_ROLES_TABLE_TITLE" value1="${roleTitle}" />
+		<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizationsEditUser#ROLES_REGULAR_ROLES_TABLE_TITLE" value1="${roleTitle}" />
 
-		<execute function="AssertClick" locator1="UsersAndOrganizationsEditUser#ROLES_ORGANIZATION_SELECT_CHOOSE_BUTTON" value1="Choose" />
+		<execute function="Portal.AssertClick" locator1="UsersAndOrganizationsEditUser#ROLES_ORGANIZATION_SELECT_CHOOSE_BUTTON" value1="Choose" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizationsEditUser#ROLES_REGULAR_ROLES_TABLE_TITLE" value1="${roleTitle}" />
+		<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizationsEditUser#ROLES_REGULAR_ROLES_TABLE_TITLE" value1="${roleTitle}" />
 
 		<execute macro="PortletEntry#save" />
 	</command>
@@ -868,49 +868,49 @@
 
 		<var name="key_rowEntry" value="${userScreenName}" />
 
-		<execute function="Click" locator1="ContentRow#ENTRY_CONTENT_ENTRY_ELLIPSIS" />
+		<execute function="Portal.Click" locator1="ContentRow#ENTRY_CONTENT_ENTRY_ELLIPSIS" />
 
-		<execute function="AssertClick" locator1="MenuItem#EDIT" value1="Edit" />
+		<execute function="Portal.AssertClick" locator1="MenuItem#EDIT" value1="Edit" />
 
 		<execute macro="Panel#expandPanel">
 			<var name="panelHeading" value="Roles" />
 		</execute>
 
-		<execute function="AssertClick" locator1="UsersAndOrganizationsEditUser#ROLES_SITE_ROLES_SELECT_LINK" value1="Select" />
+		<execute function="Portal.AssertClick" locator1="UsersAndOrganizationsEditUser#ROLES_SITE_ROLES_SELECT_LINK" value1="Select" />
 
-		<execute function="SelectFrame" locator1="IFrame#SELECT_SITE_ROLE" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#SELECT_SITE_ROLE" />
 
 		<var name="key_roleTitle" value="${siteRoleName}" />
 		<var name="key_siteRoleName" value="${siteRoleName}" />
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizationsEditUser#ROLES_SITE_ROLES_TABLE_TITLE" value1="${siteRoleName}" />
+		<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizationsEditUser#ROLES_SITE_ROLES_TABLE_TITLE" value1="${siteRoleName}" />
 
-		<execute function="AssertClick" locator1="UsersAndOrganizationsEditUser#ROLES_ORGANIZATION_SELECT_CHOOSE_BUTTON" value1="Choose" />
+		<execute function="Portal.AssertClick" locator1="UsersAndOrganizationsEditUser#ROLES_ORGANIZATION_SELECT_CHOOSE_BUTTON" value1="Choose" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizationsEditUser#ROLES_SITE_ROLES_TABLE_TITLE" value1="${siteRoleName}" />
+		<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizationsEditUser#ROLES_SITE_ROLES_TABLE_TITLE" value1="${siteRoleName}" />
 
 		<execute macro="PortletEntry#save" />
 	</command>
 
 	<command name="attemptImpersonateCP">
-		<execute function="Type" locator1="NavBar#BASIC_SEARCH_FIELD" value1="${userScreenName}" />
+		<execute function="Portal.Type" locator1="NavBar#BASIC_SEARCH_FIELD" value1="${userScreenName}" />
 
-		<execute function="Click" locator1="Button#SUBMIT" />
+		<execute function="Portal.Click" locator1="Button#SUBMIT" />
 
 		<var name="key_rowEntry" value="${userScreenName}" />
 
 		<if>
 			<isset var="notAdmin" />
 			<then>
-				<execute function="AssertElementNotPresent" locator1="ContentRow#ENTRY_CONTENT_ENTRY_ELLIPSIS" />
-				<execute function="AssertElementNotPresent" locator1="UsersAndOrganizations#USER_TABLE_IMPERSONATE" />
+				<execute function="Portal.AssertElementNotPresent" locator1="ContentRow#ENTRY_CONTENT_ENTRY_ELLIPSIS" />
+				<execute function="Portal.AssertElementNotPresent" locator1="UsersAndOrganizations#USER_TABLE_IMPERSONATE" />
 			</then>
 			<else>
-				<execute function="Click" locator1="ContentRow#ENTRY_CONTENT_ENTRY_ELLIPSIS" />
+				<execute function="Portal.Click" locator1="ContentRow#ENTRY_CONTENT_ENTRY_ELLIPSIS" />
 
-				<execute function="AssertElementNotPresent" locator1="MenuItem#IMPERSONATE_USER" />
+				<execute function="Portal.AssertElementNotPresent" locator1="MenuItem#IMPERSONATE_USER" />
 			</else>
 		</if>
 	</command>
@@ -919,42 +919,42 @@
 		<if>
 			<equals arg1="${userBasicSearch}" arg2="Basic" />
 			<then>
-				<execute function="Type" locator1="TextInput#SEARCH" value1="${userScreenName}" />
+				<execute function="Portal.Type" locator1="TextInput#SEARCH" value1="${userScreenName}" />
 
-				<execute function="Click" locator1="Button#SUBMIT" />
+				<execute function="Portal.Click" locator1="Button#SUBMIT" />
 
 				<var name="key_userScreenName" value="${userScreenName}" />
 
-				<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_NAME" value1="${userName}" />
-				<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
+				<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_NAME" value1="${userName}" />
+				<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
 
-				<execute function="Type" locator1="TextInput#SEARCH" value1="user1*" />
+				<execute function="Portal.Type" locator1="TextInput#SEARCH" value1="user1*" />
 
-				<execute function="Click" locator1="Button#SUBMIT" />
+				<execute function="Portal.Click" locator1="Button#SUBMIT" />
 
-				<execute function="AssertTextPresent" locator1="Message#EMPTY_INFO" value1="No users were found." />
+				<execute function="Portal.AssertTextPresent" locator1="Message#EMPTY_INFO" value1="No users were found." />
 			</then>
 			<elseif>
 				<equals arg1="${userBasicSearch}" arg2="Full Name" />
 				<then>
 					<var name="fullName"><![CDATA["${userFirstName} ${userLastName}"]]></var>
 
-					<execute function="Type" locator1="TextInput#SEARCH" value1="${fullName}" />
+					<execute function="Portal.Type" locator1="TextInput#SEARCH" value1="${fullName}" />
 
-					<execute function="Click" locator1="Button#SUBMIT" />
+					<execute function="Portal.Click" locator1="Button#SUBMIT" />
 
 					<var name="key_userScreenName" value="${userScreenName}" />
 
-					<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_NAME" value1="${userName}" />
-					<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
+					<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_NAME" value1="${userName}" />
+					<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
 
 					<var name="fullName"><![CDATA["${userFirstName} 1 ${userLastName}"]]></var>
 
-					<execute function="Type" locator1="TextInput#SEARCH" value1="${fullName}" />
+					<execute function="Portal.Type" locator1="TextInput#SEARCH" value1="${fullName}" />
 
-					<execute function="Click" locator1="Button#SUBMIT" />
+					<execute function="Portal.Click" locator1="Button#SUBMIT" />
 
-					<execute function="AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No users were found." />
+					<execute function="Portal.AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No users were found." />
 				</then>
 			</elseif>
 			<elseif>
@@ -962,14 +962,14 @@
 				<then>
 					<var name="quotes"><![CDATA["${userScreenName}"]]></var>
 
-					<execute function="Type" locator1="TextInput#SEARCH" value1="${quotes}" />
+					<execute function="Portal.Type" locator1="TextInput#SEARCH" value1="${quotes}" />
 
-					<execute function="Click" locator1="Button#SUBMIT" />
+					<execute function="Portal.Click" locator1="Button#SUBMIT" />
 
 					<var name="key_userScreenName" value="${userScreenName}" />
 
-					<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_NAME" value1="${userName}" />
-					<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
+					<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_NAME" value1="${userName}" />
+					<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
 				</then>
 			</elseif>
 		</if>
@@ -983,15 +983,15 @@
 		<if>
 			<equals arg1="${userPassword}" arg2="Invalid" />
 			<then>
-				<execute function="Type" locator1="TextInput#CURRENT_PASSWORD" value1="" />
-				<execute function="Type" locator1="TextInput#NEW_PASSWORD" value1="test1" />
-				<execute function="Type" locator1="TextInput#ENTER_AGAIN" value1="test1" />
+				<execute function="Portal.Type" locator1="TextInput#CURRENT_PASSWORD" value1="" />
+				<execute function="Portal.Type" locator1="TextInput#NEW_PASSWORD" value1="test1" />
+				<execute function="Portal.Type" locator1="TextInput#ENTER_AGAIN" value1="test1" />
 
 				<execute macro="Button#clickSave" />
 
 				<execute macro="Alert#viewRequestFailedToComplete" />
 
-				<execute function="AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="The password cannot be blank. Please enter a password." />
+				<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="The password cannot be blank. Please enter a password." />
 
 				<execute macro="User#logoutPG" />
 
@@ -1013,9 +1013,9 @@
 				</execute>
 			</then>
 			<else>
-				<execute function="Type" locator1="TextInput#CURRENT_PASSWORD" value1="test" />
-				<execute function="Type" locator1="TextInput#NEW_PASSWORD" value1="test1" />
-				<execute function="Type" locator1="TextInput#ENTER_AGAIN" value1="test1" />
+				<execute function="Portal.Type" locator1="TextInput#CURRENT_PASSWORD" value1="test" />
+				<execute function="Portal.Type" locator1="TextInput#NEW_PASSWORD" value1="test1" />
+				<execute function="Portal.Type" locator1="TextInput#ENTER_AGAIN" value1="test1" />
 
 				<execute macro="Button#clickSave" />
 
@@ -1046,29 +1046,29 @@
 	<command name="createAccount">
 		<execute macro="SignInNavigator#gotoCreateAccount" />
 
-		<execute function="Type" locator1="TextInput#FIRST_NAME" value1="${userFirstName}" />
-		<execute function="Type" locator1="TextInput#LAST_NAME" value1="${userLastName}" />
-		<execute function="Type" locator1="TextInput#SCREEN_NAME" value1="${userScreenName}" />
-		<execute function="Type" locator1="TextInput#EMAIL_ADDRESS" value1="${userEmailAddress}" />
+		<execute function="Portal.Type" locator1="TextInput#FIRST_NAME" value1="${userFirstName}" />
+		<execute function="Portal.Type" locator1="TextInput#LAST_NAME" value1="${userLastName}" />
+		<execute function="Portal.Type" locator1="TextInput#SCREEN_NAME" value1="${userScreenName}" />
+		<execute function="Portal.Type" locator1="TextInput#EMAIL_ADDRESS" value1="${userEmailAddress}" />
 
 		<execute macro="Button#clickSave" />
 	</command>
 
 	<command name="deactivateCP">
-		<execute function="Type" locator1="TextInput#SEARCH" value1="${userFirstName}" />
+		<execute function="Portal.Type" locator1="TextInput#SEARCH" value1="${userFirstName}" />
 
-		<execute function="Click" locator1="Button#SUBMIT" />
+		<execute function="Portal.Click" locator1="Button#SUBMIT" />
 
 		<if>
 			<equals arg1="${deactivateType}" arg2="Actions" />
 			<then>
 				<var name="key_rowEntry" value="${userScreenName}" />
 
-				<execute function="Click" locator1="ContentRow#ENTRY_CONTENT_ENTRY_ELLIPSIS" />
+				<execute function="Portal.Click" locator1="ContentRow#ENTRY_CONTENT_ENTRY_ELLIPSIS" />
 
-				<execute function="AssertClickNoError" locator1="MenuItem#DEACTIVATE" value1="Deactivate" />
+				<execute function="Portal.AssertClickNoError" locator1="MenuItem#DEACTIVATE" value1="Deactivate" />
 
-				<execute function="Confirm" value1="Are you sure you want to deactivate this?" />
+				<execute function="Portal.Confirm" value1="Are you sure you want to deactivate this?" />
 
 				<execute macro="Alert#viewSuccessMessage" />
 			</then>
@@ -1077,50 +1077,50 @@
 				<then>
 					<var name="key_userScreenName" value="${userScreenName}" />
 
-					<execute function="Check#checkAll" locator1="Checkbox#SELECT_ALL" />
+					<execute function="Portal.Check#checkAll" locator1="Checkbox#SELECT_ALL" />
 
-					<execute function="AssertClickNoError" locator1="Button#DEACTIVATE" value1="Deactivate" />
+					<execute function="Portal.AssertClickNoError" locator1="Button#DEACTIVATE" value1="Deactivate" />
 
-					<execute function="Confirm" value1="Are you sure you want to deactivate the selected users?" />
+					<execute function="Portal.Confirm" value1="Are you sure you want to deactivate the selected users?" />
 
 					<execute macro="Alert#viewSuccessMessage" />
 				</then>
 			</elseif>
 			<elseif>
-				<condition function="IsElementPresent" locator1="Checkbox#SELECT_ALL" />
+				<condition function="Portal.IsElementPresent" locator1="Checkbox#SELECT_ALL" />
 				<then>
-					<execute function="Click" locator1="Checkbox#SELECT_ALL" />
+					<execute function="Portal.Click" locator1="Checkbox#SELECT_ALL" />
 
 					<if>
-						<condition function="IsElementPresent" locator1="Button#DEACTIVATE" />
+						<condition function="Portal.IsElementPresent" locator1="Button#DEACTIVATE" />
 						<then>
-							<execute function="ClickNoError" locator1="Button#DEACTIVATE" />
+							<execute function="Portal.ClickNoError" locator1="Button#DEACTIVATE" />
 						</then>
 					</if>
 
-					<execute function="Confirm" value1="Are you sure you want to deactivate the selected users?" />
+					<execute function="Portal.Confirm" value1="Are you sure you want to deactivate the selected users?" />
 
 					<execute macro="Alert#viewSuccessMessage" />
 				</then>
 			</elseif>
 		</if>
 
-		<execute function="AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No users were found." />
+		<execute function="Portal.AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No users were found." />
 	</command>
 
 	<command name="deleteCP">
 		<if>
-			<condition function="IsElementPresent" locator1="Select#USER_STATUS" />
+			<condition function="Portal.IsElementPresent" locator1="Select#USER_STATUS" />
 			<then>
-				<execute function="Select" locator1="Select#USER_STATUS" value1="Inactive" />
+				<execute function="Portal.Select" locator1="Select#USER_STATUS" value1="Inactive" />
 				<if>
-					<condition function="IsElementPresent" locator1="Checkbox#SELECT_ALL" />
+					<condition function="Portal.IsElementPresent" locator1="Checkbox#SELECT_ALL" />
 					<then>
-						<execute function="Click" locator1="Checkbox#SELECT_ALL" />
+						<execute function="Portal.Click" locator1="Checkbox#SELECT_ALL" />
 
-						<execute function="AssertClickNoError" locator1="Button#DELETE" value1="Delete" />
+						<execute function="Portal.AssertClickNoError" locator1="Button#DELETE" value1="Delete" />
 
-						<execute function="Confirm" value1="Are you sure you want to permanently delete the selected users?" />
+						<execute function="Portal.Confirm" value1="Are you sure you want to permanently delete the selected users?" />
 
 						<execute macro="Alert#viewSuccessMessage" />
 					</then>
@@ -1130,19 +1130,19 @@
 	</command>
 
 	<command name="deleteProfilePictureViaMyAccount">
-		<execute function="Click" locator1="Button#DELETE" />
+		<execute function="Portal.Click" locator1="Button#DELETE" />
 
-		<execute function="Pause" value1="1000" />
+		<execute function="Portal.Pause" value1="1000" />
 
-		<execute function="Click" locator1="Button#SAVE" />
+		<execute function="Portal.Click" locator1="Button#SAVE" />
 
 		<execute macro="Alert#viewSuccessMessage" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 	</command>
 
 	<command name="deleteTagViaMyAccount">
-		<execute function="Click" locator1="NavListItem#CATEGORIZATION" />
+		<execute function="Portal.Click" locator1="NavListItem#CATEGORIZATION" />
 
 		<if>
 			<isset var="userTagList" />
@@ -1150,64 +1150,64 @@
 				<for list="${userTagList}" param="userTag" >
 					<var name="key_userTag" value="${userTag}" />
 
-					<execute function="Click" locator1="AssetCategorization#TAG_REMOVE" />
+					<execute function="Portal.Click" locator1="AssetCategorization#TAG_REMOVE" />
 				</for>
 			</then>
 			<else>
 				<var name="key_userTag" value="${userTag}" />
 
-				<execute function="Click" locator1="AssetCategorization#TAG_REMOVE" />
+				<execute function="Portal.Click" locator1="AssetCategorization#TAG_REMOVE" />
 			</else>
 		</if>
 
-		<execute function="Click" locator1="Button#SAVE" />
+		<execute function="Portal.Click" locator1="Button#SAVE" />
 
 		<execute macro="Alert#viewSuccessMessage" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 	</command>
 
 	<command name="editAnnouncementNotificationsViaMyAccount">
-		<execute function="AssertClick" locator1="NavListItem#ANNOUNCEMENTS" value1="Announcements" />
+		<execute function="Portal.AssertClick" locator1="NavListItem#ANNOUNCEMENTS" value1="Announcements" />
 
 		<var name="key_announcementType" value="${announcementType}" />
 		<var name="key_notificationType" value="${notificationType}" />
 
-		<execute function="Check" locator1="MyAccount#ANNOUNCEMENTS_NOTIFICATION_CHECKBOX" />
+		<execute function="Portal.Check" locator1="MyAccount#ANNOUNCEMENTS_NOTIFICATION_CHECKBOX" />
 
 		<execute macro="PortletEntry#save" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 	</command>
 
 	<command name="editDetailsViaMyAccount">
-		<execute function="AssertElementPresent#assertElementPresent" locator1="TextInput#FIRST_NAME" />
+		<execute function="Portal.AssertElementPresent#assertElementPresent" locator1="TextInput#FIRST_NAME" />
 
 		<if>
 			<isset var="userFirstNameEdit" />
 			<then>
-				<execute function="Type" locator1="TextInput#FIRST_NAME" value1="${userFirstNameEdit}" />
+				<execute function="Portal.Type" locator1="TextInput#FIRST_NAME" value1="${userFirstNameEdit}" />
 			</then>
 		</if>
 
 		<if>
 			<isset var="userLastNameEdit" />
 			<then>
-				<execute function="Type" locator1="TextInput#LAST_NAME" value1="${userLastNameEdit}" />
+				<execute function="Portal.Type" locator1="TextInput#LAST_NAME" value1="${userLastNameEdit}" />
 			</then>
 		</if>
 
 		<if>
 			<isset var="userMiddleNameEdit" />
 			<then>
-				<execute function="Type" locator1="TextInput#MIDDLE_NAME" value1="${userMiddleNameEdit}" />
+				<execute function="Portal.Type" locator1="TextInput#MIDDLE_NAME" value1="${userMiddleNameEdit}" />
 			</then>
 		</if>
 
 		<if>
 			<isset var="userScreenNameEdit" />
 			<then>
-				<execute function="Type" locator1="TextInput#SCREEN_NAME" value1="${userScreenNameEdit}" />
+				<execute function="Portal.Type" locator1="TextInput#SCREEN_NAME" value1="${userScreenNameEdit}" />
 			</then>
 		</if>
 
@@ -1221,11 +1221,11 @@
 
 		<var name="key_rowEntry" value="${userScreenName}" />
 
-		<execute function="Click" locator1="ContentRow#ENTRY_CONTENT_ENTRY_ELLIPSIS" />
+		<execute function="Portal.Click" locator1="ContentRow#ENTRY_CONTENT_ENTRY_ELLIPSIS" />
 
-		<execute function="AssertClick" locator1="MenuItem#EDIT" value1="Edit" />
+		<execute function="Portal.AssertClick" locator1="MenuItem#EDIT" value1="Edit" />
 
-		<execute function="Select" locator1="PortalSettingsDisplaySettings#DEFAULT_LANGUAGE_SELECT" value1="${languageName}" />
+		<execute function="Portal.Select" locator1="PortalSettingsDisplaySettings#DEFAULT_LANGUAGE_SELECT" value1="${languageName}" />
 
 		<execute macro="PortletEntry#save" />
 	</command>
@@ -1235,7 +1235,7 @@
 			<var name="portletName" value="Account Settings" />
 		</execute>
 
-		<execute function="Type" locator1="TextInput#EMAIL_ADDRESS" value1="${userEmailAddress}" />
+		<execute function="Portal.Type" locator1="TextInput#EMAIL_ADDRESS" value1="${userEmailAddress}" />
 
 		<execute macro="Button#clickSave" />
 
@@ -1245,13 +1245,13 @@
 	<command name="editPasswordCP">
 		<var name="key_userScreenName" value="${userScreenName}" />
 
-		<execute function="Pause" locator1="1000" />
+		<execute function="Portal.Pause" locator1="1000" />
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
+		<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
 
-		<execute function="AssertClick" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
+		<execute function="Portal.AssertClick" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
 
-		<execute function="Pause" locator1="3000" />
+		<execute function="Portal.Pause" locator1="3000" />
 
 		<if>
 			<not>
@@ -1266,8 +1266,8 @@
 			<var name="panelHeading" value="Password" />
 		</execute>
 
-		<execute function="Type" locator1="UsersAndOrganizationsEditUser#PASSWORD_NEW_PASSWORD_FIELD" value1="${newPassword}" />
-		<execute function="Type" locator1="UsersAndOrganizationsEditUser#PASSWORD_ENTER_AGAIN_FIELD" value1="${newPassword}" />
+		<execute function="Portal.Type" locator1="UsersAndOrganizationsEditUser#PASSWORD_NEW_PASSWORD_FIELD" value1="${newPassword}" />
+		<execute function="Portal.Type" locator1="UsersAndOrganizationsEditUser#PASSWORD_ENTER_AGAIN_FIELD" value1="${newPassword}" />
 
 		<execute macro="PortletEntry#save" />
 
@@ -1297,11 +1297,11 @@
 	<command name="editPasswordInvalidCP">
 		<var name="key_userScreenName" value="${userScreenName}" />
 
-		<execute function="Pause" locator1="1000" />
+		<execute function="Portal.Pause" locator1="1000" />
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
+		<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
 
-		<execute function="AssertClick" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
+		<execute function="Portal.AssertClick" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
 
 		<if>
 			<not>
@@ -1316,8 +1316,8 @@
 			<var name="panelHeading" value="Password" />
 		</execute>
 
-		<execute function="Type" locator1="UsersAndOrganizationsEditUser#PASSWORD_NEW_PASSWORD_FIELD" value1="${newPassword}" />
-		<execute function="Type" locator1="UsersAndOrganizationsEditUser#PASSWORD_ENTER_AGAIN_FIELD" value1="${newPassword}" />
+		<execute function="Portal.Type" locator1="UsersAndOrganizationsEditUser#PASSWORD_NEW_PASSWORD_FIELD" value1="${newPassword}" />
+		<execute function="Portal.Type" locator1="UsersAndOrganizationsEditUser#PASSWORD_ENTER_AGAIN_FIELD" value1="${newPassword}" />
 
 		<execute macro="Button#clickSave" />
 
@@ -1326,20 +1326,20 @@
 			<then>
 				<execute macro="Alert#viewRequestFailedToComplete" />
 
-				<execute function="AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="That password uses common words. Please enter a password that is harder to guess (i.e. contains a mix of numbers and letters)." />
+				<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="That password uses common words. Please enter a password that is harder to guess (i.e. contains a mix of numbers and letters)." />
 			</then>
 			<elseif>
 				<isset var="regex" />
 				<then>
 					<execute macro="Alert#viewRequestFailedToComplete" />
 
-					<execute function="AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="That password does not comply with the regular expression ${regex}. Please enter a different password." />
+					<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="That password does not comply with the regular expression ${regex}. Please enter a different password." />
 				</then>
 			</elseif>
 			<else>
 				<execute macro="Alert#viewRequestFailedToComplete" />
 
-				<execute function="AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="That password is invalid. Please enter in a different password." />
+				<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="That password is invalid. Please enter in a different password." />
 			</else>
 		</if>
 	</command>
@@ -1349,9 +1349,9 @@
 			<var name="panelHeading" value="Password" />
 		</execute>
 
-		<execute function="Type" locator1="TextInput#CURRENT_PASSWORD" value1="${currentPassword}" />
-		<execute function="Type" locator1="TextInput#NEW_PASSWORD" value1="${newPassword}" />
-		<execute function="Type" locator1="TextInput#ENTER_AGAIN" value1="${newPassword}" />
+		<execute function="Portal.Type" locator1="TextInput#CURRENT_PASSWORD" value1="${currentPassword}" />
+		<execute function="Portal.Type" locator1="TextInput#NEW_PASSWORD" value1="${newPassword}" />
+		<execute function="Portal.Type" locator1="TextInput#ENTER_AGAIN" value1="${newPassword}" />
 
 		<execute macro="PortletEntry#save" />
 	</command>
@@ -1359,11 +1359,11 @@
 	<command name="editUserDisplaySettingsCP">
 		<var name="key_userScreenName" value="${userScreenName}" />
 
-		<execute function="Pause" locator1="1000" />
+		<execute function="Portal.Pause" locator1="1000" />
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
+		<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
 
-		<execute function="AssertClick" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
+		<execute function="Portal.AssertClick" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
 
 		<execute macro="User#editUserDisplaySettingsTimeZonePacific">
 			<var name="displaySettingsGreeting" value="${displaySettingsGreeting}" />
@@ -1373,57 +1373,57 @@
 	<!-- The time zone option should change automatically because of Daylight Savings Time (DST). Since Los Angeles switches between Pacific Daylight Time (PDT), (UTC -07:00) and Pacific Standard Time (PST), (UTC -08:00), this macro will have to be updated accordingly. -->
 
 	<command name="editUserDisplaySettingsTimeZonePacific">
-		<execute function="AssertClick" locator1="UsersAndOrganizations#MISCELLANEOUS" value1="Miscellaneous" />
+		<execute function="Portal.AssertClick" locator1="UsersAndOrganizations#MISCELLANEOUS" value1="Miscellaneous" />
 
 		<execute macro="Panel#expandPanel">
 			<var name="panelHeading" value="Display Settings" />
 		</execute>
 
 		<if>
-			<condition function="IsTextNotEqual" locator1="UsersAndOrganizationsEditUser#DISPLAY_SETTINGS_AMERICA_TIME_ZONE_SELECT" value1="(UTC -07:00) Pacific Daylight Time"  />
+			<condition function="Portal.IsTextNotEqual" locator1="UsersAndOrganizationsEditUser#DISPLAY_SETTINGS_AMERICA_TIME_ZONE_SELECT" value1="(UTC -07:00) Pacific Daylight Time"  />
 			<then>
-				<execute function="Select" locator1="UsersAndOrganizationsEditUser#DISPLAY_SETTINGS_TIME_ZONE_SELECT" value1="(UTC -08:00) Pacific Standard Time" />
+				<execute function="Portal.Select" locator1="UsersAndOrganizationsEditUser#DISPLAY_SETTINGS_TIME_ZONE_SELECT" value1="(UTC -08:00) Pacific Standard Time" />
 			</then>
 			<else>
-				<execute function="Select" locator1="UsersAndOrganizationsEditUser#DISPLAY_SETTINGS_TIME_ZONE_SELECT" value1="(UTC -07:00) Pacific Daylight Time" />
+				<execute function="Portal.Select" locator1="UsersAndOrganizationsEditUser#DISPLAY_SETTINGS_TIME_ZONE_SELECT" value1="(UTC -07:00) Pacific Daylight Time" />
 			</else>
 		</if>
 
-		<execute function="Type" locator1="UsersAndOrganizationsEditUser#DISPLAY_SETTINGS_GREETING_FIELD" value1="${displaySettingsGreeting}" />
+		<execute function="Portal.Type" locator1="UsersAndOrganizationsEditUser#DISPLAY_SETTINGS_GREETING_FIELD" value1="${displaySettingsGreeting}" />
 
 		<execute macro="PortletEntry#save" />
 
-		<execute function="AssertClick" locator1="UsersAndOrganizations#MISCELLANEOUS" value1="Miscellaneous" />
+		<execute function="Portal.AssertClick" locator1="UsersAndOrganizations#MISCELLANEOUS" value1="Miscellaneous" />
 
 		<execute macro="Panel#expandPanel">
 			<var name="panelHeading" value="Display Settings" />
 		</execute>
 
 		<if>
-			<condition function="IsTextNotEqual" locator1="UsersAndOrganizationsEditUser#DISPLAY_SETTINGS_AMERICA_TIME_ZONE_SELECT" value1="(UTC -07:00) Pacific Daylight Time"  />
+			<condition function="Portal.IsTextNotEqual" locator1="UsersAndOrganizationsEditUser#DISPLAY_SETTINGS_AMERICA_TIME_ZONE_SELECT" value1="(UTC -07:00) Pacific Daylight Time"  />
 			<then>
-				<execute function="AssertSelectedLabel" locator1="UsersAndOrganizationsEditUser#DISPLAY_SETTINGS_TIME_ZONE_SELECT" value1="(UTC -08:00) Pacific Standard Time" />
+				<execute function="Portal.AssertSelectedLabel" locator1="UsersAndOrganizationsEditUser#DISPLAY_SETTINGS_TIME_ZONE_SELECT" value1="(UTC -08:00) Pacific Standard Time" />
 			</then>
 			<else>
-				<execute function="AssertSelectedLabel" locator1="UsersAndOrganizationsEditUser#DISPLAY_SETTINGS_TIME_ZONE_SELECT" value1="(UTC -07:00) Pacific Daylight Time" />
+				<execute function="Portal.AssertSelectedLabel" locator1="UsersAndOrganizationsEditUser#DISPLAY_SETTINGS_TIME_ZONE_SELECT" value1="(UTC -07:00) Pacific Daylight Time" />
 			</else>
 		</if>
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizationsEditUser#DISPLAY_SETTINGS_GREETING_FIELD" value1="${displaySettingsGreeting}" />
+		<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizationsEditUser#DISPLAY_SETTINGS_GREETING_FIELD" value1="${displaySettingsGreeting}" />
 	</command>
 
 	<command name="editUserGenderCP">
 		<var name="key_rowEntry" value="${userName}" />
 
-		<execute function="Pause" locator1="1000" />
+		<execute function="Portal.Pause" locator1="1000" />
 
-		<execute function="AssertTextEquals" locator1="ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK" value1="${userName}" />
+		<execute function="Portal.AssertTextEquals" locator1="ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK" value1="${userName}" />
 
-		<execute function="AssertClick" locator1="ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK" value1="${userName}" />
+		<execute function="Portal.AssertClick" locator1="ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK" value1="${userName}" />
 
-		<execute function="Select" locator1="UsersAndOrganizationsEditUser#DETAILS_GENDER_SELECT" value1="${userGender}" />
+		<execute function="Portal.Select" locator1="UsersAndOrganizationsEditUser#DETAILS_GENDER_SELECT" value1="${userGender}" />
 
-		<execute function="AssertClickNoError" locator1="Button#SAVE" value1="Save" />
+		<execute function="Portal.AssertClickNoError" locator1="Button#SAVE" value1="Save" />
 
 		<execute macro="Alert#viewSuccessMessage" />
 	</command>
@@ -1431,13 +1431,13 @@
 	<command name="editUserMiddleNameCP">
 		<var name="key_userScreenName" value="${userScreenName}" />
 
-		<execute function="Pause" locator1="1000" />
+		<execute function="Portal.Pause" locator1="1000" />
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
+		<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
 
-		<execute function="AssertClick" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
+		<execute function="Portal.AssertClick" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
 
-		<execute function="Type" locator1="UsersAndOrganizationsEditUser#DETAILS_MIDDLE_NAME_FIELD" value1="${userMiddleName}" />
+		<execute function="Portal.Type" locator1="UsersAndOrganizationsEditUser#DETAILS_MIDDLE_NAME_FIELD" value1="${userMiddleName}" />
 
 		<execute macro="PortletEntry#save" />
 	</command>
@@ -1445,13 +1445,13 @@
 	<command name="editUserOrganizationCP">
 		<var name="key_userScreenName" value="${userScreenName}" />
 
-		<execute function="Pause" locator1="1000" />
+		<execute function="Portal.Pause" locator1="1000" />
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
+		<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
 
-		<execute function="AssertClick" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
+		<execute function="Portal.AssertClick" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
 
-		<execute function="Pause" locator1="3000" />
+		<execute function="Portal.Pause" locator1="3000" />
 
 		<var name="key_orgName" value="${orgName}" />
 
@@ -1459,21 +1459,21 @@
 			<var name="panelHeading" value="Organizations" />
 		</execute>
 
-		<execute function="AssertClick" locator1="UsersAndOrganizationsEditUser#ORGANIZATIONS_SELECT_LINK" value1="Select" />
+		<execute function="Portal.AssertClick" locator1="UsersAndOrganizationsEditUser#ORGANIZATIONS_SELECT_LINK" value1="Select" />
 
-		<execute function="SelectFrame" locator1="UsersAndOrganizationsSelectOrganization#SELECT_ORGANIZATION_IFRAME" />
+		<execute function="Portal.SelectFrame" locator1="UsersAndOrganizationsSelectOrganization#SELECT_ORGANIZATION_IFRAME" />
 
-		<execute function="Type" locator1="NavBar#BASIC_SEARCH_FIELD" value1="${orgName}" />
+		<execute function="Portal.Type" locator1="NavBar#BASIC_SEARCH_FIELD" value1="${orgName}" />
 
-		<execute function="Click" locator1="Button#SUBMIT" />
+		<execute function="Portal.Click" locator1="Button#SUBMIT" />
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizationsSelectOrganization#ORGANIZATION_TABLE_NAME" value1="${orgName}" />
+		<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizationsSelectOrganization#ORGANIZATION_TABLE_NAME" value1="${orgName}" />
 
-		<execute function="AssertClick" locator1="UsersAndOrganizationsSelectOrganization#ORGANIZATION_TABLE_CHOOSE_BUTTON" value1="Choose" />
+		<execute function="Portal.AssertClick" locator1="UsersAndOrganizationsSelectOrganization#ORGANIZATION_TABLE_CHOOSE_BUTTON" value1="Choose" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizationsEditUser#ORGANIZATIONS_TABLE_NAME" value1="${orgName}" />
+		<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizationsEditUser#ORGANIZATIONS_TABLE_NAME" value1="${orgName}" />
 
 		<execute macro="PortletEntry#save" />
 	</command>
@@ -1481,13 +1481,13 @@
 	<command name="editUserSiteCP">
 		<var name="key_userScreenName" value="${userScreenName}" />
 
-		<execute function="Pause" locator1="1000" />
+		<execute function="Portal.Pause" locator1="1000" />
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
+		<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
 
-		<execute function="AssertClick" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
+		<execute function="Portal.AssertClick" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
 
-		<execute function="Pause" locator1="3000" />
+		<execute function="Portal.Pause" locator1="3000" />
 
 		<var name="key_siteName" value="${siteName}" />
 
@@ -1495,34 +1495,34 @@
 			<var name="panelHeading" value="Sites" />
 		</execute>
 
-		<execute function="AssertClick" locator1="UsersAndOrganizationsEditUser#SITES_SELECT_LINK" value1="Select" />
+		<execute function="Portal.AssertClick" locator1="UsersAndOrganizationsEditUser#SITES_SELECT_LINK" value1="Select" />
 
-		<execute function="SelectFrame" locator1="IFrame#SELECT_USER_SITES" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#SELECT_USER_SITES" />
 
-		<execute function="Type" locator1="TextInput#SITE_SEARCH_KEYWORDS" value1="${siteName}" />
+		<execute function="Portal.Type" locator1="TextInput#SITE_SEARCH_KEYWORDS" value1="${siteName}" />
 
-		<execute function="KeyPress" locator1="TextInput#SEARCH" value1="\RETURN" />
+		<execute function="Portal.KeyPress" locator1="TextInput#SEARCH" value1="\RETURN" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="UsersAndOrganizationsEditUser#SITES_TABLE_NAME" value1="${siteName}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="UsersAndOrganizationsEditUser#SITES_TABLE_NAME" value1="${siteName}" />
 
-		<execute function="Click" locator1="SitesSelectSite#SITES_TABLE_CHOOSE_SITE_LINK" />
+		<execute function="Portal.Click" locator1="SitesSelectSite#SITES_TABLE_CHOOSE_SITE_LINK" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="UsersAndOrganizationsEditUser#SITES_TABLE_NAME" value1="${siteName}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="UsersAndOrganizationsEditUser#SITES_TABLE_NAME" value1="${siteName}" />
 
 		<execute macro="PortletEntry#save" />
 	</command>
 
 	<command name="expandRootCP">
-		<execute function="Click" locator1="SitePages#PAGE_TREE_ROOT_ARROW" />
+		<execute function="Portal.Click" locator1="SitePages#PAGE_TREE_ROOT_ARROW" />
 
-		<execute function="AssertElementPresent#assertElementPresent" locator1="SitePages#PAGE_TREE_PAGE_EDIT_COG" />
+		<execute function="Portal.AssertElementPresent#assertElementPresent" locator1="SitePages#PAGE_TREE_PAGE_EDIT_COG" />
 
 		<if>
-			<condition function="IsElementNotPresent#isNotVisible" locator1="SitePages#PAGE_TREE_PAGE_EDIT_COG" />
+			<condition function="Portal.IsElementNotPresent#isNotVisible" locator1="SitePages#PAGE_TREE_PAGE_EDIT_COG" />
 			<then>
-				<execute function="Click" locator1="SitePages#PAGE_TREE_ROOT_ARROW" />
+				<execute function="Portal.Click" locator1="SitePages#PAGE_TREE_ROOT_ARROW" />
 			</then>
 		</if>
 	</command>
@@ -1552,7 +1552,7 @@
 		</if>
 
 		<if>
-			<condition function="IsElementPresent" locator1="UserBar#USER_AVATAR_IMAGE" />
+			<condition function="Portal.IsElementPresent" locator1="UserBar#USER_AVATAR_IMAGE" />
 			<then>
 				<execute macro="User#logoutPG" />
 				<execute macro="User#loginPG">
@@ -1574,31 +1574,31 @@
 	<command name="gotoEditCP">
 		<var name="key_userScreenName" value="${userScreenName}" />
 
-		<execute function="AssertClick" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
+		<execute function="Portal.AssertClick" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="Portlet#HEADER" value1="Edit User" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Portlet#HEADER" value1="Edit User" />
 	</command>
 
 	<command name="impersonateCP">
-		<execute function="Pause" locator1="1000" />
+		<execute function="Portal.Pause" locator1="1000" />
 
-		<execute function="Type" locator1="NavBar#BASIC_SEARCH_FIELD" value1="${userScreenName}" />
+		<execute function="Portal.Type" locator1="NavBar#BASIC_SEARCH_FIELD" value1="${userScreenName}" />
 
-		<execute function="Click" locator1="Button#SUBMIT" />
+		<execute function="Portal.Click" locator1="Button#SUBMIT" />
 
 		<var name="key_rowEntry" value="${userScreenName}" />
 
-		<execute function="Click" locator1="ContentRow#ENTRY_CONTENT_ENTRY_ELLIPSIS" />
+		<execute function="Portal.Click" locator1="ContentRow#ENTRY_CONTENT_ENTRY_ELLIPSIS" />
 
-		<execute function="AssertClick" locator1="MenuItem#IMPERSONATE_USER" value1="Impersonate User" />
+		<execute function="Portal.AssertClick" locator1="MenuItem#IMPERSONATE_USER" value1="Impersonate User" />
 
-		<execute function="SelectWindow" locator1="title=Welcome - ${siteName}" />
+		<execute function="Portal.SelectWindow" locator1="title=Welcome - ${siteName}" />
 
-		<execute function="AssertElementPresent" locator1="UserBar#USER_AVATAR_IMAGE" />
+		<execute function="Portal.AssertElementPresent" locator1="UserBar#USER_AVATAR_IMAGE" />
 
-		<execute function="Click" locator1="UserBar#USER_AVATAR_IMAGE" />
+		<execute function="Portal.Click" locator1="UserBar#USER_AVATAR_IMAGE" />
 
-		<execute function="AssertElementPresent" locator1="ProductMenu#PRODUCT_MENU_TABS_USER_EXPANDED" />
+		<execute function="Portal.AssertElementPresent" locator1="ProductMenu#PRODUCT_MENU_TABS_USER_EXPANDED" />
 	</command>
 
 	<command name="loginLocalizationPG">
@@ -1618,14 +1618,14 @@
 			</else>
 		</if>
 
-		<execute function="AssertClick" locator1="UserBar#USER_SIGN_IN" value1="${signIn}" />
+		<execute function="Portal.AssertClick" locator1="UserBar#USER_SIGN_IN" value1="${signIn}" />
 	</command>
 
 	<command name="loginPG" summary="Log into Liferay Portal as '${userEmailAddress}' using the password '${password}'">
 		<if>
 			<isset var="nodePort" />
 			<then>
-				<execute function="Open" locator1="http://localhost:${nodePort}" />
+				<execute function="Portal.Open" locator1="http://localhost:${nodePort}" />
 			</then>
 			<elseif>
 				<isset var="specificURL" />
@@ -1641,7 +1641,7 @@
 		</if>
 
 		<if>
-			<condition function="IsElementPresent" locator1="Message#PORTAL_LOCALIZATION" />
+			<condition function="Portal.IsElementPresent" locator1="Message#PORTAL_LOCALIZATION" />
 			<then>
 				<execute macro="Alert#closePortalLocalizationWarning" />
 			</then>
@@ -1664,14 +1664,14 @@
 				<equals arg1="${authenticationMethod}" arg2="By Screen Name" />
 			</and>
 			<then>
-				<execute function="Type" locator1="TextInput#SCREEN_NAME" value1="${userScreenName}" />
+				<execute function="Portal.Type" locator1="TextInput#SCREEN_NAME" value1="${userScreenName}" />
 			</then>
 			<else>
-				<execute function="Type" locator1="TextInput#EMAIL_ADDRESS" value1="${userEmailAddress}" />
+				<execute function="Portal.Type" locator1="TextInput#EMAIL_ADDRESS" value1="${userEmailAddress}" />
 			</else>
 		</if>
 
-		<execute function="Type" locator1="TextInput#PASSWORD" value1="${password}" />
+		<execute function="Portal.Type" locator1="TextInput#PASSWORD" value1="${password}" />
 
 		<if>
 			<and>
@@ -1679,15 +1679,15 @@
 				<equals arg1="${rememberMeChecked}" arg2="true" />
 			</and>
 			<then>
-				<execute function="Check" locator1="Checkbox#REMEMBER_ME" />
+				<execute function="Portal.Check" locator1="Checkbox#REMEMBER_ME" />
 			</then>
 		</if>
 
 		<take-screenshot />
 
-		<execute function="Click" locator1="Button#SIGN_IN" value1="Sign In" />
+		<execute function="Portal.Click" locator1="Button#SIGN_IN" value1="Sign In" />
 
-		<execute function="AssertElementNotPresent" locator1="Button#SIGN_IN" value1="Sign In" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Button#SIGN_IN" value1="Sign In" />
 
 		<execute macro="User#acceptEndUserLicenseAgreement" />
 
@@ -1699,29 +1699,29 @@
 
 		<execute macro="User#answerPasswordReminder" />
 
-		<execute function="AssertElementPresent" locator1="UserBar#USER_AVATAR_IMAGE" />
+		<execute function="Portal.AssertElementPresent" locator1="UserBar#USER_AVATAR_IMAGE" />
 	</command>
 
 	<command name="loginUserInvalidPG">
 		<execute macro="Navigator#openURL" />
 
-		<execute function="AssertClick" locator1="UserBar#USER_SIGN_IN" value1="Sign In" />
+		<execute function="Portal.AssertClick" locator1="UserBar#USER_SIGN_IN" value1="Sign In" />
 
-		<execute function="Type" locator1="TextInput#EMAIL_ADDRESS" value1="${userEmailAddress}" />
-		<execute function="Type" locator1="TextInput#PASSWORD" value1="${password}" />
+		<execute function="Portal.Type" locator1="TextInput#EMAIL_ADDRESS" value1="${userEmailAddress}" />
+		<execute function="Portal.Type" locator1="TextInput#PASSWORD" value1="${password}" />
 
-		<execute function="Click" locator1="Button#SIGN_IN" />
+		<execute function="Portal.Click" locator1="Button#SIGN_IN" />
 
 		<execute macro="Alert#viewRequestFailedToComplete" />
 
 		<if>
 			<equals arg1="${loginAttempts}" arg2="${maximumFailure}" />
 			<then>
-				<execute function="AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="This account is locked until" />
-				<execute function="AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="Please wait until the unlock date or contact an administrator to have this account unlocked." />
+				<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="This account is locked until" />
+				<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="Please wait until the unlock date or contact an administrator to have this account unlocked." />
 			</then>
 			<else>
-				<execute function="AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="Authentication failed. Please try again." />
+				<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="Authentication failed. Please try again." />
 			</else>
 		</if>
 	</command>
@@ -1731,14 +1731,14 @@
 
 		<execute macro="Navigator#openURL" />
 
-		<execute function="AssertClick" locator1="UserBar#USER_SIGN_IN" value1="Sign In" />
+		<execute function="Portal.AssertClick" locator1="UserBar#USER_SIGN_IN" value1="Sign In" />
 
-		<execute function="Type" locator1="TextInput#EMAIL_ADDRESS" value1="${userEmailAddress}" />
-		<execute function="Type" locator1="TextInput#PASSWORD" value1="${password}" />
+		<execute function="Portal.Type" locator1="TextInput#EMAIL_ADDRESS" value1="${userEmailAddress}" />
+		<execute function="Portal.Type" locator1="TextInput#PASSWORD" value1="${password}" />
 
-		<execute function="Click" locator1="Button#SIGN_IN" />
+		<execute function="Portal.Click" locator1="Button#SIGN_IN" />
 
-		<execute function="AssertElementPresent" locator1="UserBar#USER_AVATAR_IMAGE" />
+		<execute function="Portal.AssertElementPresent" locator1="UserBar#USER_AVATAR_IMAGE" />
 	</command>
 
 	<command name="loginUserWithCASEnabledPG">
@@ -1746,14 +1746,14 @@
 
 		<execute macro="Navigator#openURL" />
 
-		<execute function="AssertClick" locator1="UserBar#USER_SIGN_IN" value1="Sign In" />
+		<execute function="Portal.AssertClick" locator1="UserBar#USER_SIGN_IN" value1="Sign In" />
 
-		<execute function="Type" locator1="CAS#NETID_FIELD" value1="${userScreenName}" />
-		<execute function="Type" locator1="CAS#PASSWORD_FIELD" value1="${userScreenName}" />
+		<execute function="Portal.Type" locator1="CAS#NETID_FIELD" value1="${userScreenName}" />
+		<execute function="Portal.Type" locator1="CAS#PASSWORD_FIELD" value1="${userScreenName}" />
 
-		<execute function="AssertClick" locator1="CAS#LOGIN_BUTTON" value1="LOGIN" />
+		<execute function="Portal.AssertClick" locator1="CAS#LOGIN_BUTTON" value1="LOGIN" />
 
-		<execute function="AssertElementPresent" locator1="UserBar#USER_AVATAR_IMAGE" />
+		<execute function="Portal.AssertElementPresent" locator1="UserBar#USER_AVATAR_IMAGE" />
 	</command>
 
 	<command name="loginUserWithFacebookSSOEnabledPG">
@@ -1761,26 +1761,26 @@
 
 		<execute macro="Navigator#openURL" />
 
-		<execute function="AssertClick" locator1="UserBar#USER_SIGN_IN" value1="Sign In" />
+		<execute function="Portal.AssertClick" locator1="UserBar#USER_SIGN_IN" value1="Sign In" />
 
-		<execute function="AssertClick" locator1="Icon#FACEBOOK" value1="Facebook" />
+		<execute function="Portal.AssertClick" locator1="Icon#FACEBOOK" value1="Facebook" />
 
-		<execute function="SelectWindow" locator1="title=Log into Facebook | Facebook" />
+		<execute function="Portal.SelectWindow" locator1="title=Log into Facebook | Facebook" />
 
-		<execute function="Type" locator1="FacebookLogin#LOGIN_EMAIL_FIELD" value1="${facebookEmail}" />
-		<execute function="Type" locator1="FacebookLogin#LOGIN_PASSWORD_FIELD" value1="${facebookPassword}" />
+		<execute function="Portal.Type" locator1="FacebookLogin#LOGIN_EMAIL_FIELD" value1="${facebookEmail}" />
+		<execute function="Portal.Type" locator1="FacebookLogin#LOGIN_PASSWORD_FIELD" value1="${facebookPassword}" />
 
-		<execute function="Click" locator1="FacebookLogin#LOGIN_BUTTON" />
+		<execute function="Portal.Click" locator1="FacebookLogin#LOGIN_BUTTON" />
 
 		<if>
-			<condition function="IsElementPresent#pauseIsElementPresent" locator1="Button#I_AGREE" value1="I Agree" />
+			<condition function="Portal.IsElementPresent#pauseIsElementPresent" locator1="Button#I_AGREE" value1="I Agree" />
 			<then>
-				<execute function="AssertClick" locator1="Button#I_AGREE" value1="I Agree" />
+				<execute function="Portal.AssertClick" locator1="Button#I_AGREE" value1="I Agree" />
 			</then>
 		</if>
 
 		<if>
-			<condition function="IsElementPresent#pauseIsElementPresent" locator1="TextInput#PASSWORD" />
+			<condition function="Portal.IsElementPresent#pauseIsElementPresent" locator1="TextInput#PASSWORD" />
 			<then>
 				<if>
 					<and>
@@ -1788,12 +1788,12 @@
 						<equals arg1="${syntaxCheckingEnabled}" arg2="true" />
 					</and>
 					<then>
-						<execute function="Type" locator1="TextInput#PASSWORD" value1="${resetPassword}" />
-						<execute function="Type" locator1="TextInput#ENTER_AGAIN" value1="${resetPassword}" />
+						<execute function="Portal.Type" locator1="TextInput#PASSWORD" value1="${resetPassword}" />
+						<execute function="Portal.Type" locator1="TextInput#ENTER_AGAIN" value1="${resetPassword}" />
 					</then>
 					<else>
-						<execute function="Type" locator1="TextInput#PASSWORD" value1="test" />
-						<execute function="Type" locator1="TextInput#ENTER_AGAIN" value1="test" />
+						<execute function="Portal.Type" locator1="TextInput#PASSWORD" value1="test" />
+						<execute function="Portal.Type" locator1="TextInput#ENTER_AGAIN" value1="test" />
 					</else>
 				</if>
 
@@ -1802,17 +1802,17 @@
 		</if>
 
 		<if>
-			<condition function="IsElementPresent#pauseIsElementPresent" locator1="TextInput#ANSWER" />
+			<condition function="Portal.IsElementPresent#pauseIsElementPresent" locator1="TextInput#ANSWER" />
 			<then>
-				<execute function="Type" locator1="TextInput#ANSWER" value1="test" />
+				<execute function="Portal.Type" locator1="TextInput#ANSWER" value1="test" />
 
-				<execute function="KeyPress" locator1="TextInput#ANSWER" value1="\RETURN" />
+				<execute function="Portal.KeyPress" locator1="TextInput#ANSWER" value1="\RETURN" />
 			</then>
 		</if>
 
-		<execute function="SelectWindow" locator1="title=Welcome - ${siteName}" />
+		<execute function="Portal.SelectWindow" locator1="title=Welcome - ${siteName}" />
 
-		<execute function="AssertElementPresent" locator1="UserBar#USER_AVATAR_IMAGE" />
+		<execute function="Portal.AssertElementPresent" locator1="UserBar#USER_AVATAR_IMAGE" />
 	</command>
 
 	<command name="loginUserWithGoogleSSOEnabledPG">
@@ -1823,11 +1823,11 @@
 
 		<execute macro="GoogleLogin#acceptConditions" />
 
-		<execute function="Pause" locator1="5000" />
+		<execute function="Portal.Pause" locator1="5000" />
 
-		<execute function="SelectWindow" locator1="title=Welcome - ${siteName}" />
+		<execute function="Portal.SelectWindow" locator1="title=Welcome - ${siteName}" />
 
-		<execute function="AssertElementPresent" locator1="UserBar#USER_AVATAR_IMAGE" />
+		<execute function="Portal.AssertElementPresent" locator1="UserBar#USER_AVATAR_IMAGE" />
 	</command>
 
 	<command name="loginUserWithOpenIDEnabledPG">
@@ -1835,39 +1835,39 @@
 
 		<execute macro="Navigator#openURL" />
 
-		<execute function="AssertClick" locator1="UserBar#USER_SIGN_IN" value1="Sign In" />
+		<execute function="Portal.AssertClick" locator1="UserBar#USER_SIGN_IN" value1="Sign In" />
 
-		<execute function="AssertClick" locator1="Link#OPENID" value1="OpenID" />
+		<execute function="Portal.AssertClick" locator1="Link#OPENID" value1="OpenID" />
 
-		<execute function="Type" locator1="SignInOpenID#OPENID_FIELD" value1="http://${openIDUsername}.openid.org.cn" />
+		<execute function="Portal.Type" locator1="SignInOpenID#OPENID_FIELD" value1="http://${openIDUsername}.openid.org.cn" />
 
-		<execute function="Click" locator1="Button#SIGN_IN" />
+		<execute function="Portal.Click" locator1="Button#SIGN_IN" />
 
-		<execute function="Type" locator1="OpenIDLogin#LOGIN_OPENID_FIELD" value1="${openIDUsername}" />
-		<execute function="Type" locator1="OpenIDLogin#LOGIN_PASSWORD_FIELD" value1="${openIDPassword}" />
+		<execute function="Portal.Type" locator1="OpenIDLogin#LOGIN_OPENID_FIELD" value1="${openIDUsername}" />
+		<execute function="Portal.Type" locator1="OpenIDLogin#LOGIN_PASSWORD_FIELD" value1="${openIDPassword}" />
 
-		<execute function="AssertClick" locator1="OpenIDLogin#LOGIN_BUTTON" value1="Login" />
+		<execute function="Portal.AssertClick" locator1="OpenIDLogin#LOGIN_BUTTON" value1="Login" />
 
 		<if>
-			<condition function="IsElementPresent" locator1="OpenIDLogin#LOGIN_ALLOW_ONCE_BUTTON" />
+			<condition function="Portal.IsElementPresent" locator1="OpenIDLogin#LOGIN_ALLOW_ONCE_BUTTON" />
 			<then>
 				<var name="key_userName" value="${userName}" />
 
-				<execute function="Click" locator1="OpenIDLogin#LOGIN_PERSONA" />
+				<execute function="Portal.Click" locator1="OpenIDLogin#LOGIN_PERSONA" />
 
-				<execute function="AssertClick" locator1="OpenIDLogin#LOGIN_ALLOW_ONCE_BUTTON" value1="Allow Once" />
+				<execute function="Portal.AssertClick" locator1="OpenIDLogin#LOGIN_ALLOW_ONCE_BUTTON" value1="Allow Once" />
 			</then>
 		</if>
 
 		<if>
-			<condition function="IsElementPresent#pauseIsElementPresent" locator1="Button#I_AGREE" value1="I Agree" />
+			<condition function="Portal.IsElementPresent#pauseIsElementPresent" locator1="Button#I_AGREE" value1="I Agree" />
 			<then>
-				<execute function="AssertClick" locator1="Button#I_AGREE" value1="I Agree" />
+				<execute function="Portal.AssertClick" locator1="Button#I_AGREE" value1="I Agree" />
 			</then>
 		</if>
 
 		<if>
-			<condition function="IsElementPresent#pauseIsElementPresent" locator1="TextInput#PASSWORD" />
+			<condition function="Portal.IsElementPresent#pauseIsElementPresent" locator1="TextInput#PASSWORD" />
 			<then>
 				<if>
 					<and>
@@ -1875,12 +1875,12 @@
 						<equals arg1="${syntaxCheckingEnabled}" arg2="true" />
 					</and>
 					<then>
-						<execute function="Type" locator1="TextInput#PASSWORD" value1="${resetPassword}" />
-						<execute function="Type" locator1="TextInput#ENTER_AGAIN" value1="${resetPassword}" />
+						<execute function="Portal.Type" locator1="TextInput#PASSWORD" value1="${resetPassword}" />
+						<execute function="Portal.Type" locator1="TextInput#ENTER_AGAIN" value1="${resetPassword}" />
 					</then>
 					<else>
-						<execute function="Type" locator1="TextInput#PASSWORD" value1="test" />
-						<execute function="Type" locator1="TextInput#ENTER_AGAIN" value1="test" />
+						<execute function="Portal.Type" locator1="TextInput#PASSWORD" value1="test" />
+						<execute function="Portal.Type" locator1="TextInput#ENTER_AGAIN" value1="test" />
 					</else>
 				</if>
 
@@ -1889,14 +1889,14 @@
 		</if>
 
 		<if>
-			<condition function="IsElementPresent#pauseIsElementPresent" locator1="TextInput#ANSWER" />
+			<condition function="Portal.IsElementPresent#pauseIsElementPresent" locator1="TextInput#ANSWER" />
 			<then>
-				<execute function="Type" locator1="TextInput#ANSWER" value1="test" />
+				<execute function="Portal.Type" locator1="TextInput#ANSWER" value1="test" />
 				<execute macro="Button#clickSave" />
 			</then>
 		</if>
 
-		<execute function="AssertElementPresent" locator1="UserBar#USER_AVATAR_IMAGE" />
+		<execute function="Portal.AssertElementPresent" locator1="UserBar#USER_AVATAR_IMAGE" />
 	</command>
 
 	<command name="loginUserWithOpenSSOEnabledPG">
@@ -1906,14 +1906,14 @@
 			<var name="url" value="${hostsURL}" />
 		</execute>
 
-		<execute function="AssertClick" locator1="UserBar#USER_SIGN_IN" value1="Sign In" />
+		<execute function="Portal.AssertClick" locator1="UserBar#USER_SIGN_IN" value1="Sign In" />
 
-		<execute function="Type" locator1="OpenAM#USER_NAME" value1="${userScreenName}" />
-		<execute function="Type" locator1="OpenAM#PASSWORD" value1="${password}" />
+		<execute function="Portal.Type" locator1="OpenAM#USER_NAME" value1="${userScreenName}" />
+		<execute function="Portal.Type" locator1="OpenAM#PASSWORD" value1="${password}" />
 
-		<execute function="Click" locator1="OpenAM#LOG_IN" />
+		<execute function="Portal.Click" locator1="OpenAM#LOG_IN" />
 
-		<execute function="AssertElementPresent" locator1="UserBar#USER_AVATAR_IMAGE" />
+		<execute function="Portal.AssertElementPresent" locator1="UserBar#USER_AVATAR_IMAGE" />
 	</command>
 
 	<command name="logoutAndLoginPG">
@@ -1922,7 +1922,7 @@
 		<execute macro="ProductMenuHelper#expandPanelUser" />
 
 		<if>
-			<condition function="IsTextNotEqual" locator1="ControlMenu#USER_NAME" value1="${userLoginFullName}" />
+			<condition function="Portal.IsTextNotEqual" locator1="ControlMenu#USER_NAME" value1="${userLoginFullName}" />
 			<then>
 				<execute macro="User#logoutPG" />
 
@@ -1942,7 +1942,7 @@
 		<if>
 			<isset var="nodePort" />
 			<then>
-				<execute function="Open" locator1="http://localhost:${nodePort}" />
+				<execute function="Portal.Open" locator1="http://localhost:${nodePort}" />
 			</then>
 			<else>
 				<if>
@@ -1972,7 +1972,7 @@
 
 	<command name="resetPassword">
 		<if>
-			<condition function="IsElementPresent#pauseIsElementPresent" locator1="TextInput#PASSWORD" />
+			<condition function="Portal.IsElementPresent#pauseIsElementPresent" locator1="TextInput#PASSWORD" />
 			<then>
 				<if>
 					<and>
@@ -1980,8 +1980,8 @@
 						<equals arg1="${syntaxCheckingEnabled}" arg2="true" />
 					</and>
 					<then>
-						<execute function="Type" locator1="TextInput#PASSWORD" value1="${resetPassword}" />
-						<execute function="Type" locator1="TextInput#ENTER_AGAIN" value1="${resetPassword}" />
+						<execute function="Portal.Type" locator1="TextInput#PASSWORD" value1="${resetPassword}" />
+						<execute function="Portal.Type" locator1="TextInput#ENTER_AGAIN" value1="${resetPassword}" />
 					</then>
 					<else>
 						<if>
@@ -1990,12 +1990,12 @@
 								<equals arg1="${setupWizardEnabled}" arg2="true" />
 							</and>
 							<then>
-								<execute function="Type" locator1="TextInput#PASSWORD" value1="test2" />
-								<execute function="Type" locator1="TextInput#ENTER_AGAIN" value1="test2" />
+								<execute function="Portal.Type" locator1="TextInput#PASSWORD" value1="test2" />
+								<execute function="Portal.Type" locator1="TextInput#ENTER_AGAIN" value1="test2" />
 							</then>
 							<else>
-								<execute function="Type" locator1="TextInput#PASSWORD" value1="test" />
-								<execute function="Type" locator1="TextInput#ENTER_AGAIN" value1="test" />
+								<execute function="Portal.Type" locator1="TextInput#PASSWORD" value1="test" />
+								<execute function="Portal.Type" locator1="TextInput#ENTER_AGAIN" value1="test" />
 							</else>
 						</if>
 					</else>
@@ -2003,45 +2003,45 @@
 
 				<execute macro="Button#clickSave" />
 
-				<execute function="AssertElementNotPresent" locator1="TextInput#ENTER_AGAIN" />
+				<execute function="Portal.AssertElementNotPresent" locator1="TextInput#ENTER_AGAIN" />
 			</then>
 		</if>
 	</command>
 
 	<command name="searchCP">
-		<execute function="Pause" locator1="5000" />
+		<execute function="Portal.Pause" locator1="5000" />
 
-		<execute function="Type" locator1="TextInput#SEARCH" value1="${searchTerm}" />
+		<execute function="Portal.Type" locator1="TextInput#SEARCH" value1="${searchTerm}" />
 
-		<execute function="Click" locator1="Button#SUBMIT" />
+		<execute function="Portal.Click" locator1="Button#SUBMIT" />
 
-		<execute function="Pause" locator1="5000" />
+		<execute function="Portal.Pause" locator1="5000" />
 	</command>
 
 	<command name="signInPG">
-		<execute function="AssertClick" locator1="UserBar#USER_SIGN_IN" value1="Sign In" />
+		<execute function="Portal.AssertClick" locator1="UserBar#USER_SIGN_IN" value1="Sign In" />
 
-		<execute function="Type" locator1="TextInput#EMAIL_ADDRESS" value1="${userEmailAddress}" />
-		<execute function="Type" locator1="TextInput#PASSWORD" value1="${emailPassword}" />
-		<execute function="Check" locator1="Checkbox#REMEMBER_ME" />
+		<execute function="Portal.Type" locator1="TextInput#EMAIL_ADDRESS" value1="${userEmailAddress}" />
+		<execute function="Portal.Type" locator1="TextInput#PASSWORD" value1="${emailPassword}" />
+		<execute function="Portal.Check" locator1="Checkbox#REMEMBER_ME" />
 
-		<execute function="AssertClick" locator1="Button#SIGN_IN" value1="Sign In" />
+		<execute function="Portal.AssertClick" locator1="Button#SIGN_IN" value1="Sign In" />
 
 		<if>
-			<condition function="IsElementPresent#pauseIsElementPresent" locator1="Button#I_AGREE" value1="I Agree" />
+			<condition function="Portal.IsElementPresent#pauseIsElementPresent" locator1="Button#I_AGREE" value1="I Agree" />
 			<then>
-				<execute function="AssertClick" locator1="Button#I_AGREE" value1="I Agree" />
+				<execute function="Portal.AssertClick" locator1="Button#I_AGREE" value1="I Agree" />
 			</then>
 		</if>
 
-		<execute function="AssertTextEquals" locator1="Message#INFO" value1="Please enter your verification code." />
+		<execute function="Portal.AssertTextEquals" locator1="Message#INFO" value1="Please enter your verification code." />
 
-		<execute function="Type" locator1="SignInCreateAccount#EMAIL_VERIFICATION_CODE_FIELD" value1="${emailVerification}" />
+		<execute function="Portal.Type" locator1="SignInCreateAccount#EMAIL_VERIFICATION_CODE_FIELD" value1="${emailVerification}" />
 
-		<execute function="AssertClick" locator1="Button#VERIFY" value1="Verify" />
+		<execute function="Portal.AssertClick" locator1="Button#VERIFY" value1="Verify" />
 
 		<if>
-			<condition function="IsElementPresent#pauseIsElementPresent" locator1="TextInput#PASSWORD" />
+			<condition function="Portal.IsElementPresent#pauseIsElementPresent" locator1="TextInput#PASSWORD" />
 			<then>
 				<if>
 					<and>
@@ -2049,12 +2049,12 @@
 						<equals arg1="${syntaxCheckingEnabled}" arg2="true" />
 					</and>
 					<then>
-						<execute function="Type" locator1="TextInput#PASSWORD" value1="${resetPassword}" />
-						<execute function="Type" locator1="TextInput#ENTER_AGAIN" value1="${resetPassword}" />
+						<execute function="Portal.Type" locator1="TextInput#PASSWORD" value1="${resetPassword}" />
+						<execute function="Portal.Type" locator1="TextInput#ENTER_AGAIN" value1="${resetPassword}" />
 					</then>
 					<else>
-						<execute function="Type" locator1="TextInput#PASSWORD" value1="test" />
-						<execute function="Type" locator1="TextInput#ENTER_AGAIN" value1="test" />
+						<execute function="Portal.Type" locator1="TextInput#PASSWORD" value1="test" />
+						<execute function="Portal.Type" locator1="TextInput#ENTER_AGAIN" value1="test" />
 					</else>
 				</if>
 
@@ -2063,9 +2063,9 @@
 		</if>
 
 		<if>
-			<condition function="IsElementPresent#pauseIsElementPresent" locator1="TextInput#ANSWER" />
+			<condition function="Portal.IsElementPresent#pauseIsElementPresent" locator1="TextInput#ANSWER" />
 			<then>
-				<execute function="Type" locator1="TextInput#ANSWER" value1="test" />
+				<execute function="Portal.Type" locator1="TextInput#ANSWER" value1="test" />
 				<execute macro="Button#clickSave" />
 			</then>
 		</if>
@@ -2076,39 +2076,39 @@
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute function="Click" locator1="Dropdown#FILTER" />
+		<execute function="Portal.Click" locator1="Dropdown#FILTER" />
 
 		<var name="key_filterValue" value="Active" />
 
-		<execute function="AssertClick" locator1="Dropdown#FILTER_VALUES" value1="Active" />
+		<execute function="Portal.AssertClick" locator1="Dropdown#FILTER_VALUES" value1="Active" />
 
 		<if>
-			<condition function="IsElementPresent" locator1="ContentRow#ENTRY_CONTENT_ROW_1" />
+			<condition function="Portal.IsElementPresent" locator1="ContentRow#ENTRY_CONTENT_ROW_1" />
 			<then>
-				<execute function="Check#checkAll" locator1="Checkbox#SELECT_ALL" />
+				<execute function="Portal.Check#checkAll" locator1="Checkbox#SELECT_ALL" />
 
-				<execute function="AssertClickNoError" locator1="Button#DEACTIVATE" value1="Deactivate" />
+				<execute function="Portal.AssertClickNoError" locator1="Button#DEACTIVATE" value1="Deactivate" />
 
-				<execute function="Confirm" value1="Are you sure you want to deactivate the selected users?" />
+				<execute function="Portal.Confirm" value1="Are you sure you want to deactivate the selected users?" />
 
 				<execute macro="Alert#viewSuccessMessage" />
 			</then>
 		</if>
 
-		<execute function="Click" locator1="Dropdown#FILTER" />
+		<execute function="Portal.Click" locator1="Dropdown#FILTER" />
 
 		<var name="key_filterValue" value="Inactive" />
 
-		<execute function="AssertClick" locator1="Dropdown#FILTER_VALUES" value1="Inactive" />
+		<execute function="Portal.AssertClick" locator1="Dropdown#FILTER_VALUES" value1="Inactive" />
 
 		<if>
-			<condition function="IsElementPresent" locator1="ContentRow#ENTRY_CONTENT_ROW_1" />
+			<condition function="Portal.IsElementPresent" locator1="ContentRow#ENTRY_CONTENT_ROW_1" />
 			<then>
-				<execute function="Check#checkAll" locator1="Checkbox#SELECT_ALL" />
+				<execute function="Portal.Check#checkAll" locator1="Checkbox#SELECT_ALL" />
 
-				<execute function="Click" locator1="Icon#DELETE" />
+				<execute function="Portal.Click" locator1="Icon#DELETE" />
 
-				<execute function="Confirm" value1="Are you sure you want to permanently delete the selected users?" />
+				<execute function="Portal.Confirm" value1="Are you sure you want to permanently delete the selected users?" />
 
 				<execute macro="Alert#viewSuccessMessage" />
 			</then>
@@ -2116,7 +2116,7 @@
 	</command>
 
 	<command name="unassignRegularRoleCP">
-		<execute function="Pause" locator1="1000" />
+		<execute function="Portal.Pause" locator1="1000" />
 
 		<execute macro="User#searchCP">
 			<var name="searchTerm" value="${userScreenName}" />
@@ -2124,9 +2124,9 @@
 
 		<var name="key_rowEntry" value="${userScreenName}" />
 
-		<execute function="Click" locator1="ContentRow#ENTRY_CONTENT_ENTRY_ELLIPSIS" />
+		<execute function="Portal.Click" locator1="ContentRow#ENTRY_CONTENT_ENTRY_ELLIPSIS" />
 
-		<execute function="AssertClick" locator1="MenuItem#EDIT" value1="Edit" />
+		<execute function="Portal.AssertClick" locator1="MenuItem#EDIT" value1="Edit" />
 
 		<execute macro="Panel#expandPanel">
 			<var name="panelHeading" value="Roles" />
@@ -2134,25 +2134,25 @@
 
 		<var name="key_roleTitle" value="${roleTitle}" />
 
-		<execute function="Click" locator1="UsersAndOrganizationsEditUser#ROLES_REGULAR_ROLES_TABLE_REMOVE_LINK" />
+		<execute function="Portal.Click" locator1="UsersAndOrganizationsEditUser#ROLES_REGULAR_ROLES_TABLE_REMOVE_LINK" />
 
-		<execute function="AssertElementNotPresent" locator1="UsersAndOrganizationsEditUser#ROLES_REGULAR_ROLES_TABLE_TITLE" value1="${roleTitle}" />
+		<execute function="Portal.AssertElementNotPresent" locator1="UsersAndOrganizationsEditUser#ROLES_REGULAR_ROLES_TABLE_TITLE" value1="${roleTitle}" />
 
 		<execute macro="PortletEntry#save" />
 	</command>
 
 	<command name="unlockUserAccount">
-		<execute function="Pause" locator1="1000" />
+		<execute function="Portal.Pause" locator1="1000" />
 
 		<var name="key_userScreenName" value="${userScreenName}" />
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
+		<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
 
-		<execute function="AssertClick" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
+		<execute function="Portal.AssertClick" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
 
-		<execute function="AssertTextEquals" locator1="Message#ERROR_3" value1="This user account has been locked due to excessive failed login attempts." />
+		<execute function="Portal.AssertTextEquals" locator1="Message#ERROR_3" value1="This user account has been locked due to excessive failed login attempts." />
 
-		<execute function="AssertClick" locator1="Button#UNLOCK" value1="Unlock" />
+		<execute function="Portal.AssertClick" locator1="Button#UNLOCK" value1="Unlock" />
 
 		<execute macro="Alert#viewSuccessMessage" />
 	</command>
@@ -2161,14 +2161,14 @@
 		<if>
 			<equals arg1="${captchaType}" arg2="captcha" />
 			<then>
-				<execute function="AssertElementPresent#assertElementPresent" locator1="SignInCreateAccount#CAPTCHA_IMAGE" />
+				<execute function="Portal.AssertElementPresent#assertElementPresent" locator1="SignInCreateAccount#CAPTCHA_IMAGE" />
 			</then>
 			<elseif>
 				<equals arg1="${captchaType}" arg2="recaptcha" />
 				<then>
-					<execute function="SelectFrame" locator1="IFrame#RECAPTCHA" />
+					<execute function="Portal.SelectFrame" locator1="IFrame#RECAPTCHA" />
 
-					<execute function="AssertElementPresent#assertElementPresent" locator1="SignInCreateAccount#RECAPTCHA_LABEL" />
+					<execute function="Portal.AssertElementPresent#assertElementPresent" locator1="SignInCreateAccount#RECAPTCHA_LABEL" />
 				</then>
 			</elseif>
 		</if>
@@ -2178,52 +2178,52 @@
 		<if>
 			<equals arg1="${userEmailAddressVariation}" arg2="At" />
 			<then>
-				<execute function="Pause" locator1="1000" />
+				<execute function="Portal.Pause" locator1="1000" />
 
-				<execute function="Type" locator1="NavBar#BASIC_SEARCH_FIELD" value1="${userEmailAddress}" />
+				<execute function="Portal.Type" locator1="NavBar#BASIC_SEARCH_FIELD" value1="${userEmailAddress}" />
 
-				<execute function="Click" locator1="Button#SUBMIT" />
+				<execute function="Portal.Click" locator1="Button#SUBMIT" />
 
-				<execute function="AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No users were found." />
+				<execute function="Portal.AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No users were found." />
 			</then>
 			<elseif>
 				<equals arg1="${userEmailAddressVariation}" arg2="Period" />
 				<then>
-					<execute function="Pause" locator1="1000" />
+					<execute function="Portal.Pause" locator1="1000" />
 
-					<execute function="Type" locator1="NavBar#BASIC_SEARCH_FIELD" value1="${userEmailAddress}" />
+					<execute function="Portal.Type" locator1="NavBar#BASIC_SEARCH_FIELD" value1="${userEmailAddress}" />
 
-					<execute function="Click" locator1="Button#SUBMIT" />
+					<execute function="Portal.Click" locator1="Button#SUBMIT" />
 
-					<execute function="AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No users were found." />
+					<execute function="Portal.AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No users were found." />
 				</then>
 			</elseif>
 			<elseif>
 				<equals arg1="${userScreenNameVariation}" arg2="Invalid" />
 				<then>
-					<execute function="Pause" locator1="1000" />
+					<execute function="Portal.Pause" locator1="1000" />
 
-					<execute function="Type" locator1="NavBar#BASIC_SEARCH_FIELD" value1="${userScreenName}" />
+					<execute function="Portal.Type" locator1="NavBar#BASIC_SEARCH_FIELD" value1="${userScreenName}" />
 
-					<execute function="Click" locator1="Button#SUBMIT" />
+					<execute function="Portal.Click" locator1="Button#SUBMIT" />
 
-					<execute function="AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No users were found." />
+					<execute function="Portal.AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No users were found." />
 				</then>
 			</elseif>
 			<else>
 				<var name="key_userScreenName" value="${userScreenName}" />
 
-				<execute function="Pause" locator1="1000" />
+				<execute function="Portal.Pause" locator1="1000" />
 
-				<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_NAME" value1="${userFirstName} ${userLastName}" />
-				<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
+				<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_NAME" value1="${userFirstName} ${userLastName}" />
+				<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
 
-				<execute function="AssertClick" locator1="UsersAndOrganizations#USER_TABLE_NAME" value1="${userFirstName} ${userLastName}" />
+				<execute function="Portal.AssertClick" locator1="UsersAndOrganizations#USER_TABLE_NAME" value1="${userFirstName} ${userLastName}" />
 
-				<execute function="AssertTextEquals" locator1="UsersAndOrganizationsEditUser#DETAILS_SCREEN_NAME_FIELD" value1="${userScreenName}" />
-				<execute function="AssertTextEquals" locator1="UsersAndOrganizationsEditUser#DETAILS_EMAIL_ADDRESS_FIELD" value1="${userEmailAddress}" />
-				<execute function="AssertTextEquals" locator1="UsersAndOrganizationsEditUser#DETAILS_FIRST_NAME_FIELD" value1="${userFirstName}" />
-				<execute function="AssertTextEquals" locator1="UsersAndOrganizationsEditUser#DETAILS_LAST_NAME_FIELD" value1="${userLastName}" />
+				<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizationsEditUser#DETAILS_SCREEN_NAME_FIELD" value1="${userScreenName}" />
+				<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizationsEditUser#DETAILS_EMAIL_ADDRESS_FIELD" value1="${userEmailAddress}" />
+				<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizationsEditUser#DETAILS_FIRST_NAME_FIELD" value1="${userFirstName}" />
+				<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizationsEditUser#DETAILS_LAST_NAME_FIELD" value1="${userLastName}" />
 			</else>
 		</if>
 	</command>
@@ -2234,53 +2234,53 @@
 		<if>
 			<equals arg1="${authenticationMethod}" arg2="By Screen Name" />
 			<then>
-				<execute function="AssertElementNotPresent" locator1="TextInput#SCREEN_NAME" />
+				<execute function="Portal.AssertElementNotPresent" locator1="TextInput#SCREEN_NAME" />
 			</then>
 			<else>
-				<execute function="AssertElementNotPresent" locator1="TextInput#EMAIL_ADDRESS" />
+				<execute function="Portal.AssertElementNotPresent" locator1="TextInput#EMAIL_ADDRESS" />
 			</else>
 		</if>
 
-		<execute function="AssertElementNotPresent" locator1="TextInput#PASSWORD" />
-		<execute function="AssertElementNotPresent" locator1="Checkbox#REMEMBER_ME" />
-		<execute function="AssertElementNotPresent" locator1="Button#SIGN_IN" />
+		<execute function="Portal.AssertElementNotPresent" locator1="TextInput#PASSWORD" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Checkbox#REMEMBER_ME" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Button#SIGN_IN" />
 
-		<execute function="AssertTextEquals" locator1="ControlMenu#USER_NAME" value1="${userFirstName}" />
+		<execute function="Portal.AssertTextEquals" locator1="ControlMenu#USER_NAME" value1="${userFirstName}" />
 	</command>
 
 	<command name="viewLoggedOutPG">
-		<execute function="AssertElementNotPresent" locator1="UserBar#USER_AVATAR_IMAGE" />
-		<execute function="AssertElementNotPresent" locator1="ControlMenu#ADD" />
-		<execute function="AssertTextEquals" locator1="UserBar#USER_SIGN_IN" value1="Sign In" />
+		<execute function="Portal.AssertElementNotPresent" locator1="UserBar#USER_AVATAR_IMAGE" />
+		<execute function="Portal.AssertElementNotPresent" locator1="ControlMenu#ADD" />
+		<execute function="Portal.AssertTextEquals" locator1="UserBar#USER_SIGN_IN" value1="Sign In" />
 	</command>
 
 	<command name="viewLoggedOutWithCASEnabledPG">
-		<execute function="AssertTextEquals" locator1="CAS#APP_NAME_HEADER" value1="Central Authentication Service (CAS)" />
-		<execute function="AssertTextEquals" locator1="CAS#LOGOUT_SUCCESSFUL_HEADER" value1="Logout successful" />
-		<execute function="AssertTextEquals" locator1="CAS#LOGOUT_SUCCESSFUL_MESSAGE_1" value1="You have successfully logged out of the Central Authentication Service." />
-		<execute function="AssertTextEquals" locator1="CAS#LOGOUT_SUCCESSFUL_MESSAGE_2" value1="For security reasons, exit your web browser." />
+		<execute function="Portal.AssertTextEquals" locator1="CAS#APP_NAME_HEADER" value1="Central Authentication Service (CAS)" />
+		<execute function="Portal.AssertTextEquals" locator1="CAS#LOGOUT_SUCCESSFUL_HEADER" value1="Logout successful" />
+		<execute function="Portal.AssertTextEquals" locator1="CAS#LOGOUT_SUCCESSFUL_MESSAGE_1" value1="You have successfully logged out of the Central Authentication Service." />
+		<execute function="Portal.AssertTextEquals" locator1="CAS#LOGOUT_SUCCESSFUL_MESSAGE_2" value1="For security reasons, exit your web browser." />
 	</command>
 
 	<command name="viewLoginPG">
 		<if>
 			<equals arg1="${authenticationMethod}" arg2="By Screen Name" />
 			<then>
-				<execute function="AssertElementPresent" locator1="TextInput#SCREEN_NAME" />
+				<execute function="Portal.AssertElementPresent" locator1="TextInput#SCREEN_NAME" />
 			</then>
 			<else>
-				<execute function="AssertElementPresent" locator1="TextInput#EMAIL_ADDRESS" />
+				<execute function="Portal.AssertElementPresent" locator1="TextInput#EMAIL_ADDRESS" />
 			</else>
 		</if>
 
-		<execute function="AssertElementPresent" locator1="TextInput#PASSWORD" />
+		<execute function="Portal.AssertElementPresent" locator1="TextInput#PASSWORD" />
 
-		<execute function="AssertElementPresent" locator1="Checkbox#REMEMBER_ME" />
+		<execute function="Portal.AssertElementPresent" locator1="Checkbox#REMEMBER_ME" />
 
-		<execute function="AssertTextEquals" locator1="Button#SIGN_IN" value1="Sign In" />
+		<execute function="Portal.AssertTextEquals" locator1="Button#SIGN_IN" value1="Sign In" />
 	</command>
 
 	<command name="viewNoUsersFoundCP">
-		<execute function="AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No users were found." />
+		<execute function="Portal.AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No users were found." />
 	</command>
 
 	<command name="viewUserInfomationOrganizationSitesCP">
@@ -2290,7 +2290,7 @@
 
 		<var name="key_siteName" value="${siteName}" />
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizationsEditUser#SITES_TABLE_NAME" value1="${orgName}" />
+		<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizationsEditUser#SITES_TABLE_NAME" value1="${orgName}" />
 	</command>
 
 	<command name="viewUserInfomationRolesCP">
@@ -2300,7 +2300,7 @@
 
 		<var name="key_roleTitle" value="${roleTitle}" />
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizationsEditUser#ROLES_REGULAR_ROLES_TABLE_TITLE" value1="${roleTitle}" />
+		<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizationsEditUser#ROLES_REGULAR_ROLES_TABLE_TITLE" value1="${roleTitle}" />
 	</command>
 
 	<command name="viewUserInfomationSitesCP">
@@ -2310,7 +2310,7 @@
 
 		<var name="key_siteName" value="${siteName}" />
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizationsEditUser#SITES_TABLE_NAME" value1="${siteName}" />
+		<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizationsEditUser#SITES_TABLE_NAME" value1="${siteName}" />
 	</command>
 
 	<command name="viewUserInfomationUserGroupsCP">
@@ -2320,11 +2320,11 @@
 
 		<var name="key_userGroupName" value="${userGroupName}" />
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizationsEditUser#USER_GROUPS_TABLE_NAME" value1="${userGroupName}" />
+		<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizationsEditUser#USER_GROUPS_TABLE_NAME" value1="${userGroupName}" />
 	</command>
 
 	<command name="viewUserMiscellaneousCustomFieldsCP">
-		<execute function="AssertClick" locator1="UsersAndOrganizations#MISCELLANEOUS" value1="Miscellaneous" />
+		<execute function="Portal.AssertClick" locator1="UsersAndOrganizations#MISCELLANEOUS" value1="Miscellaneous" />
 
 		<execute macro="Panel#expandPanel">
 			<var name="panelHeading" value="Custom Fields" />
@@ -2332,18 +2332,18 @@
 
 		<var name="key_customFieldName" value="${customFieldName}" />
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizationsEditUser#CUSTOM_FIELDS_LABEL" value1="${customFieldName}" />
+		<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizationsEditUser#CUSTOM_FIELDS_LABEL" value1="${customFieldName}" />
 
 		<if>
 			<equals arg1="${customFieldName}" arg2="Boolean" />
 			<then>
-				<execute function="AssertSelectedLabel" locator1="UsersAndOrganizationsEditUser#CUSTOM_FIELDS_SELECT" value1="${customFieldValue}" />
+				<execute function="Portal.AssertSelectedLabel" locator1="UsersAndOrganizationsEditUser#CUSTOM_FIELDS_SELECT" value1="${customFieldValue}" />
 			</then>
 		</if>
 	</command>
 
 	<command name="viewUserSiteCP">
-		<execute function="Pause" locator1="3000" />
+		<execute function="Portal.Pause" locator1="3000" />
 
 		<execute macro="Panel#expandPanel">
 			<var name="panelHeading" value="Sites" />
@@ -2351,6 +2351,6 @@
 
 		<var name="key_siteName" value="${siteName}" />
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizationsEditUser#SITES_TABLE_NAME" value1="${siteName}" />
+		<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizationsEditUser#SITES_TABLE_NAME" value1="${siteName}" />
 	</command>
 </definition>
