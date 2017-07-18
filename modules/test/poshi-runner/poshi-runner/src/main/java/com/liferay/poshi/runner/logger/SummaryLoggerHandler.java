@@ -520,30 +520,7 @@ public final class SummaryLoggerHandler {
 		}
 
 		if (summary == null) {
-			if (element.attributeValue("action") != null) {
-				String action = element.attributeValue("action");
-
-				if (!action.contains(".")) {
-					action =
-						PoshiRunnerStackTraceUtil.getCurrentNamespace() + "." +
-							action;
-				}
-
-				summary = PoshiRunnerContext.getActionCommandSummary(action);
-			}
-			else if (element.attributeValue("action-summary") != null) {
-				String actionSummary = element.attributeValue("action-summary");
-
-				if (!actionSummary.contains(".")) {
-					actionSummary =
-						PoshiRunnerStackTraceUtil.getCurrentNamespace() + "." +
-							actionSummary;
-				}
-
-				summary = PoshiRunnerContext.getActionCommandSummary(
-					actionSummary);
-			}
-			else if (element.attributeValue("function") != null) {
+			if (element.attributeValue("function") != null) {
 				String function = element.attributeValue("function");
 
 				if (!function.contains(".")) {

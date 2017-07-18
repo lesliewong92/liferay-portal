@@ -44,35 +44,6 @@ public class PoshiRunnerContextTest extends TestCase {
 	}
 
 	@Test
-	public void testGetActionCommandElement() {
-		Element element = PoshiRunnerContext.getActionCommandElement(
-			"Action1#test1");
-
-		Assert.assertEquals(
-			"getActionCommandElement is failing", "test1",
-			element.attributeValue("name"));
-	}
-
-	@Test
-	public void testGetActionLocatorCount() throws Exception {
-		int locatorCount = PoshiRunnerContext.getActionLocatorCount(
-			"Action1#type");
-
-		Assert.assertEquals(
-			"getActionLocatorCount is failing", 1, locatorCount);
-	}
-
-	@Test
-	public void testGetActionRootElement() {
-		Element rootElement = PoshiRunnerContext.getActionRootElement(
-			"Action1");
-
-		Assert.assertEquals(
-			"getActionRootElement is failing", "definition",
-			rootElement.getName());
-	}
-
-	@Test
 	public void testGetFilePath() throws Exception {
 		String actualFilePath = PoshiRunnerContext.getFilePathFromFileName(
 			"Action2.action");

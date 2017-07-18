@@ -83,27 +83,6 @@ public class PoshiRunnerContext {
 		_seleniumParameterCounts.clear();
 	}
 
-	public static Element getActionCommandElement(String classCommandName) {
-		return _commandElements.get("action#" + classCommandName);
-	}
-
-	public static String getActionCommandSummary(String classCommandName) {
-		return _commandSummaries.get("action#" + classCommandName);
-	}
-
-	public static int getActionLocatorCount(String classCommandName) {
-		String commandName =
-			PoshiRunnerGetterUtil.getCommandNameFromClassCommandName(
-				classCommandName);
-
-		return getFunctionLocatorCount(
-			StringUtil.upperCaseFirstLetter(commandName));
-	}
-
-	public static Element getActionRootElement(String className) {
-		return _rootElements.get("action#" + className);
-	}
-
 	public static String getDefaultNamespace() {
 		return _defaultNamespace;
 	}
@@ -729,6 +708,14 @@ public class PoshiRunnerContext {
 			if (rootElement.attributeValue("extends") != null) {
 				String extendsTestCaseClassName = rootElement.attributeValue(
 					"extends");
+
+				if (!extendsTestCaseClassName.contains(".")) {
+					int x = testCaseClassName.indexOf(".");
+
+					extendsTestCaseClassName =
+						testCaseClassName.substring(0, x) + "." +
+							extendsTestCaseClassName;
+				}
 
 				Element extendsRootElement = getTestCaseRootElement(
 					extendsTestCaseClassName);

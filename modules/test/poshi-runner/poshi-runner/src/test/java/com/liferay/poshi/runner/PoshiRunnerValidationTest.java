@@ -79,7 +79,9 @@ public class PoshiRunnerValidationTest extends TestCase {
 
 	@Test
 	public void testValidateClassCommandName() {
-		String classCommandName = "ValidateClassCommandName#classCommandName";
+		String classCommandName = 
+			PoshiRunnerContext.getDefaultNamespace() + "." +
+				"ValidateClassCommandName#classCommandName";
 
 		Element element = PoshiRunnerContext.getTestCaseCommandElement(
 			classCommandName);
@@ -1561,14 +1563,19 @@ public class PoshiRunnerValidationTest extends TestCase {
 
 		Element childElement = element.addElement("condition");
 
-		childElement.addAttribute("function", "isElementPresent");
+		childElement.addAttribute(
+			"function",
+			PoshiRunnerContext.getDefaultNamespace() + ".isElementPresent");
+
 		childElement.addAttribute("locator1", "//here");
 
 		Element thenElement = element.addElement("then");
 
 		Element executeElement = thenElement.addElement("execute");
 
-		executeElement.addAttribute("function", "Click");
+		executeElement.addAttribute(
+			"function", PoshiRunnerContext.getDefaultNamespace() + "Click");
+
 		executeElement.addAttribute("locator1", "//else if element");
 
 		PoshiRunnerValidation.validateWhileElement(element, "While.macro");
@@ -1584,7 +1591,9 @@ public class PoshiRunnerValidationTest extends TestCase {
 
 		executeElement = thenElement.addElement("execute");
 
-		executeElement.addAttribute("function", "Click");
+		executeElement.addAttribute(
+			"function", PoshiRunnerContext.getDefaultNamespace() + ".Click");
+
 		executeElement.addAttribute("locator1", "//else if element");
 
 		PoshiRunnerValidation.validateWhileElement(element, "While.macro");
