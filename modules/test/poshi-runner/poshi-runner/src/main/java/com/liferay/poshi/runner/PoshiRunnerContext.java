@@ -1202,7 +1202,11 @@ public class PoshiRunnerContext {
 					Iterator<String> iterator = classCommandNames.iterator();
 
 					while (iterator.hasNext()) {
-						sb.append(iterator.next());
+						String fullClassName = iterator.next();
+
+						int x = fullClassName.indexOf(".") + 1;
+
+						sb.append(fullClassName.substring(x));
 
 						if (iterator.hasNext()) {
 							sb.append(" ");
