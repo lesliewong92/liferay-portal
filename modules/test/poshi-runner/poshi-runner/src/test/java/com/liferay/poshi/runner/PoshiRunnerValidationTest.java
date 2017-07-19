@@ -95,11 +95,16 @@ public class PoshiRunnerValidationTest extends TestCase {
 			"validateClassCommandName is failing", "", getExceptionMessage());
 
 		PoshiRunnerValidation.validateClassCommandName(
-			element, "ValidateClassCommandName#fail", "test-case", filePath);
+			element,
+			PoshiRunnerContext.getDefaultNamespace() +
+				".ValidateClassCommandName#fail",
+			"test-case", filePath);
 
 		Assert.assertEquals(
 			"validateClassCommandName is failing",
-			"Invalid test-case command ValidateClassCommandName#fail",
+			"Invalid test-case command " +
+				PoshiRunnerContext.getDefaultNamespace() +
+					".ValidateClassCommandName#fail",
 			getExceptionMessage());
 	}
 
@@ -241,7 +246,8 @@ public class PoshiRunnerValidationTest extends TestCase {
 
 		Element executeElement1 = elseElement1.addElement("execute");
 
-		executeElement1.addAttribute("function", "Click");
+		executeElement1.addAttribute(
+			"function", PoshiRunnerContext.getDefaultNamespace() + ".Click");
 		executeElement1.addAttribute("locator1", "//else element");
 
 		PoshiRunnerValidation.validateElseElement(
@@ -254,7 +260,8 @@ public class PoshiRunnerValidationTest extends TestCase {
 
 		Element executeElement2 = elseElement2.addElement("execute");
 
-		executeElement2.addAttribute("function", "Click");
+		executeElement2.addAttribute(
+			"function", PoshiRunnerContext.getDefaultNamespace() + ".Click");
 		executeElement2.addAttribute("locator1", "//else element");
 
 		PoshiRunnerValidation.validateElseElement(
@@ -281,7 +288,8 @@ public class PoshiRunnerValidationTest extends TestCase {
 
 		Element executeElement1 = thenElement.addElement("execute");
 
-		executeElement1.addAttribute("function", "Click");
+		executeElement1.addAttribute(
+			"function", PoshiRunnerContext.getDefaultNamespace() + ".Click");
 		executeElement1.addAttribute("line-number", "15");
 		executeElement1.addAttribute("locator1", "//else if element");
 
@@ -297,14 +305,16 @@ public class PoshiRunnerValidationTest extends TestCase {
 
 		Element executeElement2 = element.addElement("execute");
 
-		executeElement2.addAttribute("function", "Click");
+		executeElement2.addAttribute(
+			"function", PoshiRunnerContext.getDefaultNamespace() + ".Click");
 		executeElement2.addAttribute("locator1", "//else if element");
 
 		thenElement = element.addElement("then");
 
 		executeElement1 = thenElement.addElement("execute");
 
-		executeElement1.addAttribute("function", "Click");
+		executeElement1.addAttribute(
+			"function", PoshiRunnerContext.getDefaultNamespace() + ".Click");
 		executeElement1.addAttribute("line-number", "15");
 		executeElement1.addAttribute("locator1", "//else if element");
 
@@ -322,7 +332,8 @@ public class PoshiRunnerValidationTest extends TestCase {
 
 		Element element = document.addElement("execute");
 
-		element.addAttribute("function", "Click");
+		element.addAttribute(
+			"function", PoshiRunnerContext.getDefaultNamespace() + ".Click");
 		element.addAttribute("locator1", "//here");
 
 		Element childElement = element.addElement("var");
@@ -341,12 +352,14 @@ public class PoshiRunnerValidationTest extends TestCase {
 
 		element = document.addElement("execute");
 
-		element.addAttribute("function", "Click");
+		element.addAttribute(
+			"function", PoshiRunnerContext.getDefaultNamespace() + ".Click");
 		element.addAttribute("locator1", "//here");
 
 		childElement = element.addElement("execute");
 
-		childElement.addAttribute("function", "Click");
+		childElement.addAttribute(
+			"function", PoshiRunnerContext.getDefaultNamespace() + ".Click");
 		childElement.addAttribute("locator1", "//here");
 
 		PoshiRunnerValidation.validateExecuteElement(
@@ -369,7 +382,9 @@ public class PoshiRunnerValidationTest extends TestCase {
 
 		Element childElement = element.addElement("execute");
 
-		childElement.addAttribute("function", "Click");
+		childElement.addAttribute(
+			"function", PoshiRunnerContext.getDefaultNamespace() + ".Click");
+
 		childElement.addAttribute("locator1", "//here");
 		childElement.addAttribute("value1", "${i}");
 
@@ -388,7 +403,9 @@ public class PoshiRunnerValidationTest extends TestCase {
 
 		childElement = element.addElement("execute");
 
-		childElement.addAttribute("function", "Click");
+		childElement.addAttribute(
+			"function", PoshiRunnerContext.getDefaultNamespace() + ".Click");
+
 		childElement.addAttribute("locator1", "//here");
 		childElement.addAttribute("value1", "${i}");
 
@@ -738,7 +755,8 @@ public class PoshiRunnerValidationTest extends TestCase {
 
 		Element thenChildElement = thenElement.addElement("execute");
 
-		thenChildElement.addAttribute("function", "Click");
+		thenChildElement.addAttribute(
+			"function", PoshiRunnerContext.getDefaultNamespace() + ".Click");
 		thenChildElement.addAttribute("locator1", "//here");
 
 		PoshiRunnerValidation.validateIfElement(
@@ -753,14 +771,16 @@ public class PoshiRunnerValidationTest extends TestCase {
 
 		conditionElement = element.addElement("execute");
 
-		conditionElement.addAttribute("function", "Click");
+		conditionElement.addAttribute(
+			"function", PoshiRunnerContext.getDefaultNamespace() + ".Click");
 		conditionElement.addAttribute("selenium", "click");
 
 		thenElement = element.addElement("then");
 
 		thenChildElement = thenElement.addElement("execute");
 
-		thenChildElement.addAttribute("function", "Click");
+		thenChildElement.addAttribute(
+			"function", PoshiRunnerContext.getDefaultNamespace() + ".Click");
 		thenChildElement.addAttribute("locator1", "//here");
 
 		PoshiRunnerValidation.validateIfElement(
@@ -784,7 +804,8 @@ public class PoshiRunnerValidationTest extends TestCase {
 
 		thenChildElement = thenElement.addElement("execute");
 
-		thenChildElement.addAttribute("function", "Click");
+		thenChildElement.addAttribute(
+			"function", PoshiRunnerContext.getDefaultNamespace() + ".Click");
 		thenChildElement.addAttribute("locator1", "//here");
 
 		PoshiRunnerValidation.validateIfElement(
@@ -802,7 +823,9 @@ public class PoshiRunnerValidationTest extends TestCase {
 		Element element = document.addElement("execute");
 
 		element.addAttribute(
-			"macro", "ValidateMacroContext#validateMacroContextPass");
+			"macro",
+			PoshiRunnerContext.getDefaultNamespace() +
+				".ValidateMacroContext#validateMacroContextPass");
 
 		Element childElement = element.addElement("var");
 
@@ -819,7 +842,10 @@ public class PoshiRunnerValidationTest extends TestCase {
 
 		element = document.addElement("execute");
 
-		element.addAttribute("macro", "ValidateMacroContext#fail");
+		element.addAttribute(
+			"macro",
+			PoshiRunnerContext.getDefaultNamespace() +
+				".ValidateMacroContext#fail");
 
 		childElement = element.addElement("var");
 
@@ -831,7 +857,9 @@ public class PoshiRunnerValidationTest extends TestCase {
 
 		Assert.assertEquals(
 			"validateMacroContext is failing",
-			"Invalid macro command ValidateMacroContext#fail",
+			"Invalid macro command " +
+				PoshiRunnerContext.getDefaultNamespace() +
+					".ValidateMacroContext#fail",
 			getExceptionMessage());
 	}
 
@@ -1405,7 +1433,8 @@ public class PoshiRunnerValidationTest extends TestCase {
 
 		Element onChildElement = onElement.addElement("execute");
 
-		onChildElement.addAttribute("function", "Click");
+		onChildElement.addAttribute(
+			"function", PoshiRunnerContext.getDefaultNamespace() + ".Click");
 		onChildElement.addAttribute("locator1", "//here");
 		onChildElement.addAttribute("line-number", "3");
 
@@ -1421,7 +1450,8 @@ public class PoshiRunnerValidationTest extends TestCase {
 
 		Element onChildElement2 = onElement2.addElement("execute");
 
-		onChildElement2.addAttribute("function", "Click");
+		onChildElement2.addAttribute(
+			"function", PoshiRunnerContext.getDefaultNamespace() + ".Click");
 		onChildElement2.addAttribute("locator1", "//here");
 		onChildElement2.addAttribute("line-number", "6");
 
@@ -1445,7 +1475,8 @@ public class PoshiRunnerValidationTest extends TestCase {
 
 		Element offChildElement = offElement.addElement("execute");
 
-		offChildElement.addAttribute("function", "Click");
+		offChildElement.addAttribute(
+			"function", PoshiRunnerContext.getDefaultNamespace() + ".Click");
 		offChildElement.addAttribute("locator1", "//here");
 		offChildElement.addAttribute("line-number", "3");
 
@@ -1461,7 +1492,8 @@ public class PoshiRunnerValidationTest extends TestCase {
 
 		Element offChildElement2 = offElement2.addElement("execute");
 
-		offChildElement2.addAttribute("function", "Click");
+		offChildElement2.addAttribute(
+			"function", PoshiRunnerContext.getDefaultNamespace() + ".Click");
 		offChildElement2.addAttribute("locator1", "//here");
 		offChildElement2.addAttribute("line-number", "6");
 
@@ -1498,7 +1530,8 @@ public class PoshiRunnerValidationTest extends TestCase {
 
 		onChildElement = onElement.addElement("execute");
 
-		onChildElement.addAttribute("function", "Click");
+		onChildElement.addAttribute(
+			"function", PoshiRunnerContext.getDefaultNamespace() + ".Click");
 		onChildElement.addAttribute("locator1", "//here");
 		onChildElement.addAttribute("line-number", "3");
 
@@ -1574,7 +1607,7 @@ public class PoshiRunnerValidationTest extends TestCase {
 		Element executeElement = thenElement.addElement("execute");
 
 		executeElement.addAttribute(
-			"function", PoshiRunnerContext.getDefaultNamespace() + "Click");
+			"function", PoshiRunnerContext.getDefaultNamespace() + ".Click");
 
 		executeElement.addAttribute("locator1", "//else if element");
 

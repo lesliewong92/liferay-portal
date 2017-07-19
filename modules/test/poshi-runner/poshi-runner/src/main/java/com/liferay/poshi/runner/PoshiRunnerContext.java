@@ -83,6 +83,14 @@ public class PoshiRunnerContext {
 		_seleniumParameterCounts.clear();
 	}
 
+	public static String formatName(String name) {
+		if (!name.contains(".")) {
+			name = _defaultNamespace + "." + name;
+		}
+
+		return name;
+	}
+
 	public static String getDefaultNamespace() {
 		return _defaultNamespace;
 	}
@@ -99,11 +107,12 @@ public class PoshiRunnerContext {
 	}
 
 	public static Element getFunctionCommandElement(String classCommandName) {
-		return _commandElements.get("function#" + classCommandName);
+		return _commandElements.get("function#" + formatName(classCommandName));
 	}
 
 	public static String getFunctionCommandSummary(String classCommandName) {
-		return _commandSummaries.get("function#" + classCommandName);
+		return _commandSummaries.get(
+			"function#" + formatName(classCommandName));
 	}
 
 	public static int getFunctionLocatorCount(String className) {
@@ -115,23 +124,23 @@ public class PoshiRunnerContext {
 	}
 
 	public static Element getFunctionRootElement(String className) {
-		return _rootElements.get("function#" + className);
+		return _rootElements.get("function#" + formatName(className));
 	}
 
 	public static Element getMacroCommandElement(String classCommandName) {
-		return _commandElements.get("macro#" + classCommandName);
+		return _commandElements.get("macro#" + formatName(classCommandName));
 	}
 
 	public static List<String> getMacroCommandReturns(String classCommandName) {
-		return _commandReturns.get("macro#" + classCommandName);
+		return _commandReturns.get("macro#" + formatName(classCommandName));
 	}
 
 	public static String getMacroCommandSummary(String classCommandName) {
-		return _commandSummaries.get("macro#" + classCommandName);
+		return _commandSummaries.get("macro#" + formatName(classCommandName));
 	}
 
 	public static Element getMacroRootElement(String className) {
-		return _rootElements.get("macro#" + className);
+		return _rootElements.get("macro#" + formatName(className));
 	}
 
 	public static String getNamespace(String filePath) {
@@ -156,8 +165,13 @@ public class PoshiRunnerContext {
 				PoshiRunnerGetterUtil.getCommandNameFromClassCommandName(
 					pathLocatorKey);
 
+			int x = pathLocatorKey.indexOf(".");
+
+			String namespace = pathLocatorKey.substring(0, x);
+
 			pathLocator = _pathLocators.get(
-				_pathExtensions.get(className) + "#" + commandName);
+				namespace + "." + _pathExtensions.get(className) + "#" +
+					commandName);
 		}
 
 		return pathLocator;
@@ -228,8 +242,17 @@ public class PoshiRunnerContext {
 		boolean pathLocatorExists = _pathLocators.containsKey(pathLocatorKey);
 
 		if (!pathLocatorExists && _pathExtensions.containsKey(className)) {
-			pathLocatorExists = _pathLocators.containsKey(
+			System.out.println(
 				_pathExtensions.get(className) + "#" +
+					PoshiRunnerGetterUtil.getCommandNameFromClassCommandName(
+						pathLocatorKey));
+
+			int x = pathLocatorKey.indexOf(".");
+
+			String namespace = pathLocatorKey.substring(0, x);
+
+			pathLocatorExists = _pathLocators.containsKey(
+				namespace + "." + _pathExtensions.get(className) + "#" +
 					PoshiRunnerGetterUtil.getCommandNameFromClassCommandName(
 						pathLocatorKey));
 		}
