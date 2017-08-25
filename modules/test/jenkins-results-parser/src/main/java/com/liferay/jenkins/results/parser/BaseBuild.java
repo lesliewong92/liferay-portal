@@ -1148,9 +1148,9 @@ public abstract class BaseBuild implements Build {
 	protected static boolean isTestFailingInUpstreamJob(TestResult testResult) {
 		try {
 			for (String failure : getUpstreamJobFailures("test")) {
-				Build axisBuild = testResult.getAxisBuild();
+				Build build = testResult.getBuild();
 
-				if (failure.contains(axisBuild.getJobVariant()) &&
+				if (failure.contains(build.getJobVariant()) &&
 					failure.contains(testResult.getDisplayName())) {
 
 					return true;
