@@ -213,7 +213,7 @@ public class ValidationBuild extends TopLevelBuild {
 						if (failCount < 3) {
 							Dom4JUtil.addToElement(
 								downstreamBuildOrderedListElement,
-								testResult.getGitHubListItemElement(null));
+								testResult.getGitHubElement(null));
 						}
 						else if (failCount == 3) {
 							Dom4JUtil.addToElement(
