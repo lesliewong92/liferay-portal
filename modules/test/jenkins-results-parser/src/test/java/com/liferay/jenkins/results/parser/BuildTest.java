@@ -70,12 +70,6 @@ public class BuildTest extends BaseJenkinsResultsParserTestCase {
 			"test-portal-acceptance-pullrequest(master)" +
 				"_semantic_versioning_failure",
 			"2003", "test-portal-acceptance-pullrequest(master)", "test-1-3");
-		downloadSample(
-			"test-subrepository-acceptance-pullrequest-validation(master)" +
-				"_passed",
-			"75",
-			"test-subrepository-acceptance-pullrequest-validation(master)",
-			"test-5-1");
 	}
 
 	@After
