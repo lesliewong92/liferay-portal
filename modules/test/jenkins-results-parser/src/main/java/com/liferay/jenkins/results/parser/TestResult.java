@@ -81,7 +81,7 @@ public class TestResult {
 
 			System.out.println(
 				"Invalid test class name \"" + className + "\" in build " +
-					axisBuild.getBuildURL());
+					build.getBuildURL());
 		}
 
 		testName = caseJSONObject.getString("name");
