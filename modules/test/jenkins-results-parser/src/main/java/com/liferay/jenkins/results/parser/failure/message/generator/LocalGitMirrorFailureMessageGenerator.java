@@ -32,8 +32,8 @@ public class LocalGitMirrorFailureMessageGenerator
 
 	@Override
 	public Element getMessageElement(String consoleText) {
-		if (!consoleText.contains(_LOCAL_GIT_FAILURE_END_STRING) ||
-			!consoleText.contains(_LOCAL_GIT_FAILURE_START_STRING)) {
+		if (!consoleText.contains(_TOKEN_LOCAL_GIT_FAILURE_END) ||
+			!consoleText.contains(_TOKEN_LOCAL_GIT_FAILURE_START)) {
 
 			return null;
 		}
