@@ -80,7 +80,7 @@
 
 		<var name="key_pageName" value="${sitePage3Name}" />
 
-		<execute function="AssertTextEquals" locator1="Home#PAGE" value1="${sitePage3Name}" />
+		<execute function="Portal.AssertTextEquals" locator1="Home#PAGE" value1="${sitePage3Name}" />
 	</command>
 
 	<command name="CannotDeleteLastPublicPageOnLiferay" priority="3">
@@ -188,7 +188,7 @@
 			<var name="pageName" value="Page Name" />
 		</execute>
 
-		<execute function="AssertConsoleTextNotPresent" value1="java.lang.StringIndexOutOfBoundsException: String index out of range: -1" />
+		<execute function="Portal.AssertConsoleTextNotPresent" value1="java.lang.StringIndexOutOfBoundsException: String index out of range: -1" />
 
 		<execute macro="Portal.SitePageNavigator#gotoEditPage">
 			<var name="page" value="Page Name" />
@@ -284,9 +284,9 @@
 			<var name="pageName" value="Page Name" />
 		</execute>
 
-		<execute function="Open" locator1="${portalURL}/web/usersn/page-name?p_p_id=com_liferay_portal_settings_web_portlet_PortalSettingsPortlet&amp;p_p_state=maximized" />
+		<execute function="Portal.Open" locator1="${portalURL}/web/usersn/page-name?p_p_id=com_liferay_portal_settings_web_portlet_PortalSettingsPortlet&amp;p_p_state=maximized" />
 
-		<execute function="AssertTextEquals" locator1="Message#ERROR" value1="You do not have the roles required to access this portlet." />
+		<execute function="Portal.AssertTextEquals" locator1="Message#ERROR" value1="You do not have the roles required to access this portlet." />
 
 		<execute macro="Portal.User#firstLoginPG">
 			<var name="password" value="test" />
@@ -396,7 +396,7 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute function="AssertTextNotPresent" locator1="Home#ERROR_MESSAGE_ALERT_ERROR" value1="Not Found" />
+		<execute function="Portal.AssertTextNotPresent" locator1="Home#ERROR_MESSAGE_ALERT_ERROR" value1="Not Found" />
 
 		<execute macro="Portal.User#firstLoginPG">
 			<var name="password" value="test" />
@@ -431,9 +431,9 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="Home#ERROR_MESSAGE_ALERT_ERROR" value1="Not Found" />
+		<execute function="Portal.AssertTextEquals" locator1="Home#ERROR_MESSAGE_ALERT_ERROR" value1="Not Found" />
 
-		<execute function="AssertTextNotPresent" locator1="Home#BREADCRUMB_2" value1="Site Page" />
+		<execute function="Portal.AssertTextNotPresent" locator1="Home#BREADCRUMB_2" value1="Site Page" />
 
 		<execute macro="Portal.User#firstLoginPG">
 			<var name="password" value="test" />
@@ -572,7 +572,7 @@
 			<var name="pageName" value="Blog and Message Board Page" />
 		</execute>
 
-		<execute function="Pause" locator1="30000" />
+		<execute function="Portal.Pause" locator1="30000" />
 
 		<execute macro="Portal.Gmail#login">
 			<var method="TestPropsUtil#get('email.address.2')" name="userEmailAddress" />
@@ -596,9 +596,9 @@
 
 		<var method="selenium#getLocation()" name="blogEntryURL" />
 
-		<execute function="Close" />
+		<execute function="Portal.Close" />
 
-		<execute function="SelectWindow" locator1="null" />
+		<execute function="Portal.SelectWindow" locator1="null" />
 
 		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blog and Message Board Page" />
@@ -622,9 +622,9 @@
 
 		<var method="selenium#getLocation()" name="messageBoardsThreadURL" />
 
-		<execute function="Close" />
+		<execute function="Portal.Close" />
 
-		<execute function="SelectWindow" locator1="null" />
+		<execute function="Portal.SelectWindow" locator1="null" />
 
 		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blog and Message Board Page" />
@@ -641,20 +641,20 @@
 		<execute macro="Portal.Navigator#openPrivateURL" />
 
 		<execute macro="Portal.User#viewLoginPG" />
-		<execute function="AssertElementNotPresent" locator1="Message#ERROR" />
-		<execute function="AssertElementNotPresent" locator1="Home#ERROR_MESSAGE_ALERT_ERROR" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Message#ERROR" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Home#ERROR_MESSAGE_ALERT_ERROR" />
 
-		<execute function="Open" locator1="${blogEntryURL}" />
-
-		<execute macro="Portal.Alert#viewRequestFailedToComplete" />
-
-		<execute function="AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="You do not have the required permissions." />
-
-		<execute function="Open" locator1="${messageBoardsThreadURL}" />
+		<execute function="Portal.Open" locator1="${blogEntryURL}" />
 
 		<execute macro="Portal.Alert#viewRequestFailedToComplete" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="You do not have the required permissions." />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="You do not have the required permissions." />
+
+		<execute function="Portal.Open" locator1="${messageBoardsThreadURL}" />
+
+		<execute macro="Portal.Alert#viewRequestFailedToComplete" />
+
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="You do not have the required permissions." />
 	</command>
 
 	<command name="ViewSecureContentAndPageAsSiteMember" priority="3">
@@ -805,7 +805,7 @@
 			<var name="pageName" value="Blog and Message Board Page" />
 		</execute>
 
-		<execute function="Pause" locator1="30000" />
+		<execute function="Portal.Pause" locator1="30000" />
 
 		<execute macro="Portal.Gmail#login">
 			<var method="TestPropsUtil#get('email.address.2')" name="userEmailAddress" />
@@ -829,9 +829,9 @@
 
 		<var method="selenium#getLocation()" name="blogEntryURL" />
 
-		<execute function="Close" />
+		<execute function="Portal.Close" />
 
-		<execute function="SelectWindow" locator1="null" />
+		<execute function="Portal.SelectWindow" locator1="null" />
 
 		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blog and Message Board Page" />
@@ -855,9 +855,9 @@
 
 		<var method="selenium#getLocation()" name="messageBoardsThreadURL" />
 
-		<execute function="Close" />
+		<execute function="Portal.Close" />
 
-		<execute function="SelectWindow" locator1="null" />
+		<execute function="Portal.SelectWindow" locator1="null" />
 
 		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blog and Message Board Page" />
@@ -880,10 +880,10 @@
 			<var name="pageNameList" value="Test Private Page" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="Message#ERROR" />
-		<execute function="AssertElementNotPresent" locator1="Home#ERROR_MESSAGE_ALERT_ERROR" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Message#ERROR" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Home#ERROR_MESSAGE_ALERT_ERROR" />
 
-		<execute function="Open" locator1="${blogEntryURL}" />
+		<execute function="Portal.Open" locator1="${blogEntryURL}" />
 
 		<execute macro="Portal.BlogsNavigator#gotoPG">
 			<var name="blogEntryURL" value="${blogEntryURL}" />
@@ -895,7 +895,7 @@
 			<var name="pageName" value="Blog and Message Board Page" />
 		</execute>
 
-		<execute function="Open" locator1="${messageBoardsThreadURL}" />
+		<execute function="Portal.Open" locator1="${messageBoardsThreadURL}" />
 
 		<execute macro="Portal.MessageboardsThread#gotoPG">
 			<var name="lastPostUserName" value="Test Test" />
@@ -1051,7 +1051,7 @@
 			<var name="pageName" value="Blog and Message Board Page" />
 		</execute>
 
-		<execute function="Pause" locator1="30000" />
+		<execute function="Portal.Pause" locator1="30000" />
 
 		<execute macro="Portal.Gmail#login">
 			<var method="TestPropsUtil#get('email.address.2')" name="userEmailAddress" />
@@ -1075,9 +1075,9 @@
 
 		<var method="selenium#getLocation()" name="blogEntryURL" />
 
-		<execute function="Close" />
+		<execute function="Portal.Close" />
 
-		<execute function="SelectWindow" locator1="null" />
+		<execute function="Portal.SelectWindow" locator1="null" />
 
 		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blog and Message Board Page" />
@@ -1101,9 +1101,9 @@
 
 		<var method="selenium#getLocation()" name="messageBoardsThreadURL" />
 
-		<execute function="Close" />
+		<execute function="Portal.Close" />
 
-		<execute function="SelectWindow" locator1="null" />
+		<execute function="Portal.SelectWindow" locator1="null" />
 
 		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blog and Message Board Page" />
@@ -1122,23 +1122,23 @@
 
 		<execute macro="Portal.Navigator#openPrivateURL" />
 
-		<execute function="AssertTextEquals" locator1="Home#ERROR_MESSAGE_ALERT_ERROR" value1="Not Found" />
+		<execute function="Portal.AssertTextEquals" locator1="Home#ERROR_MESSAGE_ALERT_ERROR" value1="Not Found" />
 
-		<execute function="Open" locator1="${blogEntryURL}" />
+		<execute function="Portal.Open" locator1="${blogEntryURL}" />
 
 		<execute macro="Portal.Alert#viewRequestFailedToComplete" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="You do not have the required permissions." />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="You do not have the required permissions." />
 
 		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blog and Message Board Page" />
 		</execute>
 
-		<execute function="Open" locator1="${messageBoardsThreadURL}" />
+		<execute function="Portal.Open" locator1="${messageBoardsThreadURL}" />
 
 		<execute macro="Portal.Alert#viewRequestFailedToComplete" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="You do not have the required permissions." />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="You do not have the required permissions." />
 	</command>
 
 	<command name="WebContentAdministrationSitesPagesPanel" priority="3">
@@ -1287,23 +1287,23 @@
 			<var name="siteName" value="Page Type Test Site Name" />
 		</execute>
 
-		<execute function="AssertClick" locator1="Home#PAGE" value1="Link to URL Page">
+		<execute function="Portal.AssertClick" locator1="Home#PAGE" value1="Link to URL Page">
 			<var name="key_pageName" value="Link to URL Page" />
 		</execute>
 
-		<execute function="AssertLocation" value1="https://www.google.com/" />
+		<execute function="Portal.AssertLocation" value1="https://www.google.com/" />
 
 		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Embedded Page" />
 			<var name="siteName" value="Page Type Test Site Name" />
 		</execute>
 
-		<execute function="AssertLocation" value1="${portalURL}/web/page-type-test-site-name/embedded-page" />
+		<execute function="Portal.AssertLocation" value1="${portalURL}/web/page-type-test-site-name/embedded-page" />
 
-		<execute function="SelectFrame" locator1="IFrame#EMBEDDED_IFRAME" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="Embedded#EMBEDDED_TEXT_YES" value1="Yes" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="Embedded#EMBEDDED_TEXT_UPDATED" value1="updated" />
-		<execute function="SelectFrameTop" value1="relative=top" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#EMBEDDED_IFRAME" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Embedded#EMBEDDED_TEXT_YES" value1="Yes" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Embedded#EMBEDDED_TEXT_UPDATED" value1="updated" />
+		<execute function="Portal.SelectFrameTop" value1="relative=top" />
 
 		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Panel Page" />
@@ -1384,7 +1384,7 @@
 
 		<var name="key_pageName" value="Page Set Page" />
 
-		<execute function="AssertElementNotPresent" locator1="Home#PAGE" value1="Page Set Page" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Home#PAGE" value1="Page Set Page" />
 
 		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
@@ -1405,7 +1405,7 @@
 
 		<var name="key_pageName" value="Page Set Page" />
 
-		<execute function="AssertElementPresent" locator1="Home#PAGE" value1="Page Set Page" />
+		<execute function="Portal.AssertElementPresent" locator1="Home#PAGE" value1="Page Set Page" />
 
 		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
@@ -1426,15 +1426,15 @@
 
 		<var name="key_pageName" value="Page Set Page" />
 
-		<execute function="AssertElementPresent" locator1="Home#PAGE" value1="Page Set Page" />
+		<execute function="Portal.AssertElementPresent" locator1="Home#PAGE" value1="Page Set Page" />
 
 		<execute macro="Portal.Page#gotoChildPagePG">
 			<var name="childPageName" value="United States" />
 			<var name="pageName" value="Page Set Page" />
 		</execute>
 
-		<execute function="AssertLocation" value1="${portalURL}/web/united-states" />
-		<execute function="AssertTextNotPresent" locator1="Home#ERROR_MESSAGE_ALERT_ERROR" value1="Not Found" />
+		<execute function="Portal.AssertLocation" value1="${portalURL}/web/united-states" />
+		<execute function="Portal.AssertTextNotPresent" locator1="Home#ERROR_MESSAGE_ALERT_ERROR" value1="Not Found" />
 
 		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Page Type Test Site Name" />
@@ -1445,7 +1445,7 @@
 			<var name="pageName" value="Page Set Page" />
 		</execute>
 
-		<execute function="AssertLocation" value1="${portalURL}/web/canada" />
-		<execute function="AssertTextNotPresent" locator1="Home#ERROR_MESSAGE_ALERT_ERROR" value1="Not Found" />
+		<execute function="Portal.AssertLocation" value1="${portalURL}/web/canada" />
+		<execute function="Portal.AssertTextNotPresent" locator1="Home#ERROR_MESSAGE_ALERT_ERROR" value1="Not Found" />
 	</command>
 </definition>

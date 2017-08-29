@@ -77,7 +77,7 @@
 
 		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
 
-		<execute function="AssertLocation" value1="${portalURL}/web/guest/landing" />
+		<execute function="Portal.AssertLocation" value1="${portalURL}/web/guest/landing" />
 	</command>
 
 	<command name="DeletePortalInstance" priority="5">
@@ -161,7 +161,7 @@
 
 		<execute macro="Portal.Alert#viewRequestFailedToComplete" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="You do not have the required permissions." />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="You do not have the required permissions." />
 	</command>
 
 	<command name="ViewDeactivatedPortalInstance" priority="5">
@@ -357,7 +357,7 @@
 
 		<var name="key_pageName" value="Welcome" />
 
-		<execute function="AssertElementPresent" locator1="Home#PAGE" value1="Welcome" />
+		<execute function="Portal.AssertElementPresent" locator1="Home#PAGE" value1="Welcome" />
 
 		<execute macro="Portal.User#loginPG">
 			<var name="password" value="test" />
@@ -367,7 +367,7 @@
 
 		<var name="key_pageName" value="Private Page" />
 
-		<execute function="AssertTextEquals" locator1="Home#PAGE" value1="Private Page" />
+		<execute function="Portal.AssertTextEquals" locator1="Home#PAGE" value1="Private Page" />
 
 		<execute macro="Portal.User#logoutPG" />
 

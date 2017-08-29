@@ -43,19 +43,19 @@
 					<var name="site" value="Westeros Bank Theme Site" />
 				</execute>
 
-				<execute function="AssertClick" locator1="Home#PAGE" value1="FOR YOU">
+				<execute function="Portal.AssertClick" locator1="Home#PAGE" value1="FOR YOU">
 					<var name="key_pageName" value="For You" />
 				</execute>
 
-				<execute function="MouseOver" locator1="Home#PAGE">
+				<execute function="Portal.MouseOver" locator1="Home#PAGE">
 					<var name="key_pageName" value="Checking and Credit Cards" />
 				</execute>
 
-				<execute function="AssertClick" locator1="Home#PAGE_CHILD_PAGE" value1="All credit cards">
+				<execute function="Portal.AssertClick" locator1="Home#PAGE_CHILD_PAGE" value1="All credit cards">
 					<var name="key_childPageName" value="All credit cards" />
 				</execute>
 
-				<execute function="AssertTextEquals" locator1="Header#H2_TITLE" value1="We help you to achieve your goals">
+				<execute function="Portal.AssertTextEquals" locator1="Header#H2_TITLE" value1="We help you to achieve your goals">
 					<var name="key_title" value="We help you to achieve your goals" />
 				</execute>
 			</then>
@@ -66,11 +66,11 @@
 					<var name="portlet" value="App Manager" />
 				</execute>
 
-				<execute function="Type" locator1="TextInput#SEARCH" value1="${appName}" />
+				<execute function="Portal.Type" locator1="TextInput#SEARCH" value1="${appName}" />
 
-				<execute function="Click" locator1="Icon#BASIC_SEARCH" />
+				<execute function="Portal.Click" locator1="Icon#BASIC_SEARCH" />
 
-				<execute function="AssertVisible" locator1="ListGroupItem#ITEM_NAME_LINK">
+				<execute function="Portal.AssertVisible" locator1="ListGroupItem#ITEM_NAME_LINK">
 					<var name="key_itemName" value="westeros-bank-theme" />
 				</execute>
 			</else>

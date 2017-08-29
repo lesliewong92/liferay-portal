@@ -36,7 +36,7 @@
 				</execute>
 
 				<if>
-					<condition function="IsElementPresent" locator1="Calendar#SCHEDULER_EVENT_GENERIC" />
+					<condition function="Portal.IsElementPresent" locator1="Calendar#SCHEDULER_EVENT_GENERIC" />
 					<then>
 						<execute macro="Portal.CalendarEvent#tearDown" />
 					</then>
@@ -633,7 +633,7 @@
 
 		<execute macro="Portal.CalendarNavigator#gotoNextDay" />
 
-		<execute function="Refresh" />
+		<execute function="Portal.Refresh" />
 
 		<execute macro="Portal.CalendarNavigator#gotoNextDay" />
 
@@ -686,7 +686,7 @@
 
 		<execute macro="Portal.CalendarNavigator#gotoNextDay" />
 
-		<execute function="Refresh" />
+		<execute function="Portal.Refresh" />
 
 		<execute macro="Portal.CalendarNavigator#gotoNextDay" />
 

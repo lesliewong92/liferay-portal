@@ -229,21 +229,21 @@
 			<var name="url" value="http://test.able.com:8080/openam" />
 		</execute>
 
-		<execute function="AntCommand" locator1="build-test-authentication.xml" value1="run-openam-tools" />
+		<execute function="Portal.AntCommand" locator1="build-test-authentication.xml" value1="run-openam-tools" />
 
 		<var name="pauseCount" value="0" />
 
 		<while>
 			<and>
-				<condition function="IsElementNotPresent" locator1="OpenAM#USER_NAME" />
+				<condition function="Portal.IsElementNotPresent" locator1="OpenAM#USER_NAME" />
 				<not>
 					<equals arg1="${pauseCount}" arg2="20" />
 				</not>
 			</and>
 			<then>
-				<execute function="Refresh" />
+				<execute function="Portal.Refresh" />
 
-				<execute function="Pause" locator1="30000" />
+				<execute function="Portal.Pause" locator1="30000" />
 
 				<var method="MathUtil#sum('${pauseCount}', '1')" name="pauseCount" />
 
@@ -264,7 +264,7 @@
 			<var name="portlet" value="Instance Settings" />
 		</execute>
 
-		<execute function="Pause" locator1="30000" />
+		<execute function="Portal.Pause" locator1="30000" />
 
 		<execute macro="Portal.Panel#expandPanel">
 			<var name="panelHeading" value="Authentication" />
@@ -316,6 +316,6 @@
 
 		<execute macro="Portal.User#logoutPG" />
 
-		<execute function="AntCommand" locator1="build-test-authentication.xml" value1="verify-token-based-login" />
+		<execute function="Portal.AntCommand" locator1="build-test-authentication.xml" value1="verify-token-based-login" />
 	</command>
 </definition>

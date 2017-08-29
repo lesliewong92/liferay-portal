@@ -801,7 +801,7 @@
 			<var name="siteName" value="Community Site Name" />
 		</execute>
 
-		<execute function="AssertTextNotPresent" locator1="Home#PAGE_2" value1="Wiki" />
+		<execute function="Portal.AssertTextNotPresent" locator1="Home#PAGE_2" value1="Wiki" />
 
 		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Home" />
@@ -822,16 +822,16 @@
 			<var name="siteName" value="Community Site Name" />
 		</execute>
 
-		<execute function="AssertTextNotPresent" locator1="Home#PAGE_2_GUEST_VIEW" value1="New Page Name" />
+		<execute function="Portal.AssertTextNotPresent" locator1="Home#PAGE_2_GUEST_VIEW" value1="New Page Name" />
 
-		<execute function="Pause" locator1="120000" />
+		<execute function="Portal.Pause" locator1="120000" />
 
 		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Home" />
 			<var name="siteName" value="Community Site Name" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="Home#PAGE_2_GUEST_VIEW" value1="New Page Name" />
+		<execute function="Portal.AssertTextEquals" locator1="Home#PAGE_2_GUEST_VIEW" value1="New Page Name" />
 	</command>
 
 	<command name="StagingLocalLiveWorkflow" priority="4">
@@ -1094,7 +1094,7 @@
 			<var name="siteName" value="Community Site Name" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="Portlet#TITLE">
+		<execute function="Portal.AssertElementNotPresent" locator1="Portlet#TITLE">
 			<var name="key_portletName" value="Web Content Display" />
 		</execute>
 

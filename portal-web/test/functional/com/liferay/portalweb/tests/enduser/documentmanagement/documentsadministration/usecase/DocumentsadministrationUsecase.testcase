@@ -234,15 +234,15 @@
 			<var name="portlet" value="Server Administration" />
 		</execute>
 
-		<execute function="AssertClick" locator1="NavBar#FILE_UPLOADS" value1="File Uploads" />
+		<execute function="Portal.AssertClick" locator1="NavBar#FILE_UPLOADS" value1="File Uploads" />
 
-		<execute function="Type" locator1="ServerAdministrationFileUploads#DOCS_AND_MEDIA_MAX_FILE_SIZE_FIELD" value1="300000" />
+		<execute function="Portal.Type" locator1="ServerAdministrationFileUploads#DOCS_AND_MEDIA_MAX_FILE_SIZE_FIELD" value1="300000" />
 
-		<execute function="ScrollWebElementIntoView" locator1="Button#SAVE" />
+		<execute function="Portal.ScrollWebElementIntoView" locator1="Button#SAVE" />
 
-		<execute function="AssertClick" locator1="Button#SAVE" value1="Save" />
+		<execute function="Portal.AssertClick" locator1="Button#SAVE" value1="Save" />
 
-		<execute function="AssertElementPresent" locator1="Message#SUCCESS" value1="Your request completed successfully." />
+		<execute function="Portal.AssertElementPresent" locator1="Message#SUCCESS" value1="Your request completed successfully." />
 
 		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Documents and Media" />
@@ -252,7 +252,7 @@
 			<var name="dmDocumentTypeName" value="${dmDocumentTypeName}" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="Message#INFO" value1="Upload documents no larger than 293KB." />
+		<execute function="Portal.AssertTextEquals" locator1="Message#INFO" value1="Upload documents no larger than 293KB." />
 
 		<execute macro="Portal.DMDocument#editCmd">
 			<var name="dmDocumentFileEdit" value="Document_1.mp4" />
@@ -263,20 +263,20 @@
 
 		<execute macro="Portal.Alert#viewRequestFailedToComplete" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="Please enter a file with a valid file size no larger than 293KB." />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="Please enter a file with a valid file size no larger than 293KB." />
 
 		<execute macro="Portal.Button#clickCancel" />
 
 		<execute macro="Portal.LAR#_gotoExportImport" />
 
-		<execute function="AssertElementPresent" locator1="IFrame#DIALOG" />
+		<execute function="Portal.AssertElementPresent" locator1="IFrame#DIALOG" />
 
 		<execute macro="Portal.LAR#_export">
 			<var name="exportPermissions" value="${exportPermissions}" />
 			<var name="larFileName" value="DM.portlet.lar" />
 		</execute>
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 	</command>
 
 	<command name="CheckoutAndCheckin" priority="5">
@@ -338,7 +338,7 @@
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute function="Click" locator1="Icon#DISPLAY_STYLE_DESCRIPTIVE" />
+		<execute function="Portal.Click" locator1="Icon#DISPLAY_STYLE_DESCRIPTIVE" />
 
 		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
@@ -356,7 +356,7 @@
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute function="Click" locator1="Icon#DISPLAY_STYLE_DESCRIPTIVE" />
+		<execute function="Portal.Click" locator1="Icon#DISPLAY_STYLE_DESCRIPTIVE" />
 
 		<execute macro="Portal.DMDocument#viewDocumentToolbarCmdAsGuestPG">
 			<var name="dmDocumentTitle" value="Document_1.doc" />
@@ -371,7 +371,7 @@
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute function="Click" locator1="Icon#DISPLAY_STYLE_DESCRIPTIVE" />
+		<execute function="Portal.Click" locator1="Icon#DISPLAY_STYLE_DESCRIPTIVE" />
 
 		<execute macro="Portal.DMDocument#enableActionsMenuOnPortlet" />
 
@@ -383,7 +383,7 @@
 			<var name="dmDocumentVersionNumber" value="PWC" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="DocumentsAndMediaDocument#DOCUMENT_INFO_WORKFLOW_STATUS" value1="Draft" />
+		<execute function="Portal.AssertTextEquals" locator1="DocumentsAndMediaDocument#DOCUMENT_INFO_WORKFLOW_STATUS" value1="Draft" />
 
 		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
@@ -395,9 +395,9 @@
 				<var name="dmDocumentTitle" value="Document_1.doc" />
 			</execute>
 
-			<execute function="AssertClick" locator1="Button#SAVE" value1="Save" />
+			<execute function="Portal.AssertClick" locator1="Button#SAVE" value1="Save" />
 
-			<execute function="Pause" locator1="10000" />
+			<execute function="Portal.Pause" locator1="10000" />
 
 			<execute macro="Portal.Navigator#gotoPage">
 				<var name="pageName" value="Documents and Media Page" />
@@ -459,7 +459,7 @@
 			<var name="dmDocumentVersionNumber" value="1.1" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="DocumentsAndMediaDocument#DOCUMENT_INFO_WORKFLOW_STATUS" value1="Approved" />
+		<execute function="Portal.AssertTextEquals" locator1="DocumentsAndMediaDocument#DOCUMENT_INFO_WORKFLOW_STATUS" value1="Approved" />
 
 		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
@@ -473,20 +473,20 @@
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute function="AssertClick" locator1="DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE" value1="Document1">
+		<execute function="Portal.AssertClick" locator1="DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE" value1="Document1">
 			<var name="key_dmDocumentTitle" value="Document1" />
 		</execute>
 
-		<execute function="AssertClick#assertTextClick" locator1="Button#EDIT" value1="Edit" />
+		<execute function="Portal.AssertClick#assertTextClick" locator1="Button#EDIT" value1="Edit" />
 
 		<while>
-			<condition function="IsElementPresent" locator1="AssetCategorization#TAGS_REMOVE_ICON_GENERIC" />
+			<condition function="Portal.IsElementPresent" locator1="AssetCategorization#TAGS_REMOVE_ICON_GENERIC" />
 			<then>
-				<execute function="Click" locator1="AssetCategorization#TAGS_REMOVE_ICON_GENERIC" />
+				<execute function="Portal.Click" locator1="AssetCategorization#TAGS_REMOVE_ICON_GENERIC" />
 			</then>
 		</while>
 
-		<execute function="AssertClick" locator1="Button#SAVE" value1="Save" />
+		<execute function="Portal.AssertClick" locator1="Button#SAVE" value1="Save" />
 
 		<execute macro="Portal.DMDocument#viewDocumentVersionNumberCmdPG">
 			<var name="dmDocumentVersionNumber" value="PWC" />
@@ -505,7 +505,7 @@
 			<var name="dmDocumentVersionNumber" value="1.1" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="DocumentsAndMediaDocument#DOCUMENT_INFO_WORKFLOW_STATUS" value1="Approved" />
+		<execute function="Portal.AssertTextEquals" locator1="DocumentsAndMediaDocument#DOCUMENT_INFO_WORKFLOW_STATUS" value1="Approved" />
 	</command>
 
 	<command name="Comments" priority="4">
@@ -581,7 +581,7 @@
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute function="Click" locator1="Icon#DISPLAY_STYLE_DESCRIPTIVE" />
+		<execute function="Portal.Click" locator1="Icon#DISPLAY_STYLE_DESCRIPTIVE" />
 
 		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
@@ -591,11 +591,11 @@
 			<var name="portletName" value="Activities" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="DocumentsAndMedia#DESCRIPTIVE_LIST_FOLDER_TITLE" value1="Folder1">
+		<execute function="Portal.AssertTextEquals" locator1="DocumentsAndMedia#DESCRIPTIVE_LIST_FOLDER_TITLE" value1="Folder1">
 			<var name="key_dmFolderName" value="Folder1" />
 		</execute>
 
-		<execute function="AssertClick" locator1="Activities#ACTIVITY_TITLE_ASSET_NAME" value1="Zero Document File">
+		<execute function="Portal.AssertClick" locator1="Activities#ACTIVITY_TITLE_ASSET_NAME" value1="Zero Document File">
 			<var name="key_assetName" value="Zero Document File" />
 		</execute>
 
@@ -684,7 +684,7 @@
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute function="Click" locator1="Icon#DISPLAY_STYLE_DESCRIPTIVE" />
+		<execute function="Portal.Click" locator1="Icon#DISPLAY_STYLE_DESCRIPTIVE" />
 
 		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
@@ -696,7 +696,7 @@
 			<var name="dmDocumentTitle" value="Document_1.mp4" />
 		</execute>
 
-		<execute function="Pause" locator1="180000" />
+		<execute function="Portal.Pause" locator1="180000" />
 
 		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
@@ -706,7 +706,7 @@
 			<var name="dmDocumentTitle" value="Document_1.mp4" />
 		</execute>
 
-		<execute function="Pause" locator1="30000" />
+		<execute function="Portal.Pause" locator1="30000" />
 
 		<var name="videoGenerationTimeCounter" value="0" />
 		<var name="videoGenerationTimeMaxWaitTime" value="6" />
@@ -716,12 +716,12 @@
 				<not>
 					<equals arg1="${videoGenerationTimeCounter}" arg2="${videoGenerationTimeMaxWaitTime}" />
 				</not>
-				<condition function="IsElementPresent" locator1="Message#INFO" />
+				<condition function="Portal.IsElementPresent" locator1="Message#INFO" />
 			</and>
 			<then>
 				<var method="MathUtil#sum('${videoGenerationTimeCounter}', '1')" name="videoGenerationTimeCounter" />
 
-				<execute function="Pause" locator1="30000" />
+				<execute function="Portal.Pause" locator1="30000" />
 
 				<execute macro="Portal.Navigator#gotoPage">
 					<var name="pageName" value="Documents and Media Page" />
@@ -735,22 +735,22 @@
 
 		<var attribute="poster" locator="//video" name="videoPreviewThumbnailLink" />
 
-		<execute function="Open" locator1="${videoPreviewThumbnailLink}" />
-		<execute function="Pause" locator1="1000" />
+		<execute function="Portal.Open" locator1="${videoPreviewThumbnailLink}" />
+		<execute function="Portal.Pause" locator1="1000" />
 
-		<execute function="AssertElementNotPresent" locator1="DocumentsAndMediaDocument#VIDEO_GENERATION_THUMBNAIL_RESOLUTION">
+		<execute function="Portal.AssertElementNotPresent" locator1="DocumentsAndMediaDocument#VIDEO_GENERATION_THUMBNAIL_RESOLUTION">
 			<var name="key_videoGenerationThumbnailResolution" value="640" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="DocumentsAndMediaDocument#VIDEO_GENERATION_THUMBNAIL_RESOLUTION">
+		<execute function="Portal.AssertElementNotPresent" locator1="DocumentsAndMediaDocument#VIDEO_GENERATION_THUMBNAIL_RESOLUTION">
 			<var name="key_videoGenerationThumbnailResolution" value="360" />
 		</execute>
 
-		<execute function="AssertElementPresent#assertElementPresent" locator1="DocumentsAndMediaDocument#VIDEO_GENERATION_THUMBNAIL_RESOLUTION">
+		<execute function="Portal.AssertElementPresent#assertElementPresent" locator1="DocumentsAndMediaDocument#VIDEO_GENERATION_THUMBNAIL_RESOLUTION">
 			<var name="key_videoGenerationThumbnailResolution" value="1280" />
 		</execute>
 
-		<execute function="AssertElementPresent#assertElementPresent" locator1="DocumentsAndMediaDocument#VIDEO_GENERATION_THUMBNAIL_RESOLUTION">
+		<execute function="Portal.AssertElementPresent#assertElementPresent" locator1="DocumentsAndMediaDocument#VIDEO_GENERATION_THUMBNAIL_RESOLUTION">
 			<var name="key_videoGenerationThumbnailResolution" value="720" />
 		</execute>
 	</command>
@@ -766,7 +766,7 @@
 			<var name="siteName" value="Moon Rocks 101" />
 		</execute>
 
-		<execute function="Refresh" />
+		<execute function="Portal.Refresh" />
 
 		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Documents and Media" />
@@ -792,7 +792,7 @@
 
 		<execute macro="Portal.IFrame#closeFrame" />
 
-		<execute function="Refresh" />
+		<execute function="Portal.Refresh" />
 
 		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Documents and Media" />
@@ -828,7 +828,7 @@
 			<var name="dmDocumentTitle" value="Dr. Winters Introductory Audio Lecture.ogg" />
 		</execute>
 
-		<execute function="Refresh" />
+		<execute function="Portal.Refresh" />
 
 		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Documents and Media" />
@@ -850,7 +850,7 @@
 
 		<execute macro="Portal.IFrame#closeFrame" />
 
-		<execute function="Refresh" />
+		<execute function="Portal.Refresh" />
 
 		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Moon Rocks 101" />
@@ -984,12 +984,12 @@
 		<for list="1,2,3" param="entryCount" >
 			<var name="key_dmDocumentTitle" value="Document_${entryCount}.doc" />
 
-			<execute function="Check" locator1="DocumentsAndMedia#ICON_DOCUMENT_CHECKBOX" />
+			<execute function="Portal.Check" locator1="DocumentsAndMedia#ICON_DOCUMENT_CHECKBOX" />
 		</for>
 
-		<execute function="Click" locator1="Icon#MOVE_TO_RECYCLE_BIN" />
+		<execute function="Portal.Click" locator1="Icon#MOVE_TO_RECYCLE_BIN" />
 
-		<execute function="AssertElementPresent" locator1="Message#SUCCESS" />
+		<execute function="Portal.AssertElementPresent" locator1="Message#SUCCESS" />
 
 		<execute macro="Portal.DMDocument#viewDefaultCP" />
 	</command>
@@ -1057,7 +1057,7 @@
 			<var name="roleType" value="Site" />
 		</execute>
 
-		<execute function="Refresh" />
+		<execute function="Portal.Refresh" />
 
 		<execute macro="Portal.Role#viewPermissionCP">
 			<var name="permissionDefinitionValue" value="Delete" />
@@ -1094,7 +1094,7 @@
 			<var name="permissionNavigationValue" value="Documents Folder" />
 		</execute>
 
-		<execute function="Refresh" />
+		<execute function="Portal.Refresh" />
 
 		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
@@ -1139,7 +1139,7 @@
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute function="Pause" locator1="3000" />
+		<execute function="Portal.Pause" locator1="3000" />
 
 		<execute macro="Portal.User#addCP">
 			<var name="userEmailAddress" value="userea2@liferay.com" />
@@ -1185,7 +1185,7 @@
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute function="Click" locator1="Icon#DISPLAY_STYLE_DESCRIPTIVE" />
+		<execute function="Portal.Click" locator1="Icon#DISPLAY_STYLE_DESCRIPTIVE" />
 
 		<execute macro="Portal.User#logoutPG" />
 
@@ -1198,7 +1198,7 @@
 			<var name="portlet" value="Documents and Media" />
 		</execute>
 
-		<execute function="AssertVisible" locator1="Portlet#HEADER" value1="Documents and Media" />
+		<execute function="Portal.AssertVisible" locator1="Portlet#HEADER" value1="Documents and Media" />
 
 		<execute macro="Portal.DMNavigator#gotoDocumentType" />
 
@@ -1254,11 +1254,11 @@
 			<var name="dmDocumentTypeName" value="Contract" />
 		</execute>
 
-		<execute function="AssertElementPresent" locator1="Icon#ASTERISK_DATE_FIELD">
+		<execute function="Portal.AssertElementPresent" locator1="Icon#ASTERISK_DATE_FIELD">
 			<var name="key_fieldFieldLabel" value="Effective Date" />
 		</execute>
 
-		<execute function="AssertElementPresent" locator1="Icon#ASTERISK_DATE_FIELD">
+		<execute function="Portal.AssertElementPresent" locator1="Icon#ASTERISK_DATE_FIELD">
 			<var name="key_fieldFieldLabel" value="Expiration Date" />
 		</execute>
 	</command>
@@ -1356,7 +1356,7 @@
 			<var name="pageName" value="Documents and Media Page - Global" />
 		</execute>
 
-		<execute function="Click" locator1="Icon#DISPLAY_STYLE_DESCRIPTIVE" />
+		<execute function="Portal.Click" locator1="Icon#DISPLAY_STYLE_DESCRIPTIVE" />
 
 		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page - Global" />
@@ -1497,7 +1497,7 @@
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute function="Click" locator1="Icon#DISPLAY_STYLE_DESCRIPTIVE" />
+		<execute function="Portal.Click" locator1="Icon#DISPLAY_STYLE_DESCRIPTIVE" />
 
 		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
@@ -1512,11 +1512,11 @@
 			<var name="vocabularyName" value="Topic" />
 		</execute>
 
-		<execute function="Click" locator1="DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_VERTICAL_ELLIPSIS">
+		<execute function="Portal.Click" locator1="DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_VERTICAL_ELLIPSIS">
 			<var name="key_dmDocumentTitle" value="Document Title" />
 		</execute>
 
-		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Edit">
+		<execute function="Portal.AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Edit">
 			<var name="key_menuItem" value="Edit" />
 		</execute>
 
@@ -1524,14 +1524,14 @@
 			<var name="panelHeading" value="Categorization" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="AssetCategorization#CATEGORY" value1="Category Name">
+		<execute function="Portal.AssertTextEquals" locator1="AssetCategorization#CATEGORY" value1="Category Name">
 			<var name="key_categoryName" value="Category Name" />
 		</execute>
 
 		<for list="${tagNameList}" param="tagName">
 			<var name="key_tagName" value="${tagName}" />
 
-			<execute function="AssertTextEquals" locator1="AssetCategorization#TAG" value1="${tagName}" />
+			<execute function="Portal.AssertTextEquals" locator1="AssetCategorization#TAG" value1="${tagName}" />
 		</for>
 
 		<execute macro="Portal.Navigator#gotoPage">
@@ -1563,7 +1563,7 @@
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute function="Click" locator1="Icon#DISPLAY_STYLE_DESCRIPTIVE" />
+		<execute function="Portal.Click" locator1="Icon#DISPLAY_STYLE_DESCRIPTIVE" />
 
 		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
@@ -1582,21 +1582,21 @@
 			<var name="dmDocumentTitle" value="DM Document Title" />
 		</execute>
 
-		<execute function="Type" locator1="DocumentsAndMediaEditDocument#TITLE_FIELD" value1="DM Document 2 Title" />
+		<execute function="Portal.Type" locator1="DocumentsAndMediaEditDocument#TITLE_FIELD" value1="DM Document 2 Title" />
 
 		<execute macro="Portal.PortletEntry#publish" />
 
-		<execute function="Pause" locator1="1000" />
+		<execute function="Portal.Pause" locator1="1000" />
 
-		<execute function="AssertTextNotPresent" value1="Documents and Media is temporarily unavailable." />
+		<execute function="Portal.AssertTextNotPresent" value1="Documents and Media is temporarily unavailable." />
 
 		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute function="Pause" locator1="1000" />
+		<execute function="Portal.Pause" locator1="1000" />
 
-		<execute function="AssertTextNotPresent" value1="Documents and Media is temporarily unavailable." />
+		<execute function="Portal.AssertTextNotPresent" value1="Documents and Media is temporarily unavailable." />
 
 		<execute macro="Portal.DMDocument#viewPG">
 			<var name="dmDocumentDescription" value="DM Document 2 Description" />
@@ -1639,13 +1639,13 @@
 			<var name="dmDocumentTitle" value="DM Document1 Title" />
 		</execute>
 
-		<execute function="AssertElementPresent" locator1="Checkbox#SELECT_ALL_CHECKBOX_TICK" />
+		<execute function="Portal.AssertElementPresent" locator1="Checkbox#SELECT_ALL_CHECKBOX_TICK" />
 
 		<execute macro="Portal.DMDocument#uncheckDocumentCheckboxCP">
 			<var name="dmDocumentTitle" value="DM Document1 Title" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="Checkbox#SELECT_ALL_CHECKBOX_TICK" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Checkbox#SELECT_ALL_CHECKBOX_TICK" />
 
 		<execute macro="Portal.DMDocument#checkDocumentCheckboxCP">
 			<var name="dmDocumentTitle" value="DM Document1 Title" />
@@ -1655,6 +1655,6 @@
 			<var name="dmDocumentTitle" value="DM Document2 Title" />
 		</execute>
 
-		<execute function="AssertChecked" locator1="DocumentsAndMedia#TOOLBAR_SELECT_ALL_CHECKBOX" />
+		<execute function="Portal.AssertChecked" locator1="DocumentsAndMedia#TOOLBAR_SELECT_ALL_CHECKBOX" />
 	</command>
 </definition>

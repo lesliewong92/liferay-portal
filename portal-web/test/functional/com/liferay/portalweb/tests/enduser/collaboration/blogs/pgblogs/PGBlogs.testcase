@@ -133,7 +133,7 @@
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute function="Pause" locator1="3000" />
+		<execute function="Portal.Pause" locator1="3000" />
 
 		<execute macro="Portal.BlogsEntryComment#add">
 			<var name="entryComment" value="Blogs Entry Comment" />
@@ -360,7 +360,7 @@
 			<var name="entryTitle" value="Blogs Entry1 Title" />
 		</execute>
 
-		<execute function="Pause" locator1="3000" />
+		<execute function="Portal.Pause" locator1="3000" />
 
 		<execute macro="Portal.Portlet#viewTitle">
 			<var name="portletName" value="Blogs" />
@@ -506,13 +506,13 @@
 			<var name="panelHeading" value="Configuration" />
 		</execute>
 
-		<execute function="AssertChecked" locator1="Radio#AUTOMATIC_URL" />
+		<execute function="Portal.AssertChecked" locator1="Radio#AUTOMATIC_URL" />
 
-		<execute function="ScrollWebElementIntoView" locator1="Button#PUBLISH" />
+		<execute function="Portal.ScrollWebElementIntoView" locator1="Button#PUBLISH" />
 
-		<execute function="Check" locator1="Radio#CUSTOM_URL" />
+		<execute function="Portal.Check" locator1="Radio#CUSTOM_URL" />
 
-		<execute function="Type" locator1="TextInput#BLOGS_ENTRY_URL" value1="custom-url-here" />
+		<execute function="Portal.Type" locator1="TextInput#BLOGS_ENTRY_URL" value1="custom-url-here" />
 
 		<execute macro="Portal.PortletEntry#publish" />
 
@@ -555,18 +555,18 @@
 			<var name="panelHeading" value="Configuration" />
 		</execute>
 
-		<execute function="AssertChecked" locator1="Radio#AUTOMATIC_URL" />
+		<execute function="Portal.AssertChecked" locator1="Radio#AUTOMATIC_URL" />
 
-		<execute function="ScrollWebElementIntoView" locator1="Button#PUBLISH" />
+		<execute function="Portal.ScrollWebElementIntoView" locator1="Button#PUBLISH" />
 
-		<execute function="Check" locator1="Radio#CUSTOM_URL" />
+		<execute function="Portal.Check" locator1="Radio#CUSTOM_URL" />
 
-		<execute function="Type" locator1="TextInput#BLOGS_ENTRY_URL" value1="blogs-entry-title" />
+		<execute function="Portal.Type" locator1="TextInput#BLOGS_ENTRY_URL" value1="blogs-entry-title" />
 
 		<execute macro="Portal.Button#clickPublish" />
 
-		<execute function="AssertTextEquals" locator1="Message#ERROR" value1="Your request failed to complete." />
-		<execute function="AssertTextEquals" locator1="Message#ERROR_2" value1="The URL title is already in use. Please enter a unique URL title." />
+		<execute function="Portal.AssertTextEquals" locator1="Message#ERROR" value1="Your request failed to complete." />
+		<execute function="Portal.AssertTextEquals" locator1="Message#ERROR_2" value1="The URL title is already in use. Please enter a unique URL title." />
 	</command>
 
 	<command name="AddPortletToOrganizationSitePublicPage" priority="4">
@@ -634,9 +634,9 @@
 			<var name="panelHeading" value="Configuration" />
 		</execute>
 
-		<execute function="AssertChecked" locator1="Radio#AUTOMATIC_URL" />
+		<execute function="Portal.AssertChecked" locator1="Radio#AUTOMATIC_URL" />
 
-		<execute function="AssertTextEquals" locator1="TextInput#BLOGS_ENTRY_URL" value1="blogs-entry-title" />
+		<execute function="Portal.AssertTextEquals" locator1="TextInput#BLOGS_ENTRY_URL" value1="blogs-entry-title" />
 
 		<execute macro="Portal.PortletEntry#publish" />
 	</command>
@@ -676,9 +676,9 @@
 			<var name="panelHeading" value="Configuration" />
 		</execute>
 
-		<execute function="AssertChecked" locator1="Radio#AUTOMATIC_URL" />
+		<execute function="Portal.AssertChecked" locator1="Radio#AUTOMATIC_URL" />
 
-		<execute function="AssertTextEquals" locator1="TextInput#BLOGS_ENTRY_URL" value1="blogs-entry-title-1" />
+		<execute function="Portal.AssertTextEquals" locator1="TextInput#BLOGS_ENTRY_URL" value1="blogs-entry-title-1" />
 	</command>
 
 	<command name="AssertInputBetweenStateChanges" priority="4">
@@ -699,25 +699,25 @@
 			<var name="panelHeading" value="Configuration" />
 		</execute>
 
-		<execute function="AssertChecked" locator1="Radio#AUTOMATIC_URL" />
+		<execute function="Portal.AssertChecked" locator1="Radio#AUTOMATIC_URL" />
 
-		<execute function="ScrollWebElementIntoView" locator1="Button#PUBLISH" />
+		<execute function="Portal.ScrollWebElementIntoView" locator1="Button#PUBLISH" />
 
-		<execute function="Check" locator1="Radio#CUSTOM_URL" />
+		<execute function="Portal.Check" locator1="Radio#CUSTOM_URL" />
 
-		<execute function="Type" locator1="TextInput#BLOGS_ENTRY_URL" value1="custom-url" />
+		<execute function="Portal.Type" locator1="TextInput#BLOGS_ENTRY_URL" value1="custom-url" />
 
-		<execute function="Check" locator1="Radio#AUTOMATIC_URL" />
+		<execute function="Portal.Check" locator1="Radio#AUTOMATIC_URL" />
 
-		<execute function="AssertTextEquals" locator1="TextInput#BLOGS_ENTRY_URL" value1="blogs-entry-title" />
+		<execute function="Portal.AssertTextEquals" locator1="TextInput#BLOGS_ENTRY_URL" value1="blogs-entry-title" />
 
-		<execute function="ScrollWebElementIntoView" locator1="Button#PUBLISH" />
+		<execute function="Portal.ScrollWebElementIntoView" locator1="Button#PUBLISH" />
 
-		<execute function="Check" locator1="Radio#CUSTOM_URL" />
+		<execute function="Portal.Check" locator1="Radio#CUSTOM_URL" />
 
-		<execute function="AssertTextEquals" locator1="TextInput#BLOGS_ENTRY_URL" value1="custom-url" />
+		<execute function="Portal.AssertTextEquals" locator1="TextInput#BLOGS_ENTRY_URL" value1="custom-url" />
 
-		<execute function="Type" locator1="TextInput#BLOGS_ENTRY_URL" value1="custom-url-2" />
+		<execute function="Portal.Type" locator1="TextInput#BLOGS_ENTRY_URL" value1="custom-url-2" />
 
 		<execute macro="Portal.PortletEntry#publish" />
 	</command>
@@ -750,19 +750,19 @@
 			<var name="panelHeading" value="Configuration" />
 		</execute>
 
-		<execute function="AssertChecked" locator1="Radio#AUTOMATIC_URL" />
+		<execute function="Portal.AssertChecked" locator1="Radio#AUTOMATIC_URL" />
 
-		<execute function="ScrollWebElementIntoView" locator1="Button#PUBLISH" />
+		<execute function="Portal.ScrollWebElementIntoView" locator1="Button#PUBLISH" />
 
-		<execute function="Check" locator1="Radio#CUSTOM_URL" />
+		<execute function="Portal.Check" locator1="Radio#CUSTOM_URL" />
 
-		<execute function="Type" locator1="TextInput#BLOGS_ENTRY_URL" value1="blogs-entry-title" />
+		<execute function="Portal.Type" locator1="TextInput#BLOGS_ENTRY_URL" value1="blogs-entry-title" />
 
 		<execute macro="Portal.Button#clickPublish" />
 
-		<execute function="AssertTextEquals" locator1="Message#ERROR" value1="Your request failed to complete." />
+		<execute function="Portal.AssertTextEquals" locator1="Message#ERROR" value1="Your request failed to complete." />
 
-		<execute function="AssertTextEquals" locator1="TextInput#BLOGS_ENTRY_URL" value1="blogs-entry-title" />
+		<execute function="Portal.AssertTextEquals" locator1="TextInput#BLOGS_ENTRY_URL" value1="blogs-entry-title" />
 	</command>
 
 	<command name="DeleteBlogsEntries" priority="5">
@@ -1546,7 +1546,7 @@
 			<var name="customURL" value="this-should-redirect-to-the-previous-entry" />
 		</execute>
 
-		<execute function="SelectFrame#selectFrameTop" />
+		<execute function="Portal.SelectFrame#selectFrameTop" />
 
 		<execute macro="Portal.PortletEntry#publish" />
 
@@ -1615,7 +1615,7 @@
 			<var name="userFullName" value="Guestfn Guestln" />
 		</execute>
 
-		<execute function="AssertElementPresent" locator1="Comments#COMMENT_FIELD" />
+		<execute function="Portal.AssertElementPresent" locator1="Comments#COMMENT_FIELD" />
 
 		<execute macro="Portal.User#loginUserPG">
 			<var name="password" value="test" />
@@ -1658,7 +1658,7 @@
 			<var name="userFullName" value="Guestfn Guestln" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="Comments#COMMENT_FIELD" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Comments#COMMENT_FIELD" />
 
 		<execute macro="Portal.User#loginUserPG">
 			<var name="password" value="test" />
@@ -1735,7 +1735,7 @@
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute function="Pause" locator1="3000" />
+		<execute function="Portal.Pause" locator1="3000" />
 
 		<execute macro="Portal.BlogsEntry#viewRSS">
 			<var name="entryContent" value="Blogs Entry Content" />
@@ -1753,7 +1753,7 @@
 
 		<execute macro="Portal.BlogsConfiguration#selectConfigurationIFrame" />
 
-		<execute function="Check" locator1="Checkbox#ENABLE_VIEW_COUNT" />
+		<execute function="Portal.Check" locator1="Checkbox#ENABLE_VIEW_COUNT" />
 
 		<execute macro="Portal.IFrame#saveConfiguration" />
 
@@ -1917,7 +1917,7 @@
 
 		<var name="key_entryTitle" value="Blogs Entry Title" />
 
-		<execute function="AssertClick" locator1="Blogs#ENTRY_TABLE_TITLE" value1="Blogs Entry Title" />
+		<execute function="Portal.AssertClick" locator1="Blogs#ENTRY_TABLE_TITLE" value1="Blogs Entry Title" />
 
 		<execute macro="Portal.BlogsEntry#viewEntry">
 			<var name="entryContent" value="Blogs Entry Content" />

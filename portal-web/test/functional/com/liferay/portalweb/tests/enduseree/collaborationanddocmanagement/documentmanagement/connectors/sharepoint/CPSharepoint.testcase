@@ -12,7 +12,7 @@
 
 		<var method="TestPropsUtil#get('cmis.repository.vm.host.name')" name="sharepointVMHostName" />
 
-		<execute function="AntCommand" locator1="build-test-sharepoint.xml" value1="clean-sharepoint-repository -Dssh.host=${sharepointVMHostName}" />
+		<execute function="Portal.AntCommand" locator1="build-test-sharepoint.xml" value1="clean-sharepoint-repository -Dssh.host=${sharepointVMHostName}" />
 
 		<execute macro="Portal.User#loginPG">
 			<var name="authenticationMethod" value="By Screen Name" />
@@ -119,7 +119,7 @@
 			<var name="dmDocumentTitle" value="Document_3.txt" />
 		</execute>
 
-		<execute function="Pause" locator1="5000" />
+		<execute function="Portal.Pause" locator1="5000" />
 
 		<execute macro="Portal.DMDocument#checkoutCP">
 			<var name="dmDocumentTitle" value="Document_3.txt" />
@@ -144,7 +144,7 @@
 			<var name="dmDocumentTitle" value="Document_3.txt" />
 		</execute>
 
-		<execute function="Pause" locator1="5000" />
+		<execute function="Portal.Pause" locator1="5000" />
 
 		<execute macro="Portal.DMDocument#viewCheckedoutCP" >
 			<var name="dmRepositoryName" value="true" />
@@ -166,7 +166,7 @@
 
 		<var name="key_dmDocumentTitle" value="Document_3.txt" />
 
-		<execute function="AssertElementNotPresent" locator1="DocumentsAndMedia#ICON_DOCUMENT_ICON_NOT_LOCKED" />
+		<execute function="Portal.AssertElementNotPresent" locator1="DocumentsAndMedia#ICON_DOCUMENT_ICON_NOT_LOCKED" />
 
 		<execute macro="Portal.DMNavigator#gotoDocumentCP">
 			<var name="dmDocumentTitle" value="Document_3.txt" />
@@ -559,7 +559,7 @@
 			<var name="dmDocumentTitleEdit" value="Document_1_Edit.xls" />
 		</execute>
 
-		<execute function="AssertClick" locator1="Button#SAVE" value1="Save" />
+		<execute function="Portal.AssertClick" locator1="Button#SAVE" value1="Save" />
 
 		<execute macro="Portal.Alert#viewSuccessMessage" />
 
@@ -606,11 +606,11 @@
 			<var name="dmDocumentTitleEdit" value="Document_1.jpg" />
 		</execute>
 
-		<execute function="Click" locator1="Button#PUBLISH" />
+		<execute function="Portal.Click" locator1="Button#PUBLISH" />
 
 		<execute macro="Portal.Alert#viewRequestFailedToComplete" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="The source file does not have the same extension as the original file." />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="The source file does not have the same extension as the original file." />
 
 		<execute macro="Portal.Navigator#openURL" />
 
@@ -651,11 +651,11 @@
 			<var name="dmDocumentTitleEdit" value="Document_3" />
 		</execute>
 
-		<execute function="Click" locator1="Button#PUBLISH" />
+		<execute function="Portal.Click" locator1="Button#PUBLISH" />
 
 		<execute macro="Portal.Alert#viewRequestFailedToComplete" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="The source file does not have the same extension as the original file." />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="The source file does not have the same extension as the original file." />
 
 		<execute macro="Portal.Navigator#openURL" />
 

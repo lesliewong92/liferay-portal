@@ -135,21 +135,21 @@
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute function="Type" locator1="NavBar#BASIC_SEARCH_FIELD" value1="userfn" />
+		<execute function="Portal.Type" locator1="NavBar#BASIC_SEARCH_FIELD" value1="userfn" />
 
-		<execute function="Click" locator1="Button#SUBMIT" />
+		<execute function="Portal.Click" locator1="Button#SUBMIT" />
 
 		<var name="key_rowEntry" value="usersn" />
 
-		<execute function="Click" locator1="ContentRow#ENTRY_CONTENT_ENTRY_ELLIPSIS" />
+		<execute function="Portal.Click" locator1="ContentRow#ENTRY_CONTENT_ENTRY_ELLIPSIS" />
 
-		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Manage Pages">
+		<execute function="Portal.AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Manage Pages">
 			<var name="key_menuItem" value="Manage Pages" />
 		</execute>
 
 		<var name="key_page" value="Test User Group Page 1" />
 
-		<execute function="AssertElementNotPresent" locator1="ProductMenu#PAGES" />
+		<execute function="Portal.AssertElementNotPresent" locator1="ProductMenu#PAGES" />
 
 		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="User Groups" />
@@ -169,7 +169,7 @@
 
 		<execute macro="Portal.UserBar#gotoDashboard" />
 
-		<execute function="AssertTextEquals" locator1="Home#PAGE_1" value1="Test User Group Page 1" />
+		<execute function="Portal.AssertTextEquals" locator1="Home#PAGE_1" value1="Test User Group Page 1" />
 
 		<execute macro="Portal.User#logoutUserPG" />
 
@@ -316,14 +316,14 @@
 			<var name="portlet" value="Site Memberships" />
 		</execute>
 
-		<execute function="Click" locator1="Icon#DISPLAY_STYLE_LIST" />
+		<execute function="Portal.Click" locator1="Icon#DISPLAY_STYLE_LIST" />
 
 		<var name="key_userScreenName" value="usersn3" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="SiteMemberships#USER_TABLE_NAME" value1="userfn3 userln3" />
-		<execute function="AssertTextEquals" locator1="SiteMemberships#USER_TABLE_SCREEN_NAME" value1="usersn3" />
-		<execute function="Click" locator1="SiteMemberships#USER_TABLE_ACTIONS" />
-		<execute function="AssertTextEquals" locator1="MenuItem#ANY_MENU_ITEM" value1="Assign Site Roles">
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="SiteMemberships#USER_TABLE_NAME" value1="userfn3 userln3" />
+		<execute function="Portal.AssertTextEquals" locator1="SiteMemberships#USER_TABLE_SCREEN_NAME" value1="usersn3" />
+		<execute function="Portal.Click" locator1="SiteMemberships#USER_TABLE_ACTIONS" />
+		<execute function="Portal.AssertTextEquals" locator1="MenuItem#ANY_MENU_ITEM" value1="Assign Site Roles">
 			<var name="key_menuItem" value="Assign Site Roles" />
 		</execute>
 
@@ -359,7 +359,7 @@
 
 		<var name="key_siteName" value="Site Name" />
 
-		<execute function="AssertClick#assertPartialTextClickAt" locator1="Sites#SITE_TABLE_NAME_UNVIEWABLE" value1="Site Name" />
+		<execute function="Portal.AssertClick#assertPartialTextClickAt" locator1="Sites#SITE_TABLE_NAME_UNVIEWABLE" value1="Site Name" />
 
 		<execute macro="Portal.User#logoutUserPG" />
 
@@ -420,7 +420,7 @@
 
 		<var name="key_siteName" value="Site Name" />
 
-		<execute function="AssertClick#assertPartialTextClickAt" locator1="Sites#SITE_TABLE_NAME" value1="Site Name" />
+		<execute function="Portal.AssertClick#assertPartialTextClickAt" locator1="Sites#SITE_TABLE_NAME" value1="Site Name" />
 
 		<execute macro="Portal.User#logoutUserPG" />
 
@@ -500,15 +500,15 @@
 
 		<var name="key_pageName" value="Welcome" />
 
-		<execute function="AssertTextPresent" locator1="Home#PAGE_1" value1="Welcome" />
-		<execute function="AssertTextPresent" locator1="Home#PAGE_2" value1="Home" />
-		<execute function="AssertTextPresent" locator1="Home#PAGE_3" value1="Wiki" />
+		<execute function="Portal.AssertTextPresent" locator1="Home#PAGE_1" value1="Welcome" />
+		<execute function="Portal.AssertTextPresent" locator1="Home#PAGE_2" value1="Home" />
+		<execute function="Portal.AssertTextPresent" locator1="Home#PAGE_3" value1="Wiki" />
 
 		<execute macro="Portal.UserBar#gotoDashboard" />
 
-		<execute function="AssertTextPresent" locator1="Home#PAGE_1" value1="Welcome" />
-		<execute function="AssertTextNotPresent" locator1="Home#PAGE_2" value1="Home" />
-		<execute function="AssertTextNotPresent" locator1="Home#PAGE_3" value1="Wiki" />
+		<execute function="Portal.AssertTextPresent" locator1="Home#PAGE_1" value1="Welcome" />
+		<execute function="Portal.AssertTextNotPresent" locator1="Home#PAGE_2" value1="Home" />
+		<execute function="Portal.AssertTextNotPresent" locator1="Home#PAGE_3" value1="Wiki" />
 
 		<execute macro="Portal.User#logoutPG" />
 
@@ -521,15 +521,15 @@
 
 		<var name="key_pageName" value="Welcome" />
 
-		<execute function="AssertTextPresent" locator1="Home#PAGE_1" value1="Welcome" />
-		<execute function="AssertTextNotPresent" locator1="Home#PAGE_2" value1="Home" />
-		<execute function="AssertTextNotPresent" locator1="Home#PAGE_3" value1="Wiki" />
+		<execute function="Portal.AssertTextPresent" locator1="Home#PAGE_1" value1="Welcome" />
+		<execute function="Portal.AssertTextNotPresent" locator1="Home#PAGE_2" value1="Home" />
+		<execute function="Portal.AssertTextNotPresent" locator1="Home#PAGE_3" value1="Wiki" />
 
 		<execute macro="Portal.UserBar#gotoDashboard" />
 
-		<execute function="AssertTextPresent" locator1="Home#PAGE_1" value1="Welcome" />
-		<execute function="AssertTextNotPresent" locator1="Home#PAGE_2" value1="Home" />
-		<execute function="AssertTextNotPresent" locator1="Home#PAGE_3" value1="Wiki" />
+		<execute function="Portal.AssertTextPresent" locator1="Home#PAGE_1" value1="Welcome" />
+		<execute function="Portal.AssertTextNotPresent" locator1="Home#PAGE_2" value1="Home" />
+		<execute function="Portal.AssertTextNotPresent" locator1="Home#PAGE_3" value1="Wiki" />
 
 		<execute macro="Portal.User#logoutPG" />
 
@@ -558,15 +558,15 @@
 
 		<var name="key_pageName" value="Welcome" />
 
-		<execute function="AssertTextPresent" locator1="Home#PAGE_1" value1="Welcome" />
-		<execute function="AssertTextPresent" locator1="Home#PAGE_2" value1="Home" />
-		<execute function="AssertTextPresent" locator1="Home#PAGE_3" value1="Wiki" />
+		<execute function="Portal.AssertTextPresent" locator1="Home#PAGE_1" value1="Welcome" />
+		<execute function="Portal.AssertTextPresent" locator1="Home#PAGE_2" value1="Home" />
+		<execute function="Portal.AssertTextPresent" locator1="Home#PAGE_3" value1="Wiki" />
 
 		<execute macro="Portal.UserBar#gotoDashboard" />
 
-		<execute function="AssertTextPresent" locator1="Home#PAGE_1" value1="Welcome" />
-		<execute function="AssertTextNotPresent" locator1="Home#PAGE_2" value1="Home" />
-		<execute function="AssertTextNotPresent" locator1="Home#PAGE_3" value1="Wiki" />
+		<execute function="Portal.AssertTextPresent" locator1="Home#PAGE_1" value1="Welcome" />
+		<execute function="Portal.AssertTextNotPresent" locator1="Home#PAGE_2" value1="Home" />
+		<execute function="Portal.AssertTextNotPresent" locator1="Home#PAGE_3" value1="Wiki" />
 
 		<execute macro="Portal.User#logoutPG" />
 
@@ -753,8 +753,8 @@
 
 		<var name="key_userGroupName" value="UG UserGroup Name" />
 
-		<execute function="AssertTextEquals" locator1="UserGroups#USER_GROUP_TABLE_NAME" value1="UG UserGroup Name" />
-		<execute function="AssertElementNotPresent" locator1="UserGroups#USER_GROUP_TABLE_ACTIONS" />
+		<execute function="Portal.AssertTextEquals" locator1="UserGroups#USER_GROUP_TABLE_NAME" value1="UG UserGroup Name" />
+		<execute function="Portal.AssertElementNotPresent" locator1="UserGroups#USER_GROUP_TABLE_ACTIONS" />
 
 		<execute macro="Portal.User#logoutUserPG" />
 
@@ -791,7 +791,7 @@
 
 		<var name="key_roleTitle" value="Roles Siterole Name" />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
-		<execute function="AssertTextEquals" locator1="Permissions#CONTENT_PERMISSIONS_ROLE_NAME" value1="Roles Siterole Name" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#DIALOG" />
+		<execute function="Portal.AssertTextEquals" locator1="Permissions#CONTENT_PERMISSIONS_ROLE_NAME" value1="Roles Siterole Name" />
 	</command>
 </definition>

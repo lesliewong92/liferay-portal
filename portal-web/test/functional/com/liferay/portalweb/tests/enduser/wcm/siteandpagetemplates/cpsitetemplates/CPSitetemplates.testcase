@@ -127,7 +127,7 @@
 
 		<execute macro="Portal.Page#viewPageLockCheck" />
 
-		<execute function="AssertElementNotPresent" locator1="ControlMenu#ADD" />
+		<execute function="Portal.AssertElementNotPresent" locator1="ControlMenu#ADD" />
 	</command>
 
 	<command name="DeactivateDefaultSiteTemplate" priority="4">
@@ -383,7 +383,7 @@
 			<var name="site" value="Site Template Site Name" />
 		</execute>
 
-		<execute function="AssertElementPresent" locator1="ControlMenu#ADD" />
+		<execute function="Portal.AssertElementPresent" locator1="ControlMenu#ADD" />
 
 		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
@@ -429,7 +429,7 @@
 			<var name="site" value="Site Template Site Name" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="ControlMenu#ADD" />
+		<execute function="Portal.AssertElementNotPresent" locator1="ControlMenu#ADD" />
 
 		<execute macro="Portal.User#logoutUserPG" />
 
@@ -594,6 +594,6 @@
 			<var name="portlet" value="Site Settings" />
 		</execute>
 
-		<execute function="AssertAlertNotPresent" />
+		<execute function="Portal.AssertAlertNotPresent" />
 	</command>
 </definition>

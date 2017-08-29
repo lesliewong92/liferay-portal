@@ -430,7 +430,7 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="Home#PAGE_2_GUEST_VIEW" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Home#PAGE_2_GUEST_VIEW" />
 
 		<execute macro="Portal.User#loginUserPG">
 			<var name="password" value="test" />
@@ -452,7 +452,7 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute function="AssertElementPresent" locator1="Home#PAGE_2_GUEST_VIEW" />
+		<execute function="Portal.AssertElementPresent" locator1="Home#PAGE_2_GUEST_VIEW" />
 
 		<execute macro="Portal.User#loginUserPG">
 			<var name="password" value="test" />
@@ -475,11 +475,11 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute function="AssertClick" locator1="Home#PAGE_2_GUEST_VIEW" value1="Blogs Test Page" />
+		<execute function="Portal.AssertClick" locator1="Home#PAGE_2_GUEST_VIEW" value1="Blogs Test Page" />
 
 		<var name="key_entryTitle" value="Blogs Entry Title" />
 
-		<execute function="AssertElementNotPresent" locator1="BlogsEntry#TITLE" />
+		<execute function="Portal.AssertElementNotPresent" locator1="BlogsEntry#TITLE" />
 
 		<execute macro="Portal.User#loginUserPG">
 			<var name="password" value="test" />
@@ -508,11 +508,11 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute function="AssertClick" locator1="Home#PAGE_2_GUEST_VIEW" value1="Blogs Test Page" />
+		<execute function="Portal.AssertClick" locator1="Home#PAGE_2_GUEST_VIEW" value1="Blogs Test Page" />
 
 		<var name="key_entryTitle" value="Blogs Entry Title" />
 
-		<execute function="AssertElementNotPresent" locator1="BlogsEntry#TITLE" />
+		<execute function="Portal.AssertElementNotPresent" locator1="BlogsEntry#TITLE" />
 
 		<execute macro="Portal.User#loginUserPG">
 			<var name="password" value="test" />
@@ -534,11 +534,11 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute function="Click" locator1="Home#PAGE_2_GUEST_VIEW" />
+		<execute function="Portal.Click" locator1="Home#PAGE_2_GUEST_VIEW" />
 
 		<var name="key_entryTitle" value="Blogs Entry Title" />
 
-		<execute function="AssertTextEquals" locator1="BlogsEntry#TITLE" value1="Blogs Entry Title" />
+		<execute function="Portal.AssertTextEquals" locator1="BlogsEntry#TITLE" value1="Blogs Entry Title" />
 
 		<execute macro="Portal.User#loginUserPG">
 			<var name="password" value="test" />

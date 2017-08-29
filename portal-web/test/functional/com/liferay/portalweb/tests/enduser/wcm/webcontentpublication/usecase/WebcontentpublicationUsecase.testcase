@@ -153,7 +153,7 @@
 		</execute>
 
 		<for list="Home,Documents and Media,News" param="sitePageName">
-			<execute function="AssertElementPresent" locator1="Home#PAGE" value1="${sitePageName}">
+			<execute function="Portal.AssertElementPresent" locator1="Home#PAGE" value1="${sitePageName}">
 				<var name="key_pageName" value="${sitePageName}" />
 			</execute>
 		</for>
@@ -163,7 +163,7 @@
 		</execute>
 
 		<for list="Documents and Media,News" param="sitePageName">
-			<execute function="AssertElementNotPresent" locator1="Home#PAGE" value1="${sitePageName}">
+			<execute function="Portal.AssertElementNotPresent" locator1="Home#PAGE" value1="${sitePageName}">
 				<var name="key_pageName" value="${sitePageName}" />
 			</execute>
 		</for>
@@ -188,7 +188,7 @@
 			<var name="portletName" value="Web Content Display" />
 		</execute>
 
-		<execute function="Refresh" />
+		<execute function="Portal.Refresh" />
 
 		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Asset Publisher" />
@@ -231,7 +231,7 @@
 			<var name="assetTitle" value="WC WebContent Title" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="SignIn#PORTLET_TITLE" value1="Sign" />
+		<execute function="Portal.AssertElementNotPresent" locator1="SignIn#PORTLET_TITLE" value1="Sign" />
 
 		<execute macro="Portal.Navigator#gotoSpecificURLPage">
 			<var name="pageName" value="Web Content Page" />
@@ -326,9 +326,9 @@
 
 		<execute macro="Portal.User#logoutPG" />
 
-		<execute function="Refresh" />
+		<execute function="Portal.Refresh" />
 
-		<execute function="AssertConsoleTextNotPresent" value1="NoSuchResourceActionException" />
+		<execute function="Portal.AssertConsoleTextNotPresent" value1="NoSuchResourceActionException" />
 	</command>
 
 	<command name="AssetPublisherCategoriesLocalization" priority="3">
@@ -845,7 +845,7 @@
 			<var name="webContentTitle" value="Netz Inhalt1 Titel" />
 		</execute>
 
-		<execute function="Type" locator1="DDMField#INTEGER" value1="3">
+		<execute function="Portal.Type" locator1="DDMField#INTEGER" value1="3">
 			<var name="key_fieldName" value="Integer" />
 		</execute>
 
@@ -894,7 +894,7 @@
 			<var name="webContentTitle" value="Netz Inhalt2 Titel" />
 		</execute>
 
-		<execute function="Type" locator1="DDMField#INTEGER" value1="8">
+		<execute function="Portal.Type" locator1="DDMField#INTEGER" value1="8">
 			<var name="key_fieldName" value="Integer" />
 		</execute>
 
@@ -943,7 +943,7 @@
 			<var name="webContentTitle" value="Netz Inhalt3 Titel" />
 		</execute>
 
-		<execute function="Type" locator1="DDMField#INTEGER" value1="5">
+		<execute function="Portal.Type" locator1="DDMField#INTEGER" value1="5">
 			<var name="key_fieldName" value="Integer" />
 		</execute>
 
@@ -1849,9 +1849,9 @@
 			<var name="entryTitle" value="Blogs Entry1 Title" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="Relatedassets#ASSET_TITLE_IMAGE_2" />
-		<execute function="AssertElementNotPresent" locator1="Relatedassets#ASSET_TITLE_2" />
-		<execute function="AssertElementNotPresent" locator1="Relatedassets#ASSET_EDIT_2" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Relatedassets#ASSET_TITLE_IMAGE_2" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Relatedassets#ASSET_TITLE_2" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Relatedassets#ASSET_EDIT_2" />
 
 		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
@@ -1873,9 +1873,9 @@
 			<var name="entryTitle" value="Blogs Entry2 Title" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="Relatedassets#ASSET_TITLE_IMAGE_2" />
-		<execute function="AssertElementNotPresent" locator1="Relatedassets#ASSET_TITLE_2" />
-		<execute function="AssertElementNotPresent" locator1="Relatedassets#ASSET_EDIT_2" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Relatedassets#ASSET_TITLE_IMAGE_2" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Relatedassets#ASSET_TITLE_2" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Relatedassets#ASSET_EDIT_2" />
 	</command>
 
 	<command name="ViewDeletedWCDArticleAsAdminAndGuestCP" priority="4">

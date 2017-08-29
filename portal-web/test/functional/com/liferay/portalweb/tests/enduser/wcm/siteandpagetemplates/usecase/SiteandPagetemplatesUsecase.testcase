@@ -204,7 +204,7 @@
 			<var name="roleTitle" value="Guest" />
 		</execute>
 
-		<execute function="Refresh" />
+		<execute function="Portal.Refresh" />
 
 		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Site Templates" />
@@ -215,7 +215,7 @@
 			<var name="siteTemplateName" value="Site Template Name" />
 		</execute>
 
-		<execute function="AssertClick" locator1="Home#PAGE_TEMPLATE_3" value1="Page2 Name" />
+		<execute function="Portal.AssertClick" locator1="Home#PAGE_TEMPLATE_3" value1="Page2 Name" />
 
 		<execute macro="Portal.Portlet#addPG">
 			<var name="defaultURL" value="false" />
@@ -537,7 +537,7 @@
 			<var name="pageTemplateName" value="Wiki" />
 		</execute>
 
-		<execute function="SelectWindow" locator1="title=Wiki - ${siteName}" />
+		<execute function="Portal.SelectWindow" locator1="title=Wiki - ${siteName}" />
 
 		<execute macro="Portal.Dockbar#viewAddTabsWithNoAddPagePermission" />
 	</command>

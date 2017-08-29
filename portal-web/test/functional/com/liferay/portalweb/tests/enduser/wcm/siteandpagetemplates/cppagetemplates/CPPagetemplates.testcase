@@ -89,15 +89,15 @@
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute function="SelectWindow" locator1="title=Page Template Name - ${siteName}" />
+		<execute function="Portal.SelectWindow" locator1="title=Page Template Name - ${siteName}" />
 
 		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Blogs" />
 		</execute>
 
-		<execute function="Close#closeWindow" locator1="title=Page Template Name - ${siteName}" />
+		<execute function="Portal.Close#closeWindow" locator1="title=Page Template Name - ${siteName}" />
 
-		<execute function="SelectWindow" locator1="title=Page Templates - Control Panel - ${siteName}" />
+		<execute function="Portal.SelectWindow" locator1="title=Page Templates - Control Panel - ${siteName}" />
 
 		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page" />
@@ -128,15 +128,15 @@
 			<var name="pageTemplateName" value="Page Template Name" />
 		</execute>
 
-		<execute function="SelectWindow" locator1="title=Page Template Name - ${siteName}" />
+		<execute function="Portal.SelectWindow" locator1="title=Page Template Name - ${siteName}" />
 
 		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Web Content Display" />
 		</execute>
 
-		<execute function="Close#closeWindow" locator1="title=Page Template Name - ${siteName}" />
+		<execute function="Portal.Close#closeWindow" locator1="title=Page Template Name - ${siteName}" />
 
-		<execute function="SelectWindow" locator1="title=Page Templates - Control Panel - ${siteName}" />
+		<execute function="Portal.SelectWindow" locator1="title=Page Templates - Control Panel - ${siteName}" />
 
 		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page" />
@@ -348,9 +348,9 @@
 			<var name="portletName" value="Asset Publisher" />
 		</execute>
 
-		<execute function="Close#closeWindow" locator1="title=College Landing Page - ${siteName}" />
+		<execute function="Portal.Close#closeWindow" locator1="title=College Landing Page - ${siteName}" />
 
-		<execute function="SelectWindow" locator1="title=Page Templates - Control Panel - ${siteName}" />
+		<execute function="Portal.SelectWindow" locator1="title=Page Templates - Control Panel - ${siteName}" />
 
 		<execute macro="Portal.Navigator#openURL" />
 

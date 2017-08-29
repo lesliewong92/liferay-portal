@@ -798,12 +798,12 @@
 
 		<var name="key_workflowAssetTitle" value="Wiki Page Title" />
 
-		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#PENDING_TABLE_DEFINITION" value1="Single Approver" />
-		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#PENDING_TABLE_ASSET_TITLE" value1="Wiki Page Title" />
-		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#PENDING_TABLE_ASSET_TYPE" value1="Wiki Page" />
-		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#PENDING_TABLE_STATUS" value1="Review" />
-		<execute function="AssertElementPresent" locator1="WorkflowSubmissions#PENDING_TABLE_LAST_ACTIVITY_DATE" />
-		<execute function="AssertElementPresent" locator1="WorkflowSubmissions#PENDING_TABLE_END_DATE" />
+		<execute function="Portal.AssertTextEquals" locator1="WorkflowSubmissions#PENDING_TABLE_DEFINITION" value1="Single Approver" />
+		<execute function="Portal.AssertTextEquals" locator1="WorkflowSubmissions#PENDING_TABLE_ASSET_TITLE" value1="Wiki Page Title" />
+		<execute function="Portal.AssertTextEquals" locator1="WorkflowSubmissions#PENDING_TABLE_ASSET_TYPE" value1="Wiki Page" />
+		<execute function="Portal.AssertTextEquals" locator1="WorkflowSubmissions#PENDING_TABLE_STATUS" value1="Review" />
+		<execute function="Portal.AssertElementPresent" locator1="WorkflowSubmissions#PENDING_TABLE_LAST_ACTIVITY_DATE" />
+		<execute function="Portal.AssertElementPresent" locator1="WorkflowSubmissions#PENDING_TABLE_END_DATE" />
 
 		<execute macro="Portal.User#logoutPG" />
 
@@ -1033,13 +1033,13 @@
 			<var name="portlet" value="Workflow" />
 		</execute>
 
-		<execute function="Click" locator1="Button#PLUS" />
+		<execute function="Portal.Click" locator1="Button#PLUS" />
 
-		<execute function="UploadCommonFile#uploadCommonFileHidden" locator1="WorkflowUpload#FILE_UPLOAD" value1="Document_1.txt" />
+		<execute function="Portal.UploadCommonFile#uploadCommonFileHidden" locator1="WorkflowUpload#FILE_UPLOAD" value1="Document_1.txt" />
 
 		<execute macro="Portal.Button#clickSave" />
 
-		<execute function="AssertTextEquals" locator1="Message#ERROR_1" value1="Please enter a valid definition." />
+		<execute function="Portal.AssertTextEquals" locator1="Message#ERROR_1" value1="Please enter a valid definition." />
 	</command>
 
 	<command name="ViewTaskCount" priority="3">
@@ -1117,7 +1117,7 @@
 			<var name="results" value="Showing 1 to 6 of 6 entries." />
 		</execute>
 
-		<execute function="AssertElementPresent" locator1="xpath=(//div[contains(@id,'workflowTasksSearchContainer')]//tr[contains(@class,'entry-display-style')])[6]" />
+		<execute function="Portal.AssertElementPresent" locator1="xpath=(//div[contains(@id,'workflowTasksSearchContainer')]//tr[contains(@class,'entry-display-style')])[6]" />
 
 		<execute macro="Portal.Pagination#changePagination">
 			<var name="itemsPerPage" value="5" />
@@ -1127,7 +1127,7 @@
 			<var name="results" value="Showing 1 to 5 of 6 entries." />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="xpath=(//div[contains(@id,'workflowTasksSearchContainer')]//tr[contains(@class,'entry-display-style')])[6]" />
+		<execute function="Portal.AssertElementNotPresent" locator1="xpath=(//div[contains(@id,'workflowTasksSearchContainer')]//tr[contains(@class,'entry-display-style')])[6]" />
 	</command>
 
 	<command name="ViewWebContentConfigurationCP" priority="3">

@@ -203,7 +203,7 @@
 
 		<var name="key_teamName" value="Site Team Name" />
 
-		<execute function="AssertTextEquals" locator1="Permissions#CONFIGURATION_PERMISSIONS_TEAM_ROLE_NAME" value1="Site Team Name" />
+		<execute function="Portal.AssertTextEquals" locator1="Permissions#CONFIGURATION_PERMISSIONS_TEAM_ROLE_NAME" value1="Site Team Name" />
 
 		<execute macro="Portal.User#logoutPG" />
 
@@ -222,7 +222,7 @@
 
 		<var name="key_teamName" value="Site Team Name" />
 
-		<execute function="AssertTextEquals" locator1="Permissions#CONFIGURATION_PERMISSIONS_TEAM_ROLE_NAME" value1="Site Team Name" />
+		<execute function="Portal.AssertTextEquals" locator1="Permissions#CONFIGURATION_PERMISSIONS_TEAM_ROLE_NAME" value1="Site Team Name" />
 
 		<execute macro="Portal.Navigator#openURL" />
 
@@ -477,7 +477,7 @@
 
 		<var name="key_roleTitle" value="Guest" />
 
-		<execute function="AssertTextNotPresent" locator1="Permissions#CONTENT_PERMISSIONS_ROLE_NAME" value1="Guest" />
+		<execute function="Portal.AssertTextNotPresent" locator1="Permissions#CONTENT_PERMISSIONS_ROLE_NAME" value1="Guest" />
 
 		<execute macro="Portal.Navigator#openPrivateSitePageURL">
 			<var name="pageName" value="Private Blogs Page" />
@@ -494,7 +494,7 @@
 
 		<var name="key_roleTitle" value="Guest" />
 
-		<execute function="AssertTextNotPresent" locator1="Permissions#CONTENT_PERMISSIONS_ROLE_NAME" value1="Guest" />
+		<execute function="Portal.AssertTextNotPresent" locator1="Permissions#CONTENT_PERMISSIONS_ROLE_NAME" value1="Guest" />
 	</command>
 
 	<command name="RolesOrganizationSearch" priority="4">
@@ -666,7 +666,7 @@
 
 		<var name="key_searchAssetTitle" value="Test Document" />
 
-		<execute function="AssertClick" locator1="SearchResults#ASSET_ENTRY_TABLE_TITLE" value1="Test Document" />
+		<execute function="Portal.AssertClick" locator1="SearchResults#ASSET_ENTRY_TABLE_TITLE" value1="Test Document" />
 
 		<execute macro="Portal.DMDocument#viewPGViaSearch">
 			<var name="dmDocumentDescription" value="This is a test document." />
@@ -686,7 +686,7 @@
 			<var name="siteName" value="Organization Name" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="Message#EMPTY_INFO" value1="There are no documents or media files in this folder." />
+		<execute function="Portal.AssertTextEquals" locator1="Message#EMPTY_INFO" value1="There are no documents or media files in this folder." />
 
 		<execute macro="Portal.Search#searchPG">
 			<var name="searchTerm" value="Test Document" />
@@ -726,7 +726,7 @@
 
 		<var name="key_searchAssetTitle" value="Test Document" />
 
-		<execute function="AssertClick" locator1="SearchResults#ASSET_ENTRY_TABLE_TITLE" value1="Test Document" />
+		<execute function="Portal.AssertClick" locator1="SearchResults#ASSET_ENTRY_TABLE_TITLE" value1="Test Document" />
 
 		<execute macro="Portal.DMDocument#viewPGViaSearch">
 			<var name="dmDocumentDescription" value="This is a test document." />
@@ -1087,8 +1087,8 @@
 
 		<var name="key_ddlDataDefinitionName" value="Employee Profile Data Definition" />
 
-		<execute function="AssertTextEquals" locator1="DDL#TOOLBAR_ADD" value1="Add Employee Profile Data Definition" />
-		<execute function="AssertElementPresent" locator1="DDL#RECORD_TABLE_ELLIPSIS_1" />
+		<execute function="Portal.AssertTextEquals" locator1="DDL#TOOLBAR_ADD" value1="Add Employee Profile Data Definition" />
+		<execute function="Portal.AssertElementPresent" locator1="DDL#RECORD_TABLE_ELLIPSIS_1" />
 
 		<execute macro="Portal.User#logoutPG" />
 
@@ -1101,8 +1101,8 @@
 			<var name="pageName" value="Dynamic Data Lists Page" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="DDL#TOOLBAR_ADD" value1="Add Employee Profile Data Definition" />
-		<execute function="AssertElementPresent" locator1="DDL#RECORD_TABLE_ELLIPSIS_1" />
+		<execute function="Portal.AssertElementNotPresent" locator1="DDL#TOOLBAR_ADD" value1="Add Employee Profile Data Definition" />
+		<execute function="Portal.AssertElementPresent" locator1="DDL#RECORD_TABLE_ELLIPSIS_1" />
 
 		<execute macro="Portal.User#logoutPG" />
 
@@ -1258,7 +1258,7 @@
 
 		<var name="key_searchAssetTitle" value="Test Document" />
 
-		<execute function="AssertClick" locator1="SearchResults#ASSET_ENTRY_TABLE_TITLE" value1="Test Document" />
+		<execute function="Portal.AssertClick" locator1="SearchResults#ASSET_ENTRY_TABLE_TITLE" value1="Test Document" />
 
 		<execute macro="Portal.DMDocument#viewPGViaSearch">
 			<var name="dmDocumentDescription" value="This is a test document." />
@@ -1277,7 +1277,7 @@
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="Message#EMPTY_INFO" value1="There are no documents or media files in this folder." />
+		<execute function="Portal.AssertTextEquals" locator1="Message#EMPTY_INFO" value1="There are no documents or media files in this folder." />
 
 		<execute macro="Portal.Search#searchPG">
 			<var name="searchTerm" value="Test Document" />
@@ -1316,7 +1316,7 @@
 
 		<var name="key_searchAssetTitle" value="Test Document" />
 
-		<execute function="AssertClick" locator1="SearchResults#ASSET_ENTRY_TABLE_TITLE" value1="Test Document" />
+		<execute function="Portal.AssertClick" locator1="SearchResults#ASSET_ENTRY_TABLE_TITLE" value1="Test Document" />
 
 		<execute macro="Portal.DMDocument#viewPGViaSearch">
 			<var name="dmDocumentDescription" value="This is a test document." />
@@ -1870,11 +1870,11 @@
 
 		<var name="key_portletTitleName" value="Message Boards" />
 
-		<execute function="AssertTextEquals" locator1="Portlet#SPECIFIC_TITLE" value1="Message Boards" />
+		<execute function="Portal.AssertTextEquals" locator1="Portlet#SPECIFIC_TITLE" value1="Message Boards" />
 
 		<var name="key_portletTitleName" value="Asset Publisher" />
 
-		<execute function="AssertTextEquals" locator1="Portlet#SPECIFIC_TITLE" value1="Asset Publisher" />
+		<execute function="Portal.AssertTextEquals" locator1="Portlet#SPECIFIC_TITLE" value1="Asset Publisher" />
 
 		<execute macro="Portal.MessageboardsThread#addPG">
 			<var name="threadBody" value="This is a thread by usersn1" />
@@ -1895,14 +1895,14 @@
 
 		<var name="key_portletTitleName" value="Message Boards" />
 
-		<execute function="AssertTextEquals" locator1="Portlet#SPECIFIC_TITLE" value1="Message Boards" />
+		<execute function="Portal.AssertTextEquals" locator1="Portlet#SPECIFIC_TITLE" value1="Message Boards" />
 
 		<var name="key_portletTitleName" value="Asset Publisher" />
 
-		<execute function="AssertTextEquals" locator1="Portlet#SPECIFIC_TITLE" value1="Asset Publisher" />
+		<execute function="Portal.AssertTextEquals" locator1="Portlet#SPECIFIC_TITLE" value1="Asset Publisher" />
 
-		<execute function="AssertElementNotPresent" locator1="MessageBoards#ADD_CATEGORY_BUTTON" />
-		<execute function="AssertElementNotPresent" locator1="Button#PERMISSIONS" />
+		<execute function="Portal.AssertElementNotPresent" locator1="MessageBoards#ADD_CATEGORY_BUTTON" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Button#PERMISSIONS" />
 
 		<execute macro="Portal.Blogs#addViaAP">
 			<var name="entryContent" value="This is a movie blog by usersn2" />
@@ -1915,11 +1915,11 @@
 
 		<var name="key_portletTitleName" value="Message Boards" />
 
-		<execute function="AssertTextEquals" locator1="Portlet#SPECIFIC_TITLE" value1="Message Boards" />
+		<execute function="Portal.AssertTextEquals" locator1="Portlet#SPECIFIC_TITLE" value1="Message Boards" />
 
-		<execute function="AssertTextEquals" locator1="Button#ADD_CATEGORY" value1="Add Category" />
-		<execute function="AssertTextEquals" locator1="Button#POST_NEW_THREAD" value1="Post New Thread" />
-		<execute function="AssertTextEquals" locator1="Button#PERMISSIONS" value1="Permissions" />
+		<execute function="Portal.AssertTextEquals" locator1="Button#ADD_CATEGORY" value1="Add Category" />
+		<execute function="Portal.AssertTextEquals" locator1="Button#POST_NEW_THREAD" value1="Post New Thread" />
+		<execute function="Portal.AssertTextEquals" locator1="Button#PERMISSIONS" value1="Permissions" />
 
 		<execute macro="Portal.User#logoutPG" />
 
@@ -1935,13 +1935,13 @@
 
 		<var name="key_portletTitleName" value="Message Boards" />
 
-		<execute function="AssertTextEquals" locator1="Portlet#SPECIFIC_TITLE" value1="Message Boards" />
+		<execute function="Portal.AssertTextEquals" locator1="Portlet#SPECIFIC_TITLE" value1="Message Boards" />
 
 		<var name="key_portletTitleName" value="Asset Publisher" />
 
-		<execute function="AssertTextEquals" locator1="Portlet#SPECIFIC_TITLE" value1="Asset Publisher" />
+		<execute function="Portal.AssertTextEquals" locator1="Portlet#SPECIFIC_TITLE" value1="Asset Publisher" />
 
-		<execute function="AssertElementNotPresent" locator1="Button#ADD_CATEGORY" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Button#ADD_CATEGORY" />
 
 		<execute macro="Portal.WebContent#addPGViaAP">
 			<var name="webContentContent" value="This article is by usersn3, a member of user group 3 but not site name 1" />
@@ -2146,7 +2146,7 @@
 			<var name="portlet" value="Site Teams" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="Message#EMPTY_INFO" value1="There are no site teams. You can add a site team by clicking the plus button on the bottom right corner." />
+		<execute function="Portal.AssertTextEquals" locator1="Message#EMPTY_INFO" value1="There are no site teams. You can add a site team by clicking the plus button on the bottom right corner." />
 
 		<execute macro="Portal.ProductMenu#gotoSitesMembers">
 			<var name="portlet" value="Site Teams" />
@@ -2217,7 +2217,7 @@
 		<for list="Blogs,Tag Cloud,Recent Bloggers" param="portletTitleName">
 			<var name="key_portletTitleName" value="${portletTitleName}" />
 
-			<execute function="AssertTextEquals" locator1="Portlet#SPECIFIC_TITLE" value1="${portletTitleName}" />
+			<execute function="Portal.AssertTextEquals" locator1="Portlet#SPECIFIC_TITLE" value1="${portletTitleName}" />
 		</for>
 
 		<execute macro="Portal.User#logoutPG" />
@@ -2229,7 +2229,7 @@
 
 		<var name="key_pageName" value="USA Ice Hockey Team Blog" />
 
-		<execute function="AssertTextNotPresent" locator1="Home#PAGE" value1="USA Ice Hockey Team Blog" />
+		<execute function="Portal.AssertTextNotPresent" locator1="Home#PAGE" value1="USA Ice Hockey Team Blog" />
 
 		<execute macro="Portal.User#logoutPG" />
 
@@ -2291,7 +2291,7 @@
 			<var name="roleType" value="Site" />
 		</execute>
 
-		<execute function="AssertTextNotPresent" value1="action.ADD_REPOSITORY" />
+		<execute function="Portal.AssertTextNotPresent" value1="action.ADD_REPOSITORY" />
 
 		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Roles" />
@@ -2374,10 +2374,10 @@
 
 		<var name="key_pageName" value="Welcome" />
 
-		<execute function="AssertElementPresent" locator1="Home#PAGE" value1="Welcome" />
+		<execute function="Portal.AssertElementPresent" locator1="Home#PAGE" value1="Welcome" />
 
-		<execute function="AssertTextEquals#assertText" locator1="HelloWorld#PORTLET_TITLE" value1="Hello World" />
-		<execute function="AssertElementPresent" locator1="HelloWorld#PORTLET_CONTENT" value1="Welcome to Liferay Portal" />
+		<execute function="Portal.AssertTextEquals#assertText" locator1="HelloWorld#PORTLET_TITLE" value1="Hello World" />
+		<execute function="Portal.AssertElementPresent" locator1="HelloWorld#PORTLET_CONTENT" value1="Welcome to Liferay Portal" />
 
 		<execute macro="Portal.User#logoutPG" />
 
@@ -2587,13 +2587,13 @@
 			<var name="portlet" value="Web Content" />
 		</execute>
 
-		<execute function="AssertVisible" locator1="Button#PLUS" />
+		<execute function="Portal.AssertVisible" locator1="Button#PLUS" />
 
-		<execute function="Pause" locator1="3000" />
+		<execute function="Portal.Pause" locator1="3000" />
 
-		<execute function="Click" locator1="Button#PLUS" />
+		<execute function="Portal.Click" locator1="Button#PLUS" />
 
-		<execute function="Pause" locator1="3000" />
+		<execute function="Portal.Pause" locator1="3000" />
 
 		<execute macro="Portal.WebContent#viewWCViewableByPermissions" />
 	</command>

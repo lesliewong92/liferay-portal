@@ -53,15 +53,15 @@
 
 		<var name="key_pollsQuestionTitle" value="${pollsQuestionTitle}" />
 
-		<execute function="Click" locator1="Polls#POLLS_TABLE_ACTION" />
+		<execute function="Portal.Click" locator1="Polls#POLLS_TABLE_ACTION" />
 
-		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Edit">
+		<execute function="Portal.AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Edit">
 			<var name="key_menuItem" value="Edit" />
 		</execute>
 
-		<execute function="AssertNotChecked" locator1="Checkbox#NEVER_EXPIRE" value1="Never Expire" />
+		<execute function="Portal.AssertNotChecked" locator1="Checkbox#NEVER_EXPIRE" value1="Never Expire" />
 
-		<execute function="AssertTextEquals" locator1="TextInput#EXPIRATION_DATE" value1="01/02/3000" />
+		<execute function="Portal.AssertTextEquals" locator1="TextInput#EXPIRATION_DATE" value1="01/02/3000" />
 	</command>
 
 	<command name="AddPollsQuestionWithSpecialCharacters" priority="4">
@@ -91,7 +91,7 @@
 
 		<var name="key_pollsQuestionTitle" value="${pollsQuestionTitle}" />
 
-		<execute function="AssertTextEquals" locator1="Polls#POLLS_TABLE_TITLE" value1="${pollsQuestionTitle}" />
+		<execute function="Portal.AssertTextEquals" locator1="Polls#POLLS_TABLE_TITLE" value1="${pollsQuestionTitle}" />
 
 		<execute macro="Portal.Navigator#openURL" />
 
@@ -242,7 +242,7 @@
 
 		<var name="key_pollsQuestionTitle" value="Color" />
 
-		<execute function="AssertTextEquals" locator1="Polls#POLLS_TABLE_TITLE" value1="Color" />
+		<execute function="Portal.AssertTextEquals" locator1="Polls#POLLS_TABLE_TITLE" value1="Color" />
 
 		<execute macro="Portal.Navigator#openURL" />
 
@@ -303,7 +303,7 @@
 
 		<var name="key_pollsQuestionTitle" value="Favorite Liferay Portlet" />
 
-		<execute function="AssertTextEquals" locator1="Polls#POLLS_TABLE_TITLE" value1="Favorite Liferay Portlet" />
+		<execute function="Portal.AssertTextEquals" locator1="Polls#POLLS_TABLE_TITLE" value1="Favorite Liferay Portlet" />
 
 		<execute macro="Portal.Navigator#openURL" />
 
@@ -335,11 +335,11 @@
 			<var name="pollsQuestionTitle" value="Favorite Liferay Portlet" />
 		</execute>
 
-		<execute function="AssertClick" locator1="Message#INFO_LINK" value1="Please sign in to vote." />
+		<execute function="Portal.AssertClick" locator1="Message#INFO_LINK" value1="Please sign in to vote." />
 
-		<execute function="Type" locator1="TextInput#EMAIL_ADDRESS" value1="test@liferay.com" />
-		<execute function="Type" locator1="TextInput#PASSWORD" value1="test" />
-		<execute function="Click" locator1="Button#SIGN_IN" value1="Sign In" />
+		<execute function="Portal.Type" locator1="TextInput#EMAIL_ADDRESS" value1="test@liferay.com" />
+		<execute function="Portal.Type" locator1="TextInput#PASSWORD" value1="test" />
+		<execute function="Portal.Click" locator1="Button#SIGN_IN" value1="Sign In" />
 
 		<execute macro="Portal.Navigator#openURL" />
 
@@ -356,7 +356,7 @@
 			<var name="roleTitle" value="Guest" />
 		</execute>
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 
 		<execute macro="Portal.User#logoutPG" />
 

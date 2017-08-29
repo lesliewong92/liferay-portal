@@ -109,9 +109,9 @@
 			<var name="folderName" value="Test Folder Name" />
 		</execute>
 
-		<execute function="Refresh" />
+		<execute function="Portal.Refresh" />
 
-		<execute function="Pause" locator1="3000" />
+		<execute function="Portal.Pause" locator1="3000" />
 
 		<execute macro="Portal.Bookmark#viewBookmark">
 			<var name="bookmarkName" value="Test Bookmark Name" />
@@ -318,11 +318,11 @@
 
 		<var name="key_assetName" value="Test Folder Name 2" />
 
-		<execute function="AssertClick#assertPartialTextClickAt" locator1="Bookmarks#DESCRIPTIVE_ENTRY_TITLE" value1="Test Folder Name 2" />
+		<execute function="Portal.AssertClick#assertPartialTextClickAt" locator1="Bookmarks#DESCRIPTIVE_ENTRY_TITLE" value1="Test Folder Name 2" />
 
 		<var name="key_assetName" value="Test Bookmark Name" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="Bookmarks#DESCRIPTIVE_ENTRY_TITLE" value1="Test Bookmark Name" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Bookmarks#DESCRIPTIVE_ENTRY_TITLE" value1="Test Bookmark Name" />
 	</command>
 
 	<command name="RemoveBookmarkPortlet" priority="5">

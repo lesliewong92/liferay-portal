@@ -60,8 +60,8 @@
 
 		<execute macro="Portal.UsersAndOrganizationsNavigator#gotoOrganizations" />
 
-		<execute function="AssertElementNotPresent" locator1="UsersAndOrganizations#ADD" />
-		<execute function="AssertTextEquals" locator1="Message#INFO" value1="You do not belong to an organization and are not allowed to view other organizations." />
+		<execute function="Portal.AssertElementNotPresent" locator1="UsersAndOrganizations#ADD" />
+		<execute function="Portal.AssertTextEquals" locator1="Message#INFO" value1="You do not belong to an organization and are not allowed to view other organizations." />
 
 		<execute macro="Portal.Permissions#definePermissionLoginUserCP">
 			<var name="permissionDefinitionKey" value="CONTROL_PANEL_GENERAL_PERMISSIONS_ADD_ORGANIZATION_CHECKBOX" />
@@ -92,7 +92,7 @@
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="UsersAndOrganizations#ADD" />
+		<execute function="Portal.AssertElementNotPresent" locator1="UsersAndOrganizations#ADD" />
 	</command>
 
 	<command name="AddUserRegRole" priority="4">
@@ -121,8 +121,8 @@
 
 		<execute macro="Portal.UsersAndOrganizationsNavigator#gotoOrganizations" />
 
-		<execute function="AssertTextEquals" locator1="Message#INFO" value1="You do not belong to an organization and are not allowed to view other organizations." />
-		<execute function="AssertElementNotPresent" locator1="UsersAndOrganizations#ADD" />
+		<execute function="Portal.AssertTextEquals" locator1="Message#INFO" value1="You do not belong to an organization and are not allowed to view other organizations." />
+		<execute function="Portal.AssertElementNotPresent" locator1="UsersAndOrganizations#ADD" />
 
 		<execute macro="Portal.Permissions#definePermissionLoginUserCP">
 			<var name="permissionDefinitionKey" value="CONTROL_PANEL_GENERAL_PERMISSIONS_ADD_USER_CHECKBOX" />
@@ -157,7 +157,7 @@
 
 		<execute macro="Portal.UsersAndOrganizationsNavigator#gotoOrganizations" />
 
-		<execute function="AssertTextEquals" locator1="Message#INFO" value1="You do not belong to an organization and are not allowed to view other organizations." />
-		<execute function="AssertElementNotPresent" locator1="UsersAndOrganizations#ADD" />
+		<execute function="Portal.AssertTextEquals" locator1="Message#INFO" value1="You do not belong to an organization and are not allowed to view other organizations." />
+		<execute function="Portal.AssertElementNotPresent" locator1="UsersAndOrganizations#ADD" />
 	</command>
 </definition>

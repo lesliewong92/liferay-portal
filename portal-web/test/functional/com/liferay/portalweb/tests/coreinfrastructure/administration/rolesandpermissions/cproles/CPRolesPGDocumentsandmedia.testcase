@@ -59,7 +59,7 @@
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="Toolbar#ADD" value1="Add" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Toolbar#ADD" value1="Add" />
 	</command>
 
 	<command name="AddDMDocumentRegRoleDefinePermissions" priority="5">
@@ -115,7 +115,7 @@
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="Toolbar#ADD" value1="Add" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Toolbar#ADD" value1="Add" />
 	</command>
 
 	<command name="AddDMDocumentSiteMemberRoleInline" priority="4">
@@ -178,7 +178,7 @@
 			<var name="portletName" value="Documents and Media" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="MenuItem#ANY_MENU_ITEM" value1="Basic Document">
+		<execute function="Portal.AssertElementNotPresent" locator1="MenuItem#ANY_MENU_ITEM" value1="Basic Document">
 			<var name="key_menuItem" value="Basic Document" />
 		</execute>
 
@@ -255,7 +255,7 @@
 			<var name="portletName" value="Documents and Media" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="MenuItem#ANY_MENU_ITEM" value1="Basic Document">
+		<execute function="Portal.AssertElementNotPresent" locator1="MenuItem#ANY_MENU_ITEM" value1="Basic Document">
 			<var name="key_menuItem" value="Basic Document" />
 		</execute>
 
@@ -296,7 +296,7 @@
 			<var name="portletName" value="Documents and Media" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="MenuItem#ANY_MENU_ITEM" value1="Basic Document">
+		<execute function="Portal.AssertElementNotPresent" locator1="MenuItem#ANY_MENU_ITEM" value1="Basic Document">
 			<var name="key_menuItem" value="Basic Document" />
 		</execute>
 	</command>
@@ -331,7 +331,7 @@
 
 		<var name="key_dmFolderName" value="DM Folder Name" />
 
-		<execute function="Check" locator1="DocumentsAndMedia#ICON_FOLDER_CHECKBOX" />
+		<execute function="Portal.Check" locator1="DocumentsAndMedia#ICON_FOLDER_CHECKBOX" />
 
 		<execute macro="Portal.PermissionsInline#viewButtonInactive">
 			<var name="buttonName" value="RECYCLE_BIN" />
@@ -411,7 +411,7 @@
 
 		<var name="key_dmFolderName" value="DM Folder Name" />
 
-		<execute function="Check" locator1="DocumentsAndMedia#ICON_FOLDER_CHECKBOX" />
+		<execute function="Portal.Check" locator1="DocumentsAndMedia#ICON_FOLDER_CHECKBOX" />
 
 		<execute macro="Portal.PermissionsInline#viewButtonInactive">
 			<var name="buttonName" value="RECYCLE_BIN" />
@@ -446,11 +446,11 @@
 
 		<var name="key_dmFolderName" value="DM Folder Name" />
 
-		<execute function="AssertClick" locator1="DocumentsAndMedia#DESCRIPTIVE_LIST_FOLDER_TITLE" value1="DM Folder Name" />
+		<execute function="Portal.AssertClick" locator1="DocumentsAndMedia#DESCRIPTIVE_LIST_FOLDER_TITLE" value1="DM Folder Name" />
 
 		<var method="StringUtil#upperCase('DM Folder Name')" name="dmFolderNameUpperCase" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="DocumentsAndMedia#BREADCRUMB_FOLDER_NAME" value1="${dmFolderNameUpperCase}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="DocumentsAndMedia#BREADCRUMB_FOLDER_NAME" value1="${dmFolderNameUpperCase}" />
 
 		<execute macro="Portal.User#loginPG">
 			<var name="password" value="test" />
@@ -514,10 +514,10 @@
 
 		<var name="key_dmFolderName" value="DM Folder Name" />
 
-		<execute function="AssertClick" locator1="DocumentsAndMedia#DESCRIPTIVE_LIST_FOLDER_TITLE" value1="DM Folder Name" />
+		<execute function="Portal.AssertClick" locator1="DocumentsAndMedia#DESCRIPTIVE_LIST_FOLDER_TITLE" value1="DM Folder Name" />
 
 		<var method="StringUtil#upperCase('DM Folder Name')" name="dmFolderNameUpperCase" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="DocumentsAndMedia#BREADCRUMB_FOLDER_NAME" value1="${dmFolderNameUpperCase}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="DocumentsAndMedia#BREADCRUMB_FOLDER_NAME" value1="${dmFolderNameUpperCase}" />
 	</command>
 </definition>

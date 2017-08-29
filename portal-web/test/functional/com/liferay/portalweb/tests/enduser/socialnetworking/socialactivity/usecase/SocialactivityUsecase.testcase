@@ -98,7 +98,7 @@
 
 		<var name="key_portletName" value="User Statistics" />
 
-		<execute function="AssertTextEquals" locator1="Portlet#BODY" value1="There are no active users for this period." />
+		<execute function="Portal.AssertTextEquals" locator1="Portlet#BODY" value1="There are no active users for this period." />
 
 		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Blogs Page" />
@@ -293,7 +293,7 @@
 			<var name="portletName" value="Activité sociale" />
 		</execute>
 
-		<execute function="AssertVisible" locator1="Portlet#HEADER" />
+		<execute function="Portal.AssertVisible" locator1="Portlet#HEADER" />
 
 		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Social Activity Page" />
@@ -309,7 +309,7 @@
 			<var name="portletName" value="ソーシャルアクティビティ" />
 		</execute>
 
-		<execute function="AssertVisible" locator1="Portlet#HEADER" />
+		<execute function="Portal.AssertVisible" locator1="Portlet#HEADER" />
 
 		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Social Activity Page" />
@@ -325,7 +325,7 @@
 			<var name="portletName" value="Atividade Social" />
 		</execute>
 
-		<execute function="AssertVisible" locator1="Portlet#HEADER" />
+		<execute function="Portal.AssertVisible" locator1="Portlet#HEADER" />
 
 		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Social Activity Page" />
@@ -345,7 +345,7 @@
 			<var name="portletName" value="Account Settings" />
 		</execute>
 
-		<execute function="AssertSelectedLabel" locator1="MyAccount#LANGUAGE_SELECT" value1="English (United States)" />
+		<execute function="Portal.AssertSelectedLabel" locator1="MyAccount#LANGUAGE_SELECT" value1="English (United States)" />
 	</command>
 
 	<command name="SaveUserStatisticsConfiguration" priority="4">
@@ -363,24 +363,24 @@
 
 		<var name="key_portletName" value="User Statistics" />
 
-		<execute function="AssertTextEquals" locator1="Portlet#BODY" value1="There are no active users for this period." />
+		<execute function="Portal.AssertTextEquals" locator1="Portlet#BODY" value1="There are no active users for this period." />
 
 		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletName" value="User Statistics" />
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="UserStatisticsConfiguration#CONFIGURATION_IFRAME" />
+		<execute function="Portal.SelectFrame" locator1="UserStatisticsConfiguration#CONFIGURATION_IFRAME" />
 
-		<execute function="Uncheck" locator1="Checkbox#RANK_BY_CONTRIBUTION" />
-		<execute function="Uncheck" locator1="Checkbox#RANK_BY_PARTICIPATION" />
-		<execute function="Uncheck" locator1="Checkbox#SHOW_HEADER_TEXT" />
-		<execute function="Uncheck" locator1="Checkbox#SHOW_TOTALS" />
-		<execute function="Uncheck" locator1="Checkbox#DISPLAY_ADDITIONAL_ACTIVITY_COUNTERS" />
+		<execute function="Portal.Uncheck" locator1="Checkbox#RANK_BY_CONTRIBUTION" />
+		<execute function="Portal.Uncheck" locator1="Checkbox#RANK_BY_PARTICIPATION" />
+		<execute function="Portal.Uncheck" locator1="Checkbox#SHOW_HEADER_TEXT" />
+		<execute function="Portal.Uncheck" locator1="Checkbox#SHOW_TOTALS" />
+		<execute function="Portal.Uncheck" locator1="Checkbox#DISPLAY_ADDITIONAL_ACTIVITY_COUNTERS" />
 
 		<execute macro="Portal.PortletEntry#save" />
 
-		<execute function="SelectFrameTop" value1="relative=top" />
+		<execute function="Portal.SelectFrameTop" value1="relative=top" />
 
 		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="User Statistics Page" />
@@ -391,15 +391,15 @@
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#DIALOG" />
 
-		<execute function="AssertNotChecked" locator1="Checkbox#RANK_BY_CONTRIBUTION" />
-		<execute function="AssertNotChecked" locator1="Checkbox#RANK_BY_PARTICIPATION" />
-		<execute function="AssertNotChecked" locator1="Checkbox#SHOW_HEADER_TEXT" />
-		<execute function="AssertNotChecked" locator1="Checkbox#SHOW_TOTALS" />
-		<execute function="AssertNotChecked" locator1="Checkbox#DISPLAY_ADDITIONAL_ACTIVITY_COUNTERS" />
+		<execute function="Portal.AssertNotChecked" locator1="Checkbox#RANK_BY_CONTRIBUTION" />
+		<execute function="Portal.AssertNotChecked" locator1="Checkbox#RANK_BY_PARTICIPATION" />
+		<execute function="Portal.AssertNotChecked" locator1="Checkbox#SHOW_HEADER_TEXT" />
+		<execute function="Portal.AssertNotChecked" locator1="Checkbox#SHOW_TOTALS" />
+		<execute function="Portal.AssertNotChecked" locator1="Checkbox#DISPLAY_ADDITIONAL_ACTIVITY_COUNTERS" />
 
-		<execute function="SelectFrameTop" value1="relative=top" />
+		<execute function="Portal.SelectFrameTop" value1="relative=top" />
 	</command>
 
 	<command name="ViewActivityViaGroupStatistics" priority="4">
@@ -417,7 +417,7 @@
 
 		<var name="key_portletName" value="Group Statistics" />
 
-		<execute function="AssertTextEquals" locator1="Portlet#BODY" value1="Please configure this portlet and select at least one activity counter." />
+		<execute function="Portal.AssertTextEquals" locator1="Portlet#BODY" value1="Please configure this portlet and select at least one activity counter." />
 
 		<execute macro="Portal.SocialActivity#updateGroupStatisticsConfiguration">
 			<var name="chartType" value="column diagram" />

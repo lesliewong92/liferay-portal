@@ -179,7 +179,7 @@
 
 		<execute macro="Portal.PageCustomizations#viewCustomizablePagePG" />
 
-		<execute function="AssertClick" locator1="Home#PAGE_CUSTOMIZATION_VIEW_DEFAULT_PAGE" value1="View Page without my customizations" />
+		<execute function="Portal.AssertClick" locator1="Home#PAGE_CUSTOMIZATION_VIEW_DEFAULT_PAGE" value1="View Page without my customizations" />
 
 		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Wiki" />
@@ -332,7 +332,7 @@
 			<var name="portletName" value="Asset Publisher" />
 		</execute>
 
-		<execute function="Refresh" />
+		<execute function="Portal.Refresh" />
 
 		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Language Selector" />
@@ -352,7 +352,7 @@
 			<var name="portletName" value="Web Content Display" />
 		</execute>
 
-		<execute function="Refresh" />
+		<execute function="Portal.Refresh" />
 
 		<execute macro="Portal.Portlet#viewSpecificPG">
 			<var name="portletName" value="Web Content Display" />
@@ -370,7 +370,7 @@
 			<var name="portletName" value="Language Selector" />
 		</execute>
 
-		<execute function="Refresh" />
+		<execute function="Portal.Refresh" />
 
 		<execute macro="Portal.Portlet#viewSpecificPG">
 			<var name="portletName" value="Language Selector" />
@@ -481,7 +481,7 @@
 			<var name="portletName" value="Message Boards" />
 		</execute>
 
-		<execute function="Refresh" />
+		<execute function="Portal.Refresh" />
 
 		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Language Selector" />

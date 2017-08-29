@@ -49,6 +49,6 @@
 			<var name="pageName" value="Test Page1" />
 		</execute>
 
-		<execute function="AssertAccessible" />
+		<execute function="Portal.AssertAccessible" />
 	</command>
 </definition>

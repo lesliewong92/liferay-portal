@@ -1507,7 +1507,7 @@
 
 		<var name="siteID" value="siteID" />
 
-		<execute function="Copy" locator1="SitesEditSite#SITE_ID" value1="siteID" />
+		<execute function="Portal.Copy" locator1="SitesEditSite#SITE_ID" value1="siteID" />
 
 		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
@@ -1718,13 +1718,13 @@
 
 		<var name="key_userScreenName" value="usersn1" />
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_NAME" value1="userfn1 userln1" />
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="usersn1" />
+		<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_NAME" value1="userfn1 userln1" />
+		<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="usersn1" />
 
 		<var name="key_userScreenName" value="usersn2" />
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_NAME" value1="userfn2 userln2" />
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="usersn2" />
+		<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_NAME" value1="userfn2 userln2" />
+		<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="usersn2" />
 
 		<execute macro="Portal.User#basicSearchCP">
 			<var name="userBasicSearch" value="Quotes" />
@@ -1735,8 +1735,8 @@
 
 		<var name="key_userScreenName" value="usersn2" />
 
-		<execute function="AssertTextNotPresent" locator1="UsersAndOrganizations#USER_TABLE_NAME" value1="userfn2 userln2" />
-		<execute function="AssertTextNotPresent" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="usersn2" />
+		<execute function="Portal.AssertTextNotPresent" locator1="UsersAndOrganizations#USER_TABLE_NAME" value1="userfn2 userln2" />
+		<execute function="Portal.AssertTextNotPresent" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="usersn2" />
 	</command>
 
 	<command name="SearchUsersInOrganization" priority="4">
@@ -1811,7 +1811,7 @@
 			<var name="orgType" value="Organization" />
 		</execute>
 
-		<execute function="AssertElementPresent" locator1="Icon#BACK" />
+		<execute function="Portal.AssertElementPresent" locator1="Icon#BACK" />
 
 		<take-screenshot />
 	</command>
@@ -1874,11 +1874,11 @@
 
 		<var name="key_orgName" value="Organization Name 1" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="SitesDirectory#SITE_ENTRY" value1="Liferay" />
-		<execute function="AssertTextEquals" locator1="SitesDirectory#ORG_SITE_ENTRY" value1="Organization Name 1" />
-		<execute function="AssertTextNotPresent" locator1="SitesDirectory#ORG_SITE_ENTRY" value1="Organization Name 2" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="SitesDirectory#SITE_ENTRY" value1="Liferay" />
+		<execute function="Portal.AssertTextEquals" locator1="SitesDirectory#ORG_SITE_ENTRY" value1="Organization Name 1" />
+		<execute function="Portal.AssertTextNotPresent" locator1="SitesDirectory#ORG_SITE_ENTRY" value1="Organization Name 2" />
 
-		<execute function="AssertClick" locator1="SitesDirectory#ORG_SITE_ENTRY" value1="Organization Name 1" />
+		<execute function="Portal.AssertClick" locator1="SitesDirectory#ORG_SITE_ENTRY" value1="Organization Name 1" />
 
 		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Breadcrumb" />
@@ -1890,7 +1890,7 @@
 
 		<var name="key_orgName" value="Organization Name 1" />
 
-		<execute function="AssertClick" locator1="SitesDirectory#ORG_SITE_ENTRY" value1="Organization Name 1" />
+		<execute function="Portal.AssertClick" locator1="SitesDirectory#ORG_SITE_ENTRY" value1="Organization Name 1" />
 
 		<execute macro="Portal.Breadcrumb#viewPG">
 			<var name="breadcrumbListNotVisible" value="Liferay" />

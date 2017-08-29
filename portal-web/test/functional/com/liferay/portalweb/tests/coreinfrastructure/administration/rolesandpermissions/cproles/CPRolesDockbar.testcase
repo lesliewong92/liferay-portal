@@ -48,7 +48,7 @@
 
 		<execute macro="Portal.Navigator#openURL" />
 
-		<execute function="AssertElementNotPresent" locator1="ControlMenu#SIMULATION" />
+		<execute function="Portal.AssertElementNotPresent" locator1="ControlMenu#SIMULATION" />
 
 		<execute macro="Portal.Permissions#definePermissionLoginUserCP">
 			<var name="permissionDefinitionKey" value="CONTROL_PANEL_SITES_SITES_RESOURCE_PERMISSIONS_SITE_PREVIEW_IN_DEVICE_CHECKBOX" />
@@ -74,6 +74,6 @@
 
 		<execute macro="Portal.Navigator#openURL" />
 
-		<execute function="AssertElementNotPresent" locator1="ControlMenu#SIMULATION" />
+		<execute function="Portal.AssertElementNotPresent" locator1="ControlMenu#SIMULATION" />
 	</command>
 </definition>

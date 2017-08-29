@@ -41,7 +41,7 @@
 
 		<var name="key_pageName" value="Navigation Display Test Page" />
 
-		<execute function="AssertTextEquals" locator1="Navigation#BREADCRUMB_ENTRY" value1="Navigation Display Test Page" />
+		<execute function="Portal.AssertTextEquals" locator1="Navigation#BREADCRUMB_ENTRY" value1="Navigation Display Test Page" />
 	</command>
 
 	<command name="UserPersonalSiteUserGroupPrivatePage" priority="4">
@@ -117,7 +117,7 @@
 
 		<var name="key_pageName" value="Test User Group Private Page" />
 
-		<execute function="AssertTextEquals" locator1="ProductMenu#PRIVATE_PAGE_LINK" value1="Test User Group Private Page" />
+		<execute function="Portal.AssertTextEquals" locator1="ProductMenu#PRIVATE_PAGE_LINK" value1="Test User Group Private Page" />
 
 		<execute macro="Portal.User#logoutUserPG" />
 
@@ -145,25 +145,25 @@
 
 		<var name="key_pageName" value="Navigation Display Test Page" />
 
-		<execute function="AssertTextEquals" locator1="Navigation#BREADCRUMB_ENTRY" value1="Navigation Display Test Page" />
+		<execute function="Portal.AssertTextEquals" locator1="Navigation#BREADCRUMB_ENTRY" value1="Navigation Display Test Page" />
 
 		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletName" value="Navigation Menu" />
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#CONFIGURATION" />
 
-		<execute function="Select" locator1="Select#DISPLAY_TEMPLATE" value1="Bar minimally styled" />
+		<execute function="Portal.Select" locator1="Select#DISPLAY_TEMPLATE" value1="Bar minimally styled" />
 		<execute macro="Portal.Button#clickSave" />
 		<execute macro="Portal.Alert#viewSuccessMessage" />
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 
 		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Navigation Display Test Page" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="Navigation#BREADCRUMB_ENTRY" value1="Navigation Display Test Page" />
+		<execute function="Portal.AssertTextEquals" locator1="Navigation#BREADCRUMB_ENTRY" value1="Navigation Display Test Page" />
 	</command>
 
 	<command name="ViewNoAddPagePermissionsPG" priority="4">

@@ -88,7 +88,7 @@
 			<var name="larFileName" value="Export.Template" />
 		</execute>
 
-		<execute function="Pause" locator1="3000" />
+		<execute function="Portal.Pause" locator1="3000" />
 
 		<execute macro="Portal.LAR#downloadLar" />
 
@@ -153,11 +153,11 @@
 
 		<var method="RegexUtil#replace('Edited Export Template Name', '([a-zA-z0-9_.-]*)[(0-9KB)]*', '1')" name="larFile" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="SitePagesExport#CURRENT_AND_PREVIOUS_STATUS" value1="Successful" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="SitePagesExport#CURRENT_AND_PREVIOUS_STATUS" value1="Successful" />
 
 		<execute macro="Portal.LAR#downloadLar" />
 
-		<execute function="Pause" locator1="5000" />
+		<execute function="Portal.Pause" locator1="5000" />
 
 		<execute macro="Portal.LAR#importSiteCP">
 			<var name="larFileName" value="${larFile}" />
@@ -344,14 +344,14 @@
 
 		<var name="key_entryTitle" value="Blogs Entry Title" />
 
-		<execute function="AssertElementNotPresent" locator1="Link#EDIT" value1="Edit" />
-		<execute function="AssertElementNotPresent" locator1="Link#MOVE_TO_THE_RECYCLING_BIN" value1="Move to the Recycle Bin" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Link#EDIT" value1="Edit" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Link#MOVE_TO_THE_RECYCLING_BIN" value1="Move to the Recycle Bin" />
 
 		<execute macro="Portal.LAR#configureExportSiteCP" />
 
-		<execute function="AssertClick" locator1="SitePagesExport#EXPORT_BUTTON" value1="Export" />
+		<execute function="Portal.AssertClick" locator1="SitePagesExport#EXPORT_BUTTON" value1="Export" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="SitePagesExport#CURRENT_AND_PREVIOUS_STATUS" value1="Successful" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="SitePagesExport#CURRENT_AND_PREVIOUS_STATUS" value1="Successful" />
 
 		<var method="selenium#getText('//ul/li/div/h5')" name="valueName" />
 
@@ -383,8 +383,8 @@
 
 		<var name="key_entryTitle" value="Blogs Entry Title" />
 
-		<execute function="AssertElementNotPresent" locator1="Link#EDIT" value1="Edit" />
-		<execute function="AssertElementNotPresent" locator1="Link#MOVE_TO_THE_RECYCLING_BIN" value1="Move to the Recycle Bin" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Link#EDIT" value1="Edit" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Link#MOVE_TO_THE_RECYCLING_BIN" value1="Move to the Recycle Bin" />
 	</command>
 
 	<command name="ExportImportPrivatePage" priority="5">
@@ -407,7 +407,7 @@
 
 		<var name="key_larFileName" value="${larFileName}" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="SitePagesExport#CURRENT_AND_PREVIOUS_STATUS" value1="Successful" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="SitePagesExport#CURRENT_AND_PREVIOUS_STATUS" value1="Successful" />
 
 		<var method="selenium#getText('//ul/li/div/h5')" name="valueName" />
 
@@ -519,11 +519,11 @@
 
 		<execute macro="Portal.LAR#configureExportSiteCP" />
 
-		<execute function="AssertClick" locator1="SitePagesExport#EXPORT_BUTTON" value1="Export" />
+		<execute function="Portal.AssertClick" locator1="SitePagesExport#EXPORT_BUTTON" value1="Export" />
 
 		<var name="key_larFileName" value="${larFileName}" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="SitePagesExport#CURRENT_AND_PREVIOUS_STATUS" value1="Successful" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="SitePagesExport#CURRENT_AND_PREVIOUS_STATUS" value1="Successful" />
 
 		<var method="selenium#getText('//ul/li/div/h5')" name="valueName" />
 
@@ -578,9 +578,9 @@
 			<var name="uncheckSiteTemplateSettings" value="true" />
 		</execute>
 
-		<execute function="AssertClick" locator1="SitePagesExport#EXPORT_BUTTON" value1="Export" />
+		<execute function="Portal.AssertClick" locator1="SitePagesExport#EXPORT_BUTTON" value1="Export" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="SitePagesExport#CURRENT_AND_PREVIOUS_STATUS" value1="Successful" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="SitePagesExport#CURRENT_AND_PREVIOUS_STATUS" value1="Successful" />
 
 		<var method="selenium#getText('//ul/li/div/h5')" name="valueName" />
 
@@ -654,11 +654,11 @@
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute function="Click#pauseClickAt" locator1="AlloyEditor#CONTENT_FIELD" />
+		<execute function="Portal.Click#pauseClickAt" locator1="AlloyEditor#CONTENT_FIELD" />
 
-		<execute function="Click" locator1="AlloyEditor#CONTENT_ADD_BUTTON" />
+		<execute function="Portal.Click" locator1="AlloyEditor#CONTENT_ADD_BUTTON" />
 
-		<execute function="Click" locator1="AlloyEditor#CONTENT_ADD_MENUBAR_IMAGE" />
+		<execute function="Portal.Click" locator1="AlloyEditor#CONTENT_ADD_MENUBAR_IMAGE" />
 
 		<execute macro="Portal.ItemSelector#selectDMImage">
 			<var name="imageFileName" value="DM Document Title" />
@@ -673,9 +673,9 @@
 			<var name="uncheckSubContent" value="Referenced Content" />
 		</execute>
 
-		<execute function="AssertClick" locator1="SitePagesExport#EXPORT_BUTTON" value1="Export" />
+		<execute function="Portal.AssertClick" locator1="SitePagesExport#EXPORT_BUTTON" value1="Export" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="SitePagesExport#CURRENT_AND_PREVIOUS_STATUS" value1="Successful" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="SitePagesExport#CURRENT_AND_PREVIOUS_STATUS" value1="Successful" />
 
 		<var method="selenium#getText('//ul/li/div/h5')" name="valueName" />
 
@@ -796,9 +796,9 @@
 
 		<var name="key_consumerPortletName" value="WSRP Unit Converter" />
 
-		<execute function="AssertTextEquals" locator1="WSRPAdminManagePortlets#PORTLET_TABLE_NAME" value1="WSRP Unit Converter" />
-		<execute function="AssertTextEquals" locator1="WSRPAdminManagePortlets#PORTLET_TABLE_REMOTE_PORTLET" value1="Unit Converter" />
-		<execute function="AssertElementPresent" locator1="WSRPAdminManagePortlets#PORTLET_TABLE_DELETE" value1="Delete" />
+		<execute function="Portal.AssertTextEquals" locator1="WSRPAdminManagePortlets#PORTLET_TABLE_NAME" value1="WSRP Unit Converter" />
+		<execute function="Portal.AssertTextEquals" locator1="WSRPAdminManagePortlets#PORTLET_TABLE_REMOTE_PORTLET" value1="Unit Converter" />
+		<execute function="Portal.AssertElementPresent" locator1="WSRPAdminManagePortlets#PORTLET_TABLE_DELETE" value1="Delete" />
 
 		<execute macro="Portal.Page#add">
 			<var name="pageName" value="WSRP Page" />
@@ -822,11 +822,11 @@
 
 		<execute macro="Portal.LAR#configureExportSiteCP" />
 
-		<execute function="AssertClick" locator1="SitePagesExport#EXPORT_BUTTON" value1="Export" />
+		<execute function="Portal.AssertClick" locator1="SitePagesExport#EXPORT_BUTTON" value1="Export" />
 
 		<var name="key_larFileName" value="${larFileName}" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="SitePagesExport#CURRENT_AND_PREVIOUS_STATUS" value1="Successful" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="SitePagesExport#CURRENT_AND_PREVIOUS_STATUS" value1="Successful" />
 
 		<var method="selenium#getText('//ul/li/div/h5')" name="valueName" />
 
@@ -874,7 +874,7 @@
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="Portlet#HEADER" value1="Bookmarks" />
+		<execute function="Portal.AssertTextEquals" locator1="Portlet#HEADER" value1="Bookmarks" />
 
 		<execute macro="Portal.LAR#importPortlet">
 			<var name="cannotImport" value="true" />

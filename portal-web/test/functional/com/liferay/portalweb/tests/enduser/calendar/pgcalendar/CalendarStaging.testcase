@@ -49,7 +49,7 @@
 				</execute>
 
 				<if>
-					<condition function="IsElementPresent" locator1="Calendar#SCHEDULER_EVENT_GENERIC" />
+					<condition function="Portal.IsElementPresent" locator1="Calendar#SCHEDULER_EVENT_GENERIC" />
 					<then>
 						<execute macro="Portal.CalendarEvent#tearDown" />
 					</then>
@@ -269,7 +269,7 @@
 			<var name="scheduleTitleName" value="Staging Schedule Title" />
 		</execute>
 
-		<execute function="Pause" locator1="120000" />
+		<execute function="Portal.Pause" locator1="120000" />
 
 		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Staging Test Page" />

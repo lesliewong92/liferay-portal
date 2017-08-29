@@ -76,7 +76,7 @@
 			<var name="pageName" value="Knowledge Base Display Page" />
 		</execute>
 
-		<execute function="Click" locator1="Icon#SHARE" />
+		<execute function="Portal.Click" locator1="Icon#SHARE" />
 
 		<for list="Twitter,Facebook,Google+,LinkedIn,Delicious,Digg,Evernote,Newsvine,Reddit,Slashdot,StumbleUpon,Tuenti" param="socialBookmarkSites" >
 			<execute macro="Portal.KBArticle#viewEnabledKBSocialBookmarkSites">

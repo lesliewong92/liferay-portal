@@ -54,7 +54,7 @@
 			<var name="currentPortalLanguages" value="Arabic (Saudi Arabia),Czech (Czech Republic),French (France)" />
 		</execute>
 
-		<execute function="Refresh" />
+		<execute function="Portal.Refresh" />
 
 		<execute macro="Portal.Navigator#openURL" />
 
@@ -99,19 +99,19 @@
 			<var name="language" value="English (United States)" />
 		</execute>
 
-		<execute function="AssertLocation" value1="${portalURL}/web/guest/language-test-page" />
+		<execute function="Portal.AssertLocation" value1="${portalURL}/web/guest/language-test-page" />
 
 		<execute macro="Portal.LanguagePortlet#selectLanguagePG">
 			<var name="language" value="Spanish (Spain)" />
 		</execute>
 
-		<execute function="AssertLocation" value1="${portalURL}/web/guest/language-test-page" />
+		<execute function="Portal.AssertLocation" value1="${portalURL}/web/guest/language-test-page" />
 
 		<execute macro="Portal.LanguagePortlet#selectLanguagePG">
 			<var name="language" value="Japanese (Japan)" />
 		</execute>
 
-		<execute function="AssertLocation" value1="${portalURL}/web/guest/language-test-page" />
+		<execute function="Portal.AssertLocation" value1="${portalURL}/web/guest/language-test-page" />
 
 		<execute macro="Portal.LanguagePortlet#selectLanguagePG">
 			<var name="language" value="English (United States)" />
@@ -145,19 +145,19 @@
 			<var name="language" value="English (United States)" />
 		</execute>
 
-		<execute function="AssertLocation" value1="${portalURL}/web/guest/language-test-page" />
+		<execute function="Portal.AssertLocation" value1="${portalURL}/web/guest/language-test-page" />
 
 		<execute macro="Portal.LanguagePortlet#selectLanguagePG">
 			<var name="language" value="Spanish (Spain)" />
 		</execute>
 
-		<execute function="AssertLocation" value1="${portalURL}/es/web/guest/language-test-page" />
+		<execute function="Portal.AssertLocation" value1="${portalURL}/es/web/guest/language-test-page" />
 
 		<execute macro="Portal.LanguagePortlet#selectLanguagePG">
 			<var name="language" value="Japanese (Japan)" />
 		</execute>
 
-		<execute function="AssertLocation" value1="${portalURL}/ja/web/guest/language-test-page" />
+		<execute function="Portal.AssertLocation" value1="${portalURL}/ja/web/guest/language-test-page" />
 
 		<execute macro="Portal.LanguagePortlet#selectLanguagePG">
 			<var name="language" value="English (United States)" />
@@ -191,19 +191,19 @@
 			<var name="language" value="English (United States)" />
 		</execute>
 
-		<execute function="AssertLocation" value1="${portalURL}/en/web/guest/language-test-page" />
+		<execute function="Portal.AssertLocation" value1="${portalURL}/en/web/guest/language-test-page" />
 
 		<execute macro="Portal.LanguagePortlet#selectLanguagePG">
 			<var name="language" value="Spanish (Spain)" />
 		</execute>
 
-		<execute function="AssertLocation" value1="${portalURL}/es/web/guest/language-test-page" />
+		<execute function="Portal.AssertLocation" value1="${portalURL}/es/web/guest/language-test-page" />
 
 		<execute macro="Portal.LanguagePortlet#selectLanguagePG">
 			<var name="language" value="Japanese (Japan)" />
 		</execute>
 
-		<execute function="AssertLocation" value1="${portalURL}/ja/web/guest/language-test-page" />
+		<execute function="Portal.AssertLocation" value1="${portalURL}/ja/web/guest/language-test-page" />
 
 		<execute macro="Portal.LanguagePortlet#selectLanguagePG">
 			<var name="language" value="English (United States)" />
@@ -732,11 +732,11 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="Message#PORTAL_LOCALIZATION" value1="× Esta página se muestra en inglés (Estados Unidos). Mostrar la página en español (España). Establecer inglés (Estados Unidos) como su idioma preferido." />
+		<execute function="Portal.AssertTextEquals" locator1="Message#PORTAL_LOCALIZATION" value1="× Esta página se muestra en inglés (Estados Unidos). Mostrar la página en español (España). Establecer inglés (Estados Unidos) como su idioma preferido." />
 
-		<execute function="AssertTextEquals" locator1="Home#PORTAL_LOCALIZATION_CONFIRMATION_MESSAGE" value1="Mostrar la página en español (España)." />
+		<execute function="Portal.AssertTextEquals" locator1="Home#PORTAL_LOCALIZATION_CONFIRMATION_MESSAGE" value1="Mostrar la página en español (España)." />
 
-		<execute function="AssertTextEquals" locator1="Home#PORTAL_LOCALIZATION_PREFERRED_MESSAGE" value1="Establecer inglés (Estados Unidos) como su idioma preferido." />
+		<execute function="Portal.AssertTextEquals" locator1="Home#PORTAL_LOCALIZATION_PREFERRED_MESSAGE" value1="Establecer inglés (Estados Unidos) como su idioma preferido." />
 		<execute macro="Portal.User#logoutPG" />
 
 		<execute macro="Portal.User#loginPG" />
@@ -790,7 +790,7 @@
 
 		<execute macro="Portal.Alert#closePortalLocalizationWarning" />
 
-		<execute function="AssertLocation" value1="${portalURL}/en/web/site-name/language-page" />
+		<execute function="Portal.AssertLocation" value1="${portalURL}/en/web/site-name/language-page" />
 
 		<execute macro="Portal.Navigator#openSpecificURL">
 			<var name="url" value="${portalURL}/fr" />
@@ -798,13 +798,13 @@
 
 		<execute macro="Portal.Alert#closePortalLocalizationWarning" />
 
-		<execute function="AssertLocation" value1="${portalURL}/en/web/guest/home" />
+		<execute function="Portal.AssertLocation" value1="${portalURL}/en/web/guest/home" />
 
 		<execute macro="Portal.User#loginPG">
 			<var name="specificURL" value="${portalURL}/fr" />
 		</execute>
 
-		<execute function="AssertLocation" value1="${portalURL}/web/guest/home" />
+		<execute function="Portal.AssertLocation" value1="${portalURL}/web/guest/home" />
 
 		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />

@@ -78,7 +78,7 @@
 			<var name="wikiPageTitle" value="FrontPage" />
 		</execute>
 
-		<execute function="AssertClick" locator1="Wiki#FRONTPAGE_DEFAULT_MESSAGE" value1="This page is empty. Edit it to add some text." />
+		<execute function="Portal.AssertClick" locator1="Wiki#FRONTPAGE_DEFAULT_MESSAGE" value1="This page is empty. Edit it to add some text." />
 
 		<execute macro="Portal.WikiEntry#selectPageFormat">
 			<var name="pageFormat" value="HTML" />
@@ -112,7 +112,7 @@
 			<var name="portletName" value="Wiki" />
 		</execute>
 
-		<execute function="AssertClick" locator1="Link#EDIT" value1="Edit" />
+		<execute function="Portal.AssertClick" locator1="Link#EDIT" value1="Edit" />
 
 		<execute macro="Portal.AlloyEditor#addContent">
 			<var name="content"><![CDATA[<!DOCTYPE html> <html lang="en"> <body> <h1>Edited My First Heading</h1> <p>Edited My first paragraph.</p> </body> </html>]]></var>
@@ -311,7 +311,7 @@
 			<var name="wikiPageTitle" value="FrontPage" />
 		</execute>
 
-		<execute function="AssertClick#assertTextClickAtAndPause" locator1="Link#ADD_CHILD_PAGE" value1="Add Child Page" />
+		<execute function="Portal.AssertClick#assertTextClickAtAndPause" locator1="Link#ADD_CHILD_PAGE" value1="Add Child Page" />
 
 		<execute macro="Portal.WikiEntry#selectPageFormat">
 			<var name="pageFormat" value="HTML" />
@@ -538,7 +538,7 @@
 			<var name="pageName" value="Wiki Test Page" />
 		</execute>
 
-		<execute function="AssertClick" locator1="Wiki#FRONTPAGE_DEFAULT_MESSAGE" value1="This page is empty. Edit it to add some text." />
+		<execute function="Portal.AssertClick" locator1="Wiki#FRONTPAGE_DEFAULT_MESSAGE" value1="This page is empty. Edit it to add some text." />
 
 		<execute macro="Portal.WikiEntry#selectPageFormat">
 			<var name="pageFormat" value="HTML" />
@@ -746,7 +746,7 @@
 			<var name="wikiPageUsername" value="Test Test" />
 		</execute>
 
-		<execute function="Pause" locator1="1000" />
+		<execute function="Portal.Pause" locator1="1000" />
 
 		<execute macro="Portal.WikiPage#viewPG">
 			<var name="wikiPageContent" value="Welcome to LIFERAY" />
@@ -781,7 +781,7 @@
 		<var name="key_appName" value="Creole" />
 		<var name="key_appStatus" value="Resolved" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="AppManager#APP_STATUS" value1="Resolved" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="AppManager#APP_STATUS" value1="Resolved" />
 
 		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Wiki Test Page" />
@@ -799,9 +799,9 @@
 			<var name="content" value="!JSPWiki Header" />
 		</execute>
 
-		<execute function="KeyPress" locator1="TextArea#ACE_EDITOR" value1="\RETURN" />
+		<execute function="Portal.KeyPress" locator1="TextArea#ACE_EDITOR" value1="\RETURN" />
 
-		<execute function="Type#sendKeysAceEditor" locator1="TextArea#ACE_EDITOR" value1="__JSPWiki Bold Text__" />
+		<execute function="Portal.Type#sendKeysAceEditor" locator1="TextArea#ACE_EDITOR" value1="__JSPWiki Bold Text__" />
 
 		<execute macro="Portal.PortletEntry#publish" />
 
@@ -820,9 +820,9 @@
 			<var name="wikiPageTitle" value="Wiki Page With JSPWiki Content" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="WikiEntry#BODY_HEADER" value1="JSPWiki Header#" />
+		<execute function="Portal.AssertTextEquals" locator1="WikiEntry#BODY_HEADER" value1="JSPWiki Header#" />
 
-		<execute function="AssertTextEquals" locator1="WikiEntry#BODY_BOLD_TEXT" value1="JSPWiki Bold Text" />
+		<execute function="Portal.AssertTextEquals" locator1="WikiEntry#BODY_BOLD_TEXT" value1="JSPWiki Bold Text" />
 	</command>
 
 	<command name="AddWikiPages" priority="5">
@@ -841,7 +841,7 @@
 				<var name="wikiPageTitle" value="Wiki Page${entryCount} Title" />
 			</execute>
 
-			<execute function="Refresh" />
+			<execute function="Portal.Refresh" />
 		</for>
 
 		<for list="1,2,3" param="entryCount" >

@@ -62,7 +62,7 @@
 			<var name="templateName" value="WC Template Name" />
 		</execute>
 
-		<execute function="AssertElementPresent" locator1="DDMEditTemplate#CACHEABLE_CHECKBOX" />
+		<execute function="Portal.AssertElementPresent" locator1="DDMEditTemplate#CACHEABLE_CHECKBOX" />
 
 		<execute macro="Portal.WebContentTemplates#addStructure">
 			<var name="structureName" value="WC Structure Name" />
@@ -86,7 +86,7 @@
 			<var name="panelHeading" value="Details" />
 		</execute>
 
-		<execute function="AssertElementPresent" locator1="DDMEditTemplate#CACHEABLE_CHECKBOX" />
+		<execute function="Portal.AssertElementPresent" locator1="DDMEditTemplate#CACHEABLE_CHECKBOX" />
 
 		<execute macro="Portal.Navigator#openURL" />
 
@@ -130,12 +130,12 @@
 			<var name="portletOption" value="Edit Template" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#DIALOG" />
 
 		<execute macro="Portal.Panel#expandPanel">
 			<var name="panelHeading" value="Details" />
 		</execute>
 
-		<execute function="AssertElementPresent" locator1="DDMEditTemplate#CACHEABLE_CHECKBOX" />
+		<execute function="Portal.AssertElementPresent" locator1="DDMEditTemplate#CACHEABLE_CHECKBOX" />
 	</command>
 </definition>

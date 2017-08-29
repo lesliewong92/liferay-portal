@@ -117,7 +117,7 @@
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute function="Pause" locator1="3000" />
+		<execute function="Portal.Pause" locator1="3000" />
 
 		<execute macro="Portal.Mentions#addMentionViaComments">
 			<var name="entryComment" value="Comment mentioning" />

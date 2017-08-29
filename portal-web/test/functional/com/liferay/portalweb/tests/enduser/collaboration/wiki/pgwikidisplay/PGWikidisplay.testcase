@@ -141,7 +141,7 @@
 			<var name="wikiPageTitle" value="FrontPage" />
 		</execute>
 
-		<execute function="AssertClick" locator1="Link#ADD_CHILD_PAGE" value1="Add Child Page" />
+		<execute function="Portal.AssertClick" locator1="Link#ADD_CHILD_PAGE" value1="Add Child Page" />
 
 		<execute macro="Portal.WikiEntry#selectPageFormat">
 			<var name="pageFormat" value="HTML" />

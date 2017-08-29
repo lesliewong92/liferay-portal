@@ -508,7 +508,7 @@
 			<var name="navItem" value="User Groups" />
 		</execute>
 
-		<execute function="AssertElementPresent" locator1="Message#EMPTY_INFO" />
+		<execute function="Portal.AssertElementPresent" locator1="Message#EMPTY_INFO" />
 
 		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
@@ -598,7 +598,7 @@
 			<var name="url" value="http://www.able.com:8080/test-private-page" />
 		</execute>
 
-		<execute function="AssertLocation" value1="http://www.able.com:8080/test-private-page" />
+		<execute function="Portal.AssertLocation" value1="http://www.able.com:8080/test-private-page" />
 
 		<execute macro="Portal.User#firstLoginPG">
 			<var name="password" value="test" />
@@ -756,10 +756,10 @@
 
 		<var locator="Gmail#EMAIL_ADDRESS_VERIFICATION_URL" name="emailAddressVerificationURL" />
 
-		<execute function="Click" locator1="Gmail#EMAIL_ADDRESS_VERIFICATION_URL" />
+		<execute function="Portal.Click" locator1="Gmail#EMAIL_ADDRESS_VERIFICATION_URL" />
 
-		<execute function="SelectWindow" locator1="title=Verify Email Address - ${siteName}" />
-		<execute function="AssertLocation" value1="${emailAddressVerificationURL}" />
+		<execute function="Portal.SelectWindow" locator1="title=Verify Email Address - ${siteName}" />
+		<execute function="Portal.AssertLocation" value1="${emailAddressVerificationURL}" />
 
 		<execute macro="Portal.Gmail#gotoHtmlMode" />
 
@@ -827,7 +827,7 @@
 
 		<execute macro="Portal.UserBar#gotoDashboard" />
 
-		<execute function="AssertLocation" value1="${portalURL}/user/usersn" />
+		<execute function="Portal.AssertLocation" value1="${portalURL}/user/usersn" />
 
 		<execute macro="Portal.User#firstLoginPG">
 			<var name="password" value="test" />
@@ -848,9 +848,9 @@
 			<var name="siteFriendlyURLEdit" value="/liferay" />
 		</execute>
 
-		<execute function="Open" locator1="${portalURL}/web/liferay/site-page-name" />
+		<execute function="Portal.Open" locator1="${portalURL}/web/liferay/site-page-name" />
 
-		<execute function="AssertLocation" value1="${portalURL}/web/liferay/site-page-name" />
+		<execute function="Portal.AssertLocation" value1="${portalURL}/web/liferay/site-page-name" />
 
 		<execute macro="Portal.Navigator#openURL" />
 
@@ -1068,7 +1068,7 @@
 			<var name="pageName" value="Arenas" />
 		</execute>
 
-		<execute function="Open#openNoError" locator1="${portalURL}/web/russia2018" />
+		<execute function="Portal.Open#openNoError" locator1="${portalURL}/web/russia2018" />
 
 		<execute macro="Portal.Page#viewCustomLogoPG" />
 
@@ -1081,7 +1081,7 @@
 			</execute>
 		</for>
 
-		<execute function="Open#openNoError" locator1="${portalURL}/web/russia2018" />
+		<execute function="Portal.Open#openNoError" locator1="${portalURL}/web/russia2018" />
 
 		<execute macro="Portal.ProductMenu#gotoPublicPages" />
 
@@ -1142,17 +1142,17 @@
 			<var name="pageNameList" value="Accomodations,Maps" />
 		</execute>
 
-		<execute function="Open" locator1="${portalURL}/web/russia2018" />
+		<execute function="Portal.Open" locator1="${portalURL}/web/russia2018" />
 
 		<execute macro="Portal.ProductMenu#gotoSitesPublishing">
 			<var name="portlet" value="Export" />
 		</execute>
 
-		<execute function="Click" locator1="Button#PLUS" />
+		<execute function="Portal.Click" locator1="Button#PLUS" />
 
-		<execute function="AssertClick" locator1="SitePagesExport#EXPORT_BUTTON" value1="Export" />
+		<execute function="Portal.AssertClick" locator1="SitePagesExport#EXPORT_BUTTON" value1="Export" />
 
-		<execute function="AssertTextEquals" locator1="SitePagesExport#CURRENT_AND_PREVIOUS_STATUS" value1="Successful" />
+		<execute function="Portal.AssertTextEquals" locator1="SitePagesExport#CURRENT_AND_PREVIOUS_STATUS" value1="Successful" />
 
 		<execute macro="Portal.Portlet#changeDisplayStyle">
 			<var name="displayStyle" value="List" />
@@ -1170,8 +1170,8 @@
 			<var name="displayStyle" value="Descriptive" />
 		</execute>
 
-		<execute function="Click" locator1="SitePagesExport#CURRENT_AND_PREVIOUS_DOWNLOAD" />
-		<execute function="DownloadTempFile" />
+		<execute function="Portal.Click" locator1="SitePagesExport#CURRENT_AND_PREVIOUS_DOWNLOAD" />
+		<execute function="Portal.DownloadTempFile" />
 
 		<execute macro="Portal.User#firstLoginPG">
 			<var name="password" value="test" />
@@ -1379,7 +1379,7 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="Home#PAGE" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Home#PAGE" />
 
 		<execute macro="Portal.User#firstLoginPG">
 			<var name="password" value="test" />

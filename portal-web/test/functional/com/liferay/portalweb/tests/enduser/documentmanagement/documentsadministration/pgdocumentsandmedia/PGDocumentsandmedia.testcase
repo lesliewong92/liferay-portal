@@ -899,7 +899,7 @@
 			<var name="dmFolderName" value="DM Folder Name" />
 		</execute>
 
-		<execute function="Refresh" />
+		<execute function="Portal.Refresh" />
 
 		<execute macro="Portal.DMFolder#deletePG">
 			<var name="dmFolderName" value="DM Subfolder Name" />
@@ -1562,9 +1562,9 @@
 			<var name="dmFolderName" value="DM Folder Name" />
 		</execute>
 
-		<execute function="Click" locator1="Icon#INFO" />
+		<execute function="Portal.Click" locator1="Icon#INFO" />
 
-		<execute function="AssertTextEquals" locator1="Link#UNSUBSCRIBE" value1="Unsubscribe" />
+		<execute function="Portal.AssertTextEquals" locator1="Link#UNSUBSCRIBE" value1="Unsubscribe" />
 	</command>
 
 	<command name="UnlockDocumentInFolder" priority="4">
@@ -1688,7 +1688,7 @@
 			<var name="portlet" value="Server Administration" />
 		</execute>
 
-		<execute function="Pause" locator1="5000" />
+		<execute function="Portal.Pause" locator1="5000" />
 
 		<execute macro="Portal.ServerAdministration#executeServerResourcesActions">
 			<var name="actionsDescription" value="Reindex all search indexes." />
@@ -1913,7 +1913,7 @@
 
 		<execute macro="Portal.IFrame#closeFrame" />
 
-		<execute function="Pause" locator1="5000" />
+		<execute function="Portal.Pause" locator1="5000" />
 
 		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Search Page" />

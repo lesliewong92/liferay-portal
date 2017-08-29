@@ -97,7 +97,7 @@
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute function="Click" locator1="Icon#DISPLAY_STYLE_DESCRIPTIVE" />
+		<execute function="Portal.Click" locator1="Icon#DISPLAY_STYLE_DESCRIPTIVE" />
 
 		<execute macro="Portal.DMDocument#viewPG">
 			<var name="dmDocumentDescription" value="DM Document Description" />
@@ -153,7 +153,7 @@
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute function="Click" locator1="Icon#DISPLAY_STYLE_DESCRIPTIVE" />
+		<execute function="Portal.Click" locator1="Icon#DISPLAY_STYLE_DESCRIPTIVE" />
 
 		<execute macro="Portal.DMDocument#viewPG">
 			<var name="dmDocumentDescription" value="DM Document Description" />
@@ -182,7 +182,7 @@
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute function="Click" locator1="Icon#DISPLAY_STYLE_DESCRIPTIVE" />
+		<execute function="Portal.Click" locator1="Icon#DISPLAY_STYLE_DESCRIPTIVE" />
 
 		<execute macro="Portal.DMDocument#viewPG">
 			<var name="dmDocumentDescription" value="DM Document Description" />
@@ -191,7 +191,7 @@
 
 		<var name="key_entryComment" value="Comment mentioning" />
 
-		<execute function="AssertClick" locator1="Comments#REPLY_TO_COMMENT" value1="Reply" />
+		<execute function="Portal.AssertClick" locator1="Comments#REPLY_TO_COMMENT" value1="Reply" />
 
 		<execute macro="Portal.Mentions#addMentionViaComments">
 			<var name="entryComment" value="Comment reply mentioning" />

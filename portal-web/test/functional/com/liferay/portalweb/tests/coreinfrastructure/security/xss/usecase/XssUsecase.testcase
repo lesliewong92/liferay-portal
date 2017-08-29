@@ -54,29 +54,29 @@
 			]]>
 		</var>
 
-		<execute function="Open" locator1="${maliciousURL1}" />
+		<execute function="Portal.Open" locator1="${maliciousURL1}" />
 
-		<execute function="AssertTextEquals" locator1="Home#ERROR_MESSAGE_ALERT_ERROR" value1="Not Found" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="Home#ERROR_MESSAGE_RESOURCE_NOT_FOUND" value1="The requested resource could not be found." />
-		<execute function="AssertElementPresent" locator1="Home#URL_ERROR_MESSAGE" />
+		<execute function="Portal.AssertTextEquals" locator1="Home#ERROR_MESSAGE_ALERT_ERROR" value1="Not Found" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Home#ERROR_MESSAGE_RESOURCE_NOT_FOUND" value1="The requested resource could not be found." />
+		<execute function="Portal.AssertElementPresent" locator1="Home#URL_ERROR_MESSAGE" />
 
-		<execute function="Open" locator1="${maliciousURL2}" />
+		<execute function="Portal.Open" locator1="${maliciousURL2}" />
 
-		<execute function="AssertTextEquals" locator1="Home#ERROR_MESSAGE_ALERT_ERROR" value1="Not Found" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="Home#ERROR_MESSAGE_RESOURCE_NOT_FOUND" value1="The requested resource could not be found." />
-		<execute function="AssertElementPresent" locator1="Home#URL_ERROR_MESSAGE" />
+		<execute function="Portal.AssertTextEquals" locator1="Home#ERROR_MESSAGE_ALERT_ERROR" value1="Not Found" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Home#ERROR_MESSAGE_RESOURCE_NOT_FOUND" value1="The requested resource could not be found." />
+		<execute function="Portal.AssertElementPresent" locator1="Home#URL_ERROR_MESSAGE" />
 
-		<execute function="Open" locator1="${maliciousURL3}" />
+		<execute function="Portal.Open" locator1="${maliciousURL3}" />
 
-		<execute function="AssertTextEquals" locator1="Home#ERROR_MESSAGE_ALERT_ERROR" value1="Not Found" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="Home#ERROR_MESSAGE_RESOURCE_NOT_FOUND" value1="The requested resource could not be found." />
-		<execute function="AssertElementPresent" locator1="Home#URL_ERROR_MESSAGE" />
+		<execute function="Portal.AssertTextEquals" locator1="Home#ERROR_MESSAGE_ALERT_ERROR" value1="Not Found" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Home#ERROR_MESSAGE_RESOURCE_NOT_FOUND" value1="The requested resource could not be found." />
+		<execute function="Portal.AssertElementPresent" locator1="Home#URL_ERROR_MESSAGE" />
 
-		<execute function="Open" locator1="${maliciousURL4}" />
+		<execute function="Portal.Open" locator1="${maliciousURL4}" />
 
-		<execute function="AssertTextEquals" locator1="Home#ERROR_MESSAGE_ALERT_ERROR" value1="Not Found" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="Home#ERROR_MESSAGE_RESOURCE_NOT_FOUND" value1="The requested resource could not be found." />
-		<execute function="AssertElementPresent" locator1="Home#URL_ERROR_MESSAGE" />
+		<execute function="Portal.AssertTextEquals" locator1="Home#ERROR_MESSAGE_ALERT_ERROR" value1="Not Found" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Home#ERROR_MESSAGE_RESOURCE_NOT_FOUND" value1="The requested resource could not be found." />
+		<execute function="Portal.AssertElementPresent" locator1="Home#URL_ERROR_MESSAGE" />
 	</command>
 
 	<command name="ViewBookmarkNoXSS" priority="4">
@@ -105,7 +105,7 @@
 			<var name="bookmarkURL" value="http://www.liferay.com" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="//body[.='XSS']" />
+		<execute function="Portal.AssertElementNotPresent" locator1="//body[.='XSS']" />
 	</command>
 
 	<command name="ViewControlPanelNoXSS" priority="5">
@@ -124,21 +124,21 @@
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute function="Type" locator1="NavBar#BASIC_SEARCH_FIELD" value1="${siteName}" />
+		<execute function="Portal.Type" locator1="NavBar#BASIC_SEARCH_FIELD" value1="${siteName}" />
 
-		<execute function="Click" locator1="Icon#BASIC_SEARCH" />
+		<execute function="Portal.Click" locator1="Icon#BASIC_SEARCH" />
 
 		<var name="key_rowEntry" value="${siteName}" />
 
-		<execute function="AssertClick" locator1="ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK" value1="${siteName}" />
+		<execute function="Portal.AssertClick" locator1="ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK" value1="${siteName}" />
 
-		<execute function="AssertElementNotPresent" locator1="//body[.='XSS']" />
+		<execute function="Portal.AssertElementNotPresent" locator1="//body[.='XSS']" />
 
-		<execute function="AssertTextEquals" locator1="Portlet#HEADER" value1="Public Pages" />
+		<execute function="Portal.AssertTextEquals" locator1="Portlet#HEADER" value1="Public Pages" />
 
 		<var name="key_siteName" value="${siteName}" />
 
-		<execute function="AssertTextEquals" locator1="ProductMenu#PRODUCT_MENU_PANEL_SITE_ADMINISTRATION_SITE_NAME" value1="${siteName}" />
+		<execute function="Portal.AssertTextEquals" locator1="ProductMenu#PRODUCT_MENU_PANEL_SITE_ADMINISTRATION_SITE_NAME" value1="${siteName}" />
 	</command>
 
 	<command name="ViewGoogleAnalyticsIDNoXSS" priority="5">
@@ -155,7 +155,7 @@
 		</execute>
 
 		<execute macro="Portal.Navigator#openURL" />
-		<execute function="AssertAlertNotPresent" />
+		<execute function="Portal.AssertAlertNotPresent" />
 	</command>
 
 	<command name="ViewJSONWSNoXSS" priority="5">
@@ -163,8 +163,8 @@
 
 		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
 
-		<execute function="Open" locator1="${portalURL}/api/jsonws?contextPath=%22%3E%3Cimg%20src=x%20onerror=alert%28/contextPath/%29%3E" />
-		<execute function="AssertAlertNotPresent" />
+		<execute function="Portal.Open" locator1="${portalURL}/api/jsonws?contextPath=%22%3E%3Cimg%20src=x%20onerror=alert%28/contextPath/%29%3E" />
+		<execute function="Portal.AssertAlertNotPresent" />
 	</command>
 
 	<command name="ViewLiferayPortletListNoXSS" priority="5">
@@ -184,17 +184,17 @@
 			<var name="portletName" value="Asset Publisher" />
 		</execute>
 
-		<execute function="Open" locator1="${portalURL}/web/guest/home?p_p_id=com_liferay_portlet_configuration_web_portlet_PortletConfigurationPortlet&amp;p_p_state=pop_up&amp;_com_liferay_portlet_configuration_web_portlet_PortletConfigurationPortlet_mvcPath=%2Fedit_configuration.jsp&amp;_com_liferay_portlet_configuration_web_portlet_PortletConfigurationPortlet_portletResource=com_liferay_asset_publisher_web_portlet_AssetPublisherPortlet_INSTANCE_7awylRgVDERT;alert(1)//%22;alert(2)//%22;alert(3)//%E2%80%93%3E%3C/script%3E%22%3E%27%3E%3Cscript%3Ealert(4)%3C/script%3E&amp;_com_liferay_portlet_configuration_web_portlet_PortletConfigurationPortlet_resourcePrimKey=asdfxxx" />
+		<execute function="Portal.Open" locator1="${portalURL}/web/guest/home?p_p_id=com_liferay_portlet_configuration_web_portlet_PortletConfigurationPortlet&amp;p_p_state=pop_up&amp;_com_liferay_portlet_configuration_web_portlet_PortletConfigurationPortlet_mvcPath=%2Fedit_configuration.jsp&amp;_com_liferay_portlet_configuration_web_portlet_PortletConfigurationPortlet_portletResource=com_liferay_asset_publisher_web_portlet_AssetPublisherPortlet_INSTANCE_7awylRgVDERT;alert(1)//%22;alert(2)//%22;alert(3)//%E2%80%93%3E%3C/script%3E%22%3E%27%3E%3Cscript%3Ealert(4)%3C/script%3E&amp;_com_liferay_portlet_configuration_web_portlet_PortletConfigurationPortlet_resourcePrimKey=asdfxxx" />
 
-		<execute function="AssertAlertNotPresent" />
+		<execute function="Portal.AssertAlertNotPresent" />
 
-		<execute function="Refresh" />
+		<execute function="Portal.Refresh" />
 
-		<execute function="AssertAlertNotPresent" />
+		<execute function="Portal.AssertAlertNotPresent" />
 
 		<execute macro="Portal.Navigator#openURL" />
 
-		<execute function="AssertAlertNotPresent" />
+		<execute function="Portal.AssertAlertNotPresent" />
 	</command>
 
 	<command name="ViewLookAndFeelNoXSS" priority="5">
@@ -217,7 +217,7 @@
 			<var name="portletOption" value="Look and Feel Configuration" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="//body[.='XSS']" />
+		<execute function="Portal.AssertElementNotPresent" locator1="//body[.='XSS']" />
 	</command>
 
 	<command name="ViewRecycleBinNoXSS" priority="5">
@@ -233,7 +233,7 @@
 
 		<execute macro="Portal.BlogsNavigator#gotoAddEntry" />
 
-		<execute function="Type#typeAceEditor" locator1="AlloyEditor#TITLE_FIELD" value1="${entryTitle}" />
+		<execute function="Portal.Type#typeAceEditor" locator1="AlloyEditor#TITLE_FIELD" value1="${entryTitle}" />
 
 		<execute macro="Portal.BlogsEntry#addContent">
 			<var name="entryContent" value="Blogs Entry Content" />
@@ -269,7 +269,7 @@
 			<var name="assetType" value="Blogs Entry" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="//body[.='XSS']" />
+		<execute function="Portal.AssertElementNotPresent" locator1="//body[.='XSS']" />
 	</command>
 
 	<command name="ViewRolesNoXSS" priority="4">
@@ -300,7 +300,7 @@
 			<var name="portletName" value="Sign In" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="//body[.='XSS']" />
+		<execute function="Portal.AssertElementNotPresent" locator1="//body[.='XSS']" />
 	</command>
 
 	<command name="ViewURLValidateNoXSS" priority="5">
@@ -337,24 +337,24 @@
 			]]>
 		</var>
 
-		<execute function="Open" locator1="${maliciousURL1}" />
-		<execute function="AssertAlertNotPresent" />
+		<execute function="Portal.Open" locator1="${maliciousURL1}" />
+		<execute function="Portal.AssertAlertNotPresent" />
 
-		<execute function="Open" locator1="${maliciousURL2}" />
-		<execute function="AssertAlertNotPresent" />
+		<execute function="Portal.Open" locator1="${maliciousURL2}" />
+		<execute function="Portal.AssertAlertNotPresent" />
 
 		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="Account Settings" />
 		</execute>
 
-		<execute function="Open" locator1="${maliciousURL3}" />
-		<execute function="AssertAlertNotPresent" />
+		<execute function="Portal.Open" locator1="${maliciousURL3}" />
+		<execute function="Portal.AssertAlertNotPresent" />
 
-		<execute function="Open" locator1="${maliciousURL4}" />
-		<execute function="AssertAlertNotPresent" />
+		<execute function="Portal.Open" locator1="${maliciousURL4}" />
+		<execute function="Portal.AssertAlertNotPresent" />
 
-		<execute function="Open" locator1="${maliciousURL5}" />
-		<execute function="AssertAlertNotPresent" />
+		<execute function="Portal.Open" locator1="${maliciousURL5}" />
+		<execute function="Portal.AssertAlertNotPresent" />
 	</command>
 
 	<command name="ViewWikiNoXSS" priority="5">
@@ -389,6 +389,6 @@
 			<var name="wikiPageTitle" value="Wiki Page Title" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="//body[.='XSS']" />
+		<execute function="Portal.AssertElementNotPresent" locator1="//body[.='XSS']" />
 	</command>
 </definition>

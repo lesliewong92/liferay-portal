@@ -222,9 +222,9 @@
 
 		<var name="key_entryTitle" value="Announcements Entry Title" />
 
-		<execute function="AssertTextNotPresent" locator1="Announcements#CARD_VIEW_ENTRY_TITLE" value1="Announcements Entry Title 1" />
-		<execute function="AssertTextNotPresent" locator1="Announcements#CARD_VIEW_ENTRY_TITLE" value1="Announcements Entry Title 2" />
-		<execute function="AssertClick" locator1="Pagination#NEXT_LINK" value1="Next" />
+		<execute function="Portal.AssertTextNotPresent" locator1="Announcements#CARD_VIEW_ENTRY_TITLE" value1="Announcements Entry Title 1" />
+		<execute function="Portal.AssertTextNotPresent" locator1="Announcements#CARD_VIEW_ENTRY_TITLE" value1="Announcements Entry Title 2" />
+		<execute function="Portal.AssertClick" locator1="Pagination#NEXT_LINK" value1="Next" />
 
 		<var name="viewEntryList" value="1,2" />
 
@@ -241,10 +241,10 @@
 		<var name="viewEntryList" value="3,4,5,6,7" />
 
 		<for list="${viewEntryList}" param="viewEntryCount">
-			<execute function="AssertTextNotPresent" locator1="AnnouncementsManageEntries#ENTRY_TABLE_TITLE" value1="Announcements Entry Title ${viewEntryCount}" />
+			<execute function="Portal.AssertTextNotPresent" locator1="AnnouncementsManageEntries#ENTRY_TABLE_TITLE" value1="Announcements Entry Title ${viewEntryCount}" />
 		</for>
 
-		<execute function="AssertClick" locator1="Pagination#PREVIOUS_LINK" value1="Previous" />
+		<execute function="Portal.AssertClick" locator1="Pagination#PREVIOUS_LINK" value1="Previous" />
 
 		<var name="viewEntryList" value="3,4,5,6,7" />
 
@@ -259,14 +259,14 @@
 
 		<var name="key_entryTitle" value="Announcements Entry Title" />
 
-		<execute function="AssertTextNotPresent" locator1="Announcements#CARD_VIEW_ENTRY_TITLE" value1="Announcements Entry Title 1" />
-		<execute function="AssertTextNotPresent" locator1="Announcements#CARD_VIEW_ENTRY_TITLE" value1="Announcements Entry Title 2" />
+		<execute function="Portal.AssertTextNotPresent" locator1="Announcements#CARD_VIEW_ENTRY_TITLE" value1="Announcements Entry Title 1" />
+		<execute function="Portal.AssertTextNotPresent" locator1="Announcements#CARD_VIEW_ENTRY_TITLE" value1="Announcements Entry Title 2" />
 
 		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Announcements and Alerts" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="Dropdown#FILTER" value1="General" />
+		<execute function="Portal.AssertTextEquals" locator1="Dropdown#FILTER" value1="General" />
 
 		<execute macro="Portal.AnnouncementsPortlet#configurePaginationCP">
 			<var name="distributionScope" value="General" />
@@ -282,10 +282,10 @@
 			</execute>
 		</for>
 
-		<execute function="AssertTextNotPresent" locator1="AnnouncementsManageEntries#ENTRY_TABLE_TITLE" value1="Announcements Entry Title 6" />
-		<execute function="AssertTextNotPresent" locator1="AnnouncementsManageEntries#ENTRY_TABLE_TITLE" value1="Announcements Entry Title 7" />
+		<execute function="Portal.AssertTextNotPresent" locator1="AnnouncementsManageEntries#ENTRY_TABLE_TITLE" value1="Announcements Entry Title 6" />
+		<execute function="Portal.AssertTextNotPresent" locator1="AnnouncementsManageEntries#ENTRY_TABLE_TITLE" value1="Announcements Entry Title 7" />
 
-		<execute function="Click" locator1="Pagination#NEXT_LINK" />
+		<execute function="Portal.Click" locator1="Pagination#NEXT_LINK" />
 
 		<var name="viewEntryList" value="6,7" />
 
@@ -299,10 +299,10 @@
 		<var name="viewEntryList" value="1,2,3,4,5" />
 
 		<for list="${viewEntryList}" param="viewEntryCount">
-			<execute function="AssertTextNotPresent" locator1="AnnouncementsManageEntries#ENTRY_TABLE_TITLE" value1="Announcements Entry Title ${viewEntryCount}" />
+			<execute function="Portal.AssertTextNotPresent" locator1="AnnouncementsManageEntries#ENTRY_TABLE_TITLE" value1="Announcements Entry Title ${viewEntryCount}" />
 		</for>
 
-		<execute function="Click" locator1="Pagination#PREVIOUS_LINK" />
+		<execute function="Portal.Click" locator1="Pagination#PREVIOUS_LINK" />
 
 		<var name="viewEntryList" value="1,2,3,4,5" />
 
@@ -313,7 +313,7 @@
 			</execute>
 		</for>
 
-		<execute function="AssertTextNotPresent" locator1="AnnouncementsManageEntries#ENTRY_TABLE_TITLE" value1="Announcements Entry Title 6" />
-		<execute function="AssertTextNotPresent" locator1="AnnouncementsManageEntries#ENTRY_TABLE_TITLE" value1="Announcements Entry Title 7" />
+		<execute function="Portal.AssertTextNotPresent" locator1="AnnouncementsManageEntries#ENTRY_TABLE_TITLE" value1="Announcements Entry Title 6" />
+		<execute function="Portal.AssertTextNotPresent" locator1="AnnouncementsManageEntries#ENTRY_TABLE_TITLE" value1="Announcements Entry Title 7" />
 	</command>
 </definition>

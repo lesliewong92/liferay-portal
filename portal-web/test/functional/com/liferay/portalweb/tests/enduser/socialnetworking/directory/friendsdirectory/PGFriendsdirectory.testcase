@@ -100,7 +100,7 @@
 
 		<var name="key_pageName" value="Friends Request Page" />
 
-		<execute function="AssertClick" locator1="Home#PAGE" value1="Friends Request Page" />
+		<execute function="Portal.AssertClick" locator1="Home#PAGE" value1="Friends Request Page" />
 
 		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Requests" />
@@ -114,7 +114,7 @@
 
 		<execute macro="Portal.ProductMenu#gotoPersonalSite" />
 
-		<execute function="AssertClick" locator1="Home#PAGE" value1="Friends Request Page" />
+		<execute function="Portal.AssertClick" locator1="Home#PAGE" value1="Friends Request Page" />
 
 		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Summary" />
@@ -133,9 +133,9 @@
 			<var name="siteName" value="test" />
 		</execute>
 
-		<execute function="AssertClick" locator1="//div[@class='add-as-friend']/button[contains(.,'Add as Friend')]" value1="ADD AS FRIEND" />
+		<execute function="Portal.AssertClick" locator1="//div[@class='add-as-friend']/button[contains(.,'Add as Friend')]" value1="ADD AS FRIEND" />
 
-		<execute function="AssertTextEquals" locator1="//div[contains(@class,'alert') and contains(@class,'alert-info')]" value1="Friend Requested" />
+		<execute function="Portal.AssertTextEquals" locator1="//div[contains(@class,'alert') and contains(@class,'alert-info')]" value1="Friend Requested" />
 
 		<execute macro="Portal.User#logoutPG" />
 
@@ -150,7 +150,7 @@
 			<var name="siteName" value="test" />
 		</execute>
 
-		<execute function="AssertClick" locator1="Link#CONFIRM" value1="Confirm" />
+		<execute function="Portal.AssertClick" locator1="Link#CONFIRM" value1="Confirm" />
 
 		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Friends Directory Page" />

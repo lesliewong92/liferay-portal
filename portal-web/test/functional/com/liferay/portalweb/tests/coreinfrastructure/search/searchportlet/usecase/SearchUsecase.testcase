@@ -278,7 +278,7 @@
 			<var name="searchAssetType" value="Blogs Entry" />
 		</execute>
 
-		<execute function="AssertClick" locator1="SearchResults#USER_FACET_ANY_USER" value1="Any User" />
+		<execute function="Portal.AssertClick" locator1="SearchResults#USER_FACET_ANY_USER" value1="Any User" />
 
 		<execute macro="Portal.Search#viewUserFacetPG">
 			<var name="facetFrequency" value="1" />
@@ -308,7 +308,7 @@
 			<var name="searchTerm" value="Entry" />
 		</execute>
 
-		<execute function="AssertTextNotPresent" locator1="SearchResults#USER_FACET_ANY_USER" value1="Any User" />
+		<execute function="Portal.AssertTextNotPresent" locator1="SearchResults#USER_FACET_ANY_USER" value1="Any User" />
 	</command>
 
 	<command name="SearchDeletedWebContent" priority="4">
@@ -340,7 +340,7 @@
 			<var name="searchTerm" value="WC Title" />
 		</execute>
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="Message#EMPTY_INFO" value1="No results were found that matched the keywords" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Message#EMPTY_INFO" value1="No results were found that matched the keywords" />
 	</command>
 
 	<command name="SearchEntriesByPortletsAndModifiedRangeFacet" priority="4">
@@ -472,13 +472,13 @@
 		<for list="Blogs Entry1 Title,WC WebContent2 Title,Wiki Page2 Title,DM Document Title" param="searchAssetTitle">
 			<var name="key_searchAssetTitle" value="${searchAssetTitle}" />
 
-			<execute function="AssertTextEquals" locator1="SearchResults#ASSET_ENTRY_TABLE_TITLE" value1="${searchAssetTitle}" />
+			<execute function="Portal.AssertTextEquals" locator1="SearchResults#ASSET_ENTRY_TABLE_TITLE" value1="${searchAssetTitle}" />
 		</for>
 
 		<for list="Blogs Entry2 Title,WC WebContent1 Title,Wiki Page1 Title" param="searchAssetTitle">
 			<var name="key_searchAssetTitle" value="${searchAssetTitle}" />
 
-			<execute function="AssertTextNotPresent" locator1="SearchResults#ASSET_ENTRY_TABLE_TITLE" value1="${searchAssetTitle}" />
+			<execute function="Portal.AssertTextNotPresent" locator1="SearchResults#ASSET_ENTRY_TABLE_TITLE" value1="${searchAssetTitle}" />
 		</for>
 
 		<execute macro="Portal.Search#viewAssetTypeFacetPG">
@@ -496,13 +496,13 @@
 		<for list="Blogs Entry1 Title,WC WebContent2 Title,Wiki Page2 Title,DM Document Title" param="searchAssetTitle">
 			<var name="key_searchAssetTitle" value="${searchAssetTitle}" />
 
-			<execute function="AssertTextEquals" locator1="SearchResults#ASSET_ENTRY_TABLE_TITLE" value1="${searchAssetTitle}" />
+			<execute function="Portal.AssertTextEquals" locator1="SearchResults#ASSET_ENTRY_TABLE_TITLE" value1="${searchAssetTitle}" />
 		</for>
 
 		<for list="Blogs Entry2 Title,WC WebContent1 Title,Wiki Page1 Title" param="searchAssetTitle">
 			<var name="key_searchAssetTitle" value="${searchAssetTitle}" />
 
-			<execute function="AssertTextNotPresent" locator1="SearchResults#ASSET_ENTRY_TABLE_TITLE" value1="${searchAssetTitle}" />
+			<execute function="Portal.AssertTextNotPresent" locator1="SearchResults#ASSET_ENTRY_TABLE_TITLE" value1="${searchAssetTitle}" />
 		</for>
 	</command>
 
@@ -726,7 +726,7 @@
 			<var name="searchAssetType" value="User" />
 		</execute>
 
-		<execute function="Refresh" />
+		<execute function="Portal.Refresh" />
 
 		<execute macro="Portal.Search#viewSearchResultPG">
 			<var name="searchAssetTitle" value="userfn1 userln1" />
@@ -849,7 +849,7 @@
 			<var name="searchAssetType" value="User" />
 		</execute>
 
-		<execute function="Refresh" />
+		<execute function="Portal.Refresh" />
 
 		<execute macro="Portal.Search#viewSearchResultPG">
 			<var name="searchAssetTitle" value="userfn1 userln1" />
@@ -970,7 +970,7 @@
 			<var name="searchAssetType" value="User" />
 		</execute>
 
-		<execute function="Refresh" />
+		<execute function="Portal.Refresh" />
 
 		<execute macro="Portal.Search#viewSearchResultPG">
 			<var name="searchAssetTitle" value="userfn1 userln1" />
@@ -1042,7 +1042,7 @@
 
 		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
 
-		<execute function="AssertLocation" value1="${portalURL}/web/guest/search-page?q=Blogs%20Entry%20Title" />
+		<execute function="Portal.AssertLocation" value1="${portalURL}/web/guest/search-page?q=Blogs%20Entry%20Title" />
 
 		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Search Page" />
@@ -1057,11 +1057,11 @@
 			<var name="searchTerm" value="Blogs Entry Title" />
 		</execute>
 
-		<execute function="AssertLocation" value1="${portalURL}/web/guest/search-page?keywordparameter=Blogs%20Entry%20Title" />
+		<execute function="Portal.AssertLocation" value1="${portalURL}/web/guest/search-page?keywordparameter=Blogs%20Entry%20Title" />
 
-		<execute function="Click" locator1="TypeFacet#BLOGS_ENTRY" />
+		<execute function="Portal.Click" locator1="TypeFacet#BLOGS_ENTRY" />
 
-		<execute function="AssertLocation" value1="${portalURL}/web/guest/search-page?keywordparameter=Blogs%20Entry%20Title&amp;type=com.liferay.blogs.model.BlogsEntry" />
+		<execute function="Portal.AssertLocation" value1="${portalURL}/web/guest/search-page?keywordparameter=Blogs%20Entry%20Title&amp;type=com.liferay.blogs.model.BlogsEntry" />
 	</command>
 
 	<command name="ViewUserSearchResult" priority="4">

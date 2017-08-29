@@ -272,11 +272,11 @@
 
 		<var name="key_workflowDefinitionTitle" value="Single Approver" />
 
-		<execute function="AssertTextEquals" locator1="KaleoFormsAdminEditProcess#WORKFLOW_TABLE_TITLE" value1="Single Approver" />
+		<execute function="Portal.AssertTextEquals" locator1="KaleoFormsAdminEditProcess#WORKFLOW_TABLE_TITLE" value1="Single Approver" />
 
 		<var name="key_rowEntry" value="Single Approver" />
 
-		<execute function="AssertElementPresent" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
+		<execute function="Portal.AssertElementPresent" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
 
 		<execute macro="Portal.KaleoFormsAdmin#viewNoUnpublishedWorkflowDefinitions" />
 	</command>

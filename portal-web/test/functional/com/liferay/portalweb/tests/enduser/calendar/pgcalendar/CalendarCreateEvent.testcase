@@ -36,7 +36,7 @@
 				</execute>
 
 				<if>
-					<condition function="IsElementPresent" locator1="Calendar#SCHEDULER_EVENT_GENERIC" />
+					<condition function="Portal.IsElementPresent" locator1="Calendar#SCHEDULER_EVENT_GENERIC" />
 					<then>
 						<execute macro="Portal.CalendarEvent#tearDown" />
 					</then>
@@ -394,9 +394,9 @@
 					<var name="eventTitle" value="Calendar Event Title" />
 				</execute>
 
-				<execute function="Pause" locator1="1000" />
+				<execute function="Portal.Pause" locator1="1000" />
 
-				<execute function="AssertConsoleTextNotPresent" value1="OutOfMemoryError" />
+				<execute function="Portal.AssertConsoleTextNotPresent" value1="OutOfMemoryError" />
 
 				<var method="MathUtil#sum('${refreshCount}', '1')" name="refreshCount" />
 			</then>
@@ -1133,7 +1133,7 @@
 
 		<execute macro="Portal.CalendarEvent#gotoRepeatConfiguration" />
 
-		<execute function="KeyPress" locator1="CalendarEditEvent#REPEAT_ENDS_NEVER_RADIO" value1="\ESCAPE" />
+		<execute function="Portal.KeyPress" locator1="CalendarEditEvent#REPEAT_ENDS_NEVER_RADIO" value1="\ESCAPE" />
 
 		<execute macro="Portal.CalendarEvent#viewNoRepeating" />
 
@@ -1161,7 +1161,7 @@
 			<var name="frequency" value="Daily" />
 		</execute>
 
-		<execute function="KeyPress" locator1="CalendarEditEvent#REPEAT_ENDS_NEVER_RADIO" value1="\ESCAPE" />
+		<execute function="Portal.KeyPress" locator1="CalendarEditEvent#REPEAT_ENDS_NEVER_RADIO" value1="\ESCAPE" />
 
 		<execute macro="Portal.CalendarEvent#viewNoRepeating" />
 

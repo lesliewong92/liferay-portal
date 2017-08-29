@@ -152,13 +152,13 @@
 			<var name="userEmailAddress" value="test@liferay.com" />
 		</execute>
 
-		<execute function="AssertConsoleTextPresent" value1="Sending SAML message &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;_&lt;saml2p:Response Destination=&quot;http://www.able.com:9080/c/portal/saml/acs&quot;" />
+		<execute function="Portal.AssertConsoleTextPresent" value1="Sending SAML message &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;_&lt;saml2p:Response Destination=&quot;http://www.able.com:9080/c/portal/saml/acs&quot;" />
 
 		<execute macro="Portal.User#logoutPG">
 			<var name="specificURL" value="http://www.able.com:9080" />
 		</execute>
 
-		<execute function="AssertConsoleTextPresent" value1="Validation of protocol message signature succeeded, message type: {urn:oasis:names:tc:SAML:2.0:protocol}LogoutRequest" />
+		<execute function="Portal.AssertConsoleTextPresent" value1="Validation of protocol message signature succeeded, message type: {urn:oasis:names:tc:SAML:2.0:protocol}LogoutRequest" />
 	</command>
 
 	<command name="ViewSingleLogoutWithMultipleSPs" priority="4">

@@ -25,7 +25,7 @@
 			<var name="pageName" value="Microblogs Page" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="Portlet#H2_HEADER" value1="Microblogs" />
+		<execute function="Portal.AssertTextEquals" locator1="Portlet#H2_HEADER" value1="Microblogs" />
 	</set-up>
 
 	<tear-down>
@@ -67,7 +67,7 @@
 
 		<execute macro="Portal.Microblogs#gotoTimelineTab" />
 
-		<execute function="AssertTextEquals" locator1="Message#INFO" value1="There are no microblog entries." />
+		<execute function="Portal.AssertTextEquals" locator1="Message#INFO" value1="There are no microblog entries." />
 	</command>
 
 	<command name="EditEntry" priority="5">

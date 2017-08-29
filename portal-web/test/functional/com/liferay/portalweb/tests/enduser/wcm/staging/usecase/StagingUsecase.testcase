@@ -279,7 +279,7 @@
 
 		<execute macro="Portal.Navigator#gotoStagedView" />
 
-		<execute function="Pause" locator1="30000" />
+		<execute function="Portal.Pause" locator1="30000" />
 
 		<execute macro="Portal.ProductMenu#gotoSitesPublishing">
 			<var name="portlet" value="Staging" />
@@ -870,7 +870,7 @@
 			<var name="portletName" value="Asset Publisher" />
 		</execute>
 
-		<execute function="Pause" locator1="3000" />
+		<execute function="Portal.Pause" locator1="3000" />
 
 		<execute macro="Portal.DMDocument#addPGViaAP">
 			<var name="dmDocumentDescription" value="DM Document Description" />

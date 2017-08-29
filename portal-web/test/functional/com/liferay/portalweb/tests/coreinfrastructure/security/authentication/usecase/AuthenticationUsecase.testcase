@@ -86,7 +86,7 @@
 
 		<execute macro="Portal.SystemSettings#saveConfiguration" />
 
-		<execute function="AssertConsoleTextNotPresent" value1="Unable to encrypt blank password" />
+		<execute function="Portal.AssertConsoleTextNotPresent" value1="Unable to encrypt blank password" />
 
 		<execute macro="Portal.Portlet#shutdownServer" />
 
@@ -107,6 +107,6 @@
 			<var name="userScreenName" value="ldapusercn" />
 		</execute>
 
-		<execute function="AssertConsoleTextNotPresent" value1="Unable to encrypt blank password" />
+		<execute function="Portal.AssertConsoleTextNotPresent" value1="Unable to encrypt blank password" />
 	</command>
 </definition>

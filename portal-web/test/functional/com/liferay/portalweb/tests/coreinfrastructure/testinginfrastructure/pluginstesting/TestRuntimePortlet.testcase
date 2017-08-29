@@ -29,7 +29,7 @@
 			<var name="portletName" value="Test Runtime Parent" />
 		</execute>
 
-		<execute function="Click" locator1="Button#EXECUTE" />
+		<execute function="Portal.Click" locator1="Button#EXECUTE" />
 
 		<execute macro="Portal.Alert#viewSuccessMessage" />
 	</command>

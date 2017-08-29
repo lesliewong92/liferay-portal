@@ -104,7 +104,7 @@
 			<var name="uploadFileName" value="Document_1.jpg" />
 		</execute>
 
-		<execute function="Pause" locator1="1000" />
+		<execute function="Portal.Pause" locator1="1000" />
 
 		<execute macro="Portal.PortletEntry#publish" />
 
@@ -284,15 +284,15 @@
 			<var name="imageFileName" value="Document_1.jpg" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="ItemSelector#ITEM_SELECTOR_IFRAME" />
+		<execute function="Portal.SelectFrame" locator1="ItemSelector#ITEM_SELECTOR_IFRAME" />
 
 		<var name="key_imageFileName" value="Document_1.jpg" />
 
-		<execute function="Click" locator1="ItemSelector#SELECT_FILE_IMAGE_PREVIEW" />
+		<execute function="Portal.Click" locator1="ItemSelector#SELECT_FILE_IMAGE_PREVIEW" />
 
-		<execute function="SelectFrameTop" value1="relative=top" />
+		<execute function="Portal.SelectFrameTop" value1="relative=top" />
 
-		<execute function="AssertClick" locator1="ItemSelector#ADD_BUTTON" value1="Add" />
+		<execute function="Portal.AssertClick" locator1="ItemSelector#ADD_BUTTON" value1="Add" />
 
 		<execute macro="Portal.PortletEntry#publish" />
 
@@ -457,7 +457,7 @@
 			<var name="userFullName" value="Test Test" />
 		</execute>
 
-		<execute function="AssertClick" locator1="Link#READ_MORE" value1="Read More" />
+		<execute function="Portal.AssertClick" locator1="Link#READ_MORE" value1="Read More" />
 
 		<execute macro="Portal.BlogsEntry#viewPG">
 			<var name="entryContent" value="Blogs Entry2 Content" />
@@ -501,14 +501,14 @@
 
 		<var name="key_entryTitle" value="Blogs Entry3 Title" />
 
-		<execute function="AssertClick" locator1="Blogs#ENTRY_COMMENTS_COUNT" value1="0" />
+		<execute function="Portal.AssertClick" locator1="Blogs#ENTRY_COMMENTS_COUNT" value1="0" />
 
 		<execute macro="Portal.BlogsEntry#viewPG">
 			<var name="entryContent" value="Blogs Entry3 Content" />
 			<var name="entryTitle" value="Blogs Entry3 Title" />
 		</execute>
 
-		<execute function="AssertTextEquals#assertValue" locator1="BlogsEntry#COMMENTS_TRACKBACK_URL" value1="http://www.able.com:8080/blogs-page/-/blogs/trackback/blogs-entry3-title" />
+		<execute function="Portal.AssertTextEquals#assertValue" locator1="BlogsEntry#COMMENTS_TRACKBACK_URL" value1="http://www.able.com:8080/blogs-page/-/blogs/trackback/blogs-entry3-title" />
 
 		<execute macro="Portal.Navigator#gotoSpecificURLPage">
 			<var name="pageName" value="Blogs Page" />
@@ -544,9 +544,9 @@
 			<var name="userFullName" value="Test Test" />
 		</execute>
 
-		<execute function="AssertTextEquals#assertValue" locator1="BlogsEntry#COMMENTS_TRACKBACK_URL" value1="http://www.able.com:8080/blogs-page/-/blogs/trackback/blogs-entry3-title" />
+		<execute function="Portal.AssertTextEquals#assertValue" locator1="BlogsEntry#COMMENTS_TRACKBACK_URL" value1="http://www.able.com:8080/blogs-page/-/blogs/trackback/blogs-entry3-title" />
 
-		<execute function="AssertClick" locator1="Link#READ_MORE" value1="Read More" />
+		<execute function="Portal.AssertClick" locator1="Link#READ_MORE" value1="Read More" />
 
 		<execute macro="Portal.BlogsEntry#viewPG">
 			<var name="entryContent" value="Blogs Entry4 Content" />
@@ -571,14 +571,14 @@
 
 		<var name="key_entryTitle" value="Blogs Entry5 Title" />
 
-		<execute function="AssertClick" locator1="Blogs#ENTRY_COMMENTS_COUNT" value1="0" />
+		<execute function="Portal.AssertClick" locator1="Blogs#ENTRY_COMMENTS_COUNT" value1="0" />
 
 		<execute macro="Portal.BlogsEntry#viewPG">
 			<var name="entryContent" value="Blogs Entry5 Content" />
 			<var name="entryTitle" value="Blogs Entry5 Title" />
 		</execute>
 
-		<execute function="AssertTextEquals#assertValue" locator1="BlogsEntry#COMMENTS_TRACKBACK_URL" value1="http://www.able.com:8080/blogs-page/-/blogs/trackback/blogs-entry5-title" />
+		<execute function="Portal.AssertTextEquals#assertValue" locator1="BlogsEntry#COMMENTS_TRACKBACK_URL" value1="http://www.able.com:8080/blogs-page/-/blogs/trackback/blogs-entry5-title" />
 
 		<execute macro="Portal.Navigator#gotoSpecificURLPage">
 			<var name="pageName" value="Blogs Page" />
@@ -611,9 +611,9 @@
 			<var name="userFullName" value="Test Test" />
 		</execute>
 
-		<execute function="AssertTextEquals#assertValue" locator1="BlogsEntry#COMMENTS_TRACKBACK_URL" value1="http://www.able.com:8080/blogs-page/-/blogs/trackback/blogs-entry5-title" />
+		<execute function="Portal.AssertTextEquals#assertValue" locator1="BlogsEntry#COMMENTS_TRACKBACK_URL" value1="http://www.able.com:8080/blogs-page/-/blogs/trackback/blogs-entry5-title" />
 
-		<execute function="AssertClick" locator1="Link#READ_MORE" value1="Read More" />
+		<execute function="Portal.AssertClick" locator1="Link#READ_MORE" value1="Read More" />
 
 		<execute macro="Portal.BlogsEntry#viewPG">
 			<var name="entryContent" value="Blogs Entry6 Content" />
@@ -892,7 +892,7 @@
 
 		<var name="key_entryTitle" value="Blogs Entry Title 1" />
 
-		<execute function="AssertTextEquals" locator1="BlogsEntry#TITLE" value1="Blogs Entry Title 1" />
+		<execute function="Portal.AssertTextEquals" locator1="BlogsEntry#TITLE" value1="Blogs Entry Title 1" />
 
 		<execute macro="Portal.BlogsEntry#viewPG">
 			<var name="entryContent" value="Blogs Entry Content 1" />
@@ -926,7 +926,7 @@
 
 		<var name="key_entryTitle" value="Blogs Entry Title 1" />
 
-		<execute function="AssertTextEquals" locator1="BlogsEntry#TITLE" value1="Blogs Entry Title 1" />
+		<execute function="Portal.AssertTextEquals" locator1="BlogsEntry#TITLE" value1="Blogs Entry Title 1" />
 
 		<execute macro="Portal.BlogsNavigator#gotoEntryPG">
 			<var name="entryContent" value="Blogs Entry Content 1" />
@@ -964,11 +964,11 @@
 
 		<var name="key_entryTitle" value="Blogs Entry Title 1" />
 
-		<execute function="AssertTextEquals" locator1="BlogsEntry#TITLE" value1="Blogs Entry Title 1" />
+		<execute function="Portal.AssertTextEquals" locator1="BlogsEntry#TITLE" value1="Blogs Entry Title 1" />
 
 		<var name="key_entryTitle" value="Blogs Entry Title 2" />
 
-		<execute function="AssertTextEquals" locator1="BlogsEntry#TITLE" value1="Blogs Entry Title 2" />
+		<execute function="Portal.AssertTextEquals" locator1="BlogsEntry#TITLE" value1="Blogs Entry Title 2" />
 
 		<execute macro="Portal.BlogsAggregatorPortlet#configureSelectionMethod">
 			<var name="selectionMethod" value="Scope" />
@@ -981,11 +981,11 @@
 
 		<var name="key_entryTitle" value="Blogs Entry Title 1" />
 
-		<execute function="AssertTextEquals" locator1="BlogsEntry#TITLE" value1="Blogs Entry Title 1" />
+		<execute function="Portal.AssertTextEquals" locator1="BlogsEntry#TITLE" value1="Blogs Entry Title 1" />
 
 		<var name="key_entryTitle" value="Blogs Entry Title 2" />
 
-		<execute function="AssertElementNotPresent" locator1="BlogsEntry#TITLE" value1="Blogs Entry Title 2" />
+		<execute function="Portal.AssertElementNotPresent" locator1="BlogsEntry#TITLE" value1="Blogs Entry Title 2" />
 
 		<execute macro="Portal.SitePageNavigator#gotoPages">
 			<var name="page" value="Public Pages" />
@@ -1023,7 +1023,7 @@
 
 		<var name="key_entryTitle" value="Blogs Entry Title 1" />
 
-		<execute function="AssertTextEquals" locator1="BlogsEntry#TITLE" value1="Blogs Entry Title 1" />
+		<execute function="Portal.AssertTextEquals" locator1="BlogsEntry#TITLE" value1="Blogs Entry Title 1" />
 	</command>
 
 	<command name="StagingBlogsCP" priority="3">
@@ -1393,9 +1393,9 @@
 
 		<var name="key_entryAuthor" value="Test Test" />
 
-		<execute function="AssertClick" locator1="Blogs#RECENT_BLOGGER_USER_NAME" value1="Test Test" />
+		<execute function="Portal.AssertClick" locator1="Blogs#RECENT_BLOGGER_USER_NAME" value1="Test Test" />
 
-		<execute function="AssertLocation" value1="${friendlyURL}" />
+		<execute function="Portal.AssertLocation" value1="${friendlyURL}" />
 
 		<execute macro="Portal.BlogsEntry#viewPG">
 			<var name="entryContent" value="Blogs Entry Content" />
@@ -1481,7 +1481,7 @@
 
 		<var name="key_entryTitle" value="Blogs Entry Title" />
 
-		<execute function="AssertClick" locator1="Blogs#ENTRY_TABLE_TITLE" value1="Blogs Entry Title" />
+		<execute function="Portal.AssertClick" locator1="Blogs#ENTRY_TABLE_TITLE" value1="Blogs Entry Title" />
 
 		<execute macro="Portal.BlogsEntry#viewEntry">
 			<var name="entryContent" value="Blogs Entry Content" />
@@ -1643,7 +1643,7 @@
 
 		<var name="key_uploadFileName" value="Document_1" />
 
-		<execute function="AssertElementPresent" locator1="BlogsEntry#ENTRY_COVER_IMAGE" value1="Document_1" />
+		<execute function="Portal.AssertElementPresent" locator1="BlogsEntry#ENTRY_COVER_IMAGE" value1="Document_1" />
 
 		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
@@ -1656,7 +1656,7 @@
 
 		<var name="key_uploadFileName" value="Document_2" />
 
-		<execute function="AssertElementPresent" locator1="BlogsEntry#ENTRY_COVER_IMAGE" value1="Document_2" />
+		<execute function="Portal.AssertElementPresent" locator1="BlogsEntry#ENTRY_COVER_IMAGE" value1="Document_2" />
 	</command>
 
 	<command name="ViewBlogsEntryWithCoverImageUploadedToDM" priority="3">
@@ -1675,7 +1675,7 @@
 			<var name="uploadFileName" value="Document_1.jpg" />
 		</execute>
 
-		<execute function="Pause" locator1="1000" />
+		<execute function="Portal.Pause" locator1="1000" />
 
 		<execute macro="Portal.PortletEntry#publish" />
 
@@ -1850,21 +1850,21 @@
 
 		<execute macro="Portal.BlogsEntry#viewNoEntryViaBlogsAggregatorPG" />
 
-		<execute function="Pause" locator1="180000" />
+		<execute function="Portal.Pause" locator1="180000" />
 
 		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Aggregator Page" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="Portlet#H2_HEADER" value1="Blogs Aggregator" />
+		<execute function="Portal.AssertTextEquals" locator1="Portlet#H2_HEADER" value1="Blogs Aggregator" />
 
 		<var name="key_entryAbstractDescription" value="Blogs Entry Abstract Description" />
 		<var name="key_entryTitle" value="Blogs Entry Title" />
 
-		<execute function="AssertTextEquals" locator1="BlogsEntry#TITLE" value1="Blogs Entry Title" />
-		<execute function="AssertTextEquals" locator1="BlogsEntry#CONTENT_ABSTRACT" value1="Blogs Entry Abstract Description" />
+		<execute function="Portal.AssertTextEquals" locator1="BlogsEntry#TITLE" value1="Blogs Entry Title" />
+		<execute function="Portal.AssertTextEquals" locator1="BlogsEntry#CONTENT_ABSTRACT" value1="Blogs Entry Abstract Description" />
 
-		<execute function="AssertClick" locator1="BlogsEntry#TITLE_LINK" value1="Blogs Entry Title" />
+		<execute function="Portal.AssertClick" locator1="BlogsEntry#TITLE_LINK" value1="Blogs Entry Title" />
 
 		<execute macro="Portal.BlogsEntry#viewEntry">
 			<var name="entryContent" value="Blogs Entry Content" />
@@ -1880,10 +1880,10 @@
 			<var name="pageName" value="Blogs Aggregator Page" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="Portlet#H2_HEADER" value1="Blogs Aggregator" />
-		<execute function="AssertTextEquals" locator1="BlogsEntry#CONTENT_ABSTRACT" value1="Blogs Entry Abstract Description" />
+		<execute function="Portal.AssertTextEquals" locator1="Portlet#H2_HEADER" value1="Blogs Aggregator" />
+		<execute function="Portal.AssertTextEquals" locator1="BlogsEntry#CONTENT_ABSTRACT" value1="Blogs Entry Abstract Description" />
 
-		<execute function="AssertClick" locator1="BlogsEntry#TITLE_LINK" value1="Blogs Entry Title" />
+		<execute function="Portal.AssertClick" locator1="BlogsEntry#TITLE_LINK" value1="Blogs Entry Title" />
 
 		<execute macro="Portal.BlogsEntry#viewEntry">
 			<var name="entryContent" value="Blogs Entry Content" />
@@ -1928,17 +1928,17 @@
 			<var name="rotateDirection" value="right" />
 		</execute>
 
-		<execute function="Pause" locator1="3000" />
+		<execute function="Portal.Pause" locator1="3000" />
 
 		<execute macro="Portal.ImageEditor#applyChangesAndSaveFile" />
 
-		<execute function="SelectFrameTop" value1="relative=top" />
+		<execute function="Portal.SelectFrameTop" value1="relative=top" />
 
-		<execute function="AssertClick" locator1="ItemSelector#ADD_BUTTON" value1="Add" />
+		<execute function="Portal.AssertClick" locator1="ItemSelector#ADD_BUTTON" value1="Add" />
 
-		<execute function="AssertClick" locator1="Button#PUBLISH" value1="Publish" />
+		<execute function="Portal.AssertClick" locator1="Button#PUBLISH" value1="Publish" />
 
-		<execute function="AssertTextEquals" locator1="Portlet#HEADER" value1="Blogs" />
+		<execute function="Portal.AssertTextEquals" locator1="Portlet#HEADER" value1="Blogs" />
 
 		<execute macro="Portal.Navigator#openURL" />
 
@@ -2049,7 +2049,7 @@
 			<var name="entryTitleEdit" value="Blogs Entry Title Draft" />
 		</execute>
 
-		<execute function="Click" locator1="Icon#BACK" />
+		<execute function="Portal.Click" locator1="Icon#BACK" />
 
 		<execute macro="Portal.Navigator#gotoNavItem">
 			<var name="navItem" value="Not Published (1)" />
@@ -2114,25 +2114,25 @@
 
 		<var name="key_portletName" value="Blogs Aggregator" />
 
-		<execute function="AssertTextPresent" locator1="Portlet#TITLE" value1="Blogs Aggregator" />
+		<execute function="Portal.AssertTextPresent" locator1="Portlet#TITLE" value1="Blogs Aggregator" />
 
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#CONFIGURATION" />
 
-		<execute function="AssertClick" locator1="NavBar#SETUP" value1="Setup" />
+		<execute function="Portal.AssertClick" locator1="NavBar#SETUP" value1="Setup" />
 
-		<execute function="AssertClick" locator1="Button#SELECT" value1="Select" />
+		<execute function="Portal.AssertClick" locator1="Button#SELECT" value1="Select" />
 
-		<execute function="SelectFrame" value1="relative=top" />
+		<execute function="Portal.SelectFrame" value1="relative=top" />
 
-		<execute function="SelectFrame" locator1="UsersAndOrganizationsSelectOrganization#SELECT_ORGANIZATION_IFRAME" />
+		<execute function="Portal.SelectFrame" locator1="UsersAndOrganizationsSelectOrganization#SELECT_ORGANIZATION_IFRAME" />
 
-		<execute function="AssertElementPresent" locator1="Message#EMPTY_INFO" />
+		<execute function="Portal.AssertElementPresent" locator1="Message#EMPTY_INFO" />
 
 		<execute macro="Portal.IFrame#closeFrame" />
 
 		<var name="key_modalTitle" value="Configuration" />
 
-		<execute function="Click" locator1="Button#CLOSE_MODAL" />
+		<execute function="Portal.Click" locator1="Button#CLOSE_MODAL" />
 
 		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />

@@ -111,7 +111,7 @@
 
 		<execute macro="Portal.WikiNavigator#gotoAllPagesCP" />
 
-		<execute function="Click" locator1="Button#PLUS" />
+		<execute function="Portal.Click" locator1="Button#PLUS" />
 
 		<execute macro="Portal.WikiEntry#addPageTitle">
 			<var name="wikiPageTitle" value="Wiki Page Title" />
@@ -135,7 +135,7 @@
 			<var name="wikiPageTitle" value="Wiki Page Title" />
 		</execute>
 
-		<execute function="Pause" locator1="30000" />
+		<execute function="Portal.Pause" locator1="30000" />
 
 		<execute macro="Portal.Mentions#addMentionViaComments">
 			<var name="entryComment" value="Comment mentioning" />

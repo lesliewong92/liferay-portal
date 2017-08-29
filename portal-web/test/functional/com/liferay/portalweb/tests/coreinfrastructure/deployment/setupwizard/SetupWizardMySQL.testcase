@@ -72,7 +72,7 @@
 
 		<execute macro="Portal.User#answerPasswordReminder" />
 
-		<execute function="AssertElementPresent" locator1="UserBar#USER_AVATAR_IMAGE" />
+		<execute function="Portal.AssertElementPresent" locator1="UserBar#USER_AVATAR_IMAGE" />
 
 		<execute macro="Portal.User#viewLoggedInPG">
 			<var name="userFirstName" value="TestSetupWizardFN" />
@@ -82,10 +82,10 @@
 			<var name="portletName" value="Account Settings" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="TextInput#EMAIL_ADDRESS" value1="testsetupwizard@liferay.com" />
-		<execute function="AssertTextEquals" locator1="TextInput#FIRST_NAME" value1="TestSetupWizardFN" />
-		<execute function="AssertTextEquals" locator1="TextInput#LAST_NAME" value1="TestSetupWizardLN" />
-		<execute function="AssertTextEquals" locator1="TextInput#SCREEN_NAME" value1="testsetupwizard" />
+		<execute function="Portal.AssertTextEquals" locator1="TextInput#EMAIL_ADDRESS" value1="testsetupwizard@liferay.com" />
+		<execute function="Portal.AssertTextEquals" locator1="TextInput#FIRST_NAME" value1="TestSetupWizardFN" />
+		<execute function="Portal.AssertTextEquals" locator1="TextInput#LAST_NAME" value1="TestSetupWizardLN" />
+		<execute function="Portal.AssertTextEquals" locator1="TextInput#SCREEN_NAME" value1="testsetupwizard" />
 	</command>
 
 	<command name="MySQLtoMySQLLportal1" priority="5">

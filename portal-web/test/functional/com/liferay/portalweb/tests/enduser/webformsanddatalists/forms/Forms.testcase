@@ -491,7 +491,7 @@
 
 		<execute macro="Portal.Form#closeSidebar" />
 
-		<execute function="Pause" locator1="60000" />
+		<execute function="Portal.Pause" locator1="60000" />
 
 		<execute macro="Portal.FormsAdminNavigator#gotoBack" />
 
@@ -511,7 +511,7 @@
 
 		<execute macro="Portal.Form#closeSidebar" />
 
-		<execute function="Pause" locator1="120000" />
+		<execute function="Portal.Pause" locator1="120000" />
 
 		<execute macro="Portal.FormsAdminNavigator#gotoBack" />
 
@@ -2108,7 +2108,7 @@
 			<var name="bodyLink" value="Click here to access the form" />
 		</execute>
 
-		<execute function="SelectWindow#selectPopUp" locator1="null" />
+		<execute function="Portal.SelectWindow#selectPopUp" locator1="null" />
 
 		<execute macro="Portal.FormsAdmin#viewTextEntry">
 			<var name="fieldLabel" value="Text Field" />
@@ -2609,7 +2609,7 @@
 			<var name="larFileName" value="FormsExport.lar" />
 		</execute>
 
-		<execute function="Pause" locator1="5000" />
+		<execute function="Portal.Pause" locator1="5000" />
 
 		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
@@ -4490,9 +4490,9 @@
 
 		<execute macro="Portal.Navigator#gotoBack" />
 
-		<execute function="AssertElementPresent" locator1="Button#LEAVE" />
+		<execute function="Portal.AssertElementPresent" locator1="Button#LEAVE" />
 
-		<execute function="Click" locator1="Button#STAY" />
+		<execute function="Portal.Click" locator1="Button#STAY" />
 
 		<execute macro="Portal.Form#save" />
 
@@ -4775,7 +4775,7 @@
 
 		<execute macro="Portal.Form#closeSidebar" />
 
-		<execute function="Pause" locator1="60000" />
+		<execute function="Portal.Pause" locator1="60000" />
 
 		<execute macro="Portal.Form#viewSaveNotification" />
 

@@ -121,7 +121,7 @@
 			<var name="tagName" value="tagname1" />
 		</execute>
 
-		<execute function="AssertTextNotPresent" value1="tagname2" />
+		<execute function="Portal.AssertTextNotPresent" value1="tagname2" />
 	</command>
 
 	<command name="EditTagAndSave" priority="5">
@@ -146,7 +146,7 @@
 			<var name="tagName" value="tagname2" />
 		</execute>
 
-		<execute function="AssertTextNotPresent" value1="tagname1" />
+		<execute function="Portal.AssertTextNotPresent" value1="tagname1" />
 	</command>
 
 	<command name="MergeMultipleTags" priority="4">
@@ -178,7 +178,7 @@
 		</execute>
 
 		<for list="2,3" param="i">
-			<execute function="AssertTextNotPresent" value1="tagname${i}" />
+			<execute function="Portal.AssertTextNotPresent" value1="tagname${i}" />
 		</for>
 	</command>
 
@@ -225,7 +225,7 @@
 		</for>
 
 		<for list="2,3,7" param="i">
-			<execute function="AssertTextNotPresent" value1="tagname${i}" />
+			<execute function="Portal.AssertTextNotPresent" value1="tagname${i}" />
 		</for>
 	</command>
 
@@ -234,19 +234,19 @@
 			<var name="displayStyle" value="icon" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="Card#GENERIC_LARGE_TEXT" value1="tagname1" />
+		<execute function="Portal.AssertTextEquals" locator1="Card#GENERIC_LARGE_TEXT" value1="tagname1" />
 
 		<execute macro="Portal.Portlet#changeDisplayStyle">
 			<var name="displayStyle" value="descriptive" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="ContentRow#ENTRY_CONTENT_DESCRIPTIVE_TITLE" value1="tagname1" />
+		<execute function="Portal.AssertTextEquals" locator1="ContentRow#ENTRY_CONTENT_DESCRIPTIVE_TITLE" value1="tagname1" />
 
 		<execute macro="Portal.Portlet#changeDisplayStyle">
 			<var name="displayStyle" value="list" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="ContentRow#ENTRY_CONTENT_LIST_COLUMN" value1="tagname1">
+		<execute function="Portal.AssertTextEquals" locator1="ContentRow#ENTRY_CONTENT_LIST_COLUMN" value1="tagname1">
 			<var name="key_columnNumber" value="2" />
 		</execute>
 	</command>

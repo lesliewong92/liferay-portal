@@ -247,14 +247,14 @@
 			<var name="wfInformationTitle" value="Feed Back" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="xpath=(//div[contains(@class,'form-group')]/label[contains(@for,'WebFormPortlet')])[1]" value1="Test 1" />
-		<execute function="AssertElementPresent" locator1="xpath=(//fieldset/div/div[contains(@class,'form-group')]/input[@type='text'])[1]" />
-		<execute function="AssertTextEquals" locator1="xpath=(//div[contains(@class,'form-group')]/label[contains(@for,'WebFormPortlet')])[2]" value1="Test 2" />
-		<execute function="AssertElementPresent" locator1="xpath=(//fieldset/div/div[contains(@class,'form-group')]/input[@type='text'])[2]" />
-		<execute function="AssertTextEquals" locator1="xpath=(//div[contains(@class,'form-group')]/label[contains(@for,'WebFormPortlet')])[3]" value1="Rate Us!" />
-		<execute function="AssertElementPresent" locator1="//div[contains(@class,'checkbox')]//input[@type='checkbox']" />
-		<execute function="AssertTextEquals" locator1="xpath=(//div[contains(@class,'form-group')]/label[contains(@for,'WebFormPortlet')])[4]" value1="Additional Comments" />
-		<execute function="AssertElementPresent" locator1="//fieldset/div/div[contains(@class,'form-group')]/textarea" />
+		<execute function="Portal.AssertTextEquals" locator1="xpath=(//div[contains(@class,'form-group')]/label[contains(@for,'WebFormPortlet')])[1]" value1="Test 1" />
+		<execute function="Portal.AssertElementPresent" locator1="xpath=(//fieldset/div/div[contains(@class,'form-group')]/input[@type='text'])[1]" />
+		<execute function="Portal.AssertTextEquals" locator1="xpath=(//div[contains(@class,'form-group')]/label[contains(@for,'WebFormPortlet')])[2]" value1="Test 2" />
+		<execute function="Portal.AssertElementPresent" locator1="xpath=(//fieldset/div/div[contains(@class,'form-group')]/input[@type='text'])[2]" />
+		<execute function="Portal.AssertTextEquals" locator1="xpath=(//div[contains(@class,'form-group')]/label[contains(@for,'WebFormPortlet')])[3]" value1="Rate Us!" />
+		<execute function="Portal.AssertElementPresent" locator1="//div[contains(@class,'checkbox')]//input[@type='checkbox']" />
+		<execute function="Portal.AssertTextEquals" locator1="xpath=(//div[contains(@class,'form-group')]/label[contains(@for,'WebFormPortlet')])[4]" value1="Additional Comments" />
+		<execute function="Portal.AssertElementPresent" locator1="//fieldset/div/div[contains(@class,'form-group')]/textarea" />
 	</command>
 
 	<command name="EditWebFormAndViewOptionalCheckBoxField" priority="3">
@@ -872,7 +872,7 @@
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="WebFormConfiguration#CONFIGURATION_IFRAME" />
+		<execute function="Portal.SelectFrame" locator1="WebFormConfiguration#CONFIGURATION_IFRAME" />
 
 		<execute macro="Portal.WebFormPortlet#viewEditableField">
 			<var name="wfFieldName" value="Name" />
@@ -886,7 +886,7 @@
 			<var name="wfFieldName" value="Comments" />
 		</execute>
 
-		<execute function="SelectFrameTop" value1="relative=top" />
+		<execute function="Portal.SelectFrameTop" value1="relative=top" />
 
 		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
@@ -917,8 +917,8 @@
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="WebFormConfiguration#CONFIGURATION_IFRAME" />
-		<execute function="AssertTextEquals" locator1="WebFormConfiguration#SETUP_FORM_FIELDS_INFO_MESSAGE" value1="There is existing form data. Please export and delete it before making changes to the fields." />
+		<execute function="Portal.SelectFrame" locator1="WebFormConfiguration#CONFIGURATION_IFRAME" />
+		<execute function="Portal.AssertTextEquals" locator1="WebFormConfiguration#SETUP_FORM_FIELDS_INFO_MESSAGE" value1="There is existing form data. Please export and delete it before making changes to the fields." />
 
 		<execute macro="Portal.WebFormPortlet#viewEditableFieldNotPresent">
 			<var name="wfFieldName" value="Name" />
@@ -948,6 +948,6 @@
 			<var name="wfFieldType" value="Text Box" />
 		</execute>
 
-		<execute function="SelectFrameTop" value1="relative=top" />
+		<execute function="Portal.SelectFrameTop" value1="relative=top" />
 	</command>
 </definition>

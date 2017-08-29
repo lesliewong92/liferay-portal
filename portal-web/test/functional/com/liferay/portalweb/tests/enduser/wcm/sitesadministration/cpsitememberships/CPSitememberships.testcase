@@ -769,15 +769,15 @@
 			<var name="navItem" value="Users" />
 		</execute>
 
-		<execute function="AssertClick" locator1="Pagination#ITEMS_PER_PAGE_SELECT" value1="20 Entries" />
+		<execute function="Portal.AssertClick" locator1="Pagination#ITEMS_PER_PAGE_SELECT" value1="20 Entries" />
 
-		<execute function="Click" locator1="Pagination#FIVE_ITEMS_PER_PAGE" />
+		<execute function="Portal.Click" locator1="Pagination#FIVE_ITEMS_PER_PAGE" />
 
-		<execute function="AssertTextEquals" locator1="Pagination#CURRENT_PAGE_SELECT" value1="Showing 1 to 5 of 11 entries." />
+		<execute function="Portal.AssertTextEquals" locator1="Pagination#CURRENT_PAGE_SELECT" value1="Showing 1 to 5 of 11 entries." />
 
-		<execute function="Click" locator1="Pagination#NEXT_LINK" />
+		<execute function="Portal.Click" locator1="Pagination#NEXT_LINK" />
 
-		<execute function="AssertTextEquals" locator1="Pagination#CURRENT_PAGE_SELECT" value1="Showing 6 to 10 of 11 entries." />
+		<execute function="Portal.AssertTextEquals" locator1="Pagination#CURRENT_PAGE_SELECT" value1="Showing 6 to 10 of 11 entries." />
 
 		<execute macro="Portal.Site#assertMemberListNotVisibleCP">
 			<var name="usersEmailsList" value="userfn1@liferay.com,userfn2@liferay.com,userfn3@liferay.com,userfn10@liferay.com" />
@@ -791,9 +791,9 @@
 			<var name="usersEmailsList" value="userfn9@liferay.com" />
 		</execute>
 
-		<execute function="Click" locator1="Pagination#FIRST_LINK" />
+		<execute function="Portal.Click" locator1="Pagination#FIRST_LINK" />
 
-		<execute function="AssertTextEquals" locator1="Pagination#CURRENT_PAGE_SELECT" value1="Showing 1 to 5 of 11 entries." />
+		<execute function="Portal.AssertTextEquals" locator1="Pagination#CURRENT_PAGE_SELECT" value1="Showing 1 to 5 of 11 entries." />
 
 		<execute macro="Portal.Site#viewMemberListCP">
 			<var name="usersEmailsList" value="userfn1@liferay.com,userfn2@liferay.com,userfn3@liferay.com,userfn10@liferay.com" />
@@ -813,8 +813,8 @@
 			<var name="userScreenName" value="test" />
 		</execute>
 
-		<execute function="Click" locator1="Pagination#LAST_LINK" />
-		<execute function="AssertTextEquals" locator1="Pagination#CURRENT_PAGE_SELECT" value1="Showing 11 to 11 of 11 entries." />
+		<execute function="Portal.Click" locator1="Pagination#LAST_LINK" />
+		<execute function="Portal.AssertTextEquals" locator1="Pagination#CURRENT_PAGE_SELECT" value1="Showing 11 to 11 of 11 entries." />
 
 		<execute macro="Portal.Site#assertMemberListNotVisibleCP">
 			<var name="usersEmailsList" value="userfn1@liferay.com,userfn2@liferay.com,userfn3@liferay.com,userfn10@liferay.com" />
@@ -828,9 +828,9 @@
 			<var name="usersEmailsList" value="userfn9@liferay.com" />
 		</execute>
 
-		<execute function="Click" locator1="Pagination#PREVIOUS_LINK" />
+		<execute function="Portal.Click" locator1="Pagination#PREVIOUS_LINK" />
 
-		<execute function="AssertTextEquals" locator1="Pagination#CURRENT_PAGE_SELECT" value1="Showing 6 to 10 of 11 entries." />
+		<execute function="Portal.AssertTextEquals" locator1="Pagination#CURRENT_PAGE_SELECT" value1="Showing 6 to 10 of 11 entries." />
 
 		<execute macro="Portal.Site#assertMemberListNotVisibleCP">
 			<var name="usersEmailsList" value="userfn1@liferay.com,userfn2@liferay.com,userfn3@liferay.com,userfn10@liferay.com" />
@@ -1161,6 +1161,6 @@
 			<var name="site" value="${siteName}" />
 		</execute>
 
-		<execute function="AssertNotVisible" locator1="ControlMenu#ADMIN_SITE_ADMINISTRATION_USERS" value1="Users" />
+		<execute function="Portal.AssertNotVisible" locator1="ControlMenu#ADMIN_SITE_ADMINISTRATION_USERS" value1="Users" />
 	</command>
 </definition>

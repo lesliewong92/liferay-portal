@@ -445,7 +445,7 @@
 
 		<execute macro="Portal.DDLRecord#addViaDDLDisplayPG" />
 
-		<execute function="Pause" locator1="3000" />
+		<execute function="Portal.Pause" locator1="3000" />
 
 		<execute macro="Portal.DDLRecord#populateFieldText">
 			<var name="ddlRecordFieldData" value="Name1" />
@@ -481,7 +481,7 @@
 			<var name="pageName" value="Dynamic Data Lists Display Page" />
 		</execute>
 
-		<execute function="AssertTextPresent" locator1="//div[@class='portlet-body']/form" value1="Name1" />
+		<execute function="Portal.AssertTextPresent" locator1="//div[@class='portlet-body']/form" value1="Name1" />
 	</command>
 
 	<command name="ConfigureEditableListPG" priority="4">
@@ -531,7 +531,7 @@
 			<var name="pageName" value="Dynamic Data Lists Display Page" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="DDL#TOOLBAR_ADD" />
+		<execute function="Portal.AssertElementNotPresent" locator1="DDL#TOOLBAR_ADD" />
 	</command>
 
 	<command name="ConfigureSpreadsheetListPG" priority="5">
@@ -583,7 +583,7 @@
 			<var name="pageName" value="Dynamic Data Lists Display Page" />
 		</execute>
 
-		<execute function="AssertElementPresent" locator1="DDLSpreadsheet#SPREADSHEET_CONTAINER" />
+		<execute function="Portal.AssertElementPresent" locator1="DDLSpreadsheet#SPREADSHEET_CONTAINER" />
 	</command>
 
 	<command name="DeleteListRecord" priority="4">
@@ -2041,8 +2041,8 @@
 			<var name="pageName" value="Dynamic Data Lists Display Page" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="xPath=(//div[@class='ddl-record'])[1]" value1="Name1" />
-		<execute function="AssertTextEquals" locator1="xPath=(//div[@class='ddl-record'])[2]" value1="Name2" />
+		<execute function="Portal.AssertTextEquals" locator1="xPath=(//div[@class='ddl-record'])[1]" value1="Name1" />
+		<execute function="Portal.AssertTextEquals" locator1="xPath=(//div[@class='ddl-record'])[2]" value1="Name2" />
 	</command>
 
 	<command name="ViewListRecordWithVelocityDisplayTemplate" priority="4">
@@ -2166,8 +2166,8 @@
 			<var name="pageName" value="Dynamic Data Lists Display Page" />
 		</execute>
 
-		<execute function="AssertTextPresent" locator1="//div[@class='portlet-body']/form" value1="Name1" />
-		<execute function="AssertTextPresent" locator1="//div[@class='portlet-body']/form" value1="Name2" />
+		<execute function="Portal.AssertTextPresent" locator1="//div[@class='portlet-body']/form" value1="Name1" />
+		<execute function="Portal.AssertTextPresent" locator1="//div[@class='portlet-body']/form" value1="Name2" />
 	</command>
 
 	<command name="ViewNumberFieldPredefinedValue" priority="3">

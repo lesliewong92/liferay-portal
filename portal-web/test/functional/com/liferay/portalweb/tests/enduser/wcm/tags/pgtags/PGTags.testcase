@@ -244,7 +244,7 @@
 
 			<var name="key_entryTitle" value="Entry Title" />
 
-			<execute function="AssertClick" locator1="BlogsEntry#TITLE_LINK" value1="Entry Title" />
+			<execute function="Portal.AssertClick" locator1="BlogsEntry#TITLE_LINK" value1="Entry Title" />
 
 			<execute macro="Portal.BlogsEntry#viewTagPG">
 				<var name="entryTitle" value="Entry Title" />
@@ -283,7 +283,7 @@
 			<var name="portletName" value="Blogs" />
 		</execute>
 
-		<execute function="Refresh" />
+		<execute function="Portal.Refresh" />
 
 		<execute macro="Portal.Blogs#addEntryWithTag">
 			<var name="entryContent" value="Entry Content" />
@@ -629,8 +629,8 @@
 			<var name="entryTitle" value="Entry Title" />
 		</execute>
 
-		<execute function="AssertTextNotPresent" value1="tag name 1" />
-		<execute function="AssertTextNotPresent" value1="tag name 3" />
+		<execute function="Portal.AssertTextNotPresent" value1="tag name 1" />
+		<execute function="Portal.AssertTextNotPresent" value1="tag name 3" />
 	</command>
 
 	<command name="RemoveTagViaBlogs" priority="5">
@@ -716,7 +716,7 @@
 			<var name="entryTitle" value="Entry Title" />
 		</execute>
 
-		<execute function="AssertTextNotPresent" value1="tag name 1" />
+		<execute function="Portal.AssertTextNotPresent" value1="tag name 1" />
 	</command>
 
 	<command name="SearchMultipleTagsViaBlogs" priority="3">

@@ -99,7 +99,7 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute function="AssertTextNotPresent" value1="This site is inactive. Please contact the administrator." />
+		<execute function="Portal.AssertTextNotPresent" value1="This site is inactive. Please contact the administrator." />
 	</command>
 
 	<command name="AddChildChildSite" priority="4">
@@ -926,6 +926,6 @@
 			<var name="siteName" value="Child ChildSite1Name" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No sites were found." />
+		<execute function="Portal.AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No sites were found." />
 	</command>
 </definition>

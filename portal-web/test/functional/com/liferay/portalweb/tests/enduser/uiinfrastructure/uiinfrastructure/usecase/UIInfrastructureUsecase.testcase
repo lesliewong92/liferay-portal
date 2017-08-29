@@ -34,7 +34,7 @@
 		</execute>
 
 		<task summary="Close the Add Panel">
-			<execute function="Click" locator1="ControlMenuAddPanel#CLOSE_ADD_PANEL" />
+			<execute function="Portal.Click" locator1="ControlMenuAddPanel#CLOSE_ADD_PANEL" />
 		</task>
 
 		<task summary="Assert the 'Configuration' iframe of the Hello World portlet">
@@ -45,7 +45,7 @@
 
 			<execute macro="Portal.IFrame#selectConfigurationFrame" />
 
-			<execute function="AssertTextEquals" locator1="NavBar#SHARING" value1="Sharing" />
+			<execute function="Portal.AssertTextEquals" locator1="NavBar#SHARING" value1="Sharing" />
 
 			<execute macro="Portal.IFrame#closeFrame" />
 		</task>
@@ -62,7 +62,7 @@
 
 			<execute macro="Portal.IFrame#selectConfigurationFrame" />
 
-			<execute function="AssertTextEquals" locator1="NavTab#LOOK_AND_FEEL_GENERAL" value1="General" />
+			<execute function="Portal.AssertTextEquals" locator1="NavTab#LOOK_AND_FEEL_GENERAL" value1="General" />
 
 			<execute macro="Portal.IFrame#closeFrame" />
 		</task>

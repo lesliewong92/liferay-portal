@@ -312,7 +312,7 @@
 	<command name="ViewNoWebsiteNotificationForNewBlogsEntry" priority="4">
 		<execute macro="Portal.NotificationsPortlet#gotoNotificationDelivery" />
 
-		<execute function="AssertElementPresent" locator1="IFrame#DIALOG" />
+		<execute function="Portal.AssertElementPresent" locator1="IFrame#DIALOG" />
 
 		<execute macro="Portal.IFrame#selectConfigurationFrame" />
 

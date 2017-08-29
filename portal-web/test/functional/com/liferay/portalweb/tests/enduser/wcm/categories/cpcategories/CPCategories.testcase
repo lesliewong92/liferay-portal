@@ -977,8 +977,8 @@
 			<var name="vocabularyName" value="Vocabulary Name" />
 		</execute>
 
-		<execute function="AssertTextNotPresent" locator1="Categories#CATEGORY_DETAILS_PROPERTY_KEY" value1="Category Property 2 Key" />
-		<execute function="AssertTextNotPresent" locator1="Categories#CATEGORY_DETAILS_PROPERTY_VALUE" value1="Category Property 2 Value" />
+		<execute function="Portal.AssertTextNotPresent" locator1="Categories#CATEGORY_DETAILS_PROPERTY_KEY" value1="Category Property 2 Key" />
+		<execute function="Portal.AssertTextNotPresent" locator1="Categories#CATEGORY_DETAILS_PROPERTY_VALUE" value1="Category Property 2 Value" />
 	</command>
 
 	<command name="DeleteSubcategoryViaIcon" priority="3">
@@ -1330,12 +1330,12 @@
 			<var name="portlet" value="Categories" />
 		</execute>
 
-		<execute function="Click" locator1="Button#PLUS" />
+		<execute function="Portal.Click" locator1="Button#PLUS" />
 		<execute macro="Portal.PortletEntry#inputName">
 			<var name="name" value="Vocabulary Name" />
 		</execute>
 
-		<execute function="Click" locator1="Button#CANCEL" />
+		<execute function="Portal.Click" locator1="Button#CANCEL" />
 
 		<execute macro="Portal.Navigator#openURL" />
 
@@ -1343,6 +1343,6 @@
 			<var name="portlet" value="Categories" />
 		</execute>
 
-		<execute function="AssertTextNotPresent" value1="Vocabulary Name" />
+		<execute function="Portal.AssertTextNotPresent" value1="Vocabulary Name" />
 	</command>
 </definition>

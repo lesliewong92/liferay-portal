@@ -28,15 +28,15 @@
 
 		<execute macro="Portal.Navigator#openURL" />
 
-		<execute function="AssertElementNotPresent" locator1="Home#ERROR_MESSAGE_EXPIRED_SESSION" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Home#ERROR_MESSAGE_EXPIRED_SESSION" />
 
-		<execute function="AssertElementNotPresent" locator1="UserBar#USER_SIGN_IN" />
+		<execute function="Portal.AssertElementNotPresent" locator1="UserBar#USER_SIGN_IN" />
 
-		<execute function="Pause" locator1="120000" />
-		<execute function="AssertTextEquals" locator1="Home#ERROR_MESSAGE_EXPIRED_SESSION" value1="DangerDue to inactivity, your session has expired. Please save any data you may have entered before refreshing the page." />
-		<execute function="Refresh" />
+		<execute function="Portal.Pause" locator1="120000" />
+		<execute function="Portal.AssertTextEquals" locator1="Home#ERROR_MESSAGE_EXPIRED_SESSION" value1="DangerDue to inactivity, your session has expired. Please save any data you may have entered before refreshing the page." />
+		<execute function="Portal.Refresh" />
 
-		<execute function="AssertElementPresent" locator1="UserBar#USER_SIGN_IN" value1="Sign In" />
+		<execute function="Portal.AssertElementPresent" locator1="UserBar#USER_SIGN_IN" value1="Sign In" />
 
 		<execute macro="Portal.User#loginPG">
 			<var name="rememberMeChecked" value="true" />
@@ -44,9 +44,9 @@
 
 		<execute macro="Portal.Navigator#openURL" />
 
-		<execute function="Pause" locator1="120000" />
-		<execute function="AssertElementNotPresent" locator1="Home#ERROR_MESSAGE_EXPIRED_SESSION" />
-		<execute function="Refresh" />
+		<execute function="Portal.Pause" locator1="120000" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Home#ERROR_MESSAGE_EXPIRED_SESSION" />
+		<execute function="Portal.Refresh" />
 
 		<execute macro="Portal.Smoke#viewWelcomePage">
 			<var name="userFirstName" value="Test" />
@@ -59,14 +59,14 @@
 
 		<execute macro="Portal.Navigator#openURL" />
 
-		<execute function="AssertElementNotPresent" locator1="Home#ERROR_MESSAGE_EXPIRED_SESSION" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Home#ERROR_MESSAGE_EXPIRED_SESSION" />
 
-		<execute function="AssertElementNotPresent" locator1="UserBar#USER_SIGN_IN" />
+		<execute function="Portal.AssertElementNotPresent" locator1="UserBar#USER_SIGN_IN" />
 
-		<execute function="Pause" locator1="120000" />
-		<execute function="AssertTextEquals" locator1="Home#ERROR_MESSAGE_EXPIRED_SESSION" value1="DangerDue to inactivity, your session has expired. Please save any data you may have entered before refreshing the page." />
-		<execute function="Refresh" />
+		<execute function="Portal.Pause" locator1="120000" />
+		<execute function="Portal.AssertTextEquals" locator1="Home#ERROR_MESSAGE_EXPIRED_SESSION" value1="DangerDue to inactivity, your session has expired. Please save any data you may have entered before refreshing the page." />
+		<execute function="Portal.Refresh" />
 
-		<execute function="AssertElementPresent" locator1="UserBar#USER_SIGN_IN" value1="Sign In" />
+		<execute function="Portal.AssertElementPresent" locator1="UserBar#USER_SIGN_IN" value1="Sign In" />
 	</command>
 </definition>

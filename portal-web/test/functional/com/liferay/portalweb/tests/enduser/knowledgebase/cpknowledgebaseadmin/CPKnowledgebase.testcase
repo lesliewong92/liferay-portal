@@ -251,7 +251,7 @@
 
 		<var name="key_kbArticleRelatedAssetTitle" value="${kbArticleRelatedAssetTitle}" />
 
-		<execute function="AssertClick" locator1="AssetRelatedAssets#KB_RELATED_ASSETS_LINKS" value1="${kbArticleRelatedAssetTitle}" />
+		<execute function="Portal.AssertClick" locator1="AssetRelatedAssets#KB_RELATED_ASSETS_LINKS" value1="${kbArticleRelatedAssetTitle}" />
 
 		<execute macro="Portal.KBArticle#viewBlogsEntryRelatedAsset" />
 	</command>
@@ -318,14 +318,14 @@
 			<var name="kbArticleTitle" value="Knowledge Base Article Title" />
 		</execute>
 
-		<execute function="Pause" value1="5000" />
+		<execute function="Portal.Pause" value1="5000" />
 
 		<execute macro="Portal.KBArticle#viewCPWithHTML">
 			<var name="kbArticleContent" value="Knowledge Base’s Article Content" />
 			<var name="kbArticleTitle" value="Knowledge Base Article Title" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="KnowledgeBaseArticle#CONTENT" value1="${kbArticleContentSource}" />
+		<execute function="Portal.AssertElementNotPresent" locator1="KnowledgeBaseArticle#CONTENT" value1="${kbArticleContentSource}" />
 	</command>
 
 	<command name="AddKBArticleWithInvalidAttachmentSize" priority="3">

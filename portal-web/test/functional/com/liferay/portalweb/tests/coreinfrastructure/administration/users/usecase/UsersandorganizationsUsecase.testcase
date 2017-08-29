@@ -113,7 +113,7 @@
 
 		<execute macro="Portal.UserBar#gotoProfile" />
 
-		<execute function="AssertTextEquals" locator1="Home#USER_NAME_HEADER" value1="&lt;userfn&gt; userln" />
+		<execute function="Portal.AssertTextEquals" locator1="Home#USER_NAME_HEADER" value1="&lt;userfn&gt; userln" />
 	</command>
 
 	<command name="CannotViewSiteSettingsInUserPersonalSite" priority="4">
@@ -125,7 +125,7 @@
 			<var name="category" value="Configuration" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="ProductMenu#PRODUCT_MENU_PANEL_MENU_ITEM" value1="Site Settings" />
+		<execute function="Portal.AssertElementNotPresent" locator1="ProductMenu#PRODUCT_MENU_PANEL_MENU_ITEM" value1="Site Settings" />
 	</command>
 
 	<command name="ImpersonatingAdministratorandOwner" priority="4">
@@ -247,9 +247,9 @@
 			<var name="userScreenName" value="usersn2" />
 		</execute>
 
-		<execute function="Close#closeWindow" locator1="title=Welcome - ${siteName}" />
+		<execute function="Portal.Close#closeWindow" locator1="title=Welcome - ${siteName}" />
 
-		<execute function="SelectWindow" locator1="title=Users and Organizations - Control Panel - ${siteName}" />
+		<execute function="Portal.SelectWindow" locator1="title=Users and Organizations - Control Panel - ${siteName}" />
 
 		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
@@ -299,9 +299,9 @@
 			<var name="userScreenName" value="usersn2" />
 		</execute>
 
-		<execute function="Close#closeWindow" locator1="title=Welcome - ${siteName}" />
+		<execute function="Portal.Close#closeWindow" locator1="title=Welcome - ${siteName}" />
 
-		<execute function="SelectWindow" locator1="title=Users and Organizations - Control Panel - ${siteName}" />
+		<execute function="Portal.SelectWindow" locator1="title=Users and Organizations - Control Panel - ${siteName}" />
 
 		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
@@ -312,9 +312,9 @@
 			<var name="userScreenName" value="usersn3" />
 		</execute>
 
-		<execute function="Close#closeWindow" locator1="title=Welcome - ${siteName}" />
+		<execute function="Portal.Close#closeWindow" locator1="title=Welcome - ${siteName}" />
 
-		<execute function="SelectWindow" locator1="title=Users and Organizations - Control Panel - ${siteName}" />
+		<execute function="Portal.SelectWindow" locator1="title=Users and Organizations - Control Panel - ${siteName}" />
 
 		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
@@ -325,9 +325,9 @@
 			<var name="userScreenName" value="test" />
 		</execute>
 
-		<execute function="Close#closeWindow" locator1="title=Welcome - ${siteName}" />
+		<execute function="Portal.Close#closeWindow" locator1="title=Welcome - ${siteName}" />
 
-		<execute function="SelectWindow" locator1="title=Users and Organizations - Control Panel - ${siteName}" />
+		<execute function="Portal.SelectWindow" locator1="title=Users and Organizations - Control Panel - ${siteName}" />
 	</command>
 
 	<command name="MultipleUsersandOrganizations" priority="5">
@@ -501,7 +501,7 @@
 		<for list="usersn1,usersn2,usersn3,usersn4,usersn5" param="userScreenName">
 			<var name="key_userScreenName" value="${userScreenName}" />
 
-			<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
+			<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
 		</for>
 
 		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
@@ -554,29 +554,29 @@
 
 		<var name="key_orgName" value="Organization Name 1" />
 
-		<execute function="Click" locator1="UsersAndOrganizations#ORGANIZATION_TABLE_NAME" />
+		<execute function="Portal.Click" locator1="UsersAndOrganizations#ORGANIZATION_TABLE_NAME" />
 
 		<for list="userfn1 userln1,userfn3 userln3,userfn5 userln5" param="userName">
 			<var name="key_userScreenName" value="${userName}" />
 
-			<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_NAME" value1="${userName}" />
+			<execute function="Portal.AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_NAME" value1="${userName}" />
 		</for>
 
 		<for list="userfn2 userln2,userfn4 userln4" param="userName">
 			<var name="key_userScreenName" value="${userName}" />
 
-			<execute function="AssertTextNotPresent" locator1="UsersAndOrganizations#USER_TABLE_NAME" value1="${userName}" />
+			<execute function="Portal.AssertTextNotPresent" locator1="UsersAndOrganizations#USER_TABLE_NAME" value1="${userName}" />
 		</for>
 
 		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute function="AssertTextNotPresent" value1="Organization Name 1" />
+		<execute function="Portal.AssertTextNotPresent" value1="Organization Name 1" />
 
 		<var name="key_siteName" value="Organization Name 2" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="Sites#SITE_TABLE_NAME" value1="Organization Name 2" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Sites#SITE_TABLE_NAME" value1="Organization Name 2" />
 
 		<execute macro="Portal.ProductMenu#viewNoSite">
 			<var name="site" value="Organization Name 1" />
@@ -625,7 +625,7 @@
 			<var name="siteName" value="Organization Name 2" />
 		</execute>
 
-		<execute function="SelectWindow" locator1="Home - Organization Name 2 - ${siteName}" />
+		<execute function="Portal.SelectWindow" locator1="Home - Organization Name 2 - ${siteName}" />
 
 		<execute macro="Portal.Page#viewSpecificPG">
 			<var name="pageNameList" value="Home,Wiki" />
@@ -634,7 +634,7 @@
 		<for list="Message Boards,User Statistics" param="portletTitleName">
 			<var name="key_portletTitleName" value="${portletTitleName}" />
 
-			<execute function="AssertTextEquals" locator1="Portlet#SPECIFIC_TITLE" value1="${portletTitleName}" />
+			<execute function="Portal.AssertTextEquals" locator1="Portlet#SPECIFIC_TITLE" value1="${portletTitleName}" />
 		</for>
 
 		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
@@ -844,7 +844,7 @@
 		<for list="Site Name A,Site Name B,Site Name C,Site Name D,Site Name E,Site Name F,Site Name G,Site Name H" param="siteName" >
 			<var name="key_siteName" value="${siteName}" />
 
-			<execute function="AssertTextEquals#assertPartialText" locator1="Sites#SITE_TABLE_NAME" value1="${siteName}" />
+			<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Sites#SITE_TABLE_NAME" value1="${siteName}" />
 		</for>
 
 		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
@@ -870,7 +870,7 @@
 			<var name="userScreenName" value="test" />
 		</execute>
 
-		<execute function="AssertTextPresent" locator1="ProductMenu#PRODUCT_MENU_PANEL_MENU_ITEM" value1="Site Name H" />
+		<execute function="Portal.AssertTextPresent" locator1="ProductMenu#PRODUCT_MENU_PANEL_MENU_ITEM" value1="Site Name H" />
 	</command>
 
 	<command name="OrganizationSiteDefaultUserAssociations" priority="3">
@@ -1018,8 +1018,8 @@
 			<var name="portlet" value="Password Policies" />
 		</execute>
 
-		<execute function="Click" locator1="PasswordPolicies#DEFAULT_PASSWORD_POLICY_TABLE_ACTIONS_BUTTON" />
-		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Edit">
+		<execute function="Portal.Click" locator1="PasswordPolicies#DEFAULT_PASSWORD_POLICY_TABLE_ACTIONS_BUTTON" />
+		<execute function="Portal.AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Edit">
 			<var name="key_menuItem" value="Edit" />
 		</execute>
 
@@ -1027,16 +1027,16 @@
 			<var name="panelHeading" value="Password Syntax Checking" />
 		</execute>
 
-		<execute function="Check#checkToggleSwitch" locator1="Checkbox#ENABLE_SYNTAX_CHECKING" />
-		<execute function="Uncheck#uncheckToggleSwitch" locator1="Checkbox#ALLOW_DICTIONARY_WORDS" />
-		<execute function="Type" locator1="TextInput#MINIMUM_ALPHA_NUMERIC" value1="0" />
-		<execute function="Type" locator1="TextInput#MINIMUM_LENGTH" value1="0" />
-		<execute function="Type" locator1="TextInput#MINIMUM_LOWER_CASE" value1="0" />
-		<execute function="Type" locator1="TextInput#MINIMUM_NUMBERS" value1="0" />
-		<execute function="Type" locator1="TextInput#MINIMUM_SYMBOLS" value1="0" />
-		<execute function="Type" locator1="TextInput#MINIMUM_UPPER_CASE" value1="0" />
+		<execute function="Portal.Check#checkToggleSwitch" locator1="Checkbox#ENABLE_SYNTAX_CHECKING" />
+		<execute function="Portal.Uncheck#uncheckToggleSwitch" locator1="Checkbox#ALLOW_DICTIONARY_WORDS" />
+		<execute function="Portal.Type" locator1="TextInput#MINIMUM_ALPHA_NUMERIC" value1="0" />
+		<execute function="Portal.Type" locator1="TextInput#MINIMUM_LENGTH" value1="0" />
+		<execute function="Portal.Type" locator1="TextInput#MINIMUM_LOWER_CASE" value1="0" />
+		<execute function="Portal.Type" locator1="TextInput#MINIMUM_NUMBERS" value1="0" />
+		<execute function="Portal.Type" locator1="TextInput#MINIMUM_SYMBOLS" value1="0" />
+		<execute function="Portal.Type" locator1="TextInput#MINIMUM_UPPER_CASE" value1="0" />
 
-		<execute function="Type" locator1="TextInput#REGULAR_EXPRESSION" value1="(?=.{4})(?:[a-zA-Z]*)" />
+		<execute function="Portal.Type" locator1="TextInput#REGULAR_EXPRESSION" value1="(?=.{4})(?:[a-zA-Z]*)" />
 
 		<execute macro="Portal.Button#clickSave" />
 
@@ -1067,9 +1067,9 @@
 			<var name="portlet" value="Password Policies" />
 		</execute>
 
-		<execute function="Click" locator1="PasswordPolicies#DEFAULT_PASSWORD_POLICY_TABLE_ACTIONS_BUTTON" />
+		<execute function="Portal.Click" locator1="PasswordPolicies#DEFAULT_PASSWORD_POLICY_TABLE_ACTIONS_BUTTON" />
 
-		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Edit">
+		<execute function="Portal.AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Edit">
 			<var name="key_menuItem" value="Edit" />
 		</execute>
 
@@ -1077,7 +1077,7 @@
 			<var name="panelHeading" value="Password Syntax Checking" />
 		</execute>
 
-		<execute function="Type" locator1="TextInput#REGULAR_EXPRESSION" value1="(?=.{6})(?:[a-zA-Z0-9]*)" />
+		<execute function="Portal.Type" locator1="TextInput#REGULAR_EXPRESSION" value1="(?=.{6})(?:[a-zA-Z0-9]*)" />
 
 		<execute macro="Portal.Button#clickSave" />
 
@@ -1120,9 +1120,9 @@
 			<var name="portlet" value="Password Policies" />
 		</execute>
 
-		<execute function="Click" locator1="PasswordPolicies#DEFAULT_PASSWORD_POLICY_TABLE_ACTIONS_BUTTON" />
+		<execute function="Portal.Click" locator1="PasswordPolicies#DEFAULT_PASSWORD_POLICY_TABLE_ACTIONS_BUTTON" />
 
-		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Edit">
+		<execute function="Portal.AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Edit">
 			<var name="key_menuItem" value="Edit" />
 		</execute>
 
@@ -1130,7 +1130,7 @@
 			<var name="panelHeading" value="Password Syntax Checking" />
 		</execute>
 
-		<execute function="Type" locator1="TextInput#MINIMUM_NUMBERS" value1="2" />
+		<execute function="Portal.Type" locator1="TextInput#MINIMUM_NUMBERS" value1="2" />
 
 		<execute macro="Portal.Button#clickSave" />
 

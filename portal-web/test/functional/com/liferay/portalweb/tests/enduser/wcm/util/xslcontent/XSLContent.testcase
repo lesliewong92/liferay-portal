@@ -159,16 +159,16 @@
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#DIALOG" />
 
-		<execute function="Type" locator1="TextInput#SETUP_XML_URL" value1="@portal_url@/${xmlURL}" />
-		<execute function="Type" locator1="TextInput#SETUP_XSL_URL" value1="@portal_url@/${xslURL}" />
+		<execute function="Portal.Type" locator1="TextInput#SETUP_XML_URL" value1="@portal_url@/${xmlURL}" />
+		<execute function="Portal.Type" locator1="TextInput#SETUP_XSL_URL" value1="@portal_url@/${xslURL}" />
 
-		<execute function="Click" locator1="Button#SAVE" />
+		<execute function="Portal.Click" locator1="Button#SAVE" />
 
 		<execute macro="Portal.Alert#viewSuccessMessage" />
 
-		<execute function="SelectFrameTop" value1="relative=top" />
+		<execute function="Portal.SelectFrameTop" value1="relative=top" />
 
 		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Test Page Name" />
@@ -289,16 +289,16 @@
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#DIALOG" />
 
-		<execute function="Type" locator1="TextInput#SETUP_XML_URL" value1="@portal_url@/${xmlURL}" />
-		<execute function="Type" locator1="TextInput#SETUP_XSL_URL" value1="@portal_url@/${xslURL}" />
+		<execute function="Portal.Type" locator1="TextInput#SETUP_XML_URL" value1="@portal_url@/${xmlURL}" />
+		<execute function="Portal.Type" locator1="TextInput#SETUP_XSL_URL" value1="@portal_url@/${xslURL}" />
 
-		<execute function="Click" locator1="Button#SAVE" />
+		<execute function="Portal.Click" locator1="Button#SAVE" />
 
 		<execute macro="Portal.Alert#viewSuccessMessage" />
 
-		<execute function="SelectFrameTop" value1="relative=top" />
+		<execute function="Portal.SelectFrameTop" value1="relative=top" />
 
 		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Test Page Name" />
@@ -407,16 +407,16 @@
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#DIALOG" />
 
-		<execute function="Type" locator1="TextInput#SETUP_XML_URL" value1="@portal_url@/${xmlURL}" />
-		<execute function="Type" locator1="TextInput#SETUP_XSL_URL" value1="@portal_url@/${xslURL}" />
+		<execute function="Portal.Type" locator1="TextInput#SETUP_XML_URL" value1="@portal_url@/${xmlURL}" />
+		<execute function="Portal.Type" locator1="TextInput#SETUP_XSL_URL" value1="@portal_url@/${xslURL}" />
 
-		<execute function="Click" locator1="Button#SAVE" />
+		<execute function="Portal.Click" locator1="Button#SAVE" />
 
 		<execute macro="Portal.Alert#viewSuccessMessage" />
 
-		<execute function="SelectFrameTop" value1="relative=top" />
+		<execute function="Portal.SelectFrameTop" value1="relative=top" />
 
 		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Test Page Name" />
@@ -524,16 +524,16 @@
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#DIALOG" />
 
-		<execute function="Type" locator1="TextInput#SETUP_XML_URL" value1="@portal_url@/${xmlURL}" />
-		<execute function="Type" locator1="TextInput#SETUP_XSL_URL" value1="@portal_url@/${xslURL}" />
+		<execute function="Portal.Type" locator1="TextInput#SETUP_XML_URL" value1="@portal_url@/${xmlURL}" />
+		<execute function="Portal.Type" locator1="TextInput#SETUP_XSL_URL" value1="@portal_url@/${xslURL}" />
 
-		<execute function="Click" locator1="Button#SAVE" />
+		<execute function="Portal.Click" locator1="Button#SAVE" />
 
 		<execute macro="Portal.Alert#viewSuccessMessage" />
 
-		<execute function="SelectFrameTop" value1="relative=top" />
+		<execute function="Portal.SelectFrameTop" value1="relative=top" />
 
 		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Test Page Name" />

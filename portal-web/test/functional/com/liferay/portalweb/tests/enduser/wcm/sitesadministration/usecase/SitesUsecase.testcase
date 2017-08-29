@@ -360,7 +360,7 @@
 
 		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
 
-		<execute function="Open" locator1="${portalURL}/web/site-name/home" />
+		<execute function="Portal.Open" locator1="${portalURL}/web/site-name/home" />
 
 		<execute macro="Portal.Portlet#viewTitle">
 			<var name="portletName" value="Message Boards" />
@@ -382,9 +382,9 @@
 			<var name="portletName" value="Polls Display" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="Message#INFO" value1="Please sign in to vote." />
+		<execute function="Portal.AssertTextEquals" locator1="Message#INFO" value1="Please sign in to vote." />
 
-		<execute function="AssertElementPresent" locator1="Search#SEARCH_FIELD" />
+		<execute function="Portal.AssertElementPresent" locator1="Search#SEARCH_FIELD" />
 
 		<execute macro="Portal.Portlet#viewTitle">
 			<var name="portletName" value="User Statistics" />
@@ -395,7 +395,7 @@
 			<var name="userPassword" value="test" />
 		</execute>
 
-		<execute function="Open" locator1="${portalURL}/web/site-name/home" />
+		<execute function="Portal.Open" locator1="${portalURL}/web/site-name/home" />
 
 		<execute macro="Portal.PermissionsInline#gotoConfigurationPG" >
 			<var name="portletName" value="Polls Display" />
@@ -421,10 +421,10 @@
 
 		<execute macro="Portal.User#logoutPG" />
 
-		<execute function="Open" locator1="${portalURL}/web/site-name/home" />
+		<execute function="Portal.Open" locator1="${portalURL}/web/site-name/home" />
 
-		<execute function="AssertTextEquals" locator1="Message#ERROR_1_COLUMN_1" value1="You do not have the roles required to access this portlet." />
-		<execute function="AssertTextEquals" locator1="Message#ERROR_1_COLUMN_2" value1="You do not have the roles required to access this portlet." />
+		<execute function="Portal.AssertTextEquals" locator1="Message#ERROR_1_COLUMN_1" value1="You do not have the roles required to access this portlet." />
+		<execute function="Portal.AssertTextEquals" locator1="Message#ERROR_1_COLUMN_2" value1="You do not have the roles required to access this portlet." />
 	</command>
 
 	<command name="ViewDefaultGlobalScopeLandingPage" priority="4">

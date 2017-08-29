@@ -12,7 +12,7 @@
 
 		<var method="TestPropsUtil#get('cmis.repository.vm.host.name')" name="documentumVMHostName" />
 
-		<execute function="AntCommand" locator1="build-test-documentum.xml" value1="clean-documentum-repository -Dssh.host=${documentumVMHostName}" />
+		<execute function="Portal.AntCommand" locator1="build-test-documentum.xml" value1="clean-documentum-repository -Dssh.host=${documentumVMHostName}" />
 
 		<execute macro="Portal.User#loginPG">
 			<var name="authenticationMethod" value="By Screen Name" />
@@ -221,7 +221,7 @@
 
 		<var name="key_dmDocumentTitle" value="Document_3.txt" />
 
-		<execute function="AssertElementNotPresent" locator1="DocumentsAndMedia#ICON_DOCUMENT_ICON_LOCKED" />
+		<execute function="Portal.AssertElementNotPresent" locator1="DocumentsAndMedia#ICON_DOCUMENT_ICON_LOCKED" />
 
 		<execute macro="Portal.DMNavigator#gotoDocumentCP">
 			<var name="dmDocumentTitle" value="Document_3.txt" />
@@ -284,7 +284,7 @@
 			<var name="recycleBinDisabled" value="true" />
 		</execute>
 
-		<execute function="AssertConsoleTextNotPresent" value1="Cannot prune sysobject Document_3.txt version tree since one or more of its versions are locked." />
+		<execute function="Portal.AssertConsoleTextNotPresent" value1="Cannot prune sysobject Document_3.txt version tree since one or more of its versions are locked." />
 
 		<execute macro="Portal.Navigator#openURL" />
 

@@ -80,12 +80,12 @@
 			<var name="entryURL" value="http://www.liferay.com" />
 		</execute>
 
-		<execute function="Pause" locator1="10000" />
+		<execute function="Portal.Pause" locator1="10000" />
 
-		<execute function="AssertClick" locator1="Announcements#NAVIGATION_ENTRIES_NEW" value1="New" />
+		<execute function="Portal.AssertClick" locator1="Announcements#NAVIGATION_ENTRIES_NEW" value1="New" />
 
-		<execute function="AssertTextNotPresent" value1="Announcements Entry Title" />
-		<execute function="Pause" locator1="120000" />
+		<execute function="Portal.AssertTextNotPresent" value1="Announcements Entry Title" />
+		<execute function="Portal.Pause" locator1="120000" />
 
 		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Announcements Page" />
@@ -118,15 +118,15 @@
 			<var name="pageName" value="Announcements Page" />
 		</execute>
 
-		<execute function="AssertTextNotPresent" value1="Announcements Entry Title" />
+		<execute function="Portal.AssertTextNotPresent" value1="Announcements Entry Title" />
 
 		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Announcements and Alerts" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="Dropdown#FILTER" value1="General" />
+		<execute function="Portal.AssertTextEquals" locator1="Dropdown#FILTER" value1="General" />
 
-		<execute function="AssertTextEquals" locator1="Message#NO_ENTRIES" value1="No entries were found." />
+		<execute function="Portal.AssertTextEquals" locator1="Message#NO_ENTRIES" value1="No entries were found." />
 	</command>
 
 	<command name="AddAnnouncementsEntryPriorityImportant" priority="4">
@@ -303,7 +303,7 @@
 			<var name="entryTitle" value="Announcements Entry Title" />
 		</execute>
 
-		<execute function="AssertClick" locator1="Announcements#NAVIGATION_ENTRIES_NEW" value1="New" />
+		<execute function="Portal.AssertClick" locator1="Announcements#NAVIGATION_ENTRIES_NEW" value1="New" />
 
 		<execute macro="Portal.AnnouncementsEntry#viewNoPG">
 			<var name="entryTitle" value="Announcements Entry Title" />

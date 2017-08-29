@@ -300,7 +300,7 @@
 
 		<execute macro="Portal.Navigator#openURL" />
 
-		<execute function="AssertTextNotPresent" locator1="Home#PAGE_2_GUEST_VIEW" value1="New Page Name" />
+		<execute function="Portal.AssertTextNotPresent" locator1="Home#PAGE_2_GUEST_VIEW" value1="New Page Name" />
 
 		<execute macro="Portal.User#logoutPG">
 			<var name="password" value="test" />
@@ -322,15 +322,15 @@
 			<var name="url" value="http://localhost:9080" />
 		</execute>
 
-		<execute function="AssertTextNotPresent" locator1="Home#PAGE_2_GUEST_VIEW" value1="New Page Name" />
-		<execute function="Pause" locator1="120000" />
+		<execute function="Portal.AssertTextNotPresent" locator1="Home#PAGE_2_GUEST_VIEW" value1="New Page Name" />
+		<execute function="Portal.Pause" locator1="120000" />
 
 		<execute macro="Portal.Navigator#gotoSpecificURLPage">
 			<var name="pageName" value="Welcome" />
 			<var name="url" value="http://localhost:9080" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="Home#PAGE_2_GUEST_VIEW" value1="New Page Name" />
+		<execute function="Portal.AssertTextEquals" locator1="Home#PAGE_2_GUEST_VIEW" value1="New Page Name" />
 
 		<execute macro="Portal.Navigator#openSpecificURL">
 			<var name="url" value="http://localhost:9080/web/guest-staging" />

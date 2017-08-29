@@ -46,24 +46,24 @@
 
 		<var name="key_reportsDefinitionName" value="Reports Definition Name" />
 
-		<execute function="Click" locator1="ReportsAdmin#DEFINITIONS_DEFINITION_TABLE_ACTIONS" />
-		<execute function="AssertClick" locator1="ReportsAdmin#DEFINITIONS_DEFINITION_MENULIST_ADD_REPORT" value1="Add Report" />
+		<execute function="Portal.Click" locator1="ReportsAdmin#DEFINITIONS_DEFINITION_TABLE_ACTIONS" />
+		<execute function="Portal.AssertClick" locator1="ReportsAdmin#DEFINITIONS_DEFINITION_MENULIST_ADD_REPORT" value1="Add Report" />
 
-		<execute function="Select" locator1="ReportsAdminEditReportEntry#REPORT_FORMAT_SELECT" value1="csv" />
-		<execute function="Type" locator1="ReportsAdminEditReportEntry#EMAIL_NOTIFICATIONS_FIELD" value1="InvalidEmail" />
-		<execute function="AssertClick" locator1="ReportsAdminEditReportEntry#GENERATE_BUTTON" value1="Generate" />
-
-		<execute macro="Portal.Alert#viewRequestFailedToComplete" />
-
-		<execute function="AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="Please enter a valid email address." />
-
-		<execute function="Type" locator1="ReportsAdminEditReportEntry#EMAIL_NOTIFICATIONS_FIELD" value1="liferay.qa1@gmail.com" />
-		<execute function="Type" locator1="ReportsAdminEditReportEntry#EMAIL_RECIPIENT_FIELD" value1="InvalidEmail" />
-		<execute function="AssertClick" locator1="ReportsAdminEditReportEntry#GENERATE_BUTTON" value1="Generate" />
+		<execute function="Portal.Select" locator1="ReportsAdminEditReportEntry#REPORT_FORMAT_SELECT" value1="csv" />
+		<execute function="Portal.Type" locator1="ReportsAdminEditReportEntry#EMAIL_NOTIFICATIONS_FIELD" value1="InvalidEmail" />
+		<execute function="Portal.AssertClick" locator1="ReportsAdminEditReportEntry#GENERATE_BUTTON" value1="Generate" />
 
 		<execute macro="Portal.Alert#viewRequestFailedToComplete" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="Please enter a valid email address." />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="Please enter a valid email address." />
+
+		<execute function="Portal.Type" locator1="ReportsAdminEditReportEntry#EMAIL_NOTIFICATIONS_FIELD" value1="liferay.qa1@gmail.com" />
+		<execute function="Portal.Type" locator1="ReportsAdminEditReportEntry#EMAIL_RECIPIENT_FIELD" value1="InvalidEmail" />
+		<execute function="Portal.AssertClick" locator1="ReportsAdminEditReportEntry#GENERATE_BUTTON" value1="Generate" />
+
+		<execute macro="Portal.Alert#viewRequestFailedToComplete" />
+
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="Please enter a valid email address." />
 	</command>
 
 	<command name="AddSchedule" priority="4">
@@ -97,8 +97,8 @@
 			<var name="reportsFileName" value="reports_admin_template_source_sample_class_name" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="ReportsAdminViewReportEntry#INFO_MESSAGE" value1="Processing report. This may take several minutes." />
-		<execute function="Pause" locator1="180000" />
+		<execute function="Portal.AssertTextEquals" locator1="ReportsAdminViewReportEntry#INFO_MESSAGE" value1="Processing report. This may take several minutes." />
+		<execute function="Portal.Pause" locator1="180000" />
 
 		<execute macro="Portal.Navigator#openURL" />
 
@@ -268,7 +268,7 @@
 			<var name="subject" value="New Report: reports_admin_template_source_sample_class_name.pdf" />
 		</execute>
 
-		<execute function="Open" locator1="${portalURL}" />
+		<execute function="Portal.Open" locator1="${portalURL}" />
 	</command>
 
 	<command name="DownloadReportCSV" priority="4">
@@ -623,7 +623,7 @@
 			<var name="reportsDefinitionName" value="Reports Definition Name" />
 		</execute>
 
-		<execute function="Pause" locator1="30000" />
+		<execute function="Portal.Pause" locator1="30000" />
 
 		<execute macro="Portal.Gmail#login">
 			<var method="TestPropsUtil#get('email.address.2')" name="userEmailAddress" />
@@ -642,11 +642,11 @@
 		<var name="key_gmailAssetType" value="New Report: Custom Report Name.pdf" />
 		<var name="key_pageNameURL" value="report" />
 
-		<execute function="AssertClick#assertPartialTextClickAt" locator1="Gmail#GMAIL_HTML_MODE_MESSAGE_BODY_LINK" value1="report" />
+		<execute function="Portal.AssertClick#assertPartialTextClickAt" locator1="Gmail#GMAIL_HTML_MODE_MESSAGE_BODY_LINK" value1="report" />
 
-		<execute function="Pause" locator1="30000" />
+		<execute function="Portal.Pause" locator1="30000" />
 
-		<execute function="SelectWindow" locator1="title=Reports Definition Name - ${siteName}" />
+		<execute function="Portal.SelectWindow" locator1="title=Reports Definition Name - ${siteName}" />
 
 		<execute macro="Portal.ReportsAdmin#viewReportEntryFields">
 			<var name="dataSource" value="portal" />
@@ -662,7 +662,7 @@
 			<var name="gmailMessageTitleList" value="New Report: Custom Report Name.pdf,Your New Account,Your New Password" />
 		</execute>
 
-		<execute function="Open" locator1="${portalURL}" />
+		<execute function="Portal.Open" locator1="${portalURL}" />
 	</command>
 
 	<command ignore="true" name="ViewEmailRecipientDelivery" priority="4">
@@ -703,7 +703,7 @@
 			<var name="reportsDefinitionName" value="Reports Definition Name" />
 		</execute>
 
-		<execute function="Pause" locator1="30000" />
+		<execute function="Portal.Pause" locator1="30000" />
 
 		<execute macro="Portal.Gmail#login">
 			<var method="TestPropsUtil#get('email.address.4')" name="userEmailAddress" />
@@ -723,7 +723,7 @@
 		<var name="key_gmailAssetType" value="New Report: reports_admin_template_source_sample_class_name.pdf" />
 		<var name="key_pageNameURL" value="report" />
 
-		<execute function="AssertElementNotPresent" locator1="Gmail#GMAIL_HTML_MODE_MESSAGE_BODY_LINK" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Gmail#GMAIL_HTML_MODE_MESSAGE_BODY_LINK" />
 
 		<execute macro="Portal.Gmail#gotoHtmlMode" />
 
@@ -731,7 +731,7 @@
 			<var name="gmailMessageTitleList" value="New Report: reports_admin_template_source_sample_class_name.pdf,Your New Account,Your New Password" />
 		</execute>
 
-		<execute function="Open" locator1="${portalURL}" />
+		<execute function="Portal.Open" locator1="${portalURL}" />
 	</command>
 
 	<command name="ViewReportDefinitionParametersFields" priority="3">

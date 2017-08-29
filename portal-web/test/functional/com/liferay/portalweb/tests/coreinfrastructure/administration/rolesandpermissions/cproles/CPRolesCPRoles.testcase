@@ -56,7 +56,7 @@
 			<var name="portlet" value="Roles" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="NavBar#ADD" />
+		<execute function="Portal.AssertElementNotPresent" locator1="NavBar#ADD" />
 
 		<execute macro="Portal.Permissions#definePermissionLoginUserCP">
 			<var name="permissionDefinitionKey" value="CONTROL_PANEL_GENERAL_PERMISSIONS_ADD_ROLE_CHECKBOX" />
@@ -106,7 +106,7 @@
 			<var name="portlet" value="Roles" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="NavBar#ADD" />
+		<execute function="Portal.AssertElementNotPresent" locator1="NavBar#ADD" />
 	</command>
 
 	<command name="AddRegularRoleRegRole" priority="4">
@@ -133,7 +133,7 @@
 			<var name="portlet" value="Roles" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="NavBar#ADD" />
+		<execute function="Portal.AssertElementNotPresent" locator1="NavBar#ADD" />
 
 		<execute macro="Portal.Permissions#definePermissionLoginUserCP">
 			<var name="permissionDefinitionKey" value="CONTROL_PANEL_GENERAL_PERMISSIONS_ADD_ROLE_CHECKBOX" />
@@ -179,7 +179,7 @@
 			<var name="portlet" value="Roles" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="NavBar#ADD" />
+		<execute function="Portal.AssertElementNotPresent" locator1="NavBar#ADD" />
 	</command>
 
 	<command name="AddSiteRoleRegRole" priority="4">
@@ -206,7 +206,7 @@
 			<var name="portlet" value="Roles" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="NavBar#ADD" />
+		<execute function="Portal.AssertElementNotPresent" locator1="NavBar#ADD" />
 
 		<execute macro="Portal.Permissions#definePermissionLoginUserCP">
 			<var name="permissionDefinitionKey" value="CONTROL_PANEL_GENERAL_PERMISSIONS_ADD_ROLE_CHECKBOX" />
@@ -256,6 +256,6 @@
 			<var name="portlet" value="Roles" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="NavBar#ADD" />
+		<execute function="Portal.AssertElementNotPresent" locator1="NavBar#ADD" />
 	</command>
 </definition>

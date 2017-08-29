@@ -80,13 +80,13 @@
 			<var name="portletName" value="Language Selector" />
 		</execute>
 
-		<execute function="Refresh" />
+		<execute function="Portal.Refresh" />
 
 		<execute macro="Portal.LanguagePortlet#selectLanguagePG">
 			<var name="language" value="Spanish (Spain)" />
 		</execute>
 
-		<execute function="Refresh" />
+		<execute function="Portal.Refresh" />
 
 		<execute macro="Portal.WebContent#viewPGViaWCD">
 			<var name="webContentContent" value="WC Contenido" />
@@ -113,13 +113,13 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute function="Refresh" />
+		<execute function="Portal.Refresh" />
 
 		<execute macro="Portal.LanguagePortlet#selectLanguagePG">
 			<var name="language" value="German (Germany)" />
 		</execute>
 
-		<execute function="Refresh" />
+		<execute function="Portal.Refresh" />
 
 		<execute macro="Portal.WebContent#viewPGViaWCD">
 			<var name="webContentContent" value="WC Inhalt" />
@@ -146,13 +146,13 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute function="Refresh" />
+		<execute function="Portal.Refresh" />
 
 		<execute macro="Portal.LanguagePortlet#selectLanguagePG">
 			<var name="language" value="Finnish (Finland)" />
 		</execute>
 
-		<execute function="Refresh" />
+		<execute function="Portal.Refresh" />
 
 		<execute macro="Portal.WebContent#viewPGViaWCD">
 			<var name="webContentContent" value="WC Pitoisuus" />

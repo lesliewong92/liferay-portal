@@ -372,9 +372,9 @@
 			<var name="deleteUser" value="Test Test" />
 		</execute>
 
-		<execute function="Pause" locator1="120000" />
+		<execute function="Portal.Pause" locator1="120000" />
 
-		<execute function="Refresh" />
+		<execute function="Portal.Refresh" />
 
 		<execute macro="Portal.RecycleBin#viewDefaultCP">
 			<var name="assetName" value="Blogs Entry Title" />

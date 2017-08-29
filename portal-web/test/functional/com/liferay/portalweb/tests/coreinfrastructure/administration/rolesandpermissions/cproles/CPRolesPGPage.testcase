@@ -33,7 +33,7 @@
 
 		<var name="key_roleTitle" value="guest" />
 
-		<execute function="Click" locator1="Permissions#INLINE_PERMISSIONS_VIEW_CHECKBOX" />
-		<execute function="AssertChecked" locator1="Permissions#INLINE_PERMISSIONS_VIEW_CHECKBOX" />
+		<execute function="Portal.Click" locator1="Permissions#INLINE_PERMISSIONS_VIEW_CHECKBOX" />
+		<execute function="Portal.AssertChecked" locator1="Permissions#INLINE_PERMISSIONS_VIEW_CHECKBOX" />
 	</command>
 </definition>

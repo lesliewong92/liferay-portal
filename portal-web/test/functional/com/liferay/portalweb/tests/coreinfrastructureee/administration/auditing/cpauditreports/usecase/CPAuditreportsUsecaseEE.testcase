@@ -49,9 +49,9 @@
 
 		<var name="key_userScreenName" value="test" />
 
-		<execute function="AssertClick" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="test" />
+		<execute function="Portal.AssertClick" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="test" />
 
-		<execute function="Pause" locator1="5000" />
+		<execute function="Portal.Pause" locator1="5000" />
 
 		<var locator="UsersAndOrganizationsEditUser#DETAILS_USER_ID_FIELD" name="userId" />
 
@@ -123,7 +123,7 @@
 		<var name="key_resourceAction" value="Login Failure" />
 		<var name="key_resourceName" value="User" />
 
-		<execute function="AssertTextEquals" locator1="AuditReports#REPORTS_TABLE_RESOURCE_ACTION" value1="Login Failure" />
+		<execute function="Portal.AssertTextEquals" locator1="AuditReports#REPORTS_TABLE_RESOURCE_ACTION" value1="Login Failure" />
 
 		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
@@ -154,9 +154,9 @@
 			<var name="userScreenName" value="test1" />
 		</execute>
 
-		<execute function="Close#closeWindow" locator1="title=Welcome - ${siteName}" />
+		<execute function="Portal.Close#closeWindow" locator1="title=Welcome - ${siteName}" />
 
-		<execute function="SelectWindow" locator1="title=Users and Organizations - Control Panel - ${siteName}" />
+		<execute function="Portal.SelectWindow" locator1="title=Users and Organizations - Control Panel - ${siteName}" />
 
 		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Audit" />
@@ -165,7 +165,7 @@
 		<var name="key_resourceAction" value="Impersonate" />
 		<var name="key_resourceName" value="User" />
 
-		<execute function="AssertTextEquals" locator1="AuditReports#REPORTS_TABLE_RESOURCE_ACTION" value1="Impersonate" />
+		<execute function="Portal.AssertTextEquals" locator1="AuditReports#REPORTS_TABLE_RESOURCE_ACTION" value1="Impersonate" />
 
 		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Roles" />
@@ -204,34 +204,34 @@
 		<var name="key_resourceAction" value="Add" />
 		<var name="key_resourceName" value="Role" />
 
-		<execute function="AssertTextEquals" locator1="AuditReports#REPORTS_TABLE_RESOURCE_NAME" value1="Role" />
+		<execute function="Portal.AssertTextEquals" locator1="AuditReports#REPORTS_TABLE_RESOURCE_NAME" value1="Role" />
 
 		<var name="key_resourceAction" value="Add" />
 		<var name="key_resourceName" value="Role" />
 
-		<execute function="AssertTextEquals" locator1="AuditReports#REPORTS_TABLE_RESOURCE_ACTION" value1="Add" />
+		<execute function="Portal.AssertTextEquals" locator1="AuditReports#REPORTS_TABLE_RESOURCE_ACTION" value1="Add" />
 
 		<var name="key_resourceAction" value="Assign" />
 		<var name="key_resourceName" value="User" />
 
-		<execute function="AssertTextEquals" locator1="AuditReports#REPORTS_TABLE_RESOURCE_NAME" value1="User" />
+		<execute function="Portal.AssertTextEquals" locator1="AuditReports#REPORTS_TABLE_RESOURCE_NAME" value1="User" />
 
 		<var name="key_resourceAction" value="Assign" />
 		<var name="key_resourceName" value="User" />
 
-		<execute function="AssertTextEquals" locator1="AuditReports#REPORTS_TABLE_RESOURCE_ACTION" value1="Assign" />
+		<execute function="Portal.AssertTextEquals" locator1="AuditReports#REPORTS_TABLE_RESOURCE_ACTION" value1="Assign" />
 
 		<var name="key_resourceAction" value="Add" />
 		<var name="key_resourceName" value="User Group" />
 
-		<execute function="AssertTextEquals" locator1="AuditReports#REPORTS_TABLE_RESOURCE_NAME" value1="User Group" />
+		<execute function="Portal.AssertTextEquals" locator1="AuditReports#REPORTS_TABLE_RESOURCE_NAME" value1="User Group" />
 
 		<var name="key_resourceAction" value="Add" />
 		<var name="key_resourceName" value="User Group" />
 
-		<execute function="AssertTextEquals" locator1="AuditReports#REPORTS_TABLE_RESOURCE_ACTION" value1="Add" />
+		<execute function="Portal.AssertTextEquals" locator1="AuditReports#REPORTS_TABLE_RESOURCE_ACTION" value1="Add" />
 
-		<execute function="AssertTextEquals" locator1="xpath=(//tr[contains(.,'Assign') and contains(.,'User')]/td[4])[2]" value1="User" />
-		<execute function="AssertTextEquals" locator1="xpath=(//tr[contains(.,'Assign') and contains(.,'User')]/td[5])[2]" value1="Assign" />
+		<execute function="Portal.AssertTextEquals" locator1="xpath=(//tr[contains(.,'Assign') and contains(.,'User')]/td[4])[2]" value1="User" />
+		<execute function="Portal.AssertTextEquals" locator1="xpath=(//tr[contains(.,'Assign') and contains(.,'User')]/td[5])[2]" value1="Assign" />
 	</command>
 </definition>

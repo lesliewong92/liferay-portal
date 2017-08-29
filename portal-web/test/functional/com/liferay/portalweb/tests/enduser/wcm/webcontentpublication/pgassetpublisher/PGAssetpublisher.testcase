@@ -1144,7 +1144,7 @@
 			<var name="webContentTitle" value="WebContent Title 1" />
 		</execute>
 
-		<execute function="Pause" locator1="65000" />
+		<execute function="Portal.Pause" locator1="65000" />
 
 		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
@@ -1155,7 +1155,7 @@
 			<var name="webContentTitle" value="WebContent Title 2" />
 		</execute>
 
-		<execute function="Pause" locator1="65000" />
+		<execute function="Portal.Pause" locator1="65000" />
 
 		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
