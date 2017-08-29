@@ -6,15 +6,15 @@
 	<property name="test.assert.warning.exceptions" value="true" />
 
 	<set-up>
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Test Page" />
 		</execute>
 	</set-up>
 
 	<tear-down>
-		<execute macro="Page#tearDownPG" />
+		<execute macro="Portal.Page#tearDownPG" />
 	</tear-down>
 
 	<command name="InvitationPortletSmoke" priority="4">
@@ -22,11 +22,11 @@
 
 		<var name="appName" value="Invitation" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Test Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Invitation" />
 		</execute>
 	</command>

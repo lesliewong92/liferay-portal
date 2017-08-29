@@ -5,23 +5,23 @@
 	<property name="testray.main.component.name" value="Content and Application Templates" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addBlankCP">
+		<execute macro="Portal.Site#addBlankCP">
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
@@ -33,15 +33,15 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="User#logoutAndLoginPG">
+				<execute macro="Portal.User#logoutAndLoginPG">
 					<var name="userLoginEmailAddress" value="test@liferay.com" />
 					<var name="userLoginFullName" value="Test Test" />
 				</execute>
 
-				<execute macro="Site#tearDownCP" />
+				<execute macro="Portal.Site#tearDownCP" />
 			</else>
 		</if>
 	</tear-down>
@@ -50,62 +50,62 @@
 		<property name="portal.acceptance" value="true" />
 		<property name="testray.component.names" value="Content and Application Templates,RSS" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="RSS Publisher" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletName" value="RSS Publisher" />
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute macro="RSS#addFeed">
+		<execute macro="Portal.RSS#addFeed">
 			<var name="feedRowIndexNumber" value="0" />
 			<var name="feedTitle" value="Latimes > Technology News" />
 			<var name="feedType" value="file" />
 			<var name="feedUrlLink" value="rss2.0.xml" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletName" value="RSS Publisher" />
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute macro="ApplicationDisplayTemplates#addManualViaRSS">
+		<execute macro="Portal.ApplicationDisplayTemplates#addManualViaRSS">
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="RSS#waitForRSSLoad" />
+		<execute macro="Portal.RSS#waitForRSSLoad" />
 
-		<execute macro="ApplicationDisplayTemplates#selectPortletADT">
+		<execute macro="Portal.ApplicationDisplayTemplates#selectPortletADT">
 			<var name="adtType" value="RSS" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="RSS#waitForRSSLoad" />
+		<execute macro="Portal.RSS#waitForRSSLoad" />
 
-		<execute macro="RSS#viewCustomADT">
+		<execute macro="Portal.RSS#viewCustomADT">
 			<var name="feedContentTitle" value="Technology" />
 		</execute>
 	</command>
@@ -113,109 +113,109 @@
 	<command name="AddRSSADTWithCorruptScript" priority="3">
 		<property name="testray.component.names" value="Content and Application Templates,RSS" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="RSS Publisher" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletName" value="RSS Publisher" />
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute macro="RSS#addFeed">
+		<execute macro="Portal.RSS#addFeed">
 			<var name="feedRowIndexNumber" value="0" />
 			<var name="feedTitle" value="Latimes > Technology News" />
 			<var name="feedType" value="file" />
 			<var name="feedUrlLink" value="rss2.0.xml" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="ApplicationDisplayTemplates#addPG">
+		<execute macro="Portal.ApplicationDisplayTemplates#addPG">
 			<var name="adtFile" value="adt_rss_navigation_corrupt.ftl" />
 			<var name="adtType" value="RSS" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="ApplicationDisplayTemplates#selectPortletADT">
+		<execute macro="Portal.ApplicationDisplayTemplates#selectPortletADT">
 			<var name="adtType" value="RSS" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="RSS#viewCorruptScript" />
+		<execute macro="Portal.RSS#viewCorruptScript" />
 	</command>
 
 	<command name="AddRSSADTWithScript" priority="3">
 		<property name="testray.component.names" value="Content and Application Templates,RSS" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="RSS Publisher" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletName" value="RSS Publisher" />
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute macro="RSS#addFeed">
+		<execute macro="Portal.RSS#addFeed">
 			<var name="feedRowIndexNumber" value="0" />
 			<var name="feedTitle" value="Technology" />
 			<var name="feedType" value="file" />
 			<var name="feedUrlLink" value="Technology.xml" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="ApplicationDisplayTemplates#addPG">
+		<execute macro="Portal.ApplicationDisplayTemplates#addPG">
 			<var name="adtFile" value="adt_rss_navigation.ftl" />
 			<var name="adtType" value="RSS" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="ApplicationDisplayTemplates#selectPortletADT">
+		<execute macro="Portal.ApplicationDisplayTemplates#selectPortletADT">
 			<var name="adtType" value="RSS" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="RSS#viewNavigationDisplayFeedTitle">
+		<execute macro="Portal.RSS#viewNavigationDisplayFeedTitle">
 			<var name="feedTitle" value="Technology" />
 			<var name="navigationNullADT" value="true" />
 		</execute>
@@ -224,69 +224,69 @@
 	<command name="ADTAssetPublisher" priority="3">
 		<property name="testray.component.names" value="Asset Publisher,Content and Application Templates" />
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Asset Publisher" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="WebContent#addPGViaAP">
+		<execute macro="Portal.WebContent#addPGViaAP">
 			<var name="webContentContent" value="WC Content" />
 			<var name="webContentTitle" value="WC Title" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="ApplicationDisplayTemplates#addPG">
+		<execute macro="Portal.ApplicationDisplayTemplates#addPG">
 			<var name="adtFile" value="adt_asset_publisher_rich_summary.ftl" />
 			<var name="adtType" value="Asset Publisher" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#configureDisplaySettings">
+		<execute macro="Portal.AssetPublisherPortlet#configureDisplaySettings">
 			<var name="displaySettings" value="Comments,Comment Ratings,Enable Social Bookmarks,Flags,Print,Ratings,Related Assets" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#viewDefaultWithAllDisplaySettingsCheckboxesPG">
+		<execute macro="Portal.AssetPublisherPortlet#viewDefaultWithAllDisplaySettingsCheckboxesPG">
 			<var name="assetDescription" value="WC Content" />
 			<var name="assetTitle" value="WC Title" />
 		</execute>
 
-		<execute macro="ApplicationDisplayTemplates#selectPortletADT">
+		<execute macro="Portal.ApplicationDisplayTemplates#selectPortletADT">
 			<var name="adtType" value="Asset Publisher" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#viewCustomADTRichSummaryPG">
+		<execute macro="Portal.AssetPublisherPortlet#viewCustomADTRichSummaryPG">
 			<var name="assetDescription" value="WC Content" />
 			<var name="assetTitle" value="WC Title" />
 		</execute>
@@ -296,34 +296,34 @@
 		<property name="portal.acceptance" value="true" />
 		<property name="testray.component.names" value="Breadcrumb,Content and Application Templates" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Breadcrumb" />
 		</execute>
 
-		<execute macro="Breadcrumb#viewADTApplied">
+		<execute macro="Portal.Breadcrumb#viewADTApplied">
 			<var name="breadcrumbADTType" value="horizontal" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletName" value="Breadcrumb" />
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute macro="Breadcrumb#configureBreadcrumb">
+		<execute macro="Portal.Breadcrumb#configureBreadcrumb">
 			<var name="selectADTType" value="Arrows" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="Breadcrumb#viewADTApplied">
+		<execute macro="Portal.Breadcrumb#viewADTApplied">
 			<var name="breadcrumbADTType" value="arrows" />
 		</execute>
 	</command>
@@ -332,67 +332,67 @@
 		<property name="portal.acceptance" value="true" />
 		<property name="testray.component.names" value="Categories,Content and Application Templates" />
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Test Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Categories" />
 		</execute>
 
-		<execute macro="Vocabulary#addCP">
+		<execute macro="Portal.Vocabulary#addCP">
 			<var name="vocabularyName" value="Vocabulary Name" />
 		</execute>
 
-		<execute macro="Category#addCP">
+		<execute macro="Portal.Category#addCP">
 			<var name="categoryName" value="Category Name" />
 			<var name="vocabularyName" value="Vocabulary Name" />
 		</execute>
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Categories Navigation" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="ApplicationDisplayTemplates#addPG">
+		<execute macro="Portal.ApplicationDisplayTemplates#addPG">
 			<var name="adtFile" value="adt_categories_navigation_multi_column.ftl" />
 			<var name="adtType" value="Categories Navigation" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="CategoriesNavigationPortlet#viewDefaultPG">
+		<execute macro="Portal.CategoriesNavigationPortlet#viewDefaultPG">
 			<var name="categoryName" value="Category Name" />
 			<var name="vocabularyName" value="Vocabulary Name" />
 		</execute>
 
-		<execute macro="ApplicationDisplayTemplates#selectPortletADT">
+		<execute macro="Portal.ApplicationDisplayTemplates#selectPortletADT">
 			<var name="adtType" value="Categories Navigation" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="CategoriesNavigationPortlet#viewCustomADTMultiColumnPG">
+		<execute macro="Portal.CategoriesNavigationPortlet#viewCustomADTMultiColumnPG">
 			<var name="categoryName" value="Category Name" />
 			<var name="vocabularyName" value="Vocabulary Name" />
 		</execute>
@@ -401,125 +401,125 @@
 	<command name="ADTDMMediaGallery" priority="3">
 		<property name="testray.component.names" value="Content and Application Templates,Documents Management" />
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Media Gallery" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="MGPortlet#configureShowAllPG">
+		<execute macro="Portal.MGPortlet#configureShowAllPG">
 			<var name="pageName" value="ADT Test Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="DMFolder#addPGViaMG">
+		<execute macro="Portal.DMFolder#addPGViaMG">
 			<var name="mgFolderDescription" value="DM Folder Description" />
 			<var name="mgFolderName" value="DM Folder Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="DMFolder#gotoPGViaMG">
+		<execute macro="Portal.DMFolder#gotoPGViaMG">
 			<var name="mgFolderName" value="DM Folder Name" />
 		</execute>
 
-		<execute macro="DMDocument#addPGViaMG">
+		<execute macro="Portal.DMDocument#addPGViaMG">
 			<var name="mgDocumentDescription" value="DM Document Description" />
 			<var name="mgDocumentFile" value="Document_1.jpg" />
 			<var name="mgDocumentTitle" value="DM Document Title" />
 			<var name="mgFolderName" value="DM Folder Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="DMFolder#gotoPGViaMG">
+		<execute macro="Portal.DMFolder#gotoPGViaMG">
 			<var name="mgFolderName" value="DM Folder Name" />
 		</execute>
 
-		<execute macro="DMDocument#addPGViaMG">
+		<execute macro="Portal.DMDocument#addPGViaMG">
 			<var name="mgDocumentDescription" value="DM Document Description 2" />
 			<var name="mgDocumentFile" value="Document_2.jpeg" />
 			<var name="mgDocumentTitle" value="DM Document Title 2" />
 			<var name="mgFolderName" value="DM Folder Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="ApplicationDisplayTemplates#addPG">
+		<execute macro="Portal.ApplicationDisplayTemplates#addPG">
 			<var name="adtFile" value="adt_media_gallery_carousel.ftl" />
 			<var name="adtType" value="Documents and Media" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="MGPortlet#viewShowAllPG" />
+		<execute macro="Portal.MGPortlet#viewShowAllPG" />
 
-		<execute macro="ApplicationDisplayTemplates#selectPortletADT">
+		<execute macro="Portal.ApplicationDisplayTemplates#selectPortletADT">
 			<var name="adtType" value="Documents and Media" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="MGPortlet#viewCustomADTCarouselPG" />
+		<execute macro="Portal.MGPortlet#viewCustomADTCarouselPG" />
 	</command>
 
 	<command name="ADTSiteMap" priority="3">
 		<property name="testray.component.names" value="Content and Application Templates,Sitemap" />
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Site Map" />
 		</execute>
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="SitePageNavigator#gotoPages">
+		<execute macro="Portal.SitePageNavigator#gotoPages">
 			<var name="page" value="Public Pages" />
 		</execute>
 
-		<execute macro="Page#addChild">
+		<execute macro="Portal.Page#addChild">
 			<var name="page" value="Public Pages" />
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteChildPageName" value="ADT Child Page Name" />
@@ -527,60 +527,60 @@
 			<var name="siteScopeSelected" value="true" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="ADT Test Page 2" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="ADT Test Page 3" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="ApplicationDisplayTemplates#addPG">
+		<execute macro="Portal.ApplicationDisplayTemplates#addPG">
 			<var name="adtFile" value="adt_sitemap_multi_column.ftl" />
 			<var name="adtType" value="Site Map" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="SiteMapPortlet#viewDefaultPG">
+		<execute macro="Portal.SiteMapPortlet#viewDefaultPG">
 			<var name="listChildPageName" value="ADT Child Page Name" />
 			<var name="listPageName" value="ADT Test Page,ADT Test Page 2,ADT Test Page 3" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="ApplicationDisplayTemplates#selectPortletADT">
+		<execute macro="Portal.ApplicationDisplayTemplates#selectPortletADT">
 			<var name="adtType" value="Site Map" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="SiteMapPortlet#viewCustomADTMultiColumnPG">
+		<execute macro="Portal.SiteMapPortlet#viewCustomADTMultiColumnPG">
 			<var name="listChildPageName" value="ADT Child Page Name" />
 			<var name="listPageName" value="ADT Test Page,ADT Test Page 2,ADT Test Page 3" />
 		</execute>
@@ -589,89 +589,89 @@
 	<command name="ADTStagingCategoriesNavigation" priority="3">
 		<property name="testray.component.names" value="Categories,Content and Application Templates,Staging" />
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Test Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Categories" />
 		</execute>
 
-		<execute macro="Vocabulary#addCP">
+		<execute macro="Portal.Vocabulary#addCP">
 			<var name="vocabularyName" value="Vocabulary Name" />
 		</execute>
 
-		<execute macro="Category#addCP">
+		<execute macro="Portal.Category#addCP">
 			<var name="categoryName" value="Category Name" />
 			<var name="vocabularyName" value="Vocabulary Name" />
 		</execute>
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesPublishing">
+		<execute macro="Portal.ProductMenu#gotoSitesPublishing">
 			<var name="portlet" value="Staging" />
 		</execute>
 
-		<execute macro="Staging#activateStagingCP">
+		<execute macro="Portal.Staging#activateStagingCP">
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoStagedSitePage">
+		<execute macro="Portal.Navigator#gotoStagedSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Categories Navigation" />
 		</execute>
 
-		<execute macro="Navigator#gotoStagedSitePage">
+		<execute macro="Portal.Navigator#gotoStagedSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="ApplicationDisplayTemplates#addPG">
+		<execute macro="Portal.ApplicationDisplayTemplates#addPG">
 			<var name="adtFile" value="adt_categories_navigation_multi_column.ftl" />
 			<var name="adtType" value="Categories Navigation" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoStagedSitePage">
+		<execute macro="Portal.Navigator#gotoStagedSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="CategoriesNavigationPortlet#viewDefaultPG">
+		<execute macro="Portal.CategoriesNavigationPortlet#viewDefaultPG">
 			<var name="categoryName" value="Category Name" />
 			<var name="vocabularyName" value="Vocabulary Name" />
 		</execute>
 
-		<execute macro="ApplicationDisplayTemplates#selectPortletADT">
+		<execute macro="Portal.ApplicationDisplayTemplates#selectPortletADT">
 			<var name="adtType" value="Categories Navigation" />
 		</execute>
 
-		<execute macro="Navigator#gotoStagedSitePage">
+		<execute macro="Portal.Navigator#gotoStagedSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="CategoriesNavigationPortlet#viewCustomADTMultiColumnPG">
+		<execute macro="Portal.CategoriesNavigationPortlet#viewCustomADTMultiColumnPG">
 			<var name="categoryName" value="Category Name" />
 			<var name="vocabularyName" value="Vocabulary Name" />
 		</execute>
 
-		<execute macro="Staging#gotoPublishToLive" />
+		<execute macro="Portal.Staging#gotoPublishToLive" />
 
-		<execute macro="Staging#publishToLive" />
+		<execute macro="Portal.Staging#publishToLive" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="CategoriesNavigationPortlet#viewCustomADTMultiColumnPG">
+		<execute macro="Portal.CategoriesNavigationPortlet#viewCustomADTMultiColumnPG">
 			<var name="categoryName" value="Category Name" />
 			<var name="vocabularyName" value="Vocabulary Name" />
 		</execute>
@@ -681,125 +681,125 @@
 		<property name="portal.acceptance" value="true" />
 		<property name="testray.component.names" value="Content and Application Templates,Tags" />
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Tags Navigation" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Blogs Test Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Blogs" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="Blogs#addEntryWithTags">
+		<execute macro="Portal.Blogs#addEntryWithTags">
 			<var name="entryContent" value="Entry Content" />
 			<var name="entryTitle" value="Entry Title" />
 			<var name="tagNameList" value="tag name 1,tag name 2,tag name 3" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="Blogs#addEntryWithTags">
+		<execute macro="Portal.Blogs#addEntryWithTags">
 			<var name="entryContent" value="Entry Content" />
 			<var name="entryTitle" value="Entry Title" />
 			<var name="tagNameList" value="tag name 2,tag name 3" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="Blogs#addEntryWithTags">
+		<execute macro="Portal.Blogs#addEntryWithTags">
 			<var name="entryContent" value="Entry Content" />
 			<var name="entryTitle" value="Entry Title" />
 			<var name="tagNameList" value="tag name 3" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="TagsNavigationPortlet#viewDefaultPG">
+		<execute macro="Portal.TagsNavigationPortlet#viewDefaultPG">
 			<var name="tagNameList" value="tag name 1,tag name 2,tag name 3" />
 		</execute>
 
-		<execute macro="ApplicationDisplayTemplates#addPG">
+		<execute macro="Portal.ApplicationDisplayTemplates#addPG">
 			<var name="adtFile" value="adt_tags_color.ftl" />
 			<var name="adtType" value="Tags Navigation" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="ApplicationDisplayTemplates#selectPortletADT">
+		<execute macro="Portal.ApplicationDisplayTemplates#selectPortletADT">
 			<var name="adtType" value="Tags Navigation" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="TagsNavigationPortlet#viewADTColorByPopularityPG">
+		<execute macro="Portal.TagsNavigationPortlet#viewADTColorByPopularityPG">
 			<var name="adtTagColor" value="green" />
 			<var name="tagName" value="tag name 1" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="TagsNavigationPortlet#viewADTColorByPopularityPG">
+		<execute macro="Portal.TagsNavigationPortlet#viewADTColorByPopularityPG">
 			<var name="adtTagColor" value="orange" />
 			<var name="tagName" value="tag name 2" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="TagsNavigationPortlet#viewADTColorByPopularityPG">
+		<execute macro="Portal.TagsNavigationPortlet#viewADTColorByPopularityPG">
 			<var name="adtTagColor" value="red" />
 			<var name="tagName" value="tag name 3" />
 		</execute>
@@ -808,63 +808,63 @@
 	<command name="ADTWiki" priority="3">
 		<property name="testray.component.names" value="Content and Application Templates,Wiki" />
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Wiki" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="WikiPage#addFrontPagePG">
+		<execute macro="Portal.WikiPage#addFrontPagePG">
 			<var name="wikiPageContent" value="Test Wiki Content" />
 		</execute>
 
-		<execute macro="WikiNavigator#gotoFrontPagePG" />
+		<execute macro="Portal.WikiNavigator#gotoFrontPagePG" />
 
-		<execute macro="WikiPage#viewFrontPageDefaultADTPG">
+		<execute macro="Portal.WikiPage#viewFrontPageDefaultADTPG">
 			<var name="wikiPageContent" value="Test Wiki Content" />
 		</execute>
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Application Display Templates" />
 		</execute>
 
-		<execute macro="ApplicationDisplayTemplates#addCP">
+		<execute macro="Portal.ApplicationDisplayTemplates#addCP">
 			<var name="adtFile" value="adt_wiki_social.ftl" />
 			<var name="adtType" value="Wiki" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="ApplicationDisplayTemplates#selectPortletADT">
+		<execute macro="Portal.ApplicationDisplayTemplates#selectPortletADT">
 			<var name="adtType" value="Wiki" />
 			<var name="portletName" value="Wiki" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="ADT Test Page" />
 			<var name="siteName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="WikiPage#viewCustomADTSocialPG">
+		<execute macro="Portal.WikiPage#viewCustomADTSocialPG">
 			<var name="wikiPageContent" value="Test Wiki Content" />
 		</execute>
 	</command>

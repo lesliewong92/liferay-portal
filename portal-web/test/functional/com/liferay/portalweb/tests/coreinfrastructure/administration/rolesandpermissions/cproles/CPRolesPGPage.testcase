@@ -4,9 +4,9 @@
 	<property name="testray.main.component.name" value="Permissions" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 	</set-up>
 
 	<tear-down>
@@ -15,7 +15,7 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 		</if>
 	</tear-down>
@@ -23,11 +23,11 @@
 	<command name="RemoveNoGuestInlineView" priority="5">
 		<property name="portal.acceptance" value="true" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Welcome" />
 		</execute>
 
-		<execute macro="PermissionsInline#gotoPagePG">
+		<execute macro="Portal.PermissionsInline#gotoPagePG">
 			<var name="pageName" value="Welcome" />
 		</execute>
 

@@ -8,19 +8,19 @@
 	<var name="portletName" value="My Sites Directory" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="My Sites Directory Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="My Sites Directory Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="My Sites Directory" />
 		</execute>
 	</set-up>
@@ -31,12 +31,12 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="User#tearDownCP" />
+				<execute macro="Portal.User#tearDownCP" />
 
-				<execute macro="Page#tearDownPG" />
+				<execute macro="Portal.Page#tearDownPG" />
 			</else>
 		</if>
 	</tear-down>
@@ -49,16 +49,16 @@
 		<var name="userMiddleName" value="usermn" />
 		<var name="userScreenName" value="usersn" />
 
-		<execute macro="TestCase#getSiteName">
+		<execute macro="Portal.TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#addCP">
+		<execute macro="Portal.User#addCP">
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userFirstName" value="userfn" />
 			<var name="userLastName" value="userln" />
@@ -66,20 +66,20 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#editUserSiteCP">
+		<execute macro="Portal.User#editUserSiteCP">
 			<var name="siteName" value="${siteName}" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="My Sites Directory Page" />
 		</execute>
 
-		<execute macro="User#advancedSearchViaMySitesDirectoryPG">
+		<execute macro="Portal.User#advancedSearchViaMySitesDirectoryPG">
 			<var name="searchField" value="First Name" />
 			<var name="searchTerm" value="userfn" />
 			<var name="userFirstName" value="userfn" />
@@ -87,11 +87,11 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="My Sites Directory Page" />
 		</execute>
 
-		<execute macro="User#advancedSearchViaMySitesDirectoryPG">
+		<execute macro="Portal.User#advancedSearchViaMySitesDirectoryPG">
 			<var name="searchField" value="First Name" />
 			<var name="searchNoResults" value="true" />
 			<var name="searchTerm" value="userfn1" />
@@ -100,11 +100,11 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="My Sites Directory Page" />
 		</execute>
 
-		<execute macro="User#advancedSearchViaMySitesDirectoryPG">
+		<execute macro="Portal.User#advancedSearchViaMySitesDirectoryPG">
 			<var name="searchField" value="Middle Name" />
 			<var name="searchTerm" value="usermn" />
 			<var name="userFirstName" value="userfn" />
@@ -112,11 +112,11 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="My Sites Directory Page" />
 		</execute>
 
-		<execute macro="User#advancedSearchViaMySitesDirectoryPG">
+		<execute macro="Portal.User#advancedSearchViaMySitesDirectoryPG">
 			<var name="searchField" value="Middle Name" />
 			<var name="searchNoResults" value="true" />
 			<var name="searchTerm" value="usermn1" />
@@ -125,11 +125,11 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="My Sites Directory Page" />
 		</execute>
 
-		<execute macro="User#advancedSearchViaMySitesDirectoryPG">
+		<execute macro="Portal.User#advancedSearchViaMySitesDirectoryPG">
 			<var name="searchField" value="Last Name" />
 			<var name="searchTerm" value="userln" />
 			<var name="userFirstName" value="userfn" />
@@ -137,11 +137,11 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="My Sites Directory Page" />
 		</execute>
 
-		<execute macro="User#advancedSearchViaMySitesDirectoryPG">
+		<execute macro="Portal.User#advancedSearchViaMySitesDirectoryPG">
 			<var name="searchField" value="Last Name" />
 			<var name="searchNoResults" value="true" />
 			<var name="searchTerm" value="userln1" />
@@ -150,11 +150,11 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="My Sites Directory Page" />
 		</execute>
 
-		<execute macro="User#advancedSearchViaMySitesDirectoryPG">
+		<execute macro="Portal.User#advancedSearchViaMySitesDirectoryPG">
 			<var name="searchField" value="Screen Name" />
 			<var name="searchTerm" value="usersn" />
 			<var name="userFirstName" value="userfn" />
@@ -162,11 +162,11 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="My Sites Directory Page" />
 		</execute>
 
-		<execute macro="User#advancedSearchViaMySitesDirectoryPG">
+		<execute macro="Portal.User#advancedSearchViaMySitesDirectoryPG">
 			<var name="searchField" value="Screen Name" />
 			<var name="searchNoResults" value="true" />
 			<var name="searchTerm" value="usersn1" />
@@ -175,11 +175,11 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="My Sites Directory Page" />
 		</execute>
 
-		<execute macro="User#advancedSearchViaMySitesDirectoryPG">
+		<execute macro="Portal.User#advancedSearchViaMySitesDirectoryPG">
 			<var name="searchField" value="Email Address" />
 			<var name="searchTerm" value="userea@liferay.com" />
 			<var name="userFirstName" value="userfn" />
@@ -187,11 +187,11 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="My Sites Directory Page" />
 		</execute>
 
-		<execute macro="User#advancedSearchViaMySitesDirectoryPG">
+		<execute macro="Portal.User#advancedSearchViaMySitesDirectoryPG">
 			<var name="searchField" value="Email Address" />
 			<var name="searchNoResults" value="true" />
 			<var name="searchTerm" value="userea@liferay.com1" />

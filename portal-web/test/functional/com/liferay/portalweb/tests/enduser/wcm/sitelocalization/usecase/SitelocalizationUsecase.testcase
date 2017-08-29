@@ -4,9 +4,9 @@
 	<property name="testray.main.component.name" value="Site Localization" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 	</set-up>
 
 	<tear-down>
@@ -15,12 +15,12 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="Page#tearDownPG" />
+				<execute macro="Portal.Page#tearDownPG" />
 
-				<execute macro="Site#tearDownCP" />
+				<execute macro="Portal.Site#tearDownCP" />
 			</else>
 		</if>
 	</tear-down>
@@ -30,46 +30,46 @@
 		<property name="test.name.skip.portal.instance" value="SitelocalizationUsecase#AvailableSiteLocalesSubsetOfAvailablePortalLocales" />
 		<property name="testray.component.names" value="Site Localization" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Language Test Page" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Site Settings" />
 		</execute>
 
-		<execute macro="Site#configureCurrentLanguagesCP">
+		<execute macro="Portal.Site#configureCurrentLanguagesCP">
 			<var name="currentSiteLanguages" value="English (United States),German (Germany),Spanish (Spain)" />
 			<var name="defaultSiteLanguage" value="Spanish (Spain)" />
 			<var name="displaySettings" value="Display Settings" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>
 
-		<execute macro="PortalSettings#configureCurrentLanguagesCP">
+		<execute macro="Portal.PortalSettings#configureCurrentLanguagesCP">
 			<var name="currentPortalLanguages" value="Arabic (Saudi Arabia),Czech (Czech Republic),French (France)" />
 		</execute>
 
 		<execute function="Refresh" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Site Settings" />
 		</execute>
 
-		<execute macro="Site#viewCurrentLanguagesCP">
+		<execute macro="Portal.Site#viewCurrentLanguagesCP">
 			<var name="availableSiteLanguages" value="Arabic (Saudi Arabia),Czech (Czech Republic),French (France)" />
 			<var name="currentSiteLanguages" value="English (United States),German (Germany),Spanish (Spain)" />
 			<var name="defaultSiteLanguage" value="English (United States)" />
 			<var name="displaySettings" value="Display Settings" />
 		</execute>
 
-		<execute macro="Page#viewPageLocalization">
+		<execute macro="Portal.Page#viewPageLocalization">
 			<var name="category" value="Navigation" />
 			<var name="defaultSiteLanguageKey" value="es_ES" />
 			<var name="page" value="Language Test Page" />
@@ -83,41 +83,41 @@
 
 		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Language Test Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Language Selector" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Language Test Page" />
 		</execute>
 
-		<execute macro="LanguagePortlet#selectLanguagePG">
+		<execute macro="Portal.LanguagePortlet#selectLanguagePG">
 			<var name="language" value="English (United States)" />
 		</execute>
 
 		<execute function="AssertLocation" value1="${portalURL}/web/guest/language-test-page" />
 
-		<execute macro="LanguagePortlet#selectLanguagePG">
+		<execute macro="Portal.LanguagePortlet#selectLanguagePG">
 			<var name="language" value="Spanish (Spain)" />
 		</execute>
 
 		<execute function="AssertLocation" value1="${portalURL}/web/guest/language-test-page" />
 
-		<execute macro="LanguagePortlet#selectLanguagePG">
+		<execute macro="Portal.LanguagePortlet#selectLanguagePG">
 			<var name="language" value="Japanese (Japan)" />
 		</execute>
 
 		<execute function="AssertLocation" value1="${portalURL}/web/guest/language-test-page" />
 
-		<execute macro="LanguagePortlet#selectLanguagePG">
+		<execute macro="Portal.LanguagePortlet#selectLanguagePG">
 			<var name="language" value="English (United States)" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Language Test Page" />
 		</execute>
 	</command>
@@ -129,41 +129,41 @@
 
 		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Language Test Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Language Selector" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Language Test Page" />
 		</execute>
 
-		<execute macro="LanguagePortlet#selectLanguagePG">
+		<execute macro="Portal.LanguagePortlet#selectLanguagePG">
 			<var name="language" value="English (United States)" />
 		</execute>
 
 		<execute function="AssertLocation" value1="${portalURL}/web/guest/language-test-page" />
 
-		<execute macro="LanguagePortlet#selectLanguagePG">
+		<execute macro="Portal.LanguagePortlet#selectLanguagePG">
 			<var name="language" value="Spanish (Spain)" />
 		</execute>
 
 		<execute function="AssertLocation" value1="${portalURL}/es/web/guest/language-test-page" />
 
-		<execute macro="LanguagePortlet#selectLanguagePG">
+		<execute macro="Portal.LanguagePortlet#selectLanguagePG">
 			<var name="language" value="Japanese (Japan)" />
 		</execute>
 
 		<execute function="AssertLocation" value1="${portalURL}/ja/web/guest/language-test-page" />
 
-		<execute macro="LanguagePortlet#selectLanguagePG">
+		<execute macro="Portal.LanguagePortlet#selectLanguagePG">
 			<var name="language" value="English (United States)" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Language Test Page" />
 		</execute>
 	</command>
@@ -175,41 +175,41 @@
 
 		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Language Test Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Language Selector" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Language Test Page" />
 		</execute>
 
-		<execute macro="LanguagePortlet#selectLanguagePG">
+		<execute macro="Portal.LanguagePortlet#selectLanguagePG">
 			<var name="language" value="English (United States)" />
 		</execute>
 
 		<execute function="AssertLocation" value1="${portalURL}/en/web/guest/language-test-page" />
 
-		<execute macro="LanguagePortlet#selectLanguagePG">
+		<execute macro="Portal.LanguagePortlet#selectLanguagePG">
 			<var name="language" value="Spanish (Spain)" />
 		</execute>
 
 		<execute function="AssertLocation" value1="${portalURL}/es/web/guest/language-test-page" />
 
-		<execute macro="LanguagePortlet#selectLanguagePG">
+		<execute macro="Portal.LanguagePortlet#selectLanguagePG">
 			<var name="language" value="Japanese (Japan)" />
 		</execute>
 
 		<execute function="AssertLocation" value1="${portalURL}/ja/web/guest/language-test-page" />
 
-		<execute macro="LanguagePortlet#selectLanguagePG">
+		<execute macro="Portal.LanguagePortlet#selectLanguagePG">
 			<var name="language" value="English (United States)" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Language Test Page" />
 		</execute>
 	</command>
@@ -217,55 +217,55 @@
 	<command name="LocalizeCountryName" priority="3">
 		<property name="testray.component.names" value="Site Localization,Users and Organizations" />
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#addCP">
+		<execute macro="Portal.User#addCP">
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userFirstName" value="userfn" />
 			<var name="userLastName" value="userln" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#editPasswordCP">
+		<execute macro="Portal.User#editPasswordCP">
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#editDisplaySettingsCP">
+		<execute macro="Portal.User#editDisplaySettingsCP">
 			<var name="languageName" value="español (España)" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#assignRegularRoleCP">
+		<execute macro="Portal.User#assignRegularRoleCP">
 			<var name="roleTitle" value="Administrator" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="User#firstLoginPG">
+		<execute macro="Portal.User#firstLoginPG">
 			<var name="password" value="test" />
 			<var name="userEmailAddress" value="userea@liferay.com" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoLocalizedControlPanel">
+		<execute macro="Portal.ProductMenu#gotoLocalizedControlPanel">
 			<var name="category" value="Usuarios" />
 			<var name="portlet" value="Usuarios y Organizaciones" />
 		</execute>
 
-		<execute macro="Organization#addWithLocalizedCountryCP">
+		<execute macro="Portal.Organization#addWithLocalizedCountryCP">
 			<var name="countryName" value="Estados Unidos" />
 			<var name="localizedOption" value="Organización" />
 			<var name="navItem" value="Organizaciones" />
@@ -273,17 +273,17 @@
 			<var name="saveButton" value="Guardar" />
 		</execute>
 
-		<execute macro="User#firstLoginPG">
+		<execute macro="Portal.User#firstLoginPG">
 			<var name="password" value="test" />
 			<var name="userEmailAddress" value="userea@liferay.com" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoLocalizedControlPanel">
+		<execute macro="Portal.ProductMenu#gotoLocalizedControlPanel">
 			<var name="category" value="Usuarios" />
 			<var name="portlet" value="Usuarios y Organizaciones" />
 		</execute>
 
-		<execute macro="Organization#viewLocalizedCountryCP">
+		<execute macro="Portal.Organization#viewLocalizedCountryCP">
 			<var name="countryName" value="Estados Unidos" />
 			<var name="editLocalized" value="Editar" />
 			<var name="navItem" value="Organizaciones" />
@@ -297,142 +297,142 @@
 
 		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addBlankCP">
+		<execute macro="Portal.Site#addBlankCP">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addBlankCP">
+		<execute macro="Portal.Site#addBlankCP">
 			<var name="siteName" value="Site2 Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site2 Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Site Settings" />
 		</execute>
 
-		<execute macro="Site#configureCurrentLanguagesCP">
+		<execute macro="Portal.Site#configureCurrentLanguagesCP">
 			<var name="defaultSiteLanguage" value="English (United States)" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site2 Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Site Settings" />
 		</execute>
 
-		<execute macro="Site#configureCurrentLanguagesCP">
+		<execute macro="Portal.Site#configureCurrentLanguagesCP">
 			<var name="defaultSiteLanguage" value="Spanish (Spain)" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#addCP">
+		<execute macro="Portal.User#addCP">
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userFirstName" value="userfn" />
 			<var name="userLastName" value="userln" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#editPasswordCP">
+		<execute macro="Portal.User#editPasswordCP">
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#editUserSiteCP">
+		<execute macro="Portal.User#editUserSiteCP">
 			<var name="siteName" value="Site Name" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#editUserSiteCP">
+		<execute macro="Portal.User#editUserSiteCP">
 			<var name="siteName" value="Site2 Name" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#editDisplaySettingsCP">
+		<execute macro="Portal.User#editDisplaySettingsCP">
 			<var name="languageName" value="español (España)" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="User#firstLoginPG">
+		<execute macro="Portal.User#firstLoginPG">
 			<var name="password" value="test" />
 			<var name="userEmailAddress" value="userea@liferay.com" />
 		</execute>
 
-		<execute macro="Page#openURLLocale">
+		<execute macro="Portal.Page#openURLLocale">
 			<var name="localizationPageURL" value="${portalURL}/web/site2-name" />
 		</execute>
 
-		<execute macro="Page#viewURLLocale">
+		<execute macro="Portal.Page#viewURLLocale">
 			<var name="localizationPageURL" value="${portalURL}/web/site2-name" />
 		</execute>
 
-		<execute macro="Page#openURLLocale">
+		<execute macro="Portal.Page#openURLLocale">
 			<var name="localizationPageURL" value="${portalURL}/web/site-name" />
 		</execute>
 
-		<execute macro="Page#viewURLLocale">
+		<execute macro="Portal.Page#viewURLLocale">
 			<var name="localizationPageURL" value="${portalURL}/web/site-name" />
 		</execute>
 
-		<execute macro="User#firstLoginPG">
+		<execute macro="Portal.User#firstLoginPG">
 			<var name="password" value="test" />
 			<var name="userEmailAddress" value="test@liferay.com" />
 		</execute>
 
-		<execute macro="Page#openURLLocale">
+		<execute macro="Portal.Page#openURLLocale">
 			<var name="localizationPageURL" value="${portalURL}/es/web/site2-name" />
 		</execute>
 
-		<execute macro="Page#viewURLLocale">
+		<execute macro="Portal.Page#viewURLLocale">
 			<var name="localizationOption" value="Display the page in English (United States)." />
 			<var name="localizationPageURL" value="${portalURL}/web/site2-name" />
 		</execute>
@@ -442,162 +442,162 @@
 		<property name="test.name.skip.portal.instance" value="SitelocalizationUsecase#PortletInteractionLocalization" />
 		<property name="testray.component.names" value="Site Localization" />
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addBlankCP">
+		<execute macro="Portal.Site#addBlankCP">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Site Page 1" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Site Page 2" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page 1" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Language Selector" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page 1" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Web Content Display" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Site Settings" />
 		</execute>
 
-		<execute macro="Site#configureCurrentLanguagesCP">
+		<execute macro="Portal.Site#configureCurrentLanguagesCP">
 			<var name="currentSiteLanguages" value="Spanish (Spain),German (Germany)" />
 			<var name="defaultSiteLanguage" value="Spanish (Spain)" />
 			<var name="displaySettings" value="Display Settings" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page 1" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Page#viewPageLocalization">
+		<execute macro="Portal.Page#viewPageLocalization">
 			<var name="category" value="Navegación" />
 			<var name="defaultSiteLanguageKey" value="es_ES" />
 			<var name="page" value="Site Page 1" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page 2" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Page#viewPageLocalization">
+		<execute macro="Portal.Page#viewPageLocalization">
 			<var name="category" value="Navegación" />
 			<var name="defaultSiteLanguageKey" value="es_ES" />
 			<var name="page" value="Site Page 2" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page 1" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoLocalizedControlPanel">
+		<execute macro="Portal.ProductMenu#gotoLocalizedControlPanel">
 			<var name="category" value="Configuración" />
 			<var name="portlet" value="Configuración de la instancia" />
 		</execute>
 
-		<execute macro="PortalSettings#viewCurrentDefaultPortalLanguageCP">
+		<execute macro="Portal.PortalSettings#viewCurrentDefaultPortalLanguageCP">
 			<var name="defaultPortalLanguage" value="English (United States)" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoLocalizedSitesAdministration">
+		<execute macro="Portal.ProductMenu#gotoLocalizedSitesAdministration">
 			<var name="category" value="Configuración" />
 			<var name="portlet" value="Ajustes del sitio" />
 		</execute>
 
-		<execute macro="Site#configureCurrentLanguagesCP">
+		<execute macro="Portal.Site#configureCurrentLanguagesCP">
 			<var name="currentSiteLanguages" value="Spanish (Spain),German (Germany)" />
 			<var name="displaySettings" value="Display Settings" />
 			<var name="localizedSuccessMessage" value="Your request completed successfully." />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page 1" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="WebContent#addLocalizedPGViaWCD">
+		<execute macro="Portal.WebContent#addLocalizedPGViaWCD">
 			<var name="localizedBasicWebContent" value="Contenido web básico" />
 			<var name="webContentContent" value="Web Content1 Content" />
 			<var name="webContentTitle" value="Web Content1 Title" />
 		</execute>
 
-		<execute macro="WebContent#viewPGViaWCD">
+		<execute macro="Portal.WebContent#viewPGViaWCD">
 			<var name="webContentContent" value="Web Content1 Content" />
 		</execute>
 
-		<execute macro="WebContentNavigator#gotoLocalizedEditPGViaWCD">
+		<execute macro="Portal.WebContentNavigator#gotoLocalizedEditPGViaWCD">
 			<var name="localizedPortletName" value="Visor de contenido web" />
 			<var name="localizedPortletOption" value="Editar contenido web" />
 		</execute>
 
-		<execute macro="WebContent#viewAvailableLanguagesPGViaWCD">
+		<execute macro="Portal.WebContent#viewAvailableLanguagesPGViaWCD">
 			<var name="webContentTranslationLanguage1" value="German (Germany)" />
 			<var name="webContentTranslationLanguage2" value="English (United States)" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page 1" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoLocalizedSitesAdministration">
+		<execute macro="Portal.ProductMenu#gotoLocalizedSitesAdministration">
 			<var name="category" value="Configuración" />
 			<var name="portlet" value="Ajustes del sitio" />
 		</execute>
 
-		<execute macro="Site#configureCurrentLanguagesCP">
+		<execute macro="Portal.Site#configureCurrentLanguagesCP">
 			<var name="currentSiteLanguages" value="Spanish (Spain),German (Germany),English (United States)" />
 			<var name="displaySettings" value="Display Settings" />
 			<var name="localizedSuccessMessage" value="Your request completed successfully." />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page 1" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="LanguagePortlet#selectLanguagePG">
+		<execute macro="Portal.LanguagePortlet#selectLanguagePG">
 			<var name="language" value="English (United States)" />
 		</execute>
 	</command>
@@ -607,26 +607,26 @@
 		<property name="test.name.skip.portal.instance" value="SitelocalizationUsecase#SiteTemplateLocalization" />
 		<property name="testray.component.names" value="Site and Page Templates,Site Localization" />
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Site Templates" />
 		</execute>
 
-		<execute macro="SiteTemplates#addCP">
+		<execute macro="Portal.SiteTemplates#addCP">
 			<var name="siteTemplateActive" value="Yes" />
 			<var name="siteTemplateName" value="Site Template Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Site Templates" />
 		</execute>
 
-		<execute macro="SiteTemplates#viewNoSiteOrWorkflowLinksCP" />
+		<execute macro="Portal.SiteTemplates#viewNoSiteOrWorkflowLinksCP" />
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addCP">
+		<execute macro="Portal.Site#addCP">
 			<var name="portletNames" value="Site Settings,Social Activities,Workflow Configuration" />
 			<var name="siteName" value="Site Name from Template" />
 			<var name="siteTemplateActive" value="Yes" />
@@ -635,29 +635,29 @@
 			<var name="uncheckPropagation" value="true" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name from Template" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Site Settings" />
 		</execute>
 
-		<execute macro="Site#configureCurrentLanguagesCP">
+		<execute macro="Portal.Site#configureCurrentLanguagesCP">
 			<var name="currentSiteLanguages" value="English (United States),German (Germany),Spanish (Spain)" />
 			<var name="defaultSiteLanguage" value="Spanish (Spain)" />
 			<var name="displaySettings" value="Display Settings" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name from Template" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Site Settings" />
 		</execute>
 
-		<execute macro="Site#viewSiteClonedFromSiteTemplateCP">
+		<execute macro="Portal.Site#viewSiteClonedFromSiteTemplateCP">
 			<var name="clonedFromTemplate" value="true" />
 			<var name="siteTemplateName" value="Site Template Name" />
 		</execute>
@@ -667,67 +667,67 @@
 		<property name="test.name.skip.portal.instance" value="SitelocalizationUsecase#ViewAvailableSiteLocaleAlternatives" />
 		<property name="testray.component.names" value="Site Localization" />
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#addCP">
+		<execute macro="Portal.User#addCP">
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userFirstName" value="userfn" />
 			<var name="userLastName" value="userln" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#editPasswordCP">
+		<execute macro="Portal.User#editPasswordCP">
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#editDisplaySettingsCP">
+		<execute macro="Portal.User#editDisplaySettingsCP">
 			<var name="languageName" value="español (España)" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addCP">
+		<execute macro="Portal.Site#addCP">
 			<var name="siteName" value="Site Name" />
 			<var name="siteType" value="Blank" />
 		</execute>
 
-		<execute macro="Site#configureCurrentLanguagesCP">
+		<execute macro="Portal.Site#configureCurrentLanguagesCP">
 			<var name="currentSiteLanguages" value="English (United States)" />
 			<var name="defaultSiteLanguage" value="English (United States)" />
 			<var name="displaySettings" value="Display Settings" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="User#logoutPG" />
+		<execute macro="Portal.User#logoutPG" />
 
-		<execute macro="User#loginPG">
+		<execute macro="Portal.User#loginPG">
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
@@ -737,9 +737,9 @@
 		<execute function="AssertTextEquals" locator1="Home#PORTAL_LOCALIZATION_CONFIRMATION_MESSAGE" value1="Mostrar la página en español (España)." />
 
 		<execute function="AssertTextEquals" locator1="Home#PORTAL_LOCALIZATION_PREFERRED_MESSAGE" value1="Establecer inglés (Estados Unidos) como su idioma preferido." />
-		<execute macro="User#logoutPG" />
+		<execute macro="Portal.User#logoutPG" />
 
-		<execute macro="User#loginPG" />
+		<execute macro="Portal.User#loginPG" />
 	</command>
 
 	<command name="ViewEditURLLocale" priority="4">
@@ -747,83 +747,83 @@
 
 		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Site Settings" />
 		</execute>
 
-		<execute macro="Site#configureCurrentLanguagesCP">
+		<execute macro="Portal.Site#configureCurrentLanguagesCP">
 			<var name="currentSiteLanguages" value="English (United States),Hungarian (Hungary)" />
 			<var name="defaultSiteLanguage" value="English (United States)" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addBlankCP">
+		<execute macro="Portal.Site#addBlankCP">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Language Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Site Settings" />
 		</execute>
 
-		<execute macro="Site#configureCurrentLanguagesCP">
+		<execute macro="Portal.Site#configureCurrentLanguagesCP">
 			<var name="currentSiteLanguages" value="English (United States),Hungarian (Hungary)" />
 			<var name="defaultSiteLanguage" value="English (United States)" />
 		</execute>
 
-		<execute macro="User#logoutPG" />
+		<execute macro="Portal.User#logoutPG" />
 
-		<execute macro="Navigator#openSpecificURL">
+		<execute macro="Portal.Navigator#openSpecificURL">
 			<var name="url" value="${portalURL}/fr/web/site-name/language-page" />
 		</execute>
 
-		<execute macro="Alert#closePortalLocalizationWarning" />
+		<execute macro="Portal.Alert#closePortalLocalizationWarning" />
 
 		<execute function="AssertLocation" value1="${portalURL}/en/web/site-name/language-page" />
 
-		<execute macro="Navigator#openSpecificURL">
+		<execute macro="Portal.Navigator#openSpecificURL">
 			<var name="url" value="${portalURL}/fr" />
 		</execute>
 
-		<execute macro="Alert#closePortalLocalizationWarning" />
+		<execute macro="Portal.Alert#closePortalLocalizationWarning" />
 
 		<execute function="AssertLocation" value1="${portalURL}/en/web/guest/home" />
 
-		<execute macro="User#loginPG">
+		<execute macro="Portal.User#loginPG">
 			<var name="specificURL" value="${portalURL}/fr" />
 		</execute>
 
 		<execute function="AssertLocation" value1="${portalURL}/web/guest/home" />
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Site Settings" />
 		</execute>
 
-		<execute macro="Site#addVirtualHostsURLCP">
+		<execute macro="Portal.Site#addVirtualHostsURLCP">
 			<var name="publicPageVirtualHostURL" value="www.able.com" />
 			<var name="publicVirtualHosts" value="true" />
 		</execute>
 
-		<execute macro="Navigator#openSpecificURL">
+		<execute macro="Portal.Navigator#openSpecificURL">
 			<var name="url" value="http://www.able.com:8080/fr/" />
 		</execute>
 
-		<execute macro="Site#viewVirtualHostsURLPG">
+		<execute macro="Portal.Site#viewVirtualHostsURLPG">
 			<var name="pageName" value="Language Page" />
 			<var name="siteName" value="Site Name" />
 			<var name="sitePageURL" value="http://www.able.com:8080/en/" />
@@ -835,50 +835,50 @@
 		<property name="test.name.skip.portal.instance" value="SitelocalizationUsecase#ViewSiteLocalizationAfterDeletingOriginalLocale" />
 		<property name="testray.component.names" value="Site Localization" />
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>
 
-		<execute macro="PortalSettings#viewDefaultLanguageCP">
+		<execute macro="Portal.PortalSettings#viewDefaultLanguageCP">
 			<var name="defaultPortalLanguage" value="English (United States)" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addCP">
+		<execute macro="Portal.Site#addCP">
 			<var name="siteName" value="Site Name" />
 			<var name="siteType" value="Blank" />
 		</execute>
 
-		<execute macro="Site#configureCurrentLanguagesCP">
+		<execute macro="Portal.Site#configureCurrentLanguagesCP">
 			<var name="currentSiteLanguages" value="Portuguese (Brazil),Spanish (Spain)" />
 			<var name="defaultSiteLanguage" value="Spanish (Spain)" />
 			<var name="displaySettings" value="Display Settings" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="localized" value="La página ha sido creada con éxito" />
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoLocalizedEditPage">
+		<execute macro="Portal.ProductMenu#gotoLocalizedEditPage">
 			<var name="category" value="Navegación" />
 			<var name="page" value="Site Page Name" />
 		</execute>
 
-		<execute macro="Page#viewFriendlyURLLanguageOptionsPG">
+		<execute macro="Portal.Page#viewFriendlyURLLanguageOptionsPG">
 			<var name="assertUnavailableLanguages" value="true" />
 			<var name="currentLanguageList" value="FRIENDLY_URL_PORTUGUESE_BRAZIL,FRIENDLY_URL_SPANISH_SPAIN" />
 			<var name="unavailableLanguageList" value="FRIENDLY_URL_ENGLISH_UNITED_STATES" />

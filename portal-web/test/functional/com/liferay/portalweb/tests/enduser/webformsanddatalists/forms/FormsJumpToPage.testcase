@@ -4,78 +4,78 @@
 	<property name="testray.main.component.name" value="Forms" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 
 		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Forms" />
 		</execute>
 
-		<execute macro="FormsAdminNavigator#gotoAddForm" />
+		<execute macro="Portal.FormsAdminNavigator#gotoAddForm" />
 
-		<execute macro="Form#editName" />
+		<execute macro="Portal.Form#editName" />
 
-		<execute macro="Form#editPageTitle">
+		<execute macro="Portal.Form#editPageTitle">
 			<var name="formPageName" value="Page 1" />
 		</execute>
 
-		<execute macro="Form#gotoAddField">
+		<execute macro="Portal.Form#gotoAddField">
 			<var name="fieldType" value="Single Selection" />
 		</execute>
 
-		<execute macro="Form#editFieldLabel">
+		<execute macro="Portal.Form#editFieldLabel">
 			<var name="fieldValue" value="Choose Your Destiny" />
 		</execute>
 
-		<execute macro="FormFields#editOptionsRow">
+		<execute macro="Portal.FormFields#editOptionsRow">
 			<var name="optionName" value="Destiny1" />
 			<var name="optionValue" value="Destiny 1" />
 		</execute>
 
-		<execute macro="FormFields#editOptionsRow">
+		<execute macro="Portal.FormFields#editOptionsRow">
 			<var name="optionName" value="Destiny2" />
 			<var name="optionValue" value="Destiny 2" />
 			<var name="rowNumber" value="2" />
 		</execute>
 
-		<execute macro="FormFields#editOptionsRow">
+		<execute macro="Portal.FormFields#editOptionsRow">
 			<var name="optionName" value="Destiny3" />
 			<var name="optionValue" value="Destiny 3" />
 			<var name="rowNumber" value="3" />
 		</execute>
 
-		<execute macro="Form#closeSidebar" />
+		<execute macro="Portal.Form#closeSidebar" />
 
 		<for list="1,2,3" param="option">
-			<execute macro="Form#addPage" />
+			<execute macro="Portal.Form#addPage" />
 
 			<var method="MathUtil#sum('${option}','1')" name="pageNumber" />
 
-			<execute macro="Form#editPageTitle">
+			<execute macro="Portal.Form#editPageTitle">
 				<var name="formPageName" value="Page ${pageNumber}" />
 			</execute>
 
-			<execute macro="Form#gotoAddField">
+			<execute macro="Portal.Form#gotoAddField">
 				<var name="fieldType" value="Text Field" />
 			</execute>
 
-			<execute macro="Form#editFieldLabel">
+			<execute macro="Portal.Form#editFieldLabel">
 				<var name="fieldValue" value="Destiny ${option}" />
 			</execute>
 
-			<execute macro="Form#closeSidebar" />
+			<execute macro="Portal.Form#closeSidebar" />
 		</for>
 
-		<execute macro="FormsAdminNavigator#gotoRules" />
+		<execute macro="Portal.FormsAdminNavigator#gotoRules" />
 
-		<execute macro="FormRules#addRule" />
+		<execute macro="Portal.FormRules#addRule" />
 
-		<execute macro="FormRules#configureConditionOptions">
+		<execute macro="Portal.FormRules#configureConditionOptions">
 			<var name="conditionField" value="Choose Your Destiny" />=
 			<var name="conditionOperator" value="Is equal to" />
 			<var name="conditionRowNumber" value="1" />
@@ -83,17 +83,17 @@
 			<var name="conditionValueType" value="Value" />
 		</execute>
 
-		<execute macro="FormRules#configureActionOptions">
+		<execute macro="Portal.FormRules#configureActionOptions">
 			<var name="action" value="Jump to Page" />
 			<var name="actionRowNumber" value="1" />
 			<var name="actionTarget" value="3 Page 3" />
 		</execute>
 
-		<execute macro="FormRules#save" />
+		<execute macro="Portal.FormRules#save" />
 
-		<execute macro="FormRules#addRule" />
+		<execute macro="Portal.FormRules#addRule" />
 
-		<execute macro="FormRules#configureConditionOptions">
+		<execute macro="Portal.FormRules#configureConditionOptions">
 			<var name="conditionField" value="Choose Your Destiny" />=
 			<var name="conditionOperator" value="Is equal to" />
 			<var name="conditionRowNumber" value="1" />
@@ -101,17 +101,17 @@
 			<var name="conditionValueType" value="Value" />
 		</execute>
 
-		<execute macro="FormRules#configureActionOptions">
+		<execute macro="Portal.FormRules#configureActionOptions">
 			<var name="action" value="Jump to Page" />
 			<var name="actionRowNumber" value="1" />
 			<var name="actionTarget" value="4 Page 4" />
 		</execute>
 
-		<execute macro="FormRules#save" />
+		<execute macro="Portal.FormRules#save" />
 
-		<execute macro="FormsAdminNavigator#gotoFormBuilder" />
+		<execute macro="Portal.FormsAdminNavigator#gotoFormBuilder" />
 
-		<execute macro="Form#save" />
+		<execute macro="Portal.Form#save" />
 	</set-up>
 
 	<tear-down>
@@ -120,18 +120,18 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="Navigator#openURL" />
+				<execute macro="Portal.Navigator#openURL" />
 
-				<execute macro="ProductMenu#gotoSitesContent">
+				<execute macro="Portal.ProductMenu#gotoSitesContent">
 					<var name="portlet" value="Forms" />
 				</execute>
 
-				<execute macro="FormsAdmin#teardownForms" />
+				<execute macro="Portal.FormsAdmin#teardownForms" />
 
-				<execute macro="Page#tearDownPG" />
+				<execute macro="Portal.Page#tearDownPG" />
 			</else>
 		</if>
 	</tear-down>
@@ -139,9 +139,9 @@
 	<command name="ViewFormRulesSummary" priority="4">
 		<description message="This is a use case for LPS-68227." />
 
-		<execute macro="FormsAdminNavigator#gotoRules" />
+		<execute macro="Portal.FormsAdminNavigator#gotoRules" />
 
-		<execute macro="FormRules#viewSummary">
+		<execute macro="Portal.FormRules#viewSummary">
 			<var name="action" value="Jump to Page" />
 			<var name="actionTarget" value="3 Page 3" />
 			<var name="conditionField" value="Choose Your Destiny" />
@@ -150,7 +150,7 @@
 			<var name="ruleNumber" value="1" />
 		</execute>
 
-		<execute macro="FormRules#viewSummary">
+		<execute macro="Portal.FormRules#viewSummary">
 			<var name="action" value="Jump to Page" />
 			<var name="actionTarget" value="4 Page 4" />
 			<var name="conditionField" value="Choose Your Destiny" />
@@ -164,80 +164,80 @@
 		<description message="This is a use case for LPS-69372." />
 		<property name="portal.acceptance" value="pending" />
 
-		<execute macro="Form#publishForm" />
+		<execute macro="Portal.Form#publishForm" />
 
-		<execute macro="FormsAdminNavigator#openPublishURL">
+		<execute macro="Portal.FormsAdminNavigator#openPublishURL">
 			<var name="publishFormURL" value="${publishedFormPublicURL}" />
 		</execute>
 
 		<for list="1,2,3" param="option">
-			<execute macro="FormFields#selectRadioOption">
+			<execute macro="Portal.FormFields#selectRadioOption">
 				<var name="fieldName" value="ChooseYourDestiny" />
 				<var name="radioOption" value="Destiny ${option}" />
 			</execute>
 
 			<var method="MathUtil#sum('${option}','1')" name="pageNumber" />
 
-			<execute macro="FormPortlet#nextPage">
+			<execute macro="Portal.FormPortlet#nextPage">
 				<var name="formPageCurrent" value="Page 1" />
 				<var name="formPageNext" value="Page ${pageNumber}" />
 			</execute>
 
-			<execute macro="FormFields#viewTextField">
+			<execute macro="Portal.FormFields#viewTextField">
 				<var name="fieldLabel" value="Destiny ${option}" />
 				<var name="fieldName" value="Destiny${option}" />
 			</execute>
 
-			<execute macro="FormPortlet#previousPage" />
+			<execute macro="Portal.FormPortlet#previousPage" />
 		</for>
 
-		<execute macro="FormFields#selectRadioOption">
+		<execute macro="Portal.FormFields#selectRadioOption">
 			<var name="fieldName" value="ChooseYourDestiny" />
 			<var name="radioOption" value="Destiny 2" />
 		</execute>
 
-		<execute macro="FormPortlet#nextPage">
+		<execute macro="Portal.FormPortlet#nextPage">
 			<var name="formPageCurrent" value="Page 1" />
 			<var name="formPageNext" value="Page 3" />
 		</execute>
 
-		<execute macro="FormFields#editText">
+		<execute macro="Portal.FormFields#editText">
 			<var name="fieldName" value="Destiny2" />
 			<var name="fieldValue" value="After skipping to page 3" />
 		</execute>
 
-		<execute macro="FormPortlet#nextPage">
+		<execute macro="Portal.FormPortlet#nextPage">
 			<var name="formPageCurrent" value="Page 3" />
 			<var name="formPageNext" value="Page 4" />
 		</execute>
 
-		<execute macro="FormFields#editText">
+		<execute macro="Portal.FormFields#editText">
 			<var name="fieldName" value="Destiny3" />
 			<var name="fieldValue" value="Also fill out page 4" />
 		</execute>
 
-		<execute macro="FormPortlet#submitSuccessfully" />
+		<execute macro="Portal.FormPortlet#submitSuccessfully" />
 	</command>
 
 	<command name="ViewRuleAfterLabelEdit" priority="4">
 		<description message="This is a use case for LPS-68227." />
 
-		<execute macro="FormsAdminNavigator#gotoEditField">
+		<execute macro="Portal.FormsAdminNavigator#gotoEditField">
 			<var name="fieldName" value="ChooseYourDestiny" />
 		</execute>
 
-		<execute macro="Form#editFieldLabel">
+		<execute macro="Portal.Form#editFieldLabel">
 			<var name="fieldName" value="ChooseYourDestiny" />
 			<var name="fieldValue" value="Edit Label" />
 		</execute>
 
-		<execute macro="Form#closeSidebar" />
+		<execute macro="Portal.Form#closeSidebar" />
 
-		<execute macro="Form#save" />
+		<execute macro="Portal.Form#save" />
 
-		<execute macro="FormsAdminNavigator#gotoRules" />
+		<execute macro="Portal.FormsAdminNavigator#gotoRules" />
 
-		<execute macro="FormRules#gotoEdit">
+		<execute macro="Portal.FormRules#gotoEdit">
 			<var name="ruleNumber" value="1" />
 		</execute>
 
@@ -249,23 +249,23 @@
 	<command name="ViewRuleAfterOptionValueEdit" priority="3">
 		<description message="This is a use case for LPS-68227." />
 
-		<execute macro="FormsAdminNavigator#gotoEditField">
+		<execute macro="Portal.FormsAdminNavigator#gotoEditField">
 			<var name="fieldName" value="ChooseYourDestiny" />
 		</execute>
 
-		<execute macro="FormFields#editOptionsRow">
+		<execute macro="Portal.FormFields#editOptionsRow">
 			<var name="optionName" value="Destiny2" />
 			<var name="optionValue" value="Edited Destiny" />
 			<var name="rowNumber" value="2" />
 		</execute>
 
-		<execute macro="Form#closeSidebar" />
+		<execute macro="Portal.Form#closeSidebar" />
 
-		<execute macro="Form#save" />
+		<execute macro="Portal.Form#save" />
 
-		<execute macro="FormsAdminNavigator#gotoRules" />
+		<execute macro="Portal.FormsAdminNavigator#gotoRules" />
 
-		<execute macro="FormRules#gotoEdit">
+		<execute macro="Portal.FormRules#gotoEdit">
 			<var name="ruleNumber" value="1" />
 		</execute>
 
@@ -277,19 +277,19 @@
 	<command name="ViewRuleAfterPageNameChange" priority="4">
 		<description message="This is a use case for LPS-68227." />
 
-		<execute macro="Form#gotoFormPage">
+		<execute macro="Portal.Form#gotoFormPage">
 			<var name="formPageName" value="Page 3" />
 		</execute>
 
-		<execute macro="Form#editPageTitle">
+		<execute macro="Portal.Form#editPageTitle">
 			<var name="formPageName" value="Renamed Page" />
 		</execute>
 
-		<execute macro="Form#save" />
+		<execute macro="Portal.Form#save" />
 
-		<execute macro="FormsAdminNavigator#gotoRules" />
+		<execute macro="Portal.FormsAdminNavigator#gotoRules" />
 
-		<execute macro="FormRules#gotoEdit">
+		<execute macro="Portal.FormRules#gotoEdit">
 			<var name="ruleNumber" value="1" />
 		</execute>
 

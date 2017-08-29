@@ -4,9 +4,9 @@
 	<property name="testray.main.component.name" value="Forms" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 	</set-up>
 
 	<tear-down>
@@ -15,18 +15,18 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="Navigator#openURL" />
+				<execute macro="Portal.Navigator#openURL" />
 
-				<execute macro="ProductMenu#gotoSitesContent">
+				<execute macro="Portal.ProductMenu#gotoSitesContent">
 					<var name="portlet" value="Forms" />
 				</execute>
 
-				<execute macro="FormsAdmin#teardownForms" />
+				<execute macro="Portal.FormsAdmin#teardownForms" />
 
-				<execute macro="Page#tearDownPG" />
+				<execute macro="Portal.Page#tearDownPG" />
 			</else>
 		</if>
 	</tear-down>
@@ -39,17 +39,17 @@
 
 		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Forms" />
 		</execute>
 
-		<execute macro="FormsAdminNavigator#gotoDataProviders" />
+		<execute macro="Portal.FormsAdminNavigator#gotoDataProviders" />
 
-		<execute macro="FormsAdminNavigator#gotoAddDataProvider" />
+		<execute macro="Portal.FormsAdminNavigator#gotoAddDataProvider" />
 
-		<execute macro="FormsAdmin#editDataProvider">
+		<execute macro="Portal.FormsAdmin#editDataProvider">
 			<var name="name" value="Liferay Countries" />
 			<var name="outputParameterLabel" value="Countries Full Name" />
 			<var name="outputParameterName" value="Country Name" />
@@ -60,45 +60,45 @@
 			<var name="username" value="test@liferay.com" />
 		</execute>
 
-		<execute macro="FormsAdmin#saveDataProvider" />
+		<execute macro="Portal.FormsAdmin#saveDataProvider" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Forms" />
 		</execute>
 
-		<execute macro="FormsAdminNavigator#gotoAddForm" />
+		<execute macro="Portal.FormsAdminNavigator#gotoAddForm" />
 
-		<execute macro="Form#editName" />
+		<execute macro="Portal.Form#editName" />
 
-		<execute macro="Form#editDescription" />
+		<execute macro="Portal.Form#editDescription" />
 
-		<execute macro="Form#gotoAddField">
+		<execute macro="Portal.Form#gotoAddField">
 			<var name="fieldType" value="Text Field" />
 		</execute>
 
-		<execute macro="Form#editFieldLabel">
+		<execute macro="Portal.Form#editFieldLabel">
 			<var name="fieldValue" value="Text Field" />
 		</execute>
 
-		<execute macro="Form#closeSidebar" />
+		<execute macro="Portal.Form#closeSidebar" />
 
-		<execute macro="Form#gotoAddField">
+		<execute macro="Portal.Form#gotoAddField">
 			<var name="fieldType" value="Select from List" />
 		</execute>
 
-		<execute macro="Form#editFieldLabel">
+		<execute macro="Portal.Form#editFieldLabel">
 			<var name="fieldValue" value="Countries" />
 		</execute>
 
-		<execute macro="Form#closeSidebar" />
+		<execute macro="Portal.Form#closeSidebar" />
 
-		<execute macro="FormsAdminNavigator#gotoRules" />
+		<execute macro="Portal.FormsAdminNavigator#gotoRules" />
 
-		<execute macro="FormRules#addRule" />
+		<execute macro="Portal.FormRules#addRule" />
 
-		<execute macro="FormRules#configureConditionOptions">
+		<execute macro="Portal.FormRules#configureConditionOptions">
 			<var name="conditionField" value="Text Field" />
 			<var name="conditionFieldValue" value="country" />
 			<var name="conditionOperator" value="Contains" />
@@ -106,66 +106,66 @@
 			<var name="conditionValueType" value="Value" />
 		</execute>
 
-		<execute macro="FormRules#configureActionOptions">
+		<execute macro="Portal.FormRules#configureActionOptions">
 			<var name="action" value="Autofill" />
 			<var name="actionRowNumber" value="1" />
 			<var name="actionTarget" value="Liferay Countries" />
 		</execute>
 
-		<execute macro="FormRules#selectAutofillOutput">
+		<execute macro="Portal.FormRules#selectAutofillOutput">
 			<var name="dataProviderOutput" value="Countries" />
 		</execute>
 
-		<execute macro="FormRules#save" />
+		<execute macro="Portal.FormRules#save" />
 
-		<execute macro="FormsAdminNavigator#gotoFormBuilder" />
+		<execute macro="Portal.FormsAdminNavigator#gotoFormBuilder" />
 
-		<execute macro="Form#save" />
+		<execute macro="Portal.Form#save" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Form Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Form Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="pageName" value="Form Page" />
 			<var name="portletName" value="Form" />
 		</execute>
 
-		<execute macro="FormPortletNavigator#gotoSelectForm" />
+		<execute macro="Portal.FormPortletNavigator#gotoSelectForm" />
 
-		<execute macro="FormPortletConfiguration#selectForm" />
+		<execute macro="Portal.FormPortletConfiguration#selectForm" />
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Form Page" />
 		</execute>
 
-		<execute macro="FormFields#viewTextLabel">
+		<execute macro="Portal.FormFields#viewTextLabel">
 			<var name="fieldLabel" value="Text Field" />
 			<var name="fieldName" value="TextField" />
 		</execute>
 
-		<execute macro="FormFields#editText">
+		<execute macro="Portal.FormFields#editText">
 			<var name="fieldName" value="TextField" />
 			<var name="fieldValue" value="test" />
 		</execute>
 
-		<execute macro="FormFields#viewSelectOptionsList">
+		<execute macro="Portal.FormFields#viewSelectOptionsList">
 			<var name="fieldName" value="Countries" />
 			<var name="selectOption" value="Option" />
 		</execute>
 
-		<execute macro="FormFields#editText">
+		<execute macro="Portal.FormFields#editText">
 			<var name="fieldName" value="TextField" />
 			<var name="fieldValue" value="country" />
 		</execute>
 
-		<execute macro="FormFields#viewSelectOptionsList">
+		<execute macro="Portal.FormFields#viewSelectOptionsList">
 			<var name="fieldName" value="Countries" />
 			<var name="selectOption" value="Afghanistan" />
 		</execute>
@@ -177,117 +177,117 @@
 
 		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Forms" />
 		</execute>
 
-		<execute macro="FormsAdminNavigator#gotoAddForm" />
+		<execute macro="Portal.FormsAdminNavigator#gotoAddForm" />
 
-		<execute macro="Form#editName" />
+		<execute macro="Portal.Form#editName" />
 
-		<execute macro="Form#gotoAddField">
+		<execute macro="Portal.Form#gotoAddField">
 			<var name="fieldType" value="Numeric" />
 		</execute>
 
-		<execute macro="Form#editFieldLabel">
+		<execute macro="Portal.Form#editFieldLabel">
 			<var name="fieldValue" value="Quantity" />
 		</execute>
 
-		<execute macro="Form#closeSidebar" />
+		<execute macro="Portal.Form#closeSidebar" />
 
-		<execute macro="Form#gotoAddField">
+		<execute macro="Portal.Form#gotoAddField">
 			<var name="fieldType" value="Numeric" />
 		</execute>
 
-		<execute macro="Form#editFieldLabel">
+		<execute macro="Portal.Form#editFieldLabel">
 			<var name="fieldValue" value="Value" />
 		</execute>
 
-		<execute macro="Form#closeSidebar" />
+		<execute macro="Portal.Form#closeSidebar" />
 
-		<execute macro="Form#gotoAddField">
+		<execute macro="Portal.Form#gotoAddField">
 			<var name="fieldType" value="Numeric" />
 		</execute>
 
-		<execute macro="Form#editFieldLabel">
+		<execute macro="Portal.Form#editFieldLabel">
 			<var name="fieldValue" value="Total" />
 		</execute>
 
-		<execute macro="Form#closeSidebar" />
+		<execute macro="Portal.Form#closeSidebar" />
 
-		<execute macro="FormsAdminNavigator#gotoRules" />
+		<execute macro="Portal.FormsAdminNavigator#gotoRules" />
 
-		<execute macro="FormRules#addRule" />
+		<execute macro="Portal.FormRules#addRule" />
 
-		<execute macro="FormRules#selectConditionField">
+		<execute macro="Portal.FormRules#selectConditionField">
 			<var name="conditionField" value="Quantity" />
 			<var name="conditionRowNumber" value="1" />
 		</execute>
 
-		<execute macro="FormRules#selectConditionOperator">
+		<execute macro="Portal.FormRules#selectConditionOperator">
 			<var name="conditionOperator" value="Is not empty" />
 			<var name="conditionRowNumber" value="1" />
 		</execute>
 
-		<execute macro="FormRules#selectAction">
+		<execute macro="Portal.FormRules#selectAction">
 			<var name="action" value="Calculate" />
 			<var name="actionRowNumber" value="1" />
 		</execute>
 
-		<execute macro="FormRules#selectCalculateField">
+		<execute macro="Portal.FormRules#selectCalculateField">
 			<var name="calculateFieldOption" value="Value" />
 		</execute>
 
-		<execute macro="FormRules#chooseCalculateOperator">
+		<execute macro="Portal.FormRules#chooseCalculateOperator">
 			<var name="calculateOperator" value="*" />
 		</execute>
 
-		<execute macro="FormRules#selectCalculateField">
+		<execute macro="Portal.FormRules#selectCalculateField">
 			<var name="calculateFieldOption" value="Quantity" />
 		</execute>
 
-		<execute macro="FormRules#selectCalculateResultField">
+		<execute macro="Portal.FormRules#selectCalculateResultField">
 			<var name="calculateResultField" value="Total" />
 		</execute>
 
-		<execute macro="FormRules#save" />
+		<execute macro="Portal.FormRules#save" />
 
-		<execute macro="FormsAdminNavigator#gotoFormBuilder" />
+		<execute macro="Portal.FormsAdminNavigator#gotoFormBuilder" />
 
-		<execute macro="Form#save" />
+		<execute macro="Portal.Form#save" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Form Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="pageName" value="Form Page" />
 			<var name="portletName" value="Form" />
 		</execute>
 
-		<execute macro="FormPortletNavigator#gotoSelectForm" />
+		<execute macro="Portal.FormPortletNavigator#gotoSelectForm" />
 
-		<execute macro="FormPortletConfiguration#selectForm" />
+		<execute macro="Portal.FormPortletConfiguration#selectForm" />
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Form Page" />
 		</execute>
 
-		<execute macro="FormFields#editText">
+		<execute macro="Portal.FormFields#editText">
 			<var name="fieldName" value="Value" />
 			<var name="fieldValue" value="5" />
 		</execute>
 
-		<execute macro="FormFields#editText">
+		<execute macro="Portal.FormFields#editText">
 			<var name="fieldName" value="Quantity" />
 			<var name="fieldValue" value="10" />
 		</execute>
 
-		<execute macro="FormFields#viewTextField">
+		<execute macro="Portal.FormFields#viewTextField">
 			<var name="fieldLabel" value="Total" />
 			<var name="fieldName" value="Total" />
 			<var name="fieldValue" value="50.0" />
@@ -299,41 +299,41 @@
 
 		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Forms" />
 		</execute>
 
-		<execute macro="FormsAdminNavigator#gotoAddForm" />
+		<execute macro="Portal.FormsAdminNavigator#gotoAddForm" />
 
-		<execute macro="Form#editName" />
+		<execute macro="Portal.Form#editName" />
 
-		<execute macro="Form#gotoAddField">
+		<execute macro="Portal.Form#gotoAddField">
 			<var name="fieldType" value="Text Field" />
 		</execute>
 
-		<execute macro="Form#editFieldLabel">
+		<execute macro="Portal.Form#editFieldLabel">
 			<var name="fieldValue" value="Text Field" />
 		</execute>
 
-		<execute macro="Form#closeSidebar" />
+		<execute macro="Portal.Form#closeSidebar" />
 
-		<execute macro="Form#gotoAddField">
+		<execute macro="Portal.Form#gotoAddField">
 			<var name="fieldType" value="Date" />
 		</execute>
 
-		<execute macro="Form#editFieldLabel">
+		<execute macro="Portal.Form#editFieldLabel">
 			<var name="fieldValue" value="Date Field" />
 		</execute>
 
-		<execute macro="Form#closeSidebar" />
+		<execute macro="Portal.Form#closeSidebar" />
 
-		<execute macro="FormsAdminNavigator#gotoRules" />
+		<execute macro="Portal.FormsAdminNavigator#gotoRules" />
 
-		<execute macro="FormRules#addRule" />
+		<execute macro="Portal.FormRules#addRule" />
 
-		<execute macro="FormRules#configureConditionOptions">
+		<execute macro="Portal.FormRules#configureConditionOptions">
 			<var name="conditionField" value="Text Field" />
 			<var name="conditionFieldValue" value="test" />
 			<var name="conditionOperator" value="Is equal to" />
@@ -341,47 +341,47 @@
 			<var name="conditionValueType" value="Value" />
 		</execute>
 
-		<execute macro="FormRules#configureActionOptions">
+		<execute macro="Portal.FormRules#configureActionOptions">
 			<var name="action" value="Require" />
 			<var name="actionRowNumber" value="1" />
 			<var name="actionTarget" value="Date Field" />
 		</execute>
 
-		<execute macro="FormRules#save" />
+		<execute macro="Portal.FormRules#save" />
 
-		<execute macro="FormsAdminNavigator#gotoFormBuilder" />
+		<execute macro="Portal.FormsAdminNavigator#gotoFormBuilder" />
 
-		<execute macro="Form#save" />
+		<execute macro="Portal.Form#save" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Form Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="pageName" value="Form Page" />
 			<var name="portletName" value="Form" />
 		</execute>
 
-		<execute macro="FormPortletNavigator#gotoSelectForm" />
+		<execute macro="Portal.FormPortletNavigator#gotoSelectForm" />
 
-		<execute macro="FormPortletConfiguration#selectForm" />
+		<execute macro="Portal.FormPortletConfiguration#selectForm" />
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Form Page" />
 		</execute>
 
-		<execute macro="FormFields#viewRequiredAsteriskNotPresent" />
+		<execute macro="Portal.FormFields#viewRequiredAsteriskNotPresent" />
 
-		<execute macro="FormFields#editText">
+		<execute macro="Portal.FormFields#editText">
 			<var name="fieldName" value="TextField" />
 			<var name="fieldValue" value="test" />
 		</execute>
 
-		<execute macro="FormFields#viewRequiredAsterisk" />
+		<execute macro="Portal.FormFields#viewRequiredAsterisk" />
 
-		<execute macro="FormPortlet#submitWithValidationError" />
+		<execute macro="Portal.FormPortlet#submitWithValidationError" />
 	</command>
 
 	<command name="ConfigureShowRuleUsingAndCondition" priority="5">
@@ -390,62 +390,62 @@
 
 		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Forms" />
 		</execute>
 
-		<execute macro="FormsAdminNavigator#gotoAddForm" />
+		<execute macro="Portal.FormsAdminNavigator#gotoAddForm" />
 
-		<execute macro="Form#editName" />
+		<execute macro="Portal.Form#editName" />
 
-		<execute macro="Form#gotoAddField">
+		<execute macro="Portal.Form#gotoAddField">
 			<var name="fieldType" value="Text Field" />
 		</execute>
 
-		<execute macro="Form#editFieldLabel">
+		<execute macro="Portal.Form#editFieldLabel">
 			<var name="fieldValue" value="Text Field 1" />
 		</execute>
 
-		<execute macro="Form#closeSidebar" />
+		<execute macro="Portal.Form#closeSidebar" />
 
-		<execute macro="Form#gotoAddField">
+		<execute macro="Portal.Form#gotoAddField">
 			<var name="fieldType" value="Text Field" />
 		</execute>
 
-		<execute macro="Form#editFieldLabel">
+		<execute macro="Portal.Form#editFieldLabel">
 			<var name="fieldValue" value="Text Field 2" />
 		</execute>
 
-		<execute macro="Form#closeSidebar" />
+		<execute macro="Portal.Form#closeSidebar" />
 
-		<execute macro="Form#gotoAddField">
+		<execute macro="Portal.Form#gotoAddField">
 			<var name="fieldType" value="Date" />
 		</execute>
 
-		<execute macro="Form#editFieldLabel">
+		<execute macro="Portal.Form#editFieldLabel">
 			<var name="fieldValue" value="Date Field" />
 		</execute>
 
-		<execute macro="Form#closeSidebar" />
+		<execute macro="Portal.Form#closeSidebar" />
 
-		<execute macro="FormsAdminNavigator#gotoRules" />
+		<execute macro="Portal.FormsAdminNavigator#gotoRules" />
 
-		<execute macro="FormRules#addRule" />
+		<execute macro="Portal.FormRules#addRule" />
 
-		<execute macro="FormRules#addCondition" />
+		<execute macro="Portal.FormRules#addCondition" />
 
-		<execute macro="FormRules#selectRuleCondition">
+		<execute macro="Portal.FormRules#selectRuleCondition">
 			<var name="condition" value="AND" />
 		</execute>
 
-		<execute macro="FormRules#viewRuleCondition">
+		<execute macro="Portal.FormRules#viewRuleCondition">
 			<var name="condition" value="AND" />
 			<var name="conditonRowNumber" value="1" />
 		</execute>
 
-		<execute macro="FormRules#configureConditionOptions">
+		<execute macro="Portal.FormRules#configureConditionOptions">
 			<var name="conditionField" value="Text Field 1" />
 			<var name="conditionFieldValue" value="test" />
 			<var name="conditionOperator" value="Is equal to" />
@@ -453,7 +453,7 @@
 			<var name="conditionValueType" value="Value" />
 		</execute>
 
-		<execute macro="FormRules#configureConditionOptions">
+		<execute macro="Portal.FormRules#configureConditionOptions">
 			<var name="conditionField" value="Text Field 2" />
 			<var name="conditionFieldValue" value="test" />
 			<var name="conditionOperator" value="Is equal to" />
@@ -461,117 +461,117 @@
 			<var name="conditionValueType" value="Value" />
 		</execute>
 
-		<execute macro="FormRules#configureActionOptions">
+		<execute macro="Portal.FormRules#configureActionOptions">
 			<var name="action" value="Show" />
 			<var name="actionRowNumber" value="1" />
 			<var name="actionTarget" value="Date Field" />
 		</execute>
 
-		<execute macro="FormRules#save" />
+		<execute macro="Portal.FormRules#save" />
 
-		<execute macro="FormsAdminNavigator#gotoFormBuilder" />
+		<execute macro="Portal.FormsAdminNavigator#gotoFormBuilder" />
 
-		<execute macro="Form#save" />
+		<execute macro="Portal.Form#save" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Form Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="pageName" value="Form Page" />
 			<var name="portletName" value="Form" />
 		</execute>
 
-		<execute macro="FormPortletNavigator#gotoSelectForm" />
+		<execute macro="Portal.FormPortletNavigator#gotoSelectForm" />
 
-		<execute macro="FormPortletConfiguration#selectForm" />
+		<execute macro="Portal.FormPortletConfiguration#selectForm" />
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Form Page" />
 		</execute>
 
-		<execute macro="FormFields#editText">
+		<execute macro="Portal.FormFields#editText">
 			<var name="fieldName" value="TextField1" />
 			<var name="fieldValue" value="test" />
 		</execute>
 
-		<execute macro="FormFields#viewDateFieldNotPresent">
+		<execute macro="Portal.FormFields#viewDateFieldNotPresent">
 			<var name="fieldLabel" value="Date Field" />
 			<var name="fieldName" value="Date" />
 		</execute>
 
-		<execute macro="FormFields#editText">
+		<execute macro="Portal.FormFields#editText">
 			<var name="fieldName" value="TextField2" />
 			<var name="fieldValue" value="test" />
 		</execute>
 
-		<execute macro="FormFields#viewDateField">
+		<execute macro="Portal.FormFields#viewDateField">
 			<var name="fieldLabel" value="Date Field" />
 			<var name="fieldName" value="Date" />
 		</execute>
 	</command>
 
 	<command name="ConfigureUserBelongsToRule" priority="4">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Forms" />
 		</execute>
 
-		<execute macro="FormsAdminNavigator#gotoAddForm" />
+		<execute macro="Portal.FormsAdminNavigator#gotoAddForm" />
 
-		<execute macro="Form#editName" />
+		<execute macro="Portal.Form#editName" />
 
-		<execute macro="Form#gotoAddField">
+		<execute macro="Portal.Form#gotoAddField">
 			<var name="fieldType" value="Text Field" />
 		</execute>
 
-		<execute macro="Form#editFieldLabel">
+		<execute macro="Portal.Form#editFieldLabel">
 			<var name="fieldValue" value="Public" />
 		</execute>
 
-		<execute macro="Form#closeSidebar" />
+		<execute macro="Portal.Form#closeSidebar" />
 
-		<execute macro="Form#gotoAddField">
+		<execute macro="Portal.Form#gotoAddField">
 			<var name="fieldType" value="Text Field" />
 		</execute>
 
-		<execute macro="Form#editFieldLabel">
+		<execute macro="Portal.Form#editFieldLabel">
 			<var name="fieldValue" value="Manager" />
 		</execute>
 
-		<execute macro="Form#closeSidebar" />
+		<execute macro="Portal.Form#closeSidebar" />
 
-		<execute macro="FormsAdminNavigator#gotoRules" />
+		<execute macro="Portal.FormsAdminNavigator#gotoRules" />
 
-		<execute macro="FormRules#addRule" />
+		<execute macro="Portal.FormRules#addRule" />
 
-		<execute macro="FormRules#configureConditionOptions">
+		<execute macro="Portal.FormRules#configureConditionOptions">
 			<var name="conditionField" value="User" />
 			<var name="conditionOperator" value="Belongs to" />
 			<var name="conditionRowNumber" value="1" />
 			<var name="conditionValueType" value="Site Administrator" />
 		</execute>
 
-		<execute macro="FormRules#configureActionOptions">
+		<execute macro="Portal.FormRules#configureActionOptions">
 			<var name="action" value="Show" />
 			<var name="actionRowNumber" value="1" />
 			<var name="actionTarget" value="Manager" />
 		</execute>
 
-		<execute macro="FormRules#addAction" />
+		<execute macro="Portal.FormRules#addAction" />
 
-		<execute macro="FormRules#configureActionOptions">
+		<execute macro="Portal.FormRules#configureActionOptions">
 			<var name="action" value="Require" />
 			<var name="actionRowNumber" value="2" />
 			<var name="actionTarget" value="Manager" />
 		</execute>
 
-		<execute macro="FormRules#save" />
+		<execute macro="Portal.FormRules#save" />
 
-		<execute macro="FormRules#viewSummary">
+		<execute macro="Portal.FormRules#viewSummary">
 			<var name="action" value="Require" />
 			<var name="actionTarget" value="Manager" />
 			<var name="conditionField" value="User" />
@@ -580,7 +580,7 @@
 			<var name="ruleNumber" value="1" />
 		</execute>
 
-		<execute macro="FormRules#viewSummary">
+		<execute macro="Portal.FormRules#viewSummary">
 			<var name="action" value="Show" />
 			<var name="actionTarget" value="Manager" />
 			<var name="conditionField" value="User" />
@@ -589,93 +589,93 @@
 			<var name="ruleNumber" value="1" />
 		</execute>
 
-		<execute macro="FormsAdminNavigator#gotoFormBuilder" />
+		<execute macro="Portal.FormsAdminNavigator#gotoFormBuilder" />
 
-		<execute macro="Form#save" />
+		<execute macro="Portal.Form#save" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Form Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="pageName" value="Form Page" />
 			<var name="portletName" value="Form" />
 		</execute>
 
-		<execute macro="FormPortletNavigator#gotoSelectForm" />
+		<execute macro="Portal.FormPortletNavigator#gotoSelectForm" />
 
-		<execute macro="FormPortletConfiguration#selectForm" />
+		<execute macro="Portal.FormPortletConfiguration#selectForm" />
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Form Page" />
 		</execute>
 
-		<execute macro="FormFields#viewTextField">
+		<execute macro="Portal.FormFields#viewTextField">
 			<var name="fieldLabel" value="Public" />
 			<var name="fieldName" value="Public" />
 		</execute>
 
-		<execute macro="FormFields#viewTextFieldNotVisible">
+		<execute macro="Portal.FormFields#viewTextFieldNotVisible">
 			<var name="fieldLabel" value="Manager" />
 			<var name="fieldName" value="Manager" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#assignSiteRoleCP">
+		<execute macro="Portal.User#assignSiteRoleCP">
 			<var name="siteRoleName" value="Site Administrator" />
 			<var name="userScreenName" value="test" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Form Page" />
 		</execute>
 
-		<execute macro="FormFields#viewTextField">
+		<execute macro="Portal.FormFields#viewTextField">
 			<var name="fieldLabel" value="Public" />
 			<var name="fieldName" value="Public" />
 		</execute>
 
-		<execute macro="FormFields#viewTextField">
+		<execute macro="Portal.FormFields#viewTextField">
 			<var name="fieldLabel" value="Manager" />
 			<var name="fieldName" value="Manager" />
 		</execute>
 
-		<execute macro="FormFields#editText">
+		<execute macro="Portal.FormFields#editText">
 			<var name="fieldName" value="Public" />
 			<var name="fieldValue" value="Message" />
 		</execute>
 
-		<execute macro="FormFields#editText">
+		<execute macro="Portal.FormFields#editText">
 			<var name="fieldName" value="Manager" />
 			<var name="fieldValue" value="Admin Comments" />
 		</execute>
 
-		<execute macro="FormFields#viewTextField">
+		<execute macro="Portal.FormFields#viewTextField">
 			<var name="fieldLabel" value="Manager" />
 			<var name="fieldName" value="Manager" />
 		</execute>
 
-		<execute macro="FormPortlet#submitSuccessfully" />
+		<execute macro="Portal.FormPortlet#submitSuccessfully" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Forms" />
 		</execute>
 
-		<execute macro="FormsAdminNavigator#gotoViewEntries" />
+		<execute macro="Portal.FormsAdminNavigator#gotoViewEntries" />
 
-		<execute macro="FormsAdmin#viewFormTableEntry">
+		<execute macro="Portal.FormsAdmin#viewFormTableEntry">
 			<var name="fieldLabel" value="Public" />
 			<var name="fieldValue" value="Message" />
 		</execute>
 
-		<execute macro="FormsAdmin#viewFormTableEntry">
+		<execute macro="Portal.FormsAdmin#viewFormTableEntry">
 			<var name="fieldLabel" value="Manager" />
 			<var name="fieldValue" value="Admin Comments" />
 		</execute>
@@ -684,41 +684,41 @@
 	<command name="EditRule" priority="5">
 		<property name="portal.acceptance" value="pending" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Forms" />
 		</execute>
 
-		<execute macro="FormsAdminNavigator#gotoAddForm" />
+		<execute macro="Portal.FormsAdminNavigator#gotoAddForm" />
 
-		<execute macro="Form#editName" />
+		<execute macro="Portal.Form#editName" />
 
-		<execute macro="Form#gotoAddField">
+		<execute macro="Portal.Form#gotoAddField">
 			<var name="fieldType" value="Text Field" />
 		</execute>
 
-		<execute macro="Form#editFieldLabel">
+		<execute macro="Portal.Form#editFieldLabel">
 			<var name="fieldValue" value="Text Field" />
 		</execute>
 
-		<execute macro="Form#closeSidebar" />
+		<execute macro="Portal.Form#closeSidebar" />
 
-		<execute macro="Form#gotoAddField">
+		<execute macro="Portal.Form#gotoAddField">
 			<var name="fieldType" value="Text Field" />
 		</execute>
 
-		<execute macro="Form#editFieldLabel">
+		<execute macro="Portal.Form#editFieldLabel">
 			<var name="fieldValue" value="Text Field 2" />
 		</execute>
 
-		<execute macro="Form#closeSidebar" />
+		<execute macro="Portal.Form#closeSidebar" />
 
-		<execute macro="FormsAdminNavigator#gotoRules" />
+		<execute macro="Portal.FormsAdminNavigator#gotoRules" />
 
-		<execute macro="FormRules#addRule" />
+		<execute macro="Portal.FormRules#addRule" />
 
-		<execute macro="FormRules#configureConditionOptions">
+		<execute macro="Portal.FormRules#configureConditionOptions">
 			<var name="conditionField" value="Text Field" />
 			<var name="conditionFieldValue" value="test" />
 			<var name="conditionOperator" value="Is equal to" />
@@ -726,31 +726,31 @@
 			<var name="conditionValueType" value="Value" />
 		</execute>
 
-		<execute macro="FormRules#configureActionOptions">
+		<execute macro="Portal.FormRules#configureActionOptions">
 			<var name="action" value="Require" />
 			<var name="actionRowNumber" value="1" />
 			<var name="actionTarget" value="Text Field 2" />
 		</execute>
 
-		<execute macro="FormRules#save" />
+		<execute macro="Portal.FormRules#save" />
 
-		<execute macro="FormsAdminNavigator#gotoFormBuilder" />
+		<execute macro="Portal.FormsAdminNavigator#gotoFormBuilder" />
 
-		<execute macro="Form#save" />
+		<execute macro="Portal.Form#save" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Forms" />
 		</execute>
 
-		<execute macro="FormsAdminNavigator#gotoEditFormByName" />
+		<execute macro="Portal.FormsAdminNavigator#gotoEditFormByName" />
 
-		<execute macro="FormsAdminNavigator#gotoRules" />
+		<execute macro="Portal.FormsAdminNavigator#gotoRules" />
 
-		<execute macro="FormRules#gotoEdit">
+		<execute macro="Portal.FormRules#gotoEdit">
 			<var name="ruleNumber" value="1" />
 		</execute>
 
-		<execute macro="FormRules#configureConditionOptions">
+		<execute macro="Portal.FormRules#configureConditionOptions">
 			<var name="conditionField" value="Text Field" />
 			<var name="conditionFieldValue" value="test edit" />
 			<var name="conditionOperator" value="Is equal to" />
@@ -758,114 +758,114 @@
 			<var name="conditionValueType" value="Value" />
 		</execute>
 
-		<execute macro="FormRules#configureActionOptions">
+		<execute macro="Portal.FormRules#configureActionOptions">
 			<var name="action" value="Show" />
 			<var name="actionRowNumber" value="1" />
 			<var name="actionTarget" value="Text Field 2" />
 		</execute>
 
-		<execute macro="FormRules#save" />
+		<execute macro="Portal.FormRules#save" />
 	</command>
 
 	<command name="UseIsNotEmptyRuleToShowField" priority="4">
 		<description message="This is a use case for LPS-71399." />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Forms" />
 		</execute>
 
-		<execute macro="FormsAdminNavigator#gotoAddForm" />
+		<execute macro="Portal.FormsAdminNavigator#gotoAddForm" />
 
-		<execute macro="Form#editName" />
+		<execute macro="Portal.Form#editName" />
 
-		<execute macro="Form#gotoAddField">
+		<execute macro="Portal.Form#gotoAddField">
 			<var name="fieldType" value="Text Field" />
 		</execute>
 
-		<execute macro="Form#editFieldLabel">
+		<execute macro="Portal.Form#editFieldLabel">
 			<var name="fieldValue" value="A" />
 		</execute>
 
-		<execute macro="Form#closeSidebar" />
+		<execute macro="Portal.Form#closeSidebar" />
 
-		<execute macro="Form#gotoAddField">
+		<execute macro="Portal.Form#gotoAddField">
 			<var name="fieldType" value="Date" />
 		</execute>
 
-		<execute macro="Form#editFieldLabel">
+		<execute macro="Portal.Form#editFieldLabel">
 			<var name="fieldValue" value="B" />
 		</execute>
 
-		<execute macro="Form#closeSidebar" />
+		<execute macro="Portal.Form#closeSidebar" />
 
-		<execute macro="FormsAdminNavigator#gotoRules" />
+		<execute macro="Portal.FormsAdminNavigator#gotoRules" />
 
-		<execute macro="FormRules#addRule" />
+		<execute macro="Portal.FormRules#addRule" />
 
-		<execute macro="FormRules#configureConditionOptions">
+		<execute macro="Portal.FormRules#configureConditionOptions">
 			<var name="conditionField" value="A" />
 			<var name="conditionOperator" value="Is not empty" />
 			<var name="conditionRowNumber" value="1" />
 		</execute>
 
-		<execute macro="FormRules#configureActionOptions">
+		<execute macro="Portal.FormRules#configureActionOptions">
 			<var name="action" value="Show" />
 			<var name="actionRowNumber" value="1" />
 			<var name="actionTarget" value="B" />
 		</execute>
 
-		<execute macro="FormRules#save" />
+		<execute macro="Portal.FormRules#save" />
 
-		<execute macro="FormsAdminNavigator#gotoFormBuilder" />
+		<execute macro="Portal.FormsAdminNavigator#gotoFormBuilder" />
 
-		<execute macro="Form#save" />
+		<execute macro="Portal.Form#save" />
 
-		<execute macro="Form#publishForm" />
+		<execute macro="Portal.Form#publishForm" />
 
-		<execute macro="FormsAdminNavigator#openPublishURL">
+		<execute macro="Portal.FormsAdminNavigator#openPublishURL">
 			<var name="publishFormURL" value="${publishedFormPublicURL}" />
 		</execute>
 
-		<execute macro="FormFields#viewDateFieldNotPresent">
+		<execute macro="Portal.FormFields#viewDateFieldNotPresent">
 			<var name="fieldLabel" value="B" />
 			<var name="fieldName" value="B" />
 		</execute>
 
-		<execute macro="FormFields#editText">
+		<execute macro="Portal.FormFields#editText">
 			<var name="fieldName" value="A" />
 			<var name="fieldValue" value="1" />
 		</execute>
 
-		<execute macro="FormFields#viewDateField">
+		<execute macro="Portal.FormFields#viewDateField">
 			<var name="fieldLabel" value="B" />
 			<var name="fieldName" value="B" />
 		</execute>
 
-		<execute macro="FormFields#editText">
+		<execute macro="Portal.FormFields#editText">
 			<var name="fieldName" value="A" />
 			<var name="fieldValue" value="Test" />
 		</execute>
 
-		<execute macro="FormFields#viewDateField">
+		<execute macro="Portal.FormFields#viewDateField">
 			<var name="fieldLabel" value="B" />
 			<var name="fieldName" value="B" />
 		</execute>
 
-		<execute macro="FormFields#editText">
+		<execute macro="Portal.FormFields#editText">
 			<var name="fieldName" value="A" />
 			<var name="fieldValue" value="%" />
 		</execute>
 
-		<execute macro="FormFields#viewDateField">
+		<execute macro="Portal.FormFields#viewDateField">
 			<var name="fieldLabel" value="B" />
 			<var name="fieldName" value="B" />
 		</execute>
 
-		<execute macro="FormFields#editTextWithBackspace">
+		<execute macro="Portal.FormFields#editTextWithBackspace">
 			<var name="fieldName" value="A" />
 		</execute>
 
-		<execute macro="FormFields#viewDateFieldNotPresent">
+		<execute macro="Portal.FormFields#viewDateFieldNotPresent">
 			<var name="fieldLabel" value="B" />
 			<var name="fieldName" value="B" />
 		</execute>
@@ -874,40 +874,40 @@
 	<command name="ViewRuleConditionOperatorFieldOptions" priority="2">
 		<description message="This is a use case for LPS-69733." />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Forms" />
 		</execute>
 
-		<execute macro="FormsAdminNavigator#gotoAddForm" />
+		<execute macro="Portal.FormsAdminNavigator#gotoAddForm" />
 
-		<execute macro="Form#editName" />
+		<execute macro="Portal.Form#editName" />
 
-		<execute macro="Form#gotoAddField">
+		<execute macro="Portal.Form#gotoAddField">
 			<var name="fieldType" value="Text Field" />
 		</execute>
 
-		<execute macro="Form#editFieldLabel">
+		<execute macro="Portal.Form#editFieldLabel">
 			<var name="fieldValue" value="Text Field" />
 		</execute>
 
-		<execute macro="Form#closeSidebar" />
+		<execute macro="Portal.Form#closeSidebar" />
 
-		<execute macro="FormsAdminNavigator#gotoRules" />
+		<execute macro="Portal.FormsAdminNavigator#gotoRules" />
 
-		<execute macro="FormRules#addRule" />
+		<execute macro="Portal.FormRules#addRule" />
 
-		<execute macro="FormRules#viewConditionOperatorOptionsNotPresent">
+		<execute macro="Portal.FormRules#viewConditionOperatorOptionsNotPresent">
 			<var name="conditionRowNumber" value="1" />
 		</execute>
 
-		<execute macro="FormRules#selectConditionField">
+		<execute macro="Portal.FormRules#selectConditionField">
 			<var name="conditionField" value="Text Field" />
 			<var name="conditionRowNumber" value="1" />
 		</execute>
 
-		<execute macro="FormRules#viewConditionOperatorOptionsIsPresent">
+		<execute macro="Portal.FormRules#viewConditionOperatorOptionsIsPresent">
 			<var name="conditionRowNumber" value="1" />
 		</execute>
 	</command>

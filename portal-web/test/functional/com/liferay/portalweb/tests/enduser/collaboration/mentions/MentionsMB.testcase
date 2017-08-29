@@ -4,26 +4,26 @@
 	<property name="testray.main.component.name" value="Mentions" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#addCP">
+		<execute macro="Portal.User#addCP">
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userFirstName" value="userfn" />
 			<var name="userLastName" value="userln" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#editPasswordCP">
+		<execute macro="Portal.User#editPasswordCP">
 			<var name="password" value="password" />
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userScreenName" value="usersn" />
@@ -36,85 +36,85 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="MessageboardsCategory#tearDownCP" />
+				<execute macro="Portal.MessageboardsCategory#tearDownCP" />
 
-				<execute macro="MessageboardsThread#tearDownCP">
+				<execute macro="Portal.MessageboardsThread#tearDownCP">
 					<var name="assetType" value="Message Boards Thread" />
 				</execute>
 
-				<execute macro="Page#tearDownPG" />
+				<execute macro="Portal.Page#tearDownPG" />
 			</else>
 		</if>
 	</tear-down>
 
 	<command name="ViewMentionViaMessageBoardsThread" priority="5">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Message Boards" />
 		</execute>
 
-		<execute macro="Mentions#addMentionViaMessageBoardThread">
+		<execute macro="Portal.Mentions#addMentionViaMessageBoardThread">
 			<var name="mentionsUserFullName" value="userfn userln" />
 			<var name="mentionsUserScreenName" value="usersn" />
 			<var name="threadSubject" value="Thread Subject" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Message Boards" />
 		</execute>
 
-		<execute macro="MessageboardsThread#gotoCP">
+		<execute macro="Portal.MessageboardsThread#gotoCP">
 			<var name="threadSubject" value="Thread Subject" />
 		</execute>
 
-		<execute macro="Mentions#viewMentionTagLink">
+		<execute macro="Portal.Mentions#viewMentionTagLink">
 			<var name="mentionsUserFullName" value="userfn userln" />
 			<var name="mentionsUserScreenName" value="usersn" />
 		</execute>
 	</command>
 
 	<command name="ViewMentionViaMessageBoardsThreadReply" priority="5">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Message Boards" />
 		</execute>
 
-		<execute macro="MessageboardsThread#addCP">
+		<execute macro="Portal.MessageboardsThread#addCP">
 			<var name="threadBody" value="Thread Body" />
 			<var name="threadSubject" value="Thread Subject" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Message Boards" />
 		</execute>
 
-		<execute macro="Mentions#addMentionViaMessageBoardsReply">
+		<execute macro="Portal.Mentions#addMentionViaMessageBoardsReply">
 			<var name="mentionsUserFullName" value="userfn userln" />
 			<var name="mentionsUserScreenName" value="usersn" />
 			<var name="threadBody" value="Thread Reply Body" />
 			<var name="threadSubject" value="Thread Subject" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Message Boards" />
 		</execute>
 
-		<execute macro="MessageboardsThread#gotoCP">
+		<execute macro="Portal.MessageboardsThread#gotoCP">
 			<var name="threadSubject" value="Thread Subject" />
 		</execute>
 
-		<execute macro="MessageboardsThread#viewReplyCP">
+		<execute macro="Portal.MessageboardsThread#viewReplyCP">
 			<var name="postsNumber" value="2" />
 			<var name="threadBody" value="Thread Body" />
 			<var name="threadBody2" value="Thread Reply Body" />
@@ -123,50 +123,50 @@
 			<var name="userName2" value="Test Test" />
 		</execute>
 
-		<execute macro="Mentions#viewMentionTagLink">
+		<execute macro="Portal.Mentions#viewMentionTagLink">
 			<var name="mentionsUserFullName" value="userfn userln" />
 			<var name="mentionsUserScreenName" value="usersn" />
 		</execute>
 	</command>
 
 	<command name="ViewMentionViaUpdatedMessageBoardsThread" priority="5">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Message Boards" />
 		</execute>
 
-		<execute macro="MessageboardsThread#addCP">
+		<execute macro="Portal.MessageboardsThread#addCP">
 			<var name="threadBody" value="Thread Body" />
 			<var name="threadSubject" value="Thread Subject" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Message Boards" />
 		</execute>
 
-		<execute macro="Mentions#addMentionViaMessageBoardThreadEdit">
+		<execute macro="Portal.Mentions#addMentionViaMessageBoardThreadEdit">
 			<var name="mentionsUserFullName" value="userfn userln" />
 			<var name="mentionsUserScreenName" value="usersn" />
 			<var name="threadBody" value="Thread Body" />
 			<var name="threadSubject" value="Thread Subject" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Message Boards" />
 		</execute>
 
-		<execute macro="MessageboardsThread#viewCP">
+		<execute macro="Portal.MessageboardsThread#viewCP">
 			<var name="postsNumber" value="1" />
 			<var name="threadBody" value="Thread Body" />
 			<var name="threadSubject" value="Thread Subject" />
 		</execute>
 
-		<execute macro="Mentions#viewMentionTagLink">
+		<execute macro="Portal.Mentions#viewMentionTagLink">
 			<var name="mentionsUserFullName" value="userfn userln" />
 			<var name="mentionsUserScreenName" value="usersn" />
 		</execute>

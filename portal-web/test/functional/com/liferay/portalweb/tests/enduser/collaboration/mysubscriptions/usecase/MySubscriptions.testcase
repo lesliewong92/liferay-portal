@@ -8,19 +8,19 @@
 	<property name="test.assert.warning.exceptions" value="true" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="My Subscriptions Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="My Subscriptions Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="My Subscriptions" />
 		</execute>
 	</set-up>
@@ -31,53 +31,53 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="Page#tearDownPG" />
+				<execute macro="Portal.Page#tearDownPG" />
 			</else>
 		</if>
 	</tear-down>
 
 	<command name="SubscribeAndUnsubscribetoBookmarksRootFolder">
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Bookmarks Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Bookmarks Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Bookmarks" />
 		</execute>
 
-		<execute macro="Subscriptions#subscribeViaInfoPanelPG" />
+		<execute macro="Portal.Subscriptions#subscribeViaInfoPanelPG" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="My Subscriptions Page" />
 		</execute>
 
-		<execute macro="Subscriptions#viewSubscription">
+		<execute macro="Portal.Subscriptions#viewSubscription">
 			<var name="assetName" value="Bookmarks Folder" />
 			<var name="assetTitle" value="Home" />
 			<var name="assetType" value="Bookmarks Folder" />
 		</execute>
 
-		<execute macro="Subscriptions#unsubscribeViaMySubscriptions">
+		<execute macro="Portal.Subscriptions#unsubscribeViaMySubscriptions">
 			<var name="rowNumber" value="1" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="My Subscriptions Page" />
 		</execute>
 
-		<execute macro="Subscriptions#viewDefaultPG" />
+		<execute macro="Portal.Subscriptions#viewDefaultPG" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Bookmarks Page" />
 		</execute>
 
-		<execute macro="Subscriptions#viewUnsubscribedViaInfoPanel" />
+		<execute macro="Portal.Subscriptions#viewUnsubscribedViaInfoPanel" />
 	</command>
 </definition>

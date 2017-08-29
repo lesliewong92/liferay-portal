@@ -9,19 +9,19 @@
 	<var name="portletName" value="Friends Directory" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Friends Directory Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Friends Directory Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Friends Directory" />
 		</execute>
 	</set-up>
@@ -32,14 +32,14 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="User#tearDownCP" />
+				<execute macro="Portal.User#tearDownCP" />
 
-				<execute macro="Page#tearDownPG" />
+				<execute macro="Portal.Page#tearDownPG" />
 
-				<execute macro="Page#tearDownPG">
+				<execute macro="Portal.Page#tearDownPG">
 					<var name="site" value="test" />
 					<var name="siteURL" value="true" />
 				</execute>
@@ -55,11 +55,11 @@
 		<var name="userMiddleName" value="usermn" />
 		<var name="userScreenName" value="usersn" />
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#addCP">
+		<execute macro="Portal.User#addCP">
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userFirstName" value="userfn" />
 			<var name="userLastName" value="userln" />
@@ -67,68 +67,68 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#editPasswordCP">
+		<execute macro="Portal.User#editPasswordCP">
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="ProductMenuHelper#openProductMenu" />
+		<execute macro="Portal.ProductMenuHelper#openProductMenu" />
 
-		<execute macro="ProductMenu#gotoPersonalSite" />
+		<execute macro="Portal.ProductMenu#gotoPersonalSite" />
 
-		<execute macro="ProductMenuHelper#expandPanelSites" />
+		<execute macro="Portal.ProductMenuHelper#expandPanelSites" />
 
-		<execute macro="ProductMenuHelper#expandCategory">
+		<execute macro="Portal.ProductMenuHelper#expandCategory">
 			<var name="category" value="Navigation" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Friends Request Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Friends Directory Page" />
 		</execute>
 
-		<execute macro="ProductMenuHelper#openProductMenu" />
+		<execute macro="Portal.ProductMenuHelper#openProductMenu" />
 
-		<execute macro="ProductMenu#gotoPersonalSite" />
+		<execute macro="Portal.ProductMenu#gotoPersonalSite" />
 
 		<var name="key_pageName" value="Friends Request Page" />
 
 		<execute function="AssertClick" locator1="Home#PAGE" value1="Friends Request Page" />
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Requests" />
 		</execute>
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="test" />
 		</execute>
 
-		<execute macro="ProductMenuHelper#openProductMenu" />
+		<execute macro="Portal.ProductMenuHelper#openProductMenu" />
 
-		<execute macro="ProductMenu#gotoPersonalSite" />
+		<execute macro="Portal.ProductMenu#gotoPersonalSite" />
 
 		<execute function="AssertClick" locator1="Home#PAGE" value1="Friends Request Page" />
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Summary" />
 		</execute>
 
-		<execute macro="User#logoutPG" />
+		<execute macro="Portal.User#logoutPG" />
 
-		<execute macro="User#loginPG">
+		<execute macro="Portal.User#loginPG">
 			<var name="password" value="test" />
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Friends Request Page" />
 			<var name="siteName" value="test" />
 		</execute>
@@ -137,26 +137,26 @@
 
 		<execute function="AssertTextEquals" locator1="//div[contains(@class,'alert') and contains(@class,'alert-info')]" value1="Friend Requested" />
 
-		<execute macro="User#logoutPG" />
+		<execute macro="Portal.User#logoutPG" />
 
-		<execute macro="User#loginPG">
+		<execute macro="Portal.User#loginPG">
 			<var name="password" value="test" />
 			<var name="userEmailAddress" value="test@liferay.com" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Friends Request Page" />
 			<var name="siteName" value="test" />
 		</execute>
 
 		<execute function="AssertClick" locator1="Link#CONFIRM" value1="Confirm" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Friends Directory Page" />
 		</execute>
 
-		<execute macro="User#advancedSearchViaFriendsDirectoryPG">
+		<execute macro="Portal.User#advancedSearchViaFriendsDirectoryPG">
 			<var name="searchField" value="First Name" />
 			<var name="searchTerm" value="userfn" />
 			<var name="userFirstName" value="userfn" />
@@ -164,11 +164,11 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Friends Directory Page" />
 		</execute>
 
-		<execute macro="User#advancedSearchViaFriendsDirectoryPG">
+		<execute macro="Portal.User#advancedSearchViaFriendsDirectoryPG">
 			<var name="searchField" value="First Name" />
 			<var name="searchNoResults" value="true" />
 			<var name="searchTerm" value="userfn1" />
@@ -177,11 +177,11 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Friends Directory Page" />
 		</execute>
 
-		<execute macro="User#advancedSearchViaFriendsDirectoryPG">
+		<execute macro="Portal.User#advancedSearchViaFriendsDirectoryPG">
 			<var name="searchField" value="Middle Name" />
 			<var name="searchTerm" value="usermn" />
 			<var name="userFirstName" value="userfn" />
@@ -189,11 +189,11 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Friends Directory Page" />
 		</execute>
 
-		<execute macro="User#advancedSearchViaFriendsDirectoryPG">
+		<execute macro="Portal.User#advancedSearchViaFriendsDirectoryPG">
 			<var name="searchField" value="Middle Name" />
 			<var name="searchNoResults" value="true" />
 			<var name="searchTerm" value="usermn1" />
@@ -202,11 +202,11 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Friends Directory Page" />
 		</execute>
 
-		<execute macro="User#advancedSearchViaFriendsDirectoryPG">
+		<execute macro="Portal.User#advancedSearchViaFriendsDirectoryPG">
 			<var name="searchField" value="Last Name" />
 			<var name="searchTerm" value="userln" />
 			<var name="userFirstName" value="userfn" />
@@ -214,11 +214,11 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Friends Directory Page" />
 		</execute>
 
-		<execute macro="User#advancedSearchViaFriendsDirectoryPG">
+		<execute macro="Portal.User#advancedSearchViaFriendsDirectoryPG">
 			<var name="searchField" value="Last Name" />
 			<var name="searchNoResults" value="true" />
 			<var name="searchTerm" value="userln1" />
@@ -227,11 +227,11 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Friends Directory Page" />
 		</execute>
 
-		<execute macro="User#advancedSearchViaFriendsDirectoryPG">
+		<execute macro="Portal.User#advancedSearchViaFriendsDirectoryPG">
 			<var name="searchField" value="Screen Name" />
 			<var name="searchTerm" value="usersn" />
 			<var name="userFirstName" value="userfn" />
@@ -239,11 +239,11 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Friends Directory Page" />
 		</execute>
 
-		<execute macro="User#advancedSearchViaFriendsDirectoryPG">
+		<execute macro="Portal.User#advancedSearchViaFriendsDirectoryPG">
 			<var name="searchField" value="Screen Name" />
 			<var name="searchNoResults" value="true" />
 			<var name="searchTerm" value="usersn1" />
@@ -252,11 +252,11 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Friends Directory Page" />
 		</execute>
 
-		<execute macro="User#advancedSearchViaFriendsDirectoryPG">
+		<execute macro="Portal.User#advancedSearchViaFriendsDirectoryPG">
 			<var name="searchField" value="Email Address" />
 			<var name="searchTerm" value="userea@liferay.com" />
 			<var name="userFirstName" value="userfn" />
@@ -264,11 +264,11 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Friends Directory Page" />
 		</execute>
 
-		<execute macro="User#advancedSearchViaFriendsDirectoryPG">
+		<execute macro="Portal.User#advancedSearchViaFriendsDirectoryPG">
 			<var name="searchField" value="Email Address" />
 			<var name="searchNoResults" value="true" />
 			<var name="searchTerm" value="userea@liferay.com1" />

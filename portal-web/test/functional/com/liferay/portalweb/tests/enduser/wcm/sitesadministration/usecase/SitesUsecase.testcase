@@ -6,9 +6,9 @@
 	<var name="globalSiteName" value="Global" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 	</set-up>
 
 	<tear-down>
@@ -17,24 +17,24 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="User#firstLoginPG" />
+				<execute macro="Portal.User#firstLoginPG" />
 
-				<execute macro="Site#tearDownCP" />
+				<execute macro="Portal.Site#tearDownCP" />
 
-				<execute macro="Page#tearDownPG" />
+				<execute macro="Portal.Page#tearDownPG" />
 
-				<execute macro="WebContent#tearDownCP">
+				<execute macro="Portal.WebContent#tearDownCP">
 					<var name="siteScopeName" value="Global" />
 				</execute>
 
-				<execute macro="WebContentTemplates#tearDownCP">
+				<execute macro="Portal.WebContentTemplates#tearDownCP">
 					<var name="siteScopeName" value="Global" />
 				</execute>
 
-				<execute macro="WebContentStructures#tearDownCP">
+				<execute macro="Portal.WebContentStructures#tearDownCP">
 					<var name="siteScopeName" value="Global" />
 				</execute>
 			</else>
@@ -45,101 +45,101 @@
 		<property name="portal.acceptance" value="pending" />
 		<property name="testray.component.names" value="Training" />
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="UsersAndOrganizationsNavigator#gotoOrganizations" />
+		<execute macro="Portal.UsersAndOrganizationsNavigator#gotoOrganizations" />
 
-		<execute macro="LAR#importPortlet">
+		<execute macro="Portal.LAR#importPortlet">
 			<var name="larFileName" value="organizations-7.0.lar" />
 			<var name="portletName" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="Organization#viewCP">
+		<execute macro="Portal.Organization#viewCP">
 			<var name="orgName" value="Space Program Academy of Continuing Education" />
 			<var name="orgType" value="Organization" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="Organization#addSiteCP">
+		<execute macro="Portal.Organization#addSiteCP">
 			<var name="orgName" value="College of Agricultural Science" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="College of Agricultural Science" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Site Templates" />
 		</execute>
 
-		<execute macro="LAR#importPortlet">
+		<execute macro="Portal.LAR#importPortlet">
 			<var name="larFileName" value="class-site-template-7.0.lar" />
 			<var name="portletName" value="Site Templates" />
 		</execute>
 
-		<execute macro="SiteTemplates#viewCP">
+		<execute macro="Portal.SiteTemplates#viewCP">
 			<var name="siteTemplateName" value="Digital Class Room" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addBlankCP">
+		<execute macro="Portal.Site#addBlankCP">
 			<var name="membershipType" value="Private" />
 			<var name="parentSiteName" value="College of Agricultural Science" />
 			<var name="siteName" value="Moon Rocks 101" />
 			<var name="siteType" value="Blank" />
 		</execute>
 
-		<execute macro="Site#selectPageType">
+		<execute macro="Portal.Site#selectPageType">
 			<var name="selectPrivatePages" value="true" />
 			<var name="siteTemplate" value="Digital Class Room" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addBlankCP">
+		<execute macro="Portal.Site#addBlankCP">
 			<var name="membershipType" value="Private" />
 			<var name="parentSiteName" value="College of Agricultural Science" />
 			<var name="siteName" value="Moon Rocks 202" />
 			<var name="siteType" value="Blank" />
 		</execute>
 
-		<execute macro="Site#selectPageType">
+		<execute macro="Portal.Site#selectPageType">
 			<var name="checkPrivatePagesPropagation" value="true" />
 			<var name="selectPrivatePages" value="true" />
 			<var name="siteTemplate" value="Digital Class Room" />
 		</execute>
 
-		<execute macro="Navigator#openPrivateSiteURL">
+		<execute macro="Portal.Navigator#openPrivateSiteURL">
 			<var name="siteName" value="Moon Rocks 101" />
 		</execute>
 
 		<for list="Courses,Student Boards,Materials" param="pageName" >
-			<execute macro="Navigator#gotoPrivateSitePage">
+			<execute macro="Portal.Navigator#gotoPrivateSitePage">
 				<var name="pageName" value="${pageName}" />
 				<var name="siteName" value="Moon Rocks 101" />
 			</execute>
 		</for>
 
-		<execute macro="Navigator#openPrivateSiteURL">
+		<execute macro="Portal.Navigator#openPrivateSiteURL">
 			<var name="siteName" value="Moon Rocks 202" />
 		</execute>
 
 		<for list="Courses,Student Boards,Materials" param="pageName" >
-			<execute macro="Navigator#gotoPrivateSitePage">
+			<execute macro="Portal.Navigator#gotoPrivateSitePage">
 				<var name="pageName" value="${pageName}" />
 				<var name="siteName" value="Moon Rocks 202" />
 			</execute>
@@ -152,48 +152,48 @@
 
 		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addBlankCP">
+		<execute macro="Portal.Site#addBlankCP">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="SitePageNavigator#gotoPages">
+		<execute macro="Portal.SitePageNavigator#gotoPages">
 			<var name="page" value="Public Pages" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Home" />
 		</execute>
 
-		<execute macro="Page#addPageTranslations">
+		<execute macro="Portal.Page#addPageTranslations">
 			<var name="page" value="Home" />
 			<var name="pageTranslation" value="es_ES" />
 			<var name="pageTranslationName" value="Casa" />
 		</execute>
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Page#viewTranslationsPG">
+		<execute macro="Portal.Page#viewTranslationsPG">
 			<var name="pageLocalizationMessage" value="This page is displayed in Spanish (Spain). Display the page in English (United States). Set Spanish (Spain) as your preferred language." />
 			<var name="pageLocalizationPreferredLanguage" value="Set Spanish (Spain) as your preferred language." />
 			<var name="pageName" value="Casa" />
 			<var name="sitePageURL" value="${portalURL}/es/web/site-name/home" />
 		</execute>
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Page#localizedPG">
+		<execute macro="Portal.Page#localizedPG">
 			<var name="pageLocale" value="Display the page in English (United States)" />
 		</execute>
 
-		<execute macro="Page#addChild">
+		<execute macro="Portal.Page#addChild">
 			<var name="page" value="Public Pages" />
 			<var name="pageName" value="Home" />
 			<var name="siteChildPageName" value="Blog Page" />
@@ -201,21 +201,21 @@
 			<var name="siteScopeSelected" value="true" />
 		</execute>
 
-		<execute macro="SitePageNavigator#gotoPages">
+		<execute macro="Portal.SitePageNavigator#gotoPages">
 			<var name="page" value="Public Pages" />
 		</execute>
 
-		<execute macro="Page#addPageTranslations">
+		<execute macro="Portal.Page#addPageTranslations">
 			<var name="page" value="Blog Page" />
 			<var name="pageTranslation" value="es_ES" />
 			<var name="pageTranslationName" value="Blog Página" />
 		</execute>
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Page#viewTranslationsPG">
+		<execute macro="Portal.Page#viewTranslationsPG">
 			<var name="childPageName" value="Blog Página" />
 			<var name="pageLocalizationMessage" value="This page is displayed in Spanish (Spain). Display the page in English (United States). Set Spanish (Spain) as your preferred language." />
 			<var name="pageLocalizationPreferredLanguage" value="Set Spanish (Spain) as your preferred language." />
@@ -226,159 +226,159 @@
 	<command name="SitesTemplatePermissionPersistence" priority="3">
 		<property name="testray.component.names" value="Permissions,Site Administration" />
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addCommunityCP">
+		<execute macro="Portal.Site#addCommunityCP">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="PermissionsInline#gotoConfigurationPG" >
+		<execute macro="Portal.PermissionsInline#gotoConfigurationPG" >
 			<var name="portletName" value="Polls Display" />
 		</execute>
 
-		<execute macro="PermissionsInline#assertDefaultPG">
+		<execute macro="Portal.PermissionsInline#assertDefaultPG">
 			<var name="roleList" value="Guest,Owner,Power User,Site Member,User" />
 		</execute>
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="PermissionsInline#gotoConfigurationPG" >
+		<execute macro="Portal.PermissionsInline#gotoConfigurationPG" >
 			<var name="portletName" value="Message Boards" />
 		</execute>
 
-		<execute macro="PermissionsInline#assertDefaultPG">
+		<execute macro="Portal.PermissionsInline#assertDefaultPG">
 			<var name="roleList" value="Guest,Owner,Power User,Site Member,User" />
 		</execute>
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Asset Publisher" />
 		</execute>
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#viewTitle">
+		<execute macro="Portal.Portlet#viewTitle">
 			<var name="portletName" value="Asset Publisher" />
 		</execute>
 
-		<execute macro="SiteTemplates#resetPageChanges">
+		<execute macro="Portal.SiteTemplates#resetPageChanges">
 			<var name="columnNumberTo" value="1" />
 			<var name="portletName" value="Asset Publisher" />
 		</execute>
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#viewNoSpecificPG">
+		<execute macro="Portal.Portlet#viewNoSpecificPG">
 			<var name="portletName" value="Asset Publisher" />
 		</execute>
 
-		<execute macro="PermissionsInline#gotoConfigurationPG" >
+		<execute macro="Portal.PermissionsInline#gotoConfigurationPG" >
 			<var name="portletName" value="Polls Display" />
 		</execute>
 
-		<execute macro="PermissionsInline#assertDefaultPG">
+		<execute macro="Portal.PermissionsInline#assertDefaultPG">
 			<var name="roleList" value="Guest,Owner,Power User,Site Member,User" />
 		</execute>
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Polls#addPollPG">
+		<execute macro="Portal.Polls#addPollPG">
 			<var name="pollsQuestion" value="What is the most important issue for this election?" />
 			<var name="pollsQuestionChoiceA" value="The Economy" />
 			<var name="pollsQuestionChoiceB" value="The National Debt" />
 			<var name="pollsQuestionTitle" value="Election Poll" />
 		</execute>
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Polls#selectPollPG">
+		<execute macro="Portal.Polls#selectPollPG">
 			<var name="pollsQuestionTitle" value="Election Poll" />
 		</execute>
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Polls#viewPollPG">
+		<execute macro="Portal.Polls#viewPollPG">
 			<var name="pollsQuestion" value="What is the most important issue for this election?" />
 			<var name="pollsQuestionChoiceList" value="The Economy,The National Debt" />
 		</execute>
 
-		<execute macro="PermissionsInline#gotoConfigurationPG" >
+		<execute macro="Portal.PermissionsInline#gotoConfigurationPG" >
 			<var name="portletName" value="Message Boards" />
 		</execute>
 
-		<execute macro="PermissionsInline#assertDefaultPG">
+		<execute macro="Portal.PermissionsInline#assertDefaultPG">
 			<var name="roleList" value="Guest,Owner,Power User,Site Member,User" />
 		</execute>
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="MessageboardsThread#addPG">
+		<execute macro="Portal.MessageboardsThread#addPG">
 			<var name="threadBody" value="This is the message boards thread." />
 			<var name="threadSubject" value="Thread" />
 		</execute>
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="MessageboardsThread#gotoPG">
+		<execute macro="Portal.MessageboardsThread#gotoPG">
 			<var name="lastPostUserName" value="Test Test" />
 			<var name="postCount" value="1" />
 			<var name="threadBody" value="This is the message boards thread." />
 			<var name="threadSubject" value="Thread" />
 		</execute>
 
-		<execute macro="MessageboardsThread#viewPG">
+		<execute macro="Portal.MessageboardsThread#viewPG">
 			<var name="threadBody" value="This is the message boards thread." />
 			<var name="threadSubject" value="Thread" />
 		</execute>
 
-		<execute macro="User#logoutPG" />
+		<execute macro="Portal.User#logoutPG" />
 
 		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
 
 		<execute function="Open" locator1="${portalURL}/web/site-name/home" />
 
-		<execute macro="Portlet#viewTitle">
+		<execute macro="Portal.Portlet#viewTitle">
 			<var name="portletName" value="Message Boards" />
 		</execute>
 
-		<execute macro="MessageboardsThread#gotoPG">
+		<execute macro="Portal.MessageboardsThread#gotoPG">
 			<var name="lastPostUserName" value="Test Test" />
 			<var name="postCount" value="1" />
 			<var name="threadBody" value="This is the message boards thread." />
 			<var name="threadSubject" value="Thread" />
 		</execute>
 
-		<execute macro="MessageboardsThread#viewPG">
+		<execute macro="Portal.MessageboardsThread#viewPG">
 			<var name="threadBody" value="This is the message boards thread." />
 			<var name="threadSubject" value="Thread" />
 		</execute>
 
-		<execute macro="Portlet#viewTitle">
+		<execute macro="Portal.Portlet#viewTitle">
 			<var name="portletName" value="Polls Display" />
 		</execute>
 
@@ -386,40 +386,40 @@
 
 		<execute function="AssertElementPresent" locator1="Search#SEARCH_FIELD" />
 
-		<execute macro="Portlet#viewTitle">
+		<execute macro="Portal.Portlet#viewTitle">
 			<var name="portletName" value="User Statistics" />
 		</execute>
 
-		<execute macro="SignIn#signIn">
+		<execute macro="Portal.SignIn#signIn">
 			<var name="userEmailAddress" value="test@liferay.com" />
 			<var name="userPassword" value="test" />
 		</execute>
 
 		<execute function="Open" locator1="${portalURL}/web/site-name/home" />
 
-		<execute macro="PermissionsInline#gotoConfigurationPG" >
+		<execute macro="Portal.PermissionsInline#gotoConfigurationPG" >
 			<var name="portletName" value="Polls Display" />
 		</execute>
 
-		<execute macro="PermissionsInline#addOrRemoveViewPermissionFromAllRoles">
+		<execute macro="Portal.PermissionsInline#addOrRemoveViewPermissionFromAllRoles">
 			<var name="addOrRemoveViewPermission" value="Remove" />
 			<var name="roleList" value="Guest,Owner,Power User,Site Member,User" />
 		</execute>
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="PermissionsInline#gotoConfigurationPG" >
+		<execute macro="Portal.PermissionsInline#gotoConfigurationPG" >
 			<var name="portletName" value="Message Boards" />
 		</execute>
 
-		<execute macro="PermissionsInline#addOrRemoveViewPermissionFromAllRoles">
+		<execute macro="Portal.PermissionsInline#addOrRemoveViewPermissionFromAllRoles">
 			<var name="addOrRemoveViewPermission" value="Remove" />
 			<var name="roleList" value="Guest,Owner,Power User,Site Member,User" />
 		</execute>
 
-		<execute macro="User#logoutPG" />
+		<execute macro="Portal.User#logoutPG" />
 
 		<execute function="Open" locator1="${portalURL}/web/site-name/home" />
 
@@ -430,23 +430,23 @@
 	<command name="ViewDefaultGlobalScopeLandingPage" priority="4">
 		<property name="testray.component.names" value="Site Administration" />
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addBlankCP">
+		<execute macro="Portal.Site#addBlankCP">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Global" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Web Content" />
 		</execute>
 
-		<execute macro="Site#viewGlobalLandingDefault">
+		<execute macro="Portal.Site#viewGlobalLandingDefault">
 			<var name="portletName" value="Web Content" />
 			<var name="siteName" value="Global" />
 		</execute>

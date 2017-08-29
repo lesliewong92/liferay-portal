@@ -4,19 +4,19 @@
 	<property name="testray.main.component.name" value="Asset Publisher" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Asset Publisher" />
 		</execute>
 	</set-up>
@@ -27,72 +27,72 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="User#firstLoginPG" />
+				<execute macro="Portal.User#firstLoginPG" />
 
-				<execute macro="Site#tearDownCP" />
+				<execute macro="Portal.Site#tearDownCP" />
 
-				<execute macro="User#tearDownCP" />
+				<execute macro="Portal.User#tearDownCP" />
 
-				<execute macro="Role#tearDownCP" />
+				<execute macro="Portal.Role#tearDownCP" />
 
-				<execute macro="Page#tearDownPG" />
+				<execute macro="Portal.Page#tearDownPG" />
 
-				<execute macro="Bookmark#tearDownCP" />
+				<execute macro="Portal.Bookmark#tearDownCP" />
 
-				<execute macro="BookmarksFolder#tearDownCP" />
+				<execute macro="Portal.BookmarksFolder#tearDownCP" />
 
-				<execute macro="WebContent#tearDownCP" />
+				<execute macro="Portal.WebContent#tearDownCP" />
 
-				<execute macro="WebContentTemplates#tearDownCP" />
+				<execute macro="Portal.WebContentTemplates#tearDownCP" />
 
-				<execute macro="WebContentStructures#tearDownCP" />
+				<execute macro="Portal.WebContentStructures#tearDownCP" />
 
-				<execute macro="BlogsEntry#tearDownCP" />
+				<execute macro="Portal.BlogsEntry#tearDownCP" />
 			</else>
 		</if>
 	</tear-down>
 
 	<command name="AddAndRemoveCustomTitleViaAP" priority="3">
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletOption" value="Look and Feel Configuration" />
 		</execute>
 
-		<execute macro="IFrame#selectConfigurationFrame" />
+		<execute macro="Portal.IFrame#selectConfigurationFrame" />
 
-		<execute macro="Portlet#configureCustomTitleViaLookandfeelPG">
+		<execute macro="Portal.Portlet#configureCustomTitleViaLookandfeelPG">
 			<var name="portletName" value="Asset Publisher" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="Portlet#viewSpecificPG">
+		<execute macro="Portal.Portlet#viewSpecificPG">
 			<var name="portletName" value="Asset Publisher Custom" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletOption" value="Look and Feel Configuration" />
 		</execute>
 
-		<execute macro="IFrame#selectConfigurationFrame" />
+		<execute macro="Portal.IFrame#selectConfigurationFrame" />
 
-		<execute macro="Portlet#selectApplicationDecorator">
+		<execute macro="Portal.Portlet#selectApplicationDecorator">
 			<var name="decorator" value="Barebone" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="Portlet#viewNoSpecificPG">
+		<execute macro="Portal.Portlet#viewNoSpecificPG">
 			<var name="portletName" value="Asset Publisher Custom" />
 		</execute>
 	</command>
@@ -101,20 +101,20 @@
 		<property name="portal.acceptance" value="pending" />
 		<property name="testray.component.names" value="Asset Publisher,Training" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="Portlet#addDuplicatePG">
+		<execute macro="Portal.Portlet#addDuplicatePG">
 			<var name="portletCount" value="3" />
 			<var name="portletName" value="Asset Publisher" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="Portlet#viewDuplicatePG">
+		<execute macro="Portal.Portlet#viewDuplicatePG">
 			<var name="portletName" value="Asset Publisher" />
 			<var name="totalPortletCount" value="4" />
 		</execute>
@@ -125,174 +125,174 @@
 		<property name="osgi.app.includes" value="knowledge-base" />
 		<property name="plugins.deployment.type" value="osgi" />
 
-		<execute macro="TestCase#getSiteName">
+		<execute macro="Portal.TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="Blogs#addViaAP">
+		<execute macro="Portal.Blogs#addViaAP">
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="BlogsEntry#viewEntryViaAPPG">
+		<execute macro="Portal.BlogsEntry#viewEntryViaAPPG">
 			<var name="assetTitle" value="Blogs Entry Title" />
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="Bookmark#addBookmarkViaAP">
+		<execute macro="Portal.Bookmark#addBookmarkViaAP">
 			<var name="bookmarkDescription" value="Test Bookmark Description" />
 			<var name="bookmarkName" value="Test Bookmark Name" />
 			<var name="bookmarkURL" value="https://www.liferay.com" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="Bookmark#viewBookmarkViaAP">
+		<execute macro="Portal.Bookmark#viewBookmarkViaAP">
 			<var name="bookmarkName" value="Test Bookmark Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="CalendarEvent#addPGViaAP">
+		<execute macro="Portal.CalendarEvent#addPGViaAP">
 			<var name="eventTitle" value="Calendar Event Title" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="CalendarEvent#viewViaAssetPublisher">
+		<execute macro="Portal.CalendarEvent#viewViaAssetPublisher">
 			<var name="calendarName" value="${siteName}" />
 			<var name="eventTitle" value="Calendar Event Title" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="DMDocument#addPGViaAP">
+		<execute macro="Portal.DMDocument#addPGViaAP">
 			<var name="dmDocumentDescription" value="DM Document Description" />
 			<var name="dmDocumentFile" value="Document_1.doc" />
 			<var name="dmDocumentTitle" value="DM Document Title" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="DMDocument#viewPGViaAP">
+		<execute macro="Portal.DMDocument#viewPGViaAP">
 			<var name="dmDocumentDescription" value="DM Document Description" />
 			<var name="dmDocumentTitle" value="DM Document Title" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Dynamic Data Lists" />
 		</execute>
 
-		<execute macro="DDLDataDefinition#addCP">
+		<execute macro="Portal.DDLDataDefinition#addCP">
 			<var name="ddlDataDefinitionName" value="Data Definition" />
 		</execute>
 
-		<execute macro="DynamicDataMapping#addField">
+		<execute macro="Portal.DynamicDataMapping#addField">
 			<var name="field" value="Text" />
 			<var name="fieldFieldLabel" value="Text" />
 			<var name="fieldName" value="Text" />
 		</execute>
 
-		<execute macro="DDLDataDefinition#save" />
+		<execute macro="Portal.DDLDataDefinition#save" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Dynamic Data Lists" />
 		</execute>
 
-		<execute macro="DDLList#addCP">
+		<execute macro="Portal.DDLList#addCP">
 			<var name="ddlListName" value="List Name" />
 		</execute>
 
-		<execute macro="DDLDataDefinition#selectCP">
+		<execute macro="Portal.DDLDataDefinition#selectCP">
 			<var name="ddlDataDefinitionName" value="Data Definition" />
 		</execute>
 
-		<execute macro="DDLList#save" />
+		<execute macro="Portal.DDLList#save" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="DDLRecord#addPGViaAP">
+		<execute macro="Portal.DDLRecord#addPGViaAP">
 			<var name="ddlRecordFieldData" value="Text Field" />
 			<var name="fieldName" value="Text" />
 		</execute>
 
-		<execute macro="DDLRecord#viewPGViaAP">
+		<execute macro="Portal.DDLRecord#viewPGViaAP">
 			<var name="ddlListName" value="New Data Definition for List: List Name" />
 			<var name="ddlRecordFieldData" value="Text Field" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="KBArticle#addPGViaAP">
+		<execute macro="Portal.KBArticle#addPGViaAP">
 			<var name="kbArticleContent" value="Knowledge Base Article Content" />
 			<var name="kbArticleTitle" value="Knowledge Base Article Title" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="KBArticle#viewPGViaAP">
+		<execute macro="Portal.KBArticle#viewPGViaAP">
 			<var name="kbArticleContent" value="Knowledge Base Article Content" />
 			<var name="kbArticleTitle" value="Knowledge Base Article Title" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="WebContent#addPGViaAP">
+		<execute macro="Portal.WebContent#addPGViaAP">
 			<var name="webContentContent" value="WC WebContent Content" />
 			<var name="webContentTitle" value="WC Webcontent Title" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="WebContent#viewPGViaAP">
+		<execute macro="Portal.WebContent#viewPGViaAP">
 			<var name="webContentContent" value="WC WebContent Content" />
 			<var name="webContentTitle" value="WC Webcontent Title" />
 		</execute>
 
 		<for list="Blogs,Bookmarks,Calendar,Documents and Media,Dynamic Data Lists Display,Knowledge Base Article,Web Content Display" param="portletName">
-			<execute macro="Navigator#gotoPage">
+			<execute macro="Portal.Navigator#gotoPage">
 				<var name="pageName" value="Asset Publisher Page" />
 			</execute>
 
-			<execute macro="Portlet#addPG">
+			<execute macro="Portal.Portlet#addPG">
 				<var name="portletName" value="${portletName}" />
 			</execute>
 		</for>
@@ -301,43 +301,43 @@
 	<command name="AddBookmarkViaAP" priority="4">
 		<property name="testray.component.names" value="Asset Publisher,Bookmarks" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Bookmarks Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Bookmarks Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Bookmarks" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Bookmarks Page" />
 		</execute>
 
-		<execute macro="BookmarksFolder#addPG">
+		<execute macro="Portal.BookmarksFolder#addPG">
 			<var name="folderDescription" value="Test Folder Description" />
 			<var name="folderName" value="Test Folder Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="Bookmark#addBookmarkViaAP">
+		<execute macro="Portal.Bookmark#addBookmarkViaAP">
 			<var name="bookmarkDescription" value="Test Bookmark Description" />
 			<var name="bookmarkFolderName" value="Test Folder Name" />
 			<var name="bookmarkName" value="Test Bookmark Name" />
 			<var name="bookmarkURL" value="https://www.liferay.com" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="Bookmark#viewBookmarkViaAP">
+		<execute macro="Portal.Bookmark#viewBookmarkViaAP">
 			<var name="bookmarkName" value="Test Bookmark Name" />
 		</execute>
 	</command>
@@ -345,29 +345,29 @@
 	<command name="AddCustomTitleViaAP" priority="3">
 		<property name="testray.component.names" value="Asset Publisher" />
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletOption" value="Look and Feel Configuration" />
 		</execute>
 
-		<execute macro="IFrame#selectConfigurationFrame" />
+		<execute macro="Portal.IFrame#selectConfigurationFrame" />
 
-		<execute macro="Portlet#configureCustomTitleViaLookandfeelPG">
+		<execute macro="Portal.Portlet#configureCustomTitleViaLookandfeelPG">
 			<var name="portletName" value="Asset Publisher" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="Portlet#configureApplicationDecoratorViaLookandfeelPG">
+		<execute macro="Portal.Portlet#configureApplicationDecoratorViaLookandfeelPG">
 			<var name="applicationDecorator" value="Decorate" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="Portlet#viewSpecificPG">
+		<execute macro="Portal.Portlet#viewSpecificPG">
 			<var name="portletName" value="Asset Publisher Custom" />
 		</execute>
 	</command>
@@ -375,99 +375,99 @@
 	<command name="ConfigureAPPortletDisplaytemplateWithBookmarks" priority="4">
 		<property name="testray.component.names" value="Asset Publisher,Bookmarks,Content and Display Templates" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Bookmarks Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Bookmarks Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Bookmarks" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Bookmarks Page" />
 		</execute>
 
-		<execute macro="BookmarksFolder#addPG">
+		<execute macro="Portal.BookmarksFolder#addPG">
 			<var name="folderDescription" value="Test Folder Description" />
 			<var name="folderName" value="Test Folder Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Bookmarks Page" />
 		</execute>
 
-		<execute macro="Bookmark#addPG">
+		<execute macro="Portal.Bookmark#addPG">
 			<var name="bookmarkDescription" value="Test Bookmark Description" />
 			<var name="bookmarkName" value="Test Bookmark Name" />
 			<var name="bookmarkURL" value="https://www.liferay.com" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletName" value="Asset Publisher" />
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#configureDisplayTemplatePG">
+		<execute macro="Portal.AssetPublisherPortlet#configureDisplayTemplatePG">
 			<var name="displayTemplate" value="Full Content" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#viewConfigureAPDisplayTemplateFullContentBookmarksPG">
+		<execute macro="Portal.AssetPublisherPortlet#viewConfigureAPDisplayTemplateFullContentBookmarksPG">
 			<var name="assetTitle" value="Test Bookmark Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletName" value="Asset Publisher" />
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#configureDisplayTemplatePG">
+		<execute macro="Portal.AssetPublisherPortlet#configureDisplayTemplatePG">
 			<var name="displayTemplate" value="Table" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#viewConfigureAPDisplayTemplateTableBookmarksPG">
+		<execute macro="Portal.AssetPublisherPortlet#viewConfigureAPDisplayTemplateTableBookmarksPG">
 			<var name="assetTitle" value="Test Bookmark Name" />
 			<var name="bookmarkDescription" value="Test Bookmark Description" />
 			<var name="bookmarkName" value="Test Bookmark Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletName" value="Asset Publisher" />
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#configureDisplayTemplatePG">
+		<execute macro="Portal.AssetPublisherPortlet#configureDisplayTemplatePG">
 			<var name="displayTemplate" value="Title List" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#viewConfigureAPDisplayTemplateTitleListBookmarksPG">
+		<execute macro="Portal.AssetPublisherPortlet#viewConfigureAPDisplayTemplateTitleListBookmarksPG">
 			<var name="assetTitle" value="Test Bookmark Name" />
 			<var name="bookmarkDescription" value="Test Bookmark Description" />
 			<var name="bookmarkName" value="Test Bookmark Name" />
@@ -477,71 +477,71 @@
 	<command name="ConfigureAPPortletEnableRatings" priority="4">
 		<property name="testray.component.names" value="Asset Publisher" />
 
-		<execute macro="TestCase#getSiteName">
+		<execute macro="Portal.TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="${siteName}" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#configureDisplaySettings">
+		<execute macro="Portal.AssetPublisherPortlet#configureDisplaySettings">
 			<var name="displaySettings" value="Ratings" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#viewDisplaySettings">
+		<execute macro="Portal.AssetPublisherPortlet#viewDisplaySettings">
 			<var name="displaySettings" value="Ratings" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="WebContent#addPGViaAP">
+		<execute macro="Portal.WebContent#addPGViaAP">
 			<var name="webContentContent" value="WC WebContent Content" />
 			<var name="webContentTitle" value="WC WebContent Title" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletName" value="Asset Publisher" />
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#configureDisplayTemplatePG">
+		<execute macro="Portal.AssetPublisherPortlet#configureDisplayTemplatePG">
 			<var name="displayTemplate" value="Full Content" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#rateAssetPG">
+		<execute macro="Portal.AssetPublisherPortlet#rateAssetPG">
 			<var name="rating" value="4" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="assetTitle" value="WC WebContent Title" />
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#viewAssetRatingPG">
+		<execute macro="Portal.AssetPublisherPortlet#viewAssetRatingPG">
 			<var name="rating" value="4" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#viewAverageRatingPG">
+		<execute macro="Portal.AssetPublisherPortlet#viewAverageRatingPG">
 			<var name="averageRating" value="4" />
 		</execute>
 	</command>
@@ -550,40 +550,40 @@
 		<property name="portal.acceptance" value="pending" />
 		<property name="testray.component.names" value="Asset Publisher,Training" />
 
-		<execute macro="TestCase#getSiteName">
+		<execute macro="Portal.TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addBlankCP">
+		<execute macro="Portal.Site#addBlankCP">
 			<var name="siteName" value="Test Site" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="Portlet#addDuplicatePG">
+		<execute macro="Portal.Portlet#addDuplicatePG">
 			<var name="portletName" value="Asset Publisher" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#configureAddSiteScopes">
+		<execute macro="Portal.AssetPublisherPortlet#configureAddSiteScopes">
 			<var name="otherSite" value="Test Site" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#viewMultipleSiteScopesAddDropdowns">
+		<execute macro="Portal.AssetPublisherPortlet#viewMultipleSiteScopesAddDropdowns">
 			<var name="siteName1" value="${siteName}" />
 			<var name="siteName2" value="Test Site" />
 		</execute>
@@ -592,15 +592,15 @@
 	<command name="ConfigureAPPortletSelectedBlogsEntry" priority="4">
 		<property name="testray.component.names" value="Asset Publisher" />
 
-		<execute macro="AssetPublisherPortlet#configureSelectedPG">
+		<execute macro="Portal.AssetPublisherPortlet#configureSelectedPG">
 			<var name="selectedAsset" value="Blogs Entry" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#viewSelectedPG">
+		<execute macro="Portal.AssetPublisherPortlet#viewSelectedPG">
 			<var name="selectedAsset" value="Blogs Entry" />
 			<var name="selectedAssetConfiguration" value="Blogs Entry" />
 		</execute>
@@ -609,15 +609,15 @@
 	<command name="ConfigureAPPortletSelectedBookmarksEntry" priority="4">
 		<property name="testray.component.names" value="Asset Publisher" />
 
-		<execute macro="AssetPublisherPortlet#configureSelectedPG">
+		<execute macro="Portal.AssetPublisherPortlet#configureSelectedPG">
 			<var name="selectedAsset" value="Bookmarks Entry" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#viewSelectedPG">
+		<execute macro="Portal.AssetPublisherPortlet#viewSelectedPG">
 			<var name="selectedAsset" value="Bookmarks Entry" />
 			<var name="selectedAssetConfiguration" value="Bookmarks Entry" />
 		</execute>
@@ -626,15 +626,15 @@
 	<command name="ConfigureAPPortletSelectedDocument" priority="4">
 		<property name="testray.component.names" value="Asset Publisher" />
 
-		<execute macro="AssetPublisherPortlet#configureSelectedPG">
+		<execute macro="Portal.AssetPublisherPortlet#configureSelectedPG">
 			<var name="selectedAsset" value="Document" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#viewSelectedPG">
+		<execute macro="Portal.AssetPublisherPortlet#viewSelectedPG">
 			<var name="selectedAsset" value="Basic Document" />
 			<var name="selectedAssetConfiguration" value="Document" />
 		</execute>
@@ -644,15 +644,15 @@
 		<property name="portal.acceptance" value="true" />
 		<property name="testray.component.names" value="Asset Publisher" />
 
-		<execute macro="AssetPublisherPortlet#configureSelectedPG">
+		<execute macro="Portal.AssetPublisherPortlet#configureSelectedPG">
 			<var name="selectedAsset" value="Web Content Article" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#viewSelectedPG">
+		<execute macro="Portal.AssetPublisherPortlet#viewSelectedPG">
 			<var name="selectedAsset" value="Basic Web Content" />
 			<var name="selectedAssetConfiguration" value="Web Content Article" />
 		</execute>
@@ -661,15 +661,15 @@
 	<command name="ConfigureAPPortletSetAsDefault" priority="4">
 		<property name="testray.component.names" value="Asset Publisher" />
 
-		<execute macro="AssetPublisherPortlet#configureDisplaySettings">
+		<execute macro="Portal.AssetPublisherPortlet#configureDisplaySettings">
 			<var name="displaySettings" value="Set as the Default Asset Publisher for This Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#viewDisplaySettings">
+		<execute macro="Portal.AssetPublisherPortlet#viewDisplaySettings">
 			<var name="displaySettings" value="Set as the Default Asset Publisher for This Page" />
 		</execute>
 	</command>
@@ -677,67 +677,67 @@
 	<command name="ConfigureAPPortletWithSelectedBookmarksEntry" priority="4">
 		<property name="testray.component.names" value="Asset Publisher,Bookmarks" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Bookmarks Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Bookmarks Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Bookmarks" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Bookmarks Page" />
 		</execute>
 
-		<execute macro="BookmarksFolder#addPG">
+		<execute macro="Portal.BookmarksFolder#addPG">
 			<var name="folderDescription" value="Test Folder Description" />
 			<var name="folderName" value="Test Folder Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Bookmarks Page" />
 		</execute>
 
-		<execute macro="Bookmark#addPG">
+		<execute macro="Portal.Bookmark#addPG">
 			<var name="bookmarkDescription" value="Test Bookmark Description" />
 			<var name="bookmarkName" value="Test Bookmark Name" />
 			<var name="bookmarkURL" value="https://www.liferay.com" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#configureAPSelectMoreThanOnePG">
+		<execute macro="Portal.AssetPublisherPortlet#configureAPSelectMoreThanOnePG">
 			<var name="selectContent" value="Bookmarks Entry" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#viewConfigureAPMoveToAvailablePG">
+		<execute macro="Portal.AssetPublisherPortlet#viewConfigureAPMoveToAvailablePG">
 			<var name="assetTitle" value="Test Bookmark Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#configureAPSelectMoreThanOnePG" >
+		<execute macro="Portal.AssetPublisherPortlet#configureAPSelectMoreThanOnePG" >
 			<var name="moveSelected" value="true" />
 			<var name="selectContent" value="Bookmarks Entry" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#viewConfigureAPMoveToSelectedPG">
+		<execute macro="Portal.AssetPublisherPortlet#viewConfigureAPMoveToSelectedPG">
 			<var name="assetTitle" value="Test Bookmark Name" />
 		</execute>
 	</command>
@@ -745,100 +745,100 @@
 	<command name="FilterTagsByNameAP" priority="4">
 		<property name="testray.component.names" value="Asset Publisher,Tags" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Tags Navigation Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Tags Navigation Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Tags Navigation" />
 		</execute>
 
-		<execute macro="TagsNavigationPortlet#configureDisplayStylePG">
+		<execute macro="Portal.TagsNavigationPortlet#configureDisplayStylePG">
 			<var name="displayTemplate" value="Number" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Tags Navigation Page" />
 		</execute>
 
-		<execute macro="TagsNavigationPortlet#configureFlaggableSettingsPG">
+		<execute macro="Portal.TagsNavigationPortlet#configureFlaggableSettingsPG">
 			<var name="showAssetCount" value="true" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Tags Navigation Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Asset Publisher" />
 		</execute>
 
 		<for list="first tag,second tag,third tag" param="tagName">
-			<execute macro="Navigator#openURL" />
+			<execute macro="Portal.Navigator#openURL" />
 
-			<execute macro="ProductMenu#gotoSitesContent">
+			<execute macro="Portal.ProductMenu#gotoSitesContent">
 				<var name="portlet" value="Tags" />
 			</execute>
 
-			<execute macro="Tag#addCP">
+			<execute macro="Portal.Tag#addCP">
 				<var name="tagName" value="${tagName}" />
 			</execute>
 		</for>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Web Content" />
 		</execute>
 
-		<execute macro="WebContentNavigator#gotoAddCP" />
+		<execute macro="Portal.WebContentNavigator#gotoAddCP" />
 
-		<execute macro="WebContent#addWithTagCP">
+		<execute macro="Portal.WebContent#addWithTagCP">
 			<var name="tagNameList" value="first tag,second tag" />
 			<var name="webContentContent" value="Web Content Content" />
 			<var name="webContentTitle" value="Web Content Title" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Documents and Media" />
 		</execute>
 
-		<execute macro="DMDocument#addCP">
+		<execute macro="Portal.DMDocument#addCP">
 			<var name="dmDocumentFile" value="Document_1.txt" />
 			<var name="dmDocumentSize" value="0KB" />
 			<var name="dmDocumentTitle" value="DM Document Title" />
 			<var name="tagNameList" value="first tag" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Tags Navigation Page" />
 		</execute>
 
-		<execute macro="TagsNavigationPortlet#clickTagView">
+		<execute macro="Portal.TagsNavigationPortlet#clickTagView">
 			<var name="tagAssetCount" value="first tag (2)" />
 			<var name="tagName" value="first tag" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#viewTagFocusPG">
+		<execute macro="Portal.AssetPublisherPortlet#viewTagFocusPG">
 			<var name="assetTitleList" value="DM Document Title,Web Content Title" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Tags Navigation Page" />
 		</execute>
 
-		<execute macro="TagsNavigationPortlet#clickTagView">
+		<execute macro="Portal.TagsNavigationPortlet#clickTagView">
 			<var name="tagAssetCount" value="second tag (1)" />
 			<var name="tagName" value="second tag" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#viewTagFocusPG">
+		<execute macro="Portal.AssetPublisherPortlet#viewTagFocusPG">
 			<var name="assetTitleList" value="Web Content Title" />
 			<var name="nonTaggedAsset" value="DM Document Title" />
 		</execute>
@@ -847,19 +847,19 @@
 	<command name="FindSiteAPViaSearchScopeSelector" priority="4">
 		<property name="testray.component.names" value="Asset Publisher" />
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addBlankCP">
+		<execute macro="Portal.Site#addBlankCP">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#assertSiteScopeSearch">
+		<execute macro="Portal.AssetPublisherPortlet#assertSiteScopeSearch">
 			<var name="siteName" value="Site Name" />
 		</execute>
 	</command>
@@ -867,68 +867,68 @@
 	<command name="OrderContentByModifiedDateViaAP" priority="3">
 		<property name="testray.component.names" value="Asset Publisher" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#configureAssetDisplayOrderPG">
+		<execute macro="Portal.AssetPublisherPortlet#configureAssetDisplayOrderPG">
 			<var name="fieldNameOrder" value="Modified Date" />
 			<var name="sortOrder" value="Ascending" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="WebContent#addPGViaAP" >
+		<execute macro="Portal.WebContent#addPGViaAP" >
 			<var name="webContentContent" value="WebContent Content 1" />
 			<var name="webContentTitle" value="WebContent Title 1" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="WebContent#addPGViaAP" >
+		<execute macro="Portal.WebContent#addPGViaAP" >
 			<var name="webContentContent" value="WebContent Content 2" />
 			<var name="webContentTitle" value="WebContent Title 2" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="WebContent#addPGViaAP" >
+		<execute macro="Portal.WebContent#addPGViaAP" >
 			<var name="webContentContent" value="WebContent Content 3" />
 			<var name="webContentTitle" value="WebContent Title 3" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#viewMultipleAssetOrderPGViaAP">
+		<execute macro="Portal.AssetPublisherPortlet#viewMultipleAssetOrderPGViaAP">
 			<var name="assetTitle1" value="WebContent Title 1" />
 			<var name="assetTitle2" value="WebContent Title 2" />
 			<var name="assetTitle3" value="WebContent Title 3" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#gotoEditAssetPG">
+		<execute macro="Portal.AssetPublisherPortlet#gotoEditAssetPG">
 			<var name="assetTitle" value="WebContent Title 1" />
 		</execute>
 
-		<execute macro="WebContent#addCP">
+		<execute macro="Portal.WebContent#addCP">
 			<var name="webContentContent" value="WebContent Content 1 Edit" />
 			<var name="webContentTitle" value="WebContent Title 1 Edit" />
 		</execute>
 
-		<execute macro="Button#clickPublish" />
+		<execute macro="Portal.Button#clickPublish" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#viewMultipleAssetOrderPGViaAP">
+		<execute macro="Portal.AssetPublisherPortlet#viewMultipleAssetOrderPGViaAP">
 			<var name="assetTitle1" value="WebContent Title 2" />
 			<var name="assetTitle2" value="WebContent Title 3" />
 			<var name="assetTitle3" value="WebContent Title 1 Edit" />
@@ -938,77 +938,77 @@
 	<command name="OrderWCByModifiedDateViaAP" priority="3">
 		<property name="testray.component.names" value="Asset Publisher" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#configureAssetTypePG">
+		<execute macro="Portal.AssetPublisherPortlet#configureAssetTypePG">
 			<var name="assetSubtype" value="Any" />
 			<var name="selectedAsset" value="Web Content Article" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#configureAssetDisplayOrderPG">
+		<execute macro="Portal.AssetPublisherPortlet#configureAssetDisplayOrderPG">
 			<var name="fieldNameOrder" value="Modified Date" />
 			<var name="sortOrder" value="Ascending" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="WebContent#addPGViaAP" >
+		<execute macro="Portal.WebContent#addPGViaAP" >
 			<var name="webContentContent" value="WebContent Content 1" />
 			<var name="webContentTitle" value="WebContent Title 1" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="WebContent#addPGViaAP" >
+		<execute macro="Portal.WebContent#addPGViaAP" >
 			<var name="webContentContent" value="WebContent Content 2" />
 			<var name="webContentTitle" value="WebContent Title 2" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="WebContent#addPGViaAP" >
+		<execute macro="Portal.WebContent#addPGViaAP" >
 			<var name="webContentContent" value="WebContent Content 3" />
 			<var name="webContentTitle" value="WebContent Title 3" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#viewMultipleAssetOrderPGViaAP">
+		<execute macro="Portal.AssetPublisherPortlet#viewMultipleAssetOrderPGViaAP">
 			<var name="assetTitle1" value="WebContent Title 1" />
 			<var name="assetTitle2" value="WebContent Title 2" />
 			<var name="assetTitle3" value="WebContent Title 3" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#gotoEditAssetPG">
+		<execute macro="Portal.AssetPublisherPortlet#gotoEditAssetPG">
 			<var name="assetTitle" value="WebContent Title 1" />
 		</execute>
 
-		<execute macro="WebContent#addCP">
+		<execute macro="Portal.WebContent#addCP">
 			<var name="webContentContent" value="WebContent Content 1 Edit" />
 			<var name="webContentTitle" value="WebContent Title 1 Edit" />
 		</execute>
 
-		<execute macro="Button#clickPublish" />
+		<execute macro="Portal.Button#clickPublish" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#viewMultipleAssetOrderPGViaAP">
+		<execute macro="Portal.AssetPublisherPortlet#viewMultipleAssetOrderPGViaAP">
 			<var name="assetTitle1" value="WebContent Title 2" />
 			<var name="assetTitle2" value="WebContent Title 3" />
 			<var name="assetTitle3" value="WebContent Title 1 Edit" />
@@ -1019,96 +1019,96 @@
 		<property name="testray.component.names" value="Asset Publisher" />
 
 		<for list="1,5,3" param="i">
-			<execute macro="ProductMenu#gotoSitesContent">
+			<execute macro="Portal.ProductMenu#gotoSitesContent">
 				<var name="portlet" value="Web Content" />
 			</execute>
 
-			<execute macro="WebContentNavigator#gotoAddCP" />
+			<execute macro="Portal.WebContentNavigator#gotoAddCP" />
 
-			<execute macro="WebContent#addCP">
+			<execute macro="Portal.WebContent#addCP">
 				<var name="webContentContent" value="WC WebContent Content" />
 				<var name="webContentTitle" value="WC Priority ${i} Title" />
 			</execute>
 
-			<execute macro="WebContent#addPriority">
+			<execute macro="Portal.WebContent#addPriority">
 				<var name="priority" value="${i}" />
 			</execute>
 
-			<execute macro="PortletEntry#publish" />
+			<execute macro="Portal.PortletEntry#publish" />
 		</for>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#viewDisplayOrderPG">
+		<execute macro="Portal.AssetPublisherPortlet#viewDisplayOrderPG">
 			<var name="assetTitle" value="WC Priority 3 Title" />
 			<var name="rowNumber" value="1" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#viewDisplayOrderPG">
+		<execute macro="Portal.AssetPublisherPortlet#viewDisplayOrderPG">
 			<var name="assetTitle" value="WC Priority 5 Title" />
 			<var name="rowNumber" value="2" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#viewDisplayOrderPG">
+		<execute macro="Portal.AssetPublisherPortlet#viewDisplayOrderPG">
 			<var name="assetTitle" value="WC Priority 1 Title" />
 			<var name="rowNumber" value="3" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#configureAssetTypePG">
+		<execute macro="Portal.AssetPublisherPortlet#configureAssetTypePG">
 			<var name="assetSubtype" value="Any" />
 			<var name="selectedAsset" value="Web Content Article" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#configureAssetDisplayOrderPG">
+		<execute macro="Portal.AssetPublisherPortlet#configureAssetDisplayOrderPG">
 			<var name="fieldNameOrder" value="Priority" />
 			<var name="sortOrder" value="Ascending" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#viewDisplayOrderPG">
+		<execute macro="Portal.AssetPublisherPortlet#viewDisplayOrderPG">
 			<var name="assetTitle" value="WC Priority 1 Title" />
 			<var name="rowNumber" value="1" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#viewDisplayOrderPG">
+		<execute macro="Portal.AssetPublisherPortlet#viewDisplayOrderPG">
 			<var name="assetTitle" value="WC Priority 3 Title" />
 			<var name="rowNumber" value="2" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#viewDisplayOrderPG">
+		<execute macro="Portal.AssetPublisherPortlet#viewDisplayOrderPG">
 			<var name="assetTitle" value="WC Priority 5 Title" />
 			<var name="rowNumber" value="3" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#configureAssetDisplayOrderPG">
+		<execute macro="Portal.AssetPublisherPortlet#configureAssetDisplayOrderPG">
 			<var name="fieldNameOrder" value="Priority" />
 			<var name="sortOrder" value="Descending" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#viewDisplayOrderPG">
+		<execute macro="Portal.AssetPublisherPortlet#viewDisplayOrderPG">
 			<var name="assetTitle" value="WC Priority 5 Title" />
 			<var name="rowNumber" value="1" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#viewDisplayOrderPG">
+		<execute macro="Portal.AssetPublisherPortlet#viewDisplayOrderPG">
 			<var name="assetTitle" value="WC Priority 3 Title" />
 			<var name="rowNumber" value="2" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#viewDisplayOrderPG">
+		<execute macro="Portal.AssetPublisherPortlet#viewDisplayOrderPG">
 			<var name="assetTitle" value="WC Priority 1 Title" />
 			<var name="rowNumber" value="3" />
 		</execute>
@@ -1117,60 +1117,60 @@
 	<command name="OrderWCByPublishDateViaAP" priority="3">
 		<property name="testray.component.names" value="Asset Publisher" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#configureAssetTypePG">
+		<execute macro="Portal.AssetPublisherPortlet#configureAssetTypePG">
 			<var name="assetSubtype" value="Any" />
 			<var name="selectedAsset" value="Web Content Article" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#configureAssetDisplayOrderPG">
+		<execute macro="Portal.AssetPublisherPortlet#configureAssetDisplayOrderPG">
 			<var name="fieldNameOrder" value="Publish Date" />
 			<var name="sortOrder" value="Ascending" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="WebContent#addPGViaAP" >
+		<execute macro="Portal.WebContent#addPGViaAP" >
 			<var name="webContentContent" value="WebContent Content 1" />
 			<var name="webContentTitle" value="WebContent Title 1" />
 		</execute>
 
 		<execute function="Pause" locator1="65000" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="WebContent#addPGViaAP" >
+		<execute macro="Portal.WebContent#addPGViaAP" >
 			<var name="webContentContent" value="WebContent Content 2" />
 			<var name="webContentTitle" value="WebContent Title 2" />
 		</execute>
 
 		<execute function="Pause" locator1="65000" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="WebContent#addPGViaAP" >
+		<execute macro="Portal.WebContent#addPGViaAP" >
 			<var name="webContentContent" value="WebContent Content 3" />
 			<var name="webContentTitle" value="WebContent Title 3" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#viewMultipleAssetOrderPGViaAP">
+		<execute macro="Portal.AssetPublisherPortlet#viewMultipleAssetOrderPGViaAP">
 			<var name="assetTitle1" value="WebContent Title 1" />
 			<var name="assetTitle2" value="WebContent Title 2" />
 			<var name="assetTitle3" value="WebContent Title 3" />
@@ -1181,68 +1181,68 @@
 		<property name="portal.acceptance" value="pending" />
 		<property name="testray.component.names" value="Asset Publisher,Training" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Web Content" />
 		</execute>
 
-		<execute macro="WebContentNavigator#gotoAddCP" />
+		<execute macro="Portal.WebContentNavigator#gotoAddCP" />
 
-		<execute macro="WebContent#addCP">
+		<execute macro="Portal.WebContent#addCP">
 			<var name="webContentContent" value="WC WebContent Content" />
 			<var name="webContentTitle" value="WC WebContent Title" />
 		</execute>
 
-		<execute macro="PortletEntry#publish" />
+		<execute macro="Portal.PortletEntry#publish" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#configureManualAssetSelectionPG" />
+		<execute macro="Portal.AssetPublisherPortlet#configureManualAssetSelectionPG" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#saveConfigurationTemplatePG">
+		<execute macro="Portal.AssetPublisherPortlet#saveConfigurationTemplatePG">
 			<var name="configurationName" value="AP Manual Display" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="Portlet#deletePG">
+		<execute macro="Portal.Portlet#deletePG">
 			<var name="portletName" value="Asset Publisher" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Asset Publisher" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#restoreConfigurationTemplatePG">
+		<execute macro="Portal.AssetPublisherPortlet#restoreConfigurationTemplatePG">
 			<var name="configurationName" value="AP Manual Display" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#viewManualNoAssetsMessagePG" />
+		<execute macro="Portal.AssetPublisherPortlet#viewManualNoAssetsMessagePG" />
 
-		<execute macro="AssetPublisherPortlet#viewRestoredSetupPG" />
+		<execute macro="Portal.AssetPublisherPortlet#viewRestoredSetupPG" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#deleteConfigurationTemplatePG">
+		<execute macro="Portal.AssetPublisherPortlet#deleteConfigurationTemplatePG">
 			<var name="configurationName" value="AP Manual Display" />
 		</execute>
 	</command>

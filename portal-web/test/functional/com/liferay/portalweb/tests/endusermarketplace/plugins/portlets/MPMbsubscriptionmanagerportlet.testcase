@@ -2,7 +2,7 @@
 	<property name="testray.main.component.name" value="Plugin Installer" />
 
 	<set-up>
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 	</set-up>
 
 	<command name="MBSubscriptionManagerPortletSmoke" priority="4">
@@ -10,25 +10,25 @@
 
 		<var name="appName" value="Message Boards Subscription Manager" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Message Boards Subscription Manager" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelApps">
+		<execute macro="Portal.ProductMenu#gotoControlPanelApps">
 			<var name="portlet" value="App Manager" />
 		</execute>
 
-		<execute macro="AppManager#uninstallAppCP">
+		<execute macro="Portal.AppManager#uninstallAppCP">
 			<var name="appName" value="${appName}" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelApps">
+		<execute macro="Portal.ProductMenu#gotoControlPanelApps">
 			<var name="portlet" value="App Manager" />
 		</execute>
 
-		<execute macro="AppManager#viewUninstallAppCP">
+		<execute macro="Portal.AppManager#viewUninstallAppCP">
 			<var name="appName" value="${appName}" />
 		</execute>
 	</command>

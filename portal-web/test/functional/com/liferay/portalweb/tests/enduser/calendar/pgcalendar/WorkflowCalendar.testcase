@@ -5,34 +5,34 @@
 	<property name="testray.main.component.name" value="Workflow" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Calendar" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Workflow" />
 		</execute>
 
-		<execute macro="Workflow#configureWorkflow">
+		<execute macro="Portal.Workflow#configureWorkflow">
 			<var name="workflowDefinition" value="Single Approver (Version 1)" />
 			<var name="workflowResourceValue" value="Calendar Event" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoAddEvent" />
+		<execute macro="Portal.CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="CalendarEvent#add">
+		<execute macro="Portal.CalendarEvent#add">
 			<var name="eventTitle" value="Calendar Event Title" />
 			<var name="eventType" value="Regular" />
 			<var name="optionSet" value="true" />
@@ -42,7 +42,7 @@
 			<var name="workflow" value="true" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 	</set-up>
@@ -53,25 +53,25 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="Navigator#gotoPage">
+				<execute macro="Portal.Navigator#gotoPage">
 					<var name="pageName" value="Calendar Page" />
 				</execute>
 
 				<if>
 					<condition function="IsElementPresent" locator1="Calendar#SCHEDULER_EVENT_GENERIC" />
 					<then>
-						<execute macro="CalendarEvent#tearDown" />
+						<execute macro="Portal.CalendarEvent#tearDown" />
 					</then>
 				</if>
 
-				<execute macro="Calendar#tearDown" />
+				<execute macro="Portal.Calendar#tearDown" />
 
-				<execute macro="Page#tearDownPG" />
+				<execute macro="Portal.Page#tearDownPG" />
 
-				<execute macro="Workflow#tearDownSiteWorkflow" />
+				<execute macro="Portal.Workflow#tearDownSiteWorkflow" />
 			</else>
 		</if>
 	</tear-down>
@@ -79,67 +79,67 @@
 	<command name="ApproveEventWithInvitedUser" priority="5">
 		<property name="portal.acceptance" value="true" />
 
-		<execute macro="TestCase#getSiteName">
+		<execute macro="Portal.TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoView">
+		<execute macro="Portal.CalendarNavigator#gotoView">
 			<var name="viewType" value="Day" />
 		</execute>
 
-		<execute macro="CalendarEvent#viewSiteRSVPWithUnapprovedWorkflow">
+		<execute macro="Portal.CalendarEvent#viewSiteRSVPWithUnapprovedWorkflow">
 			<var name="eventTitle" value="Calendar Event Title" />
 			<var name="siteCalendarName" value="${siteName}" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoView">
+		<execute macro="Portal.CalendarNavigator#gotoView">
 			<var name="viewType" value="Week" />
 		</execute>
 
-		<execute macro="CalendarEvent#viewNoUserInviteWithUnapprovedWorkflow">
+		<execute macro="Portal.CalendarEvent#viewNoUserInviteWithUnapprovedWorkflow">
 			<var name="eventTitle" value="Calendar Event Title" />
 			<var name="siteCalendarName" value="${siteName}" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#assignToMeTaskByActions">
+		<execute macro="Portal.Workflow#assignToMeTaskByActions">
 			<var name="workflowAssetTitle" value="Calendar Event Title" />
 			<var name="workflowAssetType" value="Calendar Event" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#approveTaskByActions">
+		<execute macro="Portal.Workflow#approveTaskByActions">
 			<var name="workflowAssetTitle" value="Calendar Event Title" />
 			<var name="workflowAssetType" value="Calendar Event" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoView">
+		<execute macro="Portal.CalendarNavigator#gotoView">
 			<var name="viewType" value="Week" />
 		</execute>
 
-		<execute macro="CalendarEvent#viewSiteRSVPWithApprovedWorkflow">
+		<execute macro="Portal.CalendarEvent#viewSiteRSVPWithApprovedWorkflow">
 			<var name="eventTitle" value="Calendar Event Title" />
 			<var name="rsvp" value="Yes" />
 			<var name="userCalendarName" value="Test Test" />
 		</execute>
 
-		<execute macro="CalendarEvent#viewInvitedUserRSVPWithApprovedWorkflow">
+		<execute macro="Portal.CalendarEvent#viewInvitedUserRSVPWithApprovedWorkflow">
 			<var name="eventTitle" value="Calendar Event Title" />
 			<var name="siteCalendarName" value="${siteName}" />
 			<var name="userCalendarName" value="Test Test" />
@@ -149,181 +149,181 @@
 	<command name="DeleteAndRestoreEvent" priority="3">
 		<description message="This is a use case for LPS-59572." />
 
-		<execute macro="TestCase#getSiteName">
+		<execute macro="Portal.TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoView">
+		<execute macro="Portal.CalendarNavigator#gotoView">
 			<var name="viewType" value="Week" />
 		</execute>
 
-		<execute macro="CalendarEvent#viewSiteRSVPWithUnapprovedWorkflow">
+		<execute macro="Portal.CalendarEvent#viewSiteRSVPWithUnapprovedWorkflow">
 			<var name="eventTitle" value="Calendar Event Title" />
 			<var name="siteCalendarName" value="${siteName}" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#viewTaskAssignedToMyRoles">
+		<execute macro="Portal.Workflow#viewTaskAssignedToMyRoles">
 			<var name="workflowAssetTitle" value="Calendar Event Title" />
 			<var name="workflowAssetType" value="Calendar Event" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoView">
+		<execute macro="Portal.CalendarNavigator#gotoView">
 			<var name="viewType" value="Week" />
 		</execute>
 
-		<execute macro="CalendarEvent#deleteSpecific">
+		<execute macro="Portal.CalendarEvent#deleteSpecific">
 			<var name="eventTitle" value="Calendar Event Title" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoView">
+		<execute macro="Portal.CalendarNavigator#gotoView">
 			<var name="viewType" value="Week" />
 		</execute>
 
-		<execute macro="CalendarScheduler#viewDefault">
+		<execute macro="Portal.CalendarScheduler#viewDefault">
 			<var name="eventTitle" value="Calendar Event Title" />
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#viewDefaultMyWorkflowTasksCP" />
+		<execute macro="Portal.Workflow#viewDefaultMyWorkflowTasksCP" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Recycle Bin" />
 		</execute>
 
-		<execute macro="RecycleBin#restoreCP">
+		<execute macro="Portal.RecycleBin#restoreCP">
 			<var name="assetName" value="Calendar Event Title" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoView">
+		<execute macro="Portal.CalendarNavigator#gotoView">
 			<var name="viewType" value="Week" />
 		</execute>
 
-		<execute macro="CalendarEvent#viewSiteRSVPWithUnapprovedWorkflow">
+		<execute macro="Portal.CalendarEvent#viewSiteRSVPWithUnapprovedWorkflow">
 			<var name="eventTitle" value="Calendar Event Title" />
 			<var name="siteCalendarName" value="${siteName}" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#assignToMeTaskByActions">
+		<execute macro="Portal.Workflow#assignToMeTaskByActions">
 			<var name="workflowAssetTitle" value="Calendar Event Title" />
 			<var name="workflowAssetType" value="Calendar Event" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Workflow#viewTaskAssignedToMe">
+		<execute macro="Portal.Workflow#viewTaskAssignedToMe">
 			<var name="workflowAssetTitle" value="Calendar Event Title" />
 			<var name="workflowAssetType" value="Calendar Event" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoView">
+		<execute macro="Portal.CalendarNavigator#gotoView">
 			<var name="viewType" value="Week" />
 		</execute>
 
-		<execute macro="CalendarEvent#deleteSpecific">
+		<execute macro="Portal.CalendarEvent#deleteSpecific">
 			<var name="eventTitle" value="Calendar Event Title" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoView">
+		<execute macro="Portal.CalendarNavigator#gotoView">
 			<var name="viewType" value="Week" />
 		</execute>
 
-		<execute macro="CalendarScheduler#viewDefault">
+		<execute macro="Portal.CalendarScheduler#viewDefault">
 			<var name="eventTitle" value="Calendar Event Title" />
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#viewDefaultMyWorkflowTasksCP" />
+		<execute macro="Portal.Workflow#viewDefaultMyWorkflowTasksCP" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Recycle Bin" />
 		</execute>
 
-		<execute macro="RecycleBin#restoreCP">
+		<execute macro="Portal.RecycleBin#restoreCP">
 			<var name="assetName" value="Calendar Event Title" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarEvent#viewSiteRSVPWithUnapprovedWorkflow">
+		<execute macro="Portal.CalendarEvent#viewSiteRSVPWithUnapprovedWorkflow">
 			<var name="eventTitle" value="Calendar Event Title" />
 			<var name="siteCalendarName" value="${siteName}" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#assignToMeTaskByActions">
+		<execute macro="Portal.Workflow#assignToMeTaskByActions">
 			<var name="workflowAssetTitle" value="Calendar Event Title" />
 			<var name="workflowAssetType" value="Calendar Event" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Workflow#approveTaskByActions">
+		<execute macro="Portal.Workflow#approveTaskByActions">
 			<var name="workflowAssetTitle" value="Calendar Event Title" />
 			<var name="workflowAssetType" value="Calendar Event" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoView">
+		<execute macro="Portal.CalendarNavigator#gotoView">
 			<var name="viewType" value="Week" />
 		</execute>
 
-		<execute macro="CalendarEvent#viewSiteRSVPWithApprovedWorkflow">
+		<execute macro="Portal.CalendarEvent#viewSiteRSVPWithApprovedWorkflow">
 			<var name="eventTitle" value="Calendar Event Title" />
 			<var name="rsvp" value="Yes" />
 			<var name="userCalendarName" value="Test Test" />
 		</execute>
 
-		<execute macro="CalendarEvent#viewInvitedUserRSVPWithApprovedWorkflow">
+		<execute macro="Portal.CalendarEvent#viewInvitedUserRSVPWithApprovedWorkflow">
 			<var name="eventTitle" value="Calendar Event Title" />
 			<var name="siteCalendarName" value="${siteName}" />
 			<var name="userCalendarName" value="Test Test" />
@@ -331,67 +331,67 @@
 	</command>
 
 	<command name="RejectEventWithInvitedUser" priority="4">
-		<execute macro="TestCase#getSiteName">
+		<execute macro="Portal.TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoView">
+		<execute macro="Portal.CalendarNavigator#gotoView">
 			<var name="viewType" value="Week" />
 		</execute>
 
-		<execute macro="CalendarEvent#viewSiteRSVPWithUnapprovedWorkflow">
+		<execute macro="Portal.CalendarEvent#viewSiteRSVPWithUnapprovedWorkflow">
 			<var name="eventTitle" value="Calendar Event Title" />
 			<var name="siteCalendarName" value="${siteName}" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoView">
+		<execute macro="Portal.CalendarNavigator#gotoView">
 			<var name="viewType" value="Week" />
 		</execute>
 
-		<execute macro="CalendarEvent#viewNoUserInviteWithUnapprovedWorkflow">
+		<execute macro="Portal.CalendarEvent#viewNoUserInviteWithUnapprovedWorkflow">
 			<var name="eventTitle" value="Calendar Event Title" />
 			<var name="siteCalendarName" value="${siteName}" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#assignToMeTaskByActions">
+		<execute macro="Portal.Workflow#assignToMeTaskByActions">
 			<var name="workflowAssetTitle" value="Calendar Event Title" />
 			<var name="workflowAssetType" value="Calendar Event" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#rejectTaskByActions">
+		<execute macro="Portal.Workflow#rejectTaskByActions">
 			<var name="workflowAssetTitle" value="Calendar Event Title" />
 			<var name="workflowAssetType" value="Calendar Event" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoView">
+		<execute macro="Portal.CalendarNavigator#gotoView">
 			<var name="viewType" value="Week" />
 		</execute>
 
-		<execute macro="CalendarEvent#viewSiteRSVPWithUnapprovedWorkflow">
+		<execute macro="Portal.CalendarEvent#viewSiteRSVPWithUnapprovedWorkflow">
 			<var name="eventTitle" value="Calendar Event Title" />
 			<var name="siteCalendarName" value="${siteName}" />
 		</execute>
 
-		<execute macro="CalendarEvent#viewNoUserInviteWithUnapprovedWorkflow">
+		<execute macro="Portal.CalendarEvent#viewNoUserInviteWithUnapprovedWorkflow">
 			<var name="eventTitle" value="Calendar Event Title" />
 			<var name="siteCalendarName" value="${siteName}" />
 			<var name="userCalendarName" value="Test Test" />
@@ -399,22 +399,22 @@
 	</command>
 
 	<command name="ViewPendingStatusInEventDetails" priority="2">
-		<execute macro="CalendarNavigator#gotoView">
+		<execute macro="Portal.CalendarNavigator#gotoView">
 			<var name="viewType" value="Week" />
 		</execute>
 
-		<execute macro="CalendarScheduler#addEventToday">
+		<execute macro="Portal.CalendarScheduler#addEventToday">
 			<var name="eventTitle" value="Calendar Event Today Week" />
 			<var name="viewType" value="Week" />
 		</execute>
 
-		<execute macro="CalendarScheduler#selectSpecificEvent">
+		<execute macro="Portal.CalendarScheduler#selectSpecificEvent">
 			<var name="eventTitle" value="Calendar Event Title" />
 		</execute>
 
-		<execute macro="CalendarScheduler#gotoDetailsViaDialogBox" />
+		<execute macro="Portal.CalendarScheduler#gotoDetailsViaDialogBox" />
 
-		<execute macro="CalendarEvent#viewStatusViaDetails">
+		<execute macro="Portal.CalendarEvent#viewStatusViaDetails">
 			<var name="status" value="Pending" />
 		</execute>
 	</command>

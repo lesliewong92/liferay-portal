@@ -9,41 +9,41 @@
 	<property name="testray.main.component.name" value="Content Targeting" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="Portlet#shutdownServer" />
+		<execute macro="Portal.Portlet#shutdownServer" />
 
-		<execute macro="Portlet#startServer" />
+		<execute macro="Portal.Portlet#startServer" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addBlankCP">
+		<execute macro="Portal.Site#addBlankCP">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Test Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Audience Targeting" />
 		</execute>
 
-		<execute macro="ContentTargetingUserSegment#addCP">
+		<execute macro="Portal.ContentTargetingUserSegment#addCP">
 			<var name="userSegmentDescription" value="User Segment Description" />
 			<var name="userSegmentName" value="User Segment Name" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 	</set-up>
 
 	<tear-down>
@@ -52,15 +52,15 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="User#logoutAndLoginPG">
+				<execute macro="Portal.User#logoutAndLoginPG">
 					<var name="userLoginEmailAddress" value="test@liferay.com" />
 					<var name="userLoginFullName" value="Test Test" />
 				</execute>
 
-				<execute macro="Site#tearDownCP" />
+				<execute macro="Portal.Site#tearDownCP" />
 			</else>
 		</if>
 	</tear-down>
@@ -68,25 +68,25 @@
 	<command name="AddCampaignContentCP" priority="5">
 		<property name="content.targeting.release" value="true" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Documents and Media" />
 		</execute>
 
-		<execute macro="DMDocument#addCP">
+		<execute macro="Portal.DMDocument#addCP">
 			<var name="dmDocumentDescription" value="DM Document Description" />
 			<var name="dmDocumentFile" value="Document_1.jpg" />
 			<var name="dmDocumentTitle" value="DM Document Title" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Audience Targeting" />
 		</execute>
 
-		<execute macro="ContentTargetingCampaign#addCP">
+		<execute macro="Portal.ContentTargetingCampaign#addCP">
 			<var name="campaignDescription" value="Campaign Description" />
 			<var name="campaignEndDate" value="1/1/2099" />
 			<var name="campaignEndTime" value="12:00 PM" />
@@ -97,48 +97,48 @@
 			<var name="userSegmentSelect" value="User Segment Name" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Audience Targeting" />
 		</execute>
 
-		<execute macro="ContentTargetingCampaign#gotoAddReport">
+		<execute macro="Portal.ContentTargetingCampaign#gotoAddReport">
 			<var name="campaignName" value="Campaign Name" />
 		</execute>
 
-		<execute macro="ContentTargetingCampaign#addReportName">
+		<execute macro="Portal.ContentTargetingCampaign#addReportName">
 			<var name="reportDescription" value="Content Report Description" />
 			<var name="reportName" value="Content Report Name" />
 		</execute>
 
-		<execute macro="ContentTargetingCampaign#addTrackingActionContentCP">
+		<execute macro="Portal.ContentTargetingCampaign#addTrackingActionContentCP">
 			<var name="contentMetricName" value="Content Metric Name" />
 			<var name="contentTitle" value="DM Document Title" />
 			<var name="contentTrackingActionSelect" value="View" />
 			<var name="menulistContent" value="Basic Document" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Audience Targeting" />
 		</execute>
 
-		<execute macro="ContentTargetingCampaign#gotoEditReport">
+		<execute macro="Portal.ContentTargetingCampaign#gotoEditReport">
 			<var name="campaignName" value="Campaign Name" />
 			<var name="reportName" value="Content Report Name" />
 		</execute>
 
-		<execute macro="ContentTargetingCampaign#viewTrackingActionsCP">
+		<execute macro="Portal.ContentTargetingCampaign#viewTrackingActionsCP">
 			<var name="campaignName" value="Campaign Name" />
 			<var name="contentMetricName" value="Content Metric Name" />
 			<var name="contentTitle" value="DM Document Title" />
@@ -149,11 +149,11 @@
 	<command name="AddCampaignCustomFormCP" priority="5">
 		<property name="content.targeting.release" value="true" />
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Audience Targeting" />
 		</execute>
 
-		<execute macro="ContentTargetingCampaign#addCP">
+		<execute macro="Portal.ContentTargetingCampaign#addCP">
 			<var name="campaignDescription" value="Campaign Description" />
 			<var name="campaignEndDate" value="1/1/2099" />
 			<var name="campaignEndTime" value="12:00 PM" />
@@ -164,47 +164,47 @@
 			<var name="userSegmentSelect" value="User Segment Name" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Audience Targeting" />
 		</execute>
 
-		<execute macro="ContentTargetingCampaign#gotoAddReport">
+		<execute macro="Portal.ContentTargetingCampaign#gotoAddReport">
 			<var name="campaignName" value="Campaign Name" />
 		</execute>
 
-		<execute macro="ContentTargetingCampaign#addReportName">
+		<execute macro="Portal.ContentTargetingCampaign#addReportName">
 			<var name="reportDescription" value="Content Report Description" />
 			<var name="reportName" value="Content Report Name" />
 		</execute>
 
-		<execute macro="ContentTargetingCampaign#addTrackingActionCustomFormCP">
+		<execute macro="Portal.ContentTargetingCampaign#addTrackingActionCustomFormCP">
 			<var name="formAlias" value="Form Alias" />
 			<var name="formId" value="Form id" />
 			<var name="formTrackingActionSelect" value="Submit" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Audience Targeting" />
 		</execute>
 
-		<execute macro="ContentTargetingCampaign#gotoEditReport">
+		<execute macro="Portal.ContentTargetingCampaign#gotoEditReport">
 			<var name="campaignName" value="Campaign Name" />
 			<var name="reportName" value="Content Report Name" />
 		</execute>
 
-		<execute macro="ContentTargetingCampaign#viewTrackingActionsCP">
+		<execute macro="Portal.ContentTargetingCampaign#viewTrackingActionsCP">
 			<var name="campaignName" value="Campaign Name" />
 			<var name="formAlias" value="Form Alias" />
 			<var name="formId" value="Form id" />
@@ -216,11 +216,11 @@
 	<command name="AddCampaignDDLFormCP" priority="5">
 		<property name="content.targeting.release" value="true" />
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Audience Targeting" />
 		</execute>
 
-		<execute macro="ContentTargetingCampaign#addCP">
+		<execute macro="Portal.ContentTargetingCampaign#addCP">
 			<var name="campaignDescription" value="Campaign Description" />
 			<var name="campaignEndDate" value="1/1/2099" />
 			<var name="campaignEndTime" value="12:00 PM" />
@@ -231,61 +231,61 @@
 			<var name="userSegmentSelect" value="User Segment Name" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Forms" />
 		</execute>
 
-		<execute macro="FormsAdminNavigator#gotoAddForm" />
+		<execute macro="Portal.FormsAdminNavigator#gotoAddForm" />
 
-		<execute macro="Form#editName" />
+		<execute macro="Portal.Form#editName" />
 
-		<execute macro="Form#editDescription" />
+		<execute macro="Portal.Form#editDescription" />
 
-		<execute macro="Form#gotoAddField">
+		<execute macro="Portal.Form#gotoAddField">
 			<var name="fieldType" value="Text Field" />
 		</execute>
 
-		<execute macro="Form#editFieldLabel">
+		<execute macro="Portal.Form#editFieldLabel">
 			<var name="fieldValue" value="Text Field" />
 		</execute>
 
-		<execute macro="Form#closeSidebar" />
+		<execute macro="Portal.Form#closeSidebar" />
 
-		<execute macro="Form#save" />
+		<execute macro="Portal.Form#save" />
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Audience Targeting" />
 		</execute>
 
-		<execute macro="ContentTargetingCampaign#gotoAddReport">
+		<execute macro="Portal.ContentTargetingCampaign#gotoAddReport">
 			<var name="campaignName" value="Campaign Name" />
 		</execute>
 
-		<execute macro="ContentTargetingCampaign#addReportName">
+		<execute macro="Portal.ContentTargetingCampaign#addReportName">
 			<var name="reportDescription" value="Content Report Description" />
 			<var name="reportName" value="Content Report Name" />
 		</execute>
 
-		<execute macro="ContentTargetingCampaign#addTrackingActionDDLFormCP">
+		<execute macro="Portal.ContentTargetingCampaign#addTrackingActionDDLFormCP">
 			<var name="formAlias" value="Form Alias" />
 			<var name="formName" value="Created Form Name" />
 			<var name="formTrackingActionSelect" value="Submit" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Audience Targeting" />
 		</execute>
 
-		<execute macro="ContentTargetingCampaign#gotoEditReport">
+		<execute macro="Portal.ContentTargetingCampaign#gotoEditReport">
 			<var name="campaignName" value="Campaign Name" />
 			<var name="reportName" value="Content Report Name" />
 		</execute>
 
-		<execute macro="ContentTargetingCampaign#viewTrackingActionsCP">
+		<execute macro="Portal.ContentTargetingCampaign#viewTrackingActionsCP">
 			<var name="campaignName" value="Campaign Name" />
 			<var name="formAlias" value="Form Alias" />
 			<var name="formName" value="Created Form Name" />
@@ -297,11 +297,11 @@
 	<command name="AddCampaignLinkCP" priority="5">
 		<property name="content.targeting.release" value="true" />
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Audience Targeting" />
 		</execute>
 
-		<execute macro="ContentTargetingCampaign#addCP">
+		<execute macro="Portal.ContentTargetingCampaign#addCP">
 			<var name="campaignDescription" value="Campaign Description" />
 			<var name="campaignEndDate" value="1/1/2099" />
 			<var name="campaignEndTime" value="12:00 PM" />
@@ -312,61 +312,61 @@
 			<var name="userSegmentSelect" value="User Segment Name" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>
 
-		<execute macro="Navigator#gotoNavTab">
+		<execute macro="Portal.Navigator#gotoNavTab">
 			<var name="navTab" value="Configuration" />
 		</execute>
 
-		<execute macro="ContentTargeting#enableAnalytics">
+		<execute macro="Portal.ContentTargeting#enableAnalytics">
 			<var name="analyticsList" value="Link,Link Clicks" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Audience Targeting" />
 		</execute>
 
-		<execute macro="ContentTargetingCampaign#gotoAddReport">
+		<execute macro="Portal.ContentTargetingCampaign#gotoAddReport">
 			<var name="campaignName" value="Campaign Name" />
 		</execute>
 
-		<execute macro="ContentTargetingCampaign#addReportName">
+		<execute macro="Portal.ContentTargetingCampaign#addReportName">
 			<var name="reportDescription" value="Content Report Description" />
 			<var name="reportName" value="Content Report Name" />
 		</execute>
 
-		<execute macro="ContentTargetingCampaign#addTrackingActionLinkCP">
+		<execute macro="Portal.ContentTargetingCampaign#addTrackingActionLinkCP">
 			<var name="linkAlias" value="Link Alias" />
 			<var name="linkId" value="Link id" />
 			<var name="linkTrackingActionSelect" value="Click" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Audience Targeting" />
 		</execute>
 
-		<execute macro="ContentTargetingCampaign#gotoEditReport">
+		<execute macro="Portal.ContentTargetingCampaign#gotoEditReport">
 			<var name="campaignName" value="Campaign Name" />
 			<var name="reportName" value="Content Report Name" />
 		</execute>
 
-		<execute macro="ContentTargetingCampaign#viewTrackingActionsCP">
+		<execute macro="Portal.ContentTargetingCampaign#viewTrackingActionsCP">
 			<var name="campaignName" value="Campaign Name" />
 			<var name="linkAlias" value="Link Alias" />
 			<var name="linkId" value="Link id" />
@@ -378,11 +378,11 @@
 	<command name="AddCampaignPageCP" priority="5">
 		<property name="content.targeting.release" value="true" />
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Audience Targeting" />
 		</execute>
 
-		<execute macro="ContentTargetingCampaign#addCP">
+		<execute macro="Portal.ContentTargetingCampaign#addCP">
 			<var name="campaignDescription" value="Campaign Description" />
 			<var name="campaignEndDate" value="1/1/2099" />
 			<var name="campaignEndTime" value="12:00 PM" />
@@ -393,46 +393,46 @@
 			<var name="userSegmentSelect" value="User Segment Name" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Audience Targeting" />
 		</execute>
 
-		<execute macro="ContentTargetingCampaign#gotoAddReport">
+		<execute macro="Portal.ContentTargetingCampaign#gotoAddReport">
 			<var name="campaignName" value="Campaign Name" />
 		</execute>
 
-		<execute macro="ContentTargetingCampaign#addReportName">
+		<execute macro="Portal.ContentTargetingCampaign#addReportName">
 			<var name="reportDescription" value="Content Report Description" />
 			<var name="reportName" value="Content Report Name" />
 		</execute>
 
-		<execute macro="ContentTargetingCampaign#addTrackingActionPageCP">
+		<execute macro="Portal.ContentTargetingCampaign#addTrackingActionPageCP">
 			<var name="pageAlias" value="Page Alias" />
 			<var name="pageFriendlyURL" value="/test-page-name" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Audience Targeting" />
 		</execute>
 
-		<execute macro="ContentTargetingCampaign#gotoEditReport">
+		<execute macro="Portal.ContentTargetingCampaign#gotoEditReport">
 			<var name="campaignName" value="Campaign Name" />
 			<var name="reportName" value="Content Report Name" />
 		</execute>
 
-		<execute macro="ContentTargetingCampaign#viewTrackingActionsCP">
+		<execute macro="Portal.ContentTargetingCampaign#viewTrackingActionsCP">
 			<var name="campaignName" value="Campaign Name" />
 			<var name="pageAlias" value="Page Alias" />
 			<var name="pageFriendlyURL" value="/test-page-name" />
@@ -444,11 +444,11 @@
 	<command name="AddCampaignYouTubeCP" priority="5">
 		<property name="content.targeting.release" value="true" />
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Audience Targeting" />
 		</execute>
 
-		<execute macro="ContentTargetingCampaign#addCP">
+		<execute macro="Portal.ContentTargetingCampaign#addCP">
 			<var name="campaignDescription" value="Campaign Description" />
 			<var name="campaignEndDate" value="1/1/2099" />
 			<var name="campaignEndTime" value="12:00 PM" />
@@ -459,61 +459,61 @@
 			<var name="userSegmentSelect" value="User Segment Name" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>
 
-		<execute macro="Navigator#gotoNavTab">
+		<execute macro="Portal.Navigator#gotoNavTab">
 			<var name="navTab" value="Configuration" />
 		</execute>
 
-		<execute macro="ContentTargeting#enableAnalytics">
+		<execute macro="Portal.ContentTargeting#enableAnalytics">
 			<var name="analyticsList" value="YouTube Videos" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Audience Targeting" />
 		</execute>
 
-		<execute macro="ContentTargetingCampaign#gotoAddReport">
+		<execute macro="Portal.ContentTargetingCampaign#gotoAddReport">
 			<var name="campaignName" value="Campaign Name" />
 		</execute>
 
-		<execute macro="ContentTargetingCampaign#addReportName">
+		<execute macro="Portal.ContentTargetingCampaign#addReportName">
 			<var name="reportDescription" value="Content Report Description" />
 			<var name="reportName" value="Content Report Name" />
 		</execute>
 
-		<execute macro="ContentTargetingCampaign#addTrackingActionYoutubevideosCP">
+		<execute macro="Portal.ContentTargetingCampaign#addTrackingActionYoutubevideosCP">
 			<var name="youtubeAlias" value="YouTube Alias" />
 			<var name="youtubeTrackingActionSelect" value="Playing" />
 			<var name="youtubeVideoId" value="YouTube id" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Audience Targeting" />
 		</execute>
 
-		<execute macro="ContentTargetingCampaign#gotoEditReport">
+		<execute macro="Portal.ContentTargetingCampaign#gotoEditReport">
 			<var name="campaignName" value="Campaign Name" />
 			<var name="reportName" value="Content Report Name" />
 		</execute>
 
-		<execute macro="ContentTargetingCampaign#viewTrackingActionsCP">
+		<execute macro="Portal.ContentTargetingCampaign#viewTrackingActionsCP">
 			<var name="campaignName" value="Campaign Name" />
 			<var name="viewTrackingActionsList" value="YouTube" />
 			<var name="youtubeAlias" value="YouTube Alias" />

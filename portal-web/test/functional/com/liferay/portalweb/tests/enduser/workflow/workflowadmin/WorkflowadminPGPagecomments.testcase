@@ -7,30 +7,30 @@
 	<var name="workflowAssetType" value="Comment" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Workflow" />
 		</execute>
 
-		<execute macro="Workflow#configureWorkflow">
+		<execute macro="Portal.Workflow#configureWorkflow">
 			<var name="workflowDefinition" value="Single Approver (Version 1)" />
 			<var name="workflowResourceValue" value="Comment" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Page Comments Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Page Comments Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Page Comments" />
 		</execute>
 	</set-up>
@@ -41,18 +41,18 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="PageComment#tearDownPG">
+				<execute macro="Portal.PageComment#tearDownPG">
 					<var name="pageName" value="Page Comments Page" />
 				</execute>
 
-				<execute macro="Page#tearDownPG" />
+				<execute macro="Portal.Page#tearDownPG" />
 
-				<execute macro="Workflow#tearDownPortalWorkflow" />
+				<execute macro="Portal.Workflow#tearDownPortalWorkflow" />
 
-				<execute macro="Workflow#tearDownSiteWorkflow" />
+				<execute macro="Portal.Workflow#tearDownSiteWorkflow" />
 			</else>
 		</if>
 	</tear-down>
@@ -60,73 +60,73 @@
 	<command name="ApprovePageCommentPG" priority="5">
 		<property name="portal.acceptance" value="true" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Page Comments Page" />
 		</execute>
 
-		<execute macro="PageComment#addWithWorkflowPG">
+		<execute macro="Portal.PageComment#addWithWorkflowPG">
 			<var name="commentAuthor" value="Test Test (You)" />
 			<var name="commentBody" value="Page Comment Comment" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Page Comments Page" />
 		</execute>
 
-		<execute macro="PageComment#viewWithWorkflowPG">
-			<var name="commentAuthor" value="Test Test (You)" />
-			<var name="commentBody" value="Page Comment Comment" />
-			<var name="commentStatus" value="Pending (Review)" />
-		</execute>
-
-		<execute macro="Page#gotoMyAccount">
-			<var name="portletName" value="My Workflow Tasks" />
-		</execute>
-
-		<execute macro="Workflow#assignToMeTaskByActions">
-			<var name="workflowAssetTitle" value="Page Comment Comment" />
-			<var name="workflowAssetType" value="Comment" />
-			<var name="workflowTask" value="Review" />
-		</execute>
-
-		<execute macro="Navigator#gotoPage">
-			<var name="pageName" value="Page Comments Page" />
-		</execute>
-
-		<execute macro="PageComment#viewWithWorkflowPG">
+		<execute macro="Portal.PageComment#viewWithWorkflowPG">
 			<var name="commentAuthor" value="Test Test (You)" />
 			<var name="commentBody" value="Page Comment Comment" />
 			<var name="commentStatus" value="Pending (Review)" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#approveTaskByActions">
+		<execute macro="Portal.Workflow#assignToMeTaskByActions">
 			<var name="workflowAssetTitle" value="Page Comment Comment" />
 			<var name="workflowAssetType" value="Comment" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Page Comments Page" />
 		</execute>
 
-		<execute macro="PageComment#viewPG">
+		<execute macro="Portal.PageComment#viewWithWorkflowPG">
+			<var name="commentAuthor" value="Test Test (You)" />
+			<var name="commentBody" value="Page Comment Comment" />
+			<var name="commentStatus" value="Pending (Review)" />
+		</execute>
+
+		<execute macro="Portal.Page#gotoMyAccount">
+			<var name="portletName" value="My Workflow Tasks" />
+		</execute>
+
+		<execute macro="Portal.Workflow#approveTaskByActions">
+			<var name="workflowAssetTitle" value="Page Comment Comment" />
+			<var name="workflowAssetType" value="Comment" />
+			<var name="workflowTask" value="Review" />
+		</execute>
+
+		<execute macro="Portal.Navigator#gotoPage">
+			<var name="pageName" value="Page Comments Page" />
+		</execute>
+
+		<execute macro="Portal.PageComment#viewPG">
 			<var name="commentAuthor" value="Test Test (You)" />
 			<var name="commentBody" value="Page Comment Comment" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Submissions" />
 		</execute>
 
-		<execute macro="Workflow#gotoViewCompletedAssetViaMySubmissions">
+		<execute macro="Portal.Workflow#gotoViewCompletedAssetViaMySubmissions">
 			<var name="workflowAssetTitle" value="Page Comment Comment" />
 		</execute>
 
-		<execute macro="PageComment#viewAsWorkflowAsset">
+		<execute macro="Portal.PageComment#viewAsWorkflowAsset">
 			<var name="commentBody" value="Page Comment Comment" />
 		</execute>
 	</command>
@@ -134,89 +134,89 @@
 	<command name="DeleteComment" priority="4">
 		<description message="This is a use case for LPS-54707." />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Page Comments Page" />
 		</execute>
 
-		<execute macro="PageComment#addWithWorkflowPG">
+		<execute macro="Portal.PageComment#addWithWorkflowPG">
 			<var name="commentAuthor" value="Test Test (You)" />
 			<var name="commentBody" value="Page Comment Comment" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Page Comments Page" />
 		</execute>
 
-		<execute macro="PageComment#viewWithWorkflowPG">
+		<execute macro="Portal.PageComment#viewWithWorkflowPG">
 			<var name="commentAuthor" value="Test Test (You)" />
 			<var name="commentBody" value="Page Comment Comment" />
 			<var name="commentStatus" value="Pending (Review)" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Submissions" />
 		</execute>
 
-		<execute macro="Workflow#viewMySubmissions">
+		<execute macro="Portal.Workflow#viewMySubmissions">
 			<var name="workflowAssetTitle" value="Page Comment Comment" />
 			<var name="workflowAssetType" value="Comment" />
 			<var name="workflowDefinition" value="Single Approver" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="PageComment#tearDownPG">
+		<execute macro="Portal.PageComment#tearDownPG">
 			<var name="pageName" value="Page Comments Page" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Submissions" />
 		</execute>
 
-		<execute macro="Workflow#viewDefaultMySubmissionsCP" />
+		<execute macro="Portal.Workflow#viewDefaultMySubmissionsCP" />
 	</command>
 
 	<command name="EditCommentAssignedToMe" priority="5">
 		<description message="This is a use case for LPS-68780." />
 		<property name="portal.acceptance" value="true" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Page Comments Page" />
 		</execute>
 
-		<execute macro="PageComment#addWithWorkflowPG">
+		<execute macro="Portal.PageComment#addWithWorkflowPG">
 			<var name="commentAuthor" value="Test Test (You)" />
 			<var name="commentBody" value="Page Comment Comment" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#assignToMeTaskByActions">
+		<execute macro="Portal.Workflow#assignToMeTaskByActions">
 			<var name="workflowAssetTitle" value="Page Comment Comment" />
 			<var name="workflowAssetType" value="Comment" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Workflow#viewTaskAssignedToMeDetails">
+		<execute macro="Portal.Workflow#viewTaskAssignedToMeDetails">
 			<var name="workflowAssetContent" value="Page Comment Comment" />
 			<var name="workflowAssetTitle" value="Page Comment Comment" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Workflow#gotoPreviewEdit" />
+		<execute macro="Portal.Workflow#gotoPreviewEdit" />
 
-		<execute macro="PageComment#editCommentField">
+		<execute macro="Portal.PageComment#editCommentField">
 			<var name="commentBody" value="EDIT Comment" />
 		</execute>
 
-		<execute macro="Button#clickSave" />
+		<execute macro="Portal.Button#clickSave" />
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#viewTaskAssignedToMeDetails">
+		<execute macro="Portal.Workflow#viewTaskAssignedToMeDetails">
 			<var name="workflowAssetContent" value="EDIT Comment" />
 			<var name="workflowAssetTitle" value="EDIT Comment" />
 			<var name="workflowTask" value="Review" />
@@ -224,59 +224,59 @@
 	</command>
 
 	<command name="RejectPageCommentPG" priority="4">
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Page Comments Page" />
 		</execute>
 
-		<execute macro="PageComment#addWithWorkflowPG">
+		<execute macro="Portal.PageComment#addWithWorkflowPG">
 			<var name="commentAuthor" value="Test Test (You)" />
 			<var name="commentBody" value="Page Comment Comment" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Page Comments Page" />
 		</execute>
 
-		<execute macro="PageComment#viewWithWorkflowPG">
+		<execute macro="Portal.PageComment#viewWithWorkflowPG">
 			<var name="commentAuthor" value="Test Test (You)" />
 			<var name="commentBody" value="Page Comment Comment" />
 			<var name="commentStatus" value="Pending (Review)" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#assignToMeTaskByActions">
+		<execute macro="Portal.Workflow#assignToMeTaskByActions">
 			<var name="workflowAssetTitle" value="Page Comment Comment" />
 			<var name="workflowAssetType" value="Comment" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#rejectTaskByActions">
+		<execute macro="Portal.Workflow#rejectTaskByActions">
 			<var name="workflowAssetTitle" value="Page Comment Comment" />
 			<var name="workflowAssetType" value="Comment" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#viewRejectedTask">
+		<execute macro="Portal.Workflow#viewRejectedTask">
 			<var name="workflowAssetTitle" value="Page Comment Comment" />
 			<var name="workflowAssetType" value="Comment" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Page Comments Page" />
 		</execute>
 
-		<execute macro="PageComment#viewWithWorkflowPG">
+		<execute macro="Portal.PageComment#viewWithWorkflowPG">
 			<var name="commentAuthor" value="Test Test (You)" />
 			<var name="commentBody" value="Page Comment Comment" />
 			<var name="commentStatus" value="Pending (Update)" />

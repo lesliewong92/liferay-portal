@@ -8,15 +8,15 @@
 	<var name="portletName" value="Calendar" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="pageName" value="Calendar Page" />
 			<var name="portletName" value="Calendar" />
 		</execute>
@@ -28,48 +28,48 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="Navigator#gotoPage">
+				<execute macro="Portal.Navigator#gotoPage">
 					<var name="pageName" value="Calendar Page" />
 				</execute>
 
 				<if>
 					<condition function="IsElementPresent" locator1="Calendar#SCHEDULER_EVENT_GENERIC" />
 					<then>
-						<execute macro="CalendarEvent#tearDown" />
+						<execute macro="Portal.CalendarEvent#tearDown" />
 					</then>
 				</if>
 
-				<execute macro="Calendar#tearDown" />
+				<execute macro="Portal.Calendar#tearDown" />
 
-				<execute macro="CalendarConfiguration#tearDown" />
+				<execute macro="Portal.CalendarConfiguration#tearDown" />
 
-				<execute macro="Page#tearDownPG" />
+				<execute macro="Portal.Page#tearDownPG" />
 			</else>
 		</if>
 	</tear-down>
 
 	<command name="ChangeCalendarTypeForAllDayEvent" priority="3">
-		<execute macro="TestCase#getSiteName">
+		<execute macro="Portal.TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoAddEvent" />
+		<execute macro="Portal.CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="CalendarEvent#add">
+		<execute macro="Portal.CalendarEvent#add">
 			<var name="eventTitle" value="Calendar Event All Day Title" />
 			<var name="eventType" value="All Day" />
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarScheduler#changeCalendar">
+		<execute macro="Portal.CalendarScheduler#changeCalendar">
 			<var name="calendarDefaultName" value="${siteName}" />
 			<var name="calendarName" value="Test Test" />
 			<var name="eventTitle" value="Calendar Event All Day Title" />
@@ -78,24 +78,24 @@
 	</command>
 
 	<command name="ChangeCalendarTypeForRegularEvent" priority="4">
-		<execute macro="TestCase#getSiteName">
+		<execute macro="Portal.TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoAddEvent" />
+		<execute macro="Portal.CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="CalendarEvent#add">
+		<execute macro="Portal.CalendarEvent#add">
 			<var name="eventTitle" value="Calendar Event Regular Title" />
 			<var name="eventType" value="Regular" />
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarScheduler#changeCalendar">
+		<execute macro="Portal.CalendarScheduler#changeCalendar">
 			<var name="calendarDefaultName" value="${siteName}" />
 			<var name="calendarName" value="Test Test" />
 			<var name="eventTitle" value="Calendar Event Regular Title" />
@@ -104,14 +104,14 @@
 	</command>
 
 	<command name="ChangeCalendarTypeForRepeatingEvent" priority="4">
-		<execute macro="TestCase#getSiteName">
+		<execute macro="Portal.TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoAddEvent" />
+		<execute macro="Portal.CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="CalendarEvent#add">
+		<execute macro="Portal.CalendarEvent#add">
 			<var name="eventTitle" value="Calendar Event Repeating Title" />
 			<var name="eventType" value="Repeating" />
 			<var name="frequency" value="Daily" />
@@ -119,11 +119,11 @@
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarScheduler#changeCalendar">
+		<execute macro="Portal.CalendarScheduler#changeCalendar">
 			<var name="calendarDefaultName" value="${siteName}" />
 			<var name="calendarName" value="Test Test" />
 			<var name="eventTitle" value="Calendar Event Repeating Title" />
@@ -132,218 +132,218 @@
 	</command>
 
 	<command name="ChangeColorCalendarSiteCalendarsEventRegular" priority="3">
-		<execute macro="TestCase#getSiteName">
+		<execute macro="Portal.TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoAddEvent" />
+		<execute macro="Portal.CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="CalendarEvent#add">
+		<execute macro="Portal.CalendarEvent#add">
 			<var name="eventTitle" value="Calendar Event Regular Title" />
 			<var name="eventType" value="Regular" />
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="Calendar#changeColor">
+		<execute macro="Portal.Calendar#changeColor">
 			<var name="calendarType" value="Current Site Calendars" />
 			<var name="site" value="${siteName}" />
 			<var name="siteCalendarColor" value="668CD9" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="Calendar#viewColor">
+		<execute macro="Portal.Calendar#viewColor">
 			<var name="calendarType" value="Current Site Calendars" />
 			<var name="myCalendarColor" value="668CD9" />
 		</execute>
 
-		<execute macro="CalendarScheduler#viewEventColor">
+		<execute macro="Portal.CalendarScheduler#viewEventColor">
 			<var name="eventBackgroundColorRGB" value="(208, 219, 240)" />
 			<var name="eventFontColorRGB" value="(104, 142, 217)" />
 			<var name="eventTitle" value="Calendar Event Regular Title" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#addCP">
+		<execute macro="Portal.User#addCP">
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userFirstName" value="userfn" />
 			<var name="userLastName" value="userln" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#editPasswordCP">
+		<execute macro="Portal.User#editPasswordCP">
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#assignRegularRoleCP">
+		<execute macro="Portal.User#assignRegularRoleCP">
 			<var name="roleTitle" value="Administrator" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="${userLoginFullName}" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="Calendar#viewColor">
+		<execute macro="Portal.Calendar#viewColor">
 			<var name="calendarType" value="Current Site Calendars" />
 			<var name="myCalendarColor" value="668CD9" />
 		</execute>
 
-		<execute macro="CalendarScheduler#viewEventColor">
+		<execute macro="Portal.CalendarScheduler#viewEventColor">
 			<var name="eventBackgroundColorRGB" value="(208, 219, 240)" />
 			<var name="eventFontColorRGB" value="(104, 142, 217)" />
 			<var name="eventTitle" value="Calendar Event Regular Title" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 	</command>
 
 	<command name="DeactivateAndDeleteSiteCalendarAndViewSiteCalendarEvent" priority="4">
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addBlankCP">
+		<execute macro="Portal.Site#addBlankCP">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="Calendar#add">
+		<execute macro="Portal.Calendar#add">
 			<var name="calendarName" value="Site Name" />
 			<var name="calendarType" value="Other Calendars" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoAddEvent" />
+		<execute macro="Portal.CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="CalendarEvent#add">
+		<execute macro="Portal.CalendarEvent#add">
 			<var name="calendarName" value="Site Name" />
 			<var name="eventTitle" value="Site Name Calendar Event Regular" />
 			<var name="eventType" value="Regular" />
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="Calendar#view">
+		<execute macro="Portal.Calendar#view">
 			<var name="calendarName" value="Site Name" />
 			<var name="calendarType" value="Other Calandars" />
 		</execute>
 
-		<execute macro="CalendarEvent#view">
+		<execute macro="Portal.CalendarEvent#view">
 			<var name="eventTitle" value="Site Name Calendar Event Regular" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#deactivateCP">
+		<execute macro="Portal.Site#deactivateCP">
 			<var name="siteName" value="Site Name" />
 			<var name="successMessage" value="true" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="Calendar#view">
+		<execute macro="Portal.Calendar#view">
 			<var name="calendarName" value="Site Name" />
 			<var name="calendarType" value="Other Calandars" />
 		</execute>
 
-		<execute macro="CalendarEvent#view">
+		<execute macro="Portal.CalendarEvent#view">
 			<var name="eventTitle" value="Site Name Calendar Event Regular" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#deleteCP">
+		<execute macro="Portal.Site#deleteCP">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="Calendar#_viewCalendarHidden">
+		<execute macro="Portal.Calendar#_viewCalendarHidden">
 			<var name="calendarName" value="Site Name" />
 		</execute>
 
-		<execute macro="CalendarScheduler#viewSpecificEventNotPresent">
+		<execute macro="Portal.CalendarScheduler#viewSpecificEventNotPresent">
 			<var name="eventTitle" value="Site Name Calendar Event Regular" />
 		</execute>
 	</command>
 
 	<command name="DeleteCalendarMyCalendars" priority="4">
-		<execute macro="Calendar#add">
+		<execute macro="Portal.Calendar#add">
 			<var name="calendarName" value="Calendar Name" />
 			<var name="calendarType" value="My Calendars" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="Calendar#delete">
+		<execute macro="Portal.Calendar#delete">
 			<var name="calendarName" value="Calendar Name" />
 			<var name="calendarType" value="My Calendars" />
 			<var name="user" value="Test Test" />
 		</execute>
 
-		<execute macro="Calendar#viewDefault" />
+		<execute macro="Portal.Calendar#viewDefault" />
 	</command>
 
 	<command name="EditCalendarCurrentSiteCalendars" priority="3">
-		<execute macro="TestCase#getSiteName">
+		<execute macro="Portal.TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="Calendar#add">
+		<execute macro="Portal.Calendar#add">
 			<var name="calendarName" value="Site Calendar Name" />
 			<var name="calendarType" value="Current Site Calendars" />
 			<var name="site" value="${siteName}" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="Calendar#view">
+		<execute macro="Portal.Calendar#view">
 			<var name="calendarName" value="Site Calendar Name" />
 			<var name="calendarNameEdit" value="Site Calendar Name Edit" />
 			<var name="calendarType" value="Current Site Calendars" />
@@ -352,28 +352,28 @@
 	</command>
 
 	<command name="EditCalendarMyCalendars" priority="3">
-		<execute macro="Calendar#add">
+		<execute macro="Portal.Calendar#add">
 			<var name="calendarName" value="My Calendar Name" />
 			<var name="calendarType" value="My Calendars" />
 			<var name="user" value="Test Test" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="Calendar#edit">
+		<execute macro="Portal.Calendar#edit">
 			<var name="calendarName" value="My Calendar Name" />
 			<var name="calendarNameEdit" value="My Calendar Name Edit" />
 			<var name="calendarType" value="My Calendars" />
 			<var name="user" value="Test Test" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="Calendar#view">
+		<execute macro="Portal.Calendar#view">
 			<var name="calendarName" value="My Calendar Name Edit" />
 			<var name="calendarType" value="My Calendars" />
 			<var name="user" value="Test Test" />
@@ -381,64 +381,64 @@
 	</command>
 
 	<command name="EditCalendarResource" priority="3">
-		<execute macro="CalendarResource#add">
+		<execute macro="Portal.CalendarResource#add">
 			<var name="calendarResourceName" value="Calendar Resource Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarResource#edit">
+		<execute macro="Portal.CalendarResource#edit">
 			<var name="calendarResourceName" value="Calendar Resource Name" />
 			<var name="calendarResourceNameEdit" value="Calendar Resource Name Edit" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarResource#view">
+		<execute macro="Portal.CalendarResource#view">
 			<var name="calendarResourceName" value="Calendar Resource Name Edit" />
 		</execute>
 	</command>
 
 	<command name="EditUserCalendarOtherCalendars" priority="3">
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#addCP">
+		<execute macro="Portal.User#addCP">
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userFirstName" value="userfn" />
 			<var name="userLastName" value="userln" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="Calendar#add">
+		<execute macro="Portal.Calendar#add">
 			<var name="calendarName" value="userfn userln" />
 			<var name="calendarType" value="Other Calendars" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="Calendar#edit">
+		<execute macro="Portal.Calendar#edit">
 			<var name="calendarName" value="userfn userln" />
 			<var name="calendarNameEdit" value="userfn userln Edit" />
 			<var name="calendarType" value="Other Calendars" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="Calendar#view">
+		<execute macro="Portal.Calendar#view">
 			<var name="calendarName" value="userfn userln - userfn userln Edit" />
 			<var name="calendarType" value="Other Calendars" />
 		</execute>
@@ -448,105 +448,105 @@
 		<property name="portal.acceptance" value="true" />
 		<property name="test.name.skip.portal.instance" value="Calendar#SearchForOtherCalendars" />
 
-		<execute macro="TestCase#getSiteName">
+		<execute macro="Portal.TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#addCP">
+		<execute macro="Portal.User#addCP">
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userFirstName" value="userfn" />
 			<var name="userLastName" value="userln" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#editPasswordCP">
+		<execute macro="Portal.User#editPasswordCP">
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#assignRegularRoleCP">
+		<execute macro="Portal.User#assignRegularRoleCP">
 			<var name="roleTitle" value="Administrator" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoAddEvent" />
+		<execute macro="Portal.CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="CalendarEvent#add">
+		<execute macro="Portal.CalendarEvent#add">
 			<var name="eventTitle" value="User Calendar Event 1" />
 			<var name="eventType" value="Regular" />
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarScheduler#changeCalendar">
+		<execute macro="Portal.CalendarScheduler#changeCalendar">
 			<var name="calendarDefaultName" value="${siteName}" />
 			<var name="calendarName" value="userfn userln" />
 			<var name="eventTitle" value="User Calendar Event 1" />
 			<var name="eventType" value="Regular" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoAddEvent" />
+		<execute macro="Portal.CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="CalendarEvent#add">
+		<execute macro="Portal.CalendarEvent#add">
 			<var name="eventTitle" value="User Calendar Event 2" />
 			<var name="eventType" value="Regular" />
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarScheduler#changeCalendar">
+		<execute macro="Portal.CalendarScheduler#changeCalendar">
 			<var name="calendarDefaultName" value="${siteName}" />
 			<var name="calendarName" value="userfn userln" />
 			<var name="eventTitle" value="User Calendar Event 2" />
 			<var name="eventType" value="Regular" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="Calendar#searchOtherCalendars">
+		<execute macro="Portal.Calendar#searchOtherCalendars">
 			<var name="searchValue" value="u" />
 		</execute>
 
-		<execute macro="Calendar#viewOtherCalendarsSearchResult">
+		<execute macro="Portal.Calendar#viewOtherCalendarsSearchResult">
 			<var name="calendarName" value="userfn userln" />
 		</execute>
 	</command>
@@ -554,90 +554,90 @@
 	<command name="SearchForOtherCalendarsAsNonPowerUser" priority="3">
 		<description message="This is a use case for LPS-51572." />
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#addCP">
+		<execute macro="Portal.User#addCP">
 			<var name="userEmailAddress" value="userea1@liferay.com" />
 			<var name="userFirstName" value="userfn1" />
 			<var name="userLastName" value="userln1" />
 			<var name="userScreenName" value="usersn1" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#editPasswordCP">
+		<execute macro="Portal.User#editPasswordCP">
 			<var name="userEmailAddress" value="userea1@liferay.com" />
 			<var name="userScreenName" value="usersn1" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#addCP">
+		<execute macro="Portal.User#addCP">
 			<var name="userEmailAddress" value="userea2@liferay.com" />
 			<var name="userFirstName" value="userfn2" />
 			<var name="userLastName" value="userln2" />
 			<var name="userScreenName" value="usersn2" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#editPasswordCP">
+		<execute macro="Portal.User#editPasswordCP">
 			<var name="userEmailAddress" value="userea2@liferay.com" />
 			<var name="userScreenName" value="usersn2" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea1@liferay.com" />
 			<var name="userLoginFullName" value="userfn1 userln1" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="Calendar#searchOtherCalendars">
+		<execute macro="Portal.Calendar#searchOtherCalendars">
 			<var name="searchValue" value="u" />
 		</execute>
 
-		<execute macro="Calendar#viewOtherCalendarsSearchResult">
+		<execute macro="Portal.Calendar#viewOtherCalendarsSearchResult">
 			<var name="calendarName" value="userfn2 userln2" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea2@liferay.com" />
 			<var name="userLoginFullName" value="userfn2 userln2" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea1@liferay.com" />
 			<var name="userLoginFullName" value="userfn1 userln1" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="Calendar#searchOtherCalendars">
+		<execute macro="Portal.Calendar#searchOtherCalendars">
 			<var name="searchValue" value="u" />
 		</execute>
 
-		<execute macro="Calendar#viewOtherCalendarsSearchResult">
+		<execute macro="Portal.Calendar#viewOtherCalendarsSearchResult">
 			<var name="calendarName" value="userfn2 userln2" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
@@ -646,107 +646,107 @@
 	<command name="ViewAvailableCalendars" priority="4">
 		<property name="test.name.skip.portal.instance" value="CalendarManageCalendar#ViewAvailableCalendars" />
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addCP">
+		<execute macro="Portal.Site#addCP">
 			<var name="siteName" value="Site Name" />
 			<var name="siteType" value="Blank" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Calendar Site Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Calendar" />
 		</execute>
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#addCP">
+		<execute macro="Portal.User#addCP">
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userFirstName" value="userfn" />
 			<var name="userLastName" value="userln" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#editPasswordCP">
+		<execute macro="Portal.User#editPasswordCP">
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#assignRegularRoleCP">
+		<execute macro="Portal.User#assignRegularRoleCP">
 			<var name="roleTitle" value="Administrator" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="UserBar#gotoProfile" />
+		<execute macro="Portal.UserBar#gotoProfile" />
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Calendar" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoAddEvent" />
+		<execute macro="Portal.CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="CalendarEvent#viewAvailableCalendars">
+		<execute macro="Portal.CalendarEvent#viewAvailableCalendars">
 			<var name="availableCalendarList" value="Liferay,Test Test,Site Name" />
 		</execute>
 
-		<execute macro="CalendarEvent#viewUnavailableCalendarsNotPresent">
+		<execute macro="Portal.CalendarEvent#viewUnavailableCalendarsNotPresent">
 			<var name="unavailableCalendarList" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="Calendar#add">
+		<execute macro="Portal.Calendar#add">
 			<var name="calendarName" value="userfn userln" />
 			<var name="calendarType" value="Other Calendars" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoAddEvent" />
+		<execute macro="Portal.CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="CalendarEvent#viewAvailableCalendars">
+		<execute macro="Portal.CalendarEvent#viewAvailableCalendars">
 			<var name="availableCalendarList" value="Liferay,Test Test,Site Name,userfn userln" />
 		</execute>
 	</command>
@@ -754,87 +754,87 @@
 	<command name="ViewCalendarsAfterCancellingEdit" priority="2">
 		<description message="This is a use case for LPS-69884." />
 
-		<execute macro="TestCase#getSiteName">
+		<execute macro="Portal.TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="CalendarResource#add">
+		<execute macro="Portal.CalendarResource#add">
 			<var name="calendarResourceName" value="Calendar Resource Name" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoResourceCalendars">
+		<execute macro="Portal.CalendarNavigator#gotoResourceCalendars">
 			<var name="calendarResourceName" value="Calendar Resource Name" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoEditResourceCalendar">
+		<execute macro="Portal.CalendarNavigator#gotoEditResourceCalendar">
 			<var name="calendarResourceName" value="Calendar Resource Name" />
 		</execute>
 
-		<execute macro="Button#clickCancel" />
+		<execute macro="Portal.Button#clickCancel" />
 
-		<execute macro="CalendarResource#viewResourceCalendars">
+		<execute macro="Portal.CalendarResource#viewResourceCalendars">
 			<var name="calendarResourceName" value="Calendar Resource Name" />
 		</execute>
 	</command>
 
 	<command name="ViewSiteNameUpdate" priority="3">
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addBlankCP">
+		<execute macro="Portal.Site#addBlankCP">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="pageName" value="Site Page Name" />
 			<var name="portletName" value="Calendar" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Calendar#viewCurrentSiteCalendarName">
+		<execute macro="Portal.Calendar#viewCurrentSiteCalendarName">
 			<var name="calendarName" value="Site Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Site Settings" />
 		</execute>
 
-		<execute macro="Site#editCP">
+		<execute macro="Portal.Site#editCP">
 			<var name="siteName" value="Site Name" />
 			<var name="siteNameEdit" value="Site Name Edit" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Calendar#viewCurrentSiteCalendarName">
+		<execute macro="Portal.Calendar#viewCurrentSiteCalendarName">
 			<var name="calendarName" value="Site Name" />
 			<var name="siteName" value="Site Name Edit" />
 		</execute>

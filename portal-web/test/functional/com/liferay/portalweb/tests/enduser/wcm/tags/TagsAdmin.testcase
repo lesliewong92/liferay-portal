@@ -5,15 +5,15 @@
 	<property name="testray.main.component.name" value="Tags" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Tags" />
 		</execute>
 
-		<execute macro="Tag#addCP">
+		<execute macro="Portal.Tag#addCP">
 			<var name="tagName" value="tagname1" />
 		</execute>
 	</set-up>
@@ -24,45 +24,45 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="Tag#tearDownCP" />
+				<execute macro="Portal.Tag#tearDownCP" />
 			</else>
 		</if>
 	</tear-down>
 
 	<command name="CannotMergeSingleTagViewWarning" priority="4">
-		<execute macro="Tag#gotoMerge">
+		<execute macro="Portal.Tag#gotoMerge">
 			<var name="mergeMethod" value="menuItem" />
 			<var name="tagName" value="tagname1" />
 		</execute>
 
-		<execute macro="Tag#mergeSingleTagWarning" />
+		<execute macro="Portal.Tag#mergeSingleTagWarning" />
 	</command>
 
 	<command name="DeleteMultipleTagsFromToolbar" priority="4">
-		<execute macro="Tag#viewCP">
+		<execute macro="Portal.Tag#viewCP">
 			<var name="tagName" value="tagname1" />
 		</execute>
 
 		<for list="2,3" param="i">
-			<execute macro="Tag#addCP">
+			<execute macro="Portal.Tag#addCP">
 				<var name="tagName" value="tagname${i}" />
 			</execute>
 
-			<execute macro="Tag#viewCP">
+			<execute macro="Portal.Tag#viewCP">
 				<var name="tagName" value="tagname${i}" />
 			</execute>
 		</for>
 
-		<execute macro="PortletEntry#deleteViaToolbar">
+		<execute macro="Portal.PortletEntry#deleteViaToolbar">
 			<var name="rowEntries" value="tagname1,tagname2,tagname3" />
 		</execute>
 
-		<execute macro="Alert#viewSuccessMessage" />
+		<execute macro="Portal.Alert#viewSuccessMessage" />
 
-		<execute macro="Portlet#viewEmptyMessage">
+		<execute macro="Portal.Portlet#viewEmptyMessage">
 			<var name="message" value="There are no tags." />
 		</execute>
 	</command>
@@ -70,54 +70,54 @@
 	<command name="DeleteTagFromMenu" priority="5">
 		<property name="portal.acceptance" value="true" />
 
-		<execute macro="Tag#viewCP">
+		<execute macro="Portal.Tag#viewCP">
 			<var name="tagName" value="tagname1" />
 		</execute>
 
-		<execute macro="PortletEntry#deleteViaMenuItem">
+		<execute macro="Portal.PortletEntry#deleteViaMenuItem">
 			<var name="rowEntry" value="tagname1" />
 		</execute>
 
-		<execute macro="Alert#viewSuccessMessage" />
+		<execute macro="Portal.Alert#viewSuccessMessage" />
 
-		<execute macro="Portlet#viewEmptyMessage">
+		<execute macro="Portal.Portlet#viewEmptyMessage">
 			<var name="message" value="There are no tags." />
 		</execute>
 	</command>
 
 	<command name="DeleteTagFromToolbar" priority="4">
-		<execute macro="Tag#viewCP">
+		<execute macro="Portal.Tag#viewCP">
 			<var name="tagName" value="tagname1" />
 		</execute>
 
-		<execute macro="PortletEntry#deleteViaToolbar">
+		<execute macro="Portal.PortletEntry#deleteViaToolbar">
 			<var name="rowEntries" value="tagname1" />
 		</execute>
 
-		<execute macro="Alert#viewSuccessMessage" />
+		<execute macro="Portal.Alert#viewSuccessMessage" />
 
-		<execute macro="Portlet#viewEmptyMessage">
+		<execute macro="Portal.Portlet#viewEmptyMessage">
 			<var name="message" value="There are no tags." />
 		</execute>
 	</command>
 
 	<command name="EditTagAndCancel" priority="4">
-		<execute macro="Tag#viewCP">
+		<execute macro="Portal.Tag#viewCP">
 			<var name="tagName" value="tagname1" />
 		</execute>
 
-		<execute macro="LexiconEntry#gotoEntryMenuItem">
+		<execute macro="Portal.LexiconEntry#gotoEntryMenuItem">
 			<var name="menuItem" value="Edit" />
 			<var name="rowEntry" value="tagname1" />
 		</execute>
 
-		<execute macro="PortletEntry#inputName">
+		<execute macro="Portal.PortletEntry#inputName">
 			<var name="name" value="tagname2" />
 		</execute>
 
-		<execute macro="Button#clickCancel" />
+		<execute macro="Portal.Button#clickCancel" />
 
-		<execute macro="Tag#viewCP">
+		<execute macro="Portal.Tag#viewCP">
 			<var name="tagName" value="tagname1" />
 		</execute>
 
@@ -127,22 +127,22 @@
 	<command name="EditTagAndSave" priority="5">
 		<property name="portal.acceptance" value="true" />
 
-		<execute macro="Tag#viewCP">
+		<execute macro="Portal.Tag#viewCP">
 			<var name="tagName" value="tagname1" />
 		</execute>
 
-		<execute macro="LexiconEntry#gotoEntryMenuItem">
+		<execute macro="Portal.LexiconEntry#gotoEntryMenuItem">
 			<var name="menuItem" value="Edit" />
 			<var name="rowEntry" value="tagname1" />
 		</execute>
 
-		<execute macro="PortletEntry#inputName">
+		<execute macro="Portal.PortletEntry#inputName">
 			<var name="name" value="tagname2" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="Tag#viewCP">
+		<execute macro="Portal.Tag#viewCP">
 			<var name="tagName" value="tagname2" />
 		</execute>
 
@@ -151,29 +151,29 @@
 
 	<command name="MergeMultipleTags" priority="4">
 		<for list="2,3" param="i">
-			<execute macro="Tag#addCP">
+			<execute macro="Portal.Tag#addCP">
 				<var name="tagName" value="tagname${i}" />
 			</execute>
 
-			<execute macro="Tag#viewCP">
+			<execute macro="Portal.Tag#viewCP">
 				<var name="tagName" value="tagname${i}" />
 			</execute>
 		</for>
 
 		<for list="1,2,3" param="i">
-			<execute macro="LexiconEntry#selectEntry">
+			<execute macro="Portal.LexiconEntry#selectEntry">
 				<var name="rowEntry" value="tagname${i}" />
 			</execute>
 		</for>
 
-		<execute macro="Tag#gotoMerge" />
+		<execute macro="Portal.Tag#gotoMerge" />
 
-		<execute macro="Tag#mergeTags">
+		<execute macro="Portal.Tag#mergeTags">
 			<var name="mergedTag" value="tagname1" />
 			<var name="tagNameList" value="tagname1,tagname2,tagname3" />
 		</execute>
 
-		<execute macro="Tag#viewCP">
+		<execute macro="Portal.Tag#viewCP">
 			<var name="tagName" value="tagname1" />
 		</execute>
 
@@ -184,42 +184,42 @@
 
 	<command name="MergeTagsSelectAdditionalTag" priority="3">
 		<for list="2,3,4,5,6,7" param="i">
-			<execute macro="Tag#addCP">
+			<execute macro="Portal.Tag#addCP">
 				<var name="tagName" value="tagname${i}" />
 			</execute>
 
-			<execute macro="Tag#viewCP">
+			<execute macro="Portal.Tag#viewCP">
 				<var name="tagName" value="tagname${i}" />
 			</execute>
 		</for>
 
-		<execute macro="Pagination#changePagination">
+		<execute macro="Portal.Pagination#changePagination">
 			<var name="itemsPerPage" value="5" />
 		</execute>
 
-		<execute macro="Pagination#viewResults">
+		<execute macro="Portal.Pagination#viewResults">
 			<var name="results" value="Showing 1 to 5 of 7 entries." />
 		</execute>
 
 		<for list="1,2,3" param="i">
-			<execute macro="LexiconEntry#selectEntry">
+			<execute macro="Portal.LexiconEntry#selectEntry">
 				<var name="rowEntry" value="tagname${i}" />
 			</execute>
 		</for>
 
-		<execute macro="Tag#gotoMerge" />
+		<execute macro="Portal.Tag#gotoMerge" />
 
-		<execute macro="Tag#mergeTagsSelectAdditionalTags">
+		<execute macro="Portal.Tag#mergeTagsSelectAdditionalTags">
 			<var name="tagName" value="tagname7" />
 		</execute>
 
-		<execute macro="Tag#mergeTags">
+		<execute macro="Portal.Tag#mergeTags">
 			<var name="mergedTag" value="tagname1" />
 			<var name="tagNameList" value="tagname1,tagname2,tagname3,tagname7" />
 		</execute>
 
 		<for list="1,4,5,6" param="i">
-			<execute macro="Tag#viewCP">
+			<execute macro="Portal.Tag#viewCP">
 				<var name="tagName" value="tagname${i}" />
 			</execute>
 		</for>
@@ -230,19 +230,19 @@
 	</command>
 
 	<command name="ToggleDisplayStyles" priority="4">
-		<execute macro="Portlet#changeDisplayStyle">
+		<execute macro="Portal.Portlet#changeDisplayStyle">
 			<var name="displayStyle" value="icon" />
 		</execute>
 
 		<execute function="AssertTextEquals" locator1="Card#GENERIC_LARGE_TEXT" value1="tagname1" />
 
-		<execute macro="Portlet#changeDisplayStyle">
+		<execute macro="Portal.Portlet#changeDisplayStyle">
 			<var name="displayStyle" value="descriptive" />
 		</execute>
 
 		<execute function="AssertTextEquals" locator1="ContentRow#ENTRY_CONTENT_DESCRIPTIVE_TITLE" value1="tagname1" />
 
-		<execute macro="Portlet#changeDisplayStyle">
+		<execute macro="Portal.Portlet#changeDisplayStyle">
 			<var name="displayStyle" value="list" />
 		</execute>
 

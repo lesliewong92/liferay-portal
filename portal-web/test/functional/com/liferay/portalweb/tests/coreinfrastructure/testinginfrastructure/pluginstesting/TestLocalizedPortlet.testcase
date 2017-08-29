@@ -5,19 +5,19 @@
 	<property name="portlet.plugins.includes" value="test-localized-portlet" />
 
 	<set-up>
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 	</set-up>
 
 	<tear-down>
-		<execute macro="Page#tearDownPG" />
+		<execute macro="Portal.Page#tearDownPG" />
 	</tear-down>
 
 	<command name="ViewLocalizedChinese" priority="4">
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Test Localized Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Test Localized Portlet" />
 		</execute>
 
@@ -28,11 +28,11 @@
 	</command>
 
 	<command name="ViewLocalizedEnglish" priority="4">
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Test Localized Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Test Localized Portlet" />
 		</execute>
 
@@ -45,11 +45,11 @@
 	</command>
 
 	<command name="ViewLocalizedFrench" priority="4">
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Test Localized Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Test Localized Portlet" />
 		</execute>
 
@@ -60,11 +60,11 @@
 	</command>
 
 	<command name="ViewLocalizedSpanish" priority="4">
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Test Localized Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Test Localized Portlet" />
 		</execute>
 

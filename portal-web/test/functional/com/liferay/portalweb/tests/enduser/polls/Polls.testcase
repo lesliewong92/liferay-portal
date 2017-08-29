@@ -4,9 +4,9 @@
 	<property name="testray.main.component.name" value="Polls" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 	</set-up>
 
 	<tear-down>
@@ -15,18 +15,18 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="Navigator#openURL" />
+				<execute macro="Portal.Navigator#openURL" />
 
-				<execute macro="ProductMenu#gotoSitesContent">
+				<execute macro="Portal.ProductMenu#gotoSitesContent">
 					<var name="portlet" value="Polls" />
 				</execute>
 
-				<execute macro="Polls#tearDownCP" />
+				<execute macro="Portal.Polls#tearDownCP" />
 
-				<execute macro="Page#tearDownPG" />
+				<execute macro="Portal.Page#tearDownPG" />
 			</else>
 		</if>
 	</tear-down>
@@ -34,13 +34,13 @@
 	<command name="AddPollsQuestionWithExpirationDate" priority="4">
 		<var name="pollsQuestionTitle"><![CDATA["Derivative"]]></var>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Polls" />
 		</execute>
 
-		<execute macro="Polls#addPollCPWithExpirationDate">
+		<execute macro="Portal.Polls#addPollCPWithExpirationDate">
 			<var name="expirationDate" value="01/02/3000" />
 			<var name="pollsQuestion"><![CDATA["What is the derivative of x^(2)?"]]></var>
 			<var name="pollsQuestionChoiceA"><![CDATA["x^(2)"]]></var>
@@ -73,13 +73,13 @@
 		<var name="pollsQuestionChoiceList" value="${pollsQuestionChoiceA},${pollsQuestionChoiceB},${pollsQuestionChoiceC},${pollsQuestionChoiceD},${pollsQuestionChoiceE}" />
 		<var name="pollsQuestionTitle"><![CDATA["Hair Color"]]></var>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Polls" />
 		</execute>
 
-		<execute macro="Polls#addPollCP">
+		<execute macro="Portal.Polls#addPollCP">
 			<var name="pollsQuestion"><![CDATA["What is your hair color? Frank & John want to know."]]></var>
 			<var name="pollsQuestionChoiceA"><![CDATA["Black"]]></var>
 			<var name="pollsQuestionChoiceB"><![CDATA["Brown"]]></var>
@@ -93,42 +93,42 @@
 
 		<execute function="AssertTextEquals" locator1="Polls#POLLS_TABLE_TITLE" value1="${pollsQuestionTitle}" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Polls Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Polls Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Polls Display" />
 		</execute>
 
-		<execute macro="Polls#selectPollPG">
+		<execute macro="Portal.Polls#selectPollPG">
 			<var name="pollsQuestionTitle"><![CDATA["Hair Color"]]></var>
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Polls Page" />
 		</execute>
 
-		<execute macro="Polls#viewPollPG">
+		<execute macro="Portal.Polls#viewPollPG">
 			<var name="pollsQuestion"><![CDATA["What is your hair color? Frank & John want to know."]]></var>
 			<var name="pollsQuestionChoiceList" value="${pollsQuestionChoiceList}" />
 		</execute>
 
-		<execute macro="Polls#votePollPG">
+		<execute macro="Portal.Polls#votePollPG">
 			<var name="pollsQuestionChoice"><![CDATA["Blonde"]]></var>
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Polls Page" />
 		</execute>
 
-		<execute macro="Polls#viewVotedPollPG">
+		<execute macro="Portal.Polls#viewVotedPollPG">
 			<var name="pollsQuestionChoice"><![CDATA["Blonde"]]></var>
 			<var name="pollsQuestionTotalVotes" value="1" />
 			<var name="pollsQuestionVoteCount" value="1" />
@@ -139,83 +139,83 @@
 	<command name="AddPollWithEmptyChoicesAndViewErrorMessage" priority="3">
 		<description message="This is a use case for LPS-66544." />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Polls" />
 		</execute>
 
-		<execute macro="Polls#addPollCP">
+		<execute macro="Portal.Polls#addPollCP">
 			<var name="pollsQuestion" value="Test Poll Question" />
 			<var name="pollsQuestionChoiceA" value="" />
 			<var name="pollsQuestionChoiceB" value="" />
 			<var name="pollsQuestionTitle" value="Test Poll Title" />
 		</execute>
 
-		<execute macro="Polls#viewEmptyChoiceErrorMessage" />
+		<execute macro="Portal.Polls#viewEmptyChoiceErrorMessage" />
 
-		<execute macro="Polls#addPollChoice">
+		<execute macro="Portal.Polls#addPollChoice">
 			<var name="choiceField" value="a" />
 			<var name="pollsQuestionChoice" value="Choice A" />
 		</execute>
 
-		<execute macro="Polls#addPollChoice">
+		<execute macro="Portal.Polls#addPollChoice">
 			<var name="choiceField" value="b" />
 			<var name="pollsQuestionChoice" value="Choice B" />
 		</execute>
 
-		<execute macro="Button#clickSave" />
+		<execute macro="Portal.Button#clickSave" />
 
-		<execute macro="Alert#viewSuccessMessage" />
+		<execute macro="Portal.Alert#viewSuccessMessage" />
 	</command>
 
 	<command name="AddViaPollDisplay" priority="4">
 		<description message="This is a use case for LPS-60143." />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Polls" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Polls Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="pageName" value="Form Page" />
 			<var name="portletName" value="Polls Display" />
 		</execute>
 
-		<execute macro="Polls#addPollPG">
+		<execute macro="Portal.Polls#addPollPG">
 			<var name="pollsQuestion" value="Test Poll Display" />
 			<var name="pollsQuestionChoiceA" value="Yes" />
 			<var name="pollsQuestionChoiceB" value="No" />
 			<var name="pollsQuestionTitle" value="Polls Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Polls Page" />
 		</execute>
 
-		<execute macro="Polls#selectPollPG">
+		<execute macro="Portal.Polls#selectPollPG">
 			<var name="pollsQuestionTitle" value="Polls Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Polls Page" />
 		</execute>
 
-		<execute macro="Polls#viewPollPG">
+		<execute macro="Portal.Polls#viewPollPG">
 			<var name="pollsQuestion" value="Test Poll Display" />
 			<var name="pollsQuestionChoiceList" value="Yes,No" />
 		</execute>
 
-		<execute macro="Polls#votePollPG">
+		<execute macro="Portal.Polls#votePollPG">
 			<var name="pollsQuestionChoice" value="Yes" />
 		</execute>
 
-		<execute macro="Polls#viewVotedPollPG">
+		<execute macro="Portal.Polls#viewVotedPollPG">
 			<var name="pollsQuestionChoice" value="Yes" />
 			<var name="pollsQuestionTotalVotes" value="1" />
 			<var name="pollsQuestionVoteCount" value="1" />
@@ -224,13 +224,13 @@
 	</command>
 
 	<command name="ViewChart" priority="4">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Polls" />
 		</execute>
 
-		<execute macro="Polls#addPollCP">
+		<execute macro="Portal.Polls#addPollCP">
 			<var name="pollsQuestion" value="What is your favorite color?" />
 			<var name="pollsQuestionChoiceA" value="Blue" />
 			<var name="pollsQuestionChoiceB" value="Green" />
@@ -244,54 +244,54 @@
 
 		<execute function="AssertTextEquals" locator1="Polls#POLLS_TABLE_TITLE" value1="Color" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Polls Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Polls Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Polls Display" />
 		</execute>
 
-		<execute macro="Polls#selectPollPG">
+		<execute macro="Portal.Polls#selectPollPG">
 			<var name="pollsQuestionTitle" value="Color" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Polls Page" />
 		</execute>
 
-		<execute macro="Polls#viewPollPG">
+		<execute macro="Portal.Polls#viewPollPG">
 			<var name="pollsQuestion" value="What is your favorite color?" />
 			<var name="pollsQuestionChoiceList" value="Blue,Green,Red,Yellow,Other" />
 		</execute>
 
-		<execute macro="Polls#votePollPG">
+		<execute macro="Portal.Polls#votePollPG">
 			<var name="pollsQuestionChoice" value="Red" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Polls" />
 		</execute>
 
-		<execute macro="Polls#viewPollChartArea">
+		<execute macro="Portal.Polls#viewPollChartArea">
 			<var name="pollsQuestionTitle" value="Color" />
 		</execute>
 	</command>
 
 	<command name="VotePollsQuestionWithGuestPermissions" priority="4">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Polls" />
 		</execute>
 
-		<execute macro="Polls#addPollCP">
+		<execute macro="Portal.Polls#addPollCP">
 			<var name="permissions" value="true" />
 			<var name="permissionsViewRole" value="Anyone (Guest Role)" />
 			<var name="pollsQuestion" value="What is your favorite Liferay portlet?" />
@@ -305,31 +305,31 @@
 
 		<execute function="AssertTextEquals" locator1="Polls#POLLS_TABLE_TITLE" value1="Favorite Liferay Portlet" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Polls Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Polls Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Polls Display" />
 		</execute>
 
-		<execute macro="Polls#selectPollPG">
+		<execute macro="Portal.Polls#selectPollPG">
 			<var name="pollsQuestionTitle" value="Favorite Liferay Portlet" />
 		</execute>
 
-		<execute macro="User#logoutPG" />
+		<execute macro="Portal.User#logoutPG" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Polls Page" />
 		</execute>
 
-		<execute macro="Polls#viewPollAsGuestPG">
+		<execute macro="Portal.Polls#viewPollAsGuestPG">
 			<var name="pollsQuestion" value="What is your favorite Liferay portlet?" />
 			<var name="pollsQuestionChoiceList" value="Blogs,Wiki,Message Boards" />
 			<var name="pollsQuestionTitle" value="Favorite Liferay Portlet" />
@@ -341,44 +341,44 @@
 		<execute function="Type" locator1="TextInput#PASSWORD" value1="test" />
 		<execute function="Click" locator1="Button#SIGN_IN" value1="Sign In" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Polls" />
 		</execute>
 
-		<execute macro="PermissionsInline#gotoPollPermissionsCP">
+		<execute macro="Portal.PermissionsInline#gotoPollPermissionsCP">
 			<var name="pollsQuestionTitle" value="Favorite Liferay Portlet" />
 		</execute>
 
-		<execute macro="Role#definePermissionPG">
+		<execute macro="Portal.Role#definePermissionPG">
 			<var name="permissionDefinitionKey" value="CONTENT_PERMISSIONS_ADD_VOTE_CHECKBOX" />
 			<var name="roleTitle" value="Guest" />
 		</execute>
 
 		<execute function="SelectFrame" value1="relative=top" />
 
-		<execute macro="User#logoutPG" />
+		<execute macro="Portal.User#logoutPG" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Polls Page" />
 		</execute>
 
-		<execute macro="Polls#votePollPG">
+		<execute macro="Portal.Polls#votePollPG">
 			<var name="pollsQuestionChoice" value="Blogs" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Polls Page" />
 		</execute>
 
-		<execute macro="Polls#viewVotedPollPG">
+		<execute macro="Portal.Polls#viewVotedPollPG">
 			<var name="pollsQuestionChoice" value="Blogs" />
 			<var name="pollsQuestionTotalVotes" value="1" />
 			<var name="pollsQuestionVoteCount" value="1" />
 			<var name="pollsQuestionVotePercent" value="100%" />
 		</execute>
 
-		<execute macro="User#loginPG" />
+		<execute macro="Portal.User#loginPG" />
 	</command>
 </definition>

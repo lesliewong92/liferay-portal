@@ -8,30 +8,30 @@
 	<var name="workflowAssetType" value="Wiki Page" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Workflow" />
 		</execute>
 
-		<execute macro="Workflow#configureWorkflow">
+		<execute macro="Portal.Workflow#configureWorkflow">
 			<var name="workflowDefinition" value="Single Approver (Version 1)" />
 			<var name="workflowResourceValue" value="Wiki Page" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Wiki Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Wiki Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Wiki" />
 		</execute>
 	</set-up>
@@ -42,18 +42,18 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="WikiNode#tearDownCP" />
+				<execute macro="Portal.WikiNode#tearDownCP" />
 
-				<execute macro="WikiPage#tearDownCP" />
+				<execute macro="Portal.WikiPage#tearDownCP" />
 
-				<execute macro="Page#tearDownPG" />
+				<execute macro="Portal.Page#tearDownPG" />
 
-				<execute macro="Workflow#tearDownPortalWorkflow" />
+				<execute macro="Portal.Workflow#tearDownPortalWorkflow" />
 
-				<execute macro="Workflow#tearDownSiteWorkflow" />
+				<execute macro="Portal.Workflow#tearDownSiteWorkflow" />
 			</else>
 		</if>
 	</tear-down>
@@ -61,292 +61,292 @@
 	<command name="ApproveFrontPageUserEdit" priority="5">
 		<property name="portal.acceptance" value="true" />
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#addCP">
+		<execute macro="Portal.User#addCP">
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userFirstName" value="userfn" />
 			<var name="userLastName" value="userln" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#editPasswordCP">
+		<execute macro="Portal.User#editPasswordCP">
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesMembers">
+		<execute macro="Portal.ProductMenu#gotoSitesMembers">
 			<var name="portlet" value="Site Memberships" />
 		</execute>
 
-		<execute macro="Site#assignUserAsMemberCP">
+		<execute macro="Portal.Site#assignUserAsMemberCP">
 			<var name="userFirstName" value="userfn" />
 			<var name="userLastName" value="userln" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Wiki Page" />
 		</execute>
 
-		<execute macro="WikiPage#addFrontPageWithWorkflowPG">
+		<execute macro="Portal.WikiPage#addFrontPageWithWorkflowPG">
 			<var name="wikiPageContent" value="Front Page Wiki Content" />
 		</execute>
 
-		<execute macro="UserBar#gotoMyAccount" />
+		<execute macro="Portal.UserBar#gotoMyAccount" />
 
-		<execute macro="ProductMenu#gotoUserMyAccount">
+		<execute macro="Portal.ProductMenu#gotoUserMyAccount">
 			<var name="portlet" value="My Submissions" />
 		</execute>
 
-		<execute macro="Workflow#viewMySubmissions">
+		<execute macro="Portal.Workflow#viewMySubmissions">
 			<var name="workflowAssetTitle" value="FrontPage" />
 			<var name="workflowAssetType" value="Wiki Page" />
 			<var name="workflowDefinition" value="Single Approver" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#assignToMeTaskByActions">
+		<execute macro="Portal.Workflow#assignToMeTaskByActions">
 			<var name="workflowAssetTitle" value="FrontPage" />
 			<var name="workflowAssetType" value="Wiki Page" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Workflow#approveTaskByActions">
+		<execute macro="Portal.Workflow#approveTaskByActions">
 			<var name="workflowAssetTitle" value="FrontPage" />
 			<var name="workflowAssetType" value="Wiki Page" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Wiki Page" />
 		</execute>
 
-		<execute macro="WikiPage#viewFrontPagePG">
+		<execute macro="Portal.WikiPage#viewFrontPagePG">
 			<var name="wikiNodeName" value="FrontPage" />
 			<var name="wikiPageContent" value="Front Page Wiki Content" />
 			<var name="wikiPageTitle" value="FrontPage" />
 		</execute>
 
-		<execute macro="UserBar#gotoMyAccount" />
+		<execute macro="Portal.UserBar#gotoMyAccount" />
 
-		<execute macro="ProductMenu#gotoUserMyAccount">
+		<execute macro="Portal.ProductMenu#gotoUserMyAccount">
 			<var name="portlet" value="My Submissions" />
 		</execute>
 
-		<execute macro="Workflow#viewCannotWithdrawTaskByActions">
+		<execute macro="Portal.Workflow#viewCannotWithdrawTaskByActions">
 			<var name="workflowAssetTitle" value="FrontPage" />
 			<var name="workflowAssetType" value="Wiki Page" />
 			<var name="workflowDefinition" value="Single Approver" />
 			<var name="workflowTask" value="Approved" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 	</command>
 
 	<command name="RejectFrontPageUserEdit" priority="4">
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#addCP">
+		<execute macro="Portal.User#addCP">
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userFirstName" value="userfn" />
 			<var name="userLastName" value="userln" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#editPasswordCP">
+		<execute macro="Portal.User#editPasswordCP">
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesMembers">
+		<execute macro="Portal.ProductMenu#gotoSitesMembers">
 			<var name="portlet" value="Site Memberships" />
 		</execute>
 
-		<execute macro="Site#assignUserAsMemberCP">
+		<execute macro="Portal.Site#assignUserAsMemberCP">
 			<var name="userFirstName" value="userfn" />
 			<var name="userLastName" value="userln" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Wiki Page" />
 		</execute>
 
-		<execute macro="WikiPage#addFrontPageWithWorkflowPG">
+		<execute macro="Portal.WikiPage#addFrontPageWithWorkflowPG">
 			<var name="wikiPageContent" value="Front Page Wiki Content" />
 		</execute>
 
-		<execute macro="UserBar#gotoMyAccount" />
+		<execute macro="Portal.UserBar#gotoMyAccount" />
 
-		<execute macro="ProductMenu#gotoUserMyAccount">
+		<execute macro="Portal.ProductMenu#gotoUserMyAccount">
 			<var name="portlet" value="My Submissions" />
 		</execute>
 
-		<execute macro="Workflow#viewMySubmissions">
+		<execute macro="Portal.Workflow#viewMySubmissions">
 			<var name="workflowAssetTitle" value="FrontPage" />
 			<var name="workflowAssetType" value="Wiki Page" />
 			<var name="workflowDefinition" value="Single Approver" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#assignToMeTaskByActions">
+		<execute macro="Portal.Workflow#assignToMeTaskByActions">
 			<var name="workflowAssetTitle" value="FrontPage" />
 			<var name="workflowAssetType" value="Wiki Page" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Workflow#rejectTaskByActions">
+		<execute macro="Portal.Workflow#rejectTaskByActions">
 			<var name="workflowAssetTitle" value="FrontPage" />
 			<var name="workflowAssetType" value="Wiki Page" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Wiki Page" />
 		</execute>
 
-		<execute macro="WikiPage#viewFrontPageDefaultCP">
+		<execute macro="Portal.WikiPage#viewFrontPageDefaultCP">
 			<var name="wikiPageTitle" value="FrontPage" />
 		</execute>
 
-		<execute macro="UserBar#gotoMyAccount" />
+		<execute macro="Portal.UserBar#gotoMyAccount" />
 
-		<execute macro="ProductMenu#gotoUserMyAccount">
+		<execute macro="Portal.ProductMenu#gotoUserMyAccount">
 			<var name="portlet" value="My Submissions" />
 		</execute>
 
-		<execute macro="Workflow#viewMySubmissions">
+		<execute macro="Portal.Workflow#viewMySubmissions">
 			<var name="workflowAssetTitle" value="FrontPage" />
 			<var name="workflowAssetType" value="Wiki Page" />
 			<var name="workflowDefinition" value="Single Approver" />
 			<var name="workflowTask" value="Update" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 	</command>
 
 	<command name="RejectWikiPagePG" priority="4">
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Wiki Page" />
 		</execute>
 
-		<execute macro="WikiNavigator#gotoAllPagesPG" />
+		<execute macro="Portal.WikiNavigator#gotoAllPagesPG" />
 
-		<execute macro="WikiPage#addPageWithWorkflowPG">
+		<execute macro="Portal.WikiPage#addPageWithWorkflowPG">
 			<var name="wikiPageContent" value="Wiki Page Content" />
 			<var name="wikiPageTitle" value="Wiki Page Title" />
 			<var name="wikiPageUsername" value="Test Test" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Wiki Page" />
 		</execute>
 
-		<execute macro="WikiNavigator#gotoDraftPagesPG" />
+		<execute macro="Portal.WikiNavigator#gotoDraftPagesPG" />
 
-		<execute macro="WikiPage#viewPageWithWorkflowPG">
+		<execute macro="Portal.WikiPage#viewPageWithWorkflowPG">
 			<var name="wikiPageStatus" value="Pending" />
 			<var name="wikiPageTitle" value="Wiki Page Title" />
 			<var name="wikiPageUsername" value="Test Test" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#assignToMeTaskByActions">
+		<execute macro="Portal.Workflow#assignToMeTaskByActions">
 			<var name="workflowAssetTitle" value="Wiki Page Title" />
 			<var name="workflowAssetType" value="Wiki Page" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#rejectTaskByActions">
+		<execute macro="Portal.Workflow#rejectTaskByActions">
 			<var name="workflowAssetTitle" value="Wiki Page Title" />
 			<var name="workflowAssetType" value="Wiki Page" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#viewRejectedTask">
+		<execute macro="Portal.Workflow#viewRejectedTask">
 			<var name="workflowAssetTitle" value="Wiki Page Title" />
 			<var name="workflowAssetType" value="Wiki Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Wiki Page" />
 		</execute>
 
-		<execute macro="WikiNavigator#gotoDraftPagesPG" />
+		<execute macro="Portal.WikiNavigator#gotoDraftPagesPG" />
 
-		<execute macro="WikiPage#viewPageWithWorkflowPG">
+		<execute macro="Portal.WikiPage#viewPageWithWorkflowPG">
 			<var name="wikiPageStatus" value="Pending" />
 			<var name="wikiPageTitle" value="Wiki Page Title" />
 			<var name="wikiPageUsername" value="Test Test" />

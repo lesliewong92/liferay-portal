@@ -4,9 +4,9 @@
 	<property name="testray.main.component.name" value="App Manager" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 	</set-up>
 
 	<tear-down>
@@ -15,12 +15,12 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 
-				<execute macro="Page#tearDownPG" />
+				<execute macro="Portal.Page#tearDownPG" />
 			</else>
 		</if>
 	</tear-down>
@@ -28,17 +28,17 @@
 	<command name="ViewIndependentModulesIsNotNestedWithinItself" priority="4">
 		<property name="test.name.skip.portal.instance" value="AppManagerUsecase#ViewIndependentModulesIsNotNestedWithinItself" />
 
-		<execute macro="ProductMenu#gotoControlPanelApps">
+		<execute macro="Portal.ProductMenu#gotoControlPanelApps">
 			<var name="portlet" value="App Manager" />
 		</execute>
 
-		<execute macro="AppManager#selectAppCP">
+		<execute macro="Portal.AppManager#selectAppCP">
 			<var name="appName" value="Independent Modules" />
 		</execute>
 
 		<execute function="Pause" locator1="3000" />
 
-		<execute macro="AppManager#viewNoAppCP">
+		<execute macro="Portal.AppManager#viewNoAppCP">
 			<var name="appName" value="Independent Modules" />
 		</execute>
 	</command>

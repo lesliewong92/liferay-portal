@@ -9,27 +9,27 @@
 	<property name="testray.main.component.name" value="Content Targeting" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="Portlet#shutdownServer" />
+		<execute macro="Portal.Portlet#shutdownServer" />
 
-		<execute macro="Portlet#startServer" />
+		<execute macro="Portal.Portlet#startServer" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addBlankCP">
+		<execute macro="Portal.Site#addBlankCP">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Test Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
@@ -41,15 +41,15 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="User#logoutAndLoginPG">
+				<execute macro="Portal.User#logoutAndLoginPG">
 					<var name="userLoginEmailAddress" value="test@liferay.com" />
 					<var name="userLoginFullName" value="Test Test" />
 				</execute>
 
-				<execute macro="Site#tearDownCP" />
+				<execute macro="Portal.Site#tearDownCP" />
 			</else>
 		</if>
 	</tear-down>
@@ -57,65 +57,65 @@
 	<command name="AddGlobalUserSegmentToSiteViaUserSegmentContentDisplayPortlet" priority="5">
 		<property name="content.targeting.release" value="true" />
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Global" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Audience Targeting" />
 		</execute>
 
-		<execute macro="ContentTargetingUserSegment#addCP">
+		<execute macro="Portal.ContentTargetingUserSegment#addCP">
 			<var name="userSegmentDescription" value="User Segment Description" />
 			<var name="userSegmentName" value="Male Users" />
 		</execute>
 
-		<execute macro="ContentTargetingUserSegment#addUserAttributesGenderRuleCP">
+		<execute macro="Portal.ContentTargetingUserSegment#addUserAttributesGenderRuleCP">
 			<var name="genderRadio" value="Male" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Web Content" />
 		</execute>
 
-		<execute macro="WebContentNavigator#gotoAddCP" />
+		<execute macro="Portal.WebContentNavigator#gotoAddCP" />
 
-		<execute macro="WebContent#addWithCategoryCP">
+		<execute macro="Portal.WebContent#addWithCategoryCP">
 			<var name="categoryName" value="Male Users" />
 			<var name="vocabularyName" value="User Segment" />
 			<var name="webContentContent" value="Web Content targeted to a User Segment" />
 			<var name="webContentTitle" value="Targeted Web Content Title" />
 		</execute>
 
-		<execute macro="WebContentNavigator#gotoEditCP">
+		<execute macro="Portal.WebContentNavigator#gotoEditCP">
 			<var name="webContentTitle" value="Targeted Web Content Title" />
 		</execute>
 
-		<execute macro="WebContent#viewCategorizationCategoryCP">
+		<execute macro="Portal.WebContent#viewCategorizationCategoryCP">
 			<var name="categoryNameList" value="Male Users" />
 			<var name="vocabularyName" value="User Segment" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Test Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="User Segment Content Display" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute macro="UserSegmentContentDisplayPortlet#configureDisplayContent">
+		<execute macro="Portal.UserSegmentContentDisplayPortlet#configureDisplayContent">
 			<var name="belongs" value="true" />
 			<var name="contentTitle" value="Targeted Web Content Title" />
 			<var name="contentType" value="Basic Web Content" />
@@ -125,14 +125,14 @@
 			<var name="userSegmentName" value="Male Users" />
 		</execute>
 
-		<execute macro="UserSegmentContentDisplayPortlet#savePG" />
+		<execute macro="Portal.UserSegmentContentDisplayPortlet#savePG" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Test Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="UserSegmentContentDisplayPortlet#viewEntryPG">
+		<execute macro="Portal.UserSegmentContentDisplayPortlet#viewEntryPG">
 			<var name="belongsTo" value="true" />
 			<var name="viewUserSegmentSelected" value="Male Users" />
 		</execute>
@@ -141,77 +141,77 @@
 	<command name="AddParentSiteUserSegmentToChildSiteViaUserSegmentContentDisplayPortlet" priority="5">
 		<property name="content.targeting.release" value="true" />
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addBlankCP">
+		<execute macro="Portal.Site#addBlankCP">
 			<var name="parentSiteName" value="Site Name" />
 			<var name="siteName" value="Child SiteName" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#searchInputCP">
+		<execute macro="Portal.Site#searchInputCP">
 			<var name="siteName" value="Child SiteName" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Test Page Name" />
 			<var name="siteName" value="Child SiteName" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Audience Targeting" />
 		</execute>
 
-		<execute macro="ContentTargetingUserSegment#addCP">
+		<execute macro="Portal.ContentTargetingUserSegment#addCP">
 			<var name="userSegmentDescription" value="User Segment Description" />
 			<var name="userSegmentName" value="Male Users" />
 		</execute>
 
-		<execute macro="ContentTargetingUserSegment#addUserAttributesGenderRuleCP">
+		<execute macro="Portal.ContentTargetingUserSegment#addUserAttributesGenderRuleCP">
 			<var name="genderRadio" value="Male" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Child SiteName" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Audience Targeting" />
 		</execute>
 
-		<execute macro="ContentTargetingUserSegment#addCP">
+		<execute macro="Portal.ContentTargetingUserSegment#addCP">
 			<var name="userSegmentDescription" value="User Segment Description" />
 			<var name="userSegmentName" value="Male Non Users" />
 		</execute>
 
-		<execute macro="ContentTargetingUserSegment#addUserAttributesGenderRuleCP">
+		<execute macro="Portal.ContentTargetingUserSegment#addUserAttributesGenderRuleCP">
 			<var name="genderRadio" value="Male" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Child SiteName" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Web Content" />
 		</execute>
 
-		<execute macro="WebContentNavigator#gotoAddCP" />
+		<execute macro="Portal.WebContentNavigator#gotoAddCP" />
 
-		<execute macro="WebContent#addWithCategoryCP">
+		<execute macro="Portal.WebContent#addWithCategoryCP">
 			<var name="categoryName" value="Male Non Users" />
 			<var name="userSegmentSelectChildSite" value="true" />
 			<var name="vocabularyName" value="User Segment" />
@@ -219,34 +219,34 @@
 			<var name="webContentTitle" value="Targeted Web Content Title" />
 		</execute>
 
-		<execute macro="WebContentNavigator#gotoEditCP">
+		<execute macro="Portal.WebContentNavigator#gotoEditCP">
 			<var name="webContentTitle" value="Targeted Web Content Title" />
 		</execute>
 
-		<execute macro="WebContent#viewCategorizationCategoryCP">
+		<execute macro="Portal.WebContent#viewCategorizationCategoryCP">
 			<var name="categoryNameList" value="Male Non Users" />
 			<var name="vocabularyName" value="User Segment" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Test Page Name" />
 			<var name="siteName" value="Child SiteName" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="User Segment Content Display" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Test Page Name" />
 			<var name="siteName" value="Child SiteName" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute macro="UserSegmentContentDisplayPortlet#configureDisplayContent">
+		<execute macro="Portal.UserSegmentContentDisplayPortlet#configureDisplayContent">
 			<var name="belongs" value="true" />
 			<var name="contentTitle" value="Targeted Web Content Title" />
 			<var name="contentType" value="Basic Web Content" />
@@ -256,14 +256,14 @@
 			<var name="userSegmentName" value="Male Users" />
 		</execute>
 
-		<execute macro="UserSegmentContentDisplayPortlet#savePG" />
+		<execute macro="Portal.UserSegmentContentDisplayPortlet#savePG" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Test Page Name" />
 			<var name="siteName" value="Child SiteName" />
 		</execute>
 
-		<execute macro="UserSegmentContentDisplayPortlet#viewEntryPG">
+		<execute macro="Portal.UserSegmentContentDisplayPortlet#viewEntryPG">
 			<var name="belongsTo" value="true" />
 			<var name="viewUserSegmentSelected" value="Male Users" />
 		</execute>
@@ -272,30 +272,30 @@
 	<command name="DeleteUserSegmentCP" priority="5">
 		<property name="content.targeting.release" value="true" />
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Audience Targeting" />
 		</execute>
 
-		<execute macro="ContentTargetingUserSegment#addCP">
+		<execute macro="Portal.ContentTargetingUserSegment#addCP">
 			<var name="userSegmentDescription" value="User Segment Description" />
 			<var name="userSegmentName" value="User Segment Name" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Audience Targeting" />
 		</execute>
 
-		<execute macro="ContentTargetingUserSegment#deleteUserSegmentCP">
+		<execute macro="Portal.ContentTargetingUserSegment#deleteUserSegmentCP">
 			<var name="userSegmentName" value="User Segment Name" />
 		</execute>
 	</command>
@@ -303,50 +303,50 @@
 	<command name="EditUserSegmentCP" priority="5">
 		<property name="content.targeting.release" value="true" />
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Audience Targeting" />
 		</execute>
 
-		<execute macro="ContentTargetingUserSegment#addCP">
+		<execute macro="Portal.ContentTargetingUserSegment#addCP">
 			<var name="userSegmentDescription" value="User Segment Description" />
 			<var name="userSegmentName" value="User Segment Name" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Audience Targeting" />
 		</execute>
 
-		<execute macro="ContentTargetingUserSegment#editUserSegmentCP">
+		<execute macro="Portal.ContentTargetingUserSegment#editUserSegmentCP">
 			<var name="userSegmentDescriptionEdit" value="User Segment Description Edit" />
 			<var name="userSegmentName" value="User Segment Name" />
 			<var name="userSegmentNameEdit" value="User Segment Name Edit" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Audience Targeting" />
 		</execute>
 
-		<execute macro="Portlet#changeDisplayStyle">
+		<execute macro="Portal.Portlet#changeDisplayStyle">
 			<var name="displayStyle" value="List" />
 		</execute>
 
-		<execute macro="ContentTargetingUserSegment#viewCP">
+		<execute macro="Portal.ContentTargetingUserSegment#viewCP">
 			<var name="userSegmentDescription" value="User Segment Description Edit" />
 			<var name="userSegmentName" value="User Segment Name Edit" />
 		</execute>
@@ -355,59 +355,59 @@
 	<command name="UserSegmentContentViewReport" priority="5">
 		<property name="content.targeting.release" value="true" />
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Audience Targeting" />
 		</execute>
 
-		<execute macro="ContentTargetingUserSegment#addCP">
+		<execute macro="Portal.ContentTargetingUserSegment#addCP">
 			<var name="userSegmentDescription" value="User Segment Description" />
 			<var name="userSegmentName" value="Male Users" />
 		</execute>
 
-		<execute macro="ContentTargetingUserSegment#addUserAttributesGenderRuleCP">
+		<execute macro="Portal.ContentTargetingUserSegment#addUserAttributesGenderRuleCP">
 			<var name="genderRadio" value="Male" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Web Content" />
 		</execute>
 
-		<execute macro="WebContentNavigator#gotoAddCP" />
+		<execute macro="Portal.WebContentNavigator#gotoAddCP" />
 
-		<execute macro="WebContent#addCP">
+		<execute macro="Portal.WebContent#addCP">
 			<var name="webContentContent" value="WC Male Content View" />
 			<var name="webContentTitle" value="WC Male View Title" />
 		</execute>
 
-		<execute macro="PortletEntry#publish" />
+		<execute macro="Portal.PortletEntry#publish" />
 
-		<execute macro="WebContent#viewTitle">
+		<execute macro="Portal.WebContent#viewTitle">
 			<var name="webContentTitle" value="WC Male View Title" />
 		</execute>
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="User Segment Content Display" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute macro="UserSegmentContentDisplayPortlet#configureDisplayContent">
+		<execute macro="Portal.UserSegmentContentDisplayPortlet#configureDisplayContent">
 			<var name="belong" value="true" />
 			<var name="contentTitle" value="WC Male View Title" />
 			<var name="contentType" value="Basic Web Content" />
@@ -416,35 +416,35 @@
 			<var name="userSegmentName" value="Male Users" />
 		</execute>
 
-		<execute macro="UserSegmentContentDisplayPortlet#savePG" />
+		<execute macro="Portal.UserSegmentContentDisplayPortlet#savePG" />
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="UserSegmentContentDisplayPortlet#viewEntryPG">
+		<execute macro="Portal.UserSegmentContentDisplayPortlet#viewEntryPG">
 			<var name="entryContentText" value="WC Male Content View" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Audience Targeting" />
 		</execute>
 
-		<execute macro="ContentTargetingUserSegment#gotoViewReport">
+		<execute macro="Portal.ContentTargetingUserSegment#gotoViewReport">
 			<var name="reportName" value="Content Views" />
 			<var name="userSegmentName" value="Male Users" />
 		</execute>
 
-		<execute macro="ContentTargetingUserSegment#viewReportContentViews">
+		<execute macro="Portal.ContentTargetingUserSegment#viewReportContentViews">
 			<var name="reportsContentTableList" value="Test Page Name,Page,View,10" />
 			<var name="reportTitle" value="Test Page Name" />
 		</execute>
 
-		<execute macro="ContentTargetingUserSegment#viewReportContentViews">
+		<execute macro="Portal.ContentTargetingUserSegment#viewReportContentViews">
 			<var name="reportsContentTableList" value="WC Male View Title,Web Content Article,View,6" />
 			<var name="reportTitle" value="WC Male View Title" />
 		</execute>
@@ -453,96 +453,96 @@
 	<command name="ViewRulesAppliedUserSegmentContentDisplayPortlet" priority="5">
 		<property name="content.targeting.release" value="true" />
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Audience Targeting" />
 		</execute>
 
-		<execute macro="ContentTargetingUserSegment#addCP">
+		<execute macro="Portal.ContentTargetingUserSegment#addCP">
 			<var name="userSegmentDescription" value="User Segment Description" />
 			<var name="userSegmentName" value="Female Users" />
 		</execute>
 
-		<execute macro="ContentTargetingUserSegment#addUserAttributesGenderRuleCP">
+		<execute macro="Portal.ContentTargetingUserSegment#addUserAttributesGenderRuleCP">
 			<var name="genderRadio" value="Female" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Web Content" />
 		</execute>
 
-		<execute macro="WebContentNavigator#gotoAddCP" />
+		<execute macro="Portal.WebContentNavigator#gotoAddCP" />
 
-		<execute macro="WebContent#addWithCategoryCP">
+		<execute macro="Portal.WebContent#addWithCategoryCP">
 			<var name="categoryName" value="Female Users" />
 			<var name="vocabularyName" value="User Segment" />
 			<var name="webContentContent" value="Web Content targeted to a User Segment" />
 			<var name="webContentTitle" value="Targeted Web Content Title" />
 		</execute>
 
-		<execute macro="WebContentNavigator#gotoEditCP">
+		<execute macro="Portal.WebContentNavigator#gotoEditCP">
 			<var name="webContentTitle" value="Targeted Web Content Title" />
 		</execute>
 
-		<execute macro="WebContent#viewCategorizationCategoryCP">
+		<execute macro="Portal.WebContent#viewCategorizationCategoryCP">
 			<var name="categoryNameList" value="Female Users" />
 			<var name="vocabularyName" value="User Segment" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Web Content" />
 		</execute>
 
-		<execute macro="WebContentNavigator#gotoAddCP" />
+		<execute macro="Portal.WebContentNavigator#gotoAddCP" />
 
-		<execute macro="WebContent#addWithCategoryCP">
+		<execute macro="Portal.WebContent#addWithCategoryCP">
 			<var name="categoryName" value="Female Users" />
 			<var name="vocabularyName" value="User Segment" />
 			<var name="webContentContent" value="Second Web Content targeted to a User Segment" />
 			<var name="webContentTitle" value="Targeted Web Content Title 2" />
 		</execute>
 
-		<execute macro="WebContentNavigator#gotoEditCP">
+		<execute macro="Portal.WebContentNavigator#gotoEditCP">
 			<var name="webContentTitle" value="Targeted Web Content Title 2" />
 		</execute>
 
-		<execute macro="WebContent#viewCategorizationCategoryCP">
+		<execute macro="Portal.WebContent#viewCategorizationCategoryCP">
 			<var name="categoryNameList" value="Female Users" />
 			<var name="vocabularyName" value="User Segment" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Test Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="User Segment Content Display" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Test Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute macro="UserSegmentContentDisplayPortlet#configureDisplayContent">
+		<execute macro="Portal.UserSegmentContentDisplayPortlet#configureDisplayContent">
 			<var name="contentTitle" value="Targeted Web Content Title" />
 			<var name="contentType" value="Basic Web Content" />
 			<var name="doesNotBelong" value="true" />
@@ -552,19 +552,19 @@
 			<var name="viewEntryPG" value="Female Users" />
 		</execute>
 
-		<execute macro="UserSegmentContentDisplayPortlet#configureOtherwiseContentDisplayRule">
+		<execute macro="Portal.UserSegmentContentDisplayPortlet#configureOtherwiseContentDisplayRule">
 			<var name="otherwiseContentTitle" value="Targeted Web Content Title 2" />
 			<var name="otherwiseContentType" value="Basic Web Content" />
 		</execute>
 
-		<execute macro="UserSegmentContentDisplayPortlet#savePG" />
+		<execute macro="Portal.UserSegmentContentDisplayPortlet#savePG" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Test Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="UserSegmentContentDisplayPortlet#viewConfiguredDisplayContent">
+		<execute macro="Portal.UserSegmentContentDisplayPortlet#viewConfiguredDisplayContent">
 			<var name="contentTitle" value="Targeted Web Content Title" />
 			<var name="contentType" value="Web Content Article" />
 			<var name="doesNotBelong" value="true" />

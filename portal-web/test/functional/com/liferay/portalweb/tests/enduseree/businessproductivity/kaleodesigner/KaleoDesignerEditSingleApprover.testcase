@@ -8,17 +8,17 @@
 	<var name="workflowAssetType" value="Process" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Kaleo Designer" />
 		</execute>
 
-		<execute macro="KaleoDesigner#editWorkflowDefinitionViaKDCP">
+		<execute macro="Portal.KaleoDesigner#editWorkflowDefinitionViaKDCP">
 			<var name="workflowDefinitionTitle" value="Single Approver" />
 		</execute>
 	</set-up>
@@ -29,41 +29,41 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 		</if>
 	</tear-down>
 
 	<command name="DeleteTaskNode" priority="5">
-		<execute macro="KaleoDesigner#editWorkflowDefinitionTitleViaWorkflowCP">
+		<execute macro="Portal.KaleoDesigner#editWorkflowDefinitionTitleViaWorkflowCP">
 			<var name="workflowDefinitionTitle" value="Edited Workflow Definition" />
 		</execute>
 
-		<execute macro="KaleoDesigner#selectNode">
+		<execute macro="Portal.KaleoDesigner#selectNode">
 			<var name="nodeNodeLabel" value="update" />
 		</execute>
 
-		<execute macro="KaleoDesigner#deleteNode">
+		<execute macro="Portal.KaleoDesigner#deleteNode">
 			<var name="nodeNodeLabel" value="update" />
 		</execute>
 
-		<execute macro="KaleoDesigner#publishWorkflowDefinitionViaKDCP" />
+		<execute macro="Portal.KaleoDesigner#publishWorkflowDefinitionViaKDCP" />
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Kaleo Designer" />
 		</execute>
 
-		<execute macro="KaleoDesigner#viewTableDefinitionPublishedViaKDCP">
+		<execute macro="Portal.KaleoDesigner#viewTableDefinitionPublishedViaKDCP">
 			<var name="workflowDefinitionName" value="Single Approver" />
 			<var name="workflowDefinitionTitle" value="Edited Workflow Definition" />
 			<var name="workflowDefinitionVersionNumber" value="2" />
 		</execute>
 
-		<execute macro="KaleoDesigner#editWorkflowDefinitionViaKDCP">
+		<execute macro="Portal.KaleoDesigner#editWorkflowDefinitionViaKDCP">
 			<var name="workflowDefinitionTitle" value="Edited Workflow Definition" />
 		</execute>
 
-		<execute macro="KaleoDesigner#viewNodeNotPresent">
+		<execute macro="Portal.KaleoDesigner#viewNodeNotPresent">
 			<var name="nodeNodeLabel" value="update" />
 		</execute>
 	</command>
@@ -71,15 +71,15 @@
 	<command name="ViewInvalidSourceXMLRemainsAfterTabSwitch" priority="4">
 		<description message="This is a use case for LPS-48590." />
 
-		<execute macro="KaleoDesigner#editSourceXML">
+		<execute macro="Portal.KaleoDesigner#editSourceXML">
 			<var name="kdSourceXML" value="INVALID" />
 			<var name="line" value="6" />
 		</execute>
 
-		<execute macro="KaleoDesigner#viewViewTab" />
-		<execute macro="KaleoDesigner#viewSourceXMLTab" />
+		<execute macro="Portal.KaleoDesigner#viewViewTab" />
+		<execute macro="Portal.KaleoDesigner#viewSourceXMLTab" />
 
-		<execute macro="KaleoDesigner#viewSourceXMLLine">
+		<execute macro="Portal.KaleoDesigner#viewSourceXMLLine">
 			<var name="kdSourceXML" value="INVALID" />
 			<var name="line" value="6" />
 		</execute>
@@ -88,11 +88,11 @@
 	<command name="ViewNodeNotificationRecipientPersistsAfterSwitchingTabs" priority="4">
 		<description message="This is a use case for LPS-46657." />
 
-		<execute macro="KaleoDesigner#selectNode">
+		<execute macro="Portal.KaleoDesigner#selectNode">
 			<var name="nodeNodeLabel" value="review" />
 		</execute>
 
-		<execute macro="KaleoDesigner#editNodeNotifications">
+		<execute macro="Portal.KaleoDesigner#editNodeNotifications">
 			<var name="nodeNotificationsDescription" value="Review Notification Description" />
 			<var name="nodeNotificationsName" value="Review Notification" />
 			<var name="nodeNotificationsRecipientType" value="Role Type" />
@@ -100,14 +100,14 @@
 			<var name="roleType" value="Regular" />
 		</execute>
 
-		<execute macro="KaleoDesigner#viewSourceXMLTab" />
-		<execute macro="KaleoDesigner#viewViewTab" />
+		<execute macro="Portal.KaleoDesigner#viewSourceXMLTab" />
+		<execute macro="Portal.KaleoDesigner#viewViewTab" />
 
-		<execute macro="KaleoDesigner#selectNode">
+		<execute macro="Portal.KaleoDesigner#selectNode">
 			<var name="nodeNodeLabel" value="review" />
 		</execute>
 
-		<execute macro="KaleoDesigner#viewNodeNotifications">
+		<execute macro="Portal.KaleoDesigner#viewNodeNotifications">
 			<var name="nodeNotificationsName" value="Review Notification" />
 			<var name="nodeNotificationsRecipientType" value="Role Type" />
 			<var name="roleName" value="Administrator" />
@@ -118,11 +118,11 @@
 	<command name="ViewUserNotificationOption" priority="3">
 		<description message="This is a use case for LPS-46605." />
 
-		<execute macro="KaleoDesigner#selectNode">
+		<execute macro="Portal.KaleoDesigner#selectNode">
 			<var name="nodeNodeLabel" value="review" />
 		</execute>
 
-		<execute macro="KaleoDesigner#viewNodeNotifications">
+		<execute macro="Portal.KaleoDesigner#viewNodeNotifications">
 			<var name="nodeNotificationsName" value="Review Notification" />
 			<var name="nodeNotificationsType" value="User Notification" />
 		</execute>

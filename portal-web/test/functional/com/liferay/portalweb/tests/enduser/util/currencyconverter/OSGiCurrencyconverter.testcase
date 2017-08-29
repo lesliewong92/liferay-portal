@@ -5,19 +5,19 @@
 	<property name="testray.main.component.name" value="Util" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Currency Converter Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Currency Converter Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Currency Converter" />
 		</execute>
 	</set-up>
@@ -28,17 +28,17 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 		</if>
 	</tear-down>
 
 	<command name="ConvertCurrencyUSDToEUR" priority="2">
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Currency Converter Page" />
 		</execute>
 
-		<execute macro="CurrencyConverter#convertPG">
+		<execute macro="Portal.CurrencyConverter#convertPG">
 			<var name="currencyDataFrom" value="USD" />
 			<var name="currencyDataTo" value="EUR" />
 			<var name="currencyFrom" value="USD" />

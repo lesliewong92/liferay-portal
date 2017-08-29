@@ -6,14 +6,14 @@
 	<property name="testray.main.component.name" value="Social Networking" />
 
 	<set-up>
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 	</set-up>
 
 	<command name="SocialBookmarksHookSmoke" priority="4">
 		<var name="appName" value="Social Bookmarks" />
 		<var name="portletName" value="social-bookmarks-hook" />
 
-		<execute macro="OSGiSmoke#Smoke">
+		<execute macro="Portal.OSGiSmoke#Smoke">
 			<var name="appName" value="${portletName}" />
 			<var name="portletName" value="${portletName}" />
 		</execute>

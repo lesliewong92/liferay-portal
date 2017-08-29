@@ -8,35 +8,35 @@
 	<var name="portletName" value="Calendar" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="pageName" value="Calendar Page" />
 			<var name="portletName" value="Calendar" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoAddEvent" />
+		<execute macro="Portal.CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="CalendarEvent#editTitle">
+		<execute macro="Portal.CalendarEvent#editTitle">
 			<var name="eventTitle" value="Current Day Event" />
 		</execute>
 
-		<execute macro="CalendarEvent#setTimes">
+		<execute macro="Portal.CalendarEvent#setTimes">
 			<var name="endDateTime" value="11:59 PM" />
 			<var name="startDateTime" value="11:58 PM" />
 		</execute>
 
-		<execute macro="CalendarEvent#setDatesToday" />
+		<execute macro="Portal.CalendarEvent#setDatesToday" />
 
-		<execute macro="CalendarEvent#publish" />
+		<execute macro="Portal.CalendarEvent#publish" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 	</set-up>
@@ -47,25 +47,25 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="Navigator#gotoPage">
+				<execute macro="Portal.Navigator#gotoPage">
 					<var name="pageName" value="Calendar Page" />
 				</execute>
 
 				<if>
 					<condition function="IsElementPresent" locator1="Calendar#SCHEDULER_EVENT_GENERIC" />
 					<then>
-						<execute macro="CalendarEvent#tearDown" />
+						<execute macro="Portal.CalendarEvent#tearDown" />
 					</then>
 				</if>
 
-				<execute macro="Calendar#tearDown" />
+				<execute macro="Portal.Calendar#tearDown" />
 
-				<execute macro="CalendarConfiguration#tearDown" />
+				<execute macro="Portal.CalendarConfiguration#tearDown" />
 
-				<execute macro="Page#tearDownPG" />
+				<execute macro="Portal.Page#tearDownPG" />
 			</else>
 		</if>
 	</tear-down>
@@ -73,18 +73,18 @@
 	<command name="DeleteEventAndViewFeed" priority="3">
 		<description message="This is a use case for LPS-67928." />
 
-		<execute macro="TestCase#getSiteName">
+		<execute macro="Portal.TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="Calendar#chooseSiteCalendarMenulistOption">
+		<execute macro="Portal.Calendar#chooseSiteCalendarMenulistOption">
 			<var name="menuListOption" value="RSS" />
 			<var name="siteCalendarName" value="${siteName}" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="Calendar#viewRSSFeedEventPresent">
+		<execute macro="Portal.Calendar#viewRSSFeedEventPresent">
 			<var name="calendarName" value="${siteName}" />
 			<var name="eventTitle" value="Current Day Event" />
 			<var name="pageName" value="Calendar Page" />
@@ -92,21 +92,21 @@
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="Navigator#closeWindow" />
+		<execute macro="Portal.Navigator#closeWindow" />
 
-		<execute macro="CalendarEvent#tearDown" />
+		<execute macro="Portal.CalendarEvent#tearDown" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="Calendar#chooseSiteCalendarMenulistOption">
+		<execute macro="Portal.Calendar#chooseSiteCalendarMenulistOption">
 			<var name="menuListOption" value="RSS" />
 			<var name="siteCalendarName" value="${siteName}" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="Calendar#viewRSSFeedEventNotPresent">
+		<execute macro="Portal.Calendar#viewRSSFeedEventNotPresent">
 			<var name="calendarName" value="${siteName}" />
 			<var name="eventTitle" value="Current Day Event" />
 			<var name="pageName" value="Calendar Page" />
@@ -114,24 +114,24 @@
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="Navigator#closeWindow" />
+		<execute macro="Portal.Navigator#closeWindow" />
 	</command>
 
 	<command name="DisableFeedForSiteCalendar" priority="3">
 		<description message="This is a use case for LPS-67928." />
 
-		<execute macro="TestCase#getSiteName">
+		<execute macro="Portal.TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="Calendar#chooseSiteCalendarMenulistOption">
+		<execute macro="Portal.Calendar#chooseSiteCalendarMenulistOption">
 			<var name="menuListOption" value="RSS" />
 			<var name="siteCalendarName" value="${siteName}" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="Calendar#viewRSSFeedEventPresent">
+		<execute macro="Portal.Calendar#viewRSSFeedEventPresent">
 			<var name="calendarName" value="${siteName}" />
 			<var name="eventTitle" value="Current Day Event" />
 			<var name="pageName" value="Calendar Page" />
@@ -141,27 +141,27 @@
 
 		<var method="selenium#getLocation()" name="rssURL" />
 
-		<execute macro="Navigator#closeWindow" />
+		<execute macro="Portal.Navigator#closeWindow" />
 
-		<execute macro="CalendarNavigator#gotoConfiguration" />
+		<execute macro="Portal.CalendarNavigator#gotoConfiguration" />
 
-		<execute macro="CalendarConfiguration#enableRSS" />
+		<execute macro="Portal.CalendarConfiguration#enableRSS" />
 
-		<execute macro="CalendarConfiguration#viewRSSOptionsDisabled" />
+		<execute macro="Portal.CalendarConfiguration#viewRSSOptionsDisabled" />
 
-		<execute macro="CalendarConfiguration#save" />
+		<execute macro="Portal.CalendarConfiguration#save" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="Calendar#viewSiteCalendarNoMenulistOption">
+		<execute macro="Portal.Calendar#viewSiteCalendarNoMenulistOption">
 			<var name="menuListOption" value="RSS" />
 			<var name="siteCalendarName" value="${siteName}" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="Calendar#viewNoRSS">
+		<execute macro="Portal.Calendar#viewNoRSS">
 			<var name="rssURL" value="${rssURL}" />
 		</execute>
 	</command>
@@ -169,36 +169,36 @@
 	<command name="ViewSiteCalendarFeed" priority="5">
 		<description message="This is a use case for LPS-67928." />
 
-		<execute macro="TestCase#getSiteName">
+		<execute macro="Portal.TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoPreviousDay" />
+		<execute macro="Portal.CalendarNavigator#gotoPreviousDay" />
 
-		<execute macro="CalendarEvent#addViaDayView">
+		<execute macro="Portal.CalendarEvent#addViaDayView">
 			<var name="eventTitle" value="Previous Day Event" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoNextDay" />
+		<execute macro="Portal.CalendarNavigator#gotoNextDay" />
 
-		<execute macro="CalendarNavigator#gotoNextDay" />
+		<execute macro="Portal.CalendarNavigator#gotoNextDay" />
 
-		<execute macro="CalendarEvent#addViaDayView">
+		<execute macro="Portal.CalendarEvent#addViaDayView">
 			<var name="eventTitle" value="Future Day Event" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="Calendar#chooseSiteCalendarMenulistOption">
+		<execute macro="Portal.Calendar#chooseSiteCalendarMenulistOption">
 			<var name="menuListOption" value="RSS" />
 			<var name="siteCalendarName" value="${siteName}" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="Calendar#viewRSSFeedEventNotPresent">
+		<execute macro="Portal.Calendar#viewRSSFeedEventNotPresent">
 			<var name="calendarName" value="${siteName}" />
 			<var name="eventTitle" value="Past Day Event" />
 			<var name="pageName" value="Calendar Page" />
@@ -206,7 +206,7 @@
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="Calendar#viewRSSFeedEventPresent">
+		<execute macro="Portal.Calendar#viewRSSFeedEventPresent">
 			<var name="calendarName" value="${siteName}" />
 			<var name="eventTitle" value="Current Day Event" />
 			<var name="pageName" value="Calendar Page" />
@@ -214,7 +214,7 @@
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="Calendar#viewRSSFeedEventPresent">
+		<execute macro="Portal.Calendar#viewRSSFeedEventPresent">
 			<var name="calendarName" value="${siteName}" />
 			<var name="eventTitle" value="Future Day Event" />
 			<var name="pageName" value="Calendar Page" />
@@ -222,6 +222,6 @@
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="Navigator#closeWindow" />
+		<execute macro="Portal.Navigator#closeWindow" />
 	</command>
 </definition>

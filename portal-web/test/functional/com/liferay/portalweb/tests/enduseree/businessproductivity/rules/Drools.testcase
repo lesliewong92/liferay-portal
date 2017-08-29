@@ -5,9 +5,9 @@
 	<property name="testray.main.component.name" value="Rules" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 	</set-up>
 
 	<tear-down>
@@ -16,10 +16,10 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="Page#tearDownPG" />
+				<execute macro="Portal.Page#tearDownPG" />
 			</else>
 		</if>
 	</tear-down>
@@ -27,17 +27,17 @@
 	<command name="ViewWebContentInSampleDrools" priority="4">
 		<property name="osgi.modules.includes" value="portal-rules-engine-sample-web" />
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#gotoEditCP">
+		<execute macro="Portal.User#gotoEditCP">
 			<var name="userScreenName" value="test" />
 		</execute>
 
-		<execute macro="Organization#gotoIdentificationCP" />
+		<execute macro="Portal.Organization#gotoIdentificationCP" />
 
-		<execute macro="Organization#addAddressCP">
+		<execute macro="Portal.Organization#addAddressCP">
 			<var name="orgAddressCity" value="Diamond Bar" />
 			<var name="orgAddressCountry" value="United States" />
 			<var name="orgAddressPostal" value="91765" />
@@ -46,41 +46,41 @@
 			<var name="orgAddressType" value="Personal" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Tags" />
 		</execute>
 
-		<execute macro="Tag#addCP">
+		<execute macro="Portal.Tag#addCP">
 			<var name="tagName" value="americas" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Web Content" />
 		</execute>
 
-		<execute macro="WebContentNavigator#gotoAddCP" />
+		<execute macro="Portal.WebContentNavigator#gotoAddCP" />
 
-		<execute macro="WebContent#addWithTagCP">
+		<execute macro="Portal.WebContent#addWithTagCP">
 			<var name="tagNameList" value="americas" />
 			<var name="webContentContent" value="Web Content Content" />
 			<var name="webContentTitle" value="Web Content Title" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Drools Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Drools Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Sample Drools" />
 		</execute>
 
-		<execute macro="WebContent#viewPGViaWCD">
+		<execute macro="Portal.WebContent#viewPGViaWCD">
 			<var name="webContentContent" value="Web Content Content" />
 			<var name="webContentTitle" value="Web Content Title" />
 		</execute>

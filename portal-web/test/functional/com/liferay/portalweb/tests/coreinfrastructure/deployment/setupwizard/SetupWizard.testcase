@@ -5,7 +5,7 @@
 	<command name="HypersonicToHypersonic" priority="5">
 		<property name="portal.acceptance.tomcat.hypersonic" value="true" />
 
-		<execute macro="SetupWizard#configurePG">
+		<execute macro="Portal.SetupWizard#configurePG">
 			<var name="administratorEmail" value="test@liferay.com" />
 			<var name="administratorFirstName" value="Test" />
 			<var name="administratorLastName" value="Test" />
@@ -16,9 +16,9 @@
 			<var method="TestPropsUtil#get('database.hypersonic.url')" name="jdbcURL" />
 		</execute>
 
-		<execute macro="Smoke#viewWelcomePage" />
+		<execute macro="Portal.Smoke#viewWelcomePage" />
 
-		<execute macro="Smoke#runSmoke" />
+		<execute macro="Portal.Smoke#runSmoke" />
 	</command>
 
 	<command name="HypersonicToMySQL" priority="5">
@@ -26,7 +26,7 @@
 		<property name="portal.release" value="true" />
 		<property name="portal.upstream" value="true" />
 
-		<execute macro="SetupWizard#configurePG">
+		<execute macro="Portal.SetupWizard#configurePG">
 			<var name="administratorEmail" value="test@liferay.com" />
 			<var name="administratorFirstName" value="Test" />
 			<var name="administratorLastName" value="Test" />
@@ -37,8 +37,8 @@
 			<var method="TestPropsUtil#get('database.mysql.url')" name="jdbcURL" />
 		</execute>
 
-		<execute macro="Smoke#viewWelcomePage" />
+		<execute macro="Portal.Smoke#viewWelcomePage" />
 
-		<execute macro="Smoke#runSmoke" />
+		<execute macro="Portal.Smoke#runSmoke" />
 	</command>
 </definition>

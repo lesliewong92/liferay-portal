@@ -2,7 +2,7 @@
 	<property name="testray.main.component.name" value="Deployment" />
 
 	<set-up>
-		<execute macro="SignIn#signInTestSetup" />
+		<execute macro="Portal.SignIn#signInTestSetup" />
 	</set-up>
 
 	<command name="Smoke" priority="5">
@@ -14,8 +14,8 @@
 		<property name="test.assert.warning.exceptions" value="true" />
 		<property name="test.name.skip.portal.instance" value="PortalContext#Smoke" />
 
-		<execute macro="Smoke#viewWelcomePage" />
+		<execute macro="Portal.Smoke#viewWelcomePage" />
 
-		<execute macro="Smoke#runSmoke" />
+		<execute macro="Portal.Smoke#runSmoke" />
 	</command>
 </definition>

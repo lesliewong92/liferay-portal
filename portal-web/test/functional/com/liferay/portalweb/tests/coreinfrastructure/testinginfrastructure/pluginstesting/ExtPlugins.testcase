@@ -12,36 +12,36 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="MessageboardsThread#tearDownCP" />
+				<execute macro="Portal.MessageboardsThread#tearDownCP" />
 
-				<execute macro="DMDocument#tearDownCP" />
+				<execute macro="Portal.DMDocument#tearDownCP" />
 
-				<execute macro="Page#tearDownPG" />
+				<execute macro="Portal.Page#tearDownPG" />
 			</else>
 		</if>
 	</tear-down>
 
 	<command name="ViewSampleExtPluginValidationViaDeploy" priority="5">
-		<execute macro="Portlet#assertServerStartup" />
+		<execute macro="Portal.Portlet#assertServerStartup" />
 
-		<execute macro="Portlet#shutdownServer" />
+		<execute macro="Portal.Portlet#shutdownServer" />
 
-		<execute macro="Portlet#assertServerShutdown" />
+		<execute macro="Portal.Portlet#assertServerShutdown" />
 
-		<execute macro="Portlet#startServer">
+		<execute macro="Portal.Portlet#startServer">
 			<var name="deleteLiferayHome" value="false" />
 		</execute>
 
-		<execute macro="Portlet#assertServerStartup" />
+		<execute macro="Portal.Portlet#assertServerStartup" />
 
 		<execute function="AssertConsoleTextPresent" value1="EXT_ATOM_SERVLET_INSTALLED" />
 
 		<execute function="AssertConsoleTextPresent" value1="EXT_WEB_SERVLET_INSTALLED" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 
 		<execute function="AssertTextEquals#assertPartialText" locator1="Message#INFO" value1="ext_portal_impl_installed_" />
 
@@ -64,7 +64,7 @@
 
 		<execute function="AssertConsoleTextPresent" value1="EXT_WEB_SERVLET_INSTALLED" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 
 		<execute function="AssertTextEquals#assertPartialText" locator1="Message#INFO" value1="ext_portal_impl_installed_" />
 

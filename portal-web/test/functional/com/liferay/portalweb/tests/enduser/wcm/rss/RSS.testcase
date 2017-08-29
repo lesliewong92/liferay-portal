@@ -4,23 +4,23 @@
 	<property name="testray.main.component.name" value="RSS" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addBlankCP">
+		<execute macro="Portal.Site#addBlankCP">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="SitePageNavigator#gotoPages">
+		<execute macro="Portal.SitePageNavigator#gotoPages">
 			<var name="page" value="Public Pages" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Site Page Name" />
 		</execute>
 	</set-up>
@@ -31,14 +31,14 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="Page#tearDownPG">
+				<execute macro="Portal.Page#tearDownPG">
 					<var name="site" value="Liferay" />
 				</execute>
 
-				<execute macro="Site#tearDownCP" />
+				<execute macro="Portal.Site#tearDownCP" />
 			</else>
 		</if>
 	</tear-down>
@@ -46,40 +46,40 @@
 	<command name="AddFeedBetweenFeeds" priority="3">
 		<property name="testray.component.names" value="RSS" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="RSS Publisher" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletName" value="RSS Publisher" />
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute macro="RSS#addFeed">
+		<execute macro="Portal.RSS#addFeed">
 			<var name="feedRowIndexNumber" value="0" />
 			<var name="feedTitle" value="Technology" />
 			<var name="feedType" value="file" />
 			<var name="feedUrlLink" value="Technology.xml" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletName" value="RSS Publisher" />
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute macro="RSS#addFeed">
+		<execute macro="Portal.RSS#addFeed">
 			<var name="buttonRowIndexNumber" value="1" />
 			<var name="feedRowIndexNumber" value="2" />
 			<var name="feedTitle" value="Latimes > Technology News" />
@@ -87,19 +87,19 @@
 			<var name="feedUrlLink" value="rss2.0.xml" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletName" value="RSS Publisher" />
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute macro="RSS#addFeed">
+		<execute macro="Portal.RSS#addFeed">
 			<var name="buttonRowIndexNumber" value="1" />
 			<var name="feedRowIndexNumber" value="3" />
 			<var name="feedTitle" value="Reuters > Sports News" />
@@ -107,15 +107,15 @@
 			<var name="feedUrlLink" value="reuters_sports_news.xml" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
 		<for list="Technology,Reuters > Sports News,Latimes > Technology News" param="feedTitle" >
-			<execute macro="RSS#viewDisplayFeedTitle">
+			<execute macro="Portal.RSS#viewDisplayFeedTitle">
 				<var name="feedTitle" value="${feedTitle}" />
 			</execute>
 		</for>
@@ -124,59 +124,59 @@
 	<command name="AddFeedWithWrongUrl" priority="4">
 		<property name="testray.component.names" value="RSS" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="RSS Publisher" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletName" value="RSS Publisher" />
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute macro="RSS#addFeed">
+		<execute macro="Portal.RSS#addFeed">
 			<var name="feedRowIndexNumber" value="0" />
 			<var name="feedTitle" value="General Announcement" />
 			<var name="feedUrlLink" value="www.theverge.com/rss/index.xml" />
 		</execute>
 
-		<execute macro="RSS#viewWarningMessageDisplay">
+		<execute macro="Portal.RSS#viewWarningMessageDisplay">
 			<var name="errorMessage" value="The following are invalid URLs: www.theverge.com/rss/index.xml." />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="RSS#viewDeleteFeed">
+		<execute macro="Portal.RSS#viewDeleteFeed">
 			<var name="feedTitle" value="General Announcement" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletName" value="RSS Publisher" />
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute macro="RSS#addFeed">
+		<execute macro="Portal.RSS#addFeed">
 			<var name="feedRowIndexNumber" value="0" />
 			<var name="feedTitle" value="General Announcement" />
 			<var name="feedType" value="file" />
 			<var name="feedUrlLink" value="theverge.xml" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="RSS#viewDisplayFeedTitle">
+		<execute macro="Portal.RSS#viewDisplayFeedTitle">
 			<var name="feedTitle" value="General Announcement" />
 		</execute>
 	</command>
@@ -185,37 +185,37 @@
 		<property name="portal.acceptance" value="true" />
 		<property name="testray.component.names" value="RSS" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="RSS Publisher" />
 		</execute>
 
-		<execute macro="RSS#viewPortletConfigurationInfo" />
+		<execute macro="Portal.RSS#viewPortletConfigurationInfo" />
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletName" value="RSS Publisher" />
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute macro="RSS#addFeed">
+		<execute macro="Portal.RSS#addFeed">
 			<var name="feedRowIndexNumber" value="0" />
 			<var name="feedTitle" value="Latimes > Technology News" />
 			<var name="feedType" value="file" />
 			<var name="feedUrlLink" value="rss2.0.xml" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="RSS#viewDisplayFeedTitle">
+		<execute macro="Portal.RSS#viewDisplayFeedTitle">
 			<var name="feedTitle" value="Latimes > Technology News" />
 		</execute>
 	</command>
@@ -224,28 +224,28 @@
 		<property name="test.name.skip.portal.instance" value="RSS#AddWebContentFeed" />
 		<property name="testray.component.names" value="Asset Publisher,RSS" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Web Content" />
 		</execute>
 
-		<execute macro="WebContentNavigator#gotoAddCP" />
+		<execute macro="Portal.WebContentNavigator#gotoAddCP" />
 
-		<execute macro="WebContent#addCP">
+		<execute macro="Portal.WebContent#addCP">
 			<var name="webContentContent" value="Web Content Content" />
 			<var name="webContentTitle" value="Web Content Title" />
 		</execute>
 
-		<execute macro="PortletEntry#publish" />
+		<execute macro="Portal.PortletEntry#publish" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Web Content" />
 		</execute>
 
-		<execute macro="WebContentNavigator#gotoAddFeed" />
+		<execute macro="Portal.WebContentNavigator#gotoAddFeed" />
 
-		<execute macro="WebContent#addFeed">
+		<execute macro="Portal.WebContent#addFeed">
 			<var name="description" value="WC Feed Description" />
 			<var name="feedContent" value="Content(ddm-text-html)" />
 			<var name="feedTitle" value="WC Feed Title" />
@@ -254,49 +254,49 @@
 			<var name="targetFriendlyUrl" value="/web/guest/home" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Web Content" />
 		</execute>
 
-		<execute macro="WebContentNavigator#gotoEditFeed">
+		<execute macro="Portal.WebContentNavigator#gotoEditFeed">
 			<var name="feedName" value="WC Feed Title" />
 		</execute>
 
 		<var attribute="value" locator="//input[contains(@id,'JournalPortlet_url') and contains(@value,'journal/rss')]" name="rssFeedUrl" />
 		<var method="StringUtil#replace('${rssFeedUrl}', 'localhost', '127.0.0.1')" name="rssFeedUrl" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="RSS Publisher" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletName" value="RSS Publisher" />
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute macro="RSS#addFeed">
+		<execute macro="Portal.RSS#addFeed">
 			<var name="feedRowIndexNumber" value="0" />
 			<var name="feedTitle" value="Web Content Feed Title" />
 			<var name="feedUrlLink" value="${rssFeedUrl}" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="RSS#viewDisplayFeedTitle">
+		<execute macro="Portal.RSS#viewDisplayFeedTitle">
 			<var name="feedTitle" value="Web Content Feed Title" />
 		</execute>
 
-		<execute macro="RSS#viewFeedContent">
+		<execute macro="Portal.RSS#viewFeedContent">
 			<var name="feedEntryContent" value="Web Content Content" />
 			<var name="feedEntryTitle" value="Web Content Title" />
 		</execute>
@@ -305,51 +305,51 @@
 	<command name="ChangeDefaultToNavigationDisplay" priority="3">
 		<property name="testray.component.names" value="RSS" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="RSS Publisher" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletName" value="RSS Publisher" />
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute macro="RSS#addFeed">
+		<execute macro="Portal.RSS#addFeed">
 			<var name="feedRowIndexNumber" value="0" />
 			<var name="feedTitle" value="Technology" />
 			<var name="feedType" value="file" />
 			<var name="feedUrlLink" value="Technology.xml" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletName" value="RSS Publisher" />
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute macro="RSS#configureFeedDisplayStyle">
+		<execute macro="Portal.RSS#configureFeedDisplayStyle">
 			<var name="feedDisplayStyle" value="Navigation" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="RSS#viewNavigationDisplayFeedTitle">
+		<execute macro="Portal.RSS#viewNavigationDisplayFeedTitle">
 			<var name="feedTitle" value="Technology" />
 		</execute>
 	</command>
@@ -357,40 +357,40 @@
 	<command name="ChangeOrderOfRSSFeeds" priority="3">
 		<property name="testray.component.names" value="RSS" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="RSS Publisher" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletName" value="RSS Publisher" />
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute macro="RSS#addFeed">
+		<execute macro="Portal.RSS#addFeed">
 			<var name="feedRowIndexNumber" value="0" />
 			<var name="feedTitle" value="Technology" />
 			<var name="feedType" value="file" />
 			<var name="feedUrlLink" value="Technology.xml" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletName" value="RSS Publisher" />
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute macro="RSS#addFeed">
+		<execute macro="Portal.RSS#addFeed">
 			<var name="buttonRowIndexNumber" value="1" />
 			<var name="feedRowIndexNumber" value="2" />
 			<var name="feedTitle" value="NBA" />
@@ -398,55 +398,55 @@
 			<var name="feedUrlLink" value="nba.xml" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletName" value="RSS Publisher" />
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute macro="RSS#viewPG">
+		<execute macro="Portal.RSS#viewPG">
 			<var name="feedRowIndexNumber" value="0" />
 			<var name="feedTitle" value="Technology" />
 			<var name="rowIndexNumber" value="1" />
 		</execute>
 
-		<execute macro="RSS#viewPG">
+		<execute macro="Portal.RSS#viewPG">
 			<var name="feedRowIndexNumber" value="1" />
 			<var name="feedTitle" value="NBA" />
 			<var name="rowIndexNumber" value="2" />
 		</execute>
 
-		<execute macro="RSS#changeFeedsOrder">
+		<execute macro="Portal.RSS#changeFeedsOrder">
 			<var name="fromRowNumber" value="1" />
 			<var name="rowLocation" value="Title" />
 			<var name="toRowNumber" value="2" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletName" value="RSS Publisher" />
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute macro="RSS#viewPG">
+		<execute macro="Portal.RSS#viewPG">
 			<var name="feedRowIndexNumber" value="0" />
 			<var name="feedTitle" value="NBA" />
 			<var name="rowIndexNumber" value="1" />
 		</execute>
 
-		<execute macro="RSS#viewPG">
+		<execute macro="Portal.RSS#viewPG">
 			<var name="feedRowIndexNumber" value="1" />
 			<var name="feedTitle" value="Technology" />
 			<var name="rowIndexNumber" value="2" />
@@ -456,56 +456,56 @@
 	<command name="DeleteFeedFromRSS" priority="4">
 		<property name="testray.component.names" value="RSS" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Welcome" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Page Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="RSS Publisher" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletName" value="RSS Publisher" />
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute macro="RSS#addFeed">
+		<execute macro="Portal.RSS#addFeed">
 			<var name="feedRowIndexNumber" value="0" />
 			<var name="feedTitle" value="Latimes > Technology News" />
 			<var name="feedType" value="file" />
 			<var name="feedUrlLink" value="rss2.0.xml" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Page Name" />
 		</execute>
 
-		<execute macro="RSS#viewDisplayFeedTitle">
+		<execute macro="Portal.RSS#viewDisplayFeedTitle">
 			<var name="feedTitle" value="Latimes > Technology News" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletName" value="RSS Publisher" />
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute macro="RSS#deleteFeed">
+		<execute macro="Portal.RSS#deleteFeed">
 			<var name="buttonRowIndexNumber" value="1" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Page Name" />
 		</execute>
 
-		<execute macro="RSS#viewDeleteFeed">
+		<execute macro="Portal.RSS#viewDeleteFeed">
 			<var name="feedTitle" value="Latimes > Technology News" />
 		</execute>
 	</command>
@@ -513,57 +513,57 @@
 	<command name="DisabledFeedTitle" priority="3">
 		<property name="testray.component.names" value="RSS" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="RSS Publisher" />
 		</execute>
 
-		<execute macro="Portlet#viewSpecificPG">
+		<execute macro="Portal.Portlet#viewSpecificPG">
 			<var name="portletName" value="RSS Publisher" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletName" value="RSS Publisher" />
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute macro="RSS#addFeed">
+		<execute macro="Portal.RSS#addFeed">
 			<var name="feedRowIndexNumber" value="0" />
 			<var name="feedTitle" value="Technology" />
 			<var name="feedType" value="file" />
 			<var name="feedUrlLink" value="Technology.xml" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="RSS#viewDisplayFeedTitle">
+		<execute macro="Portal.RSS#viewDisplayFeedTitle">
 			<var name="feedTitle" value="Technology" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletName" value="RSS Publisher" />
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute macro="RSS#disableShowFeedTitle" />
+		<execute macro="Portal.RSS#disableShowFeedTitle" />
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="RSS#viewNoFeedTitle">
+		<execute macro="Portal.RSS#viewNoFeedTitle">
 			<var name="feedTitle" value="Technology" />
 		</execute>
 	</command>
@@ -572,55 +572,55 @@
 		<property name="test.name.skip.portal.instance" value="RSS#EnableRSSFeedFromAssetpublisher" />
 		<property name="testray.component.names" value="Asset Publisher,RSS" />
 
-		<execute macro="TestCase#getSiteName">
+		<execute macro="Portal.TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="SitePageNavigator#gotoPages">
+		<execute macro="Portal.SitePageNavigator#gotoPages">
 			<var name="page" value="Public Pages" />
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Site Page Name 2" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="RSS Publisher" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page Name 2" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Asset Publisher" />
 		</execute>
 
-		<execute macro="WebContent#addPGViaAP">
+		<execute macro="Portal.WebContent#addPGViaAP">
 			<var name="webContentContent" value="This is the web content test for rss feed" />
 			<var name="webContentTitle" value="Web Content Title" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletName" value="Asset Publisher" />
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#enableRSSSubscription" />
+		<execute macro="Portal.AssetPublisherPortlet#enableRSSSubscription" />
 
-		<execute macro="Button#clickSave" />
+		<execute macro="Portal.Button#clickSave" />
 
-		<execute macro="IFrame#selectTopFrame" />
+		<execute macro="Portal.IFrame#selectTopFrame" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page Name 2" />
 			<var name="siteName" value="Site Name" />
 		</execute>
@@ -628,39 +628,39 @@
 		<var attribute="href" locator="//div[@class='subscribe-action']/span/a[contains(@href,'asset_publisher')]" name="rssFeedUrl" />
 		<var method="StringUtil#replace('${rssFeedUrl}', 'localhost', '127.0.0.1')" name="rssFeedUrl" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletName" value="RSS Publisher" />
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute macro="RSS#addFeed">
+		<execute macro="Portal.RSS#addFeed">
 			<var name="feedRowIndexNumber" value="0" />
 			<var name="feedTitle" value="Web Asset Publisher" />
 			<var name="feedUrlLink" value="${rssFeedUrl}" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="RSS#viewDisplayFeedTitle">
+		<execute macro="Portal.RSS#viewDisplayFeedTitle">
 			<var name="feedTitle" value="Web Asset Publisher" />
 		</execute>
 
-		<execute macro="RSS#openFeed">
+		<execute macro="Portal.RSS#openFeed">
 			<var name="feedTitle" value="Asset Publisher" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#viewAssetPG">
+		<execute macro="Portal.AssetPublisherPortlet#viewAssetPG">
 			<var name="assetContent" value="This is the web content test for rss feed" />
 			<var name="assetTitle" value="Web Content Title" />
 		</execute>
@@ -669,33 +669,33 @@
 	<command name="RemoveRSSPortlet" priority="4">
 		<property name="testray.component.names" value="RSS" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Welcome" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Page Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="RSS Publisher" />
 		</execute>
 
-		<execute macro="Portlet#viewSpecificPG">
+		<execute macro="Portal.Portlet#viewSpecificPG">
 			<var name="portletName" value="RSS Publisher" />
 		</execute>
 
-		<execute macro="RSS#viewPortletConfigurationInfo" />
+		<execute macro="Portal.RSS#viewPortletConfigurationInfo" />
 
-		<execute macro="Portlet#deletePG">
+		<execute macro="Portal.Portlet#deletePG">
 			<var name="portletName" value="RSS Publisher" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Page Name" />
 		</execute>
 
-		<execute macro="Portlet#viewNoSpecificPG">
+		<execute macro="Portal.Portlet#viewNoSpecificPG">
 			<var name="portletName" value="RSS Publisher" />
 		</execute>
 	</command>
@@ -704,131 +704,131 @@
 		<property name="test.name.skip.portal.instance" value="RSS#UpdateRSSFeedViaAssetpublisher" />
 		<property name="testray.component.names" value="Asset Publisher,RSS" />
 
-		<execute macro="TestCase#getSiteName">
+		<execute macro="Portal.TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="System Settings" />
 		</execute>
 
-		<execute macro="SystemSettings#gotoCategory">
+		<execute macro="Portal.SystemSettings#gotoCategory">
 			<var name="category" value="Web Experience" />
 		</execute>
 
-		<execute macro="SystemSettings#editConfiguration">
+		<execute macro="Portal.SystemSettings#editConfiguration">
 			<var name="configurationName" value="RSS Cache" />
 		</execute>
 
-		<execute macro="RSS#updateFeedTime">
+		<execute macro="Portal.RSS#updateFeedTime">
 			<var name="feedTime" value="1" />
 		</execute>
 
-		<execute macro="SitePageNavigator#gotoPages">
+		<execute macro="Portal.SitePageNavigator#gotoPages">
 			<var name="page" value="Public Pages" />
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="RSS Publisher" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Asset Publisher Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Asset Publisher" />
 		</execute>
 
-		<execute macro="WebContent#addPGViaAP">
+		<execute macro="Portal.WebContent#addPGViaAP">
 			<var name="webContentContent" value="This is the web content test for rss feed" />
 			<var name="webContentTitle" value="Web Content Title" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletName" value="Asset Publisher" />
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#enableRSSSubscription" />
+		<execute macro="Portal.AssetPublisherPortlet#enableRSSSubscription" />
 
-		<execute macro="Button#clickSave" />
+		<execute macro="Portal.Button#clickSave" />
 
-		<execute macro="IFrame#selectTopFrame" />
+		<execute macro="Portal.IFrame#selectTopFrame" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Asset Publisher Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
 		<var attribute="href" locator="//div[@class='subscribe-action']/span/a[contains(@href,'asset_publisher')]" name="rssFeedUrl" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletName" value="RSS Publisher" />
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute macro="RSS#addFeed">
+		<execute macro="Portal.RSS#addFeed">
 			<var name="feedRowIndexNumber" value="0" />
 			<var name="feedTitle" value="Web Asset Publisher" />
 			<var name="feedUrlLink" value="${rssFeedUrl}" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="RSS#viewDisplayFeedTitle">
+		<execute macro="Portal.RSS#viewDisplayFeedTitle">
 			<var name="feedTitle" value="Web Asset Publisher" />
 		</execute>
 
-		<execute macro="RSS#viewUpdateFeedTitle">
+		<execute macro="Portal.RSS#viewUpdateFeedTitle">
 			<var name="feedHeading" value="Web Content Title" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Asset Publisher Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#gotoEditAssetPG">
+		<execute macro="Portal.AssetPublisherPortlet#gotoEditAssetPG">
 			<var name="assetTitle" value="Web Content Title" />
 		</execute>
 
-		<execute macro="WebContent#addCP">
+		<execute macro="Portal.WebContent#addCP">
 			<var name="webContentContent" value="This is the updated version of web content test for rss feed" />
 			<var name="webContentTitle" value="Web Content Title Updated Feed" />
 		</execute>
 
-		<execute macro="Button#clickPublish" />
+		<execute macro="Portal.Button#clickPublish" />
 
-		<execute macro="RSS#viewUpdateFeedTitle">
+		<execute macro="Portal.RSS#viewUpdateFeedTitle">
 			<var name="feedHeading" value="Web Content Title Updated Feed" />
 			<var name="pageName" value="Site Page Name" />
 			<var name="updateFeed" value="true" />
 		</execute>
 
-		<execute macro="RSS#viewDisplayFeedTitle">
+		<execute macro="Portal.RSS#viewDisplayFeedTitle">
 			<var name="feedTitle" value="Web Asset Publisher" />
 		</execute>
 	</command>

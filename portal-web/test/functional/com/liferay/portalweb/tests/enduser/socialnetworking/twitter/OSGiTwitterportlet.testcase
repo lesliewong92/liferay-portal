@@ -7,25 +7,25 @@
 	<property name="test.assert.warning.exceptions" value="true" />
 
 	<set-up>
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Test Page" />
 		</execute>
 	</set-up>
 
 	<tear-down>
-		<execute macro="Page#tearDownPG" />
+		<execute macro="Portal.Page#tearDownPG" />
 	</tear-down>
 
 	<command name="TwitterPortletSmoke" priority="4">
 		<var name="appName" value="Twitter" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Test Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Twitter" />
 		</execute>
 
@@ -35,13 +35,13 @@
 	<command name="ViewEntry" priority="5">
 		<property name="test.name.skip.portal.instance" value="OSGiTwitterportlet#ViewEntry" />
 
-		<execute macro="UserBar#gotoProfile" />
+		<execute macro="Portal.UserBar#gotoProfile" />
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Twitter" />
 		</execute>
 
-		<execute macro="Twitter#configureUserProfile">
+		<execute macro="Portal.Twitter#configureUserProfile">
 			<var name="twitterProfileName" value="liferayqa3" />
 		</execute>
 
@@ -49,37 +49,37 @@
 
 		<execute function="Refresh" />
 
-		<execute macro="Twitter#viewConfiguredScreenName">
+		<execute macro="Portal.Twitter#viewConfiguredScreenName">
 			<var name="twitterProfileName" value="liferayqa3" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Activities" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="System Settings" />
 		</execute>
 
-		<execute macro="SystemSettings#gotoCategory">
+		<execute macro="Portal.SystemSettings#gotoCategory">
 			<var name="category" value="Other" />
 		</execute>
 
-		<execute macro="SystemSettings#editConfiguration">
+		<execute macro="Portal.SystemSettings#editConfiguration">
 			<var name="configurationName" value="Twitter Service" />
 		</execute>
 
 		<execute function="Type" locator1="TextInput#TWITTER" value1="1" />
 
-		<execute macro="SystemSettings#saveConfiguration" />
+		<execute macro="Portal.SystemSettings#saveConfiguration" />
 
-		<execute macro="UserBar#gotoProfile" />
+		<execute macro="Portal.UserBar#gotoProfile" />
 
 		<execute function="Pause" locator1="3000" />
 
 		<execute function="Refresh" />
 
-		<execute macro="Twitter#viewFeedEntry">
+		<execute macro="Portal.Twitter#viewFeedEntry">
 			<var name="entryContent" value="This is a tweet sent on Twitter." />
 		</execute>
 	</command>

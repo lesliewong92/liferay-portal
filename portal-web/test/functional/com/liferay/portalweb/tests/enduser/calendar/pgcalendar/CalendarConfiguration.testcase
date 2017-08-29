@@ -8,15 +8,15 @@
 	<var name="portletName" value="Calendar" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="pageName" value="Calendar Page" />
 			<var name="portletName" value="Calendar" />
 		</execute>
@@ -28,138 +28,138 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="Navigator#gotoPage">
+				<execute macro="Portal.Navigator#gotoPage">
 					<var name="pageName" value="Calendar Page" />
 				</execute>
 
 				<if>
 					<condition function="IsElementPresent" locator1="Calendar#SCHEDULER_EVENT_GENERIC" />
 					<then>
-						<execute macro="CalendarEvent#tearDown" />
+						<execute macro="Portal.CalendarEvent#tearDown" />
 					</then>
 				</if>
 
-				<execute macro="Calendar#tearDown" />
+				<execute macro="Portal.Calendar#tearDown" />
 
-				<execute macro="CalendarConfiguration#tearDown" />
+				<execute macro="Portal.CalendarConfiguration#tearDown" />
 
-				<execute macro="Page#tearDownPG" />
+				<execute macro="Portal.Page#tearDownPG" />
 			</else>
 		</if>
 	</tear-down>
 
 	<command name="ConfigureDefaultView" priority="3">
 		<for list="Day,Week,Month,Agenda" param="defaultView">
-			<execute macro="Navigator#gotoPage">
+			<execute macro="Portal.Navigator#gotoPage">
 				<var name="pageName" value="Calendar Page" />
 			</execute>
 
-			<execute macro="CalendarNavigator#gotoConfiguration" />
+			<execute macro="Portal.CalendarNavigator#gotoConfiguration" />
 
-			<execute macro="CalendarConfiguration#selectDefaultView">
+			<execute macro="Portal.CalendarConfiguration#selectDefaultView">
 				<var name="defaultView" value="${defaultView}" />
 			</execute>
 
-			<execute macro="CalendarConfiguration#save" />
+			<execute macro="Portal.CalendarConfiguration#save" />
 
-			<execute macro="Navigator#gotoPage">
+			<execute macro="Portal.Navigator#gotoPage">
 				<var name="pageName" value="Calendar Page" />
 			</execute>
 
-			<execute macro="CalendarScheduler#viewSelectedView">
+			<execute macro="Portal.CalendarScheduler#viewSelectedView">
 				<var name="view" value="${defaultView}" />
 			</execute>
 		</for>
 	</command>
 
 	<command name="ConfigureDisplayTimeZone" priority="5">
-		<execute macro="CalendarNavigator#gotoConfiguration" />
+		<execute macro="Portal.CalendarNavigator#gotoConfiguration" />
 
-		<execute macro="CalendarConfiguration#editTimeZoneUTC" />
+		<execute macro="Portal.CalendarConfiguration#editTimeZoneUTC" />
 
-		<execute macro="CalendarConfiguration#save" />
+		<execute macro="Portal.CalendarConfiguration#save" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoAddEvent" />
+		<execute macro="Portal.CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="CalendarEvent#editTitle">
+		<execute macro="Portal.CalendarEvent#editTitle">
 			<var name="eventTitle" value="Calendar Event Title" />
 		</execute>
 
-		<execute macro="CalendarEvent#setDatesToday" />
+		<execute macro="Portal.CalendarEvent#setDatesToday" />
 
-		<execute macro="CalendarEvent#setTimes">
+		<execute macro="Portal.CalendarEvent#setTimes">
 			<var name="endDateTime" value="03:00 PM" />
 			<var name="startDateTime" value="02:00 PM" />
 		</execute>
 
-		<execute macro="CalendarEvent#publish" />
+		<execute macro="Portal.CalendarEvent#publish" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarScheduler#selectSpecificEvent">
+		<execute macro="Portal.CalendarScheduler#selectSpecificEvent">
 			<var name="eventTitle" value="Calendar Event Title" />
 		</execute>
 
-		<execute macro="CalendarScheduler#viewEventTimesViaDialogBox">
+		<execute macro="Portal.CalendarScheduler#viewEventTimesViaDialogBox">
 			<var name="endDateTime" value="3:00pm" />
 			<var name="startDateTime" value="2:00pm" />
 		</execute>
 
-		<execute macro="CalendarScheduler#gotoDetailsViaDialogBox" />
+		<execute macro="Portal.CalendarScheduler#gotoDetailsViaDialogBox" />
 
-		<execute macro="CalendarEvent#viewTimesViaDetails">
+		<execute macro="Portal.CalendarEvent#viewTimesViaDetails">
 			<var name="endDateTime" value="03:00 PM" />
 			<var name="startDateTime" value="02:00 PM" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoEditEvent">
+		<execute macro="Portal.CalendarNavigator#gotoEditEvent">
 			<var name="eventTitle" value="Calendar Event Title" />
 		</execute>
 
-		<execute macro="CalendarEvent#viewTimes">
+		<execute macro="Portal.CalendarEvent#viewTimes">
 			<var name="endDateTime" value="03:00 PM" />
 			<var name="startDateTime" value="02:00 PM" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoConfiguration" />
+		<execute macro="Portal.CalendarNavigator#gotoConfiguration" />
 
-		<execute macro="CalendarConfiguration#enableGlobalTimeZone" />
+		<execute macro="Portal.CalendarConfiguration#enableGlobalTimeZone" />
 
-		<execute macro="CalendarConfiguration#save" />
+		<execute macro="Portal.CalendarConfiguration#save" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarScheduler#selectSpecificEvent">
+		<execute macro="Portal.CalendarScheduler#selectSpecificEvent">
 			<var name="eventTitle" value="Calendar Event Title" />
 		</execute>
 
-		<execute macro="CalendarScheduler#viewEventTimesViaDialogBox">
+		<execute macro="Portal.CalendarScheduler#viewEventTimesViaDialogBox">
 			<var name="endDateTime" value="am" />
 			<var name="startDateTime" value="am" />
 		</execute>
 
-		<execute macro="CalendarScheduler#gotoDetailsViaDialogBox" />
+		<execute macro="Portal.CalendarScheduler#gotoDetailsViaDialogBox" />
 
-		<execute macro="CalendarEvent#viewTimesViaDetails">
+		<execute macro="Portal.CalendarEvent#viewTimesViaDetails">
 			<var name="endDateTime" value="AM" />
 			<var name="startDateTime" value="AM" />
 		</execute>
@@ -167,186 +167,186 @@
 
 	<command name="ConfigureEventsDisplaySettingsAndViewEvents" priority="4">
 		<for list="1,2,3,4,5,6" param="eventNumber">
-			<execute macro="CalendarNavigator#gotoAddEvent" />
+			<execute macro="Portal.CalendarNavigator#gotoAddEvent" />
 
-			<execute macro="CalendarEvent#add">
+			<execute macro="Portal.CalendarEvent#add">
 				<var name="eventTitle" value="Calendar Event ${eventNumber}" />
 				<var name="eventType" value="All Day" />
 				<var name="pageName" value="Calendar Page" />
 			</execute>
 		</for>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoView">
+		<execute macro="Portal.CalendarNavigator#gotoView">
 			<var name="viewType" value="Agenda" />
 		</execute>
 
 		<for list="1,2,3,4,5,6" param="eventNumber">
-			<execute macro="CalendarEvent#viewViaAgendaView">
+			<execute macro="Portal.CalendarEvent#viewViaAgendaView">
 				<var name="eventNumber" value="${eventNumber}" />
 			</execute>
 		</for>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoConfiguration" />
+		<execute macro="Portal.CalendarNavigator#gotoConfiguration" />
 
-		<execute macro="CalendarConfiguration#editNumberOfEventsDisplayed">
+		<execute macro="Portal.CalendarConfiguration#editNumberOfEventsDisplayed">
 			<var name="maxNumberOfEvents" value="5" />
 		</execute>
 
-		<execute macro="CalendarConfiguration#save" />
+		<execute macro="Portal.CalendarConfiguration#save" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoView">
+		<execute macro="Portal.CalendarNavigator#gotoView">
 			<var name="viewType" value="Agenda" />
 		</execute>
 
 		<for list="1,2,3,4,5" param="eventNumber">
-			<execute macro="CalendarEvent#viewViaAgendaView">
+			<execute macro="Portal.CalendarEvent#viewViaAgendaView">
 				<var name="eventNumber" value="${eventNumber}" />
 			</execute>
 		</for>
 
-		<execute macro="CalendarEvent#viewNotPresentViaAgendaView">
+		<execute macro="Portal.CalendarEvent#viewNotPresentViaAgendaView">
 			<var name="eventNumber" value="6" />
 		</execute>
 	</command>
 
 	<command name="View24hourTimeFormat" priority="4">
-		<execute macro="CalendarScheduler#viewFirstHour">
+		<execute macro="Portal.CalendarScheduler#viewFirstHour">
 			<var name="firstHour" value="12am" />
 		</execute>
 
-		<execute macro="CalendarScheduler#viewLastHour">
+		<execute macro="Portal.CalendarScheduler#viewLastHour">
 			<var name="lastHour" value="11pm" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoAddEvent" />
+		<execute macro="Portal.CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="CalendarEvent#editTitle">
+		<execute macro="Portal.CalendarEvent#editTitle">
 			<var name="eventTitle" value="Calendar Event Title" />
 		</execute>
 
-		<execute macro="CalendarEvent#setDatesToday" />
+		<execute macro="Portal.CalendarEvent#setDatesToday" />
 
-		<execute macro="CalendarEvent#setTimes">
+		<execute macro="Portal.CalendarEvent#setTimes">
 			<var name="endDateTime" value="11:00 PM" />
 			<var name="startDateTime" value="09:00 PM" />
 		</execute>
 
-		<execute macro="CalendarEvent#publish" />
+		<execute macro="Portal.CalendarEvent#publish" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoConfiguration" />
+		<execute macro="Portal.CalendarNavigator#gotoConfiguration" />
 
-		<execute macro="CalendarConfiguration#selectTimeFormat">
+		<execute macro="Portal.CalendarConfiguration#selectTimeFormat">
 			<var name="timeFormat" value="24 Hour" />
 		</execute>
 
-		<execute macro="CalendarConfiguration#save" />
+		<execute macro="Portal.CalendarConfiguration#save" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarScheduler#viewFirstHour">
+		<execute macro="Portal.CalendarScheduler#viewFirstHour">
 			<var name="firstHour" value="00:00" />
 		</execute>
 
-		<execute macro="CalendarScheduler#viewLastHour">
+		<execute macro="Portal.CalendarScheduler#viewLastHour">
 			<var name="lastHour" value="23:00" />
 		</execute>
 
-		<execute macro="CalendarScheduler#selectSpecificEvent">
+		<execute macro="Portal.CalendarScheduler#selectSpecificEvent">
 			<var name="eventTitle" value="Calendar Event Title" />
 		</execute>
 
-		<execute macro="CalendarScheduler#viewEventTimesViaDialogBox">
+		<execute macro="Portal.CalendarScheduler#viewEventTimesViaDialogBox">
 			<var name="endDateTime" value="23:00" />
 			<var name="startDateTime" value="21:00" />
 		</execute>
 
-		<execute macro="CalendarScheduler#gotoDetailsViaDialogBox" />
+		<execute macro="Portal.CalendarScheduler#gotoDetailsViaDialogBox" />
 
-		<execute macro="CalendarEvent#viewTimesViaDetails">
+		<execute macro="Portal.CalendarEvent#viewTimesViaDetails">
 			<var name="endDateTime" value="23:00" />
 			<var name="startDateTime" value="21:00" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoEditEvent">
+		<execute macro="Portal.CalendarNavigator#gotoEditEvent">
 			<var name="eventTitle" value="Calendar Event Title" />
 		</execute>
 
-		<execute macro="CalendarEvent#viewTimes24Hour">
+		<execute macro="Portal.CalendarEvent#viewTimes24Hour">
 			<var name="endDateTime" value="23:00" />
 			<var name="startDateTime" value="21:00" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoConfiguration" />
+		<execute macro="Portal.CalendarNavigator#gotoConfiguration" />
 
-		<execute macro="CalendarConfiguration#selectTimeFormat">
+		<execute macro="Portal.CalendarConfiguration#selectTimeFormat">
 			<var name="timeFormat" value="AM/PM" />
 		</execute>
 
-		<execute macro="CalendarConfiguration#save" />
+		<execute macro="Portal.CalendarConfiguration#save" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarScheduler#viewFirstHour">
+		<execute macro="Portal.CalendarScheduler#viewFirstHour">
 			<var name="firstHour" value="12am" />
 		</execute>
 
-		<execute macro="CalendarScheduler#viewLastHour">
+		<execute macro="Portal.CalendarScheduler#viewLastHour">
 			<var name="lastHour" value="11pm" />
 		</execute>
 
-		<execute macro="CalendarScheduler#selectSpecificEvent">
+		<execute macro="Portal.CalendarScheduler#selectSpecificEvent">
 			<var name="eventTitle" value="Calendar Event Title" />
 		</execute>
 
-		<execute macro="CalendarScheduler#viewEventTimesViaDialogBox">
+		<execute macro="Portal.CalendarScheduler#viewEventTimesViaDialogBox">
 			<var name="endDateTime" value="11:00pm" />
 			<var name="startDateTime" value="9:00pm" />
 		</execute>
 
-		<execute macro="CalendarScheduler#gotoDetailsViaDialogBox" />
+		<execute macro="Portal.CalendarScheduler#gotoDetailsViaDialogBox" />
 
-		<execute macro="CalendarEvent#viewTimesViaDetails">
+		<execute macro="Portal.CalendarEvent#viewTimesViaDetails">
 			<var name="endDateTime" value="11:00 PM" />
 			<var name="startDateTime" value="09:00 PM" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoEditEvent">
+		<execute macro="Portal.CalendarNavigator#gotoEditEvent">
 			<var name="eventTitle" value="Calendar Event Title" />
 		</execute>
 
-		<execute macro="CalendarEvent#viewTimes">
+		<execute macro="Portal.CalendarEvent#viewTimes">
 			<var name="endDateTime" value="11:00 PM" />
 			<var name="startDateTime" value="09:00 PM" />
 		</execute>
@@ -356,37 +356,37 @@
 		<property name="portal.acceptance" value="quarantine" />
 		<property name="test.name.skip.portal.instance" value="CalendarConfiguration#ViewCalendarTimeZoneDefaults" />
 
-		<execute macro="UserBar#gotoMyAccount" />
+		<execute macro="Portal.UserBar#gotoMyAccount" />
 
-		<execute macro="User#editUserDisplaySettingsTimeZonePacific">
+		<execute macro="Portal.User#editUserDisplaySettingsTimeZonePacific">
 			<var name="displaySettingsGreeting" value="Welcome Test Test!" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>
 
-		<execute macro="PortalSettings#configureTimeZone">
+		<execute macro="Portal.PortalSettings#configureTimeZone">
 			<var name="timeZone" value="(UTC +08:00) China Standard Time" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoAddMyCalendars" />
+		<execute macro="Portal.CalendarNavigator#gotoAddMyCalendars" />
 
-		<execute macro="Calendar#viewSelectedTimeZone">
+		<execute macro="Portal.Calendar#viewSelectedTimeZone">
 			<var name="timeZone" value="(UTC -08:00) Pacific Standard Time" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoAddCurrentSiteCalendars" />
+		<execute macro="Portal.CalendarNavigator#gotoAddCurrentSiteCalendars" />
 
-		<execute macro="Calendar#viewSelectedTimeZone">
+		<execute macro="Portal.Calendar#viewSelectedTimeZone">
 			<var name="timeZone" value="(UTC +08:00) China Standard Time" />
 		</execute>
 	</command>
@@ -394,42 +394,42 @@
 	<command name="ViewEventDetailsAllDayWithModifiedUserTimeZone" priority="4">
 		<description message="This is a use case for LPS-51783." />
 
-		<execute macro="TestCase#getSiteName">
+		<execute macro="Portal.TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="UserBar#gotoMyAccount" />
+		<execute macro="Portal.UserBar#gotoMyAccount" />
 
-		<execute macro="User#editUserDisplaySettingsTimeZonePacific">
+		<execute macro="Portal.User#editUserDisplaySettingsTimeZonePacific">
 			<var name="displaySettingsGreeting" value="Welcome Test Test!" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoAddEvent" />
+		<execute macro="Portal.CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="CalendarEvent#editTitle">
+		<execute macro="Portal.CalendarEvent#editTitle">
 			<var name="eventTitle" value="Calendar Event All Day Title" />
 		</execute>
 
-		<execute macro="CalendarEvent#setAllDay" />
+		<execute macro="Portal.CalendarEvent#setAllDay" />
 
-		<execute macro="CalendarEvent#publish" />
+		<execute macro="Portal.CalendarEvent#publish" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarEvent#viewDetails">
+		<execute macro="Portal.CalendarEvent#viewDetails">
 			<var name="calendarName" value="${siteName}" />
 			<var name="eventTitle" value="Calendar Event All Day Title" />
 			<var name="eventType" value="All Day" />
 		</execute>
 
-		<execute macro="CalendarEvent#viewTimesViaDetails">
+		<execute macro="Portal.CalendarEvent#viewTimesViaDetails">
 			<var name="endDateTime" value="11:59 PM" />
 			<var name="startDateTime" value="12:00 AM" />
 		</execute>
@@ -440,43 +440,43 @@
 
 		<description message="This is a use case for 51127." />
 
-		<execute macro="CalendarNavigator#gotoConfiguration" />
+		<execute macro="Portal.CalendarNavigator#gotoConfiguration" />
 
-		<execute macro="CalendarConfiguration#selectWeekStartsOn">
+		<execute macro="Portal.CalendarConfiguration#selectWeekStartsOn">
 			<var name="weekStartDay" value="Monday" />
 		</execute>
 
-		<execute macro="CalendarConfiguration#save" />
+		<execute macro="Portal.CalendarConfiguration#save" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarScheduler#viewWeekStartDayViaWeekView">
+		<execute macro="Portal.CalendarScheduler#viewWeekStartDayViaWeekView">
 			<var name="weekStartDay" value="Mon" />
 		</execute>
 
-		<execute macro="Calendar#viewWeekStartDayViaMonthView">
+		<execute macro="Portal.Calendar#viewWeekStartDayViaMonthView">
 			<var name="weekStartDay" value="Mon" />
 		</execute>
 
-		<execute macro="Calendar#viewWeekStartDayViaSmallCalendar">
+		<execute macro="Portal.Calendar#viewWeekStartDayViaSmallCalendar">
 			<var name="weekStartDay" value="Mo" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoAddEvent" />
+		<execute macro="Portal.CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="Calendar#viewWeekStartDayViaAddEventMiniCalendar">
+		<execute macro="Portal.Calendar#viewWeekStartDayViaAddEventMiniCalendar">
 			<var name="weekStartDay" value="Mo" />
 		</execute>
 
-		<execute macro="CalendarEvent#gotoRepeatConfiguration" />
+		<execute macro="Portal.CalendarEvent#gotoRepeatConfiguration" />
 
-		<execute macro="CalendarEvent#selectRepeatFrequency">
+		<execute macro="Portal.CalendarEvent#selectRepeatFrequency">
 			<var name="frequency" value="Weekly" />
 		</execute>
 
-		<execute macro="CalendarEvent#viewRepeatWeekStartDay">
+		<execute macro="Portal.CalendarEvent#viewRepeatWeekStartDay">
 			<var name="weekStartDay" value="MO" />
 		</execute>
 	</command>
@@ -484,43 +484,43 @@
 	<command name="ViewWeekStartSaturday" priority="3">
 		<description message="This is a use case for 51127." />
 
-		<execute macro="CalendarNavigator#gotoConfiguration" />
+		<execute macro="Portal.CalendarNavigator#gotoConfiguration" />
 
-		<execute macro="CalendarConfiguration#selectWeekStartsOn">
+		<execute macro="Portal.CalendarConfiguration#selectWeekStartsOn">
 			<var name="weekStartDay" value="Saturday" />
 		</execute>
 
-		<execute macro="CalendarConfiguration#save" />
+		<execute macro="Portal.CalendarConfiguration#save" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarScheduler#viewWeekStartDayViaWeekView">
+		<execute macro="Portal.CalendarScheduler#viewWeekStartDayViaWeekView">
 			<var name="weekStartDay" value="Sat" />
 		</execute>
 
-		<execute macro="Calendar#viewWeekStartDayViaMonthView">
+		<execute macro="Portal.Calendar#viewWeekStartDayViaMonthView">
 			<var name="weekStartDay" value="Sat" />
 		</execute>
 
-		<execute macro="Calendar#viewWeekStartDayViaSmallCalendar">
+		<execute macro="Portal.Calendar#viewWeekStartDayViaSmallCalendar">
 			<var name="weekStartDay" value="Sa" />
 		</execute>
 
-		<execute macro="CalendarNavigator#gotoAddEvent" />
+		<execute macro="Portal.CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="Calendar#viewWeekStartDayViaAddEventMiniCalendar">
+		<execute macro="Portal.Calendar#viewWeekStartDayViaAddEventMiniCalendar">
 			<var name="weekStartDay" value="Sa" />
 		</execute>
 
-		<execute macro="CalendarEvent#gotoRepeatConfiguration" />
+		<execute macro="Portal.CalendarEvent#gotoRepeatConfiguration" />
 
-		<execute macro="CalendarEvent#selectRepeatFrequency">
+		<execute macro="Portal.CalendarEvent#selectRepeatFrequency">
 			<var name="frequency" value="Weekly" />
 		</execute>
 
-		<execute macro="CalendarEvent#viewRepeatWeekStartDay">
+		<execute macro="Portal.CalendarEvent#viewRepeatWeekStartDay">
 			<var name="weekStartDay" value="SA" />
 		</execute>
 	</command>

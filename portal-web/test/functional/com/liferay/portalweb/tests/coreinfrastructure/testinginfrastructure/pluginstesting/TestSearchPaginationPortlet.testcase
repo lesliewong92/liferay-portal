@@ -5,27 +5,27 @@
 	<property name="portlet.plugins.includes" value="sample-service-builder-portlet" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 	</set-up>
 
 	<tear-down>
-		<execute macro="Page#tearDownPG" />
+		<execute macro="Portal.Page#tearDownPG" />
 	</tear-down>
 
 	<command name="SearchAndViewPagination" priority="4">
 		<description message="This is a use case for LPS-65608." />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Sample Service Builder Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Sample Service Builder" />
 		</execute>
 
-		<execute macro="TestSearchPaginationPortlet#search15Results">
+		<execute macro="Portal.TestSearchPaginationPortlet#search15Results">
 			<var name="itemsPerPage" value="5" />
 		</execute>
 	</command>

@@ -5,11 +5,11 @@
 	<property name="testray.main.component.name" value="Upgrades Foundation" />
 
 	<set-up>
-		<execute macro="SignIn#signIn" />
+		<execute macro="Portal.SignIn#signIn" />
 
-		<execute macro="Smoke#viewWelcomePage" />
+		<execute macro="Portal.Smoke#viewWelcomePage" />
 
-		<execute macro="Upgrade#reindexSearches" />
+		<execute macro="Portal.Upgrade#reindexSearches" />
 	</set-up>
 
 	<command name="ViewPortalSmokeArchive6012" priority="5">
@@ -17,9 +17,9 @@
 		<property name="portal.version" value="6.0.12" />
 		<property name="test.assert.warning.exceptions" value="true" />
 
-		<execute macro="Upgrade#viewUpgrade" />
+		<execute macro="Portal.Upgrade#viewUpgrade" />
 
-		<execute macro="Upgrade#searchForAssetsAfterUpgrade" />
+		<execute macro="Portal.Upgrade#searchForAssetsAfterUpgrade" />
 	</command>
 
 	<command name="ViewPortalSmokeArchive612" priority="5">
@@ -28,9 +28,9 @@
 		<property name="portal.version" value="6.1.2" />
 		<property name="test.assert.warning.exceptions" value="true" />
 
-		<execute macro="Upgrade#viewUpgrade" />
+		<execute macro="Portal.Upgrade#viewUpgrade" />
 
-		<execute macro="Upgrade#searchForAssetsAfterUpgrade" />
+		<execute macro="Portal.Upgrade#searchForAssetsAfterUpgrade" />
 	</command>
 
 	<command name="ViewPortalSmokeArchive6130" priority="5">
@@ -39,9 +39,9 @@
 		<property name="portal.version" value="6.1.30" />
 		<property name="test.assert.warning.exceptions" value="true" />
 
-		<execute macro="Upgrade#viewUpgrade" />
+		<execute macro="Portal.Upgrade#viewUpgrade" />
 
-		<execute macro="Upgrade#searchForAssetsAfterUpgrade" />
+		<execute macro="Portal.Upgrade#searchForAssetsAfterUpgrade" />
 	</command>
 
 	<command name="ViewPortalSmokeArchive621015" priority="5">
@@ -50,9 +50,9 @@
 		<property name="portal.version" value="6.2.10.15" />
 		<property name="test.assert.warning.exceptions" value="true" />
 
-		<execute macro="Upgrade#viewUpgrade" />
+		<execute macro="Portal.Upgrade#viewUpgrade" />
 
-		<execute macro="Upgrade#searchForAssetsAfterUpgrade" />
+		<execute macro="Portal.Upgrade#searchForAssetsAfterUpgrade" />
 	</command>
 
 	<command name="ViewPortalSmokeArchive623" priority="5">
@@ -61,9 +61,9 @@
 		<property name="portal.version" value="6.2.3" />
 		<property name="test.assert.warning.exceptions" value="true" />
 
-		<execute macro="Upgrade#viewUpgrade" />
+		<execute macro="Portal.Upgrade#viewUpgrade" />
 
-		<execute macro="Upgrade#searchForAssetsAfterUpgrade" />
+		<execute macro="Portal.Upgrade#searchForAssetsAfterUpgrade" />
 	</command>
 
 	<command name="ViewPortalSmokeArchive625" priority="5">
@@ -72,8 +72,8 @@
 		<property name="portal.version" value="6.2.5" />
 		<property name="test.assert.warning.exceptions" value="true" />
 
-		<execute macro="Upgrade#viewUpgrade" />
+		<execute macro="Portal.Upgrade#viewUpgrade" />
 
-		<execute macro="Upgrade#searchForAssetsAfterUpgrade" />
+		<execute macro="Portal.Upgrade#searchForAssetsAfterUpgrade" />
 	</command>
 </definition>

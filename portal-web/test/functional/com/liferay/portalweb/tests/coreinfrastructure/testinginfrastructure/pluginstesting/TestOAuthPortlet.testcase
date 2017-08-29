@@ -6,45 +6,45 @@
 	<property name="test.run.environment" value="EE" />
 
 	<set-up>
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 	</set-up>
 
 	<tear-down>
-		<execute macro="Page#tearDownPG" />
+		<execute macro="Portal.Page#tearDownPG" />
 	</tear-down>
 
 	<command name="ViewOAuth" priority="4">
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="OAuth Admin" />
 		</execute>
 
-		<execute macro="TestOAuth#addApplication">
+		<execute macro="Portal.TestOAuth#addApplication">
 			<var name="applicationName" value="oauth1" />
 			<var name="callbackURI" value="http://localhost:8080" />
 			<var name="websiteURL" value="http://www.liferay.com" />
 		</execute>
 
-		<execute macro="TestOAuth#getConsumerKeyAndSecret">
+		<execute macro="Portal.TestOAuth#getConsumerKeyAndSecret">
 			<return from="consumerKey" name="consumerKey" />
 			<return from="consumerSecret" name="consumerSecret" />
 			<var name="applicationName" value="oauth1" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Test Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Test OAuth" />
 		</execute>
 
-		<execute macro="TestOAuth#testConsumerKeyAndSecret">
+		<execute macro="Portal.TestOAuth#testConsumerKeyAndSecret">
 			<var name="consumerKey" value="${consumerKey}" />
 			<var name="consumerSecret" value="${consumerSecret}" />
 			<var name="webID" value="liferay.com" />
 		</execute>
 
-		<execute macro="TestOAuth#viewJSON">
+		<execute macro="Portal.TestOAuth#viewJSON">
 			<var name="domainName" value="liferay.com" />
 		</execute>
 	</command>

@@ -8,48 +8,48 @@
 	<var name="portletName" value="Wiki" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Wiki Test Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Wiki Test Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Wiki" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#addCP">
+		<execute macro="Portal.User#addCP">
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userFirstName" value="userfn" />
 			<var name="userLastName" value="userln" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#editPasswordCP">
+		<execute macro="Portal.User#editPasswordCP">
 			<var name="password" value="password" />
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#assignRegularRoleCP">
+		<execute macro="Portal.User#assignRegularRoleCP">
 			<var name="roleTitle" value="Administrator" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
@@ -61,170 +61,170 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="WikiPortlet#tearDownCP" />
+				<execute macro="Portal.WikiPortlet#tearDownCP" />
 
-				<execute macro="WikiPage#tearDownCP" />
+				<execute macro="Portal.WikiPage#tearDownCP" />
 
-				<execute macro="WikiNode#tearDownCP" />
+				<execute macro="Portal.WikiNode#tearDownCP" />
 
-				<execute macro="Page#tearDownPG" />
+				<execute macro="Portal.Page#tearDownPG" />
 
-				<execute macro="User#tearDownCP" />
+				<execute macro="Portal.User#tearDownCP" />
 			</else>
 		</if>
 	</tear-down>
 
 	<command name="ViewWebsiteNotificationForNewWikiPage" priority="4">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Wiki" />
 		</execute>
 
-		<execute macro="WikiPortlet#subscribeToNodeCP">
+		<execute macro="Portal.WikiPortlet#subscribeToNodeCP">
 			<var name="wikiNodeName" value="Main" />
 		</execute>
 
-		<execute macro="Notifications#viewBadgeCount">
+		<execute macro="Portal.Notifications#viewBadgeCount">
 			<var name="notificationCount" value="0" />
 		</execute>
 
-		<execute macro="User#logoutPG" />
+		<execute macro="Portal.User#logoutPG" />
 
-		<execute macro="User#loginUserPG">
+		<execute macro="Portal.User#loginUserPG">
 			<var name="password" value="test" />
 			<var name="userEmailAddress" value="userea@liferay.com" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Wiki Test Page" />
 		</execute>
 
-		<execute macro="WikiNavigator#gotoAllPagesPG" />
+		<execute macro="Portal.WikiNavigator#gotoAllPagesPG" />
 
-		<execute macro="WikiPage#addPG">
+		<execute macro="Portal.WikiPage#addPG">
 			<var name="wikiPageContent" value="Wiki Page Content" />
 			<var name="wikiPageTitle" value="Wiki Page Title" />
 		</execute>
 
-		<execute macro="Notifications#viewBadgeCount">
+		<execute macro="Portal.Notifications#viewBadgeCount">
 			<var name="notificationCount" value="0" />
 		</execute>
 
-		<execute macro="User#logoutPG" />
+		<execute macro="Portal.User#logoutPG" />
 
-		<execute macro="User#loginUserPG">
+		<execute macro="Portal.User#loginUserPG">
 			<var name="password" value="test" />
 			<var name="userEmailAddress" value="test@liferay.com" />
 		</execute>
 
-		<execute macro="Notifications#viewBadgeCount">
+		<execute macro="Portal.Notifications#viewBadgeCount">
 			<var name="notificationCount" value="1" />
 		</execute>
 
-		<execute macro="Notifications#gotoNotifications" />
+		<execute macro="Portal.Notifications#gotoNotifications" />
 
-		<execute macro="Notifications#viewNewContent">
+		<execute macro="Portal.Notifications#viewNewContent">
 			<var name="assetType" value="wiki page" />
 			<var name="contentBody" value="Wiki Page Title" />
 			<var name="user" value="userfn userln" />
 		</execute>
 
-		<execute macro="Notifications#navigateToContent">
+		<execute macro="Portal.Notifications#navigateToContent">
 			<var name="contentBody" value="Wiki Page Title" />
 		</execute>
 
-		<execute macro="WikiPage#viewPG">
+		<execute macro="Portal.WikiPage#viewPG">
 			<var name="wikiPageContent" value="Wiki Page Content" />
 			<var name="wikiPageTitle" value="Wiki Page Title" />
 		</execute>
 
-		<execute macro="Notifications#viewBadgeCount">
+		<execute macro="Portal.Notifications#viewBadgeCount">
 			<var name="notificationCount" value="0" />
 		</execute>
 	</command>
 
 	<command name="ViewWebsiteNotificationForUpdatedWikiPage" priority="4">
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Wiki Test Page" />
 		</execute>
 
-		<execute macro="WikiNavigator#gotoAllPagesPG" />
+		<execute macro="Portal.WikiNavigator#gotoAllPagesPG" />
 
-		<execute macro="WikiPage#addPG">
+		<execute macro="Portal.WikiPage#addPG">
 			<var name="wikiPageContent" value="Wiki Page Content" />
 			<var name="wikiPageTitle" value="Wiki Page Title" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Wiki" />
 		</execute>
 
-		<execute macro="WikiPortlet#subscribeToNodeCP">
+		<execute macro="Portal.WikiPortlet#subscribeToNodeCP">
 			<var name="wikiNodeName" value="Main" />
 		</execute>
 
-		<execute macro="Notifications#viewBadgeCount">
+		<execute macro="Portal.Notifications#viewBadgeCount">
 			<var name="notificationCount" value="0" />
 		</execute>
 
-		<execute macro="User#logoutPG" />
+		<execute macro="Portal.User#logoutPG" />
 
-		<execute macro="User#loginUserPG">
+		<execute macro="Portal.User#loginUserPG">
 			<var name="password" value="test" />
 			<var name="userEmailAddress" value="userea@liferay.com" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Wiki Test Page" />
 		</execute>
 
-		<execute macro="WikiNavigator#gotoAllPagesPG" />
+		<execute macro="Portal.WikiNavigator#gotoAllPagesPG" />
 
-		<execute macro="WikiPage#editPagePG">
+		<execute macro="Portal.WikiPage#editPagePG">
 			<var name="wikiPageContent" value="Wiki Page Content" />
 			<var name="wikiPageContentEdit" value="Wiki Page Content Edit" />
 			<var name="wikiPageTitle" value="Wiki Page Title" />
 		</execute>
 
-		<execute macro="Notifications#viewBadgeCount">
+		<execute macro="Portal.Notifications#viewBadgeCount">
 			<var name="notificationCount" value="0" />
 		</execute>
 
-		<execute macro="User#logoutPG" />
+		<execute macro="Portal.User#logoutPG" />
 
-		<execute macro="User#loginUserPG">
+		<execute macro="Portal.User#loginUserPG">
 			<var name="password" value="test" />
 			<var name="userEmailAddress" value="test@liferay.com" />
 		</execute>
 
-		<execute macro="Notifications#viewBadgeCount">
+		<execute macro="Portal.Notifications#viewBadgeCount">
 			<var name="notificationCount" value="1" />
 		</execute>
 
-		<execute macro="Notifications#gotoNotifications" />
+		<execute macro="Portal.Notifications#gotoNotifications" />
 
-		<execute macro="Notifications#viewUpdatedContent">
+		<execute macro="Portal.Notifications#viewUpdatedContent">
 			<var name="assetType" value="wiki page" />
 			<var name="contentBody" value="Wiki Page Title" />
 			<var name="user" value="userfn userln" />
 		</execute>
 
-		<execute macro="Notifications#navigateToContent">
+		<execute macro="Portal.Notifications#navigateToContent">
 			<var name="contentBody" value="Wiki Page Title" />
 		</execute>
 
-		<execute macro="WikiPage#viewPG">
+		<execute macro="Portal.WikiPage#viewPG">
 			<var name="wikiPageContent" value="Wiki Page Content Edit" />
 			<var name="wikiPageTitle" value="Wiki Page Title" />
 		</execute>
 
-		<execute macro="Notifications#viewBadgeCount">
+		<execute macro="Portal.Notifications#viewBadgeCount">
 			<var name="notificationCount" value="0" />
 		</execute>
 	</command>

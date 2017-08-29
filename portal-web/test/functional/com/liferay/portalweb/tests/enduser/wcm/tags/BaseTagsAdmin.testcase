@@ -5,11 +5,11 @@
 	<property name="testray.main.component.name" value="Tags" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Tags" />
 		</execute>
 	</set-up>
@@ -20,24 +20,24 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="Tag#tearDownCP" />
+				<execute macro="Portal.Tag#tearDownCP" />
 			</else>
 		</if>
 	</tear-down>
 
 	<command name="CannotAddEmptyTag" priority="4">
-		<execute macro="Tag#addWithNullTitleCP">
+		<execute macro="Portal.Tag#addWithNullTitleCP">
 			<var name="tagName" value=" " />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Tags" />
 		</execute>
 
-		<execute macro="Portlet#viewEmptyMessage">
+		<execute macro="Portal.Portlet#viewEmptyMessage">
 			<var name="message" value="There are no tags." />
 		</execute>
 	</command>
@@ -50,7 +50,7 @@
 				<equals arg1="${index}" arg2="10" />
 			</not>
 			<then>
-				<execute macro="Tag#addCP">
+				<execute macro="Portal.Tag#addCP">
 					<var name="tagName" value="tagname0${index}" />
 				</execute>
 
@@ -63,7 +63,7 @@
 				<equals arg1="${index}" arg2="26" />
 			</not>
 			<then>
-				<execute macro="Tag#addCP">
+				<execute macro="Portal.Tag#addCP">
 					<var name="tagName" value="tagname${index}" />
 				</execute>
 
@@ -73,15 +73,15 @@
 
 		<execute function="AssertTextEquals" locator1="Pagination#ITEMS_PER_PAGE_SELECT" value1="20 Entries" />
 
-		<execute macro="Pagination#viewResults">
+		<execute macro="Portal.Pagination#viewResults">
 			<var name="results" value="Showing 1 to 20 of 25 entries." />
 		</execute>
 
-		<execute macro="Pagination#changePagination">
+		<execute macro="Portal.Pagination#changePagination">
 			<var name="itemsPerPage" value="5" />
 		</execute>
 
-		<execute macro="Pagination#viewResults">
+		<execute macro="Portal.Pagination#viewResults">
 			<var name="results" value="Showing 1 to 5 of 25 entries." />
 		</execute>
 	</command>
