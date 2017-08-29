@@ -8,56 +8,56 @@
 	<var name="portletName" value="Documents and Media" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Documents and Media" />
 		</execute>
 
-		<execute macro="DMDocument#enableActionsMenuOnPortlet" />
+		<execute macro="Portal.DMDocument#enableActionsMenuOnPortlet" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute function="Click" locator1="Icon#DISPLAY_STYLE_DESCRIPTIVE" />
+		<execute function="Portal.Click" locator1="Icon#DISPLAY_STYLE_DESCRIPTIVE" />
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#addCP">
+		<execute macro="Portal.User#addCP">
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userFirstName" value="userfn" />
 			<var name="userLastName" value="userln" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#editPasswordCP">
+		<execute macro="Portal.User#editPasswordCP">
 			<var name="password" value="password" />
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#assignRegularRoleCP">
+		<execute macro="Portal.User#assignRegularRoleCP">
 			<var name="roleTitle" value="Administrator" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
@@ -69,342 +69,342 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="DMDocument#tearDownCP" />
+				<execute macro="Portal.DMDocument#tearDownCP" />
 
-				<execute macro="Page#tearDownPG" />
+				<execute macro="Portal.Page#tearDownPG" />
 
-				<execute macro="NotificationsPortlet#tearDownUserDeliveries" />
+				<execute macro="Portal.NotificationsPortlet#tearDownUserDeliveries" />
 
-				<execute macro="User#tearDownCP" />
+				<execute macro="Portal.User#tearDownCP" />
 			</else>
 		</if>
 	</tear-down>
 
 	<command name="ViewNoWebsiteNotificationForNewDocumentInFolder" priority="4">
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute macro="NotificationsPortlet#gotoNotificationDelivery">
+		<execute macro="Portal.NotificationsPortlet#gotoNotificationDelivery">
 			<var name="notificationCount" value="0" />
 		</execute>
 
-		<execute macro="IFrame#selectConfigurationFrame" />
+		<execute macro="Portal.IFrame#selectConfigurationFrame" />
 
-		<execute macro="NotificationsPortlet#disableUserDeliveries">
+		<execute macro="Portal.NotificationsPortlet#disableUserDeliveries">
 			<var name="actionType" value="Adds" />
 			<var name="contentType" value="Documents and Media" />
 			<var name="notificationType" value="Website" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute macro="DMFolder#addPG">
+		<execute macro="Portal.DMFolder#addPG">
 			<var name="dmFolderDescription" value="DM Folder Description" />
 			<var name="dmFolderName" value="DM Folder Name" />
 		</execute>
 
-		<execute macro="DMPortlet#setDescriptiveView" />
+		<execute macro="Portal.DMPortlet#setDescriptiveView" />
 
-		<execute macro="DMNavigator#gotoFolder">
+		<execute macro="Portal.DMNavigator#gotoFolder">
 			<var name="dmFolderName" value="DM Folder Name" />
 		</execute>
 
-		<execute macro="DMFolder#subscribePG" />
+		<execute macro="Portal.DMFolder#subscribePG" />
 
-		<execute macro="Notifications#viewBadgeCount">
+		<execute macro="Portal.Notifications#viewBadgeCount">
 			<var name="notificationCount" value="0" />
 		</execute>
 
-		<execute macro="User#logoutPG" />
+		<execute macro="Portal.User#logoutPG" />
 
-		<execute macro="User#loginUserPG">
+		<execute macro="Portal.User#loginUserPG">
 			<var name="password" value="test" />
 			<var name="userEmailAddress" value="userea@liferay.com" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute macro="DMPortlet#setDescriptiveView" />
+		<execute macro="Portal.DMPortlet#setDescriptiveView" />
 
-		<execute macro="DMNavigator#gotoFolder">
+		<execute macro="Portal.DMNavigator#gotoFolder">
 			<var name="dmFolderName" value="DM Folder Name" />
 		</execute>
 
-		<execute macro="DMDocument#addPG">
+		<execute macro="Portal.DMDocument#addPG">
 			<var name="dmDocumentDescription" value="DM Document Description" />
 			<var name="dmDocumentFile" value="Document_1.docx" />
 			<var name="dmDocumentTitle" value="DM Document Title" />
 		</execute>
 
-		<execute macro="Notifications#viewBadgeCount">
+		<execute macro="Portal.Notifications#viewBadgeCount">
 			<var name="notificationCount" value="0" />
 		</execute>
 
-		<execute macro="User#logoutPG" />
+		<execute macro="Portal.User#logoutPG" />
 
-		<execute macro="User#loginUserPG">
+		<execute macro="Portal.User#loginUserPG">
 			<var name="password" value="test" />
 			<var name="userEmailAddress" value="test@liferay.com" />
 		</execute>
 
-		<execute macro="Notifications#viewBadgeCount">
+		<execute macro="Portal.Notifications#viewBadgeCount">
 			<var name="notificationCount" value="0" />
 		</execute>
 	</command>
 
 	<command name="ViewNoWebsiteNotificationForUpdatedDocumentInFolder" priority="4">
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute macro="NotificationsPortlet#gotoNotificationDelivery">
+		<execute macro="Portal.NotificationsPortlet#gotoNotificationDelivery">
 			<var name="notificationCount" value="0" />
 		</execute>
 
-		<execute macro="IFrame#selectConfigurationFrame" />
+		<execute macro="Portal.IFrame#selectConfigurationFrame" />
 
-		<execute macro="NotificationsPortlet#disableUserDeliveries">
+		<execute macro="Portal.NotificationsPortlet#disableUserDeliveries">
 			<var name="actionType" value="Updates" />
 			<var name="contentType" value="Documents and Media" />
 			<var name="notificationType" value="Website" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute macro="DMFolder#addPG">
+		<execute macro="Portal.DMFolder#addPG">
 			<var name="dmFolderDescription" value="DM Folder Description" />
 			<var name="dmFolderName" value="DM Folder Name" />
 		</execute>
 
-		<execute macro="DMPortlet#setDescriptiveView" />
+		<execute macro="Portal.DMPortlet#setDescriptiveView" />
 
-		<execute macro="DMNavigator#gotoFolder">
+		<execute macro="Portal.DMNavigator#gotoFolder">
 			<var name="dmFolderName" value="DM Folder Name" />
 		</execute>
 
-		<execute macro="DMFolder#subscribePG" />
+		<execute macro="Portal.DMFolder#subscribePG" />
 
-		<execute macro="DMDocument#addPG">
+		<execute macro="Portal.DMDocument#addPG">
 			<var name="dmDocumentDescription" value="DM Document Description" />
 			<var name="dmDocumentFile" value="Document_1.docx" />
 			<var name="dmDocumentTitle" value="DM Document Title" />
 		</execute>
 
-		<execute macro="Notifications#viewBadgeCount">
+		<execute macro="Portal.Notifications#viewBadgeCount">
 			<var name="notificationCount" value="0" />
 		</execute>
 
-		<execute macro="User#logoutPG" />
+		<execute macro="Portal.User#logoutPG" />
 
-		<execute macro="User#loginUserPG">
+		<execute macro="Portal.User#loginUserPG">
 			<var name="password" value="test" />
 			<var name="userEmailAddress" value="userea@liferay.com" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute macro="DMPortlet#setDescriptiveView" />
+		<execute macro="Portal.DMPortlet#setDescriptiveView" />
 
-		<execute macro="DMNavigator#gotoFolder">
+		<execute macro="Portal.DMNavigator#gotoFolder">
 			<var name="dmFolderName" value="DM Folder Name" />
 		</execute>
 
-		<execute macro="DMDocument#editPG">
+		<execute macro="Portal.DMDocument#editPG">
 			<var name="dmDocumentTitle" value="DM Document Title" />
 			<var name="dmDocumentTitleEdit" value="DM Document Title Edit" />
 		</execute>
 
-		<execute macro="Notifications#viewBadgeCount">
+		<execute macro="Portal.Notifications#viewBadgeCount">
 			<var name="notificationCount" value="0" />
 		</execute>
 
-		<execute macro="User#logoutPG" />
+		<execute macro="Portal.User#logoutPG" />
 
-		<execute macro="User#loginUserPG">
+		<execute macro="Portal.User#loginUserPG">
 			<var name="password" value="test" />
 			<var name="userEmailAddress" value="test@liferay.com" />
 		</execute>
 
-		<execute macro="Notifications#viewBadgeCount">
+		<execute macro="Portal.Notifications#viewBadgeCount">
 			<var name="notificationCount" value="0" />
 		</execute>
 	</command>
 
 	<command name="ViewWebsiteNotificationForNewDocumentInFolder" priority="4">
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute macro="DMFolder#addPG">
+		<execute macro="Portal.DMFolder#addPG">
 			<var name="dmFolderDescription" value="DM Folder Description" />
 			<var name="dmFolderName" value="DM Folder Name" />
 		</execute>
 
-		<execute macro="DMPortlet#setDescriptiveView" />
+		<execute macro="Portal.DMPortlet#setDescriptiveView" />
 
-		<execute macro="DMNavigator#gotoFolder">
+		<execute macro="Portal.DMNavigator#gotoFolder">
 			<var name="dmFolderName" value="DM Folder Name" />
 		</execute>
 
-		<execute macro="DMFolder#subscribePG" />
+		<execute macro="Portal.DMFolder#subscribePG" />
 
-		<execute macro="Notifications#viewBadgeCount">
+		<execute macro="Portal.Notifications#viewBadgeCount">
 			<var name="notificationCount" value="0" />
 		</execute>
 
-		<execute macro="User#logoutPG" />
+		<execute macro="Portal.User#logoutPG" />
 
-		<execute macro="User#loginUserPG">
+		<execute macro="Portal.User#loginUserPG">
 			<var name="password" value="test" />
 			<var name="userEmailAddress" value="userea@liferay.com" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute macro="DMPortlet#setDescriptiveView" />
+		<execute macro="Portal.DMPortlet#setDescriptiveView" />
 
-		<execute macro="DMNavigator#gotoFolder">
+		<execute macro="Portal.DMNavigator#gotoFolder">
 			<var name="dmFolderName" value="DM Folder Name" />
 		</execute>
 
-		<execute macro="DMDocument#addPG">
+		<execute macro="Portal.DMDocument#addPG">
 			<var name="dmDocumentDescription" value="DM Document Description" />
 			<var name="dmDocumentFile" value="Document_1.docx" />
 			<var name="dmDocumentTitle" value="DM Document Title" />
 		</execute>
 
-		<execute macro="Notifications#viewBadgeCount">
+		<execute macro="Portal.Notifications#viewBadgeCount">
 			<var name="notificationCount" value="0" />
 		</execute>
 
-		<execute macro="User#logoutPG" />
+		<execute macro="Portal.User#logoutPG" />
 
-		<execute macro="User#loginUserPG">
+		<execute macro="Portal.User#loginUserPG">
 			<var name="password" value="test" />
 			<var name="userEmailAddress" value="test@liferay.com" />
 		</execute>
 
-		<execute macro="Notifications#viewBadgeCount">
+		<execute macro="Portal.Notifications#viewBadgeCount">
 			<var name="notificationCount" value="1" />
 		</execute>
 
-		<execute macro="Notifications#gotoNotifications" />
+		<execute macro="Portal.Notifications#gotoNotifications" />
 
-		<execute macro="Notifications#viewNewContent">
+		<execute macro="Portal.Notifications#viewNewContent">
 			<var name="assetType" value="document" />
 			<var name="contentBody" value="DM Document Title" />
 			<var name="user" value="userfn userln" />
 		</execute>
 
-		<execute macro="Notifications#navigateToContent">
+		<execute macro="Portal.Notifications#navigateToContent">
 			<var name="contentBody" value="DM Document Title" />
 		</execute>
 
-		<execute macro="DMDocument#viewDocumentTitleCmdPG">
+		<execute macro="Portal.DMDocument#viewDocumentTitleCmdPG">
 			<var name="dmDocumentTitle" value="DM Document Title" />
 		</execute>
 
-		<execute macro="Notifications#viewBadgeCount">
+		<execute macro="Portal.Notifications#viewBadgeCount">
 			<var name="notificationCount" value="0" />
 		</execute>
 	</command>
 
 	<command name="ViewWebsiteNotificationForUpdatedDocumentInFolder" priority="4">
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute macro="DMFolder#addPG">
+		<execute macro="Portal.DMFolder#addPG">
 			<var name="dmFolderDescription" value="DM Folder Description" />
 			<var name="dmFolderName" value="DM Folder Name" />
 		</execute>
 
-		<execute macro="DMPortlet#setDescriptiveView" />
+		<execute macro="Portal.DMPortlet#setDescriptiveView" />
 
-		<execute macro="DMNavigator#gotoFolder">
+		<execute macro="Portal.DMNavigator#gotoFolder">
 			<var name="dmFolderName" value="DM Folder Name" />
 		</execute>
 
-		<execute macro="DMFolder#subscribePG" />
+		<execute macro="Portal.DMFolder#subscribePG" />
 
-		<execute macro="DMDocument#addPG">
+		<execute macro="Portal.DMDocument#addPG">
 			<var name="dmDocumentDescription" value="DM Document Description" />
 			<var name="dmDocumentFile" value="Document_1.docx" />
 			<var name="dmDocumentTitle" value="DM Document Title" />
 		</execute>
 
-		<execute macro="Notifications#viewBadgeCount">
+		<execute macro="Portal.Notifications#viewBadgeCount">
 			<var name="notificationCount" value="0" />
 		</execute>
 
-		<execute macro="User#logoutPG" />
+		<execute macro="Portal.User#logoutPG" />
 
-		<execute macro="User#loginUserPG">
+		<execute macro="Portal.User#loginUserPG">
 			<var name="password" value="test" />
 			<var name="userEmailAddress" value="userea@liferay.com" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute macro="DMPortlet#setDescriptiveView" />
+		<execute macro="Portal.DMPortlet#setDescriptiveView" />
 
-		<execute macro="DMNavigator#gotoFolder">
+		<execute macro="Portal.DMNavigator#gotoFolder">
 			<var name="dmFolderName" value="DM Folder Name" />
 		</execute>
 
-		<execute macro="DMDocument#editPG">
+		<execute macro="Portal.DMDocument#editPG">
 			<var name="dmDocumentTitle" value="DM Document Title" />
 			<var name="dmDocumentTitleEdit" value="DM Document Title Edit" />
 		</execute>
 
-		<execute macro="Notifications#viewBadgeCount">
+		<execute macro="Portal.Notifications#viewBadgeCount">
 			<var name="notificationCount" value="0" />
 		</execute>
 
-		<execute macro="User#logoutPG" />
+		<execute macro="Portal.User#logoutPG" />
 
-		<execute macro="User#loginUserPG">
+		<execute macro="Portal.User#loginUserPG">
 			<var name="password" value="test" />
 			<var name="userEmailAddress" value="test@liferay.com" />
 		</execute>
 
-		<execute macro="Notifications#viewBadgeCount">
+		<execute macro="Portal.Notifications#viewBadgeCount">
 			<var name="notificationCount" value="1" />
 		</execute>
 
-		<execute macro="Notifications#gotoNotifications" />
+		<execute macro="Portal.Notifications#gotoNotifications" />
 
-		<execute macro="Notifications#viewUpdatedContent">
+		<execute macro="Portal.Notifications#viewUpdatedContent">
 			<var name="assetType" value="document" />
 			<var name="contentBody" value="DM Document Title Edit" />
 			<var name="user" value="userfn userln" />
 		</execute>
 
-		<execute macro="Notifications#navigateToContent">
+		<execute macro="Portal.Notifications#navigateToContent">
 			<var name="contentBody" value="DM Document Title Edit" />
 		</execute>
 
-		<execute macro="DMDocument#viewDocumentTitleCmdPG">
+		<execute macro="Portal.DMDocument#viewDocumentTitleCmdPG">
 			<var name="dmDocumentTitle" value="DM Document Title Edit" />
 		</execute>
 
-		<execute macro="Notifications#viewBadgeCount">
+		<execute macro="Portal.Notifications#viewBadgeCount">
 			<var name="notificationCount" value="0" />
 		</execute>
 	</command>

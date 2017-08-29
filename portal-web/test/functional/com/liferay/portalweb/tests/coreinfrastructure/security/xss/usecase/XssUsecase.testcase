@@ -4,9 +4,9 @@
 	<property name="testray.main.component.name" value="XSS" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 	</set-up>
 
 	<tear-down>
@@ -15,12 +15,12 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="PortalSettings#tearDownAuthenticationCP" />
+				<execute macro="Portal.PortalSettings#tearDownAuthenticationCP" />
 
-				<execute macro="Page#tearDownPG" />
+				<execute macro="Portal.Page#tearDownPG" />
 			</else>
 		</if>
 	</tear-down>
@@ -54,108 +54,108 @@
 			]]>
 		</var>
 
-		<execute function="Open" locator1="${maliciousURL1}" />
+		<execute function="Portal.Open" locator1="${maliciousURL1}" />
 
-		<execute function="AssertTextEquals" locator1="Home#ERROR_MESSAGE_ALERT_ERROR" value1="Not Found" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="Home#ERROR_MESSAGE_RESOURCE_NOT_FOUND" value1="The requested resource could not be found." />
-		<execute function="AssertElementPresent" locator1="Home#URL_ERROR_MESSAGE" />
+		<execute function="Portal.AssertTextEquals" locator1="Home#ERROR_MESSAGE_ALERT_ERROR" value1="Not Found" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Home#ERROR_MESSAGE_RESOURCE_NOT_FOUND" value1="The requested resource could not be found." />
+		<execute function="Portal.AssertElementPresent" locator1="Home#URL_ERROR_MESSAGE" />
 
-		<execute function="Open" locator1="${maliciousURL2}" />
+		<execute function="Portal.Open" locator1="${maliciousURL2}" />
 
-		<execute function="AssertTextEquals" locator1="Home#ERROR_MESSAGE_ALERT_ERROR" value1="Not Found" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="Home#ERROR_MESSAGE_RESOURCE_NOT_FOUND" value1="The requested resource could not be found." />
-		<execute function="AssertElementPresent" locator1="Home#URL_ERROR_MESSAGE" />
+		<execute function="Portal.AssertTextEquals" locator1="Home#ERROR_MESSAGE_ALERT_ERROR" value1="Not Found" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Home#ERROR_MESSAGE_RESOURCE_NOT_FOUND" value1="The requested resource could not be found." />
+		<execute function="Portal.AssertElementPresent" locator1="Home#URL_ERROR_MESSAGE" />
 
-		<execute function="Open" locator1="${maliciousURL3}" />
+		<execute function="Portal.Open" locator1="${maliciousURL3}" />
 
-		<execute function="AssertTextEquals" locator1="Home#ERROR_MESSAGE_ALERT_ERROR" value1="Not Found" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="Home#ERROR_MESSAGE_RESOURCE_NOT_FOUND" value1="The requested resource could not be found." />
-		<execute function="AssertElementPresent" locator1="Home#URL_ERROR_MESSAGE" />
+		<execute function="Portal.AssertTextEquals" locator1="Home#ERROR_MESSAGE_ALERT_ERROR" value1="Not Found" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Home#ERROR_MESSAGE_RESOURCE_NOT_FOUND" value1="The requested resource could not be found." />
+		<execute function="Portal.AssertElementPresent" locator1="Home#URL_ERROR_MESSAGE" />
 
-		<execute function="Open" locator1="${maliciousURL4}" />
+		<execute function="Portal.Open" locator1="${maliciousURL4}" />
 
-		<execute function="AssertTextEquals" locator1="Home#ERROR_MESSAGE_ALERT_ERROR" value1="Not Found" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="Home#ERROR_MESSAGE_RESOURCE_NOT_FOUND" value1="The requested resource could not be found." />
-		<execute function="AssertElementPresent" locator1="Home#URL_ERROR_MESSAGE" />
+		<execute function="Portal.AssertTextEquals" locator1="Home#ERROR_MESSAGE_ALERT_ERROR" value1="Not Found" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Home#ERROR_MESSAGE_RESOURCE_NOT_FOUND" value1="The requested resource could not be found." />
+		<execute function="Portal.AssertElementPresent" locator1="Home#URL_ERROR_MESSAGE" />
 	</command>
 
 	<command name="ViewBookmarkNoXSS" priority="4">
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="Account Settings" />
 		</execute>
 
-		<execute macro="User#editDetailsViaMyAccount">
+		<execute macro="Portal.User#editDetailsViaMyAccount">
 			<var name="userLastNameEdit"><![CDATA[<script>document.write("XSS"); window.stop();</script>]]></var>
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Bookmarks" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="RelatedAssets#gotoBookmarksSelectionPG">
+		<execute macro="Portal.RelatedAssets#gotoBookmarksSelectionPG">
 			<var name="assetType" value="Bookmarks Entry" />
 		</execute>
 
-		<execute macro="Bookmark#addRelatedAssetBookmarksEntryPG">
+		<execute macro="Portal.Bookmark#addRelatedAssetBookmarksEntryPG">
 			<var name="bookmarkName" value="Test Bookmark Name" />
 			<var name="bookmarkURL" value="http://www.liferay.com" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="//body[.='XSS']" />
+		<execute function="Portal.AssertElementNotPresent" locator1="//body[.='XSS']" />
 	</command>
 
 	<command name="ViewControlPanelNoXSS" priority="5">
 		<property name="portal.acceptance" value="true" />
 		<var name="siteName"><![CDATA[<script>document.write("XSS"); window.stop();</script>]]></var>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addBlankCP">
+		<execute macro="Portal.Site#addBlankCP">
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute function="Type" locator1="NavBar#BASIC_SEARCH_FIELD" value1="${siteName}" />
+		<execute function="Portal.Type" locator1="NavBar#BASIC_SEARCH_FIELD" value1="${siteName}" />
 
-		<execute function="Click" locator1="Icon#BASIC_SEARCH" />
+		<execute function="Portal.Click" locator1="Icon#BASIC_SEARCH" />
 
 		<var name="key_rowEntry" value="${siteName}" />
 
-		<execute function="AssertClick" locator1="ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK" value1="${siteName}" />
+		<execute function="Portal.AssertClick" locator1="ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK" value1="${siteName}" />
 
-		<execute function="AssertElementNotPresent" locator1="//body[.='XSS']" />
+		<execute function="Portal.AssertElementNotPresent" locator1="//body[.='XSS']" />
 
-		<execute function="AssertTextEquals" locator1="Portlet#HEADER" value1="Public Pages" />
+		<execute function="Portal.AssertTextEquals" locator1="Portlet#HEADER" value1="Public Pages" />
 
 		<var name="key_siteName" value="${siteName}" />
 
-		<execute function="AssertTextEquals" locator1="ProductMenu#PRODUCT_MENU_PANEL_SITE_ADMINISTRATION_SITE_NAME" value1="${siteName}" />
+		<execute function="Portal.AssertTextEquals" locator1="ProductMenu#PRODUCT_MENU_PANEL_SITE_ADMINISTRATION_SITE_NAME" value1="${siteName}" />
 	</command>
 
 	<command name="ViewGoogleAnalyticsIDNoXSS" priority="5">
 		<property name="portal.acceptance" value="true" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Site Settings" />
 		</execute>
 
-		<execute macro="Site#editGoogleAnalyticsIDCP">
+		<execute macro="Portal.Site#editGoogleAnalyticsIDCP">
 			<var name="googleAnalyticsID"><![CDATA[']);alert(/googleAnalyticsId/);//]]></var>
 		</execute>
 
-		<execute macro="Navigator#openURL" />
-		<execute function="AssertAlertNotPresent" />
+		<execute macro="Portal.Navigator#openURL" />
+		<execute function="Portal.AssertAlertNotPresent" />
 	</command>
 
 	<command name="ViewJSONWSNoXSS" priority="5">
@@ -163,8 +163,8 @@
 
 		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
 
-		<execute function="Open" locator1="${portalURL}/api/jsonws?contextPath=%22%3E%3Cimg%20src=x%20onerror=alert%28/contextPath/%29%3E" />
-		<execute function="AssertAlertNotPresent" />
+		<execute function="Portal.Open" locator1="${portalURL}/api/jsonws?contextPath=%22%3E%3Cimg%20src=x%20onerror=alert%28/contextPath/%29%3E" />
+		<execute function="Portal.AssertAlertNotPresent" />
 	</command>
 
 	<command name="ViewLiferayPortletListNoXSS" priority="5">
@@ -172,52 +172,52 @@
 
 		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Asset Publisher" />
 		</execute>
 
-		<execute function="Open" locator1="${portalURL}/web/guest/home?p_p_id=com_liferay_portlet_configuration_web_portlet_PortletConfigurationPortlet&amp;p_p_state=pop_up&amp;_com_liferay_portlet_configuration_web_portlet_PortletConfigurationPortlet_mvcPath=%2Fedit_configuration.jsp&amp;_com_liferay_portlet_configuration_web_portlet_PortletConfigurationPortlet_portletResource=com_liferay_asset_publisher_web_portlet_AssetPublisherPortlet_INSTANCE_7awylRgVDERT;alert(1)//%22;alert(2)//%22;alert(3)//%E2%80%93%3E%3C/script%3E%22%3E%27%3E%3Cscript%3Ealert(4)%3C/script%3E&amp;_com_liferay_portlet_configuration_web_portlet_PortletConfigurationPortlet_resourcePrimKey=asdfxxx" />
+		<execute function="Portal.Open" locator1="${portalURL}/web/guest/home?p_p_id=com_liferay_portlet_configuration_web_portlet_PortletConfigurationPortlet&amp;p_p_state=pop_up&amp;_com_liferay_portlet_configuration_web_portlet_PortletConfigurationPortlet_mvcPath=%2Fedit_configuration.jsp&amp;_com_liferay_portlet_configuration_web_portlet_PortletConfigurationPortlet_portletResource=com_liferay_asset_publisher_web_portlet_AssetPublisherPortlet_INSTANCE_7awylRgVDERT;alert(1)//%22;alert(2)//%22;alert(3)//%E2%80%93%3E%3C/script%3E%22%3E%27%3E%3Cscript%3Ealert(4)%3C/script%3E&amp;_com_liferay_portlet_configuration_web_portlet_PortletConfigurationPortlet_resourcePrimKey=asdfxxx" />
 
-		<execute function="AssertAlertNotPresent" />
+		<execute function="Portal.AssertAlertNotPresent" />
 
-		<execute function="Refresh" />
+		<execute function="Portal.Refresh" />
 
-		<execute function="AssertAlertNotPresent" />
+		<execute function="Portal.AssertAlertNotPresent" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute function="AssertAlertNotPresent" />
+		<execute function="Portal.AssertAlertNotPresent" />
 	</command>
 
 	<command name="ViewLookAndFeelNoXSS" priority="5">
 		<property name="portal.acceptance" value="true" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName"><![CDATA[<script>document.write("XSS"); window.stop();</script>]]></var>
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName"><![CDATA[<script>document.write("XSS"); window.stop();</script>]]></var>
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Blogs" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletName" value="Blogs" />
 			<var name="portletOption" value="Look and Feel Configuration" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="//body[.='XSS']" />
+		<execute function="Portal.AssertElementNotPresent" locator1="//body[.='XSS']" />
 	</command>
 
 	<command name="ViewRecycleBinNoXSS" priority="5">
@@ -225,82 +225,82 @@
 
 		<var name="entryTitle"><![CDATA[<script>document.write("XSS"); window.stop();</script>]]></var>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Blogs" />
 		</execute>
 
-		<execute macro="BlogsNavigator#gotoAddEntry" />
+		<execute macro="Portal.BlogsNavigator#gotoAddEntry" />
 
-		<execute function="Type#typeAceEditor" locator1="AlloyEditor#TITLE_FIELD" value1="${entryTitle}" />
+		<execute function="Portal.Type#typeAceEditor" locator1="AlloyEditor#TITLE_FIELD" value1="${entryTitle}" />
 
-		<execute macro="BlogsEntry#addContent">
+		<execute macro="Portal.BlogsEntry#addContent">
 			<var name="entryContent" value="Blogs Entry Content" />
 		</execute>
 
-		<execute macro="PortletEntry#publish" />
+		<execute macro="Portal.PortletEntry#publish" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Blogs" />
 		</execute>
 
-		<execute macro="Portlet#changeDisplayStyle">
+		<execute macro="Portal.Portlet#changeDisplayStyle">
 			<var name="displayStyle" value="Descriptive" />
 		</execute>
 
-		<execute macro="BlogsEntry#moveToRecycleBinCP">
+		<execute macro="Portal.BlogsEntry#moveToRecycleBinCP">
 			<var name="assetType" value="Blogs Entry" />
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="${entryTitle}" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Recycle Bin" />
 		</execute>
 
-		<execute macro="RecycleBin#restoreCP">
+		<execute macro="Portal.RecycleBin#restoreCP">
 			<var name="assetName" value="${entryTitle}" />
 			<var name="assetRestoreLocation" value="Blogs" />
 			<var name="assetType" value="Blogs Entry" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="//body[.='XSS']" />
+		<execute function="Portal.AssertElementNotPresent" locator1="//body[.='XSS']" />
 	</command>
 
 	<command name="ViewRolesNoXSS" priority="4">
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Roles" />
 		</execute>
 
-		<execute macro="Role#add">
+		<execute macro="Portal.Role#add">
 			<var name="roleTitle"><![CDATA[<script>document.write("XSS"); window.stop();</script>]]></var>
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Roles" />
 		</execute>
 
-		<execute macro="Role#viewCP">
+		<execute macro="Portal.Role#viewCP">
 			<var name="roleTitle"><![CDATA[<script>document.write("XSS"); window.stop();</script>]]></var>
 			<var name="roleType" value="Regular" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Sign In" />
 		</execute>
 
-		<execute macro="PermissionsInline#gotoConfigurationPG">
+		<execute macro="Portal.PermissionsInline#gotoConfigurationPG">
 			<var name="portletName" value="Sign In" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="//body[.='XSS']" />
+		<execute function="Portal.AssertElementNotPresent" locator1="//body[.='XSS']" />
 	</command>
 
 	<command name="ViewURLValidateNoXSS" priority="5">
@@ -337,58 +337,58 @@
 			]]>
 		</var>
 
-		<execute function="Open" locator1="${maliciousURL1}" />
-		<execute function="AssertAlertNotPresent" />
+		<execute function="Portal.Open" locator1="${maliciousURL1}" />
+		<execute function="Portal.AssertAlertNotPresent" />
 
-		<execute function="Open" locator1="${maliciousURL2}" />
-		<execute function="AssertAlertNotPresent" />
+		<execute function="Portal.Open" locator1="${maliciousURL2}" />
+		<execute function="Portal.AssertAlertNotPresent" />
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="Account Settings" />
 		</execute>
 
-		<execute function="Open" locator1="${maliciousURL3}" />
-		<execute function="AssertAlertNotPresent" />
+		<execute function="Portal.Open" locator1="${maliciousURL3}" />
+		<execute function="Portal.AssertAlertNotPresent" />
 
-		<execute function="Open" locator1="${maliciousURL4}" />
-		<execute function="AssertAlertNotPresent" />
+		<execute function="Portal.Open" locator1="${maliciousURL4}" />
+		<execute function="Portal.AssertAlertNotPresent" />
 
-		<execute function="Open" locator1="${maliciousURL5}" />
-		<execute function="AssertAlertNotPresent" />
+		<execute function="Portal.Open" locator1="${maliciousURL5}" />
+		<execute function="Portal.AssertAlertNotPresent" />
 	</command>
 
 	<command name="ViewWikiNoXSS" priority="5">
 		<property name="portal.acceptance" value="quarantine" />
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="Account Settings" />
 		</execute>
 
-		<execute macro="User#editDetailsViaMyAccount">
+		<execute macro="Portal.User#editDetailsViaMyAccount">
 			<var name="userFirstNameEdit"><![CDATA[<script>document.write("XSS"); window.stop();</script>]]></var>
 			<var name="userLastNameEdit"><![CDATA[<script>document.write("XSS"); window.stop();</script>]]></var>
 			<var name="userMiddleNameEdit"><![CDATA[<script>document.write("XSS"); window.stop();</script>]]></var>
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Wiki" />
 		</execute>
 
-		<execute macro="WikiNavigator#gotoNode">
+		<execute macro="Portal.WikiNavigator#gotoNode">
 			<var name="wikiNodeName" value="Main" />
 		</execute>
 
-		<execute macro="WikiPage#addCP">
+		<execute macro="Portal.WikiPage#addCP">
 			<var name="wikiPageContent" value="Wiki Page Content" />
 			<var name="wikiPageTitle" value="Wiki Page Title" />
 		</execute>
 
-		<execute macro="WikiNavigator#gotoCP">
+		<execute macro="Portal.WikiNavigator#gotoCP">
 			<var name="wikiPageTitle" value="Wiki Page Title" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="//body[.='XSS']" />
+		<execute function="Portal.AssertElementNotPresent" locator1="//body[.='XSS']" />
 	</command>
 </definition>

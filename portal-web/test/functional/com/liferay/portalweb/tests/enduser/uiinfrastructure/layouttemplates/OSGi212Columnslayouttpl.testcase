@@ -5,7 +5,7 @@
 	<property name="testray.main.component.name" value="User Interface" />
 
 	<set-up>
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 	</set-up>
 
 	<command name="212ColumnsLayouttplSmoke" priority="4">
@@ -14,7 +14,7 @@
 		<var name="appName" value="2-1-2 Columns Layout" />
 		<var name="portletName" value="2-1-2-columns-layouttpl" />
 
-		<execute macro="OSGiSmoke#Smoke">
+		<execute macro="Portal.OSGiSmoke#Smoke">
 			<var name="appName" value="${portletName}" />
 			<var name="portletName" value="${portletName}" />
 		</execute>

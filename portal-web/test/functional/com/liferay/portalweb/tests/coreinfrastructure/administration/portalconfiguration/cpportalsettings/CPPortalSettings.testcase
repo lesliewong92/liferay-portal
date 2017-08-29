@@ -4,9 +4,9 @@
 	<property name="testray.main.component.name" value="Portal Settings" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 	</set-up>
 
 	<tear-down>
@@ -15,24 +15,24 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="PortalSettings#tearDownCP" />
+				<execute macro="Portal.PortalSettings#tearDownCP" />
 
-				<execute macro="User#tearDownCP" />
+				<execute macro="Portal.User#tearDownCP" />
 
-				<execute macro="Role#tearDownCP" />
+				<execute macro="Portal.Role#tearDownCP" />
 
-				<execute macro="Organization#tearDownCP" />
+				<execute macro="Portal.Organization#tearDownCP" />
 
-				<execute macro="UserGroup#tearDownCP" />
+				<execute macro="Portal.UserGroup#tearDownCP" />
 
-				<execute macro="Site#tearDownCP" />
+				<execute macro="Portal.Site#tearDownCP" />
 
-				<execute macro="WebContent#tearDownCP" />
+				<execute macro="Portal.WebContent#tearDownCP" />
 
-				<execute macro="Page#tearDownPG" />
+				<execute macro="Portal.Page#tearDownPG" />
 			</else>
 		</if>
 	</tear-down>
@@ -40,61 +40,61 @@
 	<command name="EditDefaultUserAssociationsOrganizationSites" priority="5">
 		<property name="test.name.skip.portal.instance" value="CPPortalSettings#EditDefaultUserAssociationsOrganizationSites" />
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="Organization#addCP">
+		<execute macro="Portal.Organization#addCP">
 			<var name="orgName" value="Organization Name" />
 			<var name="orgType" value="Organization" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="UsersAndOrganizationsNavigator#gotoOrganizations" />
+		<execute macro="Portal.UsersAndOrganizationsNavigator#gotoOrganizations" />
 
-		<execute macro="Organization#addSiteCP">
+		<execute macro="Portal.Organization#addSiteCP">
 			<var name="orgName" value="Organization Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>
 
-		<execute macro="PortalSettings#editConfigurationUsersDefaultUserAssociationsOrganizationSitesCP">
+		<execute macro="Portal.PortalSettings#editConfigurationUsersDefaultUserAssociationsOrganizationSitesCP">
 			<var name="orgName" value="Organization Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>
 
-		<execute macro="PortalSettings#viewConfigurationUsersDefaultUserAssociationsOrganizationSitesCP">
+		<execute macro="Portal.PortalSettings#viewConfigurationUsersDefaultUserAssociationsOrganizationSitesCP">
 			<var name="orgName" value="Organization Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#addCP">
+		<execute macro="Portal.User#addCP">
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userFirstName" value="userfn" />
 			<var name="userLastName" value="userln" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#gotoEditCP">
+		<execute macro="Portal.User#gotoEditCP">
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="User#viewUserInfomationOrganizationSitesCP">
+		<execute macro="Portal.User#viewUserInfomationOrganizationSitesCP">
 			<var name="orgName" value="Organization Name" />
 			<var name="siteName" value="Organization Name" />
 		</execute>
@@ -103,50 +103,50 @@
 	<command name="EditDefaultUserAssociationsRoles" priority="4">
 		<property name="test.name.skip.portal.instance" value="CPPortalSettings#EditDefaultUserAssociationsRoles" />
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Roles" />
 		</execute>
 
-		<execute macro="Role#add">
+		<execute macro="Portal.Role#add">
 			<var name="roleTitle" value="Roles Regrole Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>
 
-		<execute macro="PortalSettings#editConfigurationUsersDefaultUserAssociationsRolesCP">
+		<execute macro="Portal.PortalSettings#editConfigurationUsersDefaultUserAssociationsRolesCP">
 			<var name="roleTitle" value="Roles Regrole Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>
 
-		<execute macro="PortalSettings#viewConfigurationUsersDefaultUserAssociationsRolesCP">
+		<execute macro="Portal.PortalSettings#viewConfigurationUsersDefaultUserAssociationsRolesCP">
 			<var name="roleTitle" value="Roles Regrole Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#addCP">
+		<execute macro="Portal.User#addCP">
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userFirstName" value="userfn" />
 			<var name="userLastName" value="userln" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#gotoEditCP">
+		<execute macro="Portal.User#gotoEditCP">
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="User#viewUserInfomationRolesCP">
+		<execute macro="Portal.User#viewUserInfomationRolesCP">
 			<var name="roleTitle" value="Roles Regrole Name" />
 		</execute>
 	</command>
@@ -154,50 +154,50 @@
 	<command name="EditDefaultUserAssociationsSites" priority="4">
 		<property name="test.name.skip.portal.instance" value="CPPortalSettings#EditDefaultUserAssociationsSites" />
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addBlankCP">
+		<execute macro="Portal.Site#addBlankCP">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>
 
-		<execute macro="PortalSettings#editConfigurationUsersDefaultUserAssociationsSitesCP">
+		<execute macro="Portal.PortalSettings#editConfigurationUsersDefaultUserAssociationsSitesCP">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>
 
-		<execute macro="PortalSettings#viewConfigurationUsersDefaultUserAssociationsSitesCP">
+		<execute macro="Portal.PortalSettings#viewConfigurationUsersDefaultUserAssociationsSitesCP">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#addCP">
+		<execute macro="Portal.User#addCP">
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userFirstName" value="userfn" />
 			<var name="userLastName" value="userln" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#gotoEditCP">
+		<execute macro="Portal.User#gotoEditCP">
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="User#viewUserInfomationSitesCP">
+		<execute macro="Portal.User#viewUserInfomationSitesCP">
 			<var name="siteName" value="Site Name" />
 		</execute>
 	</command>
@@ -205,50 +205,50 @@
 	<command name="EditDefaultUserAssociationsUserGroups" priority="4">
 		<property name="test.name.skip.portal.instance" value="CPPortalSettings#EditDefaultUserAssociationsUserGroups" />
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="User Groups" />
 		</execute>
 
-		<execute macro="UserGroup#addCP">
+		<execute macro="Portal.UserGroup#addCP">
 			<var name="userGroupName" value="UG UserGroup Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>
 
-		<execute macro="PortalSettings#editConfigurationUsersDefaultUserAssociationsUserGroupsCP">
+		<execute macro="Portal.PortalSettings#editConfigurationUsersDefaultUserAssociationsUserGroupsCP">
 			<var name="userGroupName" value="UG UserGroup Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>
 
-		<execute macro="PortalSettings#viewConfigurationUsersDefaultUserAssociationsUserGroupsCP">
+		<execute macro="Portal.PortalSettings#viewConfigurationUsersDefaultUserAssociationsUserGroupsCP">
 			<var name="userGroupName" value="UG UserGroup Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#addCP">
+		<execute macro="Portal.User#addCP">
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userFirstName" value="userfn" />
 			<var name="userLastName" value="userln" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#gotoEditCP">
+		<execute macro="Portal.User#gotoEditCP">
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="User#viewUserInfomationUserGroupsCP">
+		<execute macro="Portal.User#viewUserInfomationUserGroupsCP">
 			<var name="userGroupName" value="UG UserGroup Name" />
 		</execute>
 	</command>
@@ -257,19 +257,19 @@
 		<property name="portal.acceptance" value="true" />
 		<property name="test.name.skip.portal.instance" value="CPPortalSettings#EnterReservedEmailAddress" />
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>
 
-		<execute macro="PortalSettings#enterReservedEmailAddressCP">
+		<execute macro="Portal.PortalSettings#enterReservedEmailAddressCP">
 			<var name="userEmailAddress" value="userea@liferay.com" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#addReservedEmailAddressCP">
+		<execute macro="Portal.User#addReservedEmailAddressCP">
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userFirstName" value="userfn" />
 			<var name="userLastName" value="userln" />
@@ -281,19 +281,19 @@
 		<property name="portal.acceptance" value="true" />
 		<property name="test.name.skip.portal.instance" value="CPPortalSettings#EnterReservedScreenName" />
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>
 
-		<execute macro="PortalSettings#enterReservedScreenNameCP">
+		<execute macro="Portal.PortalSettings#enterReservedScreenNameCP">
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#addReservedScreenNameCP">
+		<execute macro="Portal.User#addReservedScreenNameCP">
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userFirstName" value="userfn" />
 			<var name="userLastName" value="userln" />
@@ -304,88 +304,88 @@
 	<command name="ViewContentSharingDisabledAcrossSitesViaAP" priority="4">
 		<property name="test.name.skip.portal.instance" value="CPPortalSettings#ViewContentSharingDisabledAcrossSitesViaAP" />
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>
 
-		<execute macro="PortalSettings#configureContentSharingAcrossSitesCP">
+		<execute macro="Portal.PortalSettings#configureContentSharingAcrossSitesCP">
 			<var name="enableAcrossSite" value="false" />
 		</execute>
 
-		<execute macro="PortalSettings#configureContentSharingSubSitesCP">
+		<execute macro="Portal.PortalSettings#configureContentSharingSubSitesCP">
 			<var name="subSites" value="enabledByDefault" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addBlankCP">
+		<execute macro="Portal.Site#addBlankCP">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addBlankCP">
+		<execute macro="Portal.Site#addBlankCP">
 			<var name="parentSiteName" value="Site Name" />
 			<var name="siteName" value="Child SiteName" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="AP Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Asset Publisher" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="WC Test Page" />
 			<var name="siteName" value="Child SiteName" />
 		</execute>
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Child SiteName" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Web Content Display" />
 		</execute>
 
-		<execute macro="WebContent#addPGViaWCD">
+		<execute macro="Portal.WebContent#addPGViaWCD">
 			<var name="webContentContent" value="WC WebContent Content" />
 			<var name="webContentTitle" value="WC WebContent Title" />
 		</execute>
 
-		<execute macro="WebContent#viewPGViaWCD">
+		<execute macro="Portal.WebContent#viewPGViaWCD">
 			<var name="webContentContent" value="WC WebContent Content" />
 		</execute>
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#configureSiteScopePG">
+		<execute macro="Portal.AssetPublisherPortlet#configureSiteScopePG">
 			<var name="siteName" value="Child SiteName" />
 			<var name="siteScopeType" value="Child Site" />
 		</execute>
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#viewConfigureSiteScopeContentSharingPG">
+		<execute macro="Portal.AssetPublisherPortlet#viewConfigureSiteScopeContentSharingPG">
 			<var name="childSite" value="true" />
 			<var name="contentSharingAcrossSitesEnabled" value="false" />
 			<var name="globalSiteName" value="Global" />
@@ -394,45 +394,45 @@
 			<var name="liferaySiteType" value="Site" />
 		</execute>
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#viewContentSharingPG">
+		<execute macro="Portal.AssetPublisherPortlet#viewContentSharingPG">
 			<var name="assetContent" value="WC WebContent Content" />
 			<var name="assetTitle" value="WC WebContent Title" />
 			<var name="siteScope1" value="Site Name" />
 			<var name="siteScope2" value="Child SiteName" />
 		</execute>
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Blogs#addViaAPSelectScope">
+		<execute macro="Portal.Blogs#addViaAPSelectScope">
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 			<var name="siteScope" value="Site Name" />
 		</execute>
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Child SiteName" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Asset Publisher" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#configureSiteScopePG">
+		<execute macro="Portal.AssetPublisherPortlet#configureSiteScopePG">
 			<var name="siteName" value="Site Name" />
 			<var name="siteScopeType" value="Parent Site" />
 		</execute>
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#viewConfigureSiteScopeContentSharingPG">
+		<execute macro="Portal.AssetPublisherPortlet#viewConfigureSiteScopeContentSharingPG">
 			<var name="childSite" value="true" />
 			<var name="contentSharingAcrossSitesEnabled" value="false" />
 			<var name="globalSiteName" value="Global" />
@@ -441,11 +441,11 @@
 			<var name="liferaySiteType" value="Site" />
 		</execute>
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Child SiteName" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#viewContentSharingPG">
+		<execute macro="Portal.AssetPublisherPortlet#viewContentSharingPG">
 			<var name="assetContent" value="Blogs Entry Content" />
 			<var name="assetTitle" value="Blogs Entry Title" />
 			<var name="siteScope1" value="Site Name" />
@@ -456,53 +456,53 @@
 	<command name="ViewContentSharingEnabledAcrossSitesViaAP" priority="4">
 		<property name="test.name.skip.portal.instance" value="CPPortalSettings#ViewContentSharingEnabledAcrossSitesViaAP" />
 
-		<execute macro="TestCase#getSiteName">
+		<execute macro="Portal.TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>
 
-		<execute macro="PortalSettings#configureContentSharingAcrossSitesCP">
+		<execute macro="Portal.PortalSettings#configureContentSharingAcrossSitesCP">
 			<var name="enableAcrossSite" value="true" />
 		</execute>
 
-		<execute macro="PortalSettings#configureContentSharingSubSitesCP">
+		<execute macro="Portal.PortalSettings#configureContentSharingSubSitesCP">
 			<var name="subSites" value="enabledByDefault" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addBlankCP">
+		<execute macro="Portal.Site#addBlankCP">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="AP Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Asset Publisher" />
 		</execute>
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#viewConfigureSiteScopeContentSharingPG">
+		<execute macro="Portal.AssetPublisherPortlet#viewConfigureSiteScopeContentSharingPG">
 			<var name="contentSharingAcrossSitesEnabled" value="true" />
 			<var name="globalSiteName" value="Global" />
 			<var name="globalSiteType" value="Global" />
@@ -510,32 +510,32 @@
 			<var name="liferaySiteType" value="Site" />
 		</execute>
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Blogs#addViaAP">
+		<execute macro="Portal.Blogs#addViaAP">
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 			<var name="pageName" value="AP Test Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Asset Publisher" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="AP Test Page" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#viewConfigureSiteScopeContentSharingPG">
+		<execute macro="Portal.AssetPublisherPortlet#viewConfigureSiteScopeContentSharingPG">
 			<var name="contentSharingAcrossSitesEnabled" value="true" />
 			<var name="currentSite" value="true" />
 			<var name="globalSiteName" value="Global" />
@@ -544,19 +544,19 @@
 			<var name="liferaySiteType" value="Current Site" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="AP Test Page" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#configureAddSiteScopes">
+		<execute macro="Portal.AssetPublisherPortlet#configureAddSiteScopes">
 			<var name="otherSite" value="Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="AP Test Page" />
 		</execute>
 
-		<execute macro="AssetPublisherPortlet#viewContentSharingPG">
+		<execute macro="Portal.AssetPublisherPortlet#viewContentSharingPG">
 			<var name="assetContent" value="Blogs Entry Content" />
 			<var name="assetTitle" value="Blogs Entry Title" />
 			<var name="siteScope1" value="Site Name" />
@@ -567,50 +567,50 @@
 	<command name="ViewDefaultUserAssociations" priority="3">
 		<property name="test.name.skip.portal.instance" value="CPPortalSettings#ViewDefaultUserAssociations" />
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>
 
-		<execute macro="PortalSettings#viewDefaultUserAssociationsCP" />
+		<execute macro="Portal.PortalSettings#viewDefaultUserAssociationsCP" />
 	</command>
 
 	<command name="ViewEmailNotificationsAccountCreatedNotification" priority="3">
 		<property name="test.name.skip.portal.instance" value="CPPortalSettings#ViewEmailNotificationsAccountCreatedNotification" />
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>
 
-		<execute macro="PortalSettings#viewEmailNotificationsAccountCreatedNotificationCP" />
+		<execute macro="Portal.PortalSettings#viewEmailNotificationsAccountCreatedNotificationCP" />
 	</command>
 
 	<command name="ViewEmailNotificationsPasswordChangedNotification" priority="3">
 		<property name="test.name.skip.portal.instance" value="CPPortalSettings#ViewEmailNotificationsPasswordChangedNotification" />
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>
 
-		<execute macro="PortalSettings#viewEmailNotificationsPasswordChangedNotificationCP" />
+		<execute macro="Portal.PortalSettings#viewEmailNotificationsPasswordChangedNotificationCP" />
 	</command>
 
 	<command name="ViewEmailNotificationsSender" priority="3">
 		<property name="test.name.skip.portal.instance" value="CPPortalSettings#ViewEmailNotificationsSender" />
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>
 
-		<execute macro="PortalSettings#viewEmailNotificationsSenderCP" />
+		<execute macro="Portal.PortalSettings#viewEmailNotificationsSenderCP" />
 	</command>
 
 	<command name="ViewReservedCredentialsScreenNames" priority="3">
 		<property name="test.name.skip.portal.instance" value="CPPortalSettings#ViewReservedCredentialsScreenNames" />
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>
 
-		<execute macro="PortalSettings#viewReservedCredentialsScreenNamesCP" />
+		<execute macro="Portal.PortalSettings#viewReservedCredentialsScreenNamesCP" />
 	</command>
 </definition>

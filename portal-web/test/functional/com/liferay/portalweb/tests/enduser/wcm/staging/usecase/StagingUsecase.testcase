@@ -4,36 +4,36 @@
 	<property name="testray.main.component.name" value="Staging" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addBlankCP">
+		<execute macro="Portal.Site#addBlankCP">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesPublishing">
+		<execute macro="Portal.ProductMenu#gotoSitesPublishing">
 			<var name="portlet" value="Staging" />
 		</execute>
 
-		<execute macro="Staging#activateStagingCP">
+		<execute macro="Portal.Staging#activateStagingCP">
 			<var name="siteName" value="Site Name" />
 		</execute>
 	</set-up>
@@ -44,10 +44,10 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="Site#tearDownCP" />
+				<execute macro="Portal.Site#tearDownCP" />
 			</else>
 		</if>
 	</tear-down>
@@ -55,306 +55,306 @@
 	<command name="DeleteLivePage" priority="5">
 		<property name="portal.acceptance" value="true" />
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Delete Live Page" />
 			<var name="pageStaging" value="true" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoStagedSitePage">
+		<execute macro="Portal.Navigator#gotoStagedSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Staging#gotoPublishToLive" />
+		<execute macro="Portal.Staging#gotoPublishToLive" />
 
-		<execute macro="Staging#publishToLive" />
+		<execute macro="Portal.Staging#publishToLive" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Delete Live Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Page#deletePG">
+		<execute macro="Portal.Page#deletePG">
 			<var name="pageName" value="Delete Live Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Page#viewNoPG">
+		<execute macro="Portal.Page#viewNoPG">
 			<var name="pageName" value="Delete Live Page" />
 		</execute>
 	</command>
 
 	<command name="EditPublishTemplate" priority="4">
-		<execute macro="Navigator#gotoStagedSitePage">
+		<execute macro="Portal.Navigator#gotoStagedSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Blogs" />
 		</execute>
 
-		<execute macro="Blogs#addEntry">
+		<execute macro="Portal.Blogs#addEntry">
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Page Name 2" />
 			<var name="pageStaging" value="true" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoStagedSitePage">
+		<execute macro="Portal.Navigator#gotoStagedSitePage">
 			<var name="pageName" value="Page Name 2" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Web Content Display" />
 		</execute>
 
-		<execute macro="WebContent#addPGViaWCD">
+		<execute macro="Portal.WebContent#addPGViaWCD">
 			<var name="webContentContent" value="WC WebContent Content" />
 			<var name="webContentTitle" value="WC WebContent Title" />
 		</execute>
 
-		<execute macro="WebContent#viewPGViaWCD">
+		<execute macro="Portal.WebContent#viewPGViaWCD">
 			<var name="webContentContent" value="WC WebContent Content" />
 		</execute>
 
-		<execute macro="SitePageNavigator#gotoPages">
+		<execute macro="Portal.SitePageNavigator#gotoPages">
 			<var name="page" value="Public Pages" />
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesPublishing">
+		<execute macro="Portal.ProductMenu#gotoSitesPublishing">
 			<var name="portlet" value="Staging" />
 		</execute>
 
-		<execute macro="Staging#addPublishTemplate">
+		<execute macro="Portal.Staging#addPublishTemplate">
 			<var name="publishTemplateDescription" value="Publish Template Description" />
 			<var name="publishTemplateName" value="Publish Template Name" />
 		</execute>
 
-		<execute macro="Staging#configurePublishToLive">
+		<execute macro="Portal.Staging#configurePublishToLive">
 			<var name="checkPageName" value="Staging Test Page" />
 			<var name="uncheckContentNameList" value="Blogs" />
 		</execute>
 
-		<execute macro="Staging#savePublishTemplate">
+		<execute macro="Portal.Staging#savePublishTemplate">
 			<var name="publishTemplateDescription" value="Publish Template Description" />
 			<var name="publishTemplateName" value="Publish Template Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoStagedSitePage">
+		<execute macro="Portal.Navigator#gotoStagedSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoStagedView" />
+		<execute macro="Portal.Navigator#gotoStagedView" />
 
-		<execute macro="Staging#gotoPublishToLive" />
+		<execute macro="Portal.Staging#gotoPublishToLive" />
 
-		<execute macro="Staging#publishToLivePublishTemplate">
+		<execute macro="Portal.Staging#publishToLivePublishTemplate">
 			<var name="publishTemplateName" value="Publish Template Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Page#viewSpecificPG">
+		<execute macro="Portal.Page#viewSpecificPG">
 			<var name="pageNameList" value="Staging Test Page" />
 		</execute>
 
-		<execute macro="Page#viewNoPG">
+		<execute macro="Portal.Page#viewNoPG">
 			<var name="pageName" value="Page Name 2" />
 		</execute>
 
-		<execute macro="Portlet#viewPG">
+		<execute macro="Portal.Portlet#viewPG">
 			<var name="portletName" value="Blogs" />
 		</execute>
 
-		<execute macro="BlogsEntry#viewNoPG">
+		<execute macro="Portal.BlogsEntry#viewNoPG">
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="Portlet#viewNoSpecificPG">
+		<execute macro="Portal.Portlet#viewNoSpecificPG">
 			<var name="portletName" value="Web Content Display" />
 		</execute>
 
-		<execute macro="SitePageNavigator#gotoPages">
+		<execute macro="Portal.SitePageNavigator#gotoPages">
 			<var name="page" value="Public Pages" />
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoStagedView" />
+		<execute macro="Portal.Navigator#gotoStagedView" />
 
-		<execute macro="ProductMenu#gotoSitesPublishing">
+		<execute macro="Portal.ProductMenu#gotoSitesPublishing">
 			<var name="portlet" value="Staging" />
 		</execute>
 
-		<execute macro="Staging#viewPublishTemplate">
+		<execute macro="Portal.Staging#viewPublishTemplate">
 			<var name="publishTemplateDescription" value="Publish Template Description" />
 			<var name="publishTemplateName" value="Publish Template Name" />
 		</execute>
 
-		<execute macro="Staging#editPublishTemplate">
+		<execute macro="Portal.Staging#editPublishTemplate">
 			<var name="publishTemplateDescriptionEdit" value="Publish Template Description Edit" />
 			<var name="publishTemplateName" value="Publish Template Name" />
 			<var name="publishTemplateNameEdit" value="Publish Template Name Edit" />
 		</execute>
 
-		<execute macro="Staging#configurePublishToLive">
+		<execute macro="Portal.Staging#configurePublishToLive">
 			<var name="checkAllContent" value="true" />
 			<var name="checkPageName" value="Public Pages" />
 		</execute>
 
-		<execute macro="Staging#savePublishTemplate">
+		<execute macro="Portal.Staging#savePublishTemplate">
 			<var name="publishTemplateDescription" value="Publish Template Description Edit" />
 			<var name="publishTemplateName" value="Publish Template Name Edit" />
 		</execute>
 
-		<execute macro="Staging#publishToLivePublishTemplate">
+		<execute macro="Portal.Staging#publishToLivePublishTemplate">
 			<var name="publishTemplateName" value="Publish Template Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Page#viewSpecificPG">
+		<execute macro="Portal.Page#viewSpecificPG">
 			<var name="pageNameList" value="Staging Test Page" />
 		</execute>
 
-		<execute macro="Portlet#viewPG">
+		<execute macro="Portal.Portlet#viewPG">
 			<var name="portletName" value="Blogs" />
 		</execute>
 
-		<execute macro="BlogsEntry#viewPG">
+		<execute macro="Portal.BlogsEntry#viewPG">
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="Page#viewSpecificPG">
+		<execute macro="Portal.Page#viewSpecificPG">
 			<var name="pageNameList" value="Page Name 2" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Page Name 2" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="WebContent#viewPGViaWCD">
+		<execute macro="Portal.WebContent#viewPGViaWCD">
 			<var name="webContentContent" value="WC WebContent Content" />
 		</execute>
 	</command>
 
 	<command name="MoveToTheRecycleBinAndRestorePublishTemplate" priority="4">
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoStagedView" />
+		<execute macro="Portal.Navigator#gotoStagedView" />
 
-		<execute function="Pause" locator1="30000" />
+		<execute function="Portal.Pause" locator1="30000" />
 
-		<execute macro="ProductMenu#gotoSitesPublishing">
+		<execute macro="Portal.ProductMenu#gotoSitesPublishing">
 			<var name="portlet" value="Staging" />
 		</execute>
 
-		<execute macro="Staging#addPublishTemplate">
+		<execute macro="Portal.Staging#addPublishTemplate">
 			<var name="publishTemplateDescription" value="Publish Template Description" />
 			<var name="publishTemplateName" value="Publish Template Name" />
 		</execute>
 
-		<execute macro="Staging#savePublishTemplate">
+		<execute macro="Portal.Staging#savePublishTemplate">
 			<var name="publishTemplateDescription" value="Publish Template Description" />
 			<var name="publishTemplateName" value="Publish Template Name" />
 		</execute>
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoStagedView" />
+		<execute macro="Portal.Navigator#gotoStagedView" />
 
-		<execute macro="ProductMenu#gotoSitesPublishing">
+		<execute macro="Portal.ProductMenu#gotoSitesPublishing">
 			<var name="portlet" value="Staging" />
 		</execute>
 
-		<execute macro="Staging#viewPublishTemplate">
+		<execute macro="Portal.Staging#viewPublishTemplate">
 			<var name="publishTemplateDescription" value="Publish Template Description" />
 			<var name="publishTemplateName" value="Publish Template Name" />
 		</execute>
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoStagedView" />
+		<execute macro="Portal.Navigator#gotoStagedView" />
 
-		<execute macro="ProductMenu#gotoSitesPublishing">
+		<execute macro="Portal.ProductMenu#gotoSitesPublishing">
 			<var name="portlet" value="Staging" />
 		</execute>
 
-		<execute macro="Staging#moveToTheRecycleBinPublishTemplate">
+		<execute macro="Portal.Staging#moveToTheRecycleBinPublishTemplate">
 			<var name="publishTemplateName" value="Publish Template Name" />
 		</execute>
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoStagedView" />
+		<execute macro="Portal.Navigator#gotoStagedView" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Recycle Bin" />
 		</execute>
 
-		<execute macro="RecycleBin#viewCP">
+		<execute macro="Portal.RecycleBin#viewCP">
 			<var name="assetName" value="Publish Template Name" />
 			<var name="assetType" value="Export Import Template" />
 			<var name="deleteUser" value="Test Test" />
 		</execute>
 
-		<execute macro="RecycleBin#restoreCP">
+		<execute macro="Portal.RecycleBin#restoreCP">
 			<var name="assetName" value="Publish Template Name" />
 		</execute>
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoStagedView" />
+		<execute macro="Portal.Navigator#gotoStagedView" />
 
-		<execute macro="ProductMenu#gotoSitesPublishing">
+		<execute macro="Portal.ProductMenu#gotoSitesPublishing">
 			<var name="portlet" value="Staging" />
 		</execute>
 
-		<execute macro="Staging#viewPublishTemplate">
+		<execute macro="Portal.Staging#viewPublishTemplate">
 			<var name="publishTemplateDescription" value="Publish Template Description" />
 			<var name="publishTemplateName" value="Publish Template Name" />
 		</execute>
@@ -364,363 +364,363 @@
 		<property name="portal.acceptance" value="pending" />
 		<property name="testray.component.names" value="Training" />
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoStagedView" />
+		<execute macro="Portal.Navigator#gotoStagedView" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Web Content" />
 		</execute>
 
-		<execute macro="WebContentNavigator#gotoAddCP" />
+		<execute macro="Portal.WebContentNavigator#gotoAddCP" />
 
-		<execute macro="WebContent#addCP">
+		<execute macro="Portal.WebContent#addCP">
 			<var name="webContentContent" value="Web Content Content" />
 			<var name="webContentTitle" value="Web Content Title" />
 		</execute>
 
-		<execute macro="PortletEntry#publish" />
+		<execute macro="Portal.PortletEntry#publish" />
 
-		<execute macro="Staging#publishToLiveNowViaPortletCP" />
+		<execute macro="Portal.Staging#publishToLiveNowViaPortletCP" />
 	</command>
 
 	<command name="PublishSiteTeams" priority="3">
-		<execute macro="Navigator#gotoStagedSitePage">
+		<execute macro="Portal.Navigator#gotoStagedSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesMembers">
+		<execute macro="Portal.ProductMenu#gotoSitesMembers">
 			<var name="portlet" value="Site Teams" />
 		</execute>
 
-		<execute macro="Team#addCP">
+		<execute macro="Portal.Team#addCP">
 			<var name="teamDescription" value="Site Team Description" />
 			<var name="teamName" value="Site Team Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesMembers">
+		<execute macro="Portal.ProductMenu#gotoSitesMembers">
 			<var name="portlet" value="Site Teams" />
 		</execute>
 
-		<execute macro="Staging#publishToLiveNowViaPortletCP" />
+		<execute macro="Portal.Staging#publishToLiveNowViaPortletCP" />
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesMembers">
+		<execute macro="Portal.ProductMenu#gotoSitesMembers">
 			<var name="portlet" value="Site Teams" />
 		</execute>
 
-		<execute macro="Team#viewCP">
+		<execute macro="Portal.Team#viewCP">
 			<var name="teamDescription" value="Site Team Description" />
 			<var name="teamName" value="Site Team Name" />
 		</execute>
 	</command>
 
 	<command name="SearchPublishTemplate" priority="4">
-		<execute macro="SitePageNavigator#gotoPages">
+		<execute macro="Portal.SitePageNavigator#gotoPages">
 			<var name="page" value="Public Pages" />
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesPublishing">
+		<execute macro="Portal.ProductMenu#gotoSitesPublishing">
 			<var name="portlet" value="Staging" />
 		</execute>
 
-		<execute macro="Staging#addPublishTemplate">
+		<execute macro="Portal.Staging#addPublishTemplate">
 			<var name="publishTemplateDescription" value="Publish Template Description" />
 			<var name="publishTemplateName" value="First Template" />
 		</execute>
 
-		<execute macro="Staging#savePublishTemplate">
+		<execute macro="Portal.Staging#savePublishTemplate">
 			<var name="publishTemplateDescription" value="Publish Template Description" />
 			<var name="publishTemplateName" value="First Template" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesPublishing">
+		<execute macro="Portal.ProductMenu#gotoSitesPublishing">
 			<var name="portlet" value="Staging" />
 		</execute>
 
-		<execute macro="Staging#addPublishTemplate">
+		<execute macro="Portal.Staging#addPublishTemplate">
 			<var name="publishTemplateDescription" value="Publish Template Description 2" />
 			<var name="publishTemplateName" value="Second Template" />
 		</execute>
 
-		<execute macro="Staging#savePublishTemplate">
+		<execute macro="Portal.Staging#savePublishTemplate">
 			<var name="publishTemplateDescription" value="Publish Template Description 2" />
 			<var name="publishTemplateName" value="Second Template" />
 		</execute>
 
-		<execute macro="Navigator#gotoStagedSitePage">
+		<execute macro="Portal.Navigator#gotoStagedSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoStagedView" />
+		<execute macro="Portal.Navigator#gotoStagedView" />
 
-		<execute macro="ProductMenu#gotoSitesPublishing">
+		<execute macro="Portal.ProductMenu#gotoSitesPublishing">
 			<var name="portlet" value="Staging" />
 		</execute>
 
-		<execute macro="Staging#searchPublishTemplate">
+		<execute macro="Portal.Staging#searchPublishTemplate">
 			<var name="searchTerm" value="Second" />
 		</execute>
 	</command>
 
 	<command name="StagingLocalLiveLock" priority="4">
-		<execute macro="Navigator#gotoStagedSitePage">
+		<execute macro="Portal.Navigator#gotoStagedSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Blogs" />
 		</execute>
 
-		<execute macro="Blogs#addEntry">
+		<execute macro="Portal.Blogs#addEntry">
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="Navigator#gotoStagedSitePage">
+		<execute macro="Portal.Navigator#gotoStagedSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Staging#gotoPublishToLive" />
+		<execute macro="Portal.Staging#gotoPublishToLive" />
 
-		<execute macro="Staging#publishToLive" />
+		<execute macro="Portal.Staging#publishToLive" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="BlogsEntry#editNoPermissionPG">
+		<execute macro="Portal.BlogsEntry#editNoPermissionPG">
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoStagedView" />
+		<execute macro="Portal.Navigator#gotoStagedView" />
 
-		<execute macro="ProductMenu#gotoSitesPublishing">
+		<execute macro="Portal.ProductMenu#gotoSitesPublishing">
 			<var name="portlet" value="Staging" />
 		</execute>
 
-		<execute macro="Staging#editStagingConfiguration">
+		<execute macro="Portal.Staging#editStagingConfiguration">
 			<var name="isNotEditable" value="Blogs" />
 		</execute>
 	</command>
 
 	<command name="StagingPublishChildSiteWithReference" priority="4">
-		<execute macro="Navigator#gotoStagedSitePage">
+		<execute macro="Portal.Navigator#gotoStagedSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Web Content" />
 		</execute>
 
-		<execute macro="WebContentNavigator#gotoAddCP" />
+		<execute macro="Portal.WebContentNavigator#gotoAddCP" />
 
-		<execute macro="WebContent#addCP">
+		<execute macro="Portal.WebContent#addCP">
 			<var name="webContentContent" value="Web Content Content" />
 			<var name="webContentTitle" value="Web Content Title" />
 		</execute>
 
-		<execute macro="PortletEntry#publish" />
+		<execute macro="Portal.PortletEntry#publish" />
 
-		<execute macro="Navigator#gotoStagedSitePage">
+		<execute macro="Portal.Navigator#gotoStagedSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Staging#gotoPublishToLive" />
+		<execute macro="Portal.Staging#gotoPublishToLive" />
 
-		<execute macro="Staging#publishToLive" />
+		<execute macro="Portal.Staging#publishToLive" />
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addBlankCP">
+		<execute macro="Portal.Site#addBlankCP">
 			<var name="parentSiteName" value="Site Name" />
 			<var name="siteName" value="Child Site" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#searchInputCP">
+		<execute macro="Portal.Site#searchInputCP">
 			<var name="siteName" value="Child Site" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Page 1" />
 			<var name="siteName" value="Child Site" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Page 1" />
 			<var name="siteName" value="Child Site" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Web Content Display" />
 		</execute>
 
-		<execute macro="WebContentDisplayPortlet#selectParentSiteWebContent">
+		<execute macro="Portal.WebContentDisplayPortlet#selectParentSiteWebContent">
 			<var name="parentSiteName" value="Site Name" />
 			<var name="webContentTitle" value="Web Content Title" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesPublishing">
+		<execute macro="Portal.ProductMenu#gotoSitesPublishing">
 			<var name="portlet" value="Staging" />
 		</execute>
 
-		<execute macro="Staging#activateStagingCP">
+		<execute macro="Portal.Staging#activateStagingCP">
 			<var name="siteName" value="Child Site" />
 		</execute>
 	</command>
 
 	<command name="StagingPublishOnlySelectedPage" priority="4">
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Page 1" />
 			<var name="pageStaging" value="true" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Page 2" />
 			<var name="pageStaging" value="true" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Page 3" />
 			<var name="pageStaging" value="true" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoStagedView" />
+		<execute macro="Portal.Navigator#gotoStagedView" />
 
-		<execute macro="Staging#gotoPublishToLive" />
+		<execute macro="Portal.Staging#gotoPublishToLive" />
 
-		<execute macro="Staging#configurePublishToLive">
+		<execute macro="Portal.Staging#configurePublishToLive">
 			<var name="checkPageName" value="Page 2" />
 		</execute>
 
-		<execute macro="Staging#publishToLive" />
+		<execute macro="Portal.Staging#publishToLive" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Page#viewSpecificPG">
+		<execute macro="Portal.Page#viewSpecificPG">
 			<var name="pageNameList" value="Page 2" />
 		</execute>
 
-		<execute macro="Page#viewNoPG">
+		<execute macro="Portal.Page#viewNoPG">
 			<var name="pageName" value="Page 1" />
 		</execute>
 
-		<execute macro="Page#viewNoPG">
+		<execute macro="Portal.Page#viewNoPG">
 			<var name="pageName" value="Page 3" />
 		</execute>
 	</command>
 
 	<command name="StagingWithPublishTemplateSmoke" priority="4">
-		<execute macro="Navigator#gotoStagedSitePage">
+		<execute macro="Portal.Navigator#gotoStagedSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Web Content Display" />
 		</execute>
 
-		<execute macro="Navigator#gotoStagedSitePage">
+		<execute macro="Portal.Navigator#gotoStagedSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="WebContent#addPGViaWCD">
+		<execute macro="Portal.WebContent#addPGViaWCD">
 			<var name="webContentContent" value="Web Content Content" />
 			<var name="webContentTitle" value="Web Content Title" />
 		</execute>
 
-		<execute macro="WebContent#viewPGViaWCD">
+		<execute macro="Portal.WebContent#viewPGViaWCD">
 			<var name="webContentContent" value="Web Content Content" />
 		</execute>
 
-		<execute macro="Navigator#gotoStagedSitePage">
+		<execute macro="Portal.Navigator#gotoStagedSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesPublishing">
+		<execute macro="Portal.ProductMenu#gotoSitesPublishing">
 			<var name="portlet" value="Staging" />
 		</execute>
 
-		<execute macro="Staging#addPublishTemplate">
+		<execute macro="Portal.Staging#addPublishTemplate">
 			<var name="publishTemplateDescription" value="Publish Template Description" />
 			<var name="publishTemplateName" value="Publish Template Name" />
 		</execute>
 
-		<execute macro="Staging#savePublishTemplate">
+		<execute macro="Portal.Staging#savePublishTemplate">
 			<var name="publishTemplateDescription" value="Publish Template Description" />
 			<var name="publishTemplateName" value="Publish Template Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoStagedSitePage">
+		<execute macro="Portal.Navigator#gotoStagedSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Staging#gotoPublishToLive" />
+		<execute macro="Portal.Staging#gotoPublishToLive" />
 
-		<execute macro="Staging#publishToLivePublishTemplate">
+		<execute macro="Portal.Staging#publishToLivePublishTemplate">
 			<var name="publishTemplateName" value="Publish Template Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="WebContent#viewPGViaWCD">
+		<execute macro="Portal.WebContent#viewPGViaWCD">
 			<var name="webContentContent" value="Web Content Content" />
 		</execute>
 	</command>
@@ -729,189 +729,189 @@
 		<property name="portal.acceptance" value="pending" />
 		<property name="testray.component.names" value="Training" />
 
-		<execute macro="Navigator#gotoStagedSitePage">
+		<execute macro="Portal.Navigator#gotoStagedSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Documents and Media" />
 			<var name="siteScopeName" value="Site Name" />
 		</execute>
 
-		<execute macro="DMDocument#addCP">
+		<execute macro="Portal.DMDocument#addCP">
 			<var name="dmDocumentDescription" value="DM Document Description" />
 			<var name="dmDocumentFile" value="Document_1.jpg" />
 			<var name="dmDocumentTitle" value="DM Document Title" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Web Content" />
 			<var name="siteScopeName" value="Site Name" />
 		</execute>
 
-		<execute macro="WebContentNavigator#gotoAddCP" />
+		<execute macro="Portal.WebContentNavigator#gotoAddCP" />
 
-		<execute macro="WebContent#addWithDocumentCP">
+		<execute macro="Portal.WebContent#addWithDocumentCP">
 			<var name="dmDocumentTitle" value="DM Document Title" />
 			<var name="webContentContent" value="Web Content Content" />
 			<var name="webContentTitle" value="Web Content Title" />
 		</execute>
 
-		<execute macro="Navigator#gotoStagedSitePage">
+		<execute macro="Portal.Navigator#gotoStagedSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Web Content Display" />
 		</execute>
 
-		<execute macro="Navigator#gotoStagedSitePage">
+		<execute macro="Portal.Navigator#gotoStagedSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="WebContentDisplayPortlet#selectWebContent">
+		<execute macro="Portal.WebContentDisplayPortlet#selectWebContent">
 			<var name="portletName" value="Web Content Display" />
 			<var name="webContentTitle" value="Web Content Title" />
 		</execute>
 
-		<execute macro="Navigator#gotoStagedSitePage">
+		<execute macro="Portal.Navigator#gotoStagedSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Documents and Media" />
 		</execute>
 
-		<execute macro="Navigator#gotoStagedSitePage">
+		<execute macro="Portal.Navigator#gotoStagedSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Staging#gotoPublishToLive" />
+		<execute macro="Portal.Staging#gotoPublishToLive" />
 
-		<execute macro="Staging#configurePublishToLive">
+		<execute macro="Portal.Staging#configurePublishToLive">
 			<var name="checkContentNameList" value="Documents and Media" />
 			<var name="contentDateRange" value="All" />
 		</execute>
 
-		<execute macro="Staging#publishToLive" />
+		<execute macro="Portal.Staging#publishToLive" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Documents and Media" />
 			<var name="siteScopeName" value="Site Name" />
 		</execute>
 
-		<execute macro="DMDocument#deleteCP">
+		<execute macro="Portal.DMDocument#deleteCP">
 			<var name="dmDocumentTitle" value="DM Document Title" />
 		</execute>
 
-		<execute macro="Navigator#gotoStagedSitePage">
+		<execute macro="Portal.Navigator#gotoStagedSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Staging#gotoPublishToLive" />
+		<execute macro="Portal.Staging#gotoPublishToLive" />
 
-		<execute macro="Staging#configurePublishToLive">
+		<execute macro="Portal.Staging#configurePublishToLive">
 			<var name="contentDateRange" value="All" />
 			<var name="uncheckContentNameList" value="Documents and Media" />
 			<var name="uncheckSubContent" value="Web Content" />
 		</execute>
 
-		<execute macro="Staging#publishToLive">
+		<execute macro="Portal.Staging#publishToLive">
 			<var name="failureExpected" value="true" />
 		</execute>
 
-		<execute macro="Navigator#gotoStagedSitePage">
+		<execute macro="Portal.Navigator#gotoStagedSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Staging#gotoPublishToLive" />
+		<execute macro="Portal.Staging#gotoPublishToLive" />
 
-		<execute macro="Staging#configurePublishToLive">
+		<execute macro="Portal.Staging#configurePublishToLive">
 			<var name="checkContentNameList" value="Documents and Media" />
 			<var name="contentDateRange" value="All" />
 		</execute>
 
-		<execute macro="Staging#publishToLive" />
+		<execute macro="Portal.Staging#publishToLive" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Documents and Media" />
 			<var name="siteScopeName" value="Site Name" />
 		</execute>
 
-		<execute macro="DMDocument#viewPG">
+		<execute macro="Portal.DMDocument#viewPG">
 			<var name="dmDocumentTitle" value="DM Document Title" />
 		</execute>
 	</command>
 
 	<command name="ViewPublishDMWithModifiedTitle" priority="4">
-		<execute macro="Navigator#gotoStagedSitePage">
+		<execute macro="Portal.Navigator#gotoStagedSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Asset Publisher" />
 		</execute>
 
-		<execute function="Pause" locator1="3000" />
+		<execute function="Portal.Pause" locator1="3000" />
 
-		<execute macro="DMDocument#addPGViaAP">
+		<execute macro="Portal.DMDocument#addPGViaAP">
 			<var name="dmDocumentDescription" value="DM Document Description" />
 			<var name="dmDocumentFile" value="Document_1.doc" />
 			<var name="dmDocumentTitle" value="DM Document Title" />
 		</execute>
 
-		<execute macro="Navigator#gotoStagedSitePage">
+		<execute macro="Portal.Navigator#gotoStagedSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Staging#gotoPublishToLive" />
+		<execute macro="Portal.Staging#gotoPublishToLive" />
 
-		<execute macro="Staging#publishToLive" />
+		<execute macro="Portal.Staging#publishToLive" />
 
-		<execute macro="Navigator#gotoStagedSitePage">
+		<execute macro="Portal.Navigator#gotoStagedSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="DMDocument#editPGViaAP">
+		<execute macro="Portal.DMDocument#editPGViaAP">
 			<var name="assetTitle" value="DM Document Title" />
 			<var name="dmDocumentTitleEdit" value="DM Document Title Edit" />
 		</execute>
 
-		<execute macro="Navigator#gotoStagedSitePage">
+		<execute macro="Portal.Navigator#gotoStagedSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Staging#gotoPublishToLive" />
+		<execute macro="Portal.Staging#gotoPublishToLive" />
 
-		<execute macro="Staging#publishToLive" />
+		<execute macro="Portal.Staging#publishToLive" />
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="DMDocument#viewPGViaAP">
+		<execute macro="Portal.DMDocument#viewPGViaAP">
 			<var name="dmDocumentDescription" value="DM Document Description" />
 			<var name="dmDocumentTitle" value="DM Document Title Edit" />
 		</execute>

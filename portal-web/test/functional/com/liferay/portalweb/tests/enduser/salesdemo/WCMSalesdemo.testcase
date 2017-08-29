@@ -4,9 +4,9 @@
 	<property name="testray.main.component.name" value="Web Content Display" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 	</set-up>
 
 	<tear-down>
@@ -15,14 +15,14 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="User#tearDownCP" />
+				<execute macro="Portal.User#tearDownCP" />
 
-				<execute macro="Site#tearDownCP" />
+				<execute macro="Portal.Site#tearDownCP" />
 
-				<execute macro="Page#tearDownPG" />
+				<execute macro="Portal.Page#tearDownPG" />
 			</else>
 		</if>
 	</tear-down>
@@ -30,127 +30,127 @@
 	<command name="IFrameDemo" priority="4">
 		<property name="testray.component.names" value="IFrame Portlet" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="columnName" value="1 Column" />
 			<var name="pageName" value="IFrame Page" />
 			<var name="sitePageType" value="Empty Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="IFrame Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="IFrame" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute macro="IFrame#addCP">
+		<execute macro="Portal.IFrame#addCP">
 			<var name="sourceURL" value="http://iscaliforniaonfire.com" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="IFrame Page" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#IFRAME_PORTLET" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#IFRAME_PORTLET" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="Embedded#EMBEDDED_TEXT_UPDATED" value1="updated" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Embedded#EMBEDDED_TEXT_UPDATED" value1="updated" />
 	</command>
 
 	<command name="SalesDemo" priority="4">
 		<property name="testray.component.names" value="Web Content Administration,Web Content Display" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Web Content" />
 		</execute>
 
-		<execute macro="WebContentNavigator#gotoAddCP" />
+		<execute macro="Portal.WebContentNavigator#gotoAddCP" />
 
-		<execute macro="WebContent#addCP">
+		<execute macro="Portal.WebContent#addCP">
 			<var name="webContentContent" value="DHS Content" />
 			<var name="webContentTitle" value="DHS Title" />
 		</execute>
 
-		<execute macro="PortletEntry#publish" />
+		<execute macro="Portal.PortletEntry#publish" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="SitePageNavigator#gotoEditPage">
+		<execute macro="Portal.SitePageNavigator#gotoEditPage">
 			<var name="page" value="Welcome" />
 		</execute>
 
-		<execute macro="Page#editPageLayoutColumn">
+		<execute macro="Portal.Page#editPageLayoutColumn">
 			<var name="columnName" value="2 Columns (50/50)" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Welcome" />
 		</execute>
 
-		<execute macro="Content#addPG">
+		<execute macro="Portal.Content#addPG">
 			<var name="assetTitle" value="DHS Title" />
 			<var name="webContentContent" value="DHS Content" />
 		</execute>
 
-		<execute macro="WebContent#viewPGViaWCD">
+		<execute macro="Portal.WebContent#viewPGViaWCD">
 			<var name="webContentContent" value="DHS Content" />
 			<var name="webContentTitle" value="DHS Title" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#addCP">
+		<execute macro="Portal.User#addCP">
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userFirstName" value="userfn" />
 			<var name="userLastName" value="userln" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#editPasswordCP">
+		<execute macro="Portal.User#editPasswordCP">
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="WebContent#viewNoEditWCViaWCD" />
+		<execute macro="Portal.WebContent#viewNoEditWCViaWCD" />
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 			<var name="webContentContent" value="DHS Content" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Sales Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Sales Page" />
 		</execute>
 
-		<execute macro="MobileDevice#previewPG">
+		<execute macro="Portal.MobileDevice#previewPG">
 			<var name="deviceType" value="tablet" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="MobileDevice#previewPG">
+		<execute macro="Portal.MobileDevice#previewPG">
 			<var name="deviceType" value="smartphone" />
 		</execute>
 	</command>

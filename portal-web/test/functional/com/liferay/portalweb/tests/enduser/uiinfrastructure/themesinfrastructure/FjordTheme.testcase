@@ -4,9 +4,9 @@
 	<property name="testray.main.component.name" value="User Interface" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 	</set-up>
 
 	<tear-down>
@@ -15,7 +15,7 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 		</if>
 	</tear-down>
@@ -30,39 +30,39 @@
 		<if>
 			<equals arg1="${themeContainsResources}" arg2="true" />
 			<then>
-				<execute macro="ProductMenu#gotoControlPanelSites">
+				<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 					<var name="portlet" value="Sites" />
 				</execute>
 
-				<execute macro="Site#addSiteTemplateCP">
+				<execute macro="Portal.Site#addSiteTemplateCP">
 					<var name="siteName" value="Fjord Theme Site" />
 					<var name="siteTemplateName" value="Fjord Theme" />
 				</execute>
 
-				<execute macro="ProductMenu#gotoSite">
+				<execute macro="Portal.ProductMenu#gotoSite">
 					<var name="site" value="Fjord Theme Site" />
 				</execute>
 
-				<execute function="AssertClick" locator1="Home#PAGE" value1="Home">
+				<execute function="Portal.AssertClick" locator1="Home#PAGE" value1="Home">
 					<var name="key_pageName" value="Home" />
 				</execute>
 
-				<execute function="AssertTextEquals" locator1="Header#H2_TITLE" value1="Dynamic and Customizable for a Healthier You">
+				<execute function="Portal.AssertTextEquals" locator1="Header#H2_TITLE" value1="Dynamic and Customizable for a Healthier You">
 					<var name="key_title" value="Dynamic and Customizable for a Healthier You" />
 				</execute>
 			</then>
 			<else>
 				<var name="appName" value="fjord-theme" />
 
-				<execute macro="ProductMenu#gotoControlPanelApps">
+				<execute macro="Portal.ProductMenu#gotoControlPanelApps">
 					<var name="portlet" value="App Manager" />
 				</execute>
 
-				<execute function="Type" locator1="TextInput#SEARCH" value1="${appName}" />
+				<execute function="Portal.Type" locator1="TextInput#SEARCH" value1="${appName}" />
 
-				<execute function="Click" locator1="Icon#BASIC_SEARCH" />
+				<execute function="Portal.Click" locator1="Icon#BASIC_SEARCH" />
 
-				<execute function="AssertVisible" locator1="ListGroupItem#ITEM_NAME_LINK">
+				<execute function="Portal.AssertVisible" locator1="ListGroupItem#ITEM_NAME_LINK">
 					<var name="key_itemName" value="fjord-theme" />
 				</execute>
 			</else>

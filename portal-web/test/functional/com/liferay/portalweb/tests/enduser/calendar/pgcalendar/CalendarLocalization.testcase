@@ -8,15 +8,15 @@
 	<var name="portletName" value="Calendar" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="pageName" value="Calendar Page" />
 			<var name="portletName" value="Calendar" />
 		</execute>
@@ -28,25 +28,25 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="Navigator#gotoPage">
+				<execute macro="Portal.Navigator#gotoPage">
 					<var name="pageName" value="Calendar Page" />
 				</execute>
 
 				<if>
-					<condition function="IsElementPresent" locator1="Calendar#SCHEDULER_EVENT_GENERIC" />
+					<condition function="Portal.IsElementPresent" locator1="Calendar#SCHEDULER_EVENT_GENERIC" />
 					<then>
-						<execute macro="CalendarEvent#tearDown" />
+						<execute macro="Portal.CalendarEvent#tearDown" />
 					</then>
 				</if>
 
-				<execute macro="Calendar#tearDown" />
+				<execute macro="Portal.Calendar#tearDown" />
 
-				<execute macro="CalendarConfiguration#tearDown" />
+				<execute macro="Portal.CalendarConfiguration#tearDown" />
 
-				<execute macro="Page#tearDownPG" />
+				<execute macro="Portal.Page#tearDownPG" />
 			</else>
 		</if>
 	</tear-down>
@@ -56,41 +56,41 @@
 
 		<property name="test.name.skip.portal.instance" value="CalendarLocalization#EditLanguageSelectorAndViewEvent" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="pageName" value="Calendar Page" />
 			<var name="portletName" value="Language" />
 		</execute>
 
-		<execute macro="LanguagePortlet#selectLanguagePG">
+		<execute macro="Portal.LanguagePortlet#selectLanguagePG">
 			<var name="language" value="Spanish (Spain)" />
 		</execute>
 
-		<execute macro="CalendarScheduler#addLocalizedEvent">
+		<execute macro="Portal.CalendarScheduler#addLocalizedEvent">
 			<var name="eventTitle" value="Calendar Event Title" />
 			<var name="saveButton" value="Guardar" />
 			<var name="viewType" value="Week" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="Alert#viewSuccessMessage" />
+		<execute macro="Portal.Alert#viewSuccessMessage" />
 
-		<execute macro="CalendarScheduler#viewLocalizedEvent">
+		<execute macro="Portal.CalendarScheduler#viewLocalizedEvent">
 			<var name="eventTitle" value="Calendar Event Title" />
 			<var name="viewTypeLocalized" value="Semana" />
 		</execute>
 
-		<execute macro="LanguagePortlet#selectLanguagePG">
+		<execute macro="Portal.LanguagePortlet#selectLanguagePG">
 			<var name="language" value="English (United States)" />
 		</execute>
 
-		<execute macro="CalendarScheduler#viewDay">
+		<execute macro="Portal.CalendarScheduler#viewDay">
 			<var name="eventTitle" value="Calendar Event Title" />
 		</execute>
 	</command>
@@ -99,39 +99,39 @@
 		<description message="This is a use case for LPS-54786." />
 
 		<for list="1,2,3,4,5,6" param="eventNumber">
-			<execute macro="CalendarNavigator#gotoAddEvent" />
+			<execute macro="Portal.CalendarNavigator#gotoAddEvent" />
 
-			<execute macro="CalendarEvent#add">
+			<execute macro="Portal.CalendarEvent#add">
 				<var name="eventTitle" value="Calendar Event ${eventNumber}" />
 				<var name="eventType" value="All Day" />
 				<var name="pageName" value="Calendar Page" />
 			</execute>
 		</for>
 
-		<execute macro="MyAccount#configureDisplaySettingsLanguage">
+		<execute macro="Portal.MyAccount#configureDisplaySettingsLanguage">
 			<var name="languageName" value="español (España)" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarScheduler#viewShowMoreLocalizedViaDayView">
+		<execute macro="Portal.CalendarScheduler#viewShowMoreLocalizedViaDayView">
 			<var name="messageLocalized" value="Mostrar 1 más" />
 			<var name="viewTypeLocalized" value="Día" />
 		</execute>
 
-		<execute macro="CalendarScheduler#viewShowMoreLocalizedViaWeekView">
+		<execute macro="Portal.CalendarScheduler#viewShowMoreLocalizedViaWeekView">
 			<var name="messageLocalized" value="Mostrar 1 más" />
 			<var name="viewTypeLocalized" value="Semana" />
 		</execute>
 
-		<execute macro="CalendarScheduler#viewShowMoreLocalizedViaMonthView">
+		<execute macro="Portal.CalendarScheduler#viewShowMoreLocalizedViaMonthView">
 			<var name="messageLocalized" value="Mostrar 4 más" />
 			<var name="viewTypeLocalized" value="Mes" />
 		</execute>
 
-		<execute macro="MyAccount#configureDisplaySettingsLanguageLocalized">
+		<execute macro="Portal.MyAccount#configureDisplaySettingsLanguageLocalized">
 			<var name="category" value="Mi cuenta" />
 			<var name="languageName" value="English (United States)" />
 			<var name="portlet" value="Mi cuenta" />

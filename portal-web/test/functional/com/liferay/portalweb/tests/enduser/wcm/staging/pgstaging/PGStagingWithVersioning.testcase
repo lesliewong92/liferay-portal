@@ -4,41 +4,41 @@
 	<property name="testray.main.component.name" value="Staging" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addBlankCP">
+		<execute macro="Portal.Site#addBlankCP">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesPublishing">
+		<execute macro="Portal.ProductMenu#gotoSitesPublishing">
 			<var name="portlet" value="Staging" />
 		</execute>
 
-		<execute macro="Staging#activateStagingCP">
+		<execute macro="Portal.Staging#activateStagingCP">
 			<var name="pageVersioningEnabled" value="true" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoStagedSitePage">
+		<execute macro="Portal.Navigator#gotoStagedSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
@@ -50,16 +50,16 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="Site#tearDownCP" />
+				<execute macro="Portal.Site#tearDownCP" />
 			</else>
 		</if>
 	</tear-down>
 
 	<command name="AddEventRepeatDaily" priority="4">
-		<execute macro="Staging#addEventRepeatDaily">
+		<execute macro="Portal.Staging#addEventRepeatDaily">
 			<var name="scheduleTitleName" value="Event Daily Name" />
 			<var name="siteName" value="Site Name" />
 		</execute>
@@ -70,40 +70,40 @@
 		<property name="test.assert.warning.exceptions" value="true" />
 		<property name="testray.component.names" value="Training" />
 
-		<execute macro="Staging#addPageVariationPG">
+		<execute macro="Portal.Staging#addPageVariationPG">
 			<var name="pageVariationName" value="Page Variation Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoStagedSitePage">
+		<execute macro="Portal.Navigator#gotoStagedSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Staging#viewPageVariationPG">
+		<execute macro="Portal.Staging#viewPageVariationPG">
 			<var name="pageVariationName" value="Page Variation Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoStagedSitePage">
+		<execute macro="Portal.Navigator#gotoStagedSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="SitePageNavigator#gotoEditPage">
+		<execute macro="Portal.SitePageNavigator#gotoEditPage">
 			<var name="page" value="Staging Test Page" />
 		</execute>
 
-		<execute macro="Page#addFriendlyURLLocalizedPG">
+		<execute macro="Portal.Page#addFriendlyURLLocalizedPG">
 			<var name="friendlyUrlLocalized" value="de_DE" />
 			<var name="localizedFriendlyURL" value="/german" />
 		</execute>
 
-		<execute macro="Page#hideFromNavigationMenu" />
+		<execute macro="Portal.Page#hideFromNavigationMenu" />
 
-		<execute macro="SitePageNavigator#gotoEditPage">
+		<execute macro="Portal.SitePageNavigator#gotoEditPage">
 			<var name="page" value="Staging Test Page" />
 		</execute>
 
-		<execute macro="Page#viewPageFriendlyURLPG">
+		<execute macro="Portal.Page#viewPageFriendlyURLPG">
 			<var name="friendlyUrlLocalized" value="de_DE" />
 			<var name="pageName" value="german" />
 		</execute>
@@ -112,43 +112,43 @@
 	<command name="AddPageWithPageVersioningEnabled" priority="5">
 		<property name="portal.acceptance" value="true" />
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Staging Page Versioning" />
 			<var name="pageStaging" value="true" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoStagedSitePage">
+		<execute macro="Portal.Navigator#gotoStagedSitePage">
 			<var name="pageName" value="Staging Page Versioning" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Hello World" />
 		</execute>
 
-		<execute macro="Staging#markAsReadyForPublication" />
+		<execute macro="Portal.Staging#markAsReadyForPublication" />
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoStagedView" />
+		<execute macro="Portal.Navigator#gotoStagedView" />
 
-		<execute macro="Staging#gotoPublishToLive" />
+		<execute macro="Portal.Staging#gotoPublishToLive" />
 
-		<execute macro="Staging#publishToLive" />
+		<execute macro="Portal.Staging#publishToLive" />
 
-		<execute macro="Navigator#gotoStagedSitePage">
+		<execute macro="Portal.Navigator#gotoStagedSitePage">
 			<var name="pageName" value="Staging Page Versioning" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#viewSpecificPG">
+		<execute macro="Portal.Portlet#viewSpecificPG">
 			<var name="portletName" value="Hello World" />
 		</execute>
 	</command>
@@ -156,16 +156,16 @@
 	<command name="AddSitePagesVariation" priority="5">
 		<property name="portal.acceptance" value="true" />
 
-		<execute macro="Staging#addSitePagesVariationPG">
+		<execute macro="Portal.Staging#addSitePagesVariationPG">
 			<var name="sitePagesVariationName" value="Site Pages Variation Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoStagedSitePage">
+		<execute macro="Portal.Navigator#gotoStagedSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Staging#viewSitePagesVariationPG">
+		<execute macro="Portal.Staging#viewSitePagesVariationPG">
 			<var name="sitePagesVariationName" value="Site Pages Variation Name" />
 		</execute>
 	</command>

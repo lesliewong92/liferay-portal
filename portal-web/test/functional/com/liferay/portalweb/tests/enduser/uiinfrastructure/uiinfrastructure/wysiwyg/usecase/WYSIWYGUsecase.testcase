@@ -6,9 +6,9 @@
 	<var name="pageName" value="CKEditor Page" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 	</set-up>
 
 	<tear-down>
@@ -17,28 +17,28 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="Page#tearDownPG" />
+				<execute macro="Portal.Page#tearDownPG" />
 			</else>
 		</if>
 	</tear-down>
 
 	<command name="AddBlogsEntryWithImageViaBlogsImages" priority="4" >
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Blogs" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="Blogs#addEntryWithUploadedCoverImage">
+		<execute macro="Portal.Blogs#addEntryWithUploadedCoverImage">
 			<var name="coverImageName" value="Document_1" />
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entrySubtitle" value="Blogs Entry Subtitle" />
@@ -47,88 +47,88 @@
 			<var name="uploadFileName" value="Document_1.jpg" />
 		</execute>
 
-		<execute function="Pause" locator1="1000" />
+		<execute function="Portal.Pause" locator1="1000" />
 
-		<execute macro="BlogsEntry#saveAsDraft" />
+		<execute macro="Portal.BlogsEntry#saveAsDraft" />
 
-		<execute function="Click" locator1="BlogsEditEntry#DELETE_COVER_IMAGE_BUTTON" />
+		<execute function="Portal.Click" locator1="BlogsEditEntry#DELETE_COVER_IMAGE_BUTTON" />
 
-		<execute function="Click#pauseClickAt" locator1="AlloyEditor#CONTENT_FIELD" />
+		<execute function="Portal.Click#pauseClickAt" locator1="AlloyEditor#CONTENT_FIELD" />
 
-		<execute function="Click" locator1="AlloyEditor#CONTENT_ADD_BUTTON" />
+		<execute function="Portal.Click" locator1="AlloyEditor#CONTENT_ADD_BUTTON" />
 
-		<execute function="Click" locator1="AlloyEditor#CONTENT_ADD_MENUBAR_IMAGE" />
+		<execute function="Portal.Click" locator1="AlloyEditor#CONTENT_ADD_MENUBAR_IMAGE" />
 
-		<execute macro="ItemSelector#selectBlogImage">
+		<execute macro="Portal.ItemSelector#selectBlogImage">
 			<var name="imageFileName" value="Document_1.jpg" />
 		</execute>
 
-		<execute macro="PortletEntry#publish" />
+		<execute macro="Portal.PortletEntry#publish" />
 
-		<execute macro="BlogsNavigator#gotoEntryPG">
+		<execute macro="Portal.BlogsNavigator#gotoEntryPG">
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute function="AssertElementPresent" locator1="//div[contains(@class,'entry-content')]/p/img[contains(@src,'Document_1.jpg')]" />
+		<execute function="Portal.AssertElementPresent" locator1="//div[contains(@class,'entry-content')]/p/img[contains(@src,'Document_1.jpg')]" />
 	</command>
 
 	<command name="AddWebContentArticleWithImageViaURL" priority="4">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Web Content" />
 		</execute>
 
-		<execute macro="WebContentNavigator#gotoAddCP" />
+		<execute macro="Portal.WebContentNavigator#gotoAddCP" />
 
-		<execute function="Type" locator1="TextInput#TITLE" value1="Web Content Title" />
+		<execute function="Portal.Type" locator1="TextInput#TITLE" value1="Web Content Title" />
 
-		<execute function="Click#pauseClickAt" locator1="AlloyEditor#CONTENT_FIELD" />
+		<execute function="Portal.Click#pauseClickAt" locator1="AlloyEditor#CONTENT_FIELD" />
 
-		<execute function="Click" locator1="AlloyEditor#CONTENT_ADD_BUTTON" />
+		<execute function="Portal.Click" locator1="AlloyEditor#CONTENT_ADD_BUTTON" />
 
-		<execute function="Click" locator1="AlloyEditor#CONTENT_ADD_MENUBAR_IMAGE" />
+		<execute function="Portal.Click" locator1="AlloyEditor#CONTENT_ADD_MENUBAR_IMAGE" />
 
-		<execute macro="ItemSelector#addFromURL">
+		<execute macro="Portal.ItemSelector#addFromURL">
 			<var name="imageSourceURL" value="https://raw.githubusercontent.com/liferay/liferay-portal/master/portal-web/test/functional/com/liferay/portalweb/dependencies/Document_1.jpg" />
 		</execute>
 
-		<execute macro="PortletEntry#publish" />
+		<execute macro="Portal.PortletEntry#publish" />
 
-		<execute macro="WebContentNavigator#gotoPreviewEntryCP">
+		<execute macro="Portal.WebContentNavigator#gotoPreviewEntryCP">
 			<var name="webContentTitle" value="Web Content Title" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#DIALOG" />
 
-		<execute function="AssertElementPresent" locator1="//img[contains(@src,'Document_1.jpg')]" />
+		<execute function="Portal.AssertElementPresent" locator1="//img[contains(@src,'Document_1.jpg')]" />
 	</command>
 
 	<command name="ViewWikiFrontPageLeftToRight" priority="4">
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Wiki" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="WikiPage#addLocalizedFrontPagePG">
+		<execute macro="Portal.WikiPage#addLocalizedFrontPagePG">
 			<var name="emptyPageMessage" value="This page is empty. Edit it to add some text." />
 			<var name="successMessage" value="Your request completed successfully." />
 			<var name="wikiPageContent" value="Wiki Left to Right Content" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="WikiPage#viewLocalizedFrontPagePG">
+		<execute macro="Portal.WikiPage#viewLocalizedFrontPagePG">
 			<var name="wikiPageContent" value="Wiki Left to Right Content" />
 		</execute>
 	</command>
@@ -136,43 +136,43 @@
 	<command name="ViewWikiFrontPageRightToLeft" priority="4">
 		<property name="test.name.skip.portal.instance" value="WYSIWIGUsecase#ViewWikiFrontPageRightToLeft" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Language Selector" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Wiki" />
 		</execute>
 
-		<execute macro="LanguagePortlet#selectLanguagePG">
+		<execute macro="Portal.LanguagePortlet#selectLanguagePG">
 			<var name="language" value="Hebrew (Israel)" />
 		</execute>
 
-		<execute macro="WikiPage#addLocalizedFrontPagePG">
+		<execute macro="Portal.WikiPage#addLocalizedFrontPagePG">
 			<var name="emptyPageMessage" value="דף זה ריק. ערוך אותו על מנת להוסיף טקסט" />
 			<var name="rtl" value="true" />
 			<var name="successMessage" value="בקשתך עברה בהצלחה" />
 			<var name="wikiPageContent" value="Wiki Right to Left תוֹכֶן" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="WikiPage#viewLocalizedFrontPagePG">
+		<execute macro="Portal.WikiPage#viewLocalizedFrontPagePG">
 			<var name="rightToLeft" value="true" />
 			<var name="wikiPageContent" value="Wiki Right to Left תוֹכֶן" />
 		</execute>
 
-		<execute macro="LanguagePortlet#selectLanguagePG">
+		<execute macro="Portal.LanguagePortlet#selectLanguagePG">
 			<var name="language" value="English (United States)" />
 		</execute>
 	</command>

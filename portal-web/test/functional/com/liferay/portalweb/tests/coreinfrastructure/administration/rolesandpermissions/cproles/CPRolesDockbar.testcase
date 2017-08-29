@@ -4,9 +4,9 @@
 	<property name="testray.main.component.name" value="Permissions" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 	</set-up>
 
 	<tear-down>
@@ -15,19 +15,19 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="User#logoutAndLoginPG">
+				<execute macro="Portal.User#logoutAndLoginPG">
 					<var name="userLoginEmailAddress" value="test@liferay.com" />
 					<var name="userLoginFullName" value="Test Test" />
 				</execute>
 
-				<execute macro="User#tearDownCP" />
+				<execute macro="Portal.User#tearDownCP" />
 
-				<execute macro="Role#tearDownCP" />
+				<execute macro="Portal.Role#tearDownCP" />
 
-				<execute macro="PortalSettings#tearDownCP" />
+				<execute macro="Portal.PortalSettings#tearDownCP" />
 			</else>
 		</if>
 	</tear-down>
@@ -35,7 +35,7 @@
 	<command name="PreviewDeviceRegRole" priority="4">
 		<property name="testray.component.names" value="Mobile Web,User Interface" />
 
-		<execute macro="Permissions#setUpRegRoleLoginUserCP">
+		<execute macro="Portal.Permissions#setUpRegRoleLoginUserCP">
 			<var name="portletName" value="${portletName1}" />
 			<var name="roleTitle" value="Regrole Name" />
 			<var name="userEmailAddress" value="userea@liferay.com" />
@@ -46,11 +46,11 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute function="AssertElementNotPresent" locator1="ControlMenu#SIMULATION" />
+		<execute function="Portal.AssertElementNotPresent" locator1="ControlMenu#SIMULATION" />
 
-		<execute macro="Permissions#definePermissionLoginUserCP">
+		<execute macro="Portal.Permissions#definePermissionLoginUserCP">
 			<var name="permissionDefinitionKey" value="CONTROL_PANEL_SITES_SITES_RESOURCE_PERMISSIONS_SITE_PREVIEW_IN_DEVICE_CHECKBOX" />
 			<var name="permissionDefinitionValue" value="Preview in Device" />
 			<var name="roleTitle" value="Regrole Name" />
@@ -58,13 +58,13 @@
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="MobileDevice#previewPG">
+		<execute macro="Portal.MobileDevice#previewPG">
 			<var name="deviceType" value="smartphone" />
 		</execute>
 
-		<execute macro="Permissions#removePermissionLoginUserCP">
+		<execute macro="Portal.Permissions#removePermissionLoginUserCP">
 			<var name="permissionDefinitionKey" value="CONTROL_PANEL_SITES_SITES_RESOURCE_PERMISSIONS_SITE_PREVIEW_IN_DEVICE_CHECKBOX" />
 			<var name="permissionDefinitionValue" value="Preview in Device" />
 			<var name="roleTitle" value="Regrole Name" />
@@ -72,8 +72,8 @@
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute function="AssertElementNotPresent" locator1="ControlMenu#SIMULATION" />
+		<execute function="Portal.AssertElementNotPresent" locator1="ControlMenu#SIMULATION" />
 	</command>
 </definition>

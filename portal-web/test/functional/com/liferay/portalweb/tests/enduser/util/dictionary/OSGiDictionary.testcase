@@ -5,19 +5,19 @@
 	<property name="testray.main.component.name" value="Util" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Dictionary Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Dictionary Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Dictionary" />
 		</execute>
 	</set-up>
@@ -28,31 +28,31 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 		</if>
 	</tear-down>
 
 	<command name="FindDictionaryWord" priority="2">
-		<execute macro="TestCase#getSiteName">
+		<execute macro="Portal.TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Dictionary Page" />
 		</execute>
 
-		<execute macro="Dictionary#findPG">
+		<execute macro="Portal.Dictionary#findPG">
 			<var name="dictionaryWord" value="dog" />
 		</execute>
 
 		<var name="key_dictionaryTerm" value="dog" />
 
-		<execute function="SelectWindow" locator1="title=Dog | Define Dog at Dictionary.com" />
-		<execute function="AssertTextEquals" locator1="Portlet#WORD" value1="dog" />
+		<execute function="Portal.SelectWindow" locator1="title=Dog | Define Dog at Dictionary.com" />
+		<execute function="Portal.AssertTextEquals" locator1="Portlet#WORD" value1="dog" />
 
-		<execute function="Close" locator1="title=Dog | Define Dog at Dictionary.com" />
-		<execute function="SelectWindow" locator1="title=Dictionary Page - ${siteName}" />
+		<execute function="Portal.Close" locator1="title=Dog | Define Dog at Dictionary.com" />
+		<execute function="Portal.SelectWindow" locator1="title=Dictionary Page - ${siteName}" />
 	</command>
 </definition>

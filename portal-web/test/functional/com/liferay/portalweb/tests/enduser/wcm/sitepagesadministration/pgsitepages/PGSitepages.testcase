@@ -5,9 +5,9 @@
 	<property name="testray.main.component.name" value="Site Pages Administration" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 	</set-up>
 
 	<tear-down>
@@ -16,12 +16,12 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="WebContent#tearDownCP" />
+				<execute macro="Portal.WebContent#tearDownCP" />
 
-				<execute macro="Page#tearDownPG" />
+				<execute macro="Portal.Page#tearDownPG" />
 			</else>
 		</if>
 	</tear-down>
@@ -30,27 +30,27 @@
 		<property name="portal.acceptance" value="pending" />
 		<property name="testray.component.names" value="Training" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Site Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Site Page" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Site Page Name" />
 			<var name="pageTemplateName" value="Content Display Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Site Page Name" />
 		</execute>
 
 		<for list="Tags Navigation,Categories Navigation,Asset Publisher" param="portletName">
-			<execute macro="Portlet#viewSpecificPG">
+			<execute macro="Portal.Portlet#viewSpecificPG">
 				<var name="portletName" value="${portletName}" />
 			</execute>
 		</for>
@@ -59,29 +59,29 @@
 	<command name="DeletePages" priority="5">
 		<property name="portal.acceptance" value="true" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Page1" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Page2" />
 		</execute>
 
-		<execute macro="Page#deletePG">
+		<execute macro="Portal.Page#deletePG">
 			<var name="pageName" value="Page1" />
 		</execute>
 
-		<execute macro="Page#viewDeletedPage">
+		<execute macro="Portal.Page#viewDeletedPage">
 			<var name="pageName" value="Page1" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="Page#deleteViaX">
+		<execute macro="Portal.Page#deleteViaX">
 			<var name="pageName" value="Page2" />
 		</execute>
 
-		<execute macro="Page#viewDeletedPage">
+		<execute macro="Portal.Page#viewDeletedPage">
 			<var name="pageName" value="Page2" />
 		</execute>
 	</command>
@@ -92,53 +92,53 @@
 		<property name="portal.acceptance" value="pending" />
 		<property name="testray.component.names" value="Training" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Site Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoEditPageViaControlMenu" >
+		<execute macro="Portal.Navigator#gotoEditPageViaControlMenu" >
 			<var name="pageName" value="Site Page" />
 		</execute>
 
-		<execute macro="Page#editName">
+		<execute macro="Portal.Page#editName">
 			<var name="pageNameEdit" value="Site Page Edit" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Site Page Edit" />
 		</execute>
 
-		<execute macro="Page#view">
+		<execute macro="Portal.Page#view">
 			<var name="pageName" value="Site Page Edit" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Site Page Edit" />
 		</execute>
 
-		<execute macro="Navigator#gotoEditPageViaControlMenu" >
+		<execute macro="Portal.Navigator#gotoEditPageViaControlMenu" >
 			<var name="pageName" value="Site Page Edit" />
 		</execute>
 
-		<execute macro="Navigator#gotoSEOPanel" />
+		<execute macro="Portal.Navigator#gotoSEOPanel" />
 
-		<execute macro="Page#editPageMetadata">
+		<execute macro="Portal.Page#editPageMetadata">
 			<var name="HTMLTitle" value="S.P.A.C.E.Home" />
 			<var name="metaTagsDescription" value="Welcome to S.P.A.C.E., a graduate-level school for those passionate about expanding their horizons through science, research, and space travel" />
 			<var name="metaTagsKeywords" value="space, education, space travel, graduateschool" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Site Page Edit" />
 		</execute>
 
-		<execute macro="Navigator#gotoEditPageViaControlMenu" >
+		<execute macro="Portal.Navigator#gotoEditPageViaControlMenu" >
 			<var name="pageName" value="Site Page Edit" />
 		</execute>
 
-		<execute macro="Navigator#gotoSEOPanel" />
+		<execute macro="Portal.Navigator#gotoSEOPanel" />
 
-		<execute macro="Page#viewPageMetadata">
+		<execute macro="Portal.Page#viewPageMetadata">
 			<var name="HTMLTitle" value="S.P.A.C.E.Home" />
 			<var name="metaTagsDescription" value="Welcome to S.P.A.C.E., a graduate-level school for those passionate about expanding their horizons through science, research, and space travel" />
 			<var name="metaTagsKeywords" value="space, education, space travel, graduateschool" />
@@ -146,25 +146,25 @@
 	</command>
 
 	<command name="EditSitePage" priority="4">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Site Page" />
 		</execute>
 
-		<execute macro="SitePageNavigator#gotoEditPage">
+		<execute macro="Portal.SitePageNavigator#gotoEditPage">
 			<var name="page" value="Site Page" />
 		</execute>
 
-		<execute macro="Page#editName">
+		<execute macro="Portal.Page#editName">
 			<var name="pageNameEdit" value="Site Page Edit" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Site Page Edit" />
 		</execute>
 
-		<execute macro="Page#view">
+		<execute macro="Portal.Page#view">
 			<var name="pageName" value="Site Page Edit" />
 		</execute>
 	</command>

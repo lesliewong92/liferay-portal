@@ -6,7 +6,7 @@
 	<property name="testray.main.component.name" value="Security" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 	</set-up>
 
 	<tear-down>
@@ -15,20 +15,20 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="User#firstLoginPG" />
+				<execute macro="Portal.User#firstLoginPG" />
 
-				<execute macro="Page#tearDownPG" />
+				<execute macro="Portal.Page#tearDownPG" />
 			</else>
 		</if>
 	</tear-down>
 
 	<command name="ViewCaptchaEnabled" priority="4">
-		<execute macro="SignInNavigator#gotoCreateAccount" />
+		<execute macro="Portal.SignInNavigator#gotoCreateAccount" />
 
-		<execute macro="User#viewCaptchaPG">
+		<execute macro="Portal.User#viewCaptchaPG">
 			<var name="captchaType" value="captcha" />
 		</execute>
 	</command>
@@ -39,42 +39,42 @@
 		<var method="TestPropsUtil#get('recaptcha.private.key')" name="recaptchaPrivateKey" />
 		<var method="TestPropsUtil#get('recaptcha.public.key')" name="recaptchaPublicKey" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="System Settings" />
 		</execute>
 
-		<execute macro="SystemSettings#gotoCategory">
+		<execute macro="Portal.SystemSettings#gotoCategory">
 			<var name="category" value="Foundation" />
 		</execute>
 
-		<execute macro="SystemSettings#editConfiguration">
+		<execute macro="Portal.SystemSettings#editConfiguration">
 			<var name="configurationName" value="CAPTCHA" />
 		</execute>
 
-		<execute macro="FormFields#selectSelectOption">
+		<execute macro="Portal.FormFields#selectSelectOption">
 			<var name="fieldName" value="captchaEngine" />
 			<var name="selectOption" value="reCAPTCHA" />
 		</execute>
 
-		<execute macro="SystemSettings#editTextAreaSetting">
+		<execute macro="Portal.SystemSettings#editTextAreaSetting">
 			<var name="settingName" value="reCaptchaPrivateKey" />
 			<var name="settingValue" value="${recaptchaPrivateKey}" />
 		</execute>
 
-		<execute macro="SystemSettings#editTextAreaSetting">
+		<execute macro="Portal.SystemSettings#editTextAreaSetting">
 			<var name="settingName" value="reCaptchaPublicKey" />
 			<var name="settingValue" value="${recaptchaPublicKey}" />
 		</execute>
 
-		<execute macro="SystemSettings#saveConfiguration" />
+		<execute macro="Portal.SystemSettings#saveConfiguration" />
 
-		<execute macro="User#logoutPG" />
+		<execute macro="Portal.User#logoutPG" />
 
-		<execute macro="SignInNavigator#gotoCreateAccount" />
+		<execute macro="Portal.SignInNavigator#gotoCreateAccount" />
 
-		<execute macro="User#viewCaptchaPG">
+		<execute macro="Portal.User#viewCaptchaPG">
 			<var name="captchaType" value="recaptcha" />
 		</execute>
 	</command>

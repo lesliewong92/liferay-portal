@@ -8,9 +8,9 @@
 	<var name="workflowAssetType" value="Process" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 	</set-up>
 
 	<tear-down>
@@ -19,366 +19,366 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="KaleoFormsAdmin#tearDownProcess" />
+				<execute macro="Portal.KaleoFormsAdmin#tearDownProcess" />
 
-				<execute macro="DDLTemplate#tearDownTemplateCP" />
+				<execute macro="Portal.DDLTemplate#tearDownTemplateCP" />
 
-				<execute macro="DDLTemplate#tearDownTemplateCP">
+				<execute macro="Portal.DDLTemplate#tearDownTemplateCP">
 					<var name="ddlDataDefinitionName" value="To Do" />
 				</execute>
 
-				<execute macro="KaleoFormsAdmin#deleteFieldSet" />
+				<execute macro="Portal.KaleoFormsAdmin#deleteFieldSet" />
 
-				<execute macro="Workflow#tearDownSpecificWorkflowDefinition">
+				<execute macro="Portal.Workflow#tearDownSpecificWorkflowDefinition">
 					<var name="workflowDefinitionTitle" value="Edited Workflow Definition" />
 				</execute>
 
-				<execute macro="Workflow#tearDownWorkflowDefinitionsViaWorkflowCP" />
+				<execute macro="Portal.Workflow#tearDownWorkflowDefinitionsViaWorkflowCP" />
 
-				<execute macro="Page#tearDownPG" />
+				<execute macro="Portal.Page#tearDownPG" />
 			</else>
 		</if>
 	</tear-down>
 
 	<command name="AddFieldSetWithDocumentsAndMediaField" priority="3">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addProcess" />
+		<execute macro="Portal.KaleoFormsAdmin#addProcess" />
 
-		<execute macro="KaleoFormsAdmin#addProcessDetails">
+		<execute macro="Portal.KaleoFormsAdmin#addProcessDetails">
 			<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#addFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#addFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="DynamicDataMapping#addField">
+		<execute macro="Portal.DynamicDataMapping#addField">
 			<var name="field" value="Documents and Media" />
 			<var name="fieldFieldLabel" value="DM Test Field" />
 			<var name="fieldName" value="DMTestField" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveFieldSet" />
+		<execute macro="Portal.KaleoFormsAdmin#saveFieldSet" />
 
-		<execute macro="KaleoFormsAdmin#chooseFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#chooseFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#chooseWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#chooseWorkflow">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowDefinitionTitle" value="Single Approver" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#assignForm">
+		<execute macro="Portal.KaleoFormsAdmin#assignForm">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowTask" value="create" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addForm">
+		<execute macro="Portal.KaleoFormsAdmin#addForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveForm" />
+		<execute macro="Portal.KaleoFormsAdmin#saveForm" />
 
-		<execute macro="KaleoFormsAdmin#chooseForm">
+		<execute macro="Portal.KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcess">
+		<execute macro="Portal.KaleoFormsAdmin#saveProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 	</command>
 
 	<command name="AddProcessWithNewFieldSetAndWorkflowViaSourceTab" priority="3">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addProcess" />
+		<execute macro="Portal.KaleoFormsAdmin#addProcess" />
 
-		<execute macro="KaleoFormsAdmin#addProcessDetails">
+		<execute macro="Portal.KaleoFormsAdmin#addProcessDetails">
 			<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#addFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#addFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="DynamicDataMapping#addField">
+		<execute macro="Portal.DynamicDataMapping#addField">
 			<var name="field" value="Boolean" />
 			<var name="fieldFieldLabel" value="Boolean" />
 			<var name="fieldName" value="Boolean" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveFieldSet" />
+		<execute macro="Portal.KaleoFormsAdmin#saveFieldSet" />
 
-		<execute macro="KaleoFormsAdmin#chooseFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#chooseFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#addWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#addWorkflow">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowDefinitionTitle" value="Workflow Definition Title" />
 		</execute>
 
-		<execute macro="KaleoDesigner#addSourceXMLBasicDefinition" />
+		<execute macro="Portal.KaleoDesigner#addSourceXMLBasicDefinition" />
 
-		<execute macro="KaleoFormsAdmin#publishWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#publishWorkflow">
 			<var name="workflowDefinitionTitle" value="Workflow Definition Title" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#chooseWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#chooseWorkflow">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowDefinitionTitle" value="Workflow Definition Title" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#assignForm">
+		<execute macro="Portal.KaleoFormsAdmin#assignForm">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowTask" value="TestStartNode" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addForm">
+		<execute macro="Portal.KaleoFormsAdmin#addForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveForm" />
+		<execute macro="Portal.KaleoFormsAdmin#saveForm" />
 
-		<execute macro="KaleoFormsAdmin#chooseForm">
+		<execute macro="Portal.KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcess">
+		<execute macro="Portal.KaleoFormsAdmin#saveProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 	</command>
 
 	<command name="DeactivateAndActivateWorkflowDefinition" priority="3">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addProcess" />
+		<execute macro="Portal.KaleoFormsAdmin#addProcess" />
 
-		<execute macro="KaleoFormsAdmin#addProcessDetails">
+		<execute macro="Portal.KaleoFormsAdmin#addProcessDetails">
 			<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#addFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#addFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="DynamicDataMapping#addField">
+		<execute macro="Portal.DynamicDataMapping#addField">
 			<var name="field" value="Text" />
 			<var name="fieldFieldLabel" value="Text" />
 			<var name="fieldName" value="Text" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveFieldSet" />
+		<execute macro="Portal.KaleoFormsAdmin#saveFieldSet" />
 
-		<execute macro="KaleoFormsAdmin#chooseFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#chooseFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#deactivateWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#deactivateWorkflow">
 			<var name="workflowDefinitionTitle" value="Single Approver" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewNoPublishedWorkflowDefinitions" />
+		<execute macro="Portal.KaleoFormsAdmin#viewNoPublishedWorkflowDefinitions" />
 
-		<execute macro="KaleoFormsAdmin#viewNoUnpublishedWorkflowDefinitions" />
+		<execute macro="Portal.KaleoFormsAdmin#viewNoUnpublishedWorkflowDefinitions" />
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Workflow" />
 		</execute>
 
-		<execute macro="Workflow#reactivateInactiveWorkflowDefinition">
+		<execute macro="Portal.Workflow#reactivateInactiveWorkflowDefinition">
 			<var name="workflowDefinitionName" value="Single Approver" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addProcess" />
+		<execute macro="Portal.KaleoFormsAdmin#addProcess" />
 
-		<execute macro="KaleoFormsAdmin#addProcessDetails">
+		<execute macro="Portal.KaleoFormsAdmin#addProcessDetails">
 			<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#chooseFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#chooseFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
 		<var name="key_workflowDefinitionTitle" value="Single Approver" />
 
-		<execute function="AssertTextEquals" locator1="KaleoFormsAdminEditProcess#WORKFLOW_TABLE_TITLE" value1="Single Approver" />
+		<execute function="Portal.AssertTextEquals" locator1="KaleoFormsAdminEditProcess#WORKFLOW_TABLE_TITLE" value1="Single Approver" />
 
 		<var name="key_rowEntry" value="Single Approver" />
 
-		<execute function="AssertElementPresent" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
+		<execute function="Portal.AssertElementPresent" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
 
-		<execute macro="KaleoFormsAdmin#viewNoUnpublishedWorkflowDefinitions" />
+		<execute macro="Portal.KaleoFormsAdmin#viewNoUnpublishedWorkflowDefinitions" />
 	</command>
 
 	<command name="DeactivateAndDeleteWorkflowDefinition" priority="4">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addProcess" />
+		<execute macro="Portal.KaleoFormsAdmin#addProcess" />
 
-		<execute macro="KaleoFormsAdmin#addProcessDetails">
+		<execute macro="Portal.KaleoFormsAdmin#addProcessDetails">
 			<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#addFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#addFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="DynamicDataMapping#addField">
+		<execute macro="Portal.DynamicDataMapping#addField">
 			<var name="field" value="Text" />
 			<var name="fieldFieldLabel" value="Text" />
 			<var name="fieldName" value="Text" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveFieldSet" />
+		<execute macro="Portal.KaleoFormsAdmin#saveFieldSet" />
 
-		<execute macro="KaleoFormsAdmin#chooseFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#chooseFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#addWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#addWorkflow">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowDefinitionTitle" value="Workflow Definition Title" />
 		</execute>
 
-		<execute macro="KaleoDesigner#addSourceXMLBasicDefinition" />
+		<execute macro="Portal.KaleoDesigner#addSourceXMLBasicDefinition" />
 
-		<execute macro="KaleoFormsAdmin#publishWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#publishWorkflow">
 			<var name="workflowDefinitionTitle" value="Workflow Definition Title" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#deactivateWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#deactivateWorkflow">
 			<var name="workflowDefinitionTitle" value="Workflow Definition Title" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#deactivateWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#deactivateWorkflow">
 			<var name="workflowDefinitionTitle" value="Single Approver" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewNoPublishedWorkflowDefinitions" />
+		<execute macro="Portal.KaleoFormsAdmin#viewNoPublishedWorkflowDefinitions" />
 
-		<execute macro="KaleoFormsAdmin#viewNoUnpublishedWorkflowDefinitions" />
+		<execute macro="Portal.KaleoFormsAdmin#viewNoUnpublishedWorkflowDefinitions" />
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Workflow" />
 		</execute>
 
-		<execute macro="Workflow#deleteSpecificWorkflowDefinition">
+		<execute macro="Portal.Workflow#deleteSpecificWorkflowDefinition">
 			<var name="workflowDefinitionTitle" value="Workflow Definition Title" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addProcess" />
+		<execute macro="Portal.KaleoFormsAdmin#addProcess" />
 
-		<execute macro="KaleoFormsAdmin#addProcessDetails">
+		<execute macro="Portal.KaleoFormsAdmin#addProcessDetails">
 			<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#chooseFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#chooseFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#viewNoPublishedWorkflowDefinitions" />
+		<execute macro="Portal.KaleoFormsAdmin#viewNoPublishedWorkflowDefinitions" />
 
-		<execute macro="KaleoFormsAdmin#viewNoUnpublishedWorkflowDefinitions" />
+		<execute macro="Portal.KaleoFormsAdmin#viewNoUnpublishedWorkflowDefinitions" />
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Workflow" />
 		</execute>
 
-		<execute macro="Workflow#reactivateInactiveWorkflowDefinition">
+		<execute macro="Portal.Workflow#reactivateInactiveWorkflowDefinition">
 			<var name="workflowDefinitionName" value="Single Approver" />
 		</execute>
 	</command>
@@ -389,121 +389,121 @@
 		<var name="kfFieldSetName" value="${kfFieldSetName}" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addProcess" />
+		<execute macro="Portal.KaleoFormsAdmin#addProcess" />
 
-		<execute macro="KaleoFormsAdmin#addProcessDetails">
+		<execute macro="Portal.KaleoFormsAdmin#addProcessDetails">
 			<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 			<var name="kfProcessName" value="${kfProcessName}" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#addFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#addFieldSet">
 			<var name="kfFieldSetName" value="${kfFieldSetName}" />
 			<var name="kfProcessName" value="${kfProcessName}" />
 		</execute>
 
-		<execute macro="DynamicDataMapping#addField">
+		<execute macro="Portal.DynamicDataMapping#addField">
 			<var name="field" value="Boolean" />
 			<var name="fieldFieldLabel" value="Boolean" />
 			<var name="fieldName" value="Boolean" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveFieldSet" />
+		<execute macro="Portal.KaleoFormsAdmin#saveFieldSet" />
 
-		<execute macro="KaleoFormsAdmin#chooseFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#chooseFieldSet">
 			<var name="kfFieldSetName" value="${kfFieldSetName}" />
 			<var name="kfProcessName" value="${kfProcessName}" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#chooseWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#chooseWorkflow">
 			<var name="kfProcessName" value="${kfProcessName}" />
 			<var name="workflowDefinitionTitle" value="Single Approver" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#assignForm">
+		<execute macro="Portal.KaleoFormsAdmin#assignForm">
 			<var name="kfProcessName" value="${kfProcessName}" />
 			<var name="workflowTask" value="create" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addForm">
+		<execute macro="Portal.KaleoFormsAdmin#addForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveForm" />
+		<execute macro="Portal.KaleoFormsAdmin#saveForm" />
 
-		<execute macro="KaleoFormsAdmin#chooseForm">
+		<execute macro="Portal.KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcess">
+		<execute macro="Portal.KaleoFormsAdmin#saveProcess">
 			<var name="kfProcessName" value="${kfProcessName}" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcess">
 			<var name="kfProcessName" value="${kfProcessName}" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#assignNewForm">
+		<execute macro="Portal.KaleoFormsAdmin#assignNewForm">
 			<var name="kfFormName" value="Created Task Form" />
 			<var name="kfFormNameNew" value="New Assigned Form" />
 			<var name="kfProcessName" value="${kfProcessName}" />
 			<var name="workflowTask" value="created" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#deleteForm">
+		<execute macro="Portal.KaleoFormsAdmin#deleteForm">
 			<var name="kfFieldSetName" value="${kfFieldSetName}" />
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcess">
 			<var name="kfProcessName" value="${kfProcessName}" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessDetails">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessDetails">
 			<var name="kfProcessDescription" value="${kfProcessName} Description" />
 			<var name="kfProcessName" value="${kfProcessName}" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessFieldSet">
 			<var name="kfFieldSetName" value="${kfFieldSetName}" />
 			<var name="kfProcessName" value="${kfProcessName}" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessWorkflow">
 			<var name="kfProcessName" value="${kfProcessName}" />
 			<var name="workflowDefinitionTitle" value="Single Approver" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessFormsDeleted">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessFormsDeleted">
 			<var name="kfFormName" value="Created Task Form" />
 			<var name="kfProcessName" value="${kfProcessName}" />
 			<var name="workflowTask" value="create" />
@@ -515,91 +515,91 @@
 	<!-- <command name="DeleteCreateFormViaKaleoFormsAdmin" priority="4">
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addProcess" />
+		<execute macro="Portal.KaleoFormsAdmin#addProcess" />
 
-		<execute macro="KaleoFormsAdmin#addProcessDetails">
+		<execute macro="Portal.KaleoFormsAdmin#addProcessDetails">
 			<var name="kfProcessDescription" value="${kfProcessName} Description" />
 			<var name="kfProcessName" value="${kfProcessName}" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#addFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#addFieldSet">
 			<var name="kfFieldSetName" value="${kfFieldSetName}" />
 			<var name="kfProcessName" value="${kfProcessName}" />
 		</execute>
 
-		<execute macro="DynamicDataMapping#addField">
+		<execute macro="Portal.DynamicDataMapping#addField">
 			<var name="field" value="Text" />
 			<var name="fieldFieldLabel" value="Text" />
 			<var name="fieldName" value="Text" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveFieldSet" />
+		<execute macro="Portal.KaleoFormsAdmin#saveFieldSet" />
 
-		<execute macro="KaleoFormsAdmin#chooseFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#chooseFieldSet">
 			<var name="kfFieldSetName" value="${kfFieldSetName}" />
 			<var name="kfProcessName" value="${kfProcessName}" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#chooseWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#chooseWorkflow">
 			<var name="kfProcessName" value="${kfProcessName}" />
 			<var name="workflowDefinitionTitle" value="Single Approver" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#assignForm">
+		<execute macro="Portal.KaleoFormsAdmin#assignForm">
 			<var name="kfProcessName" value="${kfProcessName}" />
 			<var name="workflowTask" value="create" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addForm">
+		<execute macro="Portal.KaleoFormsAdmin#addForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveForm" />
+		<execute macro="Portal.KaleoFormsAdmin#saveForm" />
 
-		<execute macro="KaleoFormsAdmin#chooseForm">
+		<execute macro="Portal.KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcess">
+		<execute macro="Portal.KaleoFormsAdmin#saveProcess">
 			<var name="kfProcessName" value="${kfProcessName}" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcess">
 			<var name="kfProcessName" value="${kfProcessName}" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#assignNewForm">
+		<execute macro="Portal.KaleoFormsAdmin#assignNewForm">
 			<var name="kfFormName" value="Created Task Form" />
 			<var name="kfFormNameNew" value="New Assigned Form" />
 			<var name="kfProcessName" value="${kfProcessName}" />
 			<var name="workflowTask" value="created" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#deleteForm">
+		<execute macro="Portal.KaleoFormsAdmin#deleteForm">
 			<var name="kfFieldSetName" value="${kfFieldSetName}" />
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
@@ -610,121 +610,121 @@
 	<!-- <command name="DeleteEditFormViaKaleoFormsAdmin" priority="3">
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addProcess" />
+		<execute macro="Portal.KaleoFormsAdmin#addProcess" />
 
-		<execute macro="KaleoFormsAdmin#addProcessDetails">
+		<execute macro="Portal.KaleoFormsAdmin#addProcessDetails">
 			<var name="kfProcessDescription" value="${kfProcessName} Description" />
 			<var name="kfProcessName" value="${kfProcessName}" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#addFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#addFieldSet">
 			<var name="kfFieldSetName" value="${kfFieldSetName}" />
 			<var name="kfProcessName" value="${kfProcessName}" />
 		</execute>
 
-		<execute macro="DynamicDataMapping#addField">
+		<execute macro="Portal.DynamicDataMapping#addField">
 			<var name="field" value="Text" />
 			<var name="fieldFieldLabel" value="Text" />
 			<var name="fieldName" value="Text" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveFieldSet" />
+		<execute macro="Portal.KaleoFormsAdmin#saveFieldSet" />
 
-		<execute macro="KaleoFormsAdmin#chooseFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#chooseFieldSet">
 			<var name="kfFieldSetName" value="${kfFieldSetName}" />
 			<var name="kfProcessName" value="${kfProcessName}" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#chooseWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#chooseWorkflow">
 			<var name="kfProcessName" value="${kfProcessName}" />
 			<var name="workflowDefinitionTitle" value="Single Approver" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#assignForm">
+		<execute macro="Portal.KaleoFormsAdmin#assignForm">
 			<var name="kfProcessName" value="${kfProcessName}" />
 			<var name="workflowTask" value="created" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addForm">
+		<execute macro="Portal.KaleoFormsAdmin#addForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveForm" />
+		<execute macro="Portal.KaleoFormsAdmin#saveForm" />
 
-		<execute macro="KaleoFormsAdmin#chooseForm">
+		<execute macro="Portal.KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcess">
+		<execute macro="Portal.KaleoFormsAdmin#saveProcess">
 			<var name="kfProcessName" value="${kfProcessName}" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#assignNewForm">
+		<execute macro="Portal.KaleoFormsAdmin#assignNewForm">
 			<var name="kfFormName" value="Created Task Form" />
 			<var name="kfFormNameNew" value="New Assigned Form" />
 			<var name="kfProcessName" value="${kfProcessName}" />
 			<var name="workflowTask" value="created" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#deleteForm">
+		<execute macro="Portal.KaleoFormsAdmin#deleteForm">
 			<var name="kfFieldSetName" value="${kfFieldSetName}" />
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 	</command> -->
 
 	<command name="DeleteFieldSet" priority="4">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#addFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="DynamicDataMapping#addField">
+		<execute macro="Portal.DynamicDataMapping#addField">
 			<var name="field" value="Boolean" />
 			<var name="fieldFieldLabel" value="Boolean" />
 			<var name="fieldName" value="Boolean" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveFieldSet" />
+		<execute macro="Portal.KaleoFormsAdmin#saveFieldSet" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#deleteFieldSet" />
+		<execute macro="Portal.KaleoFormsAdmin#deleteFieldSet" />
 	</command>
 
 	<!-- LPS-68693 -->
@@ -734,117 +734,117 @@
 		<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addProcess" />
+		<execute macro="Portal.KaleoFormsAdmin#addProcess" />
 
-		<execute macro="KaleoFormsAdmin#addProcessDetails">
+		<execute macro="Portal.KaleoFormsAdmin#addProcessDetails">
 			<var name="kfProcessDescription" value="${kfProcessDescription}" />
 			<var name="kfProcessName" value="${kfProcessName}" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#addFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#addFieldSet">
 			<var name="kfFieldSetName" value="${kfFieldSetName}" />
 			<var name="kfProcessName" value="${kfProcessName}" />
 		</execute>
 
-		<execute macro="DynamicDataMapping#addField">
+		<execute macro="Portal.DynamicDataMapping#addField">
 			<var name="field" value="Boolean" />
 			<var name="fieldFieldLabel" value="Boolean" />
 			<var name="fieldName" value="Boolean" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveFieldSet" />
+		<execute macro="Portal.KaleoFormsAdmin#saveFieldSet" />
 
-		<execute macro="KaleoFormsAdmin#chooseFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#chooseFieldSet">
 			<var name="kfFieldSetName" value="${kfFieldSetName}" />
 			<var name="kfProcessName" value="${kfProcessName}" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#chooseWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#chooseWorkflow">
 			<var name="kfProcessName" value="${kfProcessName}" />
 			<var name="workflowDefinitionTitle" value="Single Approver" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#assignForm">
+		<execute macro="Portal.KaleoFormsAdmin#assignForm">
 			<var name="kfProcessName" value="${kfProcessName}" />
 			<var name="workflowTask" value="create" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addForm">
+		<execute macro="Portal.KaleoFormsAdmin#addForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveForm" />
+		<execute macro="Portal.KaleoFormsAdmin#saveForm" />
 
-		<execute macro="KaleoFormsAdmin#chooseForm">
+		<execute macro="Portal.KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcess">
+		<execute macro="Portal.KaleoFormsAdmin#saveProcess">
 			<var name="kfProcessName" value="${kfProcessName}" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcess">
 			<var name="kfProcessName" value="${kfProcessName}" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#assignNewForm">
+		<execute macro="Portal.KaleoFormsAdmin#assignNewForm">
 			<var name="kfFormName" value="Created Task Form" />
 			<var name="kfFormNameNew" value="New Assigned Form" />
 			<var name="kfProcessName" value="${kfProcessName}" />
 			<var name="workflowTask" value="created" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#deleteForm">
+		<execute macro="Portal.KaleoFormsAdmin#deleteForm">
 			<var name="kfFieldSetName" value="${kfFieldSetName}" />
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcess">
 			<var name="kfProcessName" value="${kfProcessName}" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessDetails">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessDetails">
 			<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 			<var name="kfProcessName" value="${kfProcessName}" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessFieldSet">
 			<var name="kfFieldSetName" value="${kfFieldSetName}" />
 			<var name="kfProcessName" value="${kfProcessName}" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessWorkflow">
 			<var name="kfProcessName" value="${kfProcessName}" />
 			<var name="workflowDefinitionTitle" value="Single Approver" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessFormsDeleted">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessFormsDeleted">
 			<var name="kfFormName" value="Created Task Form" />
 			<var name="kfProcessName" value="${kfProcessName}" />
 			<var name="workflowTask" value="create" />
@@ -852,381 +852,381 @@
 	</command> -->
 
 	<command name="DeleteProcess" priority="5">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addProcess" />
+		<execute macro="Portal.KaleoFormsAdmin#addProcess" />
 
-		<execute macro="KaleoFormsAdmin#addProcessDetails">
+		<execute macro="Portal.KaleoFormsAdmin#addProcessDetails">
 			<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#addFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#addFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="DynamicDataMapping#addField">
+		<execute macro="Portal.DynamicDataMapping#addField">
 			<var name="field" value="Text" />
 			<var name="fieldFieldLabel" value="Text" />
 			<var name="fieldName" value="Text" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveFieldSet" />
+		<execute macro="Portal.KaleoFormsAdmin#saveFieldSet" />
 
-		<execute macro="KaleoFormsAdmin#chooseFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#chooseFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#chooseWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#chooseWorkflow">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowDefinitionTitle" value="Single Approver" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#assignForm">
+		<execute macro="Portal.KaleoFormsAdmin#assignForm">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowTask" value="create" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addForm">
+		<execute macro="Portal.KaleoFormsAdmin#addForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveForm" />
+		<execute macro="Portal.KaleoFormsAdmin#saveForm" />
 
-		<execute macro="KaleoFormsAdmin#chooseForm">
+		<execute macro="Portal.KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcess">
+		<execute macro="Portal.KaleoFormsAdmin#saveProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#deleteProcess">
+		<execute macro="Portal.KaleoFormsAdmin#deleteProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 	</command>
 
 	<command name="DeleteProcessRecords" priority="3">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addProcess" />
+		<execute macro="Portal.KaleoFormsAdmin#addProcess" />
 
-		<execute macro="KaleoFormsAdmin#addProcessDetails">
+		<execute macro="Portal.KaleoFormsAdmin#addProcessDetails">
 			<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#addFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#addFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="DynamicDataMapping#addField">
+		<execute macro="Portal.DynamicDataMapping#addField">
 			<var name="field" value="Text" />
 			<var name="fieldFieldLabel" value="Text" />
 			<var name="fieldName" value="Text" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveFieldSet" />
+		<execute macro="Portal.KaleoFormsAdmin#saveFieldSet" />
 
-		<execute macro="KaleoFormsAdmin#chooseFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#chooseFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#chooseWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#chooseWorkflow">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowDefinitionTitle" value="Single Approver" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#assignForm">
+		<execute macro="Portal.KaleoFormsAdmin#assignForm">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowTask" value="create" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addForm">
+		<execute macro="Portal.KaleoFormsAdmin#addForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveForm" />
+		<execute macro="Portal.KaleoFormsAdmin#saveForm" />
 
-		<execute macro="KaleoFormsAdmin#chooseForm">
+		<execute macro="Portal.KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcess">
+		<execute macro="Portal.KaleoFormsAdmin#saveProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessRecord">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessRecord">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessNoRecords">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessNoRecords">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#viewDefaultMyWorkflowTasksCP" />
+		<execute macro="Portal.Workflow#viewDefaultMyWorkflowTasksCP" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#submitNewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#submitNewProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#populateFieldText">
+		<execute macro="Portal.KaleoFormsAdmin#populateFieldText">
 			<var name="fieldName" value="Text" />
 			<var name="kfProcessFieldData" value="One" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="Portal.KaleoFormsAdmin#saveProcessRecord" />
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#assignToMeTaskByActions">
+		<execute macro="Portal.Workflow#assignToMeTaskByActions">
 			<var name="workflowAssetTitle" value="Kaleo Forms Process" />
 			<var name="workflowAssetType" value="Process" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Workflow#approveTaskByActions">
+		<execute macro="Portal.Workflow#approveTaskByActions">
 			<var name="workflowAssetTitle" value="Kaleo Forms Process" />
 			<var name="workflowAssetType" value="Process" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#submitNewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#submitNewProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#populateFieldText">
+		<execute macro="Portal.KaleoFormsAdmin#populateFieldText">
 			<var name="fieldName" value="Text" />
 			<var name="kfProcessFieldData" value="Two" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="Portal.KaleoFormsAdmin#saveProcessRecord" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessRecord">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessRecord">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessRecordTable">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessRecordTable">
 			<var name="kfAuthor" value="Test Test" />
 			<var name="kfProcessFieldData" value="One" />
 			<var name="kfStatus" value="Approved" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessRecordTable">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessRecordTable">
 			<var name="kfAuthor" value="Test Test" />
 			<var name="kfProcessFieldData" value="Two" />
 			<var name="kfStatus" value="Pending" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#searchProcessRecords">
+		<execute macro="Portal.KaleoFormsAdmin#searchProcessRecords">
 			<var name="kfProcessSearchData" value="One" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#deleteProcessRecord">
+		<execute macro="Portal.KaleoFormsAdmin#deleteProcessRecord">
 			<var name="kfProcessFieldData" value="One" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessRecord">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessRecord">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessRecordTable">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessRecordTable">
 			<var name="kfAuthor" value="Test Test" />
 			<var name="kfProcessFieldData" value="Two" />
 			<var name="kfStatus" value="Pending" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessRecordTableRecordNotPresent">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessRecordTableRecordNotPresent">
 			<var name="kfProcessFieldData" value="One" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#deleteProcessRecord">
+		<execute macro="Portal.KaleoFormsAdmin#deleteProcessRecord">
 			<var name="kfProcessFieldData" value="Two" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessNoRecords">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessNoRecords">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 	</command>
 
 	<command name="EditCreateTaskForm" priority="4">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addProcess" />
+		<execute macro="Portal.KaleoFormsAdmin#addProcess" />
 
-		<execute macro="KaleoFormsAdmin#addProcessDetails">
+		<execute macro="Portal.KaleoFormsAdmin#addProcessDetails">
 			<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#addFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#addFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="DynamicDataMapping#addField">
+		<execute macro="Portal.DynamicDataMapping#addField">
 			<var name="field" value="Text" />
 			<var name="fieldFieldLabel" value="Text" />
 			<var name="fieldName" value="Text" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveFieldSet" />
+		<execute macro="Portal.KaleoFormsAdmin#saveFieldSet" />
 
-		<execute macro="KaleoFormsAdmin#chooseFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#chooseFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#chooseWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#chooseWorkflow">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowDefinitionTitle" value="Single Approver" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#assignForm">
+		<execute macro="Portal.KaleoFormsAdmin#assignForm">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowTask" value="create" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addForm">
+		<execute macro="Portal.KaleoFormsAdmin#addForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveForm" />
+		<execute macro="Portal.KaleoFormsAdmin#saveForm" />
 
-		<execute macro="KaleoFormsAdmin#chooseForm">
+		<execute macro="Portal.KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#editForm" >
+		<execute macro="Portal.KaleoFormsAdmin#editForm" >
 			<var name="kfFormName" value="Created Task Form" />
 			<var name="kfFormNameEdit" value="Created Task Form Edit" />
 		</execute>
 
-		<execute macro="DynamicDataMapping#addFieldFormTemplateSpecific">
+		<execute macro="Portal.DynamicDataMapping#addFieldFormTemplateSpecific">
 			<var name="field" value="Separator" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveFormEdit">
+		<execute macro="Portal.KaleoFormsAdmin#saveFormEdit">
 			<var name="kfFormName" value="Created Task Form Edit" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcess">
+		<execute macro="Portal.KaleoFormsAdmin#saveProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessDetails">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessDetails">
 			<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessWorkflow">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowDefinitionTitle" value="Single Approver" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessForms">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessForms">
 			<var name="kfFormName" value="Created Task Form Edit" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewFormEdit">
+		<execute macro="Portal.KaleoFormsAdmin#viewFormEdit">
 			<var name="kfFormNameEdit" value="Created Task Form Edit" />
 		</execute>
 
-		<execute macro="DynamicDataMapping#viewField">
+		<execute macro="Portal.DynamicDataMapping#viewField">
 			<var name="fieldFieldLabel" value="Text" />
 			<var name="fieldName" value="Text" />
 		</execute>
 
-		<execute macro="DynamicDataMapping#viewFieldFormTemplateSpecific">
+		<execute macro="Portal.DynamicDataMapping#viewFieldFormTemplateSpecific">
 			<var name="field" value="Separator" />
 			<var name="fieldFieldLabel" value="Separator" />
 			<var name="fieldName" value="Separator" />
@@ -1234,86 +1234,86 @@
 	</command>
 
 	<command name="EditFieldSetViaAddProcess" priority="3">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addProcess" />
+		<execute macro="Portal.KaleoFormsAdmin#addProcess" />
 
-		<execute macro="KaleoFormsAdmin#addProcessDetails">
+		<execute macro="Portal.KaleoFormsAdmin#addProcessDetails">
 			<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#addFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#addFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="DynamicDataMapping#addField">
+		<execute macro="Portal.DynamicDataMapping#addField">
 			<var name="field" value="Text" />
 			<var name="fieldFieldLabel" value="Text" />
 			<var name="fieldName" value="Text" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveFieldSet" />
+		<execute macro="Portal.KaleoFormsAdmin#saveFieldSet" />
 
-		<execute macro="KaleoFormsAdmin#editFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#editFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfFieldSetNameEdit" value="New Kaleo Field Set Edit" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="DynamicDataMapping#addField">
+		<execute macro="Portal.DynamicDataMapping#addField">
 			<var name="field" value="Boolean" />
 			<var name="fieldFieldLabel" value="Boolean" />
 			<var name="fieldName" value="Boolean" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveFieldSet" />
+		<execute macro="Portal.KaleoFormsAdmin#saveFieldSet" />
 
-		<execute macro="KaleoFormsAdmin#chooseFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#chooseFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set Edit" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#chooseWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#chooseWorkflow">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowDefinitionTitle" value="Single Approver" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#assignForm">
+		<execute macro="Portal.KaleoFormsAdmin#assignForm">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowTask" value="create" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addForm">
+		<execute macro="Portal.KaleoFormsAdmin#addForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveForm" />
+		<execute macro="Portal.KaleoFormsAdmin#saveForm" />
 
-		<execute macro="KaleoFormsAdmin#chooseForm">
+		<execute macro="Portal.KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcess">
+		<execute macro="Portal.KaleoFormsAdmin#saveProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 	</command>
@@ -1322,985 +1322,985 @@
 		<description message="This is a use case for LPS-49037." />
 
 		<for list="Field1,Field2,Field3,Field4,Field5,Field6" param="kfFieldSetName">
-			<execute macro="ProductMenu#gotoSitesContent">
+			<execute macro="Portal.ProductMenu#gotoSitesContent">
 				<var name="portlet" value="Kaleo Forms Admin" />
 			</execute>
 
-			<execute macro="KaleoFormsAdmin#addFieldSet">
+			<execute macro="Portal.KaleoFormsAdmin#addFieldSet">
 				<var name="kfFieldSetName" value="${kfFieldSetName}" />
 				<var name="kfProcessName" value="${kfProcessName}" />
 			</execute>
 
-			<execute macro="DynamicDataMapping#addField">
+			<execute macro="Portal.DynamicDataMapping#addField">
 				<var name="field" value="Text" />
 				<var name="fieldFieldLabel" value="Text" />
 				<var name="fieldName" value="Text" />
 			</execute>
 
-			<execute macro="KaleoFormsAdmin#saveFieldSet" />
+			<execute macro="Portal.KaleoFormsAdmin#saveFieldSet" />
 		</for>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addProcess" />
+		<execute macro="Portal.KaleoFormsAdmin#addProcess" />
 
-		<execute macro="KaleoFormsAdmin#addProcessDetails">
+		<execute macro="Portal.KaleoFormsAdmin#addProcessDetails">
 			<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#chooseFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#chooseFieldSet">
 			<var name="kfFieldSetName" value="Field5" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#chooseWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#chooseWorkflow">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowDefinitionTitle" value="Single Approver" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#assignForm">
+		<execute macro="Portal.KaleoFormsAdmin#assignForm">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowTask" value="create" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addForm">
+		<execute macro="Portal.KaleoFormsAdmin#addForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveForm" />
+		<execute macro="Portal.KaleoFormsAdmin#saveForm" />
 
-		<execute macro="KaleoFormsAdmin#chooseForm">
+		<execute macro="Portal.KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcess">
+		<execute macro="Portal.KaleoFormsAdmin#saveProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#editProcess">
+		<execute macro="Portal.KaleoFormsAdmin#editProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#editFieldSetPagination">
+		<execute macro="Portal.KaleoFormsAdmin#editFieldSetPagination">
 			<var name="paginationNumber" value="5" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewNextFieldSetPage" />
+		<execute macro="Portal.KaleoFormsAdmin#viewNextFieldSetPage" />
 
-		<execute macro="KaleoFormsAdmin#viewProcessFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessFieldSet">
 			<var name="kfFieldSetName" value="Field5" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessWorkflow">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowDefinitionTitle" value="Single Approver" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessForms">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessForms">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 	</command>
 
 	<command name="EditProcessForms" priority="5">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addProcess" />
+		<execute macro="Portal.KaleoFormsAdmin#addProcess" />
 
-		<execute macro="KaleoFormsAdmin#addProcessDetails">
+		<execute macro="Portal.KaleoFormsAdmin#addProcessDetails">
 			<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#addFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#addFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="DynamicDataMapping#addField">
+		<execute macro="Portal.DynamicDataMapping#addField">
 			<var name="field" value="Text" />
 			<var name="fieldFieldLabel" value="Text" />
 			<var name="fieldName" value="Text" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveFieldSet" />
+		<execute macro="Portal.KaleoFormsAdmin#saveFieldSet" />
 
-		<execute macro="KaleoFormsAdmin#chooseFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#chooseFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#chooseWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#chooseWorkflow">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowDefinitionTitle" value="Single Approver" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#assignForm">
+		<execute macro="Portal.KaleoFormsAdmin#assignForm">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowTask" value="create" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addForm">
+		<execute macro="Portal.KaleoFormsAdmin#addForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveForm" />
+		<execute macro="Portal.KaleoFormsAdmin#saveForm" />
 
-		<execute macro="KaleoFormsAdmin#chooseForm">
+		<execute macro="Portal.KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcess">
+		<execute macro="Portal.KaleoFormsAdmin#saveProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#editProcess">
+		<execute macro="Portal.KaleoFormsAdmin#editProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#gotoProgressStep">
+		<execute macro="Portal.KaleoFormsAdmin#gotoProgressStep">
 			<var name="kfProgressName" value="Forms" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#assignForm">
+		<execute macro="Portal.KaleoFormsAdmin#assignForm">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowTask" value="create" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addForm">
+		<execute macro="Portal.KaleoFormsAdmin#addForm">
 			<var name="kfFormName" value="Edited Process Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveForm" />
+		<execute macro="Portal.KaleoFormsAdmin#saveForm" />
 
-		<execute macro="KaleoFormsAdmin#chooseForm">
+		<execute macro="Portal.KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Edited Process Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcess">
+		<execute macro="Portal.KaleoFormsAdmin#saveProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessDetails">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessDetails">
 			<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessWorkflow">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowDefinitionTitle" value="Single Approver" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessForms">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessForms">
 			<var name="kfFormName" value="Edited Process Task Form" />
 		</execute>
 	</command>
 
 	<command name="EditProcessNewDetails" priority="3">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addProcess" />
+		<execute macro="Portal.KaleoFormsAdmin#addProcess" />
 
-		<execute macro="KaleoFormsAdmin#addProcessDetails">
+		<execute macro="Portal.KaleoFormsAdmin#addProcessDetails">
 			<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#addFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#addFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="DynamicDataMapping#addField">
+		<execute macro="Portal.DynamicDataMapping#addField">
 			<var name="field" value="Text" />
 			<var name="fieldFieldLabel" value="Text" />
 			<var name="fieldName" value="Text" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveFieldSet" />
+		<execute macro="Portal.KaleoFormsAdmin#saveFieldSet" />
 
-		<execute macro="KaleoFormsAdmin#chooseFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#chooseFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#chooseWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#chooseWorkflow">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowDefinitionTitle" value="Single Approver" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#assignForm">
+		<execute macro="Portal.KaleoFormsAdmin#assignForm">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowTask" value="create" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addForm">
+		<execute macro="Portal.KaleoFormsAdmin#addForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveForm" />
+		<execute macro="Portal.KaleoFormsAdmin#saveForm" />
 
-		<execute macro="KaleoFormsAdmin#chooseForm">
+		<execute macro="Portal.KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcess">
+		<execute macro="Portal.KaleoFormsAdmin#saveProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#editProcess">
+		<execute macro="Portal.KaleoFormsAdmin#editProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#editProcessDetails">
+		<execute macro="Portal.KaleoFormsAdmin#editProcessDetails">
 			<var name="kfProcessDescriptionEdit" value="Kaleo Forms Process Description Edited" />
 			<var name="kfProcessNameEdit" value="Kaleo Forms Process Edited" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#gotoProgressStep">
+		<execute macro="Portal.KaleoFormsAdmin#gotoProgressStep">
 			<var name="kfProgressName" value="Forms" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcess">
+		<execute macro="Portal.KaleoFormsAdmin#saveProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process Edited" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process Edited" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessDetails">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessDetails">
 			<var name="kfProcessDescription" value="Kaleo Forms Process Description Edited" />
 			<var name="kfProcessName" value="Kaleo Forms Process Edited" />
 		</execute>
 	</command>
 
 	<command name="EditProcessNewFieldSet" priority="4">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
 		<for list="Field1,Field2,Field3,Field4,Field5,Field6" param="kfFieldSetName">
-			<execute macro="ProductMenu#gotoSitesContent">
+			<execute macro="Portal.ProductMenu#gotoSitesContent">
 				<var name="portlet" value="Kaleo Forms Admin" />
 			</execute>
 
-			<execute macro="KaleoFormsAdmin#addFieldSet">
+			<execute macro="Portal.KaleoFormsAdmin#addFieldSet">
 				<var name="kfFieldSetName" value="${kfFieldSetName}" />
 				<var name="kfProcessName" value="Kaleo Forms Process" />
 			</execute>
 
-			<execute macro="DynamicDataMapping#addField">
+			<execute macro="Portal.DynamicDataMapping#addField">
 				<var name="field" value="Text" />
 				<var name="fieldFieldLabel" value="Text" />
 				<var name="fieldName" value="Text" />
 			</execute>
 
-			<execute macro="KaleoFormsAdmin#saveFieldSet" />
+			<execute macro="Portal.KaleoFormsAdmin#saveFieldSet" />
 		</for>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addProcess" />
+		<execute macro="Portal.KaleoFormsAdmin#addProcess" />
 
-		<execute macro="KaleoFormsAdmin#addProcessDetails">
+		<execute macro="Portal.KaleoFormsAdmin#addProcessDetails">
 			<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#addFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#addFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="DynamicDataMapping#addField">
+		<execute macro="Portal.DynamicDataMapping#addField">
 			<var name="field" value="Text" />
 			<var name="fieldFieldLabel" value="Text" />
 			<var name="fieldName" value="Text" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveFieldSet" />
+		<execute macro="Portal.KaleoFormsAdmin#saveFieldSet" />
 
-		<execute macro="KaleoFormsAdmin#chooseFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#chooseFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#chooseWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#chooseWorkflow">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowDefinitionTitle" value="Single Approver" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#assignForm">
+		<execute macro="Portal.KaleoFormsAdmin#assignForm">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowTask" value="create" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addForm">
+		<execute macro="Portal.KaleoFormsAdmin#addForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveForm" />
+		<execute macro="Portal.KaleoFormsAdmin#saveForm" />
 
-		<execute macro="KaleoFormsAdmin#chooseForm">
+		<execute macro="Portal.KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcess">
+		<execute macro="Portal.KaleoFormsAdmin#saveProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#editProcess">
+		<execute macro="Portal.KaleoFormsAdmin#editProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#addFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#addFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set Edit" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="DynamicDataMapping#addField">
+		<execute macro="Portal.DynamicDataMapping#addField">
 			<var name="field" value="Boolean" />
 			<var name="fieldFieldLabel" value="Boolean" />
 			<var name="fieldName" value="Boolean" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveFieldSet" />
+		<execute macro="Portal.KaleoFormsAdmin#saveFieldSet" />
 
-		<execute macro="KaleoFormsAdmin#chooseFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#chooseFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set Edit" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#gotoProgressStep">
+		<execute macro="Portal.KaleoFormsAdmin#gotoProgressStep">
 			<var name="kfProgressName" value="Forms" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#assignForm">
+		<execute macro="Portal.KaleoFormsAdmin#assignForm">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowTask" value="create" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addForm">
+		<execute macro="Portal.KaleoFormsAdmin#addForm">
 			<var name="kfFormName" value="Edited Process Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveForm" />
+		<execute macro="Portal.KaleoFormsAdmin#saveForm" />
 
-		<execute macro="KaleoFormsAdmin#chooseForm">
+		<execute macro="Portal.KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Edited Process Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcess">
+		<execute macro="Portal.KaleoFormsAdmin#saveProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessDetails">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessDetails">
 			<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set Edit" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 	</command>
 
 	<command name="EditProcessNewWorkflowViaSourceTab" priority="5">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addProcess" />
+		<execute macro="Portal.KaleoFormsAdmin#addProcess" />
 
-		<execute macro="KaleoFormsAdmin#addProcessDetails">
+		<execute macro="Portal.KaleoFormsAdmin#addProcessDetails">
 			<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#addFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#addFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="DynamicDataMapping#addField">
+		<execute macro="Portal.DynamicDataMapping#addField">
 			<var name="field" value="Text" />
 			<var name="fieldFieldLabel" value="Text" />
 			<var name="fieldName" value="Text" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveFieldSet" />
+		<execute macro="Portal.KaleoFormsAdmin#saveFieldSet" />
 
-		<execute macro="KaleoFormsAdmin#chooseFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#chooseFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#chooseWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#chooseWorkflow">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowDefinitionTitle" value="Single Approver" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#assignForm">
+		<execute macro="Portal.KaleoFormsAdmin#assignForm">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowTask" value="create" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addForm">
+		<execute macro="Portal.KaleoFormsAdmin#addForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveForm" />
+		<execute macro="Portal.KaleoFormsAdmin#saveForm" />
 
-		<execute macro="KaleoFormsAdmin#chooseForm">
+		<execute macro="Portal.KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcess">
+		<execute macro="Portal.KaleoFormsAdmin#saveProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#editProcess">
+		<execute macro="Portal.KaleoFormsAdmin#editProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#addFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#addFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set Edit" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="DynamicDataMapping#addField">
+		<execute macro="Portal.DynamicDataMapping#addField">
 			<var name="field" value="Boolean" />
 			<var name="fieldFieldLabel" value="Boolean" />
 			<var name="fieldName" value="Boolean" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveFieldSet" />
+		<execute macro="Portal.KaleoFormsAdmin#saveFieldSet" />
 
-		<execute macro="KaleoFormsAdmin#chooseFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#chooseFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set Edit" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#gotoProgressStep">
+		<execute macro="Portal.KaleoFormsAdmin#gotoProgressStep">
 			<var name="kfProgressName" value="Forms" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#assignForm">
+		<execute macro="Portal.KaleoFormsAdmin#assignForm">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowTask" value="create" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addForm">
+		<execute macro="Portal.KaleoFormsAdmin#addForm">
 			<var name="kfFormName" value="Edited Process Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveForm" />
+		<execute macro="Portal.KaleoFormsAdmin#saveForm" />
 
-		<execute macro="KaleoFormsAdmin#chooseForm">
+		<execute macro="Portal.KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Edited Process Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcess">
+		<execute macro="Portal.KaleoFormsAdmin#saveProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#editProcess">
+		<execute macro="Portal.KaleoFormsAdmin#editProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#gotoProgressStep">
+		<execute macro="Portal.KaleoFormsAdmin#gotoProgressStep">
 			<var name="kfProgressName" value="Workflow" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#addWorkflow">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowDefinitionTitle" value="Workflow Definition Title" />
 		</execute>
 
-		<execute macro="KaleoDesigner#addSourceXMLBasicDefinition" />
+		<execute macro="Portal.KaleoDesigner#addSourceXMLBasicDefinition" />
 
-		<execute macro="KaleoFormsAdmin#publishWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#publishWorkflow">
 			<var name="workflowDefinitionTitle" value="Workflow Definition Title" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#chooseWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#chooseWorkflow">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowDefinitionTitle" value="Workflow Definition Title" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#assignForm">
+		<execute macro="Portal.KaleoFormsAdmin#assignForm">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowTask" value="TestStartNode" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addForm">
+		<execute macro="Portal.KaleoFormsAdmin#addForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveForm" />
+		<execute macro="Portal.KaleoFormsAdmin#saveForm" />
 
-		<execute macro="KaleoFormsAdmin#chooseForm">
+		<execute macro="Portal.KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcess">
+		<execute macro="Portal.KaleoFormsAdmin#saveProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessDetails">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessDetails">
 			<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set Edit" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessWorkflow">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowDefinitionTitle" value="Workflow Definition Title" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessForms">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessForms">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 	</command>
 
 	<command name="EditSingleApproverWorkflowViaSourceTabViaAddProcess" priority="5">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addProcess" />
+		<execute macro="Portal.KaleoFormsAdmin#addProcess" />
 
-		<execute macro="KaleoFormsAdmin#addProcessDetails">
+		<execute macro="Portal.KaleoFormsAdmin#addProcessDetails">
 			<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#addFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#addFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="DynamicDataMapping#addField">
+		<execute macro="Portal.DynamicDataMapping#addField">
 			<var name="field" value="Text" />
 			<var name="fieldFieldLabel" value="Text" />
 			<var name="fieldName" value="Text" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveFieldSet" />
+		<execute macro="Portal.KaleoFormsAdmin#saveFieldSet" />
 
-		<execute macro="KaleoFormsAdmin#chooseFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#chooseFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#editWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#editWorkflow">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowDefinitionTitle" value="Single Approver" />
 			<var name="workflowDefinitionTitleEdit" value="Edited Workflow Definition" />
 		</execute>
 
-		<execute macro="KaleoDesigner#addSourceXMLBasicDefinition" />
+		<execute macro="Portal.KaleoDesigner#addSourceXMLBasicDefinition" />
 
-		<execute macro="KaleoFormsAdmin#publishWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#publishWorkflow">
 			<var name="workflowDefinitionTitleEdit" value="Edited Workflow Definition" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#chooseWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#chooseWorkflow">
 			<var name="edit" value="true" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowDefinitionTitle" value="Edited Workflow Definition" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#assignForm">
+		<execute macro="Portal.KaleoFormsAdmin#assignForm">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowTask" value="TestStartNode" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addForm">
+		<execute macro="Portal.KaleoFormsAdmin#addForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveForm" />
+		<execute macro="Portal.KaleoFormsAdmin#saveForm" />
 
-		<execute macro="KaleoFormsAdmin#chooseForm">
+		<execute macro="Portal.KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcess">
+		<execute macro="Portal.KaleoFormsAdmin#saveProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 	</command>
 
 	<command name="EditSingleApproverWorkflowViaViewTabViaAddProcess" priority="3">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addProcess" />
+		<execute macro="Portal.KaleoFormsAdmin#addProcess" />
 
-		<execute macro="KaleoFormsAdmin#addProcessDetails">
+		<execute macro="Portal.KaleoFormsAdmin#addProcessDetails">
 			<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#addFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#addFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="DynamicDataMapping#addField">
+		<execute macro="Portal.DynamicDataMapping#addField">
 			<var name="field" value="Text" />
 			<var name="fieldFieldLabel" value="Text" />
 			<var name="fieldName" value="Text" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveFieldSet" />
+		<execute macro="Portal.KaleoFormsAdmin#saveFieldSet" />
 
-		<execute macro="KaleoFormsAdmin#chooseFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#chooseFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#editWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#editWorkflow">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowDefinitionTitle" value="Single Approver" />
 			<var name="workflowDefinitionTitleEdit" value="Edited Workflow Definition" />
 		</execute>
 
-		<execute macro="KaleoDesigner#selectNode">
+		<execute macro="Portal.KaleoDesigner#selectNode">
 			<var name="nodeNodeLabel" value="update" />
 		</execute>
 
-		<execute macro="KaleoDesigner#deleteNode">
+		<execute macro="Portal.KaleoDesigner#deleteNode">
 			<var name="nodeNodeLabel" value="update" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#publishWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#publishWorkflow">
 			<var name="workflowDefinitionTitleEdit" value="Edited Workflow Definition" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#chooseWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#chooseWorkflow">
 			<var name="edit" value="true" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowDefinitionTitle" value="Edited Workflow Definition" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#assignForm">
+		<execute macro="Portal.KaleoFormsAdmin#assignForm">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowTask" value="create" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addForm">
+		<execute macro="Portal.KaleoFormsAdmin#addForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveForm" />
+		<execute macro="Portal.KaleoFormsAdmin#saveForm" />
 
-		<execute macro="KaleoFormsAdmin#chooseForm">
+		<execute macro="Portal.KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewTaskPresent">
+		<execute macro="Portal.KaleoFormsAdmin#viewTaskPresent">
 			<var name="workflowTask" value="create" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewTaskPresent">
+		<execute macro="Portal.KaleoFormsAdmin#viewTaskPresent">
 			<var name="workflowTask" value="review" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewTaskNotPresent">
+		<execute macro="Portal.KaleoFormsAdmin#viewTaskNotPresent">
 			<var name="workflowTask" value="update" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcess">
+		<execute macro="Portal.KaleoFormsAdmin#saveProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 	</command>
 
 	<command name="EditUploadedWorkflowViaViewTabViaAddProcess" priority="4">
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Workflow" />
 		</execute>
 
-		<execute macro="Workflow#uploadDefinition">
+		<execute macro="Portal.Workflow#uploadDefinition">
 			<var name="workflowDefinitionFile" value="workflow_definition_1.xml" />
 			<var name="workflowDefinitionTitle" value="Uploaded Definition" />
 		</execute>
 
-		<execute macro="Workflow#viewDefinition">
+		<execute macro="Portal.Workflow#viewDefinition">
 			<var name="workflowDefinitionName" value="Uploaded Definition" />
 			<var name="workflowDefinitionTitle" value="Uploaded Definition" />
 			<var name="workflowDefinitionVersionNumber" value="1" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addProcess" />
+		<execute macro="Portal.KaleoFormsAdmin#addProcess" />
 
-		<execute macro="KaleoFormsAdmin#addProcessDetails">
+		<execute macro="Portal.KaleoFormsAdmin#addProcessDetails">
 			<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#addFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#addFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="DynamicDataMapping#addField">
+		<execute macro="Portal.DynamicDataMapping#addField">
 			<var name="field" value="Text" />
 			<var name="fieldFieldLabel" value="Text" />
 			<var name="fieldName" value="Text" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveFieldSet" />
+		<execute macro="Portal.KaleoFormsAdmin#saveFieldSet" />
 
-		<execute macro="KaleoFormsAdmin#chooseFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#chooseFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#editWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#editWorkflow">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowDefinitionTitle" value="Uploaded Definition" />
 			<var name="workflowDefinitionTitleEdit" value="New Uploaded Definition Edit" />
 		</execute>
 
-		<execute macro="KaleoDesigner#selectNode">
+		<execute macro="Portal.KaleoDesigner#selectNode">
 			<var name="nodeNodeLabel" value="update" />
 		</execute>
 
-		<execute macro="KaleoDesigner#deleteNode">
+		<execute macro="Portal.KaleoDesigner#deleteNode">
 			<var name="nodeNodeLabel" value="update" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#publishWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#publishWorkflow">
 			<var name="workflowDefinitionTitleEdit" value="New Uploaded Definition Edit" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#chooseWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#chooseWorkflow">
 			<var name="edit" value="true" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowDefinitionTitle" value="New Uploaded Definition Edit" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#assignForm">
+		<execute macro="Portal.KaleoFormsAdmin#assignForm">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowTask" value="create" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addForm">
+		<execute macro="Portal.KaleoFormsAdmin#addForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveForm" />
+		<execute macro="Portal.KaleoFormsAdmin#saveForm" />
 
-		<execute macro="KaleoFormsAdmin#chooseForm">
+		<execute macro="Portal.KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewTaskPresent">
+		<execute macro="Portal.KaleoFormsAdmin#viewTaskPresent">
 			<var name="workflowTask" value="create" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewTaskPresent">
+		<execute macro="Portal.KaleoFormsAdmin#viewTaskPresent">
 			<var name="workflowTask" value="review" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewTaskNotPresent">
+		<execute macro="Portal.KaleoFormsAdmin#viewTaskNotPresent">
 			<var name="workflowTask" value="update" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcess">
+		<execute macro="Portal.KaleoFormsAdmin#saveProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 	</command>
@@ -2308,150 +2308,150 @@
 	<command name="ExportAllProcessRecordsCSV" priority="4">
 		<description message="This is a use case for LPS-49107." />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addProcess" />
+		<execute macro="Portal.KaleoFormsAdmin#addProcess" />
 
-		<execute macro="KaleoFormsAdmin#addProcessDetails">
+		<execute macro="Portal.KaleoFormsAdmin#addProcessDetails">
 			<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#addFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#addFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="DynamicDataMapping#addField">
+		<execute macro="Portal.DynamicDataMapping#addField">
 			<var name="field" value="Text" />
 			<var name="fieldFieldLabel" value="Text" />
 			<var name="fieldName" value="Text" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveFieldSet" />
+		<execute macro="Portal.KaleoFormsAdmin#saveFieldSet" />
 
-		<execute macro="KaleoFormsAdmin#chooseFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#chooseFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#chooseWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#chooseWorkflow">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowDefinitionTitle" value="Single Approver" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#assignForm">
+		<execute macro="Portal.KaleoFormsAdmin#assignForm">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowTask" value="create" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addForm">
+		<execute macro="Portal.KaleoFormsAdmin#addForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveForm" />
+		<execute macro="Portal.KaleoFormsAdmin#saveForm" />
 
-		<execute macro="KaleoFormsAdmin#chooseForm">
+		<execute macro="Portal.KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcess">
+		<execute macro="Portal.KaleoFormsAdmin#saveProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessRecord">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessRecord">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessNoRecords">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessNoRecords">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#viewDefaultMyWorkflowTasksCP" />
+		<execute macro="Portal.Workflow#viewDefaultMyWorkflowTasksCP" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#submitNewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#submitNewProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#populateFieldText">
+		<execute macro="Portal.KaleoFormsAdmin#populateFieldText">
 			<var name="fieldName" value="Text" />
 			<var name="kfProcessFieldData" value="One" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="Portal.KaleoFormsAdmin#saveProcessRecord" />
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#assignToMeTaskByActions">
+		<execute macro="Portal.Workflow#assignToMeTaskByActions">
 			<var name="workflowAssetTitle" value="Kaleo Forms Process" />
 			<var name="workflowAssetType" value="Process" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Workflow#approveTaskByActions">
+		<execute macro="Portal.Workflow#approveTaskByActions">
 			<var name="workflowAssetTitle" value="Kaleo Forms Process" />
 			<var name="workflowAssetType" value="Process" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#submitNewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#submitNewProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#populateFieldText">
+		<execute macro="Portal.KaleoFormsAdmin#populateFieldText">
 			<var name="fieldName" value="Text" />
 			<var name="kfProcessFieldData" value="Two" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="Portal.KaleoFormsAdmin#saveProcessRecord" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessRecord">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessRecord">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#exportRecords">
+		<execute macro="Portal.KaleoFormsAdmin#exportRecords">
 			<var name="fileExtension" value="CSV" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
@@ -2460,150 +2460,150 @@
 	<command name="ExportAllProcessRecordsXML" priority="4">
 		<description message="This is a use case for LPS-49107." />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addProcess" />
+		<execute macro="Portal.KaleoFormsAdmin#addProcess" />
 
-		<execute macro="KaleoFormsAdmin#addProcessDetails">
+		<execute macro="Portal.KaleoFormsAdmin#addProcessDetails">
 			<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#addFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#addFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="DynamicDataMapping#addField">
+		<execute macro="Portal.DynamicDataMapping#addField">
 			<var name="field" value="Text" />
 			<var name="fieldFieldLabel" value="Text" />
 			<var name="fieldName" value="Text" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveFieldSet" />
+		<execute macro="Portal.KaleoFormsAdmin#saveFieldSet" />
 
-		<execute macro="KaleoFormsAdmin#chooseFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#chooseFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#chooseWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#chooseWorkflow">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowDefinitionTitle" value="Single Approver" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#assignForm">
+		<execute macro="Portal.KaleoFormsAdmin#assignForm">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowTask" value="create" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addForm">
+		<execute macro="Portal.KaleoFormsAdmin#addForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveForm" />
+		<execute macro="Portal.KaleoFormsAdmin#saveForm" />
 
-		<execute macro="KaleoFormsAdmin#chooseForm">
+		<execute macro="Portal.KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcess">
+		<execute macro="Portal.KaleoFormsAdmin#saveProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessRecord">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessRecord">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessNoRecords">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessNoRecords">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#viewDefaultMyWorkflowTasksCP" />
+		<execute macro="Portal.Workflow#viewDefaultMyWorkflowTasksCP" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#submitNewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#submitNewProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#populateFieldText">
+		<execute macro="Portal.KaleoFormsAdmin#populateFieldText">
 			<var name="fieldName" value="Text" />
 			<var name="kfProcessFieldData" value="One" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="Portal.KaleoFormsAdmin#saveProcessRecord" />
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#assignToMeTaskByActions">
+		<execute macro="Portal.Workflow#assignToMeTaskByActions">
 			<var name="workflowAssetTitle" value="Kaleo Forms Process" />
 			<var name="workflowAssetType" value="Process" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Workflow#approveTaskByActions">
+		<execute macro="Portal.Workflow#approveTaskByActions">
 			<var name="workflowAssetTitle" value="Kaleo Forms Process" />
 			<var name="workflowAssetType" value="Process" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#submitNewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#submitNewProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#populateFieldText">
+		<execute macro="Portal.KaleoFormsAdmin#populateFieldText">
 			<var name="fieldName" value="Text" />
 			<var name="kfProcessFieldData" value="Two" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="Portal.KaleoFormsAdmin#saveProcessRecord" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessRecord">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessRecord">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#exportRecords">
+		<execute macro="Portal.KaleoFormsAdmin#exportRecords">
 			<var name="fileExtension" value="XML" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
@@ -2612,150 +2612,150 @@
 	<command name="ExportApprovedProcessRecordsCSV" priority="4">
 		<description message="This is a use case for LPS-49107." />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addProcess" />
+		<execute macro="Portal.KaleoFormsAdmin#addProcess" />
 
-		<execute macro="KaleoFormsAdmin#addProcessDetails">
+		<execute macro="Portal.KaleoFormsAdmin#addProcessDetails">
 			<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#addFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#addFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="DynamicDataMapping#addField">
+		<execute macro="Portal.DynamicDataMapping#addField">
 			<var name="field" value="Text" />
 			<var name="fieldFieldLabel" value="Text" />
 			<var name="fieldName" value="Text" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveFieldSet" />
+		<execute macro="Portal.KaleoFormsAdmin#saveFieldSet" />
 
-		<execute macro="KaleoFormsAdmin#chooseFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#chooseFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#chooseWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#chooseWorkflow">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowDefinitionTitle" value="Single Approver" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#assignForm">
+		<execute macro="Portal.KaleoFormsAdmin#assignForm">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowTask" value="create" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addForm">
+		<execute macro="Portal.KaleoFormsAdmin#addForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveForm" />
+		<execute macro="Portal.KaleoFormsAdmin#saveForm" />
 
-		<execute macro="KaleoFormsAdmin#chooseForm">
+		<execute macro="Portal.KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcess">
+		<execute macro="Portal.KaleoFormsAdmin#saveProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessRecord">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessRecord">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessNoRecords">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessNoRecords">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#viewDefaultMyWorkflowTasksCP" />
+		<execute macro="Portal.Workflow#viewDefaultMyWorkflowTasksCP" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#submitNewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#submitNewProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#populateFieldText">
+		<execute macro="Portal.KaleoFormsAdmin#populateFieldText">
 			<var name="fieldName" value="Text" />
 			<var name="kfProcessFieldData" value="One" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="Portal.KaleoFormsAdmin#saveProcessRecord" />
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#assignToMeTaskByActions">
+		<execute macro="Portal.Workflow#assignToMeTaskByActions">
 			<var name="workflowAssetTitle" value="Kaleo Forms Process" />
 			<var name="workflowAssetType" value="Process" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Workflow#approveTaskByActions">
+		<execute macro="Portal.Workflow#approveTaskByActions">
 			<var name="workflowAssetTitle" value="Kaleo Forms Process" />
 			<var name="workflowAssetType" value="Process" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#submitNewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#submitNewProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#populateFieldText">
+		<execute macro="Portal.KaleoFormsAdmin#populateFieldText">
 			<var name="fieldName" value="Text" />
 			<var name="kfProcessFieldData" value="Two" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="Portal.KaleoFormsAdmin#saveProcessRecord" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessRecord">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessRecord">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#exportRecords">
+		<execute macro="Portal.KaleoFormsAdmin#exportRecords">
 			<var name="approvedOnly" value="true" />
 			<var name="fileExtension" value="CSV" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
@@ -2765,150 +2765,150 @@
 	<command name="ExportApprovedProcessRecordsXML" priority="4">
 		<description message="This is a use case for LPS-49107." />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addProcess" />
+		<execute macro="Portal.KaleoFormsAdmin#addProcess" />
 
-		<execute macro="KaleoFormsAdmin#addProcessDetails">
+		<execute macro="Portal.KaleoFormsAdmin#addProcessDetails">
 			<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#addFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#addFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="DynamicDataMapping#addField">
+		<execute macro="Portal.DynamicDataMapping#addField">
 			<var name="field" value="Text" />
 			<var name="fieldFieldLabel" value="Text" />
 			<var name="fieldName" value="Text" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveFieldSet" />
+		<execute macro="Portal.KaleoFormsAdmin#saveFieldSet" />
 
-		<execute macro="KaleoFormsAdmin#chooseFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#chooseFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#chooseWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#chooseWorkflow">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowDefinitionTitle" value="Single Approver" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#assignForm">
+		<execute macro="Portal.KaleoFormsAdmin#assignForm">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowTask" value="create" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addForm">
+		<execute macro="Portal.KaleoFormsAdmin#addForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveForm" />
+		<execute macro="Portal.KaleoFormsAdmin#saveForm" />
 
-		<execute macro="KaleoFormsAdmin#chooseForm">
+		<execute macro="Portal.KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcess">
+		<execute macro="Portal.KaleoFormsAdmin#saveProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessRecord">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessRecord">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessNoRecords">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessNoRecords">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#viewDefaultMyWorkflowTasksCP" />
+		<execute macro="Portal.Workflow#viewDefaultMyWorkflowTasksCP" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#submitNewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#submitNewProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#populateFieldText">
+		<execute macro="Portal.KaleoFormsAdmin#populateFieldText">
 			<var name="fieldName" value="Text" />
 			<var name="kfProcessFieldData" value="One" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="Portal.KaleoFormsAdmin#saveProcessRecord" />
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#assignToMeTaskByActions">
+		<execute macro="Portal.Workflow#assignToMeTaskByActions">
 			<var name="workflowAssetTitle" value="Kaleo Forms Process" />
 			<var name="workflowAssetType" value="Process" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Workflow#approveTaskByActions">
+		<execute macro="Portal.Workflow#approveTaskByActions">
 			<var name="workflowAssetTitle" value="Kaleo Forms Process" />
 			<var name="workflowAssetType" value="Process" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#submitNewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#submitNewProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#populateFieldText">
+		<execute macro="Portal.KaleoFormsAdmin#populateFieldText">
 			<var name="fieldName" value="Text" />
 			<var name="kfProcessFieldData" value="Two" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="Portal.KaleoFormsAdmin#saveProcessRecord" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessRecord">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessRecord">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#exportRecords">
+		<execute macro="Portal.KaleoFormsAdmin#exportRecords">
 			<var name="approvedOnly" value="true" />
 			<var name="fileExtension" value="XML" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
@@ -2916,190 +2916,190 @@
 	</command>
 
 	<command name="SearchProcessRecords" priority="4">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addProcess" />
+		<execute macro="Portal.KaleoFormsAdmin#addProcess" />
 
-		<execute macro="KaleoFormsAdmin#addProcessDetails">
+		<execute macro="Portal.KaleoFormsAdmin#addProcessDetails">
 			<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#addFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#addFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="DynamicDataMapping#addField">
+		<execute macro="Portal.DynamicDataMapping#addField">
 			<var name="field" value="Text" />
 			<var name="fieldFieldLabel" value="Text" />
 			<var name="fieldName" value="Text" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveFieldSet" />
+		<execute macro="Portal.KaleoFormsAdmin#saveFieldSet" />
 
-		<execute macro="KaleoFormsAdmin#chooseFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#chooseFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#chooseWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#chooseWorkflow">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowDefinitionTitle" value="Single Approver" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#assignForm">
+		<execute macro="Portal.KaleoFormsAdmin#assignForm">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowTask" value="create" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addForm">
+		<execute macro="Portal.KaleoFormsAdmin#addForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveForm" />
+		<execute macro="Portal.KaleoFormsAdmin#saveForm" />
 
-		<execute macro="KaleoFormsAdmin#chooseForm">
+		<execute macro="Portal.KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcess">
+		<execute macro="Portal.KaleoFormsAdmin#saveProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessRecord">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessRecord">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessNoRecords">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessNoRecords">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#viewDefaultMyWorkflowTasksCP" />
+		<execute macro="Portal.Workflow#viewDefaultMyWorkflowTasksCP" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#submitNewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#submitNewProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#populateFieldText">
+		<execute macro="Portal.KaleoFormsAdmin#populateFieldText">
 			<var name="fieldName" value="Text" />
 			<var name="kfProcessFieldData" value="One" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="Portal.KaleoFormsAdmin#saveProcessRecord" />
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#assignToMeTaskByActions">
+		<execute macro="Portal.Workflow#assignToMeTaskByActions">
 			<var name="workflowAssetTitle" value="Kaleo Forms Process" />
 			<var name="workflowAssetType" value="Process" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Workflow#approveTaskByActions">
+		<execute macro="Portal.Workflow#approveTaskByActions">
 			<var name="workflowAssetTitle" value="Kaleo Forms Process" />
 			<var name="workflowAssetType" value="Process" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#submitNewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#submitNewProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#populateFieldText">
+		<execute macro="Portal.KaleoFormsAdmin#populateFieldText">
 			<var name="fieldName" value="Text" />
 			<var name="kfProcessFieldData" value="Two" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="Portal.KaleoFormsAdmin#saveProcessRecord" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessRecord">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessRecord">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessRecordTable">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessRecordTable">
 			<var name="kfAuthor" value="Test Test" />
 			<var name="kfProcessFieldData" value="One" />
 			<var name="kfStatus" value="Approved" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessRecordTable">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessRecordTable">
 			<var name="kfAuthor" value="Test Test" />
 			<var name="kfProcessFieldData" value="Two" />
 			<var name="kfStatus" value="Pending" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#searchProcessRecords">
+		<execute macro="Portal.KaleoFormsAdmin#searchProcessRecords">
 			<var name="kfProcessSearchData" value="One" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessRecordTable">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessRecordTable">
 			<var name="kfAuthor" value="Test Test" />
 			<var name="kfProcessFieldData" value="One" />
 			<var name="kfStatus" value="Approved" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessRecordTableRecordNotPresent">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessRecordTableRecordNotPresent">
 			<var name="kfProcessFieldData" value="Two" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#searchProcessRecords">
+		<execute macro="Portal.KaleoFormsAdmin#searchProcessRecords">
 			<var name="kfProcessSearchData" value="Two" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessRecordTable">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessRecordTable">
 			<var name="kfAuthor" value="Test Test" />
 			<var name="kfProcessFieldData" value="Two" />
 			<var name="kfStatus" value="Pending" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessRecordTableRecordNotPresent">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessRecordTableRecordNotPresent">
 			<var name="kfProcessFieldData" value="One" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#searchProcessRecords">
+		<execute macro="Portal.KaleoFormsAdmin#searchProcessRecords">
 			<var name="kfProcessSearchData" value="Hello" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessNoRecords">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessNoRecords">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 	</command>
@@ -3107,155 +3107,155 @@
 	<command name="ViewCanAddFieldsAfterSaveAndContinue" priority="3">
 		<description message="This is a use case for LPS-50363." />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addProcess" />
+		<execute macro="Portal.KaleoFormsAdmin#addProcess" />
 
-		<execute macro="KaleoFormsAdmin#addProcessDetails">
+		<execute macro="Portal.KaleoFormsAdmin#addProcessDetails">
 			<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#addFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#addFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="DynamicDataMapping#addField">
+		<execute macro="Portal.DynamicDataMapping#addField">
 			<var name="field" value="Text" />
 			<var name="fieldFieldLabel" value="Text" />
 			<var name="fieldName" value="Text" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveFieldSet" />
+		<execute macro="Portal.KaleoFormsAdmin#saveFieldSet" />
 
-		<execute macro="KaleoFormsAdmin#chooseFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#chooseFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#chooseWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#chooseWorkflow">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowDefinitionTitle" value="Single Approver" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#assignForm">
+		<execute macro="Portal.KaleoFormsAdmin#assignForm">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowTask" value="create" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addForm">
+		<execute macro="Portal.KaleoFormsAdmin#addForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveAndContinueForm" />
+		<execute macro="Portal.KaleoFormsAdmin#saveAndContinueForm" />
 
-		<execute macro="DynamicDataMapping#viewCanAddField">
+		<execute macro="Portal.DynamicDataMapping#viewCanAddField">
 			<var name="field" value="Paragraph" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveForm" />
+		<execute macro="Portal.KaleoFormsAdmin#saveForm" />
 
-		<execute macro="KaleoFormsAdmin#chooseForm">
+		<execute macro="Portal.KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcess">
+		<execute macro="Portal.KaleoFormsAdmin#saveProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 	</command>
 
 	<command name="ViewErrorMessageUponSavingBlankFieldSet" priority="3">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addProcess" />
+		<execute macro="Portal.KaleoFormsAdmin#addProcess" />
 
-		<execute macro="KaleoFormsAdmin#addProcessDetails">
+		<execute macro="Portal.KaleoFormsAdmin#addProcessDetails">
 			<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#addFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#addFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="Button#clickSave" />
+		<execute macro="Portal.Button#clickSave" />
 
-		<execute macro="KaleoFormsAdmin#viewInvalidDefinitionMessage" />
+		<execute macro="Portal.KaleoFormsAdmin#viewInvalidDefinitionMessage" />
 	</command>
 
 	<command name="ViewFieldSetCreateHeaderTitle" priority="2">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addProcess" />
+		<execute macro="Portal.KaleoFormsAdmin#addProcess" />
 
-		<execute macro="KaleoFormsAdmin#addProcessDetails">
+		<execute macro="Portal.KaleoFormsAdmin#addProcessDetails">
 			<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#addFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#addFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="DynamicDataMapping#addField">
+		<execute macro="Portal.DynamicDataMapping#addField">
 			<var name="field" value="Text" />
 			<var name="fieldFieldLabel" value="Text" />
 			<var name="fieldName" value="Text" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveFieldSet" />
+		<execute macro="Portal.KaleoFormsAdmin#saveFieldSet" />
 
-		<execute macro="KaleoFormsAdmin#editFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#editFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfFieldSetNameEdit" value="Field Set Data Definition Edit" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveFieldSet" />
+		<execute macro="Portal.KaleoFormsAdmin#saveFieldSet" />
 	</command>
 
 	<command name="ViewFieldSetParentDefinitionIframeTitle" priority="2">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#addFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="DDLDataDefinition#viewParentStructureHeader">
+		<execute macro="Portal.DDLDataDefinition#viewParentStructureHeader">
 			<var name="assetTitle" value="Field Sets" />
 		</execute>
 	</command>
@@ -3263,207 +3263,207 @@
 	<command name="ViewNoUnpublishedWorkflowMessage" priority="3">
 		<description message="This is a use case for LPS-47352." />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addProcess" />
+		<execute macro="Portal.KaleoFormsAdmin#addProcess" />
 
-		<execute macro="KaleoFormsAdmin#addProcessDetails">
+		<execute macro="Portal.KaleoFormsAdmin#addProcessDetails">
 			<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#addFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#addFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="DynamicDataMapping#addField">
+		<execute macro="Portal.DynamicDataMapping#addField">
 			<var name="field" value="Text" />
 			<var name="fieldFieldLabel" value="Text" />
 			<var name="fieldName" value="Text" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveFieldSet" />
+		<execute macro="Portal.KaleoFormsAdmin#saveFieldSet" />
 
-		<execute macro="KaleoFormsAdmin#chooseFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#chooseFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#viewNoUnpublishedWorkflowDefinitions" />
+		<execute macro="Portal.KaleoFormsAdmin#viewNoUnpublishedWorkflowDefinitions" />
 	</command>
 
 	<command name="ViewProcessRecordDetails" priority="3">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addProcess" />
+		<execute macro="Portal.KaleoFormsAdmin#addProcess" />
 
-		<execute macro="KaleoFormsAdmin#addProcessDetails">
+		<execute macro="Portal.KaleoFormsAdmin#addProcessDetails">
 			<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#addFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#addFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="DynamicDataMapping#addField">
+		<execute macro="Portal.DynamicDataMapping#addField">
 			<var name="field" value="Text" />
 			<var name="fieldFieldLabel" value="Text" />
 			<var name="fieldName" value="Text" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveFieldSet" />
+		<execute macro="Portal.KaleoFormsAdmin#saveFieldSet" />
 
-		<execute macro="KaleoFormsAdmin#chooseFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#chooseFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#chooseWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#chooseWorkflow">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowDefinitionTitle" value="Single Approver" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#assignForm">
+		<execute macro="Portal.KaleoFormsAdmin#assignForm">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowTask" value="create" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addForm">
+		<execute macro="Portal.KaleoFormsAdmin#addForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveForm" />
+		<execute macro="Portal.KaleoFormsAdmin#saveForm" />
 
-		<execute macro="KaleoFormsAdmin#chooseForm">
+		<execute macro="Portal.KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcess">
+		<execute macro="Portal.KaleoFormsAdmin#saveProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessRecord">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessRecord">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessNoRecords">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessNoRecords">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#viewDefaultMyWorkflowTasksCP" />
+		<execute macro="Portal.Workflow#viewDefaultMyWorkflowTasksCP" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#submitNewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#submitNewProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#populateFieldText">
+		<execute macro="Portal.KaleoFormsAdmin#populateFieldText">
 			<var name="fieldName" value="Text" />
 			<var name="kfProcessFieldData" value="One" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="Portal.KaleoFormsAdmin#saveProcessRecord" />
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#assignToMeTaskByActions">
+		<execute macro="Portal.Workflow#assignToMeTaskByActions">
 			<var name="workflowAssetTitle" value="Kaleo Forms Process" />
 			<var name="workflowAssetType" value="Process" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Workflow#approveTaskByActions">
+		<execute macro="Portal.Workflow#approveTaskByActions">
 			<var name="workflowAssetTitle" value="Kaleo Forms Process" />
 			<var name="workflowAssetType" value="Process" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#submitNewProcess">
+		<execute macro="Portal.KaleoFormsAdmin#submitNewProcess">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#populateFieldText">
+		<execute macro="Portal.KaleoFormsAdmin#populateFieldText">
 			<var name="fieldName" value="Text" />
 			<var name="kfProcessFieldData" value="Two" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="Portal.KaleoFormsAdmin#saveProcessRecord" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessRecord">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessRecord">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#searchProcessRecords">
+		<execute macro="Portal.KaleoFormsAdmin#searchProcessRecords">
 			<var name="kfProcessSearchData" value="One" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessRecordDetails">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessRecordDetails">
 			<var name="kfProcessFieldData" value="One" />
 			<var name="kfStatus" value="Approved" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessRecordDetailsField">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessRecordDetailsField">
 			<var name="fieldName" value="Text" />
 			<var name="kfProcessFieldData" value="One" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#cancelProcessRecordDetailsView" />
+		<execute macro="Portal.KaleoFormsAdmin#cancelProcessRecordDetailsView" />
 
-		<execute macro="KaleoFormsAdmin#viewProcessRecordTable">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessRecordTable">
 			<var name="kfAuthor" value="Test Test" />
 			<var name="kfProcessFieldData" value="One" />
 			<var name="kfStatus" value="Approved" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewProcessRecordTable">
+		<execute macro="Portal.KaleoFormsAdmin#viewProcessRecordTable">
 			<var name="kfAuthor" value="Test Test" />
 			<var name="kfProcessFieldData" value="Two" />
 			<var name="kfStatus" value="Pending" />
@@ -3473,151 +3473,151 @@
 	<command name="ViewSelectedFieldSetWithPagination" priority="3">
 		<description message="This is a use case for LPS-49475." />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
 		<for list="Field1,Field2,Field3,Field4,Field5,Field6" param="kfFieldSetName">
-			<execute macro="ProductMenu#gotoSitesContent">
+			<execute macro="Portal.ProductMenu#gotoSitesContent">
 				<var name="portlet" value="Kaleo Forms Admin" />
 			</execute>
 
-			<execute macro="KaleoFormsAdmin#addFieldSet">
+			<execute macro="Portal.KaleoFormsAdmin#addFieldSet">
 				<var name="kfFieldSetName" value="${kfFieldSetName}" />
 				<var name="kfProcessName" value="Kaleo Forms Process" />
 			</execute>
 
-			<execute macro="DynamicDataMapping#addField">
+			<execute macro="Portal.DynamicDataMapping#addField">
 				<var name="field" value="Text" />
 				<var name="fieldFieldLabel" value="Text" />
 				<var name="fieldName" value="Text" />
 			</execute>
 
-			<execute macro="KaleoFormsAdmin#saveFieldSet" />
+			<execute macro="Portal.KaleoFormsAdmin#saveFieldSet" />
 		</for>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addProcess" />
+		<execute macro="Portal.KaleoFormsAdmin#addProcess" />
 
-		<execute macro="KaleoFormsAdmin#addProcessDetails">
+		<execute macro="Portal.KaleoFormsAdmin#addProcessDetails">
 			<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#chooseFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#chooseFieldSet">
 			<var name="kfFieldSetName" value="Field5" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#editFieldSetPagination">
+		<execute macro="Portal.KaleoFormsAdmin#editFieldSetPagination">
 			<var name="paginationNumber" value="5" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewNextFieldSetPage" />
+		<execute macro="Portal.KaleoFormsAdmin#viewNextFieldSetPage" />
 
-		<execute macro="KaleoFormsAdmin#viewSelectedFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#viewSelectedFieldSet">
 			<var name="kfFieldSetName" value="Field5" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewPreviousFieldSetPage" />
+		<execute macro="Portal.KaleoFormsAdmin#viewPreviousFieldSetPage" />
 
-		<execute macro="KaleoFormsAdmin#viewSelectedFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#viewSelectedFieldSet">
 			<var name="kfFieldSetName" value="Field5" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#chooseFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#chooseFieldSet">
 			<var name="kfFieldSetName" value="Field4" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewNextFieldSetPage" />
+		<execute macro="Portal.KaleoFormsAdmin#viewNextFieldSetPage" />
 
-		<execute macro="KaleoFormsAdmin#viewSelectedFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#viewSelectedFieldSet">
 			<var name="kfFieldSetName" value="Field4" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#chooseFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#chooseFieldSet">
 			<var name="kfFieldSetName" value="Field1" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewPreviousFieldSetPage" />
+		<execute macro="Portal.KaleoFormsAdmin#viewPreviousFieldSetPage" />
 
-		<execute macro="KaleoFormsAdmin#viewSelectedFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#viewSelectedFieldSet">
 			<var name="kfFieldSetName" value="Field1" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewNextFieldSetPage" />
+		<execute macro="Portal.KaleoFormsAdmin#viewNextFieldSetPage" />
 
-		<execute macro="KaleoFormsAdmin#viewSelectedFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#viewSelectedFieldSet">
 			<var name="kfFieldSetName" value="Field1" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 	</command>
 
 	<command name="ViewUnpublishedWorkflowDefinitionsMenulist" priority="2">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Kaleo Forms Admin" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#addProcess" />
+		<execute macro="Portal.KaleoFormsAdmin#addProcess" />
 
-		<execute macro="KaleoFormsAdmin#addProcessDetails">
+		<execute macro="Portal.KaleoFormsAdmin#addProcessDetails">
 			<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
 
-		<execute macro="KaleoFormsAdmin#addFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#addFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="DynamicDataMapping#addField">
+		<execute macro="Portal.DynamicDataMapping#addField">
 			<var name="field" value="Text" />
 			<var name="fieldFieldLabel" value="Text" />
 			<var name="fieldName" value="Text" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveFieldSet" />
+		<execute macro="Portal.KaleoFormsAdmin#saveFieldSet" />
 
-		<execute macro="KaleoFormsAdmin#chooseFieldSet">
+		<execute macro="Portal.KaleoFormsAdmin#chooseFieldSet">
 			<var name="kfFieldSetName" value="New Kaleo Field Set" />
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#next" />
-		<execute macro="KaleoFormsAdmin#viewNoUnpublishedWorkflowDefinitions" />
+		<execute macro="Portal.KaleoFormsAdmin#next" />
+		<execute macro="Portal.KaleoFormsAdmin#viewNoUnpublishedWorkflowDefinitions" />
 
-		<execute macro="KaleoFormsAdmin#addWorkflow">
+		<execute macro="Portal.KaleoFormsAdmin#addWorkflow">
 			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowDefinitionTitle" value="Workflow Definition Title" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveAsDraftWorkflow" />
+		<execute macro="Portal.KaleoFormsAdmin#saveAsDraftWorkflow" />
 
-		<execute macro="IFrame#closeFrame" />
+		<execute macro="Portal.IFrame#closeFrame" />
 
-		<execute macro="KaleoFormsAdmin#editWorkflowDraft">
+		<execute macro="Portal.KaleoFormsAdmin#editWorkflowDraft">
 			<var name="workflowDefinitionTitle" value="Workflow Definition Title" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveAsDraftWorkflow" />
+		<execute macro="Portal.KaleoFormsAdmin#saveAsDraftWorkflow" />
 
-		<execute macro="IFrame#closeFrame" />
+		<execute macro="Portal.IFrame#closeFrame" />
 
-		<execute macro="KaleoFormsAdmin#deleteWorkflowDraft">
+		<execute macro="Portal.KaleoFormsAdmin#deleteWorkflowDraft">
 			<var name="workflowDefinitionTitle" value="Workflow Definition Title" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#viewPublishedWorkflowDefinitions" />
-		<execute macro="KaleoFormsAdmin#viewNoUnpublishedWorkflowDefinitions" />
+		<execute macro="Portal.KaleoFormsAdmin#viewPublishedWorkflowDefinitions" />
+		<execute macro="Portal.KaleoFormsAdmin#viewNoUnpublishedWorkflowDefinitions" />
 	</command>
 </definition>

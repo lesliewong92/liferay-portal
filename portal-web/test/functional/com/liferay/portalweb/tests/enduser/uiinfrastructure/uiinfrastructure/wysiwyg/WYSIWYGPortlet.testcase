@@ -4,43 +4,43 @@
 	<property name="testray.main.component.name" value="User Interface" />
 
 	<set-up>
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="WYSIWYG Page" />
 		</execute>
 	</set-up>
 
 	<tear-down>
-		<execute macro="Page#tearDownPG" />
+		<execute macro="Portal.Page#tearDownPG" />
 	</tear-down>
 
 	<command name="AddContent" priority="4">
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="WYSIWYG Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="WYSIWYG" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletName" value="WYSIWYG" />
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#DIALOG" />
 
-		<execute function="Type#typeEditor" locator1="CKEditor#BODY_FIELD" value1="WYSIWYG Test Content" />
+		<execute function="Portal.Type#typeEditor" locator1="CKEditor#BODY_FIELD" value1="WYSIWYG Test Content" />
 
-		<execute function="Click" locator1="Button#SAVE" />
+		<execute function="Portal.Click" locator1="Button#SAVE" />
 
-		<execute macro="Alert#viewSuccessMessage" />
+		<execute macro="Portal.Alert#viewSuccessMessage" />
 
-		<execute function="SelectFrame#selectFrameTop" />
+		<execute function="Portal.SelectFrame#selectFrameTop" />
 
-		<execute function="Click" locator1="Modal#CLOSE_BUTTON" />
+		<execute function="Portal.Click" locator1="Modal#CLOSE_BUTTON" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="Portlet#PORTLET_CONTENT" value1="WYSIWYG Test Content" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="Portlet#PORTLET_CONTENT" value1="WYSIWYG Test Content" />
 	</command>
 </definition>

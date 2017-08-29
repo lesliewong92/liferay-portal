@@ -9,9 +9,9 @@
 	<property name="testray.main.component.name" value="Clustering" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 	</set-up>
 
 	<tear-down>
@@ -20,12 +20,12 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="Page#tearDownPG" />
+				<execute macro="Portal.Page#tearDownPG" />
 
-				<execute macro="BlogsEntry#tearDownCP" />
+				<execute macro="Portal.BlogsEntry#tearDownCP" />
 			</else>
 		</if>
 	</tear-down>
@@ -33,161 +33,161 @@
 	<command name="AddAndDeleteBlogEntriesOnSeparateNodes" priority="4">
 		<property name="test.name.skip.portal.instance" value="ClusteringCE#AddAndDeleteBlogEntriesOnSeparateNodes" />
 
-		<execute macro="Clustering#viewClusterStatusInConsole" />
+		<execute macro="Portal.Clustering#viewClusterStatusInConsole" />
 
-		<execute macro="Page#assertNodePortPG">
+		<execute macro="Portal.Page#assertNodePortPG">
 			<var name="nodePort" value="8080" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Test Page1" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Test Page1" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Blogs" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Test Page1" />
 		</execute>
 
-		<execute macro="Blogs#addEntry">
+		<execute macro="Portal.Blogs#addEntry">
 			<var name="entryContent" value="Blogs Entry1 Content" />
 			<var name="entryTitle" value="Blogs Entry1 Title" />
 		</execute>
 
-		<execute macro="User#logoutPG">
+		<execute macro="Portal.User#logoutPG">
 			<var name="password" value="test" />
 			<var name="userEmailAddress" value="test@liferay.com" />
 		</execute>
 
-		<execute macro="User#loginPG">
+		<execute macro="Portal.User#loginPG">
 			<var name="nodePort" value="9080" />
 			<var name="password" value="test" />
 			<var name="userEmailAddress" value="test@liferay.com" />
 		</execute>
 
-		<execute macro="Page#assertNodePortPG">
+		<execute macro="Portal.Page#assertNodePortPG">
 			<var name="nodePort" value="9080" />
 		</execute>
 
-		<execute macro="Navigator#gotoSpecificURLPage">
+		<execute macro="Portal.Navigator#gotoSpecificURLPage">
 			<var name="pageName" value="Test Page1" />
 			<var name="url" value="http://localhost:9080" />
 		</execute>
 
-		<execute macro="BlogsNavigator#gotoEntryPG">
+		<execute macro="Portal.BlogsNavigator#gotoEntryPG">
 			<var name="entryContent" value="Blogs Entry1 Content" />
 			<var name="entryTitle" value="Blogs Entry1 Title" />
 		</execute>
 
-		<execute macro="BlogsEntry#viewEntry">
+		<execute macro="Portal.BlogsEntry#viewEntry">
 			<var name="entryContent" value="Blogs Entry1 Content" />
 			<var name="entryTitle" value="Blogs Entry1 Title" />
 		</execute>
 
-		<execute macro="Navigator#openNodePort">
+		<execute macro="Portal.Navigator#openNodePort">
 			<var name="nodePort" value="9080" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Test Page2" />
 		</execute>
 
-		<execute macro="Navigator#gotoSpecificURLPage">
+		<execute macro="Portal.Navigator#gotoSpecificURLPage">
 			<var name="pageName" value="Test Page2" />
 			<var name="url" value="http://localhost:9080" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Blogs" />
 		</execute>
 
-		<execute macro="Navigator#gotoSpecificURLPage">
+		<execute macro="Portal.Navigator#gotoSpecificURLPage">
 			<var name="pageName" value="Test Page2" />
 			<var name="url" value="http://localhost:9080" />
 		</execute>
 
-		<execute macro="BlogsNavigator#gotoEntryPG">
+		<execute macro="Portal.BlogsNavigator#gotoEntryPG">
 			<var name="entryContent" value="Blogs Entry1 Content" />
 			<var name="entryTitle" value="Blogs Entry1 Title" />
 		</execute>
 
-		<execute macro="BlogsEntry#viewEntry">
+		<execute macro="Portal.BlogsEntry#viewEntry">
 			<var name="entryContent" value="Blogs Entry1 Content" />
 			<var name="entryTitle" value="Blogs Entry1 Title" />
 		</execute>
 
-		<execute macro="Navigator#gotoSpecificURLPage">
+		<execute macro="Portal.Navigator#gotoSpecificURLPage">
 			<var name="pageName" value="Test Page2" />
 			<var name="url" value="http://localhost:9080" />
 		</execute>
 
-		<execute macro="Blogs#addEntry">
+		<execute macro="Portal.Blogs#addEntry">
 			<var name="entryContent" value="Blogs Entry2 Content" />
 			<var name="entryTitle" value="Blogs Entry2 Title" />
 		</execute>
 
-		<execute macro="Navigator#gotoSpecificURLPage">
+		<execute macro="Portal.Navigator#gotoSpecificURLPage">
 			<var name="pageName" value="Test Page2" />
 			<var name="url" value="http://localhost:9080" />
 		</execute>
 
-		<execute macro="BlogsEntry#moveToRecycleBinPG">
+		<execute macro="Portal.BlogsEntry#moveToRecycleBinPG">
 			<var name="assetType" value="Blogs Entry" />
 			<var name="entryContent" value="Blogs Entry1 Content" />
 			<var name="entryTitle" value="Blogs Entry1 Title" />
 			<var name="nodePort" value="9080" />
 		</execute>
 
-		<execute macro="Navigator#openSpecificURL">
+		<execute macro="Portal.Navigator#openSpecificURL">
 			<var name="url" value="http://localhost:9080" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Recycle Bin" />
 		</execute>
 
-		<execute macro="RecycleBin#emptyCP" />
+		<execute macro="Portal.RecycleBin#emptyCP" />
 
-		<execute macro="User#logoutPG">
+		<execute macro="Portal.User#logoutPG">
 			<var name="nodePort" value="9080" />
 			<var name="password" value="test" />
 			<var name="userEmailAddress" value="test@liferay.com" />
 		</execute>
 
-		<execute macro="User#loginPG">
+		<execute macro="Portal.User#loginPG">
 			<var name="password" value="test" />
 			<var name="userEmailAddress" value="test@liferay.com" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Test Page2" />
 		</execute>
 
-		<execute macro="BlogsEntry#viewNoPG">
+		<execute macro="Portal.BlogsEntry#viewNoPG">
 			<var name="entryTitle" value="Blogs Entry1 Title" />
 		</execute>
 
-		<execute macro="BlogsNavigator#gotoEntryPG">
+		<execute macro="Portal.BlogsNavigator#gotoEntryPG">
 			<var name="entryContent" value="Blogs Entry2 Content" />
 			<var name="entryTitle" value="Blogs Entry2 Title" />
 		</execute>
 
-		<execute macro="BlogsEntry#viewEntry">
+		<execute macro="Portal.BlogsEntry#viewEntry">
 			<var name="entryContent" value="Blogs Entry2 Content" />
 			<var name="entryTitle" value="Blogs Entry2 Title" />
 		</execute>
 
-		<execute macro="Search#searchPG">
+		<execute macro="Portal.Search#searchPG">
 			<var name="searchTerm" value="Entry1" />
 		</execute>
 
-		<execute macro="Search#viewSearchNoPG">
+		<execute macro="Portal.Search#viewSearchNoPG">
 			<var name="searchNoResults" value="true" />
 			<var name="searchTerm" value="Entry1" />
 		</execute>
@@ -196,70 +196,70 @@
 	<command name="ValidateDocumentOnSeparateNodes" priority="4">
 		<property name="test.name.skip.portal.instance" value="ClusteringCE#ValidateDocumentOnSeparateNodes" />
 
-		<execute macro="Clustering#viewClusterStatusInConsole" />
+		<execute macro="Portal.Clustering#viewClusterStatusInConsole" />
 
-		<execute macro="Page#assertNodePortPG">
+		<execute macro="Portal.Page#assertNodePortPG">
 			<var name="nodePort" value="8080" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Documents and Media" />
 		</execute>
 
-		<execute macro="DMDocument#enableActionsMenuOnPortlet" />
+		<execute macro="Portal.DMDocument#enableActionsMenuOnPortlet" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute macro="DMDocument#addPG">
+		<execute macro="Portal.DMDocument#addPG">
 			<var name="dmDocumentFile" value="Document_1.doc" />
 			<var name="dmDocumentTitle" value="DM Document Title" />
 		</execute>
 
-		<execute macro="DMDocument#viewAllPG">
+		<execute macro="Portal.DMDocument#viewAllPG">
 			<var name="dmDocumentTitle" value="DM Document Title" />
 		</execute>
 
-		<execute macro="User#logoutPG">
+		<execute macro="Portal.User#logoutPG">
 			<var name="password" value="test" />
 			<var name="userEmailAddress" value="test@liferay.com" />
 		</execute>
 
-		<execute macro="User#loginPG">
+		<execute macro="Portal.User#loginPG">
 			<var name="nodePort" value="9080" />
 			<var name="password" value="test" />
 			<var name="userEmailAddress" value="test@liferay.com" />
 		</execute>
 
-		<execute macro="Page#assertNodePortPG">
+		<execute macro="Portal.Page#assertNodePortPG">
 			<var name="nodePort" value="9080" />
 		</execute>
 
-		<execute macro="Navigator#gotoSpecificURLPage">
+		<execute macro="Portal.Navigator#gotoSpecificURLPage">
 			<var name="pageName" value="Documents and Media Page" />
 			<var name="url" value="http://localhost:9080" />
 		</execute>
 
-		<execute macro="DMDocument#viewAllPG">
+		<execute macro="Portal.DMDocument#viewAllPG">
 			<var name="dmDocumentTitle" value="DM Document Title" />
 		</execute>
 
-		<execute macro="User#logoutPG">
+		<execute macro="Portal.User#logoutPG">
 			<var name="nodePort" value="9080" />
 			<var name="password" value="test" />
 			<var name="userEmailAddress" value="test@liferay.com" />
 		</execute>
 
-		<execute macro="User#loginPG">
+		<execute macro="Portal.User#loginPG">
 			<var name="password" value="test" />
 			<var name="userEmailAddress" value="test@liferay.com" />
 		</execute>

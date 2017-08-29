@@ -4,9 +4,9 @@
 	<property name="testray.main.component.name" value="Workflow" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 	</set-up>
 
 	<tear-down>
@@ -15,225 +15,225 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="User#firstLoginPG" />
+				<execute macro="Portal.User#firstLoginPG" />
 
-				<execute macro="User#tearDownCP" />
+				<execute macro="Portal.User#tearDownCP" />
 
-				<execute macro="BlogsEntry#tearDownCP" />
+				<execute macro="Portal.BlogsEntry#tearDownCP" />
 
-				<execute macro="WebContent#tearDownCP" />
+				<execute macro="Portal.WebContent#tearDownCP" />
 
-				<execute macro="WikiNode#tearDownCP" />
+				<execute macro="Portal.WikiNode#tearDownCP" />
 
-				<execute macro="WikiPage#tearDownCP" />
+				<execute macro="Portal.WikiPage#tearDownCP" />
 
-				<execute macro="Page#tearDownPG" />
+				<execute macro="Portal.Page#tearDownPG" />
 
-				<execute macro="Workflow#tearDownPortalWorkflow" />
+				<execute macro="Portal.Workflow#tearDownPortalWorkflow" />
 
-				<execute macro="Workflow#tearDownSiteWorkflow" />
+				<execute macro="Portal.Workflow#tearDownSiteWorkflow" />
 
-				<execute macro="Workflow#tearDownSpecificWorkflowDefinition">
+				<execute macro="Portal.Workflow#tearDownSpecificWorkflowDefinition">
 					<var name="workflowDefinitionTitle" value="Single Approver Edited" />
 				</execute>
 
-				<execute macro="Workflow#tearDownWorkflowDefinitionsViaWorkflowCP" />
+				<execute macro="Portal.Workflow#tearDownWorkflowDefinitionsViaWorkflowCP" />
 
-				<execute macro="Site#tearDownCP" />
+				<execute macro="Portal.Site#tearDownCP" />
 			</else>
 		</if>
 	</tear-down>
 
 	<command name="AddBlogsEntriesWithPortalScopeWorkflowAndAssertWorkflowScope" priority="4">
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Workflow" />
 		</execute>
 
-		<execute macro="Navigator#gotoNavItem">
+		<execute macro="Portal.Navigator#gotoNavItem">
 			<var name="navItem" value="Schemes" />
 		</execute>
 
-		<execute macro="Workflow#configureWorkflow">
+		<execute macro="Portal.Workflow#configureWorkflow">
 			<var name="workflowDefinition" value="Single Approver (Version 1)" />
 			<var name="workflowResourceValue" value="Blogs Entry" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addBlankCP">
+		<execute macro="Portal.Site#addBlankCP">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Blogs" />
 		</execute>
 
-		<execute macro="Blogs#addWithWorkflow">
+		<execute macro="Portal.Blogs#addWithWorkflow">
 			<var name="entryContent" value="Blogs Entry Content - Liferay" />
 			<var name="entrySubtitle" value="Subtitle" />
 			<var name="entryTitle" value="Blogs Entry Title - Liferay" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Blogs" />
 		</execute>
 
-		<execute macro="BlogsEntry#viewWithWorkflowCP">
+		<execute macro="Portal.BlogsEntry#viewWithWorkflowCP">
 			<var name="entryContent" value="Blogs Entry Content - Liferay" />
 			<var name="entryTitle" value="Blogs Entry Title - Liferay" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#assignToMeTaskByActions">
+		<execute macro="Portal.Workflow#assignToMeTaskByActions">
 			<var name="workflowAssetTitle" value="Blogs Entry Title - Liferay" />
 			<var name="workflowAssetType" value="Blogs Entry" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Blogs" />
 		</execute>
 
-		<execute macro="BlogsEntry#viewWithWorkflowCP">
+		<execute macro="Portal.BlogsEntry#viewWithWorkflowCP">
 			<var name="entryContent" value="Blogs Entry Content - Liferay" />
 			<var name="entryTitle" value="Blogs Entry Title - Liferay" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#approveTaskByActions">
+		<execute macro="Portal.Workflow#approveTaskByActions">
 			<var name="workflowAssetTitle" value="Blogs Entry Title - Liferay" />
 			<var name="workflowAssetType" value="Blogs Entry" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Blogs" />
 		</execute>
 
-		<execute macro="BlogsEntry#viewEntryTable">
+		<execute macro="Portal.BlogsEntry#viewEntryTable">
 			<var name="entryTitle" value="Blogs Entry Title - Liferay" />
 		</execute>
 
-		<execute macro="BlogsNavigator#gotoEntryCP">
+		<execute macro="Portal.BlogsNavigator#gotoEntryCP">
 			<var name="entryTitle" value="Blogs Entry Title - Liferay" />
 		</execute>
 
-		<execute macro="BlogsEntry#viewEntry">
+		<execute macro="Portal.BlogsEntry#viewEntry">
 			<var name="entryContent" value="Blogs Entry Content - Liferay" />
 			<var name="entryTitle" value="Blogs Entry Title - Liferay" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Blogs" />
 		</execute>
 
-		<execute macro="Blogs#addWithWorkflow">
+		<execute macro="Portal.Blogs#addWithWorkflow">
 			<var name="entryContent" value="Blogs Entry Content - Site Name" />
 			<var name="entrySubtitle" value="Subtitle" />
 			<var name="entryTitle" value="Blogs Entry Title - Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Blogs" />
 		</execute>
 
-		<execute macro="BlogsEntry#viewWithWorkflowCP">
+		<execute macro="Portal.BlogsEntry#viewWithWorkflowCP">
 			<var name="entryContent" value="Blogs Entry Content - Site Name" />
 			<var name="entryTitle" value="Blogs Entry Title - Site Name" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#assignToMeTaskByActions">
+		<execute macro="Portal.Workflow#assignToMeTaskByActions">
 			<var name="workflowAssetTitle" value="Blogs Entry Title - Site Name" />
 			<var name="workflowAssetType" value="Blogs Entry" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Blogs" />
 		</execute>
 
-		<execute macro="BlogsEntry#viewWithWorkflowCP">
+		<execute macro="Portal.BlogsEntry#viewWithWorkflowCP">
 			<var name="entryContent" value="Blogs Entry Content - Site Name" />
 			<var name="entryTitle" value="Blogs Entry Title - Site Name" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#approveTaskByActions">
+		<execute macro="Portal.Workflow#approveTaskByActions">
 			<var name="workflowAssetTitle" value="Blogs Entry Title - Site Name" />
 			<var name="workflowAssetType" value="Blogs Entry" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Blogs" />
 		</execute>
 
-		<execute macro="BlogsEntry#viewEntryTable">
+		<execute macro="Portal.BlogsEntry#viewEntryTable">
 			<var name="entryTitle" value="Blogs Entry Title - Site Name" />
 		</execute>
 
-		<execute macro="BlogsNavigator#gotoEntryCP">
+		<execute macro="Portal.BlogsNavigator#gotoEntryCP">
 			<var name="entryTitle" value="Blogs Entry Title - Site Name" />
 		</execute>
 
-		<execute macro="BlogsEntry#viewEntry">
+		<execute macro="Portal.BlogsEntry#viewEntry">
 			<var name="entryContent" value="Blogs Entry Content - Site Name" />
 			<var name="entryTitle" value="Blogs Entry Title - Site Name" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#viewCompletedTask">
+		<execute macro="Portal.Workflow#viewCompletedTask">
 			<var name="workflowAssetTitle" value="Blogs Entry Title - Liferay" />
 			<var name="workflowAssetType" value="Blogs Entry" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Workflow#viewCompletedTask">
+		<execute macro="Portal.Workflow#viewCompletedTask">
 			<var name="workflowAssetTitle" value="Blogs Entry Title - Site Name" />
 			<var name="workflowAssetType" value="Blogs Entry" />
 			<var name="workflowTask" value="Review" />
@@ -241,102 +241,102 @@
 	</command>
 
 	<command name="AddBlogsEntriesWithSiteScopeWorkflowAndAssertWorkflowScope" priority="4">
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addBlankCP">
+		<execute macro="Portal.Site#addBlankCP">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Workflow" />
 		</execute>
 
-		<execute macro="Workflow#configureWorkflow">
+		<execute macro="Portal.Workflow#configureWorkflow">
 			<var name="workflowDefinition" value="Single Approver (Version 1)" />
 			<var name="workflowResourceValue" value="Blogs Entry" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Blogs" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Blogs" />
 		</execute>
 
-		<execute macro="Blogs#addWithWorkflow">
+		<execute macro="Portal.Blogs#addWithWorkflow">
 			<var name="entryContent" value="Blogs Entry Content - Liferay" />
 			<var name="entrySubtitle" value="Subtitle" />
 			<var name="entryTitle" value="Blogs Entry Title - Liferay" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#assignToMeTaskByActions">
+		<execute macro="Portal.Workflow#assignToMeTaskByActions">
 			<var name="workflowAssetTitle" value="Blogs Entry Title - Liferay" />
 			<var name="workflowAssetType" value="Blogs Entry" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Blogs" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#approveTaskByActions">
+		<execute macro="Portal.Workflow#approveTaskByActions">
 			<var name="workflowAssetTitle" value="Blogs Entry Title - Liferay" />
 			<var name="workflowAssetType" value="Blogs Entry" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Blogs" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Blogs" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Blogs" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#viewCompletedTask">
+		<execute macro="Portal.Workflow#viewCompletedTask">
 			<var name="workflowAssetTitle" value="Blogs Entry Title - Liferay" />
 			<var name="workflowAssetType" value="Blogs Entry" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Workflow#viewCompletedTasksTaskNotPresentCP">
+		<execute macro="Portal.Workflow#viewCompletedTasksTaskNotPresentCP">
 			<var name="workflowAssetTitle" value="Blogs Entry Title - Site Name" />
 		</execute>
 	</command>
@@ -345,87 +345,87 @@
 		<property name="portal.acceptance" value="true" />
 		<property name="testray.component.names" value="Training" />
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Workflow" />
 		</execute>
 
-		<execute macro="Workflow#uploadDefinition">
+		<execute macro="Portal.Workflow#uploadDefinition">
 			<var name="workflowDefinitionFile" value="workflow_definition_legal_marketing.xml" />
 			<var name="workflowDefinitionTitle" value="Double Approver Definition" />
 		</execute>
 
-		<execute macro="Workflow#viewDefinition">
+		<execute macro="Portal.Workflow#viewDefinition">
 			<var name="workflowDefinitionName" value="Legal and Marketing Approval" />
 			<var name="workflowDefinitionTitle" value="Double Approver Definition" />
 			<var name="workflowDefinitionVersionNumber" value="1" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Dynamic Data Lists" />
 		</execute>
 
-		<execute macro="DDLDataDefinition#addCP" />
+		<execute macro="Portal.DDLDataDefinition#addCP" />
 
-		<execute macro="DynamicDataMapping#addField">
+		<execute macro="Portal.DynamicDataMapping#addField">
 			<var name="field" value="Boolean" />
 			<var name="fieldFieldLabel" value="Boolean" />
 			<var name="fieldName" value="Boolean" />
 		</execute>
 
-		<execute macro="DDLDataDefinition#save" />
+		<execute macro="Portal.DDLDataDefinition#save" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Dynamic Data Lists" />
 		</execute>
 
-		<execute macro="DDLList#addCP">
+		<execute macro="Portal.DDLList#addCP">
 			<var name="workflowDefinition" value="Legal and Marketing Approval (Version 1)" />
 		</execute>
 
-		<execute macro="DDLDataDefinition#selectCP" />
+		<execute macro="Portal.DDLDataDefinition#selectCP" />
 
-		<execute macro="DDLList#save" />
+		<execute macro="Portal.DDLList#save" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Dynamic Data Lists" />
 		</execute>
 
-		<execute macro="DDLRecord#addCP" />
+		<execute macro="Portal.DDLRecord#addCP" />
 
-		<execute macro="DDLRecord#populateFieldBoolean">
+		<execute macro="Portal.DDLRecord#populateFieldBoolean">
 			<var name="ddlRecordFieldData" value="Yes" />
 			<var name="fieldFieldLabel" value="Boolean" />
 			<var name="fieldName" value="Boolean" />
 		</execute>
 
-		<execute macro="DDLRecord#submitForPublication" />
+		<execute macro="Portal.DDLRecord#submitForPublication" />
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#assignToMeTaskByActions">
+		<execute macro="Portal.Workflow#assignToMeTaskByActions">
 			<var name="ddlDataDefinitionName" value="Data Definition Name" />
 			<var name="workflowAssetTitle" value="List Name" />
 			<var name="workflowAssetType" value="Dynamic Data Lists Record" />
 			<var name="workflowTask" value="marketing-review" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Dynamic Data Lists" />
 		</execute>
 
-		<execute macro="DDLNavigator#gotoListRecords" />
+		<execute macro="Portal.DDLNavigator#gotoListRecords" />
 
-		<execute macro="DDLRecord#viewFirstFieldCP">
+		<execute macro="Portal.DDLRecord#viewFirstFieldCP">
 			<var name="ddlRecordFieldData" value="Yes" />
 			<var name="field" value="Boolean" />
 			<var name="fieldFieldLabel" value="Boolean" />
@@ -433,11 +433,11 @@
 			<var name="workflowStatus" value="marketing-review" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#approveTaskByActions">
+		<execute macro="Portal.Workflow#approveTaskByActions">
 			<var name="ddlDataDefinitionName" value="Data Definition Name" />
 			<var name="workflowAssetTitle" value="List Name" />
 			<var name="workflowAssetType" value="Dynamic Data Lists Record" />
@@ -445,15 +445,15 @@
 			<var name="workflowTask" value="marketing-review" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Dynamic Data Lists" />
 		</execute>
 
-		<execute macro="DDLNavigator#gotoListRecords" />
+		<execute macro="Portal.DDLNavigator#gotoListRecords" />
 
-		<execute macro="DDLRecord#viewFirstFieldCP">
+		<execute macro="Portal.DDLRecord#viewFirstFieldCP">
 			<var name="ddlRecordFieldData" value="Yes" />
 			<var name="field" value="Boolean" />
 			<var name="fieldFieldLabel" value="Boolean" />
@@ -461,26 +461,26 @@
 			<var name="workflowStatus" value="legal-review" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#assignToMeTaskByActions">
+		<execute macro="Portal.Workflow#assignToMeTaskByActions">
 			<var name="ddlDataDefinitionName" value="Data Definition Name" />
 			<var name="workflowAssetTitle" value="List Name" />
 			<var name="workflowAssetType" value="Dynamic Data Lists Record" />
 			<var name="workflowTask" value="legal-review" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Dynamic Data Lists" />
 		</execute>
 
-		<execute macro="DDLNavigator#gotoListRecords" />
+		<execute macro="Portal.DDLNavigator#gotoListRecords" />
 
-		<execute macro="DDLRecord#viewFirstFieldCP">
+		<execute macro="Portal.DDLRecord#viewFirstFieldCP">
 			<var name="ddlRecordFieldData" value="Yes" />
 			<var name="field" value="Boolean" />
 			<var name="fieldFieldLabel" value="Boolean" />
@@ -488,11 +488,11 @@
 			<var name="workflowStatus" value="legal-review" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#approveTaskByActions">
+		<execute macro="Portal.Workflow#approveTaskByActions">
 			<var name="ddlDataDefinitionName" value="Data Definition Name" />
 			<var name="workflowAssetTitle" value="List Name" />
 			<var name="workflowAssetType" value="Dynamic Data Lists Record" />
@@ -500,17 +500,17 @@
 			<var name="workflowTask" value="legal-review" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Dynamic Data Lists" />
 		</execute>
 
-		<execute macro="DDLNavigator#gotoListRecords">
+		<execute macro="Portal.DDLNavigator#gotoListRecords">
 			<var name="ddlListName" value="${ddlListName}" />
 		</execute>
 
-		<execute macro="DDLRecord#viewFirstFieldCP">
+		<execute macro="Portal.DDLRecord#viewFirstFieldCP">
 			<var name="ddlRecordFieldData" value="Yes" />
 			<var name="field" value="Boolean" />
 			<var name="fieldFieldLabel" value="Boolean" />
@@ -519,182 +519,182 @@
 	</command>
 
 	<command name="AddWebContentWithCategorySpecificDefinition" priority="4">
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Workflow" />
 		</execute>
 
-		<execute macro="Workflow#uploadDefinition">
+		<execute macro="Portal.Workflow#uploadDefinition">
 			<var name="workflowDefinitionFile" value="workflow_definition_category_specific.xml" />
 			<var name="workflowDefinitionTitle" value="Category Specific" />
 		</execute>
 
-		<execute macro="Workflow#viewDefinition">
+		<execute macro="Portal.Workflow#viewDefinition">
 			<var name="workflowDefinitionName" value="Category Specific Approval" />
 			<var name="workflowDefinitionTitle" value="Category Specific" />
 			<var name="workflowDefinitionVersionNumber" value="1" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Categories" />
 		</execute>
 
-		<execute macro="Vocabulary#addCP">
+		<execute macro="Portal.Vocabulary#addCP">
 			<var name="vocabularyName" value="Vocabulary Name" />
 		</execute>
 
-		<execute macro="Category#addCP">
+		<execute macro="Portal.Category#addCP">
 			<var name="categoryName" value="legal" />
 			<var name="vocabularyName" value="Vocabulary Name" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Categories" />
 		</execute>
 
-		<execute macro="Category#addCP">
+		<execute macro="Portal.Category#addCP">
 			<var name="categoryName" value="other" />
 			<var name="vocabularyName" value="Vocabulary Name" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Web Content" />
 		</execute>
 
-		<execute macro="Workflow#configureWorkflowViaFolderInfo">
+		<execute macro="Portal.Workflow#configureWorkflowViaFolderInfo">
 			<var name="workflowDefinition" value="Category Specific Approval (Version 1)" />
 		</execute>
 
-		<execute macro="WebContentNavigator#gotoAddCP" />
+		<execute macro="Portal.WebContentNavigator#gotoAddCP" />
 
-		<execute macro="WebContent#addCP">
+		<execute macro="Portal.WebContent#addCP">
 			<var name="webContentContent" value="legal category" />
 			<var name="webContentTitle" value="WC With Legal Category" />
 		</execute>
 
-		<execute macro="WebContent#selectCategory">
+		<execute macro="Portal.WebContent#selectCategory">
 			<var name="categoryName" value="legal" />
 			<var name="vocabularyName" value="Vocabulary Name" />
 		</execute>
 
-		<execute macro="Button#clickSubmitForPublication" />
+		<execute macro="Portal.Button#clickSubmitForPublication" />
 
-		<execute macro="Alert#viewSuccessMessage" />
+		<execute macro="Portal.Alert#viewSuccessMessage" />
 
-		<execute macro="WebContent#viewWithWorkflowCP">
+		<execute macro="Portal.WebContent#viewWithWorkflowCP">
 			<var name="webContentContent" value="legal category" />
 			<var name="webContentTitle" value="WC With Legal Category" />
 			<var name="workflowTask" value="legal-review" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Web Content" />
 		</execute>
 
-		<execute macro="WebContentNavigator#gotoAddCP" />
+		<execute macro="Portal.WebContentNavigator#gotoAddCP" />
 
-		<execute macro="WebContent#addCP">
+		<execute macro="Portal.WebContent#addCP">
 			<var name="webContentContent" value="both categories" />
 			<var name="webContentTitle" value="WC With Multiple Categories" />
 		</execute>
 
-		<execute macro="WebContent#selectCategory">
+		<execute macro="Portal.WebContent#selectCategory">
 			<var name="categoryName" value="legal" />
 			<var name="vocabularyName" value="Vocabulary Name" />
 		</execute>
 
-		<execute macro="WebContent#selectCategory">
+		<execute macro="Portal.WebContent#selectCategory">
 			<var name="categoryName" value="other" />
 			<var name="vocabularyName" value="Vocabulary Name" />
 		</execute>
 
-		<execute macro="Button#clickSubmitForPublication" />
+		<execute macro="Portal.Button#clickSubmitForPublication" />
 
-		<execute macro="Alert#viewSuccessMessage" />
+		<execute macro="Portal.Alert#viewSuccessMessage" />
 
-		<execute macro="WebContent#viewWithWorkflowCP">
+		<execute macro="Portal.WebContent#viewWithWorkflowCP">
 			<var name="webContentContent" value="legal category" />
 			<var name="webContentTitle" value="WC With Legal Category" />
 			<var name="workflowTask" value="legal-review" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Web Content" />
 		</execute>
 
-		<execute macro="WebContentNavigator#gotoAddCP" />
+		<execute macro="Portal.WebContentNavigator#gotoAddCP" />
 
-		<execute macro="WebContent#addCP">
+		<execute macro="Portal.WebContent#addCP">
 			<var name="webContentContent" value="other category" />
 			<var name="webContentTitle" value="WC With Other Category" />
 		</execute>
 
-		<execute macro="WebContent#selectCategory">
+		<execute macro="Portal.WebContent#selectCategory">
 			<var name="categoryName" value="other" />
 			<var name="vocabularyName" value="Vocabulary Name" />
 		</execute>
 
-		<execute macro="Button#clickSubmitForPublication" />
+		<execute macro="Portal.Button#clickSubmitForPublication" />
 
-		<execute macro="Alert#viewSuccessMessage" />
+		<execute macro="Portal.Alert#viewSuccessMessage" />
 
-		<execute macro="WebContent#viewWithWorkflowCP">
+		<execute macro="Portal.WebContent#viewWithWorkflowCP">
 			<var name="webContentContent" value="other category" />
 			<var name="webContentTitle" value="WC With Other Category" />
 			<var name="workflowTask" value="content-review" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Web Content" />
 		</execute>
 
-		<execute macro="WebContentNavigator#gotoAddCP" />
+		<execute macro="Portal.WebContentNavigator#gotoAddCP" />
 
-		<execute macro="WebContent#addWithWorkflowCP">
+		<execute macro="Portal.WebContent#addWithWorkflowCP">
 			<var name="webContentContent" value="no category" />
 			<var name="webContentTitle" value="WC With No Category" />
 		</execute>
 
-		<execute macro="WebContent#viewWithWorkflowCP">
+		<execute macro="Portal.WebContent#viewWithWorkflowCP">
 			<var name="webContentContent" value="no category" />
 			<var name="webContentTitle" value="WC With No Category" />
 			<var name="workflowTask" value="content-review" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#viewTaskAssignedToMyRoles">
+		<execute macro="Portal.Workflow#viewTaskAssignedToMyRoles">
 			<var name="workflowAssetTitle" value="WC With Legal Category" />
 			<var name="workflowAssetType" value="Web Content Article" />
 			<var name="workflowTask" value="legal-review" />
 		</execute>
 
-		<execute macro="Workflow#viewTaskAssignedToMyRoles">
+		<execute macro="Portal.Workflow#viewTaskAssignedToMyRoles">
 			<var name="workflowAssetTitle" value="WC With Multiple Categories" />
 			<var name="workflowAssetType" value="Web Content Article" />
 			<var name="workflowTask" value="legal-review" />
 		</execute>
 
-		<execute macro="Workflow#viewTaskAssignedToMyRoles">
+		<execute macro="Portal.Workflow#viewTaskAssignedToMyRoles">
 			<var name="workflowAssetTitle" value="WC With Other Category" />
 			<var name="workflowAssetType" value="Web Content Article" />
 			<var name="workflowTask" value="content-review" />
 		</execute>
 
-		<execute macro="Workflow#viewTaskAssignedToMyRoles">
+		<execute macro="Portal.Workflow#viewTaskAssignedToMyRoles">
 			<var name="workflowAssetTitle" value="WC With No Category" />
 			<var name="workflowAssetType" value="Web Content Article" />
 			<var name="workflowTask" value="content-review" />
@@ -702,212 +702,212 @@
 	</command>
 
 	<command name="AddWikiPageAsSiteUser" priority="4">
-		<execute macro="TestCase#getSiteName">
+		<execute macro="Portal.TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Workflow" />
 		</execute>
 
-		<execute macro="Workflow#configureWorkflow">
+		<execute macro="Portal.Workflow#configureWorkflow">
 			<var name="workflowDefinition" value="Single Approver (Version 1)" />
 			<var name="workflowResourceValue" value="Wiki Page" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Wiki Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Wiki Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Wiki" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#addCP">
+		<execute macro="Portal.User#addCP">
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userFirstName" value="userfn" />
 			<var name="userLastName" value="userln" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#editPasswordCP">
+		<execute macro="Portal.User#editPasswordCP">
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#editUserSiteCP">
+		<execute macro="Portal.User#editUserSiteCP">
 			<var name="siteName" value="${siteName}" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="User#logoutPG" />
+		<execute macro="Portal.User#logoutPG" />
 
-		<execute macro="User#loginUserPG">
+		<execute macro="Portal.User#loginUserPG">
 			<var name="password" value="test" />
 			<var name="userEmailAddress" value="userea@liferay.com" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Wiki Page" />
 		</execute>
 
-		<execute macro="WikiNavigator#gotoAllPagesPG" />
+		<execute macro="Portal.WikiNavigator#gotoAllPagesPG" />
 
-		<execute macro="WikiPage#addPageWithWorkflowPG">
+		<execute macro="Portal.WikiPage#addPageWithWorkflowPG">
 			<var name="wikiPageContent" value="Wiki Page Content" />
 			<var name="wikiPageTitle" value="Wiki Page Title" />
 			<var name="wikiPageUsername" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Wiki Page" />
 		</execute>
 
-		<execute macro="WikiNavigator#gotoDraftPagesPG" />
+		<execute macro="Portal.WikiNavigator#gotoDraftPagesPG" />
 
-		<execute macro="WikiPage#viewPageWithWorkflowPG">
+		<execute macro="Portal.WikiPage#viewPageWithWorkflowPG">
 			<var name="wikiPageStatus" value="Pending" />
 			<var name="wikiPageTitle" value="Wiki Page Title" />
 			<var name="wikiPageUsername" value="userfn userln" />
 		</execute>
 
-		<execute macro="UserBar#gotoMyAccount" />
+		<execute macro="Portal.UserBar#gotoMyAccount" />
 
-		<execute macro="ProductMenu#gotoUserMyAccount">
+		<execute macro="Portal.ProductMenu#gotoUserMyAccount">
 			<var name="portlet" value="My Submissions" />
 		</execute>
 
 		<var name="key_workflowAssetTitle" value="Wiki Page Title" />
 
-		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#PENDING_TABLE_DEFINITION" value1="Single Approver" />
-		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#PENDING_TABLE_ASSET_TITLE" value1="Wiki Page Title" />
-		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#PENDING_TABLE_ASSET_TYPE" value1="Wiki Page" />
-		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#PENDING_TABLE_STATUS" value1="Review" />
-		<execute function="AssertElementPresent" locator1="WorkflowSubmissions#PENDING_TABLE_LAST_ACTIVITY_DATE" />
-		<execute function="AssertElementPresent" locator1="WorkflowSubmissions#PENDING_TABLE_END_DATE" />
+		<execute function="Portal.AssertTextEquals" locator1="WorkflowSubmissions#PENDING_TABLE_DEFINITION" value1="Single Approver" />
+		<execute function="Portal.AssertTextEquals" locator1="WorkflowSubmissions#PENDING_TABLE_ASSET_TITLE" value1="Wiki Page Title" />
+		<execute function="Portal.AssertTextEquals" locator1="WorkflowSubmissions#PENDING_TABLE_ASSET_TYPE" value1="Wiki Page" />
+		<execute function="Portal.AssertTextEquals" locator1="WorkflowSubmissions#PENDING_TABLE_STATUS" value1="Review" />
+		<execute function="Portal.AssertElementPresent" locator1="WorkflowSubmissions#PENDING_TABLE_LAST_ACTIVITY_DATE" />
+		<execute function="Portal.AssertElementPresent" locator1="WorkflowSubmissions#PENDING_TABLE_END_DATE" />
 
-		<execute macro="User#logoutPG" />
+		<execute macro="Portal.User#logoutPG" />
 
-		<execute macro="User#loginPG">
+		<execute macro="Portal.User#loginPG">
 			<var name="password" value="test" />
 			<var name="userEmailAddress" value="test@liferay.com" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#assignToMeTaskByActions">
+		<execute macro="Portal.Workflow#assignToMeTaskByActions">
 			<var name="workflowAssetTitle" value="Wiki Page Title" />
 			<var name="workflowAssetType" value="Wiki Page" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Wiki Page" />
 		</execute>
 
-		<execute macro="WikiNavigator#gotoDraftPagesPG" />
+		<execute macro="Portal.WikiNavigator#gotoDraftPagesPG" />
 
-		<execute macro="WikiPage#viewPageWithWorkflowPG">
+		<execute macro="Portal.WikiPage#viewPageWithWorkflowPG">
 			<var name="wikiPageStatus" value="Pending" />
 			<var name="wikiPageTitle" value="Wiki Page Title" />
 			<var name="wikiPageUsername" value="userfn userln" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#approveTaskByActions">
+		<execute macro="Portal.Workflow#approveTaskByActions">
 			<var name="workflowAssetTitle" value="Wiki Page Title" />
 			<var name="workflowAssetType" value="Wiki Page" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Wiki Page" />
 		</execute>
 
-		<execute macro="WikiNavigator#gotoPG">
+		<execute macro="Portal.WikiNavigator#gotoPG">
 			<var name="wikiPageContent" value="Wiki Page Content" />
 			<var name="wikiPageRevision" value="1.0" />
 			<var name="wikiPageTitle" value="Wiki Page Title" />
 			<var name="wikiPageUsername" value="userfn userln" />
 		</execute>
 
-		<execute macro="WikiPage#viewPG">
+		<execute macro="Portal.WikiPage#viewPG">
 			<var name="wikiPageContent" value="Wiki Page Content" />
 			<var name="wikiPageTitle" value="Wiki Page Title" />
 		</execute>
 
-		<execute macro="User#logoutPG" />
+		<execute macro="Portal.User#logoutPG" />
 
-		<execute macro="User#loginUserPG">
+		<execute macro="Portal.User#loginUserPG">
 			<var name="password" value="test" />
 			<var name="userEmailAddress" value="userea@liferay.com" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Wiki Page" />
 		</execute>
 
-		<execute macro="WikiNavigator#gotoPG">
+		<execute macro="Portal.WikiNavigator#gotoPG">
 			<var name="wikiPageContent" value="Wiki Page Content" />
 			<var name="wikiPageRevision" value="1.0" />
 			<var name="wikiPageTitle" value="Wiki Page Title" />
 			<var name="wikiPageUsername" value="userfn userln" />
 		</execute>
 
-		<execute macro="WikiPage#viewPG">
+		<execute macro="Portal.WikiPage#viewPG">
 			<var name="wikiPageContent" value="Wiki Page Content" />
 			<var name="wikiPageTitle" value="Wiki Page Title" />
 		</execute>
 	</command>
 
 	<command name="DeactivateAndActivateUploadedDefinition" priority="3">
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Workflow" />
 		</execute>
 
-		<execute macro="Workflow#uploadDefinition">
+		<execute macro="Portal.Workflow#uploadDefinition">
 			<var name="workflowDefinitionFile" value="workflow_definition_1.xml" />
 			<var name="workflowDefinitionTitle" value="New Uploaded Definition" />
 		</execute>
 
-		<execute macro="Workflow#viewDefinition">
+		<execute macro="Portal.Workflow#viewDefinition">
 			<var name="workflowDefinitionName" value="Uploaded Definition" />
 			<var name="workflowDefinitionTitle" value="New Uploaded Definition" />
 			<var name="workflowDefinitionVersionNumber" value="1" />
 		</execute>
 
-		<execute macro="Workflow#deactivateAddedWorkflowDefinition" />
+		<execute macro="Portal.Workflow#deactivateAddedWorkflowDefinition" />
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Workflow" />
 		</execute>
 
-		<execute macro="Workflow#reactivateInactiveWorkflowDefinition">
+		<execute macro="Portal.Workflow#reactivateInactiveWorkflowDefinition">
 			<var name="workflowDefinitionName" value="Uploaded Definition" />
 		</execute>
 	</command>
@@ -915,249 +915,249 @@
 	<command name="DeactivateAndDeleteUploadedDefinition" priority="5">
 		<property name="portal.acceptance" value="true" />
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Workflow" />
 		</execute>
 
-		<execute macro="Workflow#uploadDefinition">
+		<execute macro="Portal.Workflow#uploadDefinition">
 			<var name="workflowDefinitionFile" value="workflow_definition_1.xml" />
 			<var name="workflowDefinitionTitle" value="New Uploaded Definition" />
 		</execute>
 
-		<execute macro="Workflow#viewDefinition">
+		<execute macro="Portal.Workflow#viewDefinition">
 			<var name="workflowDefinitionName" value="Uploaded Definition" />
 			<var name="workflowDefinitionTitle" value="New Uploaded Definition" />
 			<var name="workflowDefinitionVersionNumber" value="1" />
 		</execute>
 
-		<execute macro="Workflow#deactivateAddedWorkflowDefinition" />
+		<execute macro="Portal.Workflow#deactivateAddedWorkflowDefinition" />
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Workflow" />
 		</execute>
 
-		<execute macro="Workflow#deleteWorkflowDefinition" />
+		<execute macro="Portal.Workflow#deleteWorkflowDefinition" />
 	</command>
 
 	<command name="ViewBlogsEntryWorkflowViaNotifications" priority="3">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Workflow" />
 		</execute>
 
-		<execute macro="Workflow#configureWorkflow">
+		<execute macro="Portal.Workflow#configureWorkflow">
 			<var name="workflowDefinition" value="Single Approver (Version 1)" />
 			<var name="workflowResourceValue" value="Blogs Entry" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Blogs" />
 		</execute>
 
-		<execute macro="Blogs#addWithWorkflow">
+		<execute macro="Portal.Blogs#addWithWorkflow">
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entrySubtitle" value="Subtitle"  />
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="Notifications#viewBadgeCount">
+		<execute macro="Portal.Notifications#viewBadgeCount">
 			<var name="notificationCount" value="1" />
 		</execute>
 
-		<execute macro="WorkflowAsset#gotoViaNotification">
+		<execute macro="Portal.WorkflowAsset#gotoViaNotification">
 			<var name="assetType" value="Blogs Entry" />
 			<var name="user" value="Test Test" />
 		</execute>
 
-		<execute macro="Workflow#clickAssignToMeByDetails" />
+		<execute macro="Portal.Workflow#clickAssignToMeByDetails" />
 
-		<execute macro="Workflow#confirmAndViewSucessMessageViaDetails" />
+		<execute macro="Portal.Workflow#confirmAndViewSucessMessageViaDetails" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="Notifications#viewBadgeCount">
+		<execute macro="Portal.Notifications#viewBadgeCount">
 			<var name="notificationCount" value="0" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#viewTaskAssignedToMeDetails">
+		<execute macro="Portal.Workflow#viewTaskAssignedToMeDetails">
 			<var name="workflowAssetContent" value="Blogs Entry Content" />
 			<var name="workflowAssetTitle" value="Blogs Entry Title" />
 			<var name="workflowAssignedTo" value="Test Test" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Workflow#clickApproveByDetails" />
+		<execute macro="Portal.Workflow#clickApproveByDetails" />
 
-		<execute macro="Workflow#confirmAndViewSucessMessageViaDetails" />
+		<execute macro="Portal.Workflow#confirmAndViewSucessMessageViaDetails" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="BlogsNavigator#gotoEntryPG">
+		<execute macro="Portal.BlogsNavigator#gotoEntryPG">
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="BlogsEntry#viewPG">
+		<execute macro="Portal.BlogsEntry#viewPG">
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="Notifications#viewBadgeCount">
+		<execute macro="Portal.Notifications#viewBadgeCount">
 			<var name="notificationCount" value="0" />
 		</execute>
 	</command>
 
 	<command name="ViewInvalidDefinitionAlert" priority="4">
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Workflow" />
 		</execute>
 
-		<execute function="Click" locator1="Button#PLUS" />
+		<execute function="Portal.Click" locator1="Button#PLUS" />
 
-		<execute function="UploadCommonFile#uploadCommonFileHidden" locator1="WorkflowUpload#FILE_UPLOAD" value1="Document_1.txt" />
+		<execute function="Portal.UploadCommonFile#uploadCommonFileHidden" locator1="WorkflowUpload#FILE_UPLOAD" value1="Document_1.txt" />
 
-		<execute macro="Button#clickSave" />
+		<execute macro="Portal.Button#clickSave" />
 
-		<execute function="AssertTextEquals" locator1="Message#ERROR_1" value1="Please enter a valid definition." />
+		<execute function="Portal.AssertTextEquals" locator1="Message#ERROR_1" value1="Please enter a valid definition." />
 	</command>
 
 	<command name="ViewTaskCount" priority="3">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Workflow" />
 		</execute>
 
-		<execute macro="Workflow#configureWorkflow">
+		<execute macro="Portal.Workflow#configureWorkflow">
 			<var name="workflowDefinition" value="Single Approver (Version 1)" />
 			<var name="workflowResourceValue" value="Blogs Entry" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Web Content" />
 		</execute>
 
-		<execute macro="Workflow#configureWorkflowViaFolderInfo">
+		<execute macro="Portal.Workflow#configureWorkflowViaFolderInfo">
 			<var name="workflowDefinition" value="Single Approver (Version 1)" />
 		</execute>
 
 		<for list="1,2,3" param="number">
-			<execute macro="Navigator#openURL" />
+			<execute macro="Portal.Navigator#openURL" />
 
-			<execute macro="ProductMenu#gotoSitesContent">
+			<execute macro="Portal.ProductMenu#gotoSitesContent">
 				<var name="portlet" value="Web Content" />
 			</execute>
 
-			<execute macro="WebContentNavigator#gotoAddCP" />
+			<execute macro="Portal.WebContentNavigator#gotoAddCP" />
 
-			<execute macro="WebContent#addWithWorkflowCP">
+			<execute macro="Portal.WebContent#addWithWorkflowCP">
 				<var name="webContentContent" value="WC WebContent Content ${number}" />
 				<var name="webContentTitle" value="WC WebContent Title ${number}" />
 			</execute>
 
-			<execute macro="Navigator#openURL" />
+			<execute macro="Portal.Navigator#openURL" />
 
-			<execute macro="ProductMenu#gotoSitesContent">
+			<execute macro="Portal.ProductMenu#gotoSitesContent">
 				<var name="portlet" value="Blogs" />
 			</execute>
 
-			<execute macro="Blogs#addWithWorkflow">
+			<execute macro="Portal.Blogs#addWithWorkflow">
 				<var name="entryContent" value="Blogs Entry Content ${number}" />
 				<var name="entrySubtitle" value="Subtitle ${number}" />
 				<var name="entryTitle" value="Blogs Entry Title ${number}" />
 			</execute>
 		</for>
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Workflow" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
 		<for list="1,2,3" param="number">
-			<execute macro="Workflow#viewTaskAssignedToMyRoles">
+			<execute macro="Portal.Workflow#viewTaskAssignedToMyRoles">
 				<var name="workflowAssetTitle" value="WC WebContent Title ${number}" />
 				<var name="workflowAssetType" value="Web Content Article" />
 				<var name="workflowTask" value="Review" />
 			</execute>
 
-			<execute macro="Workflow#viewTaskAssignedToMyRoles">
+			<execute macro="Portal.Workflow#viewTaskAssignedToMyRoles">
 				<var name="workflowAssetTitle" value="Blogs Entry Title ${number}" />
 				<var name="workflowAssetType" value="Blogs Entry" />
 				<var name="workflowTask" value="Review" />
 			</execute>
 		</for>
 
-		<execute macro="Pagination#viewResults">
+		<execute macro="Portal.Pagination#viewResults">
 			<var name="results" value="Showing 1 to 6 of 6 entries." />
 		</execute>
 
-		<execute function="AssertElementPresent" locator1="xpath=(//div[contains(@id,'workflowTasksSearchContainer')]//tr[contains(@class,'entry-display-style')])[6]" />
+		<execute function="Portal.AssertElementPresent" locator1="xpath=(//div[contains(@id,'workflowTasksSearchContainer')]//tr[contains(@class,'entry-display-style')])[6]" />
 
-		<execute macro="Pagination#changePagination">
+		<execute macro="Portal.Pagination#changePagination">
 			<var name="itemsPerPage" value="5" />
 		</execute>
 
-		<execute macro="Pagination#viewResults">
+		<execute macro="Portal.Pagination#viewResults">
 			<var name="results" value="Showing 1 to 5 of 6 entries." />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="xpath=(//div[contains(@id,'workflowTasksSearchContainer')]//tr[contains(@class,'entry-display-style')])[6]" />
+		<execute function="Portal.AssertElementNotPresent" locator1="xpath=(//div[contains(@id,'workflowTasksSearchContainer')]//tr[contains(@class,'entry-display-style')])[6]" />
 	</command>
 
 	<command name="ViewWebContentConfigurationCP" priority="3">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Web Content" />
 		</execute>
 
-		<execute macro="WebContent#viewEmailConfigurationCP">
+		<execute macro="Portal.WebContent#viewEmailConfigurationCP">
 			<var name="webContentWorkflowEnabled" value="false" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Web Content" />
 		</execute>
 
-		<execute macro="Workflow#configureWorkflowViaFolderInfo">
+		<execute macro="Portal.Workflow#configureWorkflowViaFolderInfo">
 			<var name="workflowDefinition" value="Single Approver (Version 1)" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Web Content" />
 		</execute>
 
-		<execute macro="WebContent#viewEmailConfigurationCP">
+		<execute macro="Portal.WebContent#viewEmailConfigurationCP">
 			<var name="webContentWorkflowEnabled" value="true" />
 		</execute>
 	</command>
@@ -1165,66 +1165,66 @@
 	<command name="ViewWorkflowConfigurationScope" priority="4">
 		<description message="This is a use case for LPS-59108." />
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addBlankCP">
+		<execute macro="Portal.Site#addBlankCP">
 			<var name="siteName" value="New Site" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Workflow" />
 		</execute>
 
-		<execute macro="Workflow#configureWorkflow">
+		<execute macro="Portal.Workflow#configureWorkflow">
 			<var name="workflowDefinition" value="Single Approver (Version 1)" />
 			<var name="workflowResourceValue" value="Calendar Event" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Workflow" />
 		</execute>
 
-		<execute macro="Workflow#viewConfigurationSelected">
+		<execute macro="Portal.Workflow#viewConfigurationSelected">
 			<var name="workflowDefinition" value="Single Approver (Version 1)" />
 			<var name="workflowResourceValue" value="Calendar Event" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Workflow" />
 		</execute>
 
-		<execute macro="Navigator#gotoNavItem">
+		<execute macro="Portal.Navigator#gotoNavItem">
 			<var name="navItem" value="Schemes" />
 		</execute>
 
-		<execute macro="Workflow#viewConfigurationSelected">
+		<execute macro="Portal.Workflow#viewConfigurationSelected">
 			<var name="workflowDefinition" value="No Workflow" />
 			<var name="workflowResourceValue" value="Calendar Event" />
 		</execute>
 
-		<execute macro="Workflow#configureWorkflow">
+		<execute macro="Portal.Workflow#configureWorkflow">
 			<var name="workflowDefinition" value="Single Approver (Version 1)" />
 			<var name="workflowResourceValue" value="Blogs Entry" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Workflow" />
 		</execute>
 
-		<execute macro="Workflow#viewConfigurationSelected">
+		<execute macro="Portal.Workflow#viewConfigurationSelected">
 			<var name="workflowDefinition" value="Single Approver" />
 			<var name="workflowResourceValue" value="Blogs Entry" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Workflow" />
 		</execute>
 
-		<execute macro="Workflow#viewConfigurationSelected">
+		<execute macro="Portal.Workflow#viewConfigurationSelected">
 			<var name="workflowDefinition" value="Single Approver" />
 			<var name="workflowResourceValue" value="Blogs Entry" />
 		</execute>
@@ -1234,40 +1234,40 @@
 		<description message="This is a use case for LRQA-13519." />
 		<property name="portal.acceptance" value="true" />
 
-		<execute macro="TestCase#getSiteName">
+		<execute macro="Portal.TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Workflow" />
 		</execute>
 
-		<execute macro="Navigator#gotoNavItem">
+		<execute macro="Portal.Navigator#gotoNavItem">
 			<var name="navItem" value="Schemes" />
 		</execute>
 
-		<execute macro="Workflow#configureWorkflow">
+		<execute macro="Portal.Workflow#configureWorkflow">
 			<var name="workflowDefinition" value="Single Approver (Version 1)" />
 			<var name="workflowResourceValue" value="Blogs Entry" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Roles" />
 		</execute>
 
-		<execute macro="Role#definePermissionCP">
+		<execute macro="Portal.Role#definePermissionCP">
 			<var name="permissionDefinitionKey" value="SITE_ADMIN_CONTENT_BLOGS_GENERAL_PERMISSIONS_ACCESS_IN_SITE_ADMINISTRATION_CHECKBOX" />
 			<var name="permissionDefinitionValue" value="Access in Site Administration" />
 			<var name="roleTitle" value="Site Member" />
 			<var name="roleType" value="Site" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Roles" />
 		</execute>
 
-		<execute macro="Role#definePermissionCP">
+		<execute macro="Portal.Role#definePermissionCP">
 			<var name="permissionDefinitionKey" value="SITE_ADMIN_CONTENT_BLOGS_RESOURCE_PERMISSIONS_BLOGS_ENTRIES_ADD_ENTRY_CHECKBOX" />
 			<var name="permissionDefinitionValue" value="Add Entry" />
 			<var name="roleTitle" value="Site Member" />
@@ -1275,240 +1275,240 @@
 		</execute>
 
 		<for list="1,2" param="n">
-			<execute macro="ProductMenu#gotoControlPanelUsers">
+			<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 				<var name="portlet" value="Users and Organizations" />
 			</execute>
 
-			<execute macro="User#addCP">
+			<execute macro="Portal.User#addCP">
 				<var name="userEmailAddress" value="usersn${n}@liferay.com" />
 				<var name="userFirstName" value="userfn${n}" />
 				<var name="userLastName" value="userln${n}" />
 				<var name="userScreenName" value="usersn${n}" />
 			</execute>
 
-			<execute macro="ProductMenu#gotoControlPanelUsers">
+			<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 				<var name="portlet" value="Users and Organizations" />
 			</execute>
 
-			<execute macro="User#editUserSiteCP">
+			<execute macro="Portal.User#editUserSiteCP">
 				<var name="siteName" value="${siteName}" />
 				<var name="userScreenName" value="usersn${n}" />
 			</execute>
 
-			<execute macro="ProductMenu#gotoControlPanelUsers">
+			<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 				<var name="portlet" value="Users and Organizations" />
 			</execute>
 
-			<execute macro="User#editPasswordCP">
+			<execute macro="Portal.User#editPasswordCP">
 				<var name="userEmailAddress" value="usersn${n}@liferay.com" />
 				<var name="userScreenName" value="usersn${n}" />
 			</execute>
 
-			<execute macro="User#logoutAndLoginPG">
+			<execute macro="Portal.User#logoutAndLoginPG">
 				<var name="userLoginEmailAddress" value="usersn${n}@liferay.com" />
 				<var name="userScreenName" value="usersn${n}" />
 			</execute>
 
-			<execute macro="Navigator#openURL" />
+			<execute macro="Portal.Navigator#openURL" />
 
-			<execute macro="ProductMenu#gotoSitesContent">
+			<execute macro="Portal.ProductMenu#gotoSitesContent">
 				<var name="portlet" value="Blogs" />
 			</execute>
 
-			<execute macro="Blogs#addWithWorkflow">
+			<execute macro="Portal.Blogs#addWithWorkflow">
 				<var name="entryContent" value="User ${n} Blog Content Approved" />
 				<var name="entrySubtitle" value="User ${n} Blog Subtitle Approved" />
 				<var name="entryTitle" value="User ${n} Blog Title Approved" />
 			</execute>
 
-			<execute macro="Navigator#openURL" />
+			<execute macro="Portal.Navigator#openURL" />
 
-			<execute macro="ProductMenu#gotoSitesContent">
+			<execute macro="Portal.ProductMenu#gotoSitesContent">
 				<var name="portlet" value="Blogs" />
 			</execute>
 
-			<execute macro="Blogs#addWithWorkflow">
+			<execute macro="Portal.Blogs#addWithWorkflow">
 				<var name="entryContent" value="User ${n} Blog Content Pending" />
 				<var name="entrySubtitle" value="User ${n} Blog Subtitle Pending" />
 				<var name="entryTitle" value="User ${n} Blog Title Pending" />
 			</execute>
 
-			<execute macro="User#logoutAndLoginPG">
+			<execute macro="Portal.User#logoutAndLoginPG">
 				<var name="userLoginEmailAddress" value="test@liferay.com" />
 				<var name="userScreenName" value="Test Test" />
 			</execute>
 
-			<execute macro="Page#gotoMyAccount">
+			<execute macro="Portal.Page#gotoMyAccount">
 				<var name="portletName" value="My Workflow Tasks" />
 			</execute>
 
-			<execute macro="Workflow#assignToMeTaskByActions">
+			<execute macro="Portal.Workflow#assignToMeTaskByActions">
 				<var name="workflowAssetTitle" value="User ${n} Blog Title Approved" />
 				<var name="workflowAssetType" value="Blogs Entry" />
 				<var name="workflowTask" value="Review" />
 			</execute>
 
-			<execute macro="Workflow#approveTaskByActions">
+			<execute macro="Portal.Workflow#approveTaskByActions">
 				<var name="workflowAssetTitle" value="User ${n} Blog Title Approved" />
 				<var name="workflowAssetType" value="Blogs Entry" />
 				<var name="workflowTask" value="Review" />
 			</execute>
 		</for>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="usersn1@liferay.com" />
 			<var name="userScreenName" value="usersn1" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Submissions" />
 		</execute>
 
-		<execute macro="Workflow#viewMySubmissions">
+		<execute macro="Portal.Workflow#viewMySubmissions">
 			<var name="workflowAssetTitle" value="User 1 Blog Title Pending" />
 			<var name="workflowAssetType" value="Blogs Entry" />
 			<var name="workflowDefinition" value="Single Approver" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Workflow#viewSubmissionNotPresent">
+		<execute macro="Portal.Workflow#viewSubmissionNotPresent">
 			<var name="workflowAssetTitle" value="User 2 Blog Title Pending" />
 		</execute>
 
-		<execute macro="Workflow#viewCompletedSubmission">
+		<execute macro="Portal.Workflow#viewCompletedSubmission">
 			<var name="workflowAssetTitle" value="User 1 Blog Title Approved" />
 			<var name="workflowAssetType" value="Blogs Entry" />
 			<var name="workflowDefinition" value="Single Approver" />
 			<var name="workflowStatus" value="Approved" />
 		</execute>
 
-		<execute macro="Workflow#viewSubmissionNotPresent">
+		<execute macro="Portal.Workflow#viewSubmissionNotPresent">
 			<var name="workflowAssetTitle" value="User 2 Blog Title Approved" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="usersn2@liferay.com" />
 			<var name="userScreenName" value="usersn2" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Submissions" />
 		</execute>
 
-		<execute macro="Workflow#viewMySubmissions">
+		<execute macro="Portal.Workflow#viewMySubmissions">
 			<var name="workflowAssetTitle" value="User 2 Blog Title Pending" />
 			<var name="workflowAssetType" value="Blogs Entry" />
 			<var name="workflowDefinition" value="Single Approver" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Workflow#viewSubmissionNotPresent">
+		<execute macro="Portal.Workflow#viewSubmissionNotPresent">
 			<var name="workflowAssetTitle" value="User 1 Blog Title Pending" />
 		</execute>
 
-		<execute macro="Workflow#viewCompletedSubmission">
+		<execute macro="Portal.Workflow#viewCompletedSubmission">
 			<var name="workflowAssetTitle" value="User 2 Blog Title Approved" />
 			<var name="workflowAssetType" value="Blogs Entry" />
 			<var name="workflowDefinition" value="Single Approver" />
 			<var name="workflowStatus" value="Approved" />
 		</execute>
 
-		<execute macro="Workflow#viewSubmissionNotPresent">
+		<execute macro="Portal.Workflow#viewSubmissionNotPresent">
 			<var name="workflowAssetTitle" value="User 1 Blog Title Approved" />
 		</execute>
 	</command>
 
 	<command name="XSSScriptWebContent" priority="4">
-		<execute macro="TestCase#getSiteName">
+		<execute macro="Portal.TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Web Content" />
 		</execute>
 
-		<execute macro="Workflow#configureWorkflowViaFolderInfo">
+		<execute macro="Portal.Workflow#configureWorkflowViaFolderInfo">
 			<var name="workflowDefinition" value="Single Approver (Version 1)" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Web Content" />
 		</execute>
 
-		<execute macro="WebContentNavigator#gotoAddCP" />
+		<execute macro="Portal.WebContentNavigator#gotoAddCP" />
 
-		<execute macro="WebContent#addWithWorkflowCP">
+		<execute macro="Portal.WebContent#addWithWorkflowCP">
 			<var name="webContentContent"><![CDATA[&lt;script&gt;alert("web content article")&lt;/script&gt;]]></var>
 			<var name="webContentTitle" value="WC WebContent Title" />
 		</execute>
 
-		<execute macro="WebContent#viewWithWorkflowCP">
+		<execute macro="Portal.WebContent#viewWithWorkflowCP">
 			<var name="webContentContent"><![CDATA[<script>alert("web content article")</script>]]></var>
 			<var name="webContentTitle" value="WC WebContent Title" />
 			<var name="workflowStatus" value="Pending" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#assignToMeTaskByActions">
+		<execute macro="Portal.Workflow#assignToMeTaskByActions">
 			<var name="workflowAssetTitle" value="WC WebContent Title" />
 			<var name="workflowAssetType" value="Web Content Article" />
 			<var name="workflowTask" value="Review" />
 			<var name="workflowActivityComment"><![CDATA[<script>alert("web commenting on WC")</script>]]></var>
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#approveTaskByActions">
+		<execute macro="Portal.Workflow#approveTaskByActions">
 			<var name="workflowAssetTitle" value="WC WebContent Title" />
 			<var name="workflowAssetType" value="Web Content Article" />
 			<var name="workflowTask" value="Review" />
 			<var name="workflowActivityComment"><![CDATA[<script>alert("approve")</script>]]></var>
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Web Content" />
 		</execute>
 
-		<execute macro="WebContentNavigator#gotoEditCP">
+		<execute macro="Portal.WebContentNavigator#gotoEditCP">
 			<var name="webContentTitle" value="WC WebContent Title" />
 		</execute>
 
-		<execute macro="WebContent#viewCP">
+		<execute macro="Portal.WebContent#viewCP">
 			<var name="webContentContent"><![CDATA[<script>alert("web content article")</script>]]></var>
 			<var name="webContentTitle" value="WC WebContent Title" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Asset Publisher Test Page" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Asset Publisher Test Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Asset Publisher" />
 		</execute>
 
-		<execute macro="WebContent#viewPGViaAP">
+		<execute macro="Portal.WebContent#viewPGViaAP">
 			<var name="webContentContent"><![CDATA[<script>alert("web content article")</script>]]></var>
 			<var name="webContentTitle" value="WC WebContent Title" />
 		</execute>

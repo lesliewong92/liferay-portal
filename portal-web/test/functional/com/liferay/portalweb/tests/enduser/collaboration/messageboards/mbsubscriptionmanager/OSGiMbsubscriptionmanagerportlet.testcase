@@ -5,7 +5,7 @@
 	<property name="testray.main.component.name" value="Message Boards" />
 
 	<set-up>
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 	</set-up>
 
 	<command name="MBSubscriptionManagerPortletSmoke" priority="4">
@@ -13,12 +13,12 @@
 
 		<var name="appName" value="Message Boards Subscription Manager" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Message Boards Subscription Manager" />
 		</execute>
 
-		<execute function="AntCommand#antCommand" locator1="build-test.xml" value1="remove-plugin -Dplugin.name=my-subscriptions-portlet" />
+		<execute function="Portal.AntCommand#antCommand" locator1="build-test.xml" value1="remove-plugin -Dplugin.name=my-subscriptions-portlet" />
 	</command>
 </definition>

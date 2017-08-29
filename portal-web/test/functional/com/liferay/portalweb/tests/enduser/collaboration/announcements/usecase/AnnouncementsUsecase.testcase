@@ -8,15 +8,15 @@
 	<var name="portletName" value="Announcements" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Announcements Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Announcements" />
 		</execute>
 	</set-up>
@@ -27,153 +27,153 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="Navigator#gotoPage">
+				<execute macro="Portal.Navigator#gotoPage">
 					<var name="pageName" value="Announcements Page" />
 				</execute>
 
-				<execute macro="AnnouncementsEntry#tearDownPG" />
+				<execute macro="Portal.AnnouncementsEntry#tearDownPG" />
 
-				<execute macro="Page#tearDownPG" />
+				<execute macro="Portal.Page#tearDownPG" />
 
-				<execute macro="User#tearDownCP" />
+				<execute macro="Portal.User#tearDownCP" />
 
-				<execute macro="Site#tearDownCP" />
+				<execute macro="Portal.Site#tearDownCP" />
 			</else>
 		</if>
 	</tear-down>
 
 	<command name="ViewAnnouncementsEntryWithDistributedScope" priority="4">
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Announcements Page" />
 		</execute>
 
-		<execute macro="AnnouncementsEntry#addPG">
+		<execute macro="Portal.AnnouncementsEntry#addPG">
 			<var name="distributionScope" value="General" />
 			<var name="entryContent" value="Announcements Entry Content" />
 			<var name="entryTitle" value="Announcements Entry Title" />
 			<var name="entryURL" value="http://www.google.com" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Announcements Page" />
 		</execute>
 
-		<execute macro="AnnouncementsEntry#viewPG">
+		<execute macro="Portal.AnnouncementsEntry#viewPG">
 			<var name="announcementType" value="General" />
 			<var name="distributionScope" value="General" />
 			<var name="entryContent" value="Announcements Entry Content" />
 			<var name="entryTitle" value="Announcements Entry Title" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addCP">
+		<execute macro="Portal.Site#addCP">
 			<var name="siteName" value="Community Site Name" />
 			<var name="siteType" value="Community" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Community Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Community Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Announcements" />
 		</execute>
 
-		<execute macro="AnnouncementsEntry#viewPG">
+		<execute macro="Portal.AnnouncementsEntry#viewPG">
 			<var name="announcementType" value="General" />
 			<var name="distributionScope" value="General" />
 			<var name="entryContent" value="Announcements Entry Content" />
 			<var name="entryTitle" value="Announcements Entry Title" />
 		</execute>
 
-		<execute macro="TestCase#getSiteName">
+		<execute macro="Portal.TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="AnnouncementsEntry#addPG">
+		<execute macro="Portal.AnnouncementsEntry#addPG">
 			<var name="distributionScope" value="${siteName}" />
 			<var name="entryContent" value="Announcements Entry2 Scoped Content" />
 			<var name="entryTitle" value="Announcements Entry2 Scoped Title" />
 			<var name="entryURL" value="http://www.yahoo.com" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Site Page Name" />
 			<var name="siteName" value="Community Site Name" />
 		</execute>
 
-		<execute macro="AnnouncementsEntry#viewNoPG">
+		<execute macro="Portal.AnnouncementsEntry#viewNoPG">
 			<var name="entryTitle" value="Announcements Entry2 Scoped Title" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Announcements Page" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="AnnouncementsEntry#viewPG">
+		<execute macro="Portal.AnnouncementsEntry#viewPG">
 			<var name="announcementType" value="General" />
 			<var name="distributionScope" value="${siteName}" />
 			<var name="entryContent" value="Announcements Entry2 Scoped Content" />
 			<var name="entryTitle" value="Announcements Entry2 Scoped Title" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#addCP">
+		<execute macro="Portal.User#addCP">
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userFirstName" value="userfn" />
 			<var name="userLastName" value="userln" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#editPasswordCP">
+		<execute macro="Portal.User#editPasswordCP">
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="User#logoutPG" />
+		<execute macro="Portal.User#logoutPG" />
 
-		<execute macro="User#loginPG">
+		<execute macro="Portal.User#loginPG">
 			<var name="password" value="test" />
 			<var name="userEmailAddress" value="userea@liferay.com" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Announcements Page" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="AnnouncementsEntry#viewViaEntriesPG">
+		<execute macro="Portal.AnnouncementsEntry#viewViaEntriesPG">
 			<var name="distributionScope" value="General" />
 			<var name="entryContent" value="Announcements Entry Content" />
 			<var name="entryTitle" value="Announcements Entry Title" />
 		</execute>
 
-		<execute macro="AnnouncementsEntry#viewViaEntriesPG">
+		<execute macro="Portal.AnnouncementsEntry#viewViaEntriesPG">
 			<var name="distributionScope" value="${siteName}" />
 			<var name="entryContent" value="Announcements Entry2 Scoped Content" />
 			<var name="entryTitle" value="Announcements Entry2 Scoped Title" />
@@ -184,11 +184,11 @@
 		<var name="entryCountList" value="1,2,3,4,5,6,7" />
 
 		<for list="${entryCountList}" param="entryCount">
-			<execute macro="Navigator#gotoPage">
+			<execute macro="Portal.Navigator#gotoPage">
 				<var name="pageName" value="Announcements Page" />
 			</execute>
 
-			<execute macro="AnnouncementsEntry#addPG">
+			<execute macro="Portal.AnnouncementsEntry#addPG">
 				<var name="announcementType" value="General" />
 				<var name="distributionScope" value="General" />
 				<var name="entryContent" value="Announcements Entry Content ${entryCount}" />
@@ -197,22 +197,22 @@
 			</execute>
 		</for>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Announcements Page" />
 		</execute>
 
-		<execute macro="AnnouncementsPortlet#configureDisplayCountPG">
+		<execute macro="Portal.AnnouncementsPortlet#configureDisplayCountPG">
 			<var name="maxDisplayItems" value="5" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Announcements Page" />
 		</execute>
 
 		<var name="viewEntryList" value="3,4,5,6,7" />
 
 		<for list="${viewEntryList}" param="viewEntryCount">
-			<execute macro="AnnouncementsEntry#viewViaEntriesPG">
+			<execute macro="Portal.AnnouncementsEntry#viewViaEntriesPG">
 				<var name="distributionScope" value="General" />
 				<var name="entryContent" value="Announcements Entry Content ${viewEntryCount}" />
 				<var name="entryTitle" value="Announcements Entry Title ${viewEntryCount}" />
@@ -222,14 +222,14 @@
 
 		<var name="key_entryTitle" value="Announcements Entry Title" />
 
-		<execute function="AssertTextNotPresent" locator1="Announcements#CARD_VIEW_ENTRY_TITLE" value1="Announcements Entry Title 1" />
-		<execute function="AssertTextNotPresent" locator1="Announcements#CARD_VIEW_ENTRY_TITLE" value1="Announcements Entry Title 2" />
-		<execute function="AssertClick" locator1="Pagination#NEXT_LINK" value1="Next" />
+		<execute function="Portal.AssertTextNotPresent" locator1="Announcements#CARD_VIEW_ENTRY_TITLE" value1="Announcements Entry Title 1" />
+		<execute function="Portal.AssertTextNotPresent" locator1="Announcements#CARD_VIEW_ENTRY_TITLE" value1="Announcements Entry Title 2" />
+		<execute function="Portal.AssertClick" locator1="Pagination#NEXT_LINK" value1="Next" />
 
 		<var name="viewEntryList" value="1,2" />
 
 		<for list="${viewEntryList}" param="viewEntryCount">
-			<execute macro="AnnouncementsEntry#viewViaEntriesPG">
+			<execute macro="Portal.AnnouncementsEntry#viewViaEntriesPG">
 				<var name="distributionScope" value="General" />
 				<var name="entryContent" value="Announcements Entry Content ${viewEntryCount}" />
 				<var name="entryTitle" value="Announcements Entry Title ${viewEntryCount}" />
@@ -241,15 +241,15 @@
 		<var name="viewEntryList" value="3,4,5,6,7" />
 
 		<for list="${viewEntryList}" param="viewEntryCount">
-			<execute function="AssertTextNotPresent" locator1="AnnouncementsManageEntries#ENTRY_TABLE_TITLE" value1="Announcements Entry Title ${viewEntryCount}" />
+			<execute function="Portal.AssertTextNotPresent" locator1="AnnouncementsManageEntries#ENTRY_TABLE_TITLE" value1="Announcements Entry Title ${viewEntryCount}" />
 		</for>
 
-		<execute function="AssertClick" locator1="Pagination#PREVIOUS_LINK" value1="Previous" />
+		<execute function="Portal.AssertClick" locator1="Pagination#PREVIOUS_LINK" value1="Previous" />
 
 		<var name="viewEntryList" value="3,4,5,6,7" />
 
 		<for list="${viewEntryList}" param="viewEntryCount">
-			<execute macro="AnnouncementsEntry#viewViaEntriesPG">
+			<execute macro="Portal.AnnouncementsEntry#viewViaEntriesPG">
 				<var name="distributionScope" value="General" />
 				<var name="entryContent" value="Announcements Entry Content ${viewEntryCount}" />
 				<var name="entryTitle" value="Announcements Entry Title ${viewEntryCount}" />
@@ -259,16 +259,16 @@
 
 		<var name="key_entryTitle" value="Announcements Entry Title" />
 
-		<execute function="AssertTextNotPresent" locator1="Announcements#CARD_VIEW_ENTRY_TITLE" value1="Announcements Entry Title 1" />
-		<execute function="AssertTextNotPresent" locator1="Announcements#CARD_VIEW_ENTRY_TITLE" value1="Announcements Entry Title 2" />
+		<execute function="Portal.AssertTextNotPresent" locator1="Announcements#CARD_VIEW_ENTRY_TITLE" value1="Announcements Entry Title 1" />
+		<execute function="Portal.AssertTextNotPresent" locator1="Announcements#CARD_VIEW_ENTRY_TITLE" value1="Announcements Entry Title 2" />
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Announcements and Alerts" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="Dropdown#FILTER" value1="General" />
+		<execute function="Portal.AssertTextEquals" locator1="Dropdown#FILTER" value1="General" />
 
-		<execute macro="AnnouncementsPortlet#configurePaginationCP">
+		<execute macro="Portal.AnnouncementsPortlet#configurePaginationCP">
 			<var name="distributionScope" value="General" />
 			<var name="itemsPerPage" value="5" />
 		</execute>
@@ -276,21 +276,21 @@
 		<var name="viewEntryList" value="1,2,3,4,5" />
 
 		<for list="${viewEntryList}" param="viewEntryCount">
-			<execute macro="AnnouncementsEntry#viewList">
+			<execute macro="Portal.AnnouncementsEntry#viewList">
 				<var name="distributionScope" value="General" />
 				<var name="entryTitle" value="Announcements Entry Title ${viewEntryCount}" />
 			</execute>
 		</for>
 
-		<execute function="AssertTextNotPresent" locator1="AnnouncementsManageEntries#ENTRY_TABLE_TITLE" value1="Announcements Entry Title 6" />
-		<execute function="AssertTextNotPresent" locator1="AnnouncementsManageEntries#ENTRY_TABLE_TITLE" value1="Announcements Entry Title 7" />
+		<execute function="Portal.AssertTextNotPresent" locator1="AnnouncementsManageEntries#ENTRY_TABLE_TITLE" value1="Announcements Entry Title 6" />
+		<execute function="Portal.AssertTextNotPresent" locator1="AnnouncementsManageEntries#ENTRY_TABLE_TITLE" value1="Announcements Entry Title 7" />
 
-		<execute function="Click" locator1="Pagination#NEXT_LINK" />
+		<execute function="Portal.Click" locator1="Pagination#NEXT_LINK" />
 
 		<var name="viewEntryList" value="6,7" />
 
 		<for list="${viewEntryList}" param="viewEntryCount">
-			<execute macro="AnnouncementsEntry#viewList">
+			<execute macro="Portal.AnnouncementsEntry#viewList">
 				<var name="distributionScope" value="General" />
 				<var name="entryTitle" value="Announcements Entry Title ${viewEntryCount}" />
 			</execute>
@@ -299,21 +299,21 @@
 		<var name="viewEntryList" value="1,2,3,4,5" />
 
 		<for list="${viewEntryList}" param="viewEntryCount">
-			<execute function="AssertTextNotPresent" locator1="AnnouncementsManageEntries#ENTRY_TABLE_TITLE" value1="Announcements Entry Title ${viewEntryCount}" />
+			<execute function="Portal.AssertTextNotPresent" locator1="AnnouncementsManageEntries#ENTRY_TABLE_TITLE" value1="Announcements Entry Title ${viewEntryCount}" />
 		</for>
 
-		<execute function="Click" locator1="Pagination#PREVIOUS_LINK" />
+		<execute function="Portal.Click" locator1="Pagination#PREVIOUS_LINK" />
 
 		<var name="viewEntryList" value="1,2,3,4,5" />
 
 		<for list="${viewEntryList}" param="viewEntryCount">
-			<execute macro="AnnouncementsEntry#viewList">
+			<execute macro="Portal.AnnouncementsEntry#viewList">
 				<var name="distributionScope" value="General" />
 				<var name="entryTitle" value="Announcements Entry Title ${viewEntryCount}" />
 			</execute>
 		</for>
 
-		<execute function="AssertTextNotPresent" locator1="AnnouncementsManageEntries#ENTRY_TABLE_TITLE" value1="Announcements Entry Title 6" />
-		<execute function="AssertTextNotPresent" locator1="AnnouncementsManageEntries#ENTRY_TABLE_TITLE" value1="Announcements Entry Title 7" />
+		<execute function="Portal.AssertTextNotPresent" locator1="AnnouncementsManageEntries#ENTRY_TABLE_TITLE" value1="Announcements Entry Title 6" />
+		<execute function="Portal.AssertTextNotPresent" locator1="AnnouncementsManageEntries#ENTRY_TABLE_TITLE" value1="Announcements Entry Title 7" />
 	</command>
 </definition>

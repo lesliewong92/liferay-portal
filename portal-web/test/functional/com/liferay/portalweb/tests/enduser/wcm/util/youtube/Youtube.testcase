@@ -5,11 +5,11 @@
 	<property name="testray.main.component.name" value="YouTube" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Test Page Name" />
 		</execute>
 	</set-up>
@@ -20,60 +20,60 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="Page#tearDownPG" />
+				<execute macro="Portal.Page#tearDownPG" />
 			</else>
 		</if>
 	</tear-down>
 
 	<command name="AddYoutubeVideo" priority="4">
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="YouTube" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Test Page Name" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletName" value="YouTube" />
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute macro="YoutubePortlet#addVideoId">
+		<execute macro="Portal.YoutubePortlet#addVideoId">
 			<var name="videoId" value="PiObSymqSdo" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Test Page Name" />
 		</execute>
 
-		<execute macro="YoutubePortlet#assertVideoTitle">
+		<execute macro="Portal.YoutubePortlet#assertVideoTitle">
 			<var name="videoTitle" value="The Gospel in 6 Minutes - John Piper" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletName" value="YouTube" />
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute macro="YoutubePortlet#viewPortletConfiguration">
+		<execute macro="Portal.YoutubePortlet#viewPortletConfiguration">
 			<var name="videoId" value="PiObSymqSdo" />
 		</execute>
 
-		<execute macro="IFrame#closeFrame" />
+		<execute macro="Portal.IFrame#closeFrame" />
 	</command>
 
 	<command name="YoutubePortletSmoke" priority="4">
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="YouTube" />
 		</execute>
 
-		<execute macro="Portlet#viewPG">
+		<execute macro="Portal.Portlet#viewPG">
 			<var name="portletBody" value="Please configure this portlet to make it visible to all users." />
 			<var name="portletName" value="YouTube" />
 		</execute>

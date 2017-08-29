@@ -5,27 +5,27 @@
 	<property name="testray.main.component.name" value="Microblogs" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Microblogs Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Microblogs Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Microblogs" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Microblogs Page" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="Portlet#H2_HEADER" value1="Microblogs" />
+		<execute function="Portal.AssertTextEquals" locator1="Portlet#H2_HEADER" value1="Microblogs" />
 	</set-up>
 
 	<tear-down>
@@ -34,19 +34,19 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 		</if>
 	</tear-down>
 
 	<command name="AddEntry" priority="4">
-		<execute macro="Microblogs#updateStatus">
+		<execute macro="Portal.Microblogs#updateStatus">
 			<var name="entryContent" value="Microblog Entry Content" />
 		</execute>
 
-		<execute macro="Microblogs#gotoTimelineTab" />
+		<execute macro="Portal.Microblogs#gotoTimelineTab" />
 
-		<execute macro="Microblogs#viewEntry">
+		<execute macro="Portal.Microblogs#viewEntry">
 			<var name="entryContent" value="Microblog Entry Content" />
 			<var name="userName" value="Test Test" />
 		</execute>
@@ -55,38 +55,38 @@
 	<command name="DeleteEntry" priority="5">
 		<property name="portal.acceptance" value="true" />
 
-		<execute macro="Microblogs#updateStatus">
+		<execute macro="Portal.Microblogs#updateStatus">
 			<var name="entryContent" value="Microblog Entry Content" />
 		</execute>
 
-		<execute macro="Microblogs#gotoTimelineTab" />
+		<execute macro="Portal.Microblogs#gotoTimelineTab" />
 
-		<execute macro="Microblogs#deleteStatus">
+		<execute macro="Portal.Microblogs#deleteStatus">
 			<var name="entryContent" value="Microblog Entry Content" />
 		</execute>
 
-		<execute macro="Microblogs#gotoTimelineTab" />
+		<execute macro="Portal.Microblogs#gotoTimelineTab" />
 
-		<execute function="AssertTextEquals" locator1="Message#INFO" value1="There are no microblog entries." />
+		<execute function="Portal.AssertTextEquals" locator1="Message#INFO" value1="There are no microblog entries." />
 	</command>
 
 	<command name="EditEntry" priority="5">
 		<property name="portal.acceptance" value="true" />
 
-		<execute macro="Microblogs#updateStatus">
+		<execute macro="Portal.Microblogs#updateStatus">
 			<var name="entryContent" value="Microblog Entry Content" />
 		</execute>
 
-		<execute macro="Microblogs#gotoTimelineTab" />
+		<execute macro="Portal.Microblogs#gotoTimelineTab" />
 
-		<execute macro="Microblogs#editStatus">
+		<execute macro="Portal.Microblogs#editStatus">
 			<var name="entryContent" value="Microblog Entry Content" />
 			<var name="entryContentEdit" value="Edited Microblogs Content" />
 		</execute>
 
-		<execute macro="Microblogs#gotoTimelineTab" />
+		<execute macro="Portal.Microblogs#gotoTimelineTab" />
 
-		<execute macro="Microblogs#viewEntry">
+		<execute macro="Portal.Microblogs#viewEntry">
 			<var name="entryContent" value="Edited Microblogs Content" />
 			<var name="userName" value="Test Test" />
 		</execute>

@@ -4,32 +4,32 @@
 	<property name="testray.main.component.name" value="Dynamic Data Lists" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addBlankCP">
+		<execute macro="Portal.Site#addBlankCP">
 			<var name="siteName" value="Staging Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Staging Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesPublishing">
+		<execute macro="Portal.ProductMenu#gotoSitesPublishing">
 			<var name="portlet" value="Staging" />
 		</execute>
 
-		<execute macro="Staging#activateStagingCP">
+		<execute macro="Portal.Staging#activateStagingCP">
 			<var name="pageVersioningEnabled" value="true" />
 			<var name="siteName" value="Staging Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Staging Site Name" />
 		</execute>
 	</set-up>
@@ -40,15 +40,15 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="User#logoutAndLoginPG">
+				<execute macro="Portal.User#logoutAndLoginPG">
 					<var name="userLoginEmailAddress" value="test@liferay.com" />
 					<var name="userLoginFullName" value="Test Test" />
 				</execute>
 
-				<execute macro="Site#tearDownCP" />
+				<execute macro="Portal.Site#tearDownCP" />
 			</else>
 		</if>
 	</tear-down>
@@ -56,63 +56,63 @@
 	<command name="CreateWebContentStructureAndTemplate" priority="3">
 		<description message="This is a use case for LPS-68661." />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Web Content" />
 		</execute>
 
-		<execute macro="WebContentNavigator#gotoManageStructures" />
+		<execute macro="Portal.WebContentNavigator#gotoManageStructures" />
 
-		<execute macro="WebContentStructures#addCP">
+		<execute macro="Portal.WebContentStructures#addCP">
 			<var name="structureDescription" value="WC Structure Description" />
 			<var name="structureName" value="WC Structure Name" />
 		</execute>
 
-		<execute macro="DynamicDataMapping#addField">
+		<execute macro="Portal.DynamicDataMapping#addField">
 			<var name="field" value="Text" />
 			<var name="fieldFieldLabel" value="Text" />
 			<var name="fieldName" value="Text" />
 		</execute>
 
-		<execute macro="WebContentStructures#saveCP">
+		<execute macro="Portal.WebContentStructures#saveCP">
 			<var name="structureName" value="WC Structure Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Web Content" />
 		</execute>
 
-		<execute macro="WebContentNavigator#gotoManageStructures" />
+		<execute macro="Portal.WebContentNavigator#gotoManageStructures" />
 
-		<execute macro="WebContentStructures#viewCP">
+		<execute macro="Portal.WebContentStructures#viewCP">
 			<var name="structureDescription" value="WC Structure Description" />
 			<var name="structureName" value="WC Structure Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Web Content" />
 		</execute>
 
-		<execute macro="WebContentNavigator#gotoManageTemplates" />
+		<execute macro="Portal.WebContentNavigator#gotoManageTemplates" />
 
-		<execute macro="WebContentTemplates#addCP">
+		<execute macro="Portal.WebContentTemplates#addCP">
 			<var name="templateDescription" value="WC Template Description" />
 			<var name="templateLanguage" value="ftl" />
 			<var name="templateName" value="WC Template Name" />
 		</execute>
 
-		<execute macro="WebContentTemplates#addStructure">
+		<execute macro="Portal.WebContentTemplates#addStructure">
 			<var name="structureName" value="WC Structure Name" />
 			<var name="templateFieldNames" value="Text" />
 			<var name="templateLanguage" value="ftl" />
 		</execute>
 
-		<execute macro="WebContentTemplates#save" />
+		<execute macro="Portal.WebContentTemplates#save" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Web Content" />
 		</execute>
 
-		<execute macro="WebContentTemplates#viewCP">
+		<execute macro="Portal.WebContentTemplates#viewCP">
 			<var name="templateDescription" value="WC Template Description" />
 			<var name="templateLanguage" value="ftl" />
 			<var name="templateName" value="WC Template Name" />

@@ -4,47 +4,47 @@
 	<property name="testray.main.component.name" value="Dynamic Data Lists" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Dynamic Data Lists" />
 		</execute>
 
-		<execute macro="DDLDataDefinition#addCP" />
+		<execute macro="Portal.DDLDataDefinition#addCP" />
 
-		<execute macro="DynamicDataMapping#addField">
+		<execute macro="Portal.DynamicDataMapping#addField">
 			<var name="field" value="Text" />
 			<var name="fieldFieldLabel" value="Text Parent" />
 			<var name="fieldName" value="textParent" />
 		</execute>
 
-		<execute macro="DynamicDataMapping#addFieldNested">
+		<execute macro="Portal.DynamicDataMapping#addFieldNested">
 			<var name="field" value="Text" />
 			<var name="fieldFieldLabel" value="Text Child" />
 			<var name="fieldName" value="textChild" />
 		</execute>
 
-		<execute macro="DDLDataDefinition#save" />
+		<execute macro="Portal.DDLDataDefinition#save" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Dynamic Data Lists" />
 		</execute>
 
-		<execute macro="DDLList#addCP" />
+		<execute macro="Portal.DDLList#addCP" />
 
-		<execute macro="DDLDataDefinition#selectCP" />
+		<execute macro="Portal.DDLDataDefinition#selectCP" />
 
-		<execute macro="DDLList#save" />
+		<execute macro="Portal.DDLList#save" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Dynamic Data Lists" />
 		</execute>
 	</set-up>
@@ -55,14 +55,14 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="User#firstLoginPG" />
+				<execute macro="Portal.User#firstLoginPG" />
 
-				<execute macro="DDLList#tearDownCP" />
+				<execute macro="Portal.DDLList#tearDownCP" />
 
-				<execute macro="DDLDataDefinition#tearDownCP" />
+				<execute macro="Portal.DDLDataDefinition#tearDownCP" />
 			</else>
 		</if>
 	</tear-down>
@@ -70,45 +70,45 @@
 	<command name="ViewFieldTranslations" priority="4">
 		<description message="This is a use case for LPS-69335." />
 
-		<execute macro="DDLRecord#addCP" />
+		<execute macro="Portal.DDLRecord#addCP" />
 
-		<execute macro="DDLRecord#populateFieldText">
+		<execute macro="Portal.DDLRecord#populateFieldText">
 			<var name="ddlRecordFieldData" value="English (United States) Parent" />
 			<var name="fieldName" value="textParent" />
 		</execute>
 
-		<execute macro="DDLRecord#populateFieldText">
+		<execute macro="Portal.DDLRecord#populateFieldText">
 			<var name="ddlRecordFieldData" value="English (United States) Child" />
 			<var name="fieldName" value="textChild" />
 		</execute>
 
 		<for list="Spanish (Spain),Portuguese (Brazil)" param="language">
-			<execute macro="DDLRecord#addTranslation">
+			<execute macro="Portal.DDLRecord#addTranslation">
 				<var name="localizedLanguage" value="${language}" />
 			</execute>
 
-			<execute macro="DDLRecord#populateFieldText">
+			<execute macro="Portal.DDLRecord#populateFieldText">
 				<var name="ddlRecordFieldData" value="${language} Parent" />
 				<var name="fieldName" value="textParent" />
 			</execute>
 
-			<execute macro="DDLRecord#populateFieldText">
+			<execute macro="Portal.DDLRecord#populateFieldText">
 				<var name="ddlRecordFieldData" value="${language} Child" />
 				<var name="fieldName" value="textChild" />
 			</execute>
 		</for>
 
 		<for list="English (United States),Spanish (Spain),Portuguese (Brazil)" param="language">
-			<execute macro="DDLRecord#selectTranslation">
+			<execute macro="Portal.DDLRecord#selectTranslation">
 				<var name="localizedLanguage" value="${language}" />
 			</execute>
 
-			<execute macro="FormFields#viewTextValue">
+			<execute macro="Portal.FormFields#viewTextValue">
 				<var name="fieldName" value="textParent" />
 				<var name="fieldValue" value="${language} Parent" />
 			</execute>
 
-			<execute macro="FormFields#viewTextValue">
+			<execute macro="Portal.FormFields#viewTextValue">
 				<var name="fieldName" value="textChild" />
 				<var name="fieldValue" value="${language} Child" />
 			</execute>

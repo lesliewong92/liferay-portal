@@ -8,30 +8,30 @@
 	<var name="workflowAssetType" value="Message Boards Message" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesConfiguration">
+		<execute macro="Portal.ProductMenu#gotoSitesConfiguration">
 			<var name="portlet" value="Workflow" />
 		</execute>
 
-		<execute macro="Workflow#configureWorkflow">
+		<execute macro="Portal.Workflow#configureWorkflow">
 			<var name="workflowDefinition" value="Single Approver (Version 1)" />
 			<var name="workflowResourceValue" value="Message Boards Message" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Message Boards Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Message Boards Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Message Boards" />
 		</execute>
 	</set-up>
@@ -42,107 +42,107 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="MessageboardsCategory#tearDownCP" />
+				<execute macro="Portal.MessageboardsCategory#tearDownCP" />
 
-				<execute macro="MessageboardsThread#tearDownCP" />
+				<execute macro="Portal.MessageboardsThread#tearDownCP" />
 
-				<execute macro="MessageboardsPortlet#tearDownConfigurationGeneralCP" />
+				<execute macro="Portal.MessageboardsPortlet#tearDownConfigurationGeneralCP" />
 
-				<execute macro="Page#tearDownPG" />
+				<execute macro="Portal.Page#tearDownPG" />
 
-				<execute macro="Workflow#tearDownPortalWorkflow" />
+				<execute macro="Portal.Workflow#tearDownPortalWorkflow" />
 
-				<execute macro="Workflow#tearDownSiteWorkflow" />
+				<execute macro="Portal.Workflow#tearDownSiteWorkflow" />
 			</else>
 		</if>
 	</tear-down>
 
 	<command name="ApproveMessageBoardsThreadPG" priority="4">
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Message Boards Page" />
 		</execute>
 
-		<execute macro="MessageboardsThread#addWithWorkflowPG">
+		<execute macro="Portal.MessageboardsThread#addWithWorkflowPG">
 			<var name="threadBody" value="MB Thread Body" />
 			<var name="threadSubject" value="MB Thread Subject" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Message Boards Page" />
 		</execute>
 
-		<execute macro="MessageboardsThread#viewWithWorkflowPG">
+		<execute macro="Portal.MessageboardsThread#viewWithWorkflowPG">
 			<var name="threadBody" value="MB Thread Body" />
 			<var name="threadSubject" value="MB Thread Subject" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#assignToMeTaskByActions">
+		<execute macro="Portal.Workflow#assignToMeTaskByActions">
 			<var name="workflowAssetTitle" value="MB Thread Subject" />
 			<var name="workflowAssetType" value="Message Boards Message" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Message Boards Page" />
 		</execute>
 
-		<execute macro="MessageboardsThread#viewWithWorkflowPG">
+		<execute macro="Portal.MessageboardsThread#viewWithWorkflowPG">
 			<var name="pageName" value="Message Boards Page" />
 			<var name="threadBody" value="MB Thread Body" />
 			<var name="threadSubject" value="MB Thread Subject" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#approveTaskByActions">
+		<execute macro="Portal.Workflow#approveTaskByActions">
 			<var name="workflowAssetTitle" value="MB Thread Subject" />
 			<var name="workflowAssetType" value="Message Boards Message" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Message Boards Page" />
 		</execute>
 
-		<execute macro="MessageboardsThread#gotoPG">
+		<execute macro="Portal.MessageboardsThread#gotoPG">
 			<var name="lastPostUserName" value="Test Test" />
 			<var name="postCount" value="1" />
 			<var name="threadBody" value="MB Thread Body" />
 			<var name="threadSubject" value="MB Thread Subject" />
 		</execute>
 
-		<execute macro="MessageboardsThread#viewPG">
+		<execute macro="Portal.MessageboardsThread#viewPG">
 			<var name="threadBody" value="MB Thread Body" />
 			<var name="threadSubject" value="MB Thread Subject" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Submissions" />
 		</execute>
 
-		<execute macro="Workflow#gotoViewCompletedAssetViaMySubmissions">
+		<execute macro="Portal.Workflow#gotoViewCompletedAssetViaMySubmissions">
 			<var name="workflowAssetTitle" value="MB Thread Subject" />
 		</execute>
 
-		<execute macro="MessageboardsThread#viewAsWorkflowAsset">
+		<execute macro="Portal.MessageboardsThread#viewAsWorkflowAsset">
 			<var name="threadBody" value="MB Thread Body" />
 			<var name="threadSubject" value="MB Thread Subject" />
 		</execute>
 
-		<execute macro="MessageboardsThread#gotoViewInContext" />
+		<execute macro="Portal.MessageboardsThread#gotoViewInContext" />
 
-		<execute macro="MessageboardsThread#viewPG">
+		<execute macro="Portal.MessageboardsThread#viewPG">
 			<var name="threadBody" value="MB Thread Body" />
 			<var name="threadSubject" value="MB Thread Subject" />
 		</execute>
@@ -151,50 +151,50 @@
 	<command name="RejectMessageBoardsThreadPG" priority="4">
 		<property name="test.name.skip.portal.instance" value="WorkflowadminPGMessageboards#RejectMessageBoardsThreadPG" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Message Boards Page" />
 		</execute>
 
-		<execute macro="MessageboardsThread#addWithWorkflowPG">
+		<execute macro="Portal.MessageboardsThread#addWithWorkflowPG">
 			<var name="pageName" value="Message Boards Page" />
 			<var name="threadBody" value="MB Thread Body" />
 			<var name="threadSubject" value="MB Thread Subject" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#assignToMeTaskByActions">
+		<execute macro="Portal.Workflow#assignToMeTaskByActions">
 			<var name="workflowAssetTitle" value="MB Thread Subject" />
 			<var name="workflowAssetType" value="Message Boards Message" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#rejectTaskByActions">
+		<execute macro="Portal.Workflow#rejectTaskByActions">
 			<var name="workflowAssetTitle" value="MB Thread Subject" />
 			<var name="workflowAssetType" value="Message Boards Message" />
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="Portal.Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
-		<execute macro="Workflow#viewRejectedTask">
+		<execute macro="Portal.Workflow#viewRejectedTask">
 			<var name="workflowAssetTitle" value="MB Thread Subject" />
 			<var name="workflowAssetType" value="Message Boards Message" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Message Boards Page" />
 		</execute>
 
-		<execute macro="MessageboardsThread#viewWithWorkflowPG">
+		<execute macro="Portal.MessageboardsThread#viewWithWorkflowPG">
 			<var name="pageName" value="Message Boards Page" />
 			<var name="threadBody" value="MB Thread Body" />
 			<var name="threadSubject" value="MB Thread Subject" />

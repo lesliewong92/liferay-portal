@@ -6,9 +6,9 @@
 	<property name="testray.testcase.product.edition" value="EE" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 	</set-up>
 
 	<tear-down>
@@ -17,12 +17,12 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="User#tearDownCP" />
+				<execute macro="Portal.User#tearDownCP" />
 
-				<execute macro="Role#tearDownCP" />
+				<execute macro="Portal.Role#tearDownCP" />
 			</else>
 		</if>
 	</tear-down>
@@ -30,208 +30,208 @@
 	<command name="ViewResourceActionsCP" priority="4">
 		<property name="test.name.skip.portal.instance" value="CPAuditreportsUsecaseEE#ViewResourceActionsCP" />
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Server Administration" />
 		</execute>
 
-		<execute macro="ServerAdministration#executeServerResourcesActions">
+		<execute macro="Portal.ServerAdministration#executeServerResourcesActions">
 			<var name="actionsDescription" value="Reindex all search indexes." />
 		</execute>
 
-		<execute macro="TestCase#getSiteName">
+		<execute macro="Portal.TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
 		<var name="key_userScreenName" value="test" />
 
-		<execute function="AssertClick" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="test" />
+		<execute function="Portal.AssertClick" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="test" />
 
-		<execute function="Pause" locator1="5000" />
+		<execute function="Portal.Pause" locator1="5000" />
 
 		<var locator="UsersAndOrganizationsEditUser#DETAILS_USER_ID_FIELD" name="userId" />
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Audit" />
 		</execute>
 
-		<execute macro="Audit#searchCP">
+		<execute macro="Portal.Audit#searchCP">
 			<var name="searchTerm" value="${userId}" />
 			<var name="userId" value="${userId}" />
 			<var name="userName" value="Test Test" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Audit" />
 		</execute>
 
-		<execute macro="Audit#searchCP">
+		<execute macro="Portal.Audit#searchCP">
 			<var name="searchTerm" value="Test Test" />
 			<var name="userName" value="Test Test" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Audit" />
 		</execute>
 
-		<execute macro="Audit#searchCP">
+		<execute macro="Portal.Audit#searchCP">
 			<var name="resourceId" value="${userId}" />
 			<var name="searchTerm" value="${userId}" />
 			<var name="userName" value="Test Test" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Audit" />
 		</execute>
 
-		<execute macro="Audit#searchCP">
+		<execute macro="Portal.Audit#searchCP">
 			<var name="resourceName" value="User" />
 			<var name="searchTerm" value="User" />
 			<var name="userName" value="Test Test" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Audit" />
 		</execute>
 
-		<execute macro="Audit#searchCP">
+		<execute macro="Portal.Audit#searchCP">
 			<var name="resourceAction" value="Login" />
 			<var name="searchTerm" value="Login" />
 			<var name="userName" value="Test Test" />
 		</execute>
 
-		<execute macro="User#logoutPG" />
+		<execute macro="Portal.User#logoutPG" />
 
-		<execute macro="User#loginUserInvalidPG">
+		<execute macro="Portal.User#loginUserInvalidPG">
 			<var name="password" value="user" />
 			<var name="userEmailAddress" value="test@liferay.com" />
 		</execute>
 
-		<execute macro="User#loginUserPG">
+		<execute macro="Portal.User#loginUserPG">
 			<var name="password" value="test" />
 			<var name="userEmailAddress" value="test@liferay.com" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Audit" />
 		</execute>
 
 		<var name="key_resourceAction" value="Login Failure" />
 		<var name="key_resourceName" value="User" />
 
-		<execute function="AssertTextEquals" locator1="AuditReports#REPORTS_TABLE_RESOURCE_ACTION" value1="Login Failure" />
+		<execute function="Portal.AssertTextEquals" locator1="AuditReports#REPORTS_TABLE_RESOURCE_ACTION" value1="Login Failure" />
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#addCP">
+		<execute macro="Portal.User#addCP">
 			<var name="userEmailAddress" value="test1@liferay.com" />
 			<var name="userFirstName" value="test1" />
 			<var name="userLastName" value="test1" />
 			<var name="userScreenName" value="test1" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#editPasswordCP">
+		<execute macro="Portal.User#editPasswordCP">
 			<var name="userEmailAddress" value="test1@liferay.com" />
 			<var name="userScreenName" value="test1" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#impersonateCP">
+		<execute macro="Portal.User#impersonateCP">
 			<var name="siteName" value="${siteName}" />
 			<var name="userScreenName" value="test1" />
 		</execute>
 
-		<execute function="Close#closeWindow" locator1="title=Welcome - ${siteName}" />
+		<execute function="Portal.Close#closeWindow" locator1="title=Welcome - ${siteName}" />
 
-		<execute function="SelectWindow" locator1="title=Users and Organizations - Control Panel - ${siteName}" />
+		<execute function="Portal.SelectWindow" locator1="title=Users and Organizations - Control Panel - ${siteName}" />
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Audit" />
 		</execute>
 
 		<var name="key_resourceAction" value="Impersonate" />
 		<var name="key_resourceName" value="User" />
 
-		<execute function="AssertTextEquals" locator1="AuditReports#REPORTS_TABLE_RESOURCE_ACTION" value1="Impersonate" />
+		<execute function="Portal.AssertTextEquals" locator1="AuditReports#REPORTS_TABLE_RESOURCE_ACTION" value1="Impersonate" />
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Roles" />
 		</execute>
 
-		<execute macro="Role#add">
+		<execute macro="Portal.Role#add">
 			<var name="roleTitle" value="Role1" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Roles" />
 		</execute>
 
-		<execute macro="Role#assignRegRoleCP">
+		<execute macro="Portal.Role#assignRegRoleCP">
 			<var name="roleTitle" value="Role1" />
 			<var name="userScreenName" value="test1" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelUsers">
+		<execute macro="Portal.ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="User Groups" />
 		</execute>
 
-		<execute macro="UserGroup#addCP">
+		<execute macro="Portal.UserGroup#addCP">
 			<var name="userGroupName" value="User Group1" />
 		</execute>
 
-		<execute macro="UserGroup#assignMemberCP">
+		<execute macro="Portal.UserGroup#assignMemberCP">
 			<var name="userGroupName" value="User Group1" />
 			<var name="userScreenName" value="test1" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Audit" />
 		</execute>
 
 		<var name="key_resourceAction" value="Add" />
 		<var name="key_resourceName" value="Role" />
 
-		<execute function="AssertTextEquals" locator1="AuditReports#REPORTS_TABLE_RESOURCE_NAME" value1="Role" />
+		<execute function="Portal.AssertTextEquals" locator1="AuditReports#REPORTS_TABLE_RESOURCE_NAME" value1="Role" />
 
 		<var name="key_resourceAction" value="Add" />
 		<var name="key_resourceName" value="Role" />
 
-		<execute function="AssertTextEquals" locator1="AuditReports#REPORTS_TABLE_RESOURCE_ACTION" value1="Add" />
+		<execute function="Portal.AssertTextEquals" locator1="AuditReports#REPORTS_TABLE_RESOURCE_ACTION" value1="Add" />
 
 		<var name="key_resourceAction" value="Assign" />
 		<var name="key_resourceName" value="User" />
 
-		<execute function="AssertTextEquals" locator1="AuditReports#REPORTS_TABLE_RESOURCE_NAME" value1="User" />
+		<execute function="Portal.AssertTextEquals" locator1="AuditReports#REPORTS_TABLE_RESOURCE_NAME" value1="User" />
 
 		<var name="key_resourceAction" value="Assign" />
 		<var name="key_resourceName" value="User" />
 
-		<execute function="AssertTextEquals" locator1="AuditReports#REPORTS_TABLE_RESOURCE_ACTION" value1="Assign" />
+		<execute function="Portal.AssertTextEquals" locator1="AuditReports#REPORTS_TABLE_RESOURCE_ACTION" value1="Assign" />
 
 		<var name="key_resourceAction" value="Add" />
 		<var name="key_resourceName" value="User Group" />
 
-		<execute function="AssertTextEquals" locator1="AuditReports#REPORTS_TABLE_RESOURCE_NAME" value1="User Group" />
+		<execute function="Portal.AssertTextEquals" locator1="AuditReports#REPORTS_TABLE_RESOURCE_NAME" value1="User Group" />
 
 		<var name="key_resourceAction" value="Add" />
 		<var name="key_resourceName" value="User Group" />
 
-		<execute function="AssertTextEquals" locator1="AuditReports#REPORTS_TABLE_RESOURCE_ACTION" value1="Add" />
+		<execute function="Portal.AssertTextEquals" locator1="AuditReports#REPORTS_TABLE_RESOURCE_ACTION" value1="Add" />
 
-		<execute function="AssertTextEquals" locator1="xpath=(//tr[contains(.,'Assign') and contains(.,'User')]/td[4])[2]" value1="User" />
-		<execute function="AssertTextEquals" locator1="xpath=(//tr[contains(.,'Assign') and contains(.,'User')]/td[5])[2]" value1="Assign" />
+		<execute function="Portal.AssertTextEquals" locator1="xpath=(//tr[contains(.,'Assign') and contains(.,'User')]/td[4])[2]" value1="User" />
+		<execute function="Portal.AssertTextEquals" locator1="xpath=(//tr[contains(.,'Assign') and contains(.,'User')]/td[5])[2]" value1="Assign" />
 	</command>
 </definition>

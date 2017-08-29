@@ -3,9 +3,9 @@
 	<property name="testray.main.component.name" value="Dynamic Data Lists" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 	</set-up>
 
 	<tear-down>
@@ -14,14 +14,14 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="User#firstLoginPG" />
+				<execute macro="Portal.User#firstLoginPG" />
 
-				<execute macro="DDLList#tearDownCP" />
+				<execute macro="Portal.DDLList#tearDownCP" />
 
-				<execute macro="DDLDataDefinition#tearDownCP" />
+				<execute macro="Portal.DDLDataDefinition#tearDownCP" />
 			</else>
 		</if>
 	</tear-down>
@@ -29,113 +29,113 @@
 	<command name="ViewCacheableCheckbox" priority="4">
 		<description message="This is a use case for LPS-67094." />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Web Content" />
 		</execute>
 
-		<execute macro="WebContentNavigator#gotoManageStructures" />
+		<execute macro="Portal.WebContentNavigator#gotoManageStructures" />
 
-		<execute macro="WebContentStructures#addCP">
+		<execute macro="Portal.WebContentStructures#addCP">
 			<var name="structureDescription" value="WC Structure Description" />
 			<var name="structureName" value="WC Structure Name" />
 		</execute>
 
-		<execute macro="DynamicDataMapping#addField">
+		<execute macro="Portal.DynamicDataMapping#addField">
 			<var name="field" value="Text" />
 			<var name="fieldFieldLabel" value="Text" />
 			<var name="fieldName" value="Text" />
 		</execute>
 
-		<execute macro="WebContentStructures#saveCP">
+		<execute macro="Portal.WebContentStructures#saveCP">
 			<var name="structureName" value="WC Structure Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Web Content" />
 		</execute>
 
-		<execute macro="WebContentNavigator#gotoManageTemplates" />
+		<execute macro="Portal.WebContentNavigator#gotoManageTemplates" />
 
-		<execute macro="WebContentTemplates#addCP">
+		<execute macro="Portal.WebContentTemplates#addCP">
 			<var name="templateDescription" value="WC Template Description" />
 			<var name="templateLanguage" value="ftl" />
 			<var name="templateName" value="WC Template Name" />
 		</execute>
 
-		<execute function="AssertElementPresent" locator1="DDMEditTemplate#CACHEABLE_CHECKBOX" />
+		<execute function="Portal.AssertElementPresent" locator1="DDMEditTemplate#CACHEABLE_CHECKBOX" />
 
-		<execute macro="WebContentTemplates#addStructure">
+		<execute macro="Portal.WebContentTemplates#addStructure">
 			<var name="structureName" value="WC Structure Name" />
 			<var name="templateFieldNames" value="Text" />
 			<var name="templateLanguage" value="ftl" />
 		</execute>
 
-		<execute macro="WebContentStructures#saveCP" />
+		<execute macro="Portal.WebContentStructures#saveCP" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Web Content" />
 		</execute>
 
-		<execute macro="WebContentNavigator#gotoManageTemplates" />
+		<execute macro="Portal.WebContentNavigator#gotoManageTemplates" />
 
-		<execute macro="WebContentNavigator#gotoEditTemplate">
+		<execute macro="Portal.WebContentNavigator#gotoEditTemplate">
 			<var name="templateName" value="WC Template Name" />
 		</execute>
 
-		<execute macro="Panel#expandPanel">
+		<execute macro="Portal.Panel#expandPanel">
 			<var name="panelHeading" value="Details" />
 		</execute>
 
-		<execute function="AssertElementPresent" locator1="DDMEditTemplate#CACHEABLE_CHECKBOX" />
+		<execute function="Portal.AssertElementPresent" locator1="DDMEditTemplate#CACHEABLE_CHECKBOX" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Web Content" />
 		</execute>
 
-		<execute macro="WebContentNavigator#gotoAddWithStructureCP">
+		<execute macro="Portal.WebContentNavigator#gotoAddWithStructureCP">
 			<var name="structureName" value="WC Structure Name" />
 		</execute>
 
-		<execute macro="WebContent#addWithStructureCP">
+		<execute macro="Portal.WebContent#addWithStructureCP">
 			<var name="structureName" value="WC Structure Name" />
 			<var name="templateName" value="WC Template Name" />
 			<var name="webContentText" value="Test" />
 			<var name="webContentTitle" value="WC WebContent Title" />
 		</execute>
 
-		<execute macro="PortletEntry#publish" />
+		<execute macro="Portal.PortletEntry#publish" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Test Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Web Content Display" />
 		</execute>
 
-		<execute macro="WebContentDisplayPortlet#selectWebContent">
+		<execute macro="Portal.WebContentDisplayPortlet#selectWebContent">
 			<var name="webContentTitle" value="WC WebContent Title" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Test Page" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletName" value="Web Content Display" />
 			<var name="portletOption" value="Edit Template" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute function="Portal.SelectFrame" locator1="IFrame#DIALOG" />
 
-		<execute macro="Panel#expandPanel">
+		<execute macro="Portal.Panel#expandPanel">
 			<var name="panelHeading" value="Details" />
 		</execute>
 
-		<execute function="AssertElementPresent" locator1="DDMEditTemplate#CACHEABLE_CHECKBOX" />
+		<execute function="Portal.AssertElementPresent" locator1="DDMEditTemplate#CACHEABLE_CHECKBOX" />
 	</command>
 </definition>

@@ -2,7 +2,7 @@
 	<property name="testray.main.component.name" value="Plugin Installer" />
 
 	<set-up>
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 	</set-up>
 
 	<command name="121ColumnsLayouttplSmoke" priority="4">
@@ -10,19 +10,19 @@
 
 		<var name="appName" value="1-2-1 Columns Layout" />
 
-		<execute macro="ProductMenu#gotoControlPanelApps">
+		<execute macro="Portal.ProductMenu#gotoControlPanelApps">
 			<var name="portlet" value="App Manager" />
 		</execute>
 
-		<execute macro="AppManager#uninstallAppCP">
+		<execute macro="Portal.AppManager#uninstallAppCP">
 			<var name="appName" value="${appName}" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelApps">
+		<execute macro="Portal.ProductMenu#gotoControlPanelApps">
 			<var name="portlet" value="App Manager" />
 		</execute>
 
-		<execute macro="AppManager#viewUninstallAppCP">
+		<execute macro="Portal.AppManager#viewUninstallAppCP">
 			<var name="appName" value="${appName}" />
 		</execute>
 	</command>

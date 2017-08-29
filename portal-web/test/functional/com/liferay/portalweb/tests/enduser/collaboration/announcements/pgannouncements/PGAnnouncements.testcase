@@ -8,15 +8,15 @@
 	<var name="portletName" value="Announcements" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Announcements Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Announcements" />
 		</execute>
 	</set-up>
@@ -27,16 +27,16 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="Navigator#gotoPage">
+				<execute macro="Portal.Navigator#gotoPage">
 					<var name="pageName" value="Announcements Page" />
 				</execute>
 
-				<execute macro="AnnouncementsEntry#tearDownPG" />
+				<execute macro="Portal.AnnouncementsEntry#tearDownPG" />
 
-				<execute macro="Page#tearDownPG" />
+				<execute macro="Portal.Page#tearDownPG" />
 			</else>
 		</if>
 	</tear-down>
@@ -44,22 +44,22 @@
 	<command name="AddAnnouncementsEntry" priority="4">
 		<property name="test.name.skip.portal.instance" value="PGAnnouncements#AddAnnouncementsEntry" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Announcements Page" />
 		</execute>
 
-		<execute macro="AnnouncementsEntry#addPG">
+		<execute macro="Portal.AnnouncementsEntry#addPG">
 			<var name="distributionScope" value="General" />
 			<var name="entryContent" value="Announcements Entry Content" />
 			<var name="entryTitle" value="Announcements Entry Title" />
 			<var name="entryURL" value="http://www.liferay.com" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Announcements Page" />
 		</execute>
 
-		<execute macro="AnnouncementsEntry#viewPG">
+		<execute macro="Portal.AnnouncementsEntry#viewPG">
 			<var name="announcementType" value="General" />
 			<var name="distributionScope" value="General" />
 			<var name="entryContent" value="Announcements Entry Content" />
@@ -69,29 +69,29 @@
 	</command>
 
 	<command name="AddAnnouncementsEntryFutureDate" priority="4">
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Announcements Page" />
 		</execute>
 
-		<execute macro="AnnouncementsEntry#addEntryWithFutureDate">
+		<execute macro="Portal.AnnouncementsEntry#addEntryWithFutureDate">
 			<var name="distributionScope" value="General" />
 			<var name="entryContent" value="Announcements Entry Content" />
 			<var name="entryTitle" value="Announcements Entry Title" />
 			<var name="entryURL" value="http://www.liferay.com" />
 		</execute>
 
-		<execute function="Pause" locator1="10000" />
+		<execute function="Portal.Pause" locator1="10000" />
 
-		<execute function="AssertClick" locator1="Announcements#NAVIGATION_ENTRIES_NEW" value1="New" />
+		<execute function="Portal.AssertClick" locator1="Announcements#NAVIGATION_ENTRIES_NEW" value1="New" />
 
-		<execute function="AssertTextNotPresent" value1="Announcements Entry Title" />
-		<execute function="Pause" locator1="120000" />
+		<execute function="Portal.AssertTextNotPresent" value1="Announcements Entry Title" />
+		<execute function="Portal.Pause" locator1="120000" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Announcements Page" />
 		</execute>
 
-		<execute macro="AnnouncementsEntry#viewPG">
+		<execute macro="Portal.AnnouncementsEntry#viewPG">
 			<var name="announcementType" value="General" />
 			<var name="distributionScope" value="General" />
 			<var name="entryContent" value="Announcements Entry Content" />
@@ -101,11 +101,11 @@
 	</command>
 
 	<command name="AddAnnouncementsEntryPastExpirationDate" priority="3">
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Announcements Page" />
 		</execute>
 
-		<execute macro="AnnouncementsEntry#addPG">
+		<execute macro="Portal.AnnouncementsEntry#addPG">
 			<var name="distributionScope" value="General" />
 			<var name="entryContent" value="Announcements Entry Content" />
 			<var name="entryTitle" value="Announcements Entry Title" />
@@ -114,27 +114,27 @@
 			<var name="pastDate" value="true" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Announcements Page" />
 		</execute>
 
-		<execute function="AssertTextNotPresent" value1="Announcements Entry Title" />
+		<execute function="Portal.AssertTextNotPresent" value1="Announcements Entry Title" />
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Announcements and Alerts" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="Dropdown#FILTER" value1="General" />
+		<execute function="Portal.AssertTextEquals" locator1="Dropdown#FILTER" value1="General" />
 
-		<execute function="AssertTextEquals" locator1="Message#NO_ENTRIES" value1="No entries were found." />
+		<execute function="Portal.AssertTextEquals" locator1="Message#NO_ENTRIES" value1="No entries were found." />
 	</command>
 
 	<command name="AddAnnouncementsEntryPriorityImportant" priority="4">
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Announcements Page" />
 		</execute>
 
-		<execute macro="AnnouncementsEntry#addPG">
+		<execute macro="Portal.AnnouncementsEntry#addPG">
 			<var name="distributionScope" value="General" />
 			<var name="entryContent" value="Announcements Entry Content" />
 			<var name="entryTitle" value="Announcements Entry Title" />
@@ -142,11 +142,11 @@
 			<var name="priority" value="Important" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Announcements Page" />
 		</execute>
 
-		<execute macro="AnnouncementsEntry#viewPG">
+		<execute macro="Portal.AnnouncementsEntry#viewPG">
 			<var name="announcementType" value="General" />
 			<var name="distributionScope" value="General" />
 			<var name="entryContent" value="Announcements Entry Content" />
@@ -155,45 +155,45 @@
 	</command>
 
 	<command name="AddAnnouncementsEntrySite" priority="3">
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addBlankCP">
+		<execute macro="Portal.Site#addBlankCP">
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Announcements Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Announcements Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Announcements" />
 		</execute>
 
-		<execute macro="AnnouncementsEntry#addPG">
+		<execute macro="Portal.AnnouncementsEntry#addPG">
 			<var name="distributionScope" value="General" />
 			<var name="entryContent" value="Announcements Entry Content" />
 			<var name="entryTitle" value="Announcements Entry Title" />
 			<var name="entryURL" value="http://www.liferay.com" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Announcements Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="AnnouncementsEntry#viewPG">
+		<execute macro="Portal.AnnouncementsEntry#viewPG">
 			<var name="announcementType" value="General" />
 			<var name="distributionScope" value="General" />
 			<var name="entryContent" value="Announcements Entry Content" />
@@ -205,28 +205,28 @@
 		<property name="portal.acceptance" value="true" />
 		<property name="test.name.skip.portal.instance" value="PGAnnouncements#DeleteAnnouncementsEntry" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Announcements Page" />
 		</execute>
 
-		<execute macro="AnnouncementsEntry#addPG">
+		<execute macro="Portal.AnnouncementsEntry#addPG">
 			<var name="distributionScope" value="General" />
 			<var name="entryContent" value="Announcements Entry Content" />
 			<var name="entryTitle" value="Announcements Entry Title" />
 			<var name="entryURL" value="http://www.liferay.com" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Announcements Page" />
 		</execute>
 
-		<execute macro="AnnouncementsEntry#deletePG">
+		<execute macro="Portal.AnnouncementsEntry#deletePG">
 			<var name="distributionScope" value="General" />
 			<var name="entryContent" value="Announcements Entry Content" />
 			<var name="entryTitle" value="Announcements Entry Title" />
 		</execute>
 
-		<execute macro="AnnouncementsEntry#viewDeletePG">
+		<execute macro="Portal.AnnouncementsEntry#viewDeletePG">
 			<var name="entryContent" value="Announcements Entry Content" />
 			<var name="entryTitle" value="Announcements Entry Title" />
 		</execute>
@@ -236,22 +236,22 @@
 		<property name="portal.acceptance" value="true" />
 		<property name="test.name.skip.portal.instance" value="PGAnnouncements#EditAnnouncementsEntry" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Announcements Page" />
 		</execute>
 
-		<execute macro="AnnouncementsEntry#addPG">
+		<execute macro="Portal.AnnouncementsEntry#addPG">
 			<var name="distributionScope" value="General" />
 			<var name="entryContent" value="Announcements Entry Content" />
 			<var name="entryTitle" value="Announcements Entry Title" />
 			<var name="entryURL" value="http://www.liferay.com" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Announcements Page" />
 		</execute>
 
-		<execute macro="AnnouncementsEntry#editPG">
+		<execute macro="Portal.AnnouncementsEntry#editPG">
 			<var name="distributionScope" value="General" />
 			<var name="entryContent" value="Announcements Entry Content" />
 			<var name="entryContentEdit" value="Announcements Entry Content Edit" />
@@ -260,11 +260,11 @@
 			<var name="entryURLEdit" value="http://www.alloyui.com" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Announcements Page" />
 		</execute>
 
-		<execute macro="AnnouncementsEntry#viewPG">
+		<execute macro="Portal.AnnouncementsEntry#viewPG">
 			<var name="announcementType" value="General" />
 			<var name="distributionScope" value="General" />
 			<var name="entryContent" value="Announcements Entry Content Edit" />
@@ -276,36 +276,36 @@
 		<property name="portal.acceptance" value="true" />
 		<property name="test.name.skip.portal.instance" value="PGAnnouncements#ViewPreviousAnnouncementEntries" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Announcements Page" />
 		</execute>
 
-		<execute macro="AnnouncementsEntry#addPG">
+		<execute macro="Portal.AnnouncementsEntry#addPG">
 			<var name="distributionScope" value="General" />
 			<var name="entryContent" value="Announcements Entry Content" />
 			<var name="entryTitle" value="Announcements Entry Title" />
 			<var name="entryURL" value="http://www.liferay.com" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Announcements Page" />
 		</execute>
 
-		<execute macro="AnnouncementsEntry#markAsReadPG">
+		<execute macro="Portal.AnnouncementsEntry#markAsReadPG">
 			<var name="entryContent" value="Announcements Entry Content" />
 			<var name="entryTitle" value="Announcements Entry Title" />
 		</execute>
 
-		<execute macro="AnnouncementsEntry#viewPreviousPG">
+		<execute macro="Portal.AnnouncementsEntry#viewPreviousPG">
 			<var name="announcementType" value="General" />
 			<var name="distributionScope" value="General" />
 			<var name="entryContent" value="Announcements Entry Content" />
 			<var name="entryTitle" value="Announcements Entry Title" />
 		</execute>
 
-		<execute function="AssertClick" locator1="Announcements#NAVIGATION_ENTRIES_NEW" value1="New" />
+		<execute function="Portal.AssertClick" locator1="Announcements#NAVIGATION_ENTRIES_NEW" value1="New" />
 
-		<execute macro="AnnouncementsEntry#viewNoPG">
+		<execute macro="Portal.AnnouncementsEntry#viewNoPG">
 			<var name="entryTitle" value="Announcements Entry Title" />
 		</execute>
 	</command>

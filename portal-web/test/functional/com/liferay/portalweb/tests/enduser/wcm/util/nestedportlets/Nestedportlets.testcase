@@ -5,9 +5,9 @@
 	<property name="testray.main.component.name" value="Nested Portlets" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 	</set-up>
 
 	<tear-down>
@@ -16,7 +16,7 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 		</if>
 	</tear-down>
@@ -25,51 +25,51 @@
 		<property name="portal.acceptance" value="pending" />
 		<property name="testray.component.names" value="Training" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Nested Portlets Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Nested Portlets Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Web Content Display" />
 		</execute>
 
-		<execute macro="Portlet#dragAndDropPortletToColumnPG">
+		<execute macro="Portal.Portlet#dragAndDropPortletToColumnPG">
 			<var name="columnNumberFrom" value="1" />
 			<var name="columnNumberTo" value="2" />
 			<var name="portletName" value="Web Content Display" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Nested Portlets Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Nested Applications" />
 		</execute>
 
-		<execute macro="NestedPortlets#viewConfigurationDefaultLayoutTemplate">
+		<execute macro="Portal.NestedPortlets#viewConfigurationDefaultLayoutTemplate">
 			<var name="portletName" value="Nested Applications" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Nested Portlets Page" />
 		</execute>
 
-		<execute macro="NestedPortlets#dragAndDropPortletToPortletColumnPG">
+		<execute macro="Portal.NestedPortlets#dragAndDropPortletToPortletColumnPG">
 			<var name="columnNumberFrom" value="2" />
 			<var name="portletColumnNumberTo" value="1" />
 			<var name="portletName" value="Web Content Display" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Nested Portlets Page" />
 		</execute>
 
-		<execute macro="NestedPortlets#viewPG">
+		<execute macro="Portal.NestedPortlets#viewPG">
 			<var name="portletColumnNumberTo" value="1" />
 			<var name="portletName" value="Web Content Display" />
 		</execute>

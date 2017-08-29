@@ -4,9 +4,9 @@
 	<property name="testray.main.component.name" value="Permissions" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 	</set-up>
 
 	<tear-down>
@@ -15,22 +15,22 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="User#firstLoginPG" />
+				<execute macro="Portal.User#firstLoginPG" />
 
-				<execute macro="User#tearDownCP" />
+				<execute macro="Portal.User#tearDownCP" />
 
-				<execute macro="Role#tearDownCP" />
+				<execute macro="Portal.Role#tearDownCP" />
 
-				<execute macro="Organization#tearDownCP" />
+				<execute macro="Portal.Organization#tearDownCP" />
 
-				<execute macro="Site#tearDownCP" />
+				<execute macro="Portal.Site#tearDownCP" />
 
-				<execute macro="BlogsEntry#tearDownCP" />
+				<execute macro="Portal.BlogsEntry#tearDownCP" />
 
-				<execute macro="Page#tearDownPG" />
+				<execute macro="Portal.Page#tearDownPG" />
 			</else>
 		</if>
 	</tear-down>
@@ -38,26 +38,26 @@
 	<command name="AddBlogsEntryNoGuestRole" priority="5">
 		<property name="portal.acceptance" value="true" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="pageName" value="Blogs Page" />
 			<var name="portletName" value="Blogs" />
 		</execute>
 
-		<execute macro="User#logoutPG" />
+		<execute macro="Portal.User#logoutPG" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="BlogsEntry#viewNoAddPermissions" />
+		<execute macro="Portal.BlogsEntry#viewNoAddPermissions" />
 	</command>
 
 	<command name="AddBlogsEntryOrgRole" priority="5">
-		<execute macro="Permissions#setUpOrgRoleLoginUserPG">
+		<execute macro="Portal.Permissions#setUpOrgRoleLoginUserPG">
 			<var name="orgName" value="Organization Name" />
 			<var name="orgType" value="Organization" />
 			<var name="page" value="Public Pages" />
@@ -75,14 +75,14 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Organization Name" />
 		</execute>
 
-		<execute macro="BlogsEntry#viewNoAddPermissions" />
+		<execute macro="Portal.BlogsEntry#viewNoAddPermissions" />
 
-		<execute macro="Permissions#definePermissionLoginUserCP">
+		<execute macro="Portal.Permissions#definePermissionLoginUserCP">
 			<var name="permissionDefinitionKey" value="SITE_ADMIN_CONTENT_BLOGS_RESOURCE_PERMISSIONS_BLOGS_ENTRIES_ADD_ENTRY_CHECKBOX" />
 			<var name="permissionDefinitionValue" value="Add Entry" />
 			<var name="roleTitle" value="Roles Orgrole Name" />
@@ -91,17 +91,17 @@
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Organization Name" />
 		</execute>
 
-		<execute macro="Blogs#addEntry">
+		<execute macro="Portal.Blogs#addEntry">
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="Permissions#removePermissionLoginUserCP">
+		<execute macro="Portal.Permissions#removePermissionLoginUserCP">
 			<var name="permissionDefinitionKey" value="SITE_ADMIN_CONTENT_BLOGS_RESOURCE_PERMISSIONS_BLOGS_ENTRIES_ADD_ENTRY_CHECKBOX" />
 			<var name="permissionDefinitionValue" value="Add Entry" />
 			<var name="roleTitle" value="Roles Orgrole Name" />
@@ -110,21 +110,21 @@
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Organization Name" />
 		</execute>
 
-		<execute macro="BlogsEntry#viewNoAddPermissions" />
+		<execute macro="Portal.BlogsEntry#viewNoAddPermissions" />
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 	</command>
 
 	<command name="AddBlogsEntryOrgRoleInline" priority="4">
-		<execute macro="Permissions#setUpOrgRoleLoginUserPG">
+		<execute macro="Portal.Permissions#setUpOrgRoleLoginUserPG">
 			<var name="orgName" value="Organization Name" />
 			<var name="orgType" value="Organization" />
 			<var name="page" value="Public Pages" />
@@ -142,83 +142,83 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Organization Name" />
 		</execute>
 
-		<execute macro="BlogsEntry#viewNoAddPermissions" />
+		<execute macro="Portal.BlogsEntry#viewNoAddPermissions" />
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Organization Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Blogs" />
 		</execute>
 
-		<execute macro="BlogsNavigator#gotoBlogsEntriesPermissionsCP" />
+		<execute macro="Portal.BlogsNavigator#gotoBlogsEntriesPermissionsCP" />
 
-		<execute macro="Role#definePermissionPG">
+		<execute macro="Portal.Role#definePermissionPG">
 			<var name="permissionDefinitionKey" value="INLINE_PERMISSIONS_ADD_ENTRY_CHECKBOX" />
 			<var name="roleTitle" value="Roles Orgrole Name" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Organization Name" />
 		</execute>
 
-		<execute macro="Blogs#addEntry">
+		<execute macro="Portal.Blogs#addEntry">
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Organization Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Blogs" />
 		</execute>
 
-		<execute macro="BlogsNavigator#gotoBlogsEntriesPermissionsCP" />
+		<execute macro="Portal.BlogsNavigator#gotoBlogsEntriesPermissionsCP" />
 
-		<execute macro="Role#removePermissionPG">
+		<execute macro="Portal.Role#removePermissionPG">
 			<var name="permissionDefinitionKey" value="INLINE_PERMISSIONS_ADD_ENTRY_CHECKBOX" />
 			<var name="roleTitle" value="Roles Orgrole Name" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Organization Name" />
 		</execute>
 
-		<execute macro="BlogsEntry#viewNoAddPermissions" />
+		<execute macro="Portal.BlogsEntry#viewNoAddPermissions" />
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
@@ -227,7 +227,7 @@
 	<command name="AddBlogsEntryRegRole" priority="5">
 		<property name="portal.acceptance" value="true" />
 
-		<execute macro="Permissions#setUpRegRoleLoginUserPG">
+		<execute macro="Portal.Permissions#setUpRegRoleLoginUserPG">
 			<var name="pageName" value="Blogs Page" />
 			<var name="portletName" value="Blogs" />
 			<var name="roleTitle" value="Regrole Name" />
@@ -239,13 +239,13 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="BlogsEntry#viewNoAddPermissions" />
+		<execute macro="Portal.BlogsEntry#viewNoAddPermissions" />
 
-		<execute macro="Permissions#definePermissionLoginUserCP">
+		<execute macro="Portal.Permissions#definePermissionLoginUserCP">
 			<var name="permissionDefinitionKey" value="SITE_ADMIN_CONTENT_BLOGS_RESOURCE_PERMISSIONS_BLOGS_ENTRIES_ADD_ENTRY_CHECKBOX" />
 			<var name="permissionDefinitionValue" value="Add Entry" />
 			<var name="roleTitle" value="Regrole Name" />
@@ -253,16 +253,16 @@
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="Blogs#addEntry">
+		<execute macro="Portal.Blogs#addEntry">
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="Permissions#removePermissionLoginUserCP">
+		<execute macro="Portal.Permissions#removePermissionLoginUserCP">
 			<var name="permissionDefinitionKey" value="SITE_ADMIN_CONTENT_BLOGS_RESOURCE_PERMISSIONS_BLOGS_ENTRIES_ADD_ENTRY_CHECKBOX" />
 			<var name="permissionDefinitionValue" value="Add Entry" />
 			<var name="roleTitle" value="Regrole Name" />
@@ -270,20 +270,20 @@
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="BlogsEntry#viewNoAddPermissions" />
+		<execute macro="Portal.BlogsEntry#viewNoAddPermissions" />
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 	</command>
 
 	<command name="AddBlogsEntryRegRoleInline" priority="4">
-		<execute macro="Permissions#setUpRegRoleLoginUserPG">
+		<execute macro="Portal.Permissions#setUpRegRoleLoginUserPG">
 			<var name="pageName" value="Blogs Page" />
 			<var name="portletName" value="Blogs" />
 			<var name="roleTitle" value="Regrole Name" />
@@ -295,77 +295,77 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="BlogsEntry#viewNoAddPermissions" />
+		<execute macro="Portal.BlogsEntry#viewNoAddPermissions" />
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Blogs" />
 		</execute>
 
-		<execute macro="BlogsNavigator#gotoBlogsEntriesPermissionsCP" />
+		<execute macro="Portal.BlogsNavigator#gotoBlogsEntriesPermissionsCP" />
 
-		<execute macro="Role#definePermissionPG">
+		<execute macro="Portal.Role#definePermissionPG">
 			<var name="permissionDefinitionKey" value="INLINE_PERMISSIONS_ADD_ENTRY_CHECKBOX" />
 			<var name="roleTitle" value="Regrole Name" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="Blogs#addEntry">
+		<execute macro="Portal.Blogs#addEntry">
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Blogs" />
 		</execute>
 
-		<execute macro="BlogsNavigator#gotoBlogsEntriesPermissionsCP" />
+		<execute macro="Portal.BlogsNavigator#gotoBlogsEntriesPermissionsCP" />
 
-		<execute macro="Role#removePermissionPG">
+		<execute macro="Portal.Role#removePermissionPG">
 			<var name="permissionDefinitionKey" value="INLINE_PERMISSIONS_ADD_ENTRY_CHECKBOX" />
 			<var name="roleTitle" value="Regrole Name" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="BlogsEntry#viewNoAddPermissions" />
+		<execute macro="Portal.BlogsEntry#viewNoAddPermissions" />
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 	</command>
 
 	<command name="AddBlogsEntrySiteRole" priority="5">
-		<execute macro="Permissions#setUpSiteRoleLoginUserPG">
+		<execute macro="Portal.Permissions#setUpSiteRoleLoginUserPG">
 			<var name="page" value="Public Pages" />
 			<var name="pageName" value="Blogs Page" />
 			<var name="portletName" value="Blogs" />
@@ -381,14 +381,14 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="BlogsEntry#viewNoAddPermissions" />
+		<execute macro="Portal.BlogsEntry#viewNoAddPermissions" />
 
-		<execute macro="Permissions#definePermissionLoginUserCP">
+		<execute macro="Portal.Permissions#definePermissionLoginUserCP">
 			<var name="permissionDefinitionKey" value="SITE_ADMIN_CONTENT_BLOGS_RESOURCE_PERMISSIONS_BLOGS_ENTRIES_ADD_ENTRY_CHECKBOX" />
 			<var name="permissionDefinitionValue" value="Add Entry" />
 			<var name="roleTitle" value="Roles Siterole Name" />
@@ -397,17 +397,17 @@
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Blogs#addEntry">
+		<execute macro="Portal.Blogs#addEntry">
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="Permissions#removePermissionLoginUserCP">
+		<execute macro="Portal.Permissions#removePermissionLoginUserCP">
 			<var name="permissionDefinitionKey" value="SITE_ADMIN_CONTENT_BLOGS_RESOURCE_PERMISSIONS_BLOGS_ENTRIES_ADD_ENTRY_CHECKBOX" />
 			<var name="permissionDefinitionValue" value="Add Entry" />
 			<var name="roleTitle" value="Roles Siterole Name" />
@@ -416,21 +416,21 @@
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="BlogsEntry#viewNoAddPermissions" />
+		<execute macro="Portal.BlogsEntry#viewNoAddPermissions" />
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 	</command>
 
 	<command name="AddBlogsEntrySiteRoleInline" priority="4">
-		<execute macro="Permissions#setUpSiteRoleLoginUserPG">
+		<execute macro="Portal.Permissions#setUpSiteRoleLoginUserPG">
 			<var name="page" value="Public Pages" />
 			<var name="pageName" value="Blogs Page" />
 			<var name="portletName" value="Blogs" />
@@ -446,88 +446,88 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="BlogsEntry#viewNoAddPermissions" />
+		<execute macro="Portal.BlogsEntry#viewNoAddPermissions" />
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Blogs" />
 		</execute>
 
-		<execute macro="BlogsNavigator#gotoBlogsEntriesPermissionsCP" />
+		<execute macro="Portal.BlogsNavigator#gotoBlogsEntriesPermissionsCP" />
 
-		<execute macro="Role#definePermissionPG">
+		<execute macro="Portal.Role#definePermissionPG">
 			<var name="permissionDefinitionKey" value="INLINE_PERMISSIONS_ADD_ENTRY_CHECKBOX" />
 			<var name="roleTitle" value="Roles Siterole Name" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Blogs#addEntry">
+		<execute macro="Portal.Blogs#addEntry">
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSite">
+		<execute macro="Portal.ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Blogs" />
 		</execute>
 
-		<execute macro="BlogsNavigator#gotoBlogsEntriesPermissionsCP" />
+		<execute macro="Portal.BlogsNavigator#gotoBlogsEntriesPermissionsCP" />
 
-		<execute macro="Role#removePermissionPG">
+		<execute macro="Portal.Role#removePermissionPG">
 			<var name="permissionDefinitionKey" value="INLINE_PERMISSIONS_ADD_ENTRY_CHECKBOX" />
 			<var name="roleTitle" value="Roles Siterole Name" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="BlogsEntry#viewNoAddPermissions" />
+		<execute macro="Portal.BlogsEntry#viewNoAddPermissions" />
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 	</command>
 
 	<command name="AddBlogsEntrySiteTeamRoleInline" priority="4">
-		<execute macro="Permissions#setUpSiteTeamRoleLoginUserPG">
+		<execute macro="Portal.Permissions#setUpSiteTeamRoleLoginUserPG">
 			<var name="page" value="Public Pages" />
 			<var name="pageName" value="Blogs Page" />
 			<var name="portletName" value="Blogs" />
@@ -542,110 +542,110 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="BlogsEntry#viewNoAddPermissions" />
+		<execute macro="Portal.BlogsEntry#viewNoAddPermissions" />
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Blogs" />
 		</execute>
 
-		<execute macro="BlogsNavigator#gotoBlogsEntriesPermissionsCP" />
+		<execute macro="Portal.BlogsNavigator#gotoBlogsEntriesPermissionsCP" />
 
-		<execute macro="Team#definePermissionPG">
+		<execute macro="Portal.Team#definePermissionPG">
 			<var name="permissionDefinitionKey" value="_ACTION_ADD_ENTRY" />
 			<var name="teamName" value="Site Team Name" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Blogs#addEntry">
+		<execute macro="Portal.Blogs#addEntry">
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Blogs" />
 		</execute>
 
-		<execute macro="BlogsNavigator#gotoBlogsEntriesPermissionsCP" />
+		<execute macro="Portal.BlogsNavigator#gotoBlogsEntriesPermissionsCP" />
 
-		<execute macro="Team#removePermissionPG">
+		<execute macro="Portal.Team#removePermissionPG">
 			<var name="permissionDefinitionKey" value="_ACTION_ADD_ENTRY" />
 			<var name="teamName" value="Site Team Name" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="BlogsEntry#viewNoAddPermissions" />
+		<execute macro="Portal.BlogsEntry#viewNoAddPermissions" />
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 	</command>
 
 	<command name="DeleteBlogsEntryNoGuestRole" priority="4">
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="pageName" value="Blogs Page" />
 			<var name="portletName" value="Blogs" />
 		</execute>
 
-		<execute macro="Blogs#addEntry">
+		<execute macro="Portal.Blogs#addEntry">
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="User#logoutPG" />
+		<execute macro="Portal.User#logoutPG" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="BlogsEntry#moveToRecycleBinNoPermissionPG">
+		<execute macro="Portal.BlogsEntry#moveToRecycleBinNoPermissionPG">
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 	</command>
@@ -653,7 +653,7 @@
 	<command name="DeleteBlogsEntryOrgRoleDefaultPermission" priority="5">
 		<property name="portal.acceptance" value="true" />
 
-		<execute macro="Permissions#setUpOrgRoleLoginUserPG">
+		<execute macro="Portal.Permissions#setUpOrgRoleLoginUserPG">
 			<var name="orgName" value="Organization Name" />
 			<var name="orgType" value="Organization" />
 			<var name="page" value="Public Pages" />
@@ -671,7 +671,7 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Permissions#addBlogsEntryLoginUserPG">
+		<execute macro="Portal.Permissions#addBlogsEntryLoginUserPG">
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 			<var name="pageName" value="Blogs Page" />
@@ -681,16 +681,16 @@
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Organization Name" />
 		</execute>
 
-		<execute macro="BlogsEntry#moveToRecycleBinNoPermissionPG">
+		<execute macro="Portal.BlogsEntry#moveToRecycleBinNoPermissionPG">
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
@@ -699,7 +699,7 @@
 	<command name="DeleteBlogsEntryOrgRoleDefinePermission" priority="5">
 		<property name="portal.acceptance" value="true" />
 
-		<execute macro="Permissions#setUpOrgRoleLoginUserPG">
+		<execute macro="Portal.Permissions#setUpOrgRoleLoginUserPG">
 			<var name="orgName" value="Organization Name" />
 			<var name="orgType" value="Organization" />
 			<var name="page" value="Public Pages" />
@@ -717,7 +717,7 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Permissions#addBlogsEntryLoginUserPG">
+		<execute macro="Portal.Permissions#addBlogsEntryLoginUserPG">
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 			<var name="pageName" value="Blogs Page" />
@@ -727,30 +727,30 @@
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Permissions#definePermissionViaJSONAPI">
+		<execute macro="Portal.Permissions#definePermissionViaJSONAPI">
 			<var name="resourceAction" value="DELETE" />
 			<var name="resourceName" value="com.liferay.blogs.model.BlogsEntry" />
 			<var name="roleTitle" value="Roles Orgrole Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Organization Name" />
 		</execute>
 
-		<execute macro="BlogsEntry#moveToRecycleBinPG">
+		<execute macro="Portal.BlogsEntry#moveToRecycleBinPG">
 			<var name="assetType" value="Blogs Entry" />
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="Permissions#removePermissionViaAPI">
+		<execute macro="Portal.Permissions#removePermissionViaAPI">
 			<var name="resourceAction" value="DELETE" />
 			<var name="resourceName" value="com.liferay.blogs.model.BlogsEntry" />
 			<var name="roleTitle" value="Roles Orgrole Name" />
 		</execute>
 
-		<execute macro="Permissions#addBlogsEntryLoginUserPG">
+		<execute macro="Portal.Permissions#addBlogsEntryLoginUserPG">
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 			<var name="pageName" value="Blogs Page" />
@@ -760,23 +760,23 @@
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Organization Name" />
 		</execute>
 
-		<execute macro="BlogsEntry#moveToRecycleBinNoPermissionPG">
+		<execute macro="Portal.BlogsEntry#moveToRecycleBinNoPermissionPG">
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 	</command>
 
 	<command name="DeleteBlogsEntryOrgRoleInline" priority="4">
-		<execute macro="Permissions#setUpOrgRoleLoginUserPG">
+		<execute macro="Portal.Permissions#setUpOrgRoleLoginUserPG">
 			<var name="orgName" value="Organization Name" />
 			<var name="orgType" value="Organization" />
 			<var name="page" value="Public Pages" />
@@ -794,7 +794,7 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Permissions#addBlogsEntryLoginUserPG">
+		<execute macro="Portal.Permissions#addBlogsEntryLoginUserPG">
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 			<var name="pageName" value="Blogs Page" />
@@ -804,49 +804,49 @@
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Organization Name" />
 		</execute>
 
-		<execute macro="BlogsEntry#moveToRecycleBinNoPermissionPG">
+		<execute macro="Portal.BlogsEntry#moveToRecycleBinNoPermissionPG">
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Organization Name" />
 		</execute>
 
-		<execute macro="BlogsNavigator#gotoBlogsEntryPermissionsPG" />
+		<execute macro="Portal.BlogsNavigator#gotoBlogsEntryPermissionsPG" />
 
-		<execute macro="Role#definePermissionPG">
+		<execute macro="Portal.Role#definePermissionPG">
 			<var name="permissionDefinitionKey" value="CONTENT_PERMISSIONS_DELETE_CHECKBOX" />
 			<var name="roleTitle" value="Roles Orgrole Name" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Organization Name" />
 		</execute>
 
-		<execute macro="BlogsEntry#moveToRecycleBinPG">
+		<execute macro="Portal.BlogsEntry#moveToRecycleBinPG">
 			<var name="assetType" value="Blogs Entry" />
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="Permissions#addBlogsEntryLoginUserPG">
+		<execute macro="Portal.Permissions#addBlogsEntryLoginUserPG">
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 			<var name="pageName" value="Blogs Page" />
@@ -856,45 +856,45 @@
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Organization Name" />
 		</execute>
 
-		<execute macro="BlogsNavigator#gotoBlogsEntryPermissionsPG" />
+		<execute macro="Portal.BlogsNavigator#gotoBlogsEntryPermissionsPG" />
 
-		<execute macro="Role#removePermissionPG">
+		<execute macro="Portal.Role#removePermissionPG">
 			<var name="permissionDefinitionKey" value="CONTENT_PERMISSIONS_DELETE_CHECKBOX" />
 			<var name="roleTitle" value="Roles Orgrole Name" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Organization Name" />
 		</execute>
 
-		<execute macro="BlogsEntry#moveToRecycleBinNoPermissionPG">
+		<execute macro="Portal.BlogsEntry#moveToRecycleBinNoPermissionPG">
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 	</command>
 
 	<command name="DeleteBlogsEntryOwnerRoleInline" priority="4">
-		<execute macro="Permissions#setUpRegRoleLoginUserPG">
+		<execute macro="Portal.Permissions#setUpRegRoleLoginUserPG">
 			<var name="pageName" value="Blogs Page" />
 			<var name="portletName" value="Blogs" />
 			<var name="roleTitle" value="Regrole Name" />
@@ -906,7 +906,7 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Permissions#definePermissionLoginUserCP">
+		<execute macro="Portal.Permissions#definePermissionLoginUserCP">
 			<var name="permissionDefinitionKey" value="SITE_ADMIN_CONTENT_BLOGS_RESOURCE_PERMISSIONS_BLOGS_ENTRIES_ADD_ENTRY_CHECKBOX" />
 			<var name="permissionDefinitionValue" value="Add Entry" />
 			<var name="roleTitle" value="Regrole Name" />
@@ -914,70 +914,70 @@
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="Blogs#addEntry">
+		<execute macro="Portal.Blogs#addEntry">
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="BlogsNavigator#gotoBlogsEntryPermissionsPG" />
+		<execute macro="Portal.BlogsNavigator#gotoBlogsEntryPermissionsPG" />
 
-		<execute macro="Role#removePermissionPG">
+		<execute macro="Portal.Role#removePermissionPG">
 			<var name="permissionDefinitionKey" value="CONTENT_PERMISSIONS_DELETE_CHECKBOX" />
 			<var name="roleTitle" value="Owner" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="BlogsEntry#moveToRecycleBinNoPermissionPG">
+		<execute macro="Portal.BlogsEntry#moveToRecycleBinNoPermissionPG">
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="BlogsNavigator#gotoBlogsEntryPermissionsPG" />
+		<execute macro="Portal.BlogsNavigator#gotoBlogsEntryPermissionsPG" />
 
-		<execute macro="Role#definePermissionPG">
+		<execute macro="Portal.Role#definePermissionPG">
 			<var name="permissionDefinitionKey" value="CONTENT_PERMISSIONS_DELETE_CHECKBOX" />
 			<var name="roleTitle" value="Owner" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="BlogsEntry#moveToRecycleBinPG">
+		<execute macro="Portal.BlogsEntry#moveToRecycleBinPG">
 			<var name="assetType" value="Blogs Entry" />
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
@@ -985,7 +985,7 @@
 	</command>
 
 	<command name="DeleteBlogsEntryRegRole" priority="4">
-		<execute macro="Permissions#setUpRegRoleLoginUserPG">
+		<execute macro="Portal.Permissions#setUpRegRoleLoginUserPG">
 			<var name="pageName" value="Blogs Page" />
 			<var name="portletName" value="Blogs" />
 			<var name="roleTitle" value="Regrole Name" />
@@ -997,7 +997,7 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Permissions#addBlogsEntryLoginUserPG">
+		<execute macro="Portal.Permissions#addBlogsEntryLoginUserPG">
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 			<var name="pageName" value="Blogs Page" />
@@ -1005,15 +1005,15 @@
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="BlogsEntry#moveToRecycleBinNoPermissionPG">
+		<execute macro="Portal.BlogsEntry#moveToRecycleBinNoPermissionPG">
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="Permissions#definePermissionLoginUserCP">
+		<execute macro="Portal.Permissions#definePermissionLoginUserCP">
 			<var name="permissionDefinitionKey" value="SITE_ADMIN_CONTENT_BLOGS_RESOURCE_PERMISSIONS_BLOGS_ENTRY_DELETE_CHECKBOX" />
 			<var name="permissionDefinitionValue" value="Delete" />
 			<var name="roleTitle" value="Regrole Name" />
@@ -1021,17 +1021,17 @@
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="BlogsEntry#moveToRecycleBinPG">
+		<execute macro="Portal.BlogsEntry#moveToRecycleBinPG">
 			<var name="assetType" value="Blogs Entry" />
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="Permissions#removePermissionLoginUserCP">
+		<execute macro="Portal.Permissions#removePermissionLoginUserCP">
 			<var name="permissionDefinitionKey" value="SITE_ADMIN_CONTENT_BLOGS_RESOURCE_PERMISSIONS_BLOGS_ENTRY_DELETE_CHECKBOX" />
 			<var name="permissionDefinitionValue" value="Delete" />
 			<var name="roleTitle" value="Regrole Name" />
@@ -1039,7 +1039,7 @@
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="Permissions#addBlogsEntryLoginUserPG">
+		<execute macro="Portal.Permissions#addBlogsEntryLoginUserPG">
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 			<var name="pageName" value="Blogs Page" />
@@ -1047,22 +1047,22 @@
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="BlogsEntry#moveToRecycleBinNoPermissionPG">
+		<execute macro="Portal.BlogsEntry#moveToRecycleBinNoPermissionPG">
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 	</command>
 
 	<command name="DeleteBlogsEntryRegRoleInline" priority="4">
-		<execute macro="Permissions#setUpRegRoleLoginUserPG">
+		<execute macro="Portal.Permissions#setUpRegRoleLoginUserPG">
 			<var name="pageName" value="Blogs Page" />
 			<var name="portletName" value="Blogs" />
 			<var name="roleTitle" value="Regrole Name" />
@@ -1074,7 +1074,7 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Permissions#addBlogsEntryLoginUserPG">
+		<execute macro="Portal.Permissions#addBlogsEntryLoginUserPG">
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 			<var name="pageName" value="Blogs Page" />
@@ -1082,46 +1082,46 @@
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="BlogsEntry#moveToRecycleBinNoPermissionPG">
+		<execute macro="Portal.BlogsEntry#moveToRecycleBinNoPermissionPG">
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="BlogsNavigator#gotoBlogsEntryPermissionsPG" />
+		<execute macro="Portal.BlogsNavigator#gotoBlogsEntryPermissionsPG" />
 
-		<execute macro="Role#definePermissionPG">
+		<execute macro="Portal.Role#definePermissionPG">
 			<var name="permissionDefinitionKey" value="CONTENT_PERMISSIONS_DELETE_CHECKBOX" />
 			<var name="roleTitle" value="Regrole Name" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="BlogsEntry#moveToRecycleBinPG">
+		<execute macro="Portal.BlogsEntry#moveToRecycleBinPG">
 			<var name="assetType" value="Blogs Entry" />
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="Permissions#addBlogsEntryLoginUserPG">
+		<execute macro="Portal.Permissions#addBlogsEntryLoginUserPG">
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 			<var name="pageName" value="Blogs Page" />
@@ -1129,38 +1129,38 @@
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="BlogsNavigator#gotoBlogsEntryPermissionsPG" />
+		<execute macro="Portal.BlogsNavigator#gotoBlogsEntryPermissionsPG" />
 
-		<execute macro="Role#removePermissionPG">
+		<execute macro="Portal.Role#removePermissionPG">
 			<var name="permissionDefinitionKey" value="CONTENT_PERMISSIONS_DELETE_CHECKBOX" />
 			<var name="roleTitle" value="Regrole Name" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="BlogsEntry#moveToRecycleBinNoPermissionPG">
+		<execute macro="Portal.BlogsEntry#moveToRecycleBinNoPermissionPG">
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 	</command>
 
 	<command name="DeleteBlogsEntrySiteRole" priority="4">
-		<execute macro="Permissions#setUpSiteRoleLoginUserPG">
+		<execute macro="Portal.Permissions#setUpSiteRoleLoginUserPG">
 			<var name="page" value="Public Pages" />
 			<var name="pageName" value="Blogs Page" />
 			<var name="portletName" value="Blogs" />
@@ -1176,7 +1176,7 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Permissions#addBlogsEntryLoginUserPG">
+		<execute macro="Portal.Permissions#addBlogsEntryLoginUserPG">
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 			<var name="pageName" value="Blogs Page" />
@@ -1186,16 +1186,16 @@
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="BlogsEntry#moveToRecycleBinNoPermissionPG">
+		<execute macro="Portal.BlogsEntry#moveToRecycleBinNoPermissionPG">
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="Permissions#definePermissionLoginUserCP">
+		<execute macro="Portal.Permissions#definePermissionLoginUserCP">
 			<var name="permissionDefinitionKey" value="SITE_ADMIN_CONTENT_BLOGS_RESOURCE_PERMISSIONS_BLOGS_ENTRY_DELETE_CHECKBOX" />
 			<var name="permissionDefinitionValue" value="Delete" />
 			<var name="roleTitle" value="Roles Siterole Name" />
@@ -1204,18 +1204,18 @@
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="BlogsEntry#moveToRecycleBinPG">
+		<execute macro="Portal.BlogsEntry#moveToRecycleBinPG">
 			<var name="assetType" value="Blogs Entry" />
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="Permissions#removePermissionLoginUserCP">
+		<execute macro="Portal.Permissions#removePermissionLoginUserCP">
 			<var name="permissionDefinitionKey" value="SITE_ADMIN_CONTENT_BLOGS_RESOURCE_PERMISSIONS_BLOGS_ENTRY_DELETE_CHECKBOX" />
 			<var name="permissionDefinitionValue" value="Delete" />
 			<var name="roleTitle" value="Roles Siterole Name" />
@@ -1224,7 +1224,7 @@
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="Permissions#addBlogsEntryLoginUserPG">
+		<execute macro="Portal.Permissions#addBlogsEntryLoginUserPG">
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 			<var name="pageName" value="Blogs Page" />
@@ -1234,23 +1234,23 @@
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="BlogsEntry#moveToRecycleBinNoPermissionPG">
+		<execute macro="Portal.BlogsEntry#moveToRecycleBinNoPermissionPG">
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 	</command>
 
 	<command name="DeleteBlogsEntrySiteRoleInline" priority="4">
-		<execute macro="Permissions#setUpSiteRoleLoginUserPG">
+		<execute macro="Portal.Permissions#setUpSiteRoleLoginUserPG">
 			<var name="page" value="Public Pages" />
 			<var name="pageName" value="Blogs Page" />
 			<var name="portletName" value="Blogs" />
@@ -1266,7 +1266,7 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Permissions#addBlogsEntryLoginUserPG">
+		<execute macro="Portal.Permissions#addBlogsEntryLoginUserPG">
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 			<var name="pageName" value="Blogs Page" />
@@ -1276,49 +1276,49 @@
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="BlogsEntry#moveToRecycleBinNoPermissionPG">
+		<execute macro="Portal.BlogsEntry#moveToRecycleBinNoPermissionPG">
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="BlogsNavigator#gotoBlogsEntryPermissionsPG" />
+		<execute macro="Portal.BlogsNavigator#gotoBlogsEntryPermissionsPG" />
 
-		<execute macro="Role#definePermissionPG">
+		<execute macro="Portal.Role#definePermissionPG">
 			<var name="permissionDefinitionKey" value="CONTENT_PERMISSIONS_DELETE_CHECKBOX" />
 			<var name="roleTitle" value="Roles Siterole Name" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="BlogsEntry#moveToRecycleBinPG">
+		<execute macro="Portal.BlogsEntry#moveToRecycleBinPG">
 			<var name="assetType" value="Blogs Entry" />
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="Permissions#addBlogsEntryLoginUserPG">
+		<execute macro="Portal.Permissions#addBlogsEntryLoginUserPG">
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 			<var name="pageName" value="Blogs Page" />
@@ -1328,40 +1328,40 @@
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="BlogsNavigator#gotoBlogsEntryPermissionsPG" />
+		<execute macro="Portal.BlogsNavigator#gotoBlogsEntryPermissionsPG" />
 
-		<execute macro="Role#removePermissionPG">
+		<execute macro="Portal.Role#removePermissionPG">
 			<var name="permissionDefinitionKey" value="CONTENT_PERMISSIONS_DELETE_CHECKBOX" />
 			<var name="roleTitle" value="Roles Siterole Name" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="BlogsEntry#moveToRecycleBinNoPermissionPG">
+		<execute macro="Portal.BlogsEntry#moveToRecycleBinNoPermissionPG">
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 	</command>
 
 	<command name="DeleteBlogsEntrySiteTeamRoleInline" priority="4">
-		<execute macro="Permissions#setUpSiteTeamRoleLoginUserPG">
+		<execute macro="Portal.Permissions#setUpSiteTeamRoleLoginUserPG">
 			<var name="page" value="Public Pages" />
 			<var name="pageName" value="Blogs Page" />
 			<var name="portletName" value="Blogs" />
@@ -1376,7 +1376,7 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Permissions#addBlogsEntryLoginUserPG">
+		<execute macro="Portal.Permissions#addBlogsEntryLoginUserPG">
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 			<var name="pageName" value="Blogs Page" />
@@ -1386,49 +1386,49 @@
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="BlogsEntry#moveToRecycleBinNoPermissionPG">
+		<execute macro="Portal.BlogsEntry#moveToRecycleBinNoPermissionPG">
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="BlogsNavigator#gotoBlogsEntryPermissionsPG" />
+		<execute macro="Portal.BlogsNavigator#gotoBlogsEntryPermissionsPG" />
 
-		<execute macro="Team#definePermissionPG">
+		<execute macro="Portal.Team#definePermissionPG">
 			<var name="permissionDefinitionKey" value="_ACTION_DELETE" />
 			<var name="teamName" value="Site Team Name" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="BlogsEntry#moveToRecycleBinPG">
+		<execute macro="Portal.BlogsEntry#moveToRecycleBinPG">
 			<var name="assetType" value="Blogs Entry" />
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="Permissions#addBlogsEntryLoginUserPG">
+		<execute macro="Portal.Permissions#addBlogsEntryLoginUserPG">
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 			<var name="pageName" value="Blogs Page" />
@@ -1438,40 +1438,40 @@
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="BlogsNavigator#gotoBlogsEntryPermissionsPG" />
+		<execute macro="Portal.BlogsNavigator#gotoBlogsEntryPermissionsPG" />
 
-		<execute macro="Team#removePermissionPG">
+		<execute macro="Portal.Team#removePermissionPG">
 			<var name="permissionDefinitionKey" value="_ACTION_DELETE" />
 			<var name="teamName" value="Site Team Name" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="BlogsEntry#moveToRecycleBinNoPermissionPG">
+		<execute macro="Portal.BlogsEntry#moveToRecycleBinNoPermissionPG">
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 	</command>
 
 	<command name="EditBlogsEntryOwnerRoleInline" priority="4">
-		<execute macro="Permissions#setUpRegRoleLoginUserPG">
+		<execute macro="Portal.Permissions#setUpRegRoleLoginUserPG">
 			<var name="pageName" value="Blogs Page" />
 			<var name="portletName" value="Blogs" />
 			<var name="roleTitle" value="Regrole Name" />
@@ -1483,7 +1483,7 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Permissions#definePermissionLoginUserCP">
+		<execute macro="Portal.Permissions#definePermissionLoginUserCP">
 			<var name="permissionDefinitionKey" value="SITE_ADMIN_CONTENT_BLOGS_RESOURCE_PERMISSIONS_BLOGS_ENTRIES_ADD_ENTRY_CHECKBOX" />
 			<var name="permissionDefinitionValue" value="Add Entry" />
 			<var name="roleTitle" value="Regrole Name" />
@@ -1491,85 +1491,85 @@
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="Blogs#addEntry">
+		<execute macro="Portal.Blogs#addEntry">
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="BlogsNavigator#gotoBlogsEntryPermissionsPG" />
+		<execute macro="Portal.BlogsNavigator#gotoBlogsEntryPermissionsPG" />
 
-		<execute macro="Role#removePermissionPG">
+		<execute macro="Portal.Role#removePermissionPG">
 			<var name="permissionDefinitionKey" value="CONTENT_PERMISSIONS_UPDATE_CHECKBOX" />
 			<var name="roleTitle" value="Owner" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="BlogsEntry#editNoPermissionPG">
+		<execute macro="Portal.BlogsEntry#editNoPermissionPG">
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="BlogsNavigator#gotoBlogsEntryPermissionsPG" />
+		<execute macro="Portal.BlogsNavigator#gotoBlogsEntryPermissionsPG" />
 
-		<execute macro="Role#definePermissionPG">
+		<execute macro="Portal.Role#definePermissionPG">
 			<var name="permissionDefinitionKey" value="CONTENT_PERMISSIONS_UPDATE_CHECKBOX" />
 			<var name="roleTitle" value="Owner" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="BlogsNavigator#gotoEditPG">
+		<execute macro="Portal.BlogsNavigator#gotoEditPG">
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="BlogsEntry#editTitle">
+		<execute macro="Portal.BlogsEntry#editTitle">
 			<var name="entryTitle" value="Blogs Entry Title" />
 			<var name="entryTitleEdit" value="Blogs Entry Title Edit" />
 		</execute>
 
-		<execute macro="BlogsEntry#editContent">
+		<execute macro="Portal.BlogsEntry#editContent">
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryContentEdit" value="Blogs Entry Content Edit" />
 		</execute>
 
-		<execute macro="BlogsEntry#viewEntry">
+		<execute macro="Portal.BlogsEntry#viewEntry">
 			<var name="entryContent" value="Blogs Entry Content Edit" />
 			<var name="entryTitle" value="Blogs Entry Title Edit" />
 		</execute>
@@ -1578,7 +1578,7 @@
 	<command name="SubscribeBlogsRegRole" priority="5">
 		<property name="portal.acceptance" value="true" />
 
-		<execute macro="Permissions#setUpRegRoleLoginUserPG">
+		<execute macro="Portal.Permissions#setUpRegRoleLoginUserPG">
 			<var name="pageName" value="Blogs Page" />
 			<var name="portletName" value="Blogs" />
 			<var name="roleTitle" value="Regrole Name" />
@@ -1590,13 +1590,13 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="BlogsConfiguration#viewNoPermissionPG" />
+		<execute macro="Portal.BlogsConfiguration#viewNoPermissionPG" />
 
-		<execute macro="Permissions#definePermissionLoginUserCP">
+		<execute macro="Portal.Permissions#definePermissionLoginUserCP">
 			<var name="permissionDefinitionKey" value="SITE_ADMIN_CONTENT_BLOGS_RESOURCE_PERMISSIONS_BLOGS_ENTRIES_SUBSCRIBE_CHECKBOX" />
 			<var name="permissionDefinitionValue" value="Subscribe" />
 			<var name="roleTitle" value="Regrole Name" />
@@ -1604,13 +1604,13 @@
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="BlogsEntry#subscribePG" />
+		<execute macro="Portal.BlogsEntry#subscribePG" />
 
-		<execute macro="Permissions#removePermissionLoginUserCP">
+		<execute macro="Portal.Permissions#removePermissionLoginUserCP">
 			<var name="permissionDefinitionKey" value="SITE_ADMIN_CONTENT_BLOGS_RESOURCE_PERMISSIONS_BLOGS_ENTRIES_SUBSCRIBE_CHECKBOX" />
 			<var name="permissionDefinitionValue" value="Subscribe" />
 			<var name="roleTitle" value="Regrole Name" />
@@ -1618,20 +1618,20 @@
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="BlogsConfiguration#viewNoPermissionPG" />
+		<execute macro="Portal.BlogsConfiguration#viewNoPermissionPG" />
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 	</command>
 
 	<command name="SubscribeBlogsRegRoleInline" priority="4">
-		<execute macro="Permissions#setUpRegRoleLoginUserPG">
+		<execute macro="Portal.Permissions#setUpRegRoleLoginUserPG">
 			<var name="pageName" value="Blogs Page" />
 			<var name="portletName" value="Blogs" />
 			<var name="roleTitle" value="Regrole Name" />
@@ -1643,74 +1643,74 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="BlogsConfiguration#viewNoPermissionPG" />
+		<execute macro="Portal.BlogsConfiguration#viewNoPermissionPG" />
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Blogs" />
 		</execute>
 
-		<execute macro="BlogsNavigator#gotoBlogsEntriesPermissionsCP" />
+		<execute macro="Portal.BlogsNavigator#gotoBlogsEntriesPermissionsCP" />
 
-		<execute macro="Role#definePermissionPG">
+		<execute macro="Portal.Role#definePermissionPG">
 			<var name="permissionDefinitionKey" value="INLINE_PERMISSIONS_SUBSCRIBE_CHECKBOX" />
 			<var name="roleTitle" value="Regrole Name" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="BlogsEntry#subscribePG" />
+		<execute macro="Portal.BlogsEntry#subscribePG" />
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Blogs" />
 		</execute>
 
-		<execute macro="BlogsNavigator#gotoBlogsEntriesPermissionsCP" />
+		<execute macro="Portal.BlogsNavigator#gotoBlogsEntriesPermissionsCP" />
 
-		<execute macro="Role#removePermissionPG">
+		<execute macro="Portal.Role#removePermissionPG">
 			<var name="permissionDefinitionKey" value="INLINE_PERMISSIONS_SUBSCRIBE_CHECKBOX" />
 			<var name="roleTitle" value="Regrole Name" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="BlogsConfiguration#viewNoPermissionPG" />
+		<execute macro="Portal.BlogsConfiguration#viewNoPermissionPG" />
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 	</command>
 
 	<command name="SubscribeBlogsSiteRoleInline" priority="4">
-		<execute macro="Permissions#setUpSiteMemberRoleLoginUserPG">
+		<execute macro="Portal.Permissions#setUpSiteMemberRoleLoginUserPG">
 			<var name="page" value="Public Pages" />
 			<var name="pageName" value="Blogs Page" />
 			<var name="portletName" value="Blogs" />
@@ -1725,66 +1725,66 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="BlogsConfiguration#viewSubscribePG" />
+		<execute macro="Portal.BlogsConfiguration#viewSubscribePG" />
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="BlogsEntry#subscribePG" />
+		<execute macro="Portal.BlogsEntry#subscribePG" />
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Blogs" />
 		</execute>
 
-		<execute macro="BlogsNavigator#gotoBlogsEntriesPermissionsCP" />
+		<execute macro="Portal.BlogsNavigator#gotoBlogsEntriesPermissionsCP" />
 
-		<execute macro="Role#removePermissionPG">
+		<execute macro="Portal.Role#removePermissionPG">
 			<var name="permissionDefinitionKey" value="INLINE_PERMISSIONS_SUBSCRIBE_CHECKBOX" />
 			<var name="roleTitle" value="Site Member" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="BlogsConfiguration#viewNoSubscribePG" />
+		<execute macro="Portal.BlogsConfiguration#viewNoSubscribePG" />
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 	</command>
 
 	<command name="ViewBlogsEntryPermissionsOwnerRoleInline" priority="5">
-		<execute macro="Permissions#setUpRegRoleLoginUserPG">
+		<execute macro="Portal.Permissions#setUpRegRoleLoginUserPG">
 			<var name="pageName" value="Blogs Page" />
 			<var name="portletName" value="Blogs" />
 			<var name="roleTitle" value="Regrole Name" />
@@ -1796,7 +1796,7 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Permissions#definePermissionLoginUserCP">
+		<execute macro="Portal.Permissions#definePermissionLoginUserCP">
 			<var name="permissionDefinitionKey" value="SITE_ADMIN_CONTENT_BLOGS_RESOURCE_PERMISSIONS_BLOGS_ENTRIES_ADD_ENTRY_CHECKBOX" />
 			<var name="permissionDefinitionValue" value="Add Entry" />
 			<var name="roleTitle" value="Regrole Name" />
@@ -1804,70 +1804,70 @@
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="Blogs#addEntry">
+		<execute macro="Portal.Blogs#addEntry">
 			<var name="entryContent" value="Blogs Entry Content" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="BlogsNavigator#gotoBlogsEntryPermissionsPG" />
+		<execute macro="Portal.BlogsNavigator#gotoBlogsEntryPermissionsPG" />
 
-		<execute macro="Role#removePermissionPG">
+		<execute macro="Portal.Role#removePermissionPG">
 			<var name="permissionDefinitionKey" value="CONTENT_PERMISSIONS_PERMISSIONS_CHECKBOX" />
 			<var name="roleTitle" value="Owner" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="BlogsEntry#viewPermissionsNoPermissionPG">
+		<execute macro="Portal.BlogsEntry#viewPermissionsNoPermissionPG">
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="BlogsNavigator#gotoBlogsEntryPermissionsPG" />
+		<execute macro="Portal.BlogsNavigator#gotoBlogsEntryPermissionsPG" />
 
-		<execute macro="Role#definePermissionPG">
+		<execute macro="Portal.Role#definePermissionPG">
 			<var name="permissionDefinitionKey" value="CONTENT_PERMISSIONS_PERMISSIONS_CHECKBOX" />
 			<var name="roleTitle" value="Owner" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="BlogsEntry#viewPermissionsPG">
+		<execute macro="Portal.BlogsEntry#viewPermissionsPG">
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 	</command>
@@ -1875,7 +1875,7 @@
 	<command name="ViewBlogsPermissionsRegRole" priority="5">
 		<property name="portal.acceptance" value="true" />
 
-		<execute macro="Permissions#setUpRegRoleLoginUserPG">
+		<execute macro="Portal.Permissions#setUpRegRoleLoginUserPG">
 			<var name="pageName" value="Blogs Page" />
 			<var name="portletName" value="Blogs" />
 			<var name="roleTitle" value="Regrole Name" />
@@ -1887,13 +1887,13 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="BlogsConfiguration#viewNoPermissionPG" />
+		<execute macro="Portal.BlogsConfiguration#viewNoPermissionPG" />
 
-		<execute macro="Permissions#definePermissionLoginUserCP">
+		<execute macro="Portal.Permissions#definePermissionLoginUserCP">
 			<var name="permissionDefinitionKey" value="SITE_ADMIN_APPLICATIONS_BLOGS_APPLICATION_PERMISSIONS_CONFIGURATION_CHECKBOX" />
 			<var name="permissionDefinitionValue" value="Configuration" />
 			<var name="roleTitle" value="Regrole Name" />
@@ -1901,7 +1901,7 @@
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Permissions#definePermissionLoginUserCP">
+		<execute macro="Portal.Permissions#definePermissionLoginUserCP">
 			<var name="permissionDefinitionKey" value="SITE_ADMIN_APPLICATIONS_BLOGS_APPLICATION_PERMISSIONS_PERMISSIONS_CHECKBOX" />
 			<var name="permissionDefinitionValue" value="Permissions" />
 			<var name="roleTitle" value="Regrole Name" />
@@ -1909,13 +1909,13 @@
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="BlogsConfiguration#viewPermissionsPG" />
+		<execute macro="Portal.BlogsConfiguration#viewPermissionsPG" />
 
-		<execute macro="Permissions#removePermissionLoginUserCP">
+		<execute macro="Portal.Permissions#removePermissionLoginUserCP">
 			<var name="permissionDefinitionKey" value="SITE_ADMIN_APPLICATIONS_BLOGS_APPLICATION_PERMISSIONS_CONFIGURATION_CHECKBOX" />
 			<var name="permissionDefinitionValue" value="Configuration" />
 			<var name="roleTitle" value="Regrole Name" />
@@ -1923,7 +1923,7 @@
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Permissions#removePermissionLoginUserCP">
+		<execute macro="Portal.Permissions#removePermissionLoginUserCP">
 			<var name="permissionDefinitionKey" value="SITE_ADMIN_APPLICATIONS_BLOGS_APPLICATION_PERMISSIONS_PERMISSIONS_CHECKBOX" />
 			<var name="permissionDefinitionValue" value="Permissions" />
 			<var name="roleTitle" value="Regrole Name" />
@@ -1931,20 +1931,20 @@
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="BlogsConfiguration#viewNoPermissionPG" />
+		<execute macro="Portal.BlogsConfiguration#viewNoPermissionPG" />
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 	</command>
 
 	<command name="ViewBlogsPermissionsRegRoleInline" priority="4">
-		<execute macro="Permissions#setUpRegRoleLoginUserPG">
+		<execute macro="Portal.Permissions#setUpRegRoleLoginUserPG">
 			<var name="pageName" value="Blogs Page" />
 			<var name="portletName" value="Blogs" />
 			<var name="roleTitle" value="Regrole Name" />
@@ -1956,120 +1956,120 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="BlogsConfiguration#viewNoPermissionPG" />
+		<execute macro="Portal.BlogsConfiguration#viewNoPermissionPG" />
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="PermissionsInline#gotoConfigurationPG" >
+		<execute macro="Portal.PermissionsInline#gotoConfigurationPG" >
 			<var name="portletName" value="Blogs" />
 		</execute>
 
-		<execute macro="Role#definePermissionPG">
+		<execute macro="Portal.Role#definePermissionPG">
 			<var name="permissionDefinitionKey" value="CONFIGURATION_PERMISSIONS_CONFIGURATION_CHECKBOX" />
 			<var name="roleTitle" value="Regrole Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="PermissionsInline#gotoConfigurationPG" >
+		<execute macro="Portal.PermissionsInline#gotoConfigurationPG" >
 			<var name="portletName" value="Blogs" />
 		</execute>
 
-		<execute macro="Role#definePermissionPG">
+		<execute macro="Portal.Role#definePermissionPG">
 			<var name="permissionDefinitionKey" value="CONFIGURATION_PERMISSIONS_PERMISSIONS_CHECKBOX" />
 			<var name="roleTitle" value="Regrole Name" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="BlogsConfiguration#viewPermissionsPG" />
+		<execute macro="Portal.BlogsConfiguration#viewPermissionsPG" />
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="PermissionsInline#gotoConfigurationPG" >
+		<execute macro="Portal.PermissionsInline#gotoConfigurationPG" >
 			<var name="portletName" value="Blogs" />
 		</execute>
 
-		<execute macro="Role#removePermissionPG">
+		<execute macro="Portal.Role#removePermissionPG">
 			<var name="permissionDefinitionKey" value="CONFIGURATION_PERMISSIONS_PERMISSIONS_CHECKBOX" />
 			<var name="roleTitle" value="Regrole Name" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="BlogsConfiguration#viewNoPermissionPG" />
+		<execute macro="Portal.BlogsConfiguration#viewNoPermissionPG" />
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="PermissionsInline#gotoConfigurationPG" >
+		<execute macro="Portal.PermissionsInline#gotoConfigurationPG" >
 			<var name="portletName" value="Blogs" />
 		</execute>
 
-		<execute macro="Role#removePermissionPG">
+		<execute macro="Portal.Role#removePermissionPG">
 			<var name="permissionDefinitionKey" value="CONFIGURATION_PERMISSIONS_CONFIGURATION_CHECKBOX" />
 			<var name="roleTitle" value="Regrole Name" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="BlogsConfiguration#viewNoPermissionPG" />
+		<execute macro="Portal.BlogsConfiguration#viewNoPermissionPG" />
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 	</command>
 
 	<command name="ViewBlogsPermissionsSiteRole" priority="4">
-		<execute macro="Permissions#setUpSiteRoleLoginUserPG">
+		<execute macro="Portal.Permissions#setUpSiteRoleLoginUserPG">
 			<var name="page" value="Public Pages" />
 			<var name="pageName" value="Blogs Page" />
 			<var name="portletName" value="Blogs" />
@@ -2085,14 +2085,14 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="BlogsConfiguration#viewAsSiteMemberPG" />
+		<execute macro="Portal.BlogsConfiguration#viewAsSiteMemberPG" />
 
-		<execute macro="Permissions#definePermissionLoginUserCP">
+		<execute macro="Portal.Permissions#definePermissionLoginUserCP">
 			<var name="permissionDefinitionKey" value="SITE_ADMIN_APPLICATIONS_BLOGS_APPLICATION_PERMISSIONS_CONFIGURATION_CHECKBOX" />
 			<var name="permissionDefinitionValue" value="Configuration" />
 			<var name="roleTitle" value="Roles Siterole Name" />
@@ -2101,7 +2101,7 @@
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Permissions#definePermissionLoginUserCP">
+		<execute macro="Portal.Permissions#definePermissionLoginUserCP">
 			<var name="permissionDefinitionKey" value="SITE_ADMIN_APPLICATIONS_BLOGS_APPLICATION_PERMISSIONS_PERMISSIONS_CHECKBOX" />
 			<var name="permissionDefinitionValue" value="Permissions" />
 			<var name="roleTitle" value="Roles Siterole Name" />
@@ -2110,14 +2110,14 @@
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="BlogsConfiguration#viewPermissionsPG" />
+		<execute macro="Portal.BlogsConfiguration#viewPermissionsPG" />
 
-		<execute macro="Permissions#removePermissionLoginUserCP">
+		<execute macro="Portal.Permissions#removePermissionLoginUserCP">
 			<var name="permissionDefinitionKey" value="SITE_ADMIN_APPLICATIONS_BLOGS_APPLICATION_PERMISSIONS_PERMISSIONS_CHECKBOX" />
 			<var name="permissionDefinitionValue" value="Permissions" />
 			<var name="roleTitle" value="Roles Siterole Name" />
@@ -2126,14 +2126,14 @@
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="BlogsConfiguration#viewAsSiteMemberPG" />
+		<execute macro="Portal.BlogsConfiguration#viewAsSiteMemberPG" />
 
-		<execute macro="Permissions#removePermissionLoginUserCP">
+		<execute macro="Portal.Permissions#removePermissionLoginUserCP">
 			<var name="permissionDefinitionKey" value="SITE_ADMIN_APPLICATIONS_BLOGS_APPLICATION_PERMISSIONS_CONFIGURATION_CHECKBOX" />
 			<var name="permissionDefinitionValue" value="Configuration" />
 			<var name="roleTitle" value="Roles Siterole Name" />
@@ -2142,21 +2142,21 @@
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="BlogsConfiguration#viewAsSiteMemberPG" />
+		<execute macro="Portal.BlogsConfiguration#viewAsSiteMemberPG" />
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 	</command>
 
 	<command name="ViewBlogsPermissionsSiteRoleInline" priority="4">
-		<execute macro="Permissions#setUpSiteRoleLoginUserPG">
+		<execute macro="Portal.Permissions#setUpSiteRoleLoginUserPG">
 			<var name="page" value="Public Pages" />
 			<var name="pageName" value="Blogs Page" />
 			<var name="portletName" value="Blogs" />
@@ -2172,142 +2172,142 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="BlogsConfiguration#viewAsSiteMemberPG" />
+		<execute macro="Portal.BlogsConfiguration#viewAsSiteMemberPG" />
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="PermissionsInline#gotoConfigurationPG" >
+		<execute macro="Portal.PermissionsInline#gotoConfigurationPG" >
 			<var name="portletName" value="Blogs" />
 		</execute>
 
-		<execute macro="Role#definePermissionPG">
+		<execute macro="Portal.Role#definePermissionPG">
 			<var name="permissionDefinitionKey" value="CONFIGURATION_PERMISSIONS_CONFIGURATION_CHECKBOX" />
 			<var name="roleTitle" value="Roles Siterole Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="PermissionsInline#gotoConfigurationPG" >
+		<execute macro="Portal.PermissionsInline#gotoConfigurationPG" >
 			<var name="portletName" value="Blogs" />
 		</execute>
 
-		<execute macro="Role#definePermissionPG">
+		<execute macro="Portal.Role#definePermissionPG">
 			<var name="permissionDefinitionKey" value="CONFIGURATION_PERMISSIONS_PERMISSIONS_CHECKBOX" />
 			<var name="roleTitle" value="Roles Siterole Name" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="BlogsConfiguration#viewPermissionsPG" />
+		<execute macro="Portal.BlogsConfiguration#viewPermissionsPG" />
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="PermissionsInline#gotoConfigurationPG" >
+		<execute macro="Portal.PermissionsInline#gotoConfigurationPG" >
 			<var name="portletName" value="Blogs" />
 		</execute>
 
-		<execute macro="Role#removePermissionPG">
+		<execute macro="Portal.Role#removePermissionPG">
 			<var name="permissionDefinitionKey" value="CONFIGURATION_PERMISSIONS_PERMISSIONS_CHECKBOX" />
 			<var name="roleTitle" value="Roles Siterole Name" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="BlogsConfiguration#viewAsSiteMemberPG" />
+		<execute macro="Portal.BlogsConfiguration#viewAsSiteMemberPG" />
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="PermissionsInline#gotoConfigurationPG" >
+		<execute macro="Portal.PermissionsInline#gotoConfigurationPG" >
 			<var name="portletName" value="Blogs" />
 		</execute>
 
-		<execute macro="Role#removePermissionPG">
+		<execute macro="Portal.Role#removePermissionPG">
 			<var name="permissionDefinitionKey" value="CONFIGURATION_PERMISSIONS_CONFIGURATION_CHECKBOX" />
 			<var name="roleTitle" value="Roles Siterole Name" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Blogs Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="BlogsConfiguration#viewAsSiteMemberPG" />
+		<execute macro="Portal.BlogsConfiguration#viewAsSiteMemberPG" />
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 	</command>
 
 	<command name="ViewBlogsPortletNoGuestRole" priority="4">
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="pageName" value="Blogs Page" />
 			<var name="portletName" value="Blogs" />
 		</execute>
 
-		<execute macro="User#logoutPG" />
+		<execute macro="Portal.User#logoutPG" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="BlogsConfiguration#viewNoPermissionPG" />
+		<execute macro="Portal.BlogsConfiguration#viewNoPermissionPG" />
 	</command>
 </definition>

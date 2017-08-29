@@ -8,19 +8,19 @@
 	<var name="portletName" value="Web Form" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="${portletName}" />
 		</execute>
 	</set-up>
@@ -31,355 +31,355 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="Page#tearDownPG" />
+				<execute macro="Portal.Page#tearDownPG" />
 			</else>
 		</if>
 	</tear-down>
 
 	<command name="EditAndSendWebFormWithRequiredCheckbox" priority="4">
-		<execute macro="WebForm#viewPG">
+		<execute macro="Portal.WebForm#viewPG">
 			<var name="wfInformationDescription" value="Your input is valuable to us. Please send us your suggestions." />
 			<var name="wfInformationTitle" value="Suggestions" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="WebFormPortlet#configureSetupFormFieldsPG">
+		<execute macro="Portal.WebFormPortlet#configureSetupFormFieldsPG">
 			<var name="wfInformationDescription" value="Please let us know what you think!" />
 			<var name="wfInformationTitle" value="Feed Back" />
 		</execute>
 
-		<execute macro="WebFormPortlet#editField">
+		<execute macro="Portal.WebFormPortlet#editField">
 			<var name="wfFieldName" value="Name" />
 			<var name="wfNewFieldName" value="Your Name" />
 		</execute>
 
-		<execute macro="WebFormPortlet#editField">
+		<execute macro="Portal.WebFormPortlet#editField">
 			<var name="wfFieldName" value="Rating" />
 			<var name="wfFieldType" value="Check Box" />
 			<var name="wfNewFieldName" value="Rate Us!" />
 		</execute>
 
-		<execute macro="WebFormPortlet#editField">
+		<execute macro="Portal.WebFormPortlet#editField">
 			<var name="wfFieldName" value="Comments" />
 			<var name="wfNewFieldName" value="Additional Comments" />
 		</execute>
 
-		<execute macro="WebFormPortlet#saveConfiguration" />
+		<execute macro="Portal.WebFormPortlet#saveConfiguration" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="WebForm#viewPG">
+		<execute macro="Portal.WebForm#viewPG">
 			<var name="wfInformationDescription" value="Please let us know what you think!" />
 			<var name="wfInformationTitle" value="Feed Back" />
 		</execute>
 
-		<execute macro="WebForm#viewFormFieldText">
+		<execute macro="Portal.WebForm#viewFormFieldText">
 			<var name="wfFieldName" value="Your Name" />
 		</execute>
 
-		<execute macro="WebForm#viewFormFieldCheckBox">
+		<execute macro="Portal.WebForm#viewFormFieldCheckBox">
 			<var name="wfFieldName" value="Rate Us!" />
 		</execute>
 
-		<execute macro="WebForm#viewFormFieldTextBox">
+		<execute macro="Portal.WebForm#viewFormFieldTextBox">
 			<var name="wfFieldName" value="Additional Comments" />
 		</execute>
 
-		<execute macro="WebForm#populateFieldText">
+		<execute macro="Portal.WebForm#populateFieldText">
 			<var name="wfFieldName" value="Your Name" />
 			<var name="wfFieldValue" value="New Name" />
 		</execute>
 
-		<execute macro="WebForm#populateFieldCheckBox">
+		<execute macro="Portal.WebForm#populateFieldCheckBox">
 			<var name="wfFieldName" value="Rate Us!" />
 			<var name="wfFieldValue" value="true" />
 		</execute>
 
-		<execute macro="WebForm#populateFieldTextBox">
+		<execute macro="Portal.WebForm#populateFieldTextBox">
 			<var name="wfFieldName" value="Additional Comments" />
 			<var name="wfFieldValue" value="Page Objects + Hashi = Poshi" />
 		</execute>
 
-		<execute macro="WebForm#sendPG" />
+		<execute macro="Portal.WebForm#sendPG" />
 	</command>
 
 	<command name="EditWebForm" priority="4">
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="WebForm#viewPG">
+		<execute macro="Portal.WebForm#viewPG">
 			<var name="wfInformationDescription" value="Your input is valuable to us. Please send us your suggestions." />
 			<var name="wfInformationTitle" value="Suggestions" />
 		</execute>
 
-		<execute macro="WebForm#viewFormFieldText">
+		<execute macro="Portal.WebForm#viewFormFieldText">
 			<var name="wfFieldName" value="Name" />
 		</execute>
 
-		<execute macro="WebForm#viewFormFieldOptions">
+		<execute macro="Portal.WebForm#viewFormFieldOptions">
 			<var name="wfFieldName" value="Rating" />
 		</execute>
 
-		<execute macro="WebForm#viewFormFieldTextBox">
+		<execute macro="Portal.WebForm#viewFormFieldTextBox">
 			<var name="wfFieldName" value="Comments" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="WebFormPortlet#configureSetupFormFieldsPG">
+		<execute macro="Portal.WebFormPortlet#configureSetupFormFieldsPG">
 			<var name="wfInformationDescription" value="Please let us know what you think!" />
 			<var name="wfInformationTitle" value="Feed Back" />
 		</execute>
 
-		<execute macro="WebFormPortlet#editField">
+		<execute macro="Portal.WebFormPortlet#editField">
 			<var name="wfFieldName" value="Name" />
 			<var name="wfNewFieldName" value="Your Name" />
 		</execute>
 
-		<execute macro="WebFormPortlet#editField">
+		<execute macro="Portal.WebFormPortlet#editField">
 			<var name="wfFieldName" value="Rating" />
 			<var name="wfFieldType" value="Check Box" />
 			<var name="wfNewFieldName" value="Rate Us!" />
 		</execute>
 
-		<execute macro="WebFormPortlet#editField">
+		<execute macro="Portal.WebFormPortlet#editField">
 			<var name="wfFieldName" value="Comments" />
 			<var name="wfNewFieldName" value="Additional Comments" />
 		</execute>
 
-		<execute macro="WebFormPortlet#saveConfiguration" />
+		<execute macro="Portal.WebFormPortlet#saveConfiguration" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="WebForm#viewPG">
+		<execute macro="Portal.WebForm#viewPG">
 			<var name="wfInformationDescription" value="Please let us know what you think!" />
 			<var name="wfInformationTitle" value="Feed Back" />
 		</execute>
 
-		<execute macro="WebForm#viewFormFieldText">
+		<execute macro="Portal.WebForm#viewFormFieldText">
 			<var name="wfFieldName" value="Your Name" />
 		</execute>
 
-		<execute macro="WebForm#viewFormFieldCheckBox">
+		<execute macro="Portal.WebForm#viewFormFieldCheckBox">
 			<var name="wfFieldName" value="Rate Us!" />
 		</execute>
 
-		<execute macro="WebForm#viewFormFieldTextBox">
+		<execute macro="Portal.WebForm#viewFormFieldTextBox">
 			<var name="wfFieldName" value="Additional Comments" />
 			<var name="wfFieldType" value="Text Box" />
 		</execute>
 	</command>
 
 	<command name="EditWebFormAndViewMultipleFields" priority="4">
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="WebForm#viewPG">
+		<execute macro="Portal.WebForm#viewPG">
 			<var name="wfInformationDescription" value="Your input is valuable to us. Please send us your suggestions." />
 			<var name="wfInformationTitle" value="Suggestions" />
 		</execute>
 
-		<execute macro="WebForm#viewFormFieldText">
+		<execute macro="Portal.WebForm#viewFormFieldText">
 			<var name="wfFieldName" value="Name" />
 		</execute>
 
-		<execute macro="WebForm#viewFormFieldOptions">
+		<execute macro="Portal.WebForm#viewFormFieldOptions">
 			<var name="wfFieldName" value="Rating" />
 		</execute>
 
-		<execute macro="WebForm#viewFormFieldTextBox">
+		<execute macro="Portal.WebForm#viewFormFieldTextBox">
 			<var name="wfFieldName" value="Comments" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="WebFormPortlet#configureSetupFormFieldsPG">
+		<execute macro="Portal.WebFormPortlet#configureSetupFormFieldsPG">
 			<var name="wfInformationDescription" value="Please let us know what you think!" />
 			<var name="wfInformationTitle" value="Feed Back" />
 		</execute>
 
-		<execute macro="WebFormPortlet#editField">
+		<execute macro="Portal.WebFormPortlet#editField">
 			<var name="wfFieldName" value="Name" />
 			<var name="wfNewFieldName" value="Test 1" />
 		</execute>
 
-		<execute macro="WebFormPortlet#addField">
+		<execute macro="Portal.WebFormPortlet#addField">
 			<var name="wfFieldName" value="Name" />
 			<var name="wfNewFieldName" value="Test 2" />
 			<var name="wfPreviousFieldName" value="Test 1" />
 		</execute>
 
-		<execute macro="WebFormPortlet#editField">
+		<execute macro="Portal.WebFormPortlet#editField">
 			<var name="wfFieldName" value="Rating" />
 			<var name="wfFieldType" value="Check Box" />
 			<var name="wfNewFieldName" value="Rate Us!" />
 		</execute>
 
-		<execute macro="WebFormPortlet#editField">
+		<execute macro="Portal.WebFormPortlet#editField">
 			<var name="wfFieldName" value="Comments" />
 			<var name="wfNewFieldName" value="Additional Comments" />
 		</execute>
 
-		<execute macro="WebFormPortlet#saveConfiguration" />
+		<execute macro="Portal.WebFormPortlet#saveConfiguration" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="WebForm#viewPG">
+		<execute macro="Portal.WebForm#viewPG">
 			<var name="wfInformationDescription" value="Please let us know what you think!" />
 			<var name="wfInformationTitle" value="Feed Back" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="xpath=(//div[contains(@class,'form-group')]/label[contains(@for,'WebFormPortlet')])[1]" value1="Test 1" />
-		<execute function="AssertElementPresent" locator1="xpath=(//fieldset/div/div[contains(@class,'form-group')]/input[@type='text'])[1]" />
-		<execute function="AssertTextEquals" locator1="xpath=(//div[contains(@class,'form-group')]/label[contains(@for,'WebFormPortlet')])[2]" value1="Test 2" />
-		<execute function="AssertElementPresent" locator1="xpath=(//fieldset/div/div[contains(@class,'form-group')]/input[@type='text'])[2]" />
-		<execute function="AssertTextEquals" locator1="xpath=(//div[contains(@class,'form-group')]/label[contains(@for,'WebFormPortlet')])[3]" value1="Rate Us!" />
-		<execute function="AssertElementPresent" locator1="//div[contains(@class,'checkbox')]//input[@type='checkbox']" />
-		<execute function="AssertTextEquals" locator1="xpath=(//div[contains(@class,'form-group')]/label[contains(@for,'WebFormPortlet')])[4]" value1="Additional Comments" />
-		<execute function="AssertElementPresent" locator1="//fieldset/div/div[contains(@class,'form-group')]/textarea" />
+		<execute function="Portal.AssertTextEquals" locator1="xpath=(//div[contains(@class,'form-group')]/label[contains(@for,'WebFormPortlet')])[1]" value1="Test 1" />
+		<execute function="Portal.AssertElementPresent" locator1="xpath=(//fieldset/div/div[contains(@class,'form-group')]/input[@type='text'])[1]" />
+		<execute function="Portal.AssertTextEquals" locator1="xpath=(//div[contains(@class,'form-group')]/label[contains(@for,'WebFormPortlet')])[2]" value1="Test 2" />
+		<execute function="Portal.AssertElementPresent" locator1="xpath=(//fieldset/div/div[contains(@class,'form-group')]/input[@type='text'])[2]" />
+		<execute function="Portal.AssertTextEquals" locator1="xpath=(//div[contains(@class,'form-group')]/label[contains(@for,'WebFormPortlet')])[3]" value1="Rate Us!" />
+		<execute function="Portal.AssertElementPresent" locator1="//div[contains(@class,'checkbox')]//input[@type='checkbox']" />
+		<execute function="Portal.AssertTextEquals" locator1="xpath=(//div[contains(@class,'form-group')]/label[contains(@for,'WebFormPortlet')])[4]" value1="Additional Comments" />
+		<execute function="Portal.AssertElementPresent" locator1="//fieldset/div/div[contains(@class,'form-group')]/textarea" />
 	</command>
 
 	<command name="EditWebFormAndViewOptionalCheckBoxField" priority="3">
-		<execute macro="WebForm#viewPG">
+		<execute macro="Portal.WebForm#viewPG">
 			<var name="wfInformationDescription" value="Your input is valuable to us. Please send us your suggestions." />
 			<var name="wfInformationTitle" value="Suggestions" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="WebFormPortlet#configureSetupFormFieldsPG" />
+		<execute macro="Portal.WebFormPortlet#configureSetupFormFieldsPG" />
 
-		<execute macro="WebFormPortlet#deleteEditableField">
+		<execute macro="Portal.WebFormPortlet#deleteEditableField">
 			<var name="wfFieldName" value="Name" />
 		</execute>
 
-		<execute macro="WebFormPortlet#deleteEditableField">
+		<execute macro="Portal.WebFormPortlet#deleteEditableField">
 			<var name="wfFieldName" value="Rating" />
 		</execute>
 
-		<execute macro="WebFormPortlet#deleteEditableField">
+		<execute macro="Portal.WebFormPortlet#deleteEditableField">
 			<var name="wfFieldName" value="Comments" />
 		</execute>
 
-		<execute macro="WebFormPortlet#editField">
+		<execute macro="Portal.WebFormPortlet#editField">
 			<var name="optional" value="true" />
 			<var name="wfFieldName" value="New Item" />
 			<var name="wfFieldType" value="Check Box" />
 			<var name="wfNewFieldName" value="Test Check Box Field" />
 		</execute>
 
-		<execute macro="WebFormPortlet#saveConfiguration" />
+		<execute macro="Portal.WebFormPortlet#saveConfiguration" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="WebForm#viewPG">
+		<execute macro="Portal.WebForm#viewPG">
 			<var name="wfInformationDescription" value="Your input is valuable to us. Please send us your suggestions." />
 			<var name="wfInformationTitle" value="Suggestions" />
 		</execute>
 
-		<execute macro="WebForm#viewFormFieldCheckBox">
+		<execute macro="Portal.WebForm#viewFormFieldCheckBox">
 			<var name="wfFieldName" value="Test Check Box Field" />
 		</execute>
 
-		<execute macro="WebForm#sendPG" />
+		<execute macro="Portal.WebForm#sendPG" />
 	</command>
 
 	<command name="EditWebFormAndViewOptionalOptionsField" priority="4">
-		<execute macro="WebForm#viewPG">
+		<execute macro="Portal.WebForm#viewPG">
 			<var name="wfInformationDescription" value="Your input is valuable to us. Please send us your suggestions." />
 			<var name="wfInformationTitle" value="Suggestions" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="WebFormPortlet#configureSetupFormFieldsPG" />
+		<execute macro="Portal.WebFormPortlet#configureSetupFormFieldsPG" />
 
-		<execute macro="WebFormPortlet#deleteEditableField">
+		<execute macro="Portal.WebFormPortlet#deleteEditableField">
 			<var name="wfFieldName" value="Name" />
 		</execute>
 
-		<execute macro="WebFormPortlet#deleteEditableField">
+		<execute macro="Portal.WebFormPortlet#deleteEditableField">
 			<var name="wfFieldName" value="Rating" />
 		</execute>
 
-		<execute macro="WebFormPortlet#deleteEditableField">
+		<execute macro="Portal.WebFormPortlet#deleteEditableField">
 			<var name="wfFieldName" value="Comments" />
 		</execute>
 
-		<execute macro="WebFormPortlet#editField">
+		<execute macro="Portal.WebFormPortlet#editField">
 			<var name="optional" value="true" />
 			<var name="wfFieldName" value="New Item" />
 			<var name="wfFieldType" value="Options" />
 			<var name="wfNewFieldName" value="Test Options Field" />
 		</execute>
 
-		<execute macro="WebFormPortlet#saveConfiguration" />
+		<execute macro="Portal.WebFormPortlet#saveConfiguration" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="WebForm#viewPG">
+		<execute macro="Portal.WebForm#viewPG">
 			<var name="wfInformationDescription" value="Your input is valuable to us. Please send us your suggestions." />
 			<var name="wfInformationTitle" value="Suggestions" />
 		</execute>
 
-		<execute macro="WebForm#viewFormFieldOptions">
+		<execute macro="Portal.WebForm#viewFormFieldOptions">
 			<var name="wfFieldName" value="Test Options Field" />
 		</execute>
 
-		<execute macro="WebForm#sendPG" />
+		<execute macro="Portal.WebForm#sendPG" />
 	</command>
 
 	<command name="EditWebFormAndViewOptionalRadioField" priority="4">
-		<execute macro="WebForm#viewPG">
+		<execute macro="Portal.WebForm#viewPG">
 			<var name="wfInformationDescription" value="Your input is valuable to us. Please send us your suggestions." />
 			<var name="wfInformationTitle" value="Suggestions" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="WebFormPortlet#configureSetupFormFieldsPG" />
+		<execute macro="Portal.WebFormPortlet#configureSetupFormFieldsPG" />
 
-		<execute macro="WebFormPortlet#deleteEditableField">
+		<execute macro="Portal.WebFormPortlet#deleteEditableField">
 			<var name="wfFieldName" value="Name" />
 		</execute>
 
-		<execute macro="WebFormPortlet#deleteEditableField">
+		<execute macro="Portal.WebFormPortlet#deleteEditableField">
 			<var name="wfFieldName" value="Rating" />
 		</execute>
 
-		<execute macro="WebFormPortlet#deleteEditableField">
+		<execute macro="Portal.WebFormPortlet#deleteEditableField">
 			<var name="wfFieldName" value="Comments" />
 		</execute>
 
-		<execute macro="WebFormPortlet#editField">
+		<execute macro="Portal.WebFormPortlet#editField">
 			<var name="optional" value="true" />
 			<var name="optionsList" value="1,2,3" />
 			<var name="wfFieldName" value="New Item" />
@@ -387,567 +387,567 @@
 			<var name="wfNewFieldName" value="Test Radio Field" />
 		</execute>
 
-		<execute macro="WebFormPortlet#saveConfiguration" />
+		<execute macro="Portal.WebFormPortlet#saveConfiguration" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="WebForm#viewPG">
+		<execute macro="Portal.WebForm#viewPG">
 			<var name="wfInformationDescription" value="Your input is valuable to us. Please send us your suggestions." />
 			<var name="wfInformationTitle" value="Suggestions" />
 		</execute>
 
-		<execute macro="WebForm#viewFormFieldRadio">
+		<execute macro="Portal.WebForm#viewFormFieldRadio">
 			<var name="optionsList" value="1,2,3" />
 			<var name="wfFieldName" value="Test Radio Field" />
 		</execute>
 
-		<execute macro="WebForm#sendPG" />
+		<execute macro="Portal.WebForm#sendPG" />
 	</command>
 
 	<command name="EditWebFormAndViewOptionalTextBoxField" priority="3">
-		<execute macro="WebForm#viewPG">
+		<execute macro="Portal.WebForm#viewPG">
 			<var name="wfInformationDescription" value="Your input is valuable to us. Please send us your suggestions." />
 			<var name="wfInformationTitle" value="Suggestions" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="WebFormPortlet#configureSetupFormFieldsPG" />
+		<execute macro="Portal.WebFormPortlet#configureSetupFormFieldsPG" />
 
-		<execute macro="WebFormPortlet#deleteEditableField">
+		<execute macro="Portal.WebFormPortlet#deleteEditableField">
 			<var name="wfFieldName" value="Name" />
 		</execute>
 
-		<execute macro="WebFormPortlet#deleteEditableField">
+		<execute macro="Portal.WebFormPortlet#deleteEditableField">
 			<var name="wfFieldName" value="Rating" />
 		</execute>
 
-		<execute macro="WebFormPortlet#deleteEditableField">
+		<execute macro="Portal.WebFormPortlet#deleteEditableField">
 			<var name="wfFieldName" value="Comments" />
 		</execute>
 
-		<execute macro="WebFormPortlet#editField">
+		<execute macro="Portal.WebFormPortlet#editField">
 			<var name="optional" value="true" />
 			<var name="wfFieldName" value="New Item" />
 			<var name="wfFieldType" value="Text Box" />
 			<var name="wfNewFieldName" value="Test Text Box Field" />
 		</execute>
 
-		<execute macro="WebFormPortlet#saveConfiguration" />
+		<execute macro="Portal.WebFormPortlet#saveConfiguration" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="WebForm#viewPG">
+		<execute macro="Portal.WebForm#viewPG">
 			<var name="wfInformationDescription" value="Your input is valuable to us. Please send us your suggestions." />
 			<var name="wfInformationTitle" value="Suggestions" />
 		</execute>
 
-		<execute macro="WebForm#viewFormFieldTextBox">
+		<execute macro="Portal.WebForm#viewFormFieldTextBox">
 			<var name="wfFieldName" value="Test Text Box Field" />
 		</execute>
 
-		<execute macro="WebForm#sendPG" />
+		<execute macro="Portal.WebForm#sendPG" />
 	</command>
 
 	<command name="EditWebFormAndViewOptionalTextField" priority="4">
-		<execute macro="WebForm#viewPG">
+		<execute macro="Portal.WebForm#viewPG">
 			<var name="wfInformationDescription" value="Your input is valuable to us. Please send us your suggestions." />
 			<var name="wfInformationTitle" value="Suggestions" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="WebFormPortlet#configureSetupFormFieldsPG" />
+		<execute macro="Portal.WebFormPortlet#configureSetupFormFieldsPG" />
 
-		<execute macro="WebFormPortlet#deleteEditableField">
+		<execute macro="Portal.WebFormPortlet#deleteEditableField">
 			<var name="wfFieldName" value="Name" />
 		</execute>
 
-		<execute macro="WebFormPortlet#deleteEditableField">
+		<execute macro="Portal.WebFormPortlet#deleteEditableField">
 			<var name="wfFieldName" value="Rating" />
 		</execute>
 
-		<execute macro="WebFormPortlet#deleteEditableField">
+		<execute macro="Portal.WebFormPortlet#deleteEditableField">
 			<var name="wfFieldName" value="Comments" />
 		</execute>
 
-		<execute macro="WebFormPortlet#editField">
+		<execute macro="Portal.WebFormPortlet#editField">
 			<var name="optional" value="true" />
 			<var name="wfFieldName" value="New Item" />
 			<var name="wfFieldType" value="Text" />
 			<var name="wfNewFieldName" value="Test Text Field" />
 		</execute>
 
-		<execute macro="WebFormPortlet#saveConfiguration" />
+		<execute macro="Portal.WebFormPortlet#saveConfiguration" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="WebForm#viewPG">
+		<execute macro="Portal.WebForm#viewPG">
 			<var name="wfInformationDescription" value="Your input is valuable to us. Please send us your suggestions." />
 			<var name="wfInformationTitle" value="Suggestions" />
 		</execute>
 
-		<execute macro="WebForm#viewFormFieldText">
+		<execute macro="Portal.WebForm#viewFormFieldText">
 			<var name="wfFieldName" value="Test Text Field" />
 		</execute>
 
-		<execute macro="WebForm#sendPG" />
+		<execute macro="Portal.WebForm#sendPG" />
 	</command>
 
 	<command name="EditWebFormAndViewParagraphField" priority="4">
-		<execute macro="WebForm#viewPG">
+		<execute macro="Portal.WebForm#viewPG">
 			<var name="wfInformationDescription" value="Your input is valuable to us. Please send us your suggestions." />
 			<var name="wfInformationTitle" value="Suggestions" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="WebFormPortlet#configureSetupFormFieldsPG" />
+		<execute macro="Portal.WebFormPortlet#configureSetupFormFieldsPG" />
 
-		<execute macro="WebFormPortlet#deleteEditableField">
+		<execute macro="Portal.WebFormPortlet#deleteEditableField">
 			<var name="wfFieldName" value="Name" />
 		</execute>
 
-		<execute macro="WebFormPortlet#deleteEditableField">
+		<execute macro="Portal.WebFormPortlet#deleteEditableField">
 			<var name="wfFieldName" value="Rating" />
 		</execute>
 
-		<execute macro="WebFormPortlet#deleteEditableField">
+		<execute macro="Portal.WebFormPortlet#deleteEditableField">
 			<var name="wfFieldName" value="Comments" />
 		</execute>
 
-		<execute macro="WebFormPortlet#editField">
+		<execute macro="Portal.WebFormPortlet#editField">
 			<var name="wfFieldName" value="New Item" />
 			<var name="wfFieldType" value="Paragraph" />
 			<var name="wfNewFieldName" value="Test Paragraph Field" />
 		</execute>
 
-		<execute macro="WebFormPortlet#editParagraphField">
+		<execute macro="Portal.WebFormPortlet#editParagraphField">
 			<var name="wfNewFieldName" value="Test Paragraph Field" />
 			<var name="wfParagraphFieldText" value="Hello Liferay. This is the Test Paragraph Field." />
 		</execute>
 
-		<execute macro="WebFormPortlet#addField">
+		<execute macro="Portal.WebFormPortlet#addField">
 			<var name="wfFieldType" value="Text" />
 			<var name="wfNewFieldName" value="Test Text Field" />
 			<var name="wfPreviousFieldName" value="Test Paragraph Field" />
 		</execute>
 
-		<execute macro="WebFormPortlet#saveConfiguration" />
+		<execute macro="Portal.WebFormPortlet#saveConfiguration" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="WebForm#viewPG">
+		<execute macro="Portal.WebForm#viewPG">
 			<var name="wfInformationDescription" value="Your input is valuable to us. Please send us your suggestions." />
 			<var name="wfInformationTitle" value="Suggestions" />
 		</execute>
 
-		<execute macro="WebForm#viewFormFieldParagraph">
+		<execute macro="Portal.WebForm#viewFormFieldParagraph">
 			<var name="wfParagraphFieldText" value="Hello Liferay. This is the Test Paragraph Field." />
 		</execute>
 
-		<execute macro="WebForm#viewFormFieldText">
+		<execute macro="Portal.WebForm#viewFormFieldText">
 			<var name="wfFieldName" value="Test Text Field" />
 		</execute>
 
-		<execute macro="WebForm#populateFieldText">
+		<execute macro="Portal.WebForm#populateFieldText">
 			<var name="wfFieldName" value="Test Text Field" />
 			<var name="wfFieldValue" value="Welcome to Liferay." />
 		</execute>
 
-		<execute macro="WebForm#sendPG" />
+		<execute macro="Portal.WebForm#sendPG" />
 	</command>
 
 	<command name="EditWebFormAndViewRequiredCheckBoxField" priority="3">
-		<execute macro="WebForm#viewPG">
+		<execute macro="Portal.WebForm#viewPG">
 			<var name="wfInformationDescription" value="Your input is valuable to us. Please send us your suggestions." />
 			<var name="wfInformationTitle" value="Suggestions" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="WebFormPortlet#configureSetupFormFieldsPG" />
+		<execute macro="Portal.WebFormPortlet#configureSetupFormFieldsPG" />
 
-		<execute macro="WebFormPortlet#deleteEditableField">
+		<execute macro="Portal.WebFormPortlet#deleteEditableField">
 			<var name="wfFieldName" value="Name" />
 		</execute>
 
-		<execute macro="WebFormPortlet#deleteEditableField">
+		<execute macro="Portal.WebFormPortlet#deleteEditableField">
 			<var name="wfFieldName" value="Rating" />
 		</execute>
 
-		<execute macro="WebFormPortlet#deleteEditableField">
+		<execute macro="Portal.WebFormPortlet#deleteEditableField">
 			<var name="wfFieldName" value="Comments" />
 		</execute>
 
-		<execute macro="WebFormPortlet#editField">
+		<execute macro="Portal.WebFormPortlet#editField">
 			<var name="wfFieldName" value="New Item" />
 			<var name="wfFieldType" value="Check Box" />
 			<var name="wfNewFieldName" value="Test Check Box Field" />
 		</execute>
 
-		<execute macro="WebFormPortlet#saveConfiguration" />
+		<execute macro="Portal.WebFormPortlet#saveConfiguration" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="WebForm#viewPG">
+		<execute macro="Portal.WebForm#viewPG">
 			<var name="wfInformationDescription" value="Your input is valuable to us. Please send us your suggestions." />
 			<var name="wfInformationTitle" value="Suggestions" />
 		</execute>
 
-		<execute macro="WebForm#viewFormFieldCheckBox">
+		<execute macro="Portal.WebForm#viewFormFieldCheckBox">
 			<var name="wfFieldName" value="Test Check Box Field" />
 		</execute>
 
-		<execute macro="WebForm#sendBlankPG" />
+		<execute macro="Portal.WebForm#sendBlankPG" />
 
-		<execute macro="WebForm#populateFieldCheckBox">
+		<execute macro="Portal.WebForm#populateFieldCheckBox">
 			<var name="wfFieldName" value="Test Check Box Field" />
 			<var name="wfFieldValue" value="true" />
 		</execute>
 
-		<execute macro="WebForm#sendPG" />
+		<execute macro="Portal.WebForm#sendPG" />
 	</command>
 
 	<command name="EditWebFormAndViewRequiredOptionsField" priority="4">
-		<execute macro="WebForm#viewPG">
+		<execute macro="Portal.WebForm#viewPG">
 			<var name="wfInformationDescription" value="Your input is valuable to us. Please send us your suggestions." />
 			<var name="wfInformationTitle" value="Suggestions" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="WebFormPortlet#configureSetupFormFieldsPG" />
+		<execute macro="Portal.WebFormPortlet#configureSetupFormFieldsPG" />
 
-		<execute macro="WebFormPortlet#deleteEditableField">
+		<execute macro="Portal.WebFormPortlet#deleteEditableField">
 			<var name="wfFieldName" value="Name" />
 		</execute>
 
-		<execute macro="WebFormPortlet#deleteEditableField">
+		<execute macro="Portal.WebFormPortlet#deleteEditableField">
 			<var name="wfFieldName" value="Rating" />
 		</execute>
 
-		<execute macro="WebFormPortlet#deleteEditableField">
+		<execute macro="Portal.WebFormPortlet#deleteEditableField">
 			<var name="wfFieldName" value="Comments" />
 		</execute>
 
-		<execute macro="WebFormPortlet#editField">
+		<execute macro="Portal.WebFormPortlet#editField">
 			<var name="wfFieldName" value="New Item" />
 			<var name="wfFieldType" value="Options" />
 			<var name="wfNewFieldName" value="Test Options Field" />
 		</execute>
 
-		<execute macro="WebFormPortlet#saveConfiguration" />
+		<execute macro="Portal.WebFormPortlet#saveConfiguration" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="WebForm#viewPG">
+		<execute macro="Portal.WebForm#viewPG">
 			<var name="wfInformationDescription" value="Your input is valuable to us. Please send us your suggestions." />
 			<var name="wfInformationTitle" value="Suggestions" />
 		</execute>
 
-		<execute macro="WebForm#viewFormFieldOptions">
+		<execute macro="Portal.WebForm#viewFormFieldOptions">
 			<var name="wfFieldName" value="Test Options Field" />
 		</execute>
 
-		<execute macro="WebForm#sendBlankPG" />
+		<execute macro="Portal.WebForm#sendBlankPG" />
 
-		<execute macro="WebFormPortlet#configureSetupFormFieldsPG" />
+		<execute macro="Portal.WebFormPortlet#configureSetupFormFieldsPG" />
 
-		<execute macro="WebFormPortlet#editField">
+		<execute macro="Portal.WebFormPortlet#editField">
 			<var name="optionsList" value="1,2,3" />
 			<var name="wfFieldName" value="Test Options Field" />
 			<var name="wfFieldType" value="Options" />
 			<var name="wfNewFieldName" value="Test Options Field" />
 		</execute>
 
-		<execute macro="WebFormPortlet#saveConfiguration" />
+		<execute macro="Portal.WebFormPortlet#saveConfiguration" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="WebForm#viewFormFieldOptions">
+		<execute macro="Portal.WebForm#viewFormFieldOptions">
 			<var name="wfFieldName" value="Test Options Field" />
 		</execute>
 
-		<execute macro="WebForm#sendPG" />
+		<execute macro="Portal.WebForm#sendPG" />
 	</command>
 
 	<command name="EditWebFormAndViewRequiredRadioField" priority="3">
-		<execute macro="WebForm#viewPG">
+		<execute macro="Portal.WebForm#viewPG">
 			<var name="wfInformationDescription" value="Your input is valuable to us. Please send us your suggestions." />
 			<var name="wfInformationTitle" value="Suggestions" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="WebFormPortlet#configureSetupFormFieldsPG" />
+		<execute macro="Portal.WebFormPortlet#configureSetupFormFieldsPG" />
 
-		<execute macro="WebFormPortlet#deleteEditableField">
+		<execute macro="Portal.WebFormPortlet#deleteEditableField">
 			<var name="wfFieldName" value="Name" />
 		</execute>
 
-		<execute macro="WebFormPortlet#deleteEditableField">
+		<execute macro="Portal.WebFormPortlet#deleteEditableField">
 			<var name="wfFieldName" value="Rating" />
 		</execute>
 
-		<execute macro="WebFormPortlet#deleteEditableField">
+		<execute macro="Portal.WebFormPortlet#deleteEditableField">
 			<var name="wfFieldName" value="Comments" />
 		</execute>
 
-		<execute macro="WebFormPortlet#editField">
+		<execute macro="Portal.WebFormPortlet#editField">
 			<var name="optionsList" value="1,2,3" />
 			<var name="wfFieldName" value="New Item" />
 			<var name="wfFieldType" value="Radio Buttons" />
 			<var name="wfNewFieldName" value="Test Radio Field" />
 		</execute>
 
-		<execute macro="WebFormPortlet#saveConfiguration" />
+		<execute macro="Portal.WebFormPortlet#saveConfiguration" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="WebForm#viewPG">
+		<execute macro="Portal.WebForm#viewPG">
 			<var name="wfInformationDescription" value="Your input is valuable to us. Please send us your suggestions." />
 			<var name="wfInformationTitle" value="Suggestions" />
 		</execute>
 
-		<execute macro="WebForm#viewFormFieldRadio">
+		<execute macro="Portal.WebForm#viewFormFieldRadio">
 			<var name="optionsList" value="1,2,3" />
 			<var name="wfFieldName" value="Test Radio Field" />
 		</execute>
 
-		<execute macro="WebForm#sendBlankPG" />
+		<execute macro="Portal.WebForm#sendBlankPG" />
 
-		<execute macro="WebForm#populateFieldRadio">
+		<execute macro="Portal.WebForm#populateFieldRadio">
 			<var name="wfFieldName" value="Test Radio Field" />
 			<var name="wfFieldValue" value="2" />
 		</execute>
 
-		<execute macro="WebForm#sendPG" />
+		<execute macro="Portal.WebForm#sendPG" />
 	</command>
 
 	<command name="EditWebFormAndViewRequiredTextBoxField" priority="3">
-		<execute macro="WebForm#viewPG">
+		<execute macro="Portal.WebForm#viewPG">
 			<var name="wfInformationDescription" value="Your input is valuable to us. Please send us your suggestions." />
 			<var name="wfInformationTitle" value="Suggestions" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="WebFormPortlet#configureSetupFormFieldsPG" />
+		<execute macro="Portal.WebFormPortlet#configureSetupFormFieldsPG" />
 
-		<execute macro="WebFormPortlet#deleteEditableField">
+		<execute macro="Portal.WebFormPortlet#deleteEditableField">
 			<var name="wfFieldName" value="Name" />
 		</execute>
 
-		<execute macro="WebFormPortlet#deleteEditableField">
+		<execute macro="Portal.WebFormPortlet#deleteEditableField">
 			<var name="wfFieldName" value="Rating" />
 		</execute>
 
-		<execute macro="WebFormPortlet#deleteEditableField">
+		<execute macro="Portal.WebFormPortlet#deleteEditableField">
 			<var name="wfFieldName" value="Comments" />
 		</execute>
 
-		<execute macro="WebFormPortlet#editField">
+		<execute macro="Portal.WebFormPortlet#editField">
 			<var name="wfFieldName" value="New Item" />
 			<var name="wfFieldType" value="Text Box" />
 			<var name="wfNewFieldName" value="Test Text Box Field" />
 		</execute>
 
-		<execute macro="WebFormPortlet#saveConfiguration" />
+		<execute macro="Portal.WebFormPortlet#saveConfiguration" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="WebForm#viewPG">
+		<execute macro="Portal.WebForm#viewPG">
 			<var name="wfInformationDescription" value="Your input is valuable to us. Please send us your suggestions." />
 			<var name="wfInformationTitle" value="Suggestions" />
 		</execute>
 
-		<execute macro="WebForm#viewFormFieldTextBox">
+		<execute macro="Portal.WebForm#viewFormFieldTextBox">
 			<var name="wfFieldName" value="Test Text Box Field" />
 		</execute>
 
-		<execute macro="WebForm#sendBlankPG" />
+		<execute macro="Portal.WebForm#sendBlankPG" />
 
-		<execute macro="WebForm#populateFieldTextBox">
+		<execute macro="Portal.WebForm#populateFieldTextBox">
 			<var name="wfFieldName" value="Test Text Box Field" />
 			<var name="wfFieldValue" value="Page Objects + Hashi = Poshi" />
 		</execute>
 
-		<execute macro="WebForm#sendPG" />
+		<execute macro="Portal.WebForm#sendPG" />
 	</command>
 
 	<command name="EditWebFormAndViewRequiredTextField" priority="4">
-		<execute macro="WebForm#viewPG">
+		<execute macro="Portal.WebForm#viewPG">
 			<var name="wfInformationDescription" value="Your input is valuable to us. Please send us your suggestions." />
 			<var name="wfInformationTitle" value="Suggestions" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="WebFormPortlet#configureSetupFormFieldsPG" />
+		<execute macro="Portal.WebFormPortlet#configureSetupFormFieldsPG" />
 
-		<execute macro="WebFormPortlet#deleteEditableField">
+		<execute macro="Portal.WebFormPortlet#deleteEditableField">
 			<var name="wfFieldName" value="Name" />
 		</execute>
 
-		<execute macro="WebFormPortlet#deleteEditableField">
+		<execute macro="Portal.WebFormPortlet#deleteEditableField">
 			<var name="wfFieldName" value="Rating" />
 		</execute>
 
-		<execute macro="WebFormPortlet#deleteEditableField">
+		<execute macro="Portal.WebFormPortlet#deleteEditableField">
 			<var name="wfFieldName" value="Comments" />
 		</execute>
 
-		<execute macro="WebFormPortlet#editField">
+		<execute macro="Portal.WebFormPortlet#editField">
 			<var name="wfFieldName" value="New Item" />
 			<var name="wfFieldType" value="Text" />
 			<var name="wfNewFieldName" value="Test Text Field" />
 		</execute>
 
-		<execute macro="WebFormPortlet#saveConfiguration" />
+		<execute macro="Portal.WebFormPortlet#saveConfiguration" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="WebForm#viewPG">
+		<execute macro="Portal.WebForm#viewPG">
 			<var name="wfInformationDescription" value="Your input is valuable to us. Please send us your suggestions." />
 			<var name="wfInformationTitle" value="Suggestions" />
 		</execute>
 
-		<execute macro="WebForm#viewFormFieldText">
+		<execute macro="Portal.WebForm#viewFormFieldText">
 			<var name="wfFieldName" value="Test Text Field" />
 		</execute>
 
-		<execute macro="WebForm#sendBlankPG" />
+		<execute macro="Portal.WebForm#sendBlankPG" />
 
-		<execute macro="WebForm#populateFieldText">
+		<execute macro="Portal.WebForm#populateFieldText">
 			<var name="wfFieldName" value="Test Text Field" />
 			<var name="wfFieldValue" value="Hello" />
 		</execute>
 
-		<execute macro="WebForm#sendPG" />
+		<execute macro="Portal.WebForm#sendPG" />
 	</command>
 
 	<command name="SendWebForm" priority="4">
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="WebFormConfiguration#CONFIGURATION_IFRAME" />
+		<execute function="Portal.SelectFrame" locator1="WebFormConfiguration#CONFIGURATION_IFRAME" />
 
-		<execute macro="WebFormPortlet#viewEditableField">
+		<execute macro="Portal.WebFormPortlet#viewEditableField">
 			<var name="wfFieldName" value="Name" />
 		</execute>
 
-		<execute macro="WebFormPortlet#viewEditableField">
+		<execute macro="Portal.WebFormPortlet#viewEditableField">
 			<var name="wfFieldName" value="Rating" />
 		</execute>
 
-		<execute macro="WebFormPortlet#viewEditableField">
+		<execute macro="Portal.WebFormPortlet#viewEditableField">
 			<var name="wfFieldName" value="Comments" />
 		</execute>
 
-		<execute function="SelectFrameTop" value1="relative=top" />
+		<execute function="Portal.SelectFrameTop" value1="relative=top" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="WebForm#populateFieldText">
+		<execute macro="Portal.WebForm#populateFieldText">
 			<var name="wfFieldName" value="Name" />
 			<var name="wfFieldValue" value="Test Test" />
 		</execute>
 
-		<execute macro="WebForm#populateFieldOptions">
+		<execute macro="Portal.WebForm#populateFieldOptions">
 			<var name="wfFieldName" value="Rating" />
 			<var name="wfFieldValue" value="Excellent" />
 		</execute>
 
-		<execute macro="WebForm#populateFieldTextBox">
+		<execute macro="Portal.WebForm#populateFieldTextBox">
 			<var name="wfFieldName" value="Comments" />
 			<var name="wfFieldValue" value="Page Objects + Hashi = Poshi" />
 		</execute>
 
-		<execute macro="WebForm#sendPG" />
+		<execute macro="Portal.WebForm#sendPG" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="${pageName}" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="WebFormConfiguration#CONFIGURATION_IFRAME" />
-		<execute function="AssertTextEquals" locator1="WebFormConfiguration#SETUP_FORM_FIELDS_INFO_MESSAGE" value1="There is existing form data. Please export and delete it before making changes to the fields." />
+		<execute function="Portal.SelectFrame" locator1="WebFormConfiguration#CONFIGURATION_IFRAME" />
+		<execute function="Portal.AssertTextEquals" locator1="WebFormConfiguration#SETUP_FORM_FIELDS_INFO_MESSAGE" value1="There is existing form data. Please export and delete it before making changes to the fields." />
 
-		<execute macro="WebFormPortlet#viewEditableFieldNotPresent">
+		<execute macro="Portal.WebFormPortlet#viewEditableFieldNotPresent">
 			<var name="wfFieldName" value="Name" />
 		</execute>
 
-		<execute macro="WebFormPortlet#viewSubmittedField">
+		<execute macro="Portal.WebFormPortlet#viewSubmittedField">
 			<var name="wfFieldName" value="Name" />
 			<var name="wfFieldType" value="Text" />
 		</execute>
 
-		<execute macro="WebFormPortlet#viewEditableFieldNotPresent">
+		<execute macro="Portal.WebFormPortlet#viewEditableFieldNotPresent">
 			<var name="wfFieldName" value="Rating" />
 		</execute>
 
-		<execute macro="WebFormPortlet#viewSubmittedField">
+		<execute macro="Portal.WebFormPortlet#viewSubmittedField">
 			<var name="optionsList" value="Excellent,Good,Satisfactory,Poor" />
 			<var name="wfFieldName" value="Rating" />
 			<var name="wfFieldType" value="Options" />
 		</execute>
 
-		<execute macro="WebFormPortlet#viewEditableFieldNotPresent">
+		<execute macro="Portal.WebFormPortlet#viewEditableFieldNotPresent">
 			<var name="wfFieldName" value="Comments" />
 		</execute>
 
-		<execute macro="WebFormPortlet#viewSubmittedField">
+		<execute macro="Portal.WebFormPortlet#viewSubmittedField">
 			<var name="wfFieldName" value="Comments" />
 			<var name="wfFieldType" value="Text Box" />
 		</execute>
 
-		<execute function="SelectFrameTop" value1="relative=top" />
+		<execute function="Portal.SelectFrameTop" value1="relative=top" />
 	</command>
 </definition>

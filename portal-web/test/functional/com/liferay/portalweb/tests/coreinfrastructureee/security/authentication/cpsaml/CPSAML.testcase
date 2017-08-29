@@ -9,20 +9,20 @@
 	<!-- All test cases are currently configured to run Liferay SAML as the IdP and Liferay SAML as the SP. This will change as more SAML implmentations are added to this test suite (ie Shibboleth) -->
 
 	<set-up>
-		<execute macro="User#firstLoginPG">
+		<execute macro="Portal.User#firstLoginPG">
 			<var name="rememberMeChecked" value="false" />
 		</execute>
 
-		<execute macro="SAML#configureLiferaySAMLAsIdP">
+		<execute macro="Portal.SAML#configureLiferaySAMLAsIdP">
 			<var name="samlEntityID" value="samlidp" />
 		</execute>
 
-		<execute macro="SAML#configureLiferaySAMLAsSP">
+		<execute macro="Portal.SAML#configureLiferaySAMLAsSP">
 			<var name="samlEntityID" value="samlsp" />
 			<var name="spURL" value="http://www.able.com:9080/" />
 		</execute>
 
-		<execute macro="User#logoutPG" />
+		<execute macro="Portal.User#logoutPG" />
 	</set-up>
 
 	<command name="ViewIdPInitiatedSSO" priority="4">
@@ -34,7 +34,7 @@
 
 		<!-- Verify SP is logged in -->
 
-		<execute macro="SAML#executeIdPInitiatedSSO">
+		<execute macro="Portal.SAML#executeIdPInitiatedSSO">
 			<var name="idpInitiatedSSOURL" value="${portalURL}/c/portal/saml/sso?entityId=samlsp&amp;RelayState=http://www.able.com:9080" />
 			<var name="password" value="test" />
 			<var name="rememberMeChecked" value="false" />
@@ -43,33 +43,33 @@
 			<var name="userEmailAddress" value="test@liferay.com" />
 		</execute>
 
-		<execute macro="User#viewLoggedInPG">
+		<execute macro="Portal.User#viewLoggedInPG">
 			<var name="userFirstName" value="Test" />
 			<var name="userLastName" value="Test" />
 		</execute>
 
 		<!-- Verify IdP is logged in -->
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="User#viewLoggedInPG">
+		<execute macro="Portal.User#viewLoggedInPG">
 			<var name="userFirstName" value="Test" />
 			<var name="userLastName" value="Test" />
 		</execute>
 
 		<!-- Logout SP and verify SP is logged out-->
 
-		<execute macro="User#logoutPG">
+		<execute macro="Portal.User#logoutPG">
 			<var name="specificURL" value="http://www.able.com:9080" />
 		</execute>
 
-		<execute macro="User#viewLoggedOutPG" />
+		<execute macro="Portal.User#viewLoggedOutPG" />
 
 		<!-- Verify IdP is also logged out -->
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="User#viewLoggedOutPG" />
+		<execute macro="Portal.User#viewLoggedOutPG" />
 	</command>
 
 	<command name="ViewIdPInitiatedSSOWithRememberMeChecked" priority="4">
@@ -81,7 +81,7 @@
 
 		<!-- Verify SP is logged in -->
 
-		<execute macro="SAML#executeIdPInitiatedSSO">
+		<execute macro="Portal.SAML#executeIdPInitiatedSSO">
 			<var name="idpInitiatedSSOURL" value="${portalURL}/c/portal/saml/sso?entityId=samlsp&amp;RelayState=http://www.able.com:9080" />
 			<var name="password" value="test" />
 			<var name="rememberMeChecked" value="true" />
@@ -90,33 +90,33 @@
 			<var name="userEmailAddress" value="test@liferay.com" />
 		</execute>
 
-		<execute macro="User#viewLoggedInPG">
+		<execute macro="Portal.User#viewLoggedInPG">
 			<var name="userFirstName" value="Test" />
 			<var name="userLastName" value="Test" />
 		</execute>
 
 		<!-- Verify IdP is logged in -->
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="User#viewLoggedInPG">
+		<execute macro="Portal.User#viewLoggedInPG">
 			<var name="userFirstName" value="Test" />
 			<var name="userLastName" value="Test" />
 		</execute>
 
 		<!-- Logout SP and verify SP is logged out-->
 
-		<execute macro="User#logoutPG">
+		<execute macro="Portal.User#logoutPG">
 			<var name="specificURL" value="http://www.able.com:9080" />
 		</execute>
 
-		<execute macro="User#viewLoggedOutPG" />
+		<execute macro="Portal.User#viewLoggedOutPG" />
 
 		<!-- Verify IdP is also logged out -->
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="User#viewLoggedOutPG" />
+		<execute macro="Portal.User#viewLoggedOutPG" />
 	</command>
 
 	<command name="ViewSingleLogoutHTTPPostBindingInConsole" priority="4">
@@ -127,23 +127,23 @@
 
 		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
 
-		<execute macro="User#loginPG">
+		<execute macro="Portal.User#loginPG">
 			<var name="password" value="test" />
 			<var name="userEmailAddress" value="test@liferay.com" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="Portal.ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Server Administration" />
 		</execute>
 
-		<execute macro="ServerAdministration#addCategoryLogLevels">
+		<execute macro="Portal.ServerAdministration#addCategoryLogLevels">
 			<var name="catagoryName" value="com.liferay.saml" />
 			<var name="categoryPriority" value="DEBUG" />
 		</execute>
 
-		<execute macro="User#logoutPG" />
+		<execute macro="Portal.User#logoutPG" />
 
-		<execute macro="SAML#executeIdPInitiatedSSO">
+		<execute macro="Portal.SAML#executeIdPInitiatedSSO">
 			<var name="idpInitiatedSSOURL" value="${portalURL}/c/portal/saml/sso?entityId=samlsp&amp;RelayState=http://www.able.com:9080" />
 			<var name="password" value="test" />
 			<var name="rememberMeChecked" value="true" />
@@ -152,83 +152,83 @@
 			<var name="userEmailAddress" value="test@liferay.com" />
 		</execute>
 
-		<execute function="AssertConsoleTextPresent" value1="Sending SAML message &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;_&lt;saml2p:Response Destination=&quot;http://www.able.com:9080/c/portal/saml/acs&quot;" />
+		<execute function="Portal.AssertConsoleTextPresent" value1="Sending SAML message &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;_&lt;saml2p:Response Destination=&quot;http://www.able.com:9080/c/portal/saml/acs&quot;" />
 
-		<execute macro="User#logoutPG">
+		<execute macro="Portal.User#logoutPG">
 			<var name="specificURL" value="http://www.able.com:9080" />
 		</execute>
 
-		<execute function="AssertConsoleTextPresent" value1="Validation of protocol message signature succeeded, message type: {urn:oasis:names:tc:SAML:2.0:protocol}LogoutRequest" />
+		<execute function="Portal.AssertConsoleTextPresent" value1="Validation of protocol message signature succeeded, message type: {urn:oasis:names:tc:SAML:2.0:protocol}LogoutRequest" />
 	</command>
 
 	<command name="ViewSingleLogoutWithMultipleSPs" priority="4">
 		<property name="app.server.bundles.size" value="2" />
 
-		<execute macro="User#loginPG">
+		<execute macro="Portal.User#loginPG">
 			<var name="password" value="test" />
 			<var name="userEmailAddress" value="test@liferay.com" />
 		</execute>
 
-		<execute macro="SAML#configureLiferaySAMLAsSP">
+		<execute macro="Portal.SAML#configureLiferaySAMLAsSP">
 			<var name="samlEntityID" value="samlsp2" />
 			<var name="spURL" value="http://www.baker.com:10080/" />
 		</execute>
 
-		<execute macro="User#logoutPG" />
+		<execute macro="Portal.User#logoutPG" />
 
-		<execute macro="SAML#executeSPInitiatedSSO">
+		<execute macro="Portal.SAML#executeSPInitiatedSSO">
 			<var name="password" value="test" />
 			<var name="specificURL" value="http://www.able.com:9080" />
 			<var name="spURL" value="http://www.able.com:9080/" />
 			<var name="userEmailAddress" value="test@liferay.com" />
 		</execute>
 
-		<execute macro="User#viewLoggedInPG">
+		<execute macro="Portal.User#viewLoggedInPG">
 			<var name="userFirstName" value="Test" />
 			<var name="userLastName" value="Test" />
 		</execute>
 
 		<!-- Verify IdP is logged in -->
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="User#viewLoggedInPG">
+		<execute macro="Portal.User#viewLoggedInPG">
 			<var name="userFirstName" value="Test" />
 			<var name="userLastName" value="Test" />
 		</execute>
 
-		<execute macro="Navigator#openSpecificURL">
+		<execute macro="Portal.Navigator#openSpecificURL">
 			<var name="url" value="http://www.baker.com:10080" />
 		</execute>
 
-		<execute macro="Navigator#gotoLoginPage" />
+		<execute macro="Portal.Navigator#gotoLoginPage" />
 
-		<execute macro="User#viewLoggedInPG">
+		<execute macro="Portal.User#viewLoggedInPG">
 			<var name="userFirstName" value="Test" />
 			<var name="userLastName" value="Test" />
 		</execute>
 
 		<!-- Initiate Single Logout for first SP -->
 
-		<execute macro="User#logoutPG">
+		<execute macro="Portal.User#logoutPG">
 			<var name="specificURL" value="http://www.able.com:9080" />
 		</execute>
 
-		<execute macro="User#viewLoggedOutPG" />
+		<execute macro="Portal.User#viewLoggedOutPG" />
 
 		<!-- Verify IdP is logged out -->
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="User#viewLoggedOutPG" />
+		<execute macro="Portal.User#viewLoggedOutPG" />
 
 		<!-- Verify second SP is logged out -->
 
-		<execute macro="Navigator#openSpecificURL">
+		<execute macro="Portal.Navigator#openSpecificURL">
 			<var name="url" value="http://www.baker.com:10080" />
 		</execute>
 
-		<execute macro="User#viewLoggedOutPG" />
+		<execute macro="Portal.User#viewLoggedOutPG" />
 	</command>
 
 	<command name="ViewSPInitiatedSSO" priority="4">
@@ -236,39 +236,39 @@
 
 		<!-- Verify SP is logged in -->
 
-		<execute macro="SAML#executeSPInitiatedSSO">
+		<execute macro="Portal.SAML#executeSPInitiatedSSO">
 			<var name="password" value="test" />
 			<var name="specificURL" value="http://www.able.com:9080" />
 			<var name="spURL" value="http://www.able.com:9080/" />
 			<var name="userEmailAddress" value="test@liferay.com" />
 		</execute>
 
-		<execute macro="User#viewLoggedInPG">
+		<execute macro="Portal.User#viewLoggedInPG">
 			<var name="userFirstName" value="Test" />
 			<var name="userLastName" value="Test" />
 		</execute>
 
 		<!-- Verify IdP is logged in -->
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="User#viewLoggedInPG">
+		<execute macro="Portal.User#viewLoggedInPG">
 			<var name="userFirstName" value="Test" />
 			<var name="userLastName" value="Test" />
 		</execute>
 
 		<!-- Logout SP and verify SP is logged out-->
 
-		<execute macro="User#logoutPG">
+		<execute macro="Portal.User#logoutPG">
 			<var name="specificURL" value="http://www.able.com:9080" />
 		</execute>
 
-		<execute macro="User#viewLoggedOutPG" />
+		<execute macro="Portal.User#viewLoggedOutPG" />
 
 		<!-- Verify IdP is also logged out -->
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="User#viewLoggedOutPG" />
+		<execute macro="Portal.User#viewLoggedOutPG" />
 	</command>
 </definition>

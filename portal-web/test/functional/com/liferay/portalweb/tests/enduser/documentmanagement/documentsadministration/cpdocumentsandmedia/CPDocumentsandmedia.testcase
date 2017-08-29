@@ -4,9 +4,9 @@
 	<property name="testray.main.component.name" value="Documents Management" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 	</set-up>
 
 	<tear-down>
@@ -15,14 +15,14 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="DMDocument#tearDownCP" />
+				<execute macro="Portal.DMDocument#tearDownCP" />
 
-				<execute macro="DMFolder#tearDownCP" />
+				<execute macro="Portal.DMFolder#tearDownCP" />
 
-				<execute macro="User#logoutPG" />
+				<execute macro="Portal.User#logoutPG" />
 			</else>
 		</if>
 	</tear-down>
@@ -30,11 +30,11 @@
 	<command name="AddContract" priority="4">
 		<description message="This is a use case for LPS-42515" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Documents and Media" />
 		</execute>
 
-		<execute macro="DMDocument#addContractCP">
+		<execute macro="Portal.DMDocument#addContractCP">
 			<var name="dmContractDealName" value="DM Contract Deal Name" />
 			<var name="dmContractDescription" value="DM Contract Description" />
 			<var name="dmContractFile" value="Document_1.pdf" />
@@ -45,24 +45,24 @@
 			<var name="expirationDate" value="06/15/2017" />
 		</execute>
 
-		<execute macro="DMNavigator#gotoDocumentCP">
+		<execute macro="Portal.DMNavigator#gotoDocumentCP">
 			<var name="dmDocumentTitle" value="DM Contract Title" />
 		</execute>
 
-		<execute macro="DMDocument#viewDocumentTypePG">
+		<execute macro="Portal.DMDocument#viewDocumentTypePG">
 			<var name="dateValue" value="6/1/17" />
 			<var name="documentType" value="Contract" />
 			<var name="selectOption" value="NDA" />
 			<var name="textContent" value="DM Contract Legal Reviewer" />
 		</execute>
 
-		<execute macro="DMDocument#viewDocumentTypePG">
+		<execute macro="Portal.DMDocument#viewDocumentTypePG">
 			<var name="dateValue" value="6/15/17" />
 			<var name="selectOption" value="Draft" />
 			<var name="textContent" value="DM Contract Signing Authority" />
 		</execute>
 
-		<execute macro="DMDocument#viewDocumentTypePG">
+		<execute macro="Portal.DMDocument#viewDocumentTypePG">
 			<var name="textContent" value="DM Contract Deal Name" />
 		</execute>
 	</command>
@@ -71,54 +71,54 @@
 		<property name="portal.acceptance" value="pending" />
 		<property name="testray.component.names" value="Training" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="Portal.ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addCP">
+		<execute macro="Portal.Site#addCP">
 			<var name="siteName" value="Site Name" />
 			<var name="siteType" value="Blank" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Documents and Media" />
 		</execute>
 
-		<execute macro="DMDocument#addCP">
+		<execute macro="Portal.DMDocument#addCP">
 			<var name="dmDocumentDescription" value="DM Document Description" />
 			<var name="dmDocumentFile" value="Document_1.txt" />
 			<var name="dmDocumentTitle" value="DM Document Title" />
 		</execute>
 
-		<execute macro="DMNavigator#gotoDocumentCP">
+		<execute macro="Portal.DMNavigator#gotoDocumentCP">
 			<var name="dmDocumentTitle" value="DM Document Title" />
 		</execute>
 
-		<execute macro="DMDocument#viewCP">
+		<execute macro="Portal.DMDocument#viewCP">
 			<var name="dmDocumentTitle" value="DM Document Title" />
 		</execute>
 
-		<execute macro="Navigator#openSiteURL">
+		<execute macro="Portal.Navigator#openSiteURL">
 			<var name="siteName" value="Liferay" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Documents and Media" />
 		</execute>
 
-		<execute macro="DMDocument#addDMShortcutCP">
+		<execute macro="Portal.DMDocument#addDMShortcutCP">
 			<var name="dmDocumentDescription" value="DM Document Description" />
 			<var name="dmDocumentTitle" value="DM Document Title" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="DMNavigator#gotoDocumentCP">
+		<execute macro="Portal.DMNavigator#gotoDocumentCP">
 			<var name="dmDocumentTitle" value="DM Document Title" />
 		</execute>
 
-		<execute macro="DMDocument#viewCP">
+		<execute macro="Portal.DMDocument#viewCP">
 			<var name="dmDocumentSize" value="0KB" />
 			<var name="dmDocumentTitle" value="DM Document Title" />
 		</execute>
@@ -127,41 +127,41 @@
 	<command name="EditDocument" priority="5">
 		<property name="portal.acceptance" value="true" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Documents and Media" />
 		</execute>
 
-		<execute macro="DMDocument#addCP">
+		<execute macro="Portal.DMDocument#addCP">
 			<var name="dmDocumentDescription" value="DM Document Description" />
 			<var name="dmDocumentFile" value="Document_1.txt" />
 			<var name="dmDocumentTitle" value="DM Document Title" />
 		</execute>
 
-		<execute macro="DMNavigator#gotoDocumentCP">
+		<execute macro="Portal.DMNavigator#gotoDocumentCP">
 			<var name="dmDocumentTitle" value="DM Document Title" />
 		</execute>
 
-		<execute macro="DMDocument#viewCP">
+		<execute macro="Portal.DMDocument#viewCP">
 			<var name="dmDocumentSize" value="0KB" />
 			<var name="dmDocumentTitle" value="DM Document Title" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Documents and Media" />
 		</execute>
 
-		<execute macro="DMDocument#editCP">
+		<execute macro="Portal.DMDocument#editCP">
 			<var name="dmDocumentDescription" value="DM Document Description1" />
 			<var name="dmDocumentDescriptionEdit" value="DM Document Description Edit" />
 			<var name="dmDocumentTitle" value="DM Document Title" />
 			<var name="dmDocumentTitleEdit" value="DM Document Title Edit" />
 		</execute>
 
-		<execute macro="DMDocument#viewEditCP">
+		<execute macro="Portal.DMDocument#viewEditCP">
 			<var name="dmDocumentTitleEdit" value="DM Document Title Edit" />
 		</execute>
 	</command>
@@ -170,111 +170,111 @@
 		<property name="portal.acceptance" value="true" />
 		<property name="testray.component.names" value="Training" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Documents and Media" />
 		</execute>
 
-		<execute macro="DMFolder#addCP">
+		<execute macro="Portal.DMFolder#addCP">
 			<var name="dmFolderDescription" value="DM Folder Description" />
 			<var name="dmFolderName" value="DM Folder Name" />
 		</execute>
 
-		<execute macro="DMFolder#viewCP">
+		<execute macro="Portal.DMFolder#viewCP">
 			<var name="dmFolderName" value="DM Folder Name" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Documents and Media" />
 		</execute>
 
-		<execute macro="DMFolder#editCP">
+		<execute macro="Portal.DMFolder#editCP">
 			<var name="dmFolderDescription" value="DM Folder Description" />
 			<var name="dmFolderDescriptionEdit" value="DM Folder Description Edit" />
 			<var name="dmFolderName" value="DM Folder Name" />
 			<var name="dmFolderNameEdit" value="DM Folder Name Name" />
 		</execute>
 
-		<execute macro="DMFolder#viewEditCP">
+		<execute macro="Portal.DMFolder#viewEditCP">
 			<var name="dmFolderNameEdit" value="DM Folder Name Name" />
 		</execute>
 	</command>
 
 	<command name="MoveDocumentToFolder" priority="5">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Documents and Media" />
 		</execute>
 
-		<execute macro="DMDocument#addCP">
+		<execute macro="Portal.DMDocument#addCP">
 			<var name="dmDocumentDescription" value="DM Document Description1" />
 			<var name="dmDocumentFile" value="Document_1.txt" />
 			<var name="dmDocumentTitle" value="DM Document Title" />
 		</execute>
 
-		<execute macro="DMNavigator#gotoDocumentCP">
+		<execute macro="Portal.DMNavigator#gotoDocumentCP">
 			<var name="dmDocumentTitle" value="DM Document Title" />
 		</execute>
 
-		<execute macro="DMDocument#viewCP">
+		<execute macro="Portal.DMDocument#viewCP">
 			<var name="dmDocumentSize" value="0KB" />
 			<var name="dmDocumentTitle" value="DM Document Title" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Documents and Media" />
 		</execute>
 
-		<execute macro="DMFolder#addCP">
+		<execute macro="Portal.DMFolder#addCP">
 			<var name="dmFolderDescription" value="DM Folder Description" />
 			<var name="dmFolderName" value="DM Folder Name" />
 		</execute>
 
-		<execute macro="DMFolder#viewCP">
+		<execute macro="Portal.DMFolder#viewCP">
 			<var name="dmFolderName" value="DM Folder Name" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Documents and Media" />
 		</execute>
 
-		<execute macro="DMDocument#moveToFolderCP">
+		<execute macro="Portal.DMDocument#moveToFolderCP">
 			<var name="dmDocumentTitle" value="DM Document Title" />
 			<var name="dmFolderName" value="DM Folder Name" />
 		</execute>
 
-		<execute macro="DMDocument#viewMovedToFolderCP">
+		<execute macro="Portal.DMDocument#viewMovedToFolderCP">
 			<var name="dmDocumentTitle" value="DM Document Title" />
 			<var name="dmFolderName" value="DM Folder Name" />
 		</execute>
 	</command>
 
 	<command name="MoveFolderToFolder" priority="4">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Documents and Media" />
 		</execute>
 
-		<execute macro="DMFolder#addCP">
+		<execute macro="Portal.DMFolder#addCP">
 			<var name="dmFolderDescription" value="DM Folder1 Description" />
 			<var name="dmFolderName" value="DM Folder1 Name" />
 		</execute>
 
-		<execute macro="DMFolder#addCP">
+		<execute macro="Portal.DMFolder#addCP">
 			<var name="dmFolderDescription" value="DM Folder2 Description" />
 			<var name="dmFolderName" value="DM Folder2 Name" />
 		</execute>
 
-		<execute macro="DMFolder#moveToFolderCP">
+		<execute macro="Portal.DMFolder#moveToFolderCP">
 			<var name="dmFolderName" value="DM Folder1 Name" />
 			<var name="dmFolderName" value="DM Folder2 Name" />
 			<var name="dmFolderName1" value="DM Folder1 Name" />
@@ -285,23 +285,23 @@
 	<command name="MoveToRecycleBinDocument" priority="5">
 		<property name="portal.acceptance" value="true" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Documents and Media" />
 		</execute>
 
-		<execute macro="DMDocument#addCP">
+		<execute macro="Portal.DMDocument#addCP">
 			<var name="dmDocumentDescription" value="DM Document Description1" />
 			<var name="dmDocumentFile" value="Document_1.txt" />
 			<var name="dmDocumentTitle" value="DM Document Title" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Documents and Media" />
 		</execute>
 
-		<execute macro="DMDocument#moveToRecycleBinCP">
+		<execute macro="Portal.DMDocument#moveToRecycleBinCP">
 			<var name="assetType" value="Document" />
 			<var name="dmDocumentTitle" value="DM Document Title" />
 		</execute>
@@ -310,105 +310,105 @@
 	<command name="MoveToRecycleBinFolder" priority="5">
 		<property name="portal.acceptance" value="true" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Documents and Media" />
 		</execute>
 
-		<execute macro="DMFolder#addCP">
+		<execute macro="Portal.DMFolder#addCP">
 			<var name="dmFolderDescription" value="DM Folder Description" />
 			<var name="dmFolderName" value="DM Folder Name" />
 		</execute>
 
-		<execute macro="DMFolder#viewCP">
+		<execute macro="Portal.DMFolder#viewCP">
 			<var name="dmFolderName" value="DM Folder Name" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Documents and Media" />
 		</execute>
 
-		<execute macro="DMFolder#moveToRecycleBinCP">
+		<execute macro="Portal.DMFolder#moveToRecycleBinCP">
 			<var name="assetType" value="Documents Folder" />
 			<var name="dmFolderName" value="DM Folder Name" />
 		</execute>
 	</command>
 
 	<command name="RotateImageViaDMSiteAdmin" priority="4">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Documents and Media" />
 		</execute>
 
-		<execute macro="DMDocument#addCP">
+		<execute macro="Portal.DMDocument#addCP">
 			<var name="dmDocumentDescription" value="DM Document Description" />
 			<var name="dmDocumentFile" value="Document_2.jpg" />
 			<var name="dmDocumentTitle" value="Document_2.jpg" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Documents and Media" />
 		</execute>
 
-		<execute function="AssertVisible" locator1="Portlet#HEADER" value1="Documents and Media" />
+		<execute function="Portal.AssertVisible" locator1="Portlet#HEADER" value1="Documents and Media" />
 
-		<execute macro="ImageEditor#gotoImageEditorViaDM">
+		<execute macro="Portal.ImageEditor#gotoImageEditorViaDM">
 			<var name="dmDocumentTitle" value="Document_2.jpg" />
 		</execute>
 
-		<execute macro="ImageEditor#rotateImage">
+		<execute macro="Portal.ImageEditor#rotateImage">
 			<var name="rotateDirection" value="left" />
 		</execute>
 
-		<execute function="Pause" locator1="3000" />
+		<execute function="Portal.Pause" locator1="3000" />
 
-		<execute macro="ImageEditor#applyChangesAndSaveFile" />
+		<execute macro="Portal.ImageEditor#applyChangesAndSaveFile" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Documents and Media" />
 		</execute>
 
-		<execute macro="DMNavigator#gotoDocumentCP">
+		<execute macro="Portal.DMNavigator#gotoDocumentCP">
 			<var name="dmDocumentTitle" value="Document_2.jpg" />
 		</execute>
 
-		<execute macro="DMDocument#viewDocumentVersionNumberCmdPG">
+		<execute macro="Portal.DMDocument#viewDocumentVersionNumberCmdPG">
 			<var name="dmDocumentVersionNumber" value="1.1" />
 		</execute>
 	</command>
 
 	<command name="SearchForDocumentInHomeFolder" priority="4">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Documents and Media" />
 		</execute>
 
-		<execute macro="DMDocument#addCP">
+		<execute macro="Portal.DMDocument#addCP">
 			<var name="dmDocumentDescription" value="DM Document Description" />
 			<var name="dmDocumentFile" value="Document_1.txt" />
 			<var name="dmDocumentTitle" value="DM Document Title" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Documents and Media" />
 		</execute>
 
-		<execute macro="DMDocument#searchCP">
+		<execute macro="Portal.DMDocument#searchCP">
 			<var name="dmDocumentKeyword" value="DM Document Title" />
 		</execute>
 
-		<execute macro="DMDocument#viewSearchResultsCP">
+		<execute macro="Portal.DMDocument#viewSearchResultsCP">
 			<var name="dmDocumentTitle" value="DM Document Title" />
 		</execute>
 	</command>
@@ -416,28 +416,28 @@
 	<command name="ViewImageEditorControls" priority="5">
 		<property name="portal.acceptance" value="quarantine" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Documents and Media" />
 		</execute>
 
-		<execute macro="DMDocument#addCP">
+		<execute macro="Portal.DMDocument#addCP">
 			<var name="dmDocumentDescription" value="DM Document Description" />
 			<var name="dmDocumentFile" value="Document_1.jpg" />
 			<var name="dmDocumentTitle" value="Document_1.jpg" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Documents and Media" />
 		</execute>
 
-		<execute macro="ImageEditor#gotoImageEditorViaDM">
+		<execute macro="Portal.ImageEditor#gotoImageEditorViaDM">
 			<var name="dmDocumentTitle" value="Document_1.jpg" />
 		</execute>
 
-		<execute macro="ImageEditor#viewBaseControls" />
+		<execute macro="Portal.ImageEditor#viewBaseControls" />
 	</command>
 </definition>

@@ -4,9 +4,9 @@
 	<property name="testray.main.component.name" value="Bookmarks" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 	</set-up>
 
 	<tear-down>
@@ -15,36 +15,36 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="Bookmark#tearDownCP" />
+				<execute macro="Portal.Bookmark#tearDownCP" />
 
-				<execute macro="BookmarksFolder#tearDownCP" />
+				<execute macro="Portal.BookmarksFolder#tearDownCP" />
 			</else>
 		</if>
 	</tear-down>
 
 	<command name="AddBookmark" priority="4">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="Bookmark#addCP">
+		<execute macro="Portal.Bookmark#addCP">
 			<var name="bookmarkDescription" value="This is a test bookmark!" />
 			<var name="bookmarkName" value="Test Bookmark" />
 			<var name="bookmarkURL" value="https://www.liferay.com" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="Bookmark#viewBookmark">
+		<execute macro="Portal.Bookmark#viewBookmark">
 			<var name="bookmarkName" value="Test Bookmark" />
 			<var name="bookmarkURL" value="https://www.liferay.com" />
 		</execute>
@@ -54,74 +54,74 @@
 		<property name="portal.acceptance" value="true" />
 		<property name="testray.component.names" value="Training" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="Bookmark#addCP">
+		<execute macro="Portal.Bookmark#addCP">
 			<var name="bookmarkDescription" value="This is a test bookmark!" />
 			<var name="bookmarkName" value="Test Bookmark" />
 			<var name="bookmarkURL" value="https://www.liferay.com" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="Bookmark#addCP">
+		<execute macro="Portal.Bookmark#addCP">
 			<var name="bookmarkDescription" value="This is another test bookmark!" />
 			<var name="bookmarkName" value="Test Bookmark 2" />
 			<var name="bookmarkURL" value="http://digg.com" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="Bookmark#viewBookmark">
+		<execute macro="Portal.Bookmark#viewBookmark">
 			<var name="bookmarkName" value="Test Bookmark" />
 			<var name="bookmarkURL" value="https://www.liferay.com" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="Bookmark#viewBookmark">
+		<execute macro="Portal.Bookmark#viewBookmark">
 			<var name="bookmarkName" value="Test Bookmark 2" />
 			<var name="bookmarkURL" value="http://digg.com" />
 		</execute>
 	</command>
 
 	<command name="AddFolder" priority="4">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="BookmarksFolder#addCP">
+		<execute macro="Portal.BookmarksFolder#addCP">
 			<var name="folderDescription" value="This is a test bookmarks folder!" />
 			<var name="folderName" value="Test Bookmarks Folder" />
 		</execute>
 	</command>
 
 	<command name="AddIncorrectURLBookmark" priority="4">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="Bookmark#addIncorrectURLCP">
+		<execute macro="Portal.Bookmark#addIncorrectURLCP">
 			<var name="bookmarkDescription" value="This is a test bookmark!" />
 			<var name="bookmarkName" value="Test Bookmark" />
 			<var name="bookmarkURL" value="www.liferay.com" />
@@ -129,95 +129,95 @@
 	</command>
 
 	<command name="AddNullBookmark" priority="4">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="Bookmark#addNullCP" />
+		<execute macro="Portal.Bookmark#addNullCP" />
 	</command>
 
 	<command name="AddNullFolder" priority="5">
 		<property name="portal.acceptance" value="true" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="BookmarksFolder#addNullCP" />
+		<execute macro="Portal.BookmarksFolder#addNullCP" />
 	</command>
 
 	<command name="AddNullSubfolder" priority="4">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="BookmarksFolder#addCP">
+		<execute macro="Portal.BookmarksFolder#addCP">
 			<var name="folderDescription" value="This is a test bookmarks folder!" />
 			<var name="folderName" value="Test Bookmarks Folder" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="BookmarksFolder#addNullSubfolderCP">
+		<execute macro="Portal.BookmarksFolder#addNullSubfolderCP">
 			<var name="folderName" value="Test Bookmarks Folder" />
 		</execute>
 	</command>
 
 	<command name="AddNullTitleBookmark" priority="4">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="Bookmark#addCP">
+		<execute macro="Portal.Bookmark#addCP">
 			<var name="bookmarkDescription" value="This is a test bookmark!" />
 			<var name="bookmarkURL" value="https://www.liferay.com" />
 		</execute>
 	</command>
 
 	<command name="AddNullURLBookmark" priority="4">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="Bookmark#addNullCP">
+		<execute macro="Portal.Bookmark#addNullCP">
 			<var name="bookmarkDescription" value="This is a test bookmark!" />
 			<var name="bookmarkName" value="Test Bookmark" />
 		</execute>
 	</command>
 
 	<command name="AddSubfolder" priority="4">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="BookmarksFolder#addCP">
+		<execute macro="Portal.BookmarksFolder#addCP">
 			<var name="folderDescription" value="This is a test bookmarks folder!" />
 			<var name="folderName" value="Test Bookmarks Folder" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="BookmarksFolder#addSubfolderCP">
+		<execute macro="Portal.BookmarksFolder#addSubfolderCP">
 			<var name="folderName" value="Test Bookmarks Folder" />
 			<var name="subfolderDescription" value="This is a test bookmarks subfolder!" />
 			<var name="subfolderName" value="Test Bookmarks Subfolder" />
@@ -227,30 +227,30 @@
 	<command name="DeleteBookmark" priority="5">
 		<property name="portal.acceptance" value="true" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="Bookmark#addCP">
+		<execute macro="Portal.Bookmark#addCP">
 			<var name="bookmarkDescription" value="This is a test bookmark!" />
 			<var name="bookmarkName" value="Test Bookmark" />
 			<var name="bookmarkURL" value="https://www.liferay.com" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="Bookmark#viewBookmark">
+		<execute macro="Portal.Bookmark#viewBookmark">
 			<var name="bookmarkName" value="Test Bookmark" />
 			<var name="bookmarkURL" value="https://www.liferay.com" />
 		</execute>
 
-		<execute macro="Bookmark#moveToRecycleBinCP">
+		<execute macro="Portal.Bookmark#moveToRecycleBinCP">
 			<var name="bookmarkDescription" value="This is a test bookmark!" />
 			<var name="bookmarkName" value="Test Bookmark" />
 			<var name="bookmarkURL" value="https://www.liferay.com" />
@@ -258,37 +258,37 @@
 	</command>
 
 	<command name="DeleteSecondBookmark" priority="4">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="Bookmark#addCP">
+		<execute macro="Portal.Bookmark#addCP">
 			<var name="bookmarkDescription" value="This is a test bookmark!" />
 			<var name="bookmarkName" value="Test Bookmark" />
 			<var name="bookmarkURL" value="https://www.liferay.com" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="Bookmark#addCP">
+		<execute macro="Portal.Bookmark#addCP">
 			<var name="bookmarkDescription" value="This is another test bookmark!" />
 			<var name="bookmarkName" value="Test Bookmark 2" />
 			<var name="bookmarkURL" value="http://digg.com" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="Bookmark#moveToRecycleBinCP">
+		<execute macro="Portal.Bookmark#moveToRecycleBinCP">
 			<var name="bookmarkName" value="Test Bookmark 2" />
 			<var name="bookmarkURL" value="http://digg.com" />
 		</execute>
@@ -297,36 +297,36 @@
 	<command name="EditBookmark" priority="5">
 		<property name="portal.acceptance" value="true" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="Bookmark#addCP">
+		<execute macro="Portal.Bookmark#addCP">
 			<var name="bookmarkDescription" value="This is a test bookmark!" />
 			<var name="bookmarkName" value="Test Bookmark" />
 			<var name="bookmarkURL" value="https://www.liferay.com" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="Bookmark#viewBookmark">
+		<execute macro="Portal.Bookmark#viewBookmark">
 			<var name="bookmarkName" value="Test Bookmark" />
 			<var name="bookmarkURL" value="https://www.liferay.com" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="Bookmark#editCP">
+		<execute macro="Portal.Bookmark#editCP">
 			<var name="bookmarkDescription" value="This is a test bookmark!" />
 			<var name="bookmarkName" value="Test Bookmark" />
 			<var name="bookmarkURL" value="https://www.liferay.com" />
@@ -339,24 +339,24 @@
 	<command name="EditFolder" priority="5">
 		<property name="portal.acceptance" value="true" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="BookmarksFolder#addCP">
+		<execute macro="Portal.BookmarksFolder#addCP">
 			<var name="folderDescription" value="This is a test bookmarks folder!" />
 			<var name="folderName" value="Test Bookmarks Folder" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="BookmarksFolder#editCP">
+		<execute macro="Portal.BookmarksFolder#editCP">
 			<var name="folderDescription" value="This is a test bookmarks folder!" />
 			<var name="folderDescriptionEdit" value="This is a test bookmarks folder edit!" />
 			<var name="folderName" value="Test Bookmarks Folder" />
@@ -365,36 +365,36 @@
 	</command>
 
 	<command name="EditSubfolder" priority="4">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="BookmarksFolder#addCP">
+		<execute macro="Portal.BookmarksFolder#addCP">
 			<var name="folderDescription" value="This is a test bookmarks folder!" />
 			<var name="folderName" value="Test Bookmarks Folder" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="BookmarksFolder#addSubfolderCP">
+		<execute macro="Portal.BookmarksFolder#addSubfolderCP">
 			<var name="folderName" value="Test Bookmarks Folder" />
 			<var name="subfolderDescription" value="This is a test bookmarks subfolder!" />
 			<var name="subfolderName" value="Test Bookmarks Subfolder" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="BookmarksFolder#editSubfolderCP">
+		<execute macro="Portal.BookmarksFolder#editSubfolderCP">
 			<var name="editSubfolderDescription" value="This is a test bookmarks subfolder edit!" />
 			<var name="editSubfolderName" value="Test Bookmarks Subfolder Edit" />
 			<var name="folderName" value="Test Bookmarks Folder" />
@@ -403,36 +403,36 @@
 	</command>
 
 	<command name="MergeSubfolderBookmarkToFolder" priority="3">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="BookmarksFolder#addCP">
+		<execute macro="Portal.BookmarksFolder#addCP">
 			<var name="folderDescription" value="This is a test bookmarks folder!" />
 			<var name="folderName" value="Test Bookmarks Folder" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="BookmarksFolder#addSubfolderCP">
+		<execute macro="Portal.BookmarksFolder#addSubfolderCP">
 			<var name="folderName" value="Test Bookmarks Folder" />
 			<var name="subfolderDescription" value="This is a test bookmarks subfolder!" />
 			<var name="subfolderName" value="Test Bookmarks Subfolder" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="Bookmark#addToSubfolderCP">
+		<execute macro="Portal.Bookmark#addToSubfolderCP">
 			<var name="bookmarkDescription" value="This is a test bookmark!" />
 			<var name="bookmarkName" value="Test Bookmark" />
 			<var name="bookmarkURL" value="https://www.liferay.com" />
@@ -440,13 +440,13 @@
 			<var name="subfolderName" value="Test Bookmarks Subfolder" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="BookmarksFolder#mergeSubfolderToFolderCP">
+		<execute macro="Portal.BookmarksFolder#mergeSubfolderToFolderCP">
 			<var name="bookmarkName" value="Test Bookmark" />
 			<var name="bookmarkURL" value="https://www.liferay.com" />
 			<var name="folderName" value="Test Bookmarks Folder" />
@@ -455,36 +455,36 @@
 	</command>
 
 	<command name="MoveSubfolderBookmarkToHome" priority="4">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="BookmarksFolder#addCP">
+		<execute macro="Portal.BookmarksFolder#addCP">
 			<var name="folderDescription" value="This is a test bookmarks folder!" />
 			<var name="folderName" value="Test Bookmarks Folder" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="BookmarksFolder#addSubfolderCP">
+		<execute macro="Portal.BookmarksFolder#addSubfolderCP">
 			<var name="folderName" value="Test Bookmarks Folder" />
 			<var name="subfolderDescription" value="This is a test bookmarks subfolder!" />
 			<var name="subfolderName" value="Test Bookmarks Subfolder" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="Bookmark#addToSubfolderCP">
+		<execute macro="Portal.Bookmark#addToSubfolderCP">
 			<var name="bookmarkDescription" value="This is a test bookmark!" />
 			<var name="bookmarkName" value="Test Bookmark" />
 			<var name="bookmarkURL" value="https://www.liferay.com" />
@@ -492,13 +492,13 @@
 			<var name="subfolderName" value="Test Bookmarks Subfolder" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="Bookmark#moveToHomeCP">
+		<execute macro="Portal.Bookmark#moveToHomeCP">
 			<var name="bookmarkName" value="Test Bookmark" />
 			<var name="folderName" value="Test Bookmarks Folder" />
 			<var name="subfolderName" value="Test Bookmarks Subfolder" />
@@ -508,187 +508,187 @@
 	<command name="MoveToRecycleBinFolder" priority="5">
 		<property name="portal.acceptance" value="true" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="BookmarksFolder#addCP">
+		<execute macro="Portal.BookmarksFolder#addCP">
 			<var name="folderDescription" value="This is a test bookmarks folder!" />
 			<var name="folderName" value="Test Bookmarks Folder" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="BookmarksFolder#viewFolder">
+		<execute macro="Portal.BookmarksFolder#viewFolder">
 			<var name="folderDescription" value="This is a test bookmarks folder!" />
 			<var name="folderName" value="Test Bookmarks Folder" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="BookmarksFolder#moveToRecycleBinCP">
+		<execute macro="Portal.BookmarksFolder#moveToRecycleBinCP">
 			<var name="folderDescription" value="This is a test bookmarks folder!" />
 			<var name="folderName" value="Test Bookmarks Folder" />
 		</execute>
 	</command>
 
 	<command name="SearchBookmark" priority="3">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="Bookmark#addCP">
+		<execute macro="Portal.Bookmark#addCP">
 			<var name="bookmarkDescription" value="This is a test bookmark!" />
 			<var name="bookmarkName" value="Test Bookmark" />
 			<var name="bookmarkURL" value="https://www.liferay.com" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="Bookmark#viewBookmark">
+		<execute macro="Portal.Bookmark#viewBookmark">
 			<var name="bookmarkName" value="Test Bookmark" />
 			<var name="bookmarkURL" value="https://www.liferay.com" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="Search#searchCP">
+		<execute macro="Portal.Search#searchCP">
 			<var name="searchTerm" value="Test Bookmark" />
 		</execute>
 
-		<execute macro="Search#viewSearchAssetTitle">
+		<execute macro="Portal.Search#viewSearchAssetTitle">
 			<var name="searchAssetTitle" value="Test Bookmark" />
 		</execute>
 	</command>
 
 	<command name="SearchBookmarks" priority="3">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="Bookmark#addCP">
+		<execute macro="Portal.Bookmark#addCP">
 			<var name="bookmarkDescription" value="This is a test bookmark!" />
 			<var name="bookmarkName" value="Test Bookmark" />
 			<var name="bookmarkURL" value="https://www.liferay.com" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="Bookmark#addCP">
+		<execute macro="Portal.Bookmark#addCP">
 			<var name="bookmarkDescription" value="This is another test bookmark!" />
 			<var name="bookmarkName" value="Test Bookmark 2" />
 			<var name="bookmarkURL" value="http://www.msn.com" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="Bookmark#viewBookmark">
+		<execute macro="Portal.Bookmark#viewBookmark">
 			<var name="bookmarkName" value="Test Bookmark" />
 			<var name="bookmarkURL" value="https://www.liferay.com" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="Bookmark#viewBookmark">
+		<execute macro="Portal.Bookmark#viewBookmark">
 			<var name="bookmarkName" value="Test Bookmark 2" />
 			<var name="bookmarkURL" value="http://www.msn.com" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="Search#searchCP">
+		<execute macro="Portal.Search#searchCP">
 			<var name="searchTerm" value="Test Bookmark" />
 		</execute>
 
-		<execute macro="Search#viewSearchAssetTitle">
+		<execute macro="Portal.Search#viewSearchAssetTitle">
 			<var name="searchAssetTitle" value="Test Bookmark" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="Search#searchCP">
+		<execute macro="Portal.Search#searchCP">
 			<var name="searchTerm" value="Test Bookmark 2" />
 		</execute>
 
-		<execute macro="Search#viewSearchAssetTitle">
+		<execute macro="Portal.Search#viewSearchAssetTitle">
 			<var name="searchAssetTitle" value="Test Bookmark 2" />
 		</execute>
 	</command>
 
 	<command name="SearchNullBookmark" priority="3">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="Bookmark#addCP">
+		<execute macro="Portal.Bookmark#addCP">
 			<var name="bookmarkDescription" value="This is a test bookmark!" />
 			<var name="bookmarkName" value="Test Bookmark" />
 			<var name="bookmarkURL" value="https://www.liferay.com" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="Bookmark#addCP">
+		<execute macro="Portal.Bookmark#addCP">
 			<var name="bookmarkDescription" value="This is another test bookmark!" />
 			<var name="bookmarkName" value="Test Bookmark 2" />
 			<var name="bookmarkURL" value="http://www.msn.com" />
 		</execute>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Bookmarks" />
 		</execute>
 
-		<execute macro="Bookmark#searchNullCP">
+		<execute macro="Portal.Bookmark#searchNullCP">
 			<var name="bookmark2Name" value="Test Bookmark 2" />
 			<var name="bookmarkName" value="Test Bookmark" />
 			<var name="nullBookmarkName" value="Test1" />

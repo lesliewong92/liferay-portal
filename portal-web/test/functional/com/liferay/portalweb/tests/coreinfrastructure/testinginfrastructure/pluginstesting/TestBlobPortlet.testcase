@@ -5,23 +5,23 @@
 	<property name="portlet.plugins.includes" value="test-blob-portlet" />
 
 	<set-up>
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 	</set-up>
 
 	<tear-down>
-		<execute macro="Page#tearDownPG" />
+		<execute macro="Portal.Page#tearDownPG" />
 	</tear-down>
 
 	<command name="ViewBlob" priority="4">
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Test Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Test Blob" />
 		</execute>
 
-		<execute function="AssertVisible" locator1="TestBlob#TEST_PORTLET_BODY_PASSED" />
-		<execute function="AssertTextNotPresent" value1="FAILED" />
+		<execute function="Portal.AssertVisible" locator1="TestBlob#TEST_PORTLET_BODY_PASSED" />
+		<execute function="Portal.AssertTextNotPresent" value1="FAILED" />
 	</command>
 </definition>

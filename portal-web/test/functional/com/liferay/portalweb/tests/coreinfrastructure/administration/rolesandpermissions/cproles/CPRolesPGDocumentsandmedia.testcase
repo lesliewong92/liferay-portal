@@ -4,9 +4,9 @@
 	<property name="testray.main.component.name" value="Permissions" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 	</set-up>
 
 	<tear-down>
@@ -15,24 +15,24 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="User#firstLoginPG" />
+				<execute macro="Portal.User#firstLoginPG" />
 
-				<execute macro="User#tearDownCP" />
+				<execute macro="Portal.User#tearDownCP" />
 
-				<execute macro="Role#tearDownCP" />
+				<execute macro="Portal.Role#tearDownCP" />
 
-				<execute macro="Organization#tearDownCP" />
+				<execute macro="Portal.Organization#tearDownCP" />
 
-				<execute macro="Site#tearDownCP" />
+				<execute macro="Portal.Site#tearDownCP" />
 
-				<execute macro="Page#tearDownPG" />
+				<execute macro="Portal.Page#tearDownPG" />
 
-				<execute macro="DMFolder#tearDownCP" />
+				<execute macro="Portal.DMFolder#tearDownCP" />
 
-				<execute macro="DMDocument#tearDownCP" />
+				<execute macro="Portal.DMDocument#tearDownCP" />
 			</else>
 		</if>
 	</tear-down>
@@ -40,7 +40,7 @@
 	<command name="AddDMDocumentRegRoleDefaultPermissions" priority="5">
 		<property name="portal.acceptance" value="true" />
 
-		<execute macro="Permissions#setUpRegRolePG">
+		<execute macro="Portal.Permissions#setUpRegRolePG">
 			<var name="pageName" value="Documents and Media Page" />
 			<var name="portletName" value="Documents and Media" />
 			<var name="roleTitle" value="Regrole Name" />
@@ -50,22 +50,22 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="Toolbar#ADD" value1="Add" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Toolbar#ADD" value1="Add" />
 	</command>
 
 	<command name="AddDMDocumentRegRoleDefinePermissions" priority="5">
 		<property name="portal.acceptance" value="true" />
 
-		<execute macro="Permissions#setUpRegRolePG">
+		<execute macro="Portal.Permissions#setUpRegRolePG">
 			<var name="pageName" value="Documents and Media Page" />
 			<var name="portletName" value="Documents and Media" />
 			<var name="roleTitle" value="Regrole Name" />
@@ -75,51 +75,51 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Permissions#definePermissionCP">
+		<execute macro="Portal.Permissions#definePermissionCP">
 			<var name="permissionDefinitionKey" value="SITE_ADMIN_CONTENT_DOCUMENTS_AND_MEDIA_RESOURCE_PERMISSIONS_DOCUMENTS_ADD_DOCUMENT_CHECKBOX" />
 			<var name="permissionDefinitionValue" value="Add Document" />
 			<var name="roleTitle" value="Regrole Name" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute macro="DMDocument#addPG">
+		<execute macro="Portal.DMDocument#addPG">
 			<var name="dmDocumentFile" value="Document_1.doc" />
 			<var name="dmDocumentTitle" value="Document_1.doc" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="Permissions#removePermissionCP">
+		<execute macro="Portal.Permissions#removePermissionCP">
 			<var name="permissionDefinitionKey" value="SITE_ADMIN_CONTENT_DOCUMENTS_AND_MEDIA_RESOURCE_PERMISSIONS_DOCUMENTS_ADD_DOCUMENT_CHECKBOX" />
 			<var name="permissionDefinitionValue" value="Add Document" />
 			<var name="roleTitle" value="Regrole Name" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="Toolbar#ADD" value1="Add" />
+		<execute function="Portal.AssertElementNotPresent" locator1="Toolbar#ADD" value1="Add" />
 	</command>
 
 	<command name="AddDMDocumentSiteMemberRoleInline" priority="4">
-		<execute macro="Permissions#setUpSiteMemberRoleLoginUserPG">
+		<execute macro="Portal.Permissions#setUpSiteMemberRoleLoginUserPG">
 			<var name="page" value="Public Pages" />
 			<var name="pageName" value="Documents and Media Page" />
 			<var name="portletName" value="Documents and Media" />
@@ -133,89 +133,89 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Documents and Media Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="DMDocument#addPG">
+		<execute macro="Portal.DMDocument#addPG">
 			<var name="dmDocumentFile" value="Document_1.doc" />
 			<var name="dmDocumentTitle" value="Document_1.doc" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="DMDocument#tearDownCP">
+		<execute macro="Portal.DMDocument#tearDownCP">
 			<var name="pageName" value="Documents and Media Page" />
 			<var name="siteScopeName" value="Site Name" />
 		</execute>
 
-		<execute macro="PermissionsInline#gotoDocumentsAndMediaHomeFolderPG">
+		<execute macro="Portal.PermissionsInline#gotoDocumentsAndMediaHomeFolderPG">
 			<var name="pageName" value="Documents and Media Page" />
 			<var name="siteName" value="Site Name" />
 			<var name="siteURLTemp" value="true" />
 		</execute>
 
-		<execute macro="Role#removePermissionPG">
+		<execute macro="Portal.Role#removePermissionPG">
 			<var name="permissionDefinitionKey" value="INLINE_PERMISSIONS_ADD_DOCUMENT_CHECKBOX" />
 			<var name="roleTitle" value="Site Member" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Documents and Media Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#clickPortletPlusIconPG">
+		<execute macro="Portal.Portlet#clickPortletPlusIconPG">
 			<var name="portletName" value="Documents and Media" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="MenuItem#ANY_MENU_ITEM" value1="Basic Document">
+		<execute function="Portal.AssertElementNotPresent" locator1="MenuItem#ANY_MENU_ITEM" value1="Basic Document">
 			<var name="key_menuItem" value="Basic Document" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="PermissionsInline#gotoDocumentsAndMediaHomeFolderPG">
+		<execute macro="Portal.PermissionsInline#gotoDocumentsAndMediaHomeFolderPG">
 			<var name="pageName" value="Documents and Media Page" />
 			<var name="siteName" value="Site Name" />
 			<var name="siteURLTemp" value="true" />
 		</execute>
 
-		<execute macro="Role#definePermissionPG">
+		<execute macro="Portal.Role#definePermissionPG">
 			<var name="permissionDefinitionKey" value="INLINE_PERMISSIONS_ADD_DOCUMENT_CHECKBOX" />
 			<var name="roleTitle" value="Site Member" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Documents and Media Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="DMDocument#addPG">
+		<execute macro="Portal.DMDocument#addPG">
 			<var name="dmDocumentFile" value="Document_1.doc" />
 			<var name="dmDocumentTitle" value="Document_2.doc" />
 		</execute>
 	</command>
 
 	<command name="AddDMDocumentSiteRole" priority="4">
-		<execute macro="Permissions#setUpSiteRoleLoginUserPG">
+		<execute macro="Portal.Permissions#setUpSiteRoleLoginUserPG">
 			<var name="page" value="Public Pages" />
 			<var name="pageName" value="Documents and Media Page" />
 			<var name="portletName" value="Documents and Media" />
@@ -230,36 +230,36 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="PermissionsInline#gotoDocumentsAndMediaHomeFolderPG">
+		<execute macro="Portal.PermissionsInline#gotoDocumentsAndMediaHomeFolderPG">
 			<var name="pageName" value="Documents and Media Page" />
 			<var name="siteName" value="Site Name" />
 			<var name="siteURLTemp" value="true" />
 		</execute>
 
-		<execute macro="Role#removePermissionPG">
+		<execute macro="Portal.Role#removePermissionPG">
 			<var name="permissionDefinitionKey" value="INLINE_PERMISSIONS_ADD_DOCUMENT_CHECKBOX" />
 			<var name="roleTitle" value="Site Member" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Documents and Media Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#clickPortletPlusIconPG">
+		<execute macro="Portal.Portlet#clickPortletPlusIconPG">
 			<var name="portletName" value="Documents and Media" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="MenuItem#ANY_MENU_ITEM" value1="Basic Document">
+		<execute function="Portal.AssertElementNotPresent" locator1="MenuItem#ANY_MENU_ITEM" value1="Basic Document">
 			<var name="key_menuItem" value="Basic Document" />
 		</execute>
 
-		<execute macro="Permissions#definePermissionLoginUserCP">
+		<execute macro="Portal.Permissions#definePermissionLoginUserCP">
 			<var name="permissionDefinitionKey" value="SITE_ADMIN_CONTENT_DOCUMENTS_AND_MEDIA_RESOURCE_PERMISSIONS_DOCUMENTS_ADD_DOCUMENT_CHECKBOX" />
 			<var name="permissionDefinitionValue" value="Add Document" />
 			<var name="roleTitle" value="Roles Siterole Name" />
@@ -268,17 +268,17 @@
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Documents and Media Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="DMDocument#addPG">
+		<execute macro="Portal.DMDocument#addPG">
 			<var name="dmDocumentFile" value="Document_1.doc" />
 			<var name="dmDocumentTitle" value="Document_1.doc" />
 		</execute>
 
-		<execute macro="Permissions#removePermissionLoginUserCP">
+		<execute macro="Portal.Permissions#removePermissionLoginUserCP">
 			<var name="permissionDefinitionKey" value="SITE_ADMIN_CONTENT_DOCUMENTS_AND_MEDIA_RESOURCE_PERMISSIONS_DOCUMENTS_ADD_DOCUMENT_CHECKBOX" />
 			<var name="permissionDefinitionValue" value="Add Document" />
 			<var name="roleTitle" value="Roles Siterole Name" />
@@ -287,16 +287,16 @@
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
+		<execute macro="Portal.Navigator#gotoSitePage">
 			<var name="pageName" value="Documents and Media Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="Portlet#clickPortletPlusIconPG">
+		<execute macro="Portal.Portlet#clickPortletPlusIconPG">
 			<var name="portletName" value="Documents and Media" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="MenuItem#ANY_MENU_ITEM" value1="Basic Document">
+		<execute function="Portal.AssertElementNotPresent" locator1="MenuItem#ANY_MENU_ITEM" value1="Basic Document">
 			<var name="key_menuItem" value="Basic Document" />
 		</execute>
 	</command>
@@ -305,7 +305,7 @@
 		<property name="portal.acceptance" value="pending" />
 		<property name="testray.component.names" value="Training" />
 
-		<execute macro="Permissions#setUpRegRoleLoginUserPG">
+		<execute macro="Portal.Permissions#setUpRegRoleLoginUserPG">
 			<var name="pageName" value="Documents and Media Page" />
 			<var name="portletName" value="Documents and Media" />
 			<var name="roleTitle" value="Regrole Name" />
@@ -317,7 +317,7 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Permissions#addDMFolderLoginUserPG">
+		<execute macro="Portal.Permissions#addDMFolderLoginUserPG">
 			<var name="dmFolderDescription" value="DM Folder Description" />
 			<var name="dmFolderName" value="DM Folder Name" />
 			<var name="pageName" value="Documents and Media Page" />
@@ -325,61 +325,61 @@
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
 		<var name="key_dmFolderName" value="DM Folder Name" />
 
-		<execute function="Check" locator1="DocumentsAndMedia#ICON_FOLDER_CHECKBOX" />
+		<execute function="Portal.Check" locator1="DocumentsAndMedia#ICON_FOLDER_CHECKBOX" />
 
-		<execute macro="PermissionsInline#viewButtonInactive">
+		<execute macro="Portal.PermissionsInline#viewButtonInactive">
 			<var name="buttonName" value="RECYCLE_BIN" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute macro="DMDocument#enableActionsMenuOnPortlet" />
+		<execute macro="Portal.DMDocument#enableActionsMenuOnPortlet" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute macro="DMNavigator#gotoFolderPermissions">
+		<execute macro="Portal.DMNavigator#gotoFolderPermissions">
 			<var name="dmFolderName" value="DM Folder Name" />
 		</execute>
 
-		<execute macro="Role#definePermissionPG">
+		<execute macro="Portal.Role#definePermissionPG">
 			<var name="permissionDefinitionKey" value="CONTENT_PERMISSIONS_DELETE_CHECKBOX" />
 			<var name="roleTitle" value="Regrole Name" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute macro="DMFolder#deletePG">
+		<execute macro="Portal.DMFolder#deletePG">
 			<var name="dmFolderName" value="DM Folder Name" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="Permissions#addDMFolderLoginUserPG">
+		<execute macro="Portal.Permissions#addDMFolderLoginUserPG">
 			<var name="dmFolderDescription" value="DM Folder Description" />
 			<var name="dmFolderName" value="DM Folder Name" />
 			<var name="pageName" value="Documents and Media Page" />
@@ -387,48 +387,48 @@
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute macro="DMNavigator#gotoFolderPermissions">
+		<execute macro="Portal.DMNavigator#gotoFolderPermissions">
 			<var name="dmFolderName" value="DM Folder Name" />
 		</execute>
 
-		<execute macro="Role#removePermissionPG">
+		<execute macro="Portal.Role#removePermissionPG">
 			<var name="permissionDefinitionKey" value="CONTENT_PERMISSIONS_DELETE_CHECKBOX" />
 			<var name="roleTitle" value="Regrole Name" />
 		</execute>
 
-		<execute macro="User#logoutAndLoginPG">
+		<execute macro="Portal.User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
 		<var name="key_dmFolderName" value="DM Folder Name" />
 
-		<execute function="Check" locator1="DocumentsAndMedia#ICON_FOLDER_CHECKBOX" />
+		<execute function="Portal.Check" locator1="DocumentsAndMedia#ICON_FOLDER_CHECKBOX" />
 
-		<execute macro="PermissionsInline#viewButtonInactive">
+		<execute macro="Portal.PermissionsInline#viewButtonInactive">
 			<var name="buttonName" value="RECYCLE_BIN" />
 		</execute>
 	</command>
 
 	<command name="ViewDMFolderGuestInline" priority="4">
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="pageName" value="Documents and Media Page" />
 			<var name="portletName" value="Documents and Media" />
 		</execute>
 
-		<execute macro="Permissions#addDMFolderLoginUserPG">
+		<execute macro="Portal.Permissions#addDMFolderLoginUserPG">
 			<var name="dmFolderDescription" value="DM Folder Description" />
 			<var name="dmFolderName" value="DM Folder Name" />
 			<var name="pageName" value="Documents and Media Page" />
@@ -436,88 +436,88 @@
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="User#logoutPG" />
+		<execute macro="Portal.User#logoutPG" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute macro="DMPortlet#setDescriptiveView" />
+		<execute macro="Portal.DMPortlet#setDescriptiveView" />
 
 		<var name="key_dmFolderName" value="DM Folder Name" />
 
-		<execute function="AssertClick" locator1="DocumentsAndMedia#DESCRIPTIVE_LIST_FOLDER_TITLE" value1="DM Folder Name" />
+		<execute function="Portal.AssertClick" locator1="DocumentsAndMedia#DESCRIPTIVE_LIST_FOLDER_TITLE" value1="DM Folder Name" />
 
 		<var method="StringUtil#upperCase('DM Folder Name')" name="dmFolderNameUpperCase" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="DocumentsAndMedia#BREADCRUMB_FOLDER_NAME" value1="${dmFolderNameUpperCase}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="DocumentsAndMedia#BREADCRUMB_FOLDER_NAME" value1="${dmFolderNameUpperCase}" />
 
-		<execute macro="User#loginPG">
+		<execute macro="Portal.User#loginPG">
 			<var name="password" value="test" />
 			<var name="userEmailAddress" value="test@liferay.com" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute macro="DMDocument#enableActionsMenuOnPortlet" />
+		<execute macro="Portal.DMDocument#enableActionsMenuOnPortlet" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute macro="DMNavigator#gotoFolderPermissions">
+		<execute macro="Portal.DMNavigator#gotoFolderPermissions">
 			<var name="dmFolderName" value="DM Folder Name" />
 		</execute>
 
-		<execute macro="Role#removePermissionPG">
+		<execute macro="Portal.Role#removePermissionPG">
 			<var name="permissionDefinitionKey" value="CONTENT_PERMISSIONS_VIEW_CHECKBOX" />
 			<var name="roleTitle" value="Guest" />
 		</execute>
 
-		<execute macro="User#logoutPG" />
+		<execute macro="Portal.User#logoutPG" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute macro="DMPortlet#viewDefaultPG" />
+		<execute macro="Portal.DMPortlet#viewDefaultPG" />
 
-		<execute macro="User#loginPG">
+		<execute macro="Portal.User#loginPG">
 			<var name="password" value="test" />
 			<var name="userEmailAddress" value="test@liferay.com" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute macro="DMNavigator#gotoFolderPermissions">
+		<execute macro="Portal.DMNavigator#gotoFolderPermissions">
 			<var name="dmFolderName" value="DM Folder Name" />
 		</execute>
 
-		<execute macro="Role#definePermissionPG">
+		<execute macro="Portal.Role#definePermissionPG">
 			<var name="permissionDefinitionKey" value="CONTENT_PERMISSIONS_VIEW_CHECKBOX" />
 			<var name="roleTitle" value="Guest" />
 		</execute>
 
-		<execute macro="User#logoutPG" />
+		<execute macro="Portal.User#logoutPG" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<execute macro="DMPortlet#setDescriptiveView" />
+		<execute macro="Portal.DMPortlet#setDescriptiveView" />
 
 		<var name="key_dmFolderName" value="DM Folder Name" />
 
-		<execute function="AssertClick" locator1="DocumentsAndMedia#DESCRIPTIVE_LIST_FOLDER_TITLE" value1="DM Folder Name" />
+		<execute function="Portal.AssertClick" locator1="DocumentsAndMedia#DESCRIPTIVE_LIST_FOLDER_TITLE" value1="DM Folder Name" />
 
 		<var method="StringUtil#upperCase('DM Folder Name')" name="dmFolderNameUpperCase" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="DocumentsAndMedia#BREADCRUMB_FOLDER_NAME" value1="${dmFolderNameUpperCase}" />
+		<execute function="Portal.AssertTextEquals#assertPartialText" locator1="DocumentsAndMedia#BREADCRUMB_FOLDER_NAME" value1="${dmFolderNameUpperCase}" />
 	</command>
 </definition>

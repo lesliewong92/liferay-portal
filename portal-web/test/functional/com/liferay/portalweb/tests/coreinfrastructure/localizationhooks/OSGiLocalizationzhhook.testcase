@@ -6,7 +6,7 @@
 	<property name="testray.main.component.name" value="Localization Hooks" />
 
 	<set-up>
-		<execute macro="User#firstLoginPG">
+		<execute macro="Portal.User#firstLoginPG">
 			<var name="localization" value="ZH" />
 		</execute>
 	</set-up>
@@ -17,7 +17,7 @@
 		<var name="appName" value="Chinese Localization" />
 		<var name="portletName" value="localization-zh-hook" />
 
-		<execute macro="OSGiSmoke#Smoke">
+		<execute macro="Portal.OSGiSmoke#Smoke">
 			<var name="appName" value="${portletName}" />
 			<var name="portletName" value="${portletName}" />
 		</execute>

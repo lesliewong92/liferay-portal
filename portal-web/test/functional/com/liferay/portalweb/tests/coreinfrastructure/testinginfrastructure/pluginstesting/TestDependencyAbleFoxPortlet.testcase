@@ -5,59 +5,59 @@
 	<property name="portlet.plugins.includes" value="test-dependency-able-portlet,test-dependency-baker-portlet,test-dependency-charlie-portlet,test-dependency-dog-portlet,test-dependency-easy-portlet" />
 
 	<set-up>
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 	</set-up>
 
 	<tear-down>
-		<execute macro="Page#tearDownPG" />
+		<execute macro="Portal.Page#tearDownPG" />
 	</tear-down>
 
 	<command name="ViewDependencyAbleFox" priority="4">
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Test Dependency Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Test Dependency Able" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Test Dependency Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Test Dependency Baker" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Test Dependency Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Test Dependency Charlie" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Test Dependency Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Test Dependency Dog" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Test Dependency Page" />
 		</execute>
 
-		<execute macro="Portlet#viewCannotAddPG">
+		<execute macro="Portal.Portlet#viewCannotAddPG">
 			<var name="portletName" value="Test Dependency Easy" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Test Dependency Page" />
 		</execute>
 
-		<execute macro="Portlet#viewCannotAddPG">
+		<execute macro="Portal.Portlet#viewCannotAddPG">
 			<var name="portletName" value="Test Dependency Fox" />
 		</execute>
 	</command>

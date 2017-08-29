@@ -5,9 +5,9 @@
 	<property name="testray.main.component.name" value="Look And Feel" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 	</set-up>
 
 	<tear-down>
@@ -16,7 +16,7 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 		</if>
 	</tear-down>
@@ -25,83 +25,83 @@
 		<property name="portal.acceptance" value="true" />
 		<property name="testray.component.names" value="Training" />
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Sign In" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletName" value="Sign In" />
 			<var name="portletOption" value="Look and Feel Configuration" />
 		</execute>
 
-		<execute macro="IFrame#selectConfigurationFrame" />
+		<execute macro="Portal.IFrame#selectConfigurationFrame" />
 
-		<execute macro="Portlet#configureCustomStylesViaLookandfeelPG" />
+		<execute macro="Portal.Portlet#configureCustomStylesViaLookandfeelPG" />
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="Portlet#viewCustomStylesViaLookandfeelPG" />
+		<execute macro="Portal.Portlet#viewCustomStylesViaLookandfeelPG" />
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Web Content Display" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletName" value="Web Content Display" />
 			<var name="portletOption" value="Look and Feel Configuration" />
 		</execute>
 
-		<execute macro="IFrame#selectConfigurationFrame" />
+		<execute macro="Portal.IFrame#selectConfigurationFrame" />
 
-		<execute macro="Portlet#configureApplicationDecoratorViaLookandfeelPG">
+		<execute macro="Portal.Portlet#configureApplicationDecoratorViaLookandfeelPG">
 			<var name="applicationDecorator" value="Borderless" />
 		</execute>
 
-		<execute macro="Button#clickCancel" />
+		<execute macro="Portal.Button#clickCancel" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="Portlet#viewApplicationDecorator">
+		<execute macro="Portal.Portlet#viewApplicationDecorator">
 			<var name="decorator" value="decorate" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletName" value="Web Content Display" />
 			<var name="portletOption" value="Look and Feel Configuration" />
 		</execute>
 
-		<execute macro="IFrame#selectConfigurationFrame" />
+		<execute macro="Portal.IFrame#selectConfigurationFrame" />
 
-		<execute macro="Portlet#selectApplicationDecorator">
+		<execute macro="Portal.Portlet#selectApplicationDecorator">
 			<var name="decorator" value="Borderless" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="Portlet#viewApplicationDecorator">
+		<execute macro="Portal.Portlet#viewApplicationDecorator">
 			<var name="decorator" value="Borderless" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portal.Portlet#gotoPortletOptions">
 			<var name="portletName" value="Web Content Display" />
 			<var name="portletOption" value="Look and Feel Configuration" />
 		</execute>
 
-		<execute macro="IFrame#selectConfigurationFrame" />
+		<execute macro="Portal.IFrame#selectConfigurationFrame" />
 
-		<execute macro="Portlet#selectApplicationDecorator">
+		<execute macro="Portal.Portlet#selectApplicationDecorator">
 			<var name="decorator" value="Barebone" />
 		</execute>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Portal.PortletEntry#save" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="Portlet#viewApplicationDecorator">
+		<execute macro="Portal.Portlet#viewApplicationDecorator">
 			<var name="decorator" value="Barebone" />
 		</execute>
 	</command>

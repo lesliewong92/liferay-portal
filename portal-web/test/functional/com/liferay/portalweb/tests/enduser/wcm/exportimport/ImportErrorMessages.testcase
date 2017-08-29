@@ -4,13 +4,13 @@
 	<property name="testray.main.component.name" value="Export/Import Framework" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesPublishing">
+		<execute macro="Portal.ProductMenu#gotoSitesPublishing">
 			<var name="portlet" value="Import" />
 		</execute>
 	</set-up>
@@ -21,16 +21,16 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="Site#tearDownCP" />
+				<execute macro="Portal.Site#tearDownCP" />
 			</else>
 		</if>
 	</tear-down>
 
 	<command name="Import6210buildNumber" priority="4">
-		<execute macro="LAR#importSiteCP">
+		<execute macro="Portal.LAR#importSiteCP">
 			<var name="cannotImport" value="true" />
 			<var name="import6210buildNumber" value="true" />
 			<var name="importFail" value="true" />

@@ -7,19 +7,19 @@
 	<var name="portletName" value="Wiki Display" />
 
 	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+		<execute macro="Portal.TestCase#setUpPortalInstance" />
 
-		<execute macro="User#firstLoginPG" />
+		<execute macro="Portal.User#firstLoginPG" />
 
-		<execute macro="Page#add">
+		<execute macro="Portal.Page#add">
 			<var name="pageName" value="Wiki Display Test Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Wiki Display Test Page" />
 		</execute>
 
-		<execute macro="Portlet#addPG">
+		<execute macro="Portal.Portlet#addPG">
 			<var name="portletName" value="Wiki Display" />
 		</execute>
 	</set-up>
@@ -30,67 +30,67 @@
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
-				<execute macro="PortalInstances#tearDownCP" />
+				<execute macro="Portal.PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="WikiNode#tearDownCP" />
+				<execute macro="Portal.WikiNode#tearDownCP" />
 
-				<execute macro="WikiPage#tearDownCP" />
+				<execute macro="Portal.WikiPage#tearDownCP" />
 
-				<execute macro="Page#tearDownPG" />
+				<execute macro="Portal.Page#tearDownPG" />
 			</else>
 		</if>
 	</tear-down>
 
 	<command name="AddWikiFrontPageChildPage" priority="5">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Wiki" />
 		</execute>
 
-		<execute macro="WikiNavigator#gotoNode">
+		<execute macro="Portal.WikiNavigator#gotoNode">
 			<var name="wikiNodeName" value="Main" />
 		</execute>
 
-		<execute macro="WikiNavigator#gotoCP">
+		<execute macro="Portal.WikiNavigator#gotoCP">
 			<var name="wikiPageTitle" value="FrontPage" />
 		</execute>
 
-		<execute macro="WikiPage#addFrontPageCP">
+		<execute macro="Portal.WikiPage#addFrontPageCP">
 			<var name="wikiFrontPageContent" value="Wiki FrontPage Content" />
 			<var name="wikiNodeName" value="Main" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Wiki Display Test Page" />
 		</execute>
 
-		<execute macro="WikiDisplayPortlet#configureSetupPG">
+		<execute macro="Portal.WikiDisplayPortlet#configureSetupPG">
 			<var name="wikiNodeName" value="Main" />
 			<var name="wikiPageName" value="FrontPage" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Wiki Display Test Page" />
 		</execute>
 
-		<execute macro="WikiNavigator#gotoPGViaWD">
+		<execute macro="Portal.WikiNavigator#gotoPGViaWD">
 			<var name="wikiPageTitle" value="FrontPage" />
 		</execute>
 
-		<execute macro="WikiPage#addChildPagePGViaWD">
+		<execute macro="Portal.WikiPage#addChildPagePGViaWD">
 			<var name="wikiChildPageContent" value="Wiki FrontPage Child Page Content" />
 			<var name="wikiChildPageTitle" value="Wiki FrontPage Child Page Title" />
 			<var name="wikiPageContent" value="Wiki FrontPage Content" />
 			<var name="wikiPageTitle" value="FrontPage" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Wiki Display Test Page" />
 		</execute>
 
-		<execute macro="WikiPage#viewChildPagePGViaWD">
+		<execute macro="Portal.WikiPage#viewChildPagePGViaWD">
 			<var name="wikiChildPageContent" value="Wiki FrontPage Child Page Content" />
 			<var name="wikiChildPageTitle" value="Wiki FrontPage Child Page Title" />
 			<var name="wikiPageContent" value="Wiki FrontPage Content" />
@@ -105,266 +105,266 @@
 			]]>
 		</var>
 
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Wiki" />
 		</execute>
 
-		<execute macro="WikiNavigator#gotoNode">
+		<execute macro="Portal.WikiNavigator#gotoNode">
 			<var name="wikiNodeName" value="Main" />
 		</execute>
 
-		<execute macro="WikiNavigator#gotoCP">
+		<execute macro="Portal.WikiNavigator#gotoCP">
 			<var name="wikiPageTitle" value="FrontPage" />
 		</execute>
 
-		<execute macro="WikiPage#addFrontPageCP">
+		<execute macro="Portal.WikiPage#addFrontPageCP">
 			<var name="wikiFrontPageContent" value="Wiki FrontPage Content" />
 			<var name="wikiNodeName" value="Main" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Wiki Display Test Page" />
 		</execute>
 
-		<execute macro="WikiDisplayPortlet#configureSetupPG">
+		<execute macro="Portal.WikiDisplayPortlet#configureSetupPG">
 			<var name="wikiNodeName" value="Main" />
 			<var name="wikiPageName" value="FrontPage" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Wiki Display Test Page" />
 		</execute>
 
-		<execute macro="WikiNavigator#gotoPGViaWD">
+		<execute macro="Portal.WikiNavigator#gotoPGViaWD">
 			<var name="wikiPageTitle" value="FrontPage" />
 		</execute>
 
-		<execute function="AssertClick" locator1="Link#ADD_CHILD_PAGE" value1="Add Child Page" />
+		<execute function="Portal.AssertClick" locator1="Link#ADD_CHILD_PAGE" value1="Add Child Page" />
 
-		<execute macro="WikiEntry#selectPageFormat">
+		<execute macro="Portal.WikiEntry#selectPageFormat">
 			<var name="pageFormat" value="HTML" />
 		</execute>
 
-		<execute macro="WikiEntry#confirmHTML" />
+		<execute macro="Portal.WikiEntry#confirmHTML" />
 
-		<execute macro="WikiEntry#addPageTitle">
+		<execute macro="Portal.WikiEntry#addPageTitle">
 			<var name="wikiPageTitle" value="Wiki FrontPage Child Page Title" />
 		</execute>
 
-		<execute macro="AlloyEditor#addSourceContent">
+		<execute macro="Portal.AlloyEditor#addSourceContent">
 			<var name="content" value="${welcomeToLiferay}" />
 		</execute>
 
-		<execute macro="PortletEntry#publish" />
+		<execute macro="Portal.PortletEntry#publish" />
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Wiki Display Test Page" />
 		</execute>
 
-		<execute macro="WikiPage#viewChildPagePGViaWD">
+		<execute macro="Portal.WikiPage#viewChildPagePGViaWD">
 			<var name="wikiChildPageContent" value="Welcome to LIFERAY" />
 			<var name="wikiChildPageTitle" value="Wiki FrontPage Child Page Title" />
 			<var name="wikiPageContent" value="Wiki FrontPage Content" />
 			<var name="wikiPageTitle" value="FrontPage" />
 		</execute>
 
-		<execute macro="WikiNavigator#gotoChildPagePG">
+		<execute macro="Portal.WikiNavigator#gotoChildPagePG">
 			<var name="wikiChildPageTitle" value="Wiki FrontPage Child Page Title" />
 		</execute>
 
-		<execute macro="WikiPage#viewChildPagePG">
+		<execute macro="Portal.WikiPage#viewChildPagePG">
 			<var name="wikiChildPageContent" value="Welcome to LIFERAY" />
 			<var name="wikiChildPageTitle" value="Wiki FrontPage Child Page Title" />
 		</execute>
 	</command>
 
 	<command name="AddWikiFrontPageChildPageInvalidTitle" priority="4">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Wiki" />
 		</execute>
 
-		<execute macro="WikiNavigator#gotoNode">
+		<execute macro="Portal.WikiNavigator#gotoNode">
 			<var name="wikiNodeName" value="Main" />
 		</execute>
 
-		<execute macro="WikiNavigator#gotoCP">
+		<execute macro="Portal.WikiNavigator#gotoCP">
 			<var name="wikiPageTitle" value="FrontPage" />
 		</execute>
 
-		<execute macro="WikiPage#addFrontPageCP">
+		<execute macro="Portal.WikiPage#addFrontPageCP">
 			<var name="wikiFrontPageContent" value="Wiki FrontPage Content" />
 			<var name="wikiNodeName" value="Main" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Wiki Display Test Page" />
 		</execute>
 
-		<execute macro="WikiDisplayPortlet#configureSetupPG">
+		<execute macro="Portal.WikiDisplayPortlet#configureSetupPG">
 			<var name="wikiNodeName" value="Main" />
 			<var name="wikiPageName" value="FrontPage" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Wiki Display Test Page" />
 		</execute>
 
-		<execute macro="WikiNavigator#gotoPGViaWD">
+		<execute macro="Portal.WikiNavigator#gotoPGViaWD">
 			<var name="wikiPageTitle" value="FrontPage" />
 		</execute>
 
-		<execute macro="WikiPage#addFrontPageChildPageInvalidTitleViaWD">
+		<execute macro="Portal.WikiPage#addFrontPageChildPageInvalidTitleViaWD">
 			<var name="wikiChildPageContent" value="Wiki FrontPage Child Page Content" />
 			<var name="wikiChildPageTitle" value="Wiki\ Front\ Page\ Child\ Page\ Title\" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Wiki Display Test Page" />
 		</execute>
 
-		<execute macro="WikiNavigator#gotoPGViaWD">
+		<execute macro="Portal.WikiNavigator#gotoPGViaWD">
 			<var name="wikiPageTitle" value="FrontPage" />
 		</execute>
 
-		<execute macro="WikiPage#addFrontPageChildPageInvalidTitleViaWD">
+		<execute macro="Portal.WikiPage#addFrontPageChildPageInvalidTitleViaWD">
 			<var name="wikiChildPageContent" value="Wiki FrontPage Child Page Content" />
 			<var name="wikiChildPageTitle" value="Wiki] Front] Page] Child] Page] Title]" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Wiki Display Test Page" />
 		</execute>
 
-		<execute macro="WikiNavigator#gotoPGViaWD">
+		<execute macro="Portal.WikiNavigator#gotoPGViaWD">
 			<var name="wikiPageTitle" value="FrontPage" />
 		</execute>
 
-		<execute macro="WikiPage#addFrontPageChildPageInvalidTitleViaWD">
+		<execute macro="Portal.WikiPage#addFrontPageChildPageInvalidTitleViaWD">
 			<var name="wikiChildPageContent" value="Wiki FrontPage Child Page Content" />
 			<var name="wikiChildPageTitle" value="Wiki[ Front[ Page[ Child[ Page[ Title[" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Wiki Display Test Page" />
 		</execute>
 
-		<execute macro="WikiNavigator#gotoPGViaWD">
+		<execute macro="Portal.WikiNavigator#gotoPGViaWD">
 			<var name="wikiPageTitle" value="FrontPage" />
 		</execute>
 
-		<execute macro="WikiPage#addFrontPageChildPageInvalidTitleViaWD">
+		<execute macro="Portal.WikiPage#addFrontPageChildPageInvalidTitleViaWD">
 			<var name="wikiChildPageContent" value="Wiki FrontPage Child Page Content" />
 			<var name="wikiChildPageTitle" value="Wiki; Front; Page; Child; Page; Title;" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Wiki Display Test Page" />
 		</execute>
 
-		<execute macro="WikiNavigator#gotoPGViaWD">
+		<execute macro="Portal.WikiNavigator#gotoPGViaWD">
 			<var name="wikiPageTitle" value="FrontPage" />
 		</execute>
 
-		<execute macro="WikiPage#addFrontPageChildPageInvalidTitleViaWD">
+		<execute macro="Portal.WikiPage#addFrontPageChildPageInvalidTitleViaWD">
 			<var name="wikiChildPageContent" value="Wiki FrontPage Child Page Content" />
 			<var name="wikiChildPageTitle" value="Wiki: Front: Page: Child: Page: Title:" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Wiki Display Test Page" />
 		</execute>
 
-		<execute macro="WikiNavigator#gotoPGViaWD">
+		<execute macro="Portal.WikiNavigator#gotoPGViaWD">
 			<var name="wikiPageTitle" value="FrontPage" />
 		</execute>
 
-		<execute macro="WikiPage#addFrontPageChildPageInvalidTitleViaWD">
+		<execute macro="Portal.WikiPage#addFrontPageChildPageInvalidTitleViaWD">
 			<var name="wikiChildPageContent" value="Wiki FrontPage Child Page Content" />
 			<var name="wikiChildPageTitle" value="Wiki| Front| Page| Child| Page| Title|" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Wiki Display Test Page" />
 		</execute>
 
-		<execute macro="WikiNavigator#gotoPGViaWD">
+		<execute macro="Portal.WikiNavigator#gotoPGViaWD">
 			<var name="wikiPageTitle" value="FrontPage" />
 		</execute>
 
-		<execute macro="WikiPage#addFrontPageChildPageInvalidTitleViaWD">
+		<execute macro="Portal.WikiPage#addFrontPageChildPageInvalidTitleViaWD">
 			<var name="wikiChildPageContent" value="Wiki FrontPage Child Page Content" />
 			<var name="wikiChildPageTitle" value="Wiki&lt; Front&lt; Page&lt; Child&lt; Page&lt; Title&lt;" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Wiki Display Test Page" />
 		</execute>
 
-		<execute macro="WikiNavigator#gotoPGViaWD">
+		<execute macro="Portal.WikiNavigator#gotoPGViaWD">
 			<var name="wikiPageTitle" value="FrontPage" />
 		</execute>
 
-		<execute macro="WikiPage#addFrontPageChildPageInvalidTitleViaWD">
+		<execute macro="Portal.WikiPage#addFrontPageChildPageInvalidTitleViaWD">
 			<var name="wikiChildPageContent" value="Wiki FrontPage Child Page Content" />
 			<var name="wikiChildPageTitle" value="Wiki&gt; Front&gt; Page&gt; Child&gt; Page&gt; Title&gt;" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Wiki Display Test Page" />
 		</execute>
 
-		<execute macro="WikiPage#viewNoChildPagePGViaWD" />
+		<execute macro="Portal.WikiPage#viewNoChildPagePGViaWD" />
 	</command>
 
 	<command name="DeleteWikiFrontPage" priority="4">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Wiki" />
 		</execute>
 
-		<execute macro="WikiNavigator#gotoNode">
+		<execute macro="Portal.WikiNavigator#gotoNode">
 			<var name="wikiNodeName" value="Main" />
 		</execute>
 
-		<execute macro="WikiNavigator#gotoCP">
+		<execute macro="Portal.WikiNavigator#gotoCP">
 			<var name="wikiPageTitle" value="FrontPage" />
 		</execute>
 
-		<execute macro="WikiPage#addFrontPageCP">
+		<execute macro="Portal.WikiPage#addFrontPageCP">
 			<var name="wikiFrontPageContent" value="Wiki FrontPage Content" />
 			<var name="wikiNodeName" value="Main" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Wiki Display Test Page" />
 		</execute>
 
-		<execute macro="WikiDisplayPortlet#configureSetupPG">
+		<execute macro="Portal.WikiDisplayPortlet#configureSetupPG">
 			<var name="wikiNodeName" value="Main" />
 			<var name="wikiPageName" value="FrontPage" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Wiki Display Test Page" />
 		</execute>
 
-		<execute macro="WikiNavigator#gotoAllPagesPGViaWD" />
+		<execute macro="Portal.WikiNavigator#gotoAllPagesPGViaWD" />
 
-		<execute macro="WikiPage#deleteFrontPagePGViaWD">
+		<execute macro="Portal.WikiPage#deleteFrontPagePGViaWD">
 			<var name="assetType" value="Wiki Page" />
 			<var name="wikiPageTitle" value="FrontPage" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Wiki Display Test Page" />
 		</execute>
 
-		<execute macro="WikiPage#viewDefaultPGViaWD">
+		<execute macro="Portal.WikiPage#viewDefaultPGViaWD">
 			<var name="wikiFrontPageContent" value="Wiki FrontPage Content" />
 			<var name="wikiPageContent" value="Wiki FrontPage Content" />
 			<var name="wikiPageName" value="FrontPage" />
@@ -372,39 +372,39 @@
 	</command>
 
 	<command name="ViewConfigurationSetupPageFrontPage" priority="4">
-		<execute macro="Navigator#openURL" />
+		<execute macro="Portal.Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoSitesContent">
+		<execute macro="Portal.ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Wiki" />
 		</execute>
 
-		<execute macro="WikiNavigator#gotoNode">
+		<execute macro="Portal.WikiNavigator#gotoNode">
 			<var name="wikiNodeName" value="Main" />
 		</execute>
 
-		<execute macro="WikiNavigator#gotoCP">
+		<execute macro="Portal.WikiNavigator#gotoCP">
 			<var name="wikiPageTitle" value="FrontPage" />
 		</execute>
 
-		<execute macro="WikiPage#addFrontPageCP">
+		<execute macro="Portal.WikiPage#addFrontPageCP">
 			<var name="wikiFrontPageContent" value="Wiki FrontPage Content" />
 			<var name="wikiNodeName" value="Main" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Wiki Display Test Page" />
 		</execute>
 
-		<execute macro="WikiDisplayPortlet#configureSetupPG">
+		<execute macro="Portal.WikiDisplayPortlet#configureSetupPG">
 			<var name="wikiNodeName" value="Main" />
 			<var name="wikiPageName" value="FrontPage" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
+		<execute macro="Portal.Navigator#gotoPage">
 			<var name="pageName" value="Wiki Display Test Page" />
 		</execute>
 
-		<execute macro="WikiPage#viewPGViaWD">
+		<execute macro="Portal.WikiPage#viewPGViaWD">
 			<var name="wikiPageContent" value="Wiki FrontPage Content" />
 			<var name="wikiPageRevision" value="1.1" />
 			<var name="wikiPageTitle" value="FrontPage" />
