@@ -1,0 +1,85 @@
+{
+  "duration" : 347.086,
+  "empty" : false,
+  "failCount" : 0,
+  "passCount" : 4,
+  "skipCount" : 0,
+  "suites" : [
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "testScanJenkinsLog",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "0",
+      "name" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "2017-08-29_13:30:53"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.liferay.poshi.runner.PoshiRunner",
+          "duration" : 116.827,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test[XssUsecase#ViewGoogleAnalyticsIDNoXSS]",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        },
+        {
+          "age" : 0,
+          "className" : "com.liferay.poshi.runner.PoshiRunner",
+          "duration" : 86.369,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test[XssUsecase#ViewJSONWSNoXSS]",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        },
+        {
+          "age" : 0,
+          "className" : "com.liferay.poshi.runner.PoshiRunner",
+          "duration" : 143.89,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test[XssUsecase#ViewLiferayPortletListNoXSS]",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 347.086,
+      "id" : "1",
+      "name" : "com.liferay.poshi.runner.PoshiRunner",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "2017-08-29T13:24:17"
+    }
+  ]
+}

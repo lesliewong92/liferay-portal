@@ -1,0 +1,85 @@
+{
+  "duration" : 557.125,
+  "empty" : false,
+  "failCount" : 0,
+  "passCount" : 4,
+  "skipCount" : 0,
+  "suites" : [
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "testScanJenkinsLog",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "0",
+      "name" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "2017-08-29_13:35:31"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.liferay.poshi.runner.PoshiRunner",
+          "duration" : 201.477,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test[PGBookmarks#EditFolder]",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        },
+        {
+          "age" : 0,
+          "className" : "com.liferay.poshi.runner.PoshiRunner",
+          "duration" : 229.218,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test[PGBookmarks#EditFolderBookmark]",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        },
+        {
+          "age" : 0,
+          "className" : "com.liferay.poshi.runner.PoshiRunner",
+          "duration" : 126.43,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test[PGBookmarks#RemoveBookmarkPortlet]",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 557.125,
+      "id" : "1",
+      "name" : "com.liferay.poshi.runner.PoshiRunner",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "2017-08-29T13:25:29"
+    }
+  ]
+}

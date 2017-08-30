@@ -1,0 +1,40 @@
+{
+  "failCount" : 0,
+  "skipCount" : 0,
+  "totalCount" : 1,
+  "urlName" : "testReport",
+  "childReports" : [
+    {
+      "child" : {
+        "number" : 157048,
+        "url" : "${dependencies.url}/testtest/test-1-18/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=0,label_exp=!master/157048"
+      },
+      "result" : {
+        "duration" : 0.0,
+        "empty" : false,
+        "failCount" : 0,
+        "passCount" : 1,
+        "skipCount" : 0,
+        "suites" : [
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.jenkins.Jenkins",
+                "duration" : 0.0,
+                "failedSince" : 0,
+                "name" : "test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=0,label_exp=!master_ruby-sass-compiler-jdk8",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 0.0,
+            "id" : null,
+            "name" : "com.liferay.jenkins.Jenkins",
+            "timestamp" : null
+          }
+        ]
+      }
+    }
+  ]
+}

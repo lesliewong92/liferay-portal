@@ -1,0 +1,38 @@
+{"properties": [
+    {
+        "name": "github.upstream.branch.name",
+        "value": "master"
+    },
+    {
+        "name": "github.sender.branch.sha",
+        "value": "eec012bd3f2fb075679249987c82b560bc3e7e1c"
+    },
+    {
+        "name": "github.receiver.username",
+        "value": "liferay"
+    },
+    {
+        "name": "github.sender.branch.name",
+        "value": "master"
+    },
+    {
+        "name": "github.pull.request.number",
+        "value": "0"
+    },
+    {
+        "name": "github.upstream.branch.sha",
+        "value": "eec012bd3f2fb075679249987c82b560bc3e7e1c"
+    },
+    {
+        "name": "github.sender.username",
+        "value": "liferay"
+    },
+    {
+        "name": "local.git.branch.cached",
+        "value": "true"
+    },
+    {
+        "name": "github.origin.name",
+        "value": "liferay"
+    }
+]}

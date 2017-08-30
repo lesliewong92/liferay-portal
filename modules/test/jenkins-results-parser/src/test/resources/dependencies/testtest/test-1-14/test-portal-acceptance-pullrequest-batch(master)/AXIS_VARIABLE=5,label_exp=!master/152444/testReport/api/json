@@ -1,0 +1,85 @@
+{
+  "duration" : 791.42,
+  "empty" : false,
+  "failCount" : 0,
+  "passCount" : 4,
+  "skipCount" : 0,
+  "suites" : [
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "testScanJenkinsLog",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "0",
+      "name" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "2017-08-29_13:56:32"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.liferay.poshi.runner.PoshiRunner",
+          "duration" : 148.069,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test[CPWiki#EditWikiNode]",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        },
+        {
+          "age" : 0,
+          "className" : "com.liferay.poshi.runner.PoshiRunner",
+          "duration" : 497.871,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test[DynamicdatalistsUsecase#AddRecordWithRepeatableTextField]",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        },
+        {
+          "age" : 0,
+          "className" : "com.liferay.poshi.runner.PoshiRunner",
+          "duration" : 145.48,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test[ExportImport#ImportCorruptedFile]",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 791.42,
+      "id" : "1",
+      "name" : "com.liferay.poshi.runner.PoshiRunner",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "2017-08-29T13:42:20"
+    }
+  ]
+}

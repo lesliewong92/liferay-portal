@@ -1,0 +1,239 @@
+{
+  "duration" : 391.289,
+  "empty" : false,
+  "failCount" : 0,
+  "passCount" : 10,
+  "skipCount" : 0,
+  "suites" : [
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.liferay.portal.lpkg.deployer.test.LPKGDeployerCleanStartupTest",
+          "duration" : 0.342,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "testDeployedLPKGs",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.342,
+      "id" : "0",
+      "name" : "com.liferay.portal.lpkg.deployer.test.LPKGDeployerCleanStartupTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "2017-08-29T13:32:44"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.liferay.portal.lpkg.deployer.test.LPKGDeployerDowngradeTest",
+          "duration" : 0.422,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "testDeployedLPKGs",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.422,
+      "id" : "1",
+      "name" : "com.liferay.portal.lpkg.deployer.test.LPKGDeployerDowngradeTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "2017-08-29T14:00:06"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.liferay.portal.lpkg.deployer.test.LPKGDeployerUpgradeTest",
+          "duration" : 0.341,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "testDeployedLPKGs",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.341,
+      "id" : "2",
+      "name" : "com.liferay.portal.lpkg.deployer.test.LPKGDeployerUpgradeTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "2017-08-29T13:46:52"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.liferay.portal.lpkg.deployer.LPKGDowngradeTest",
+          "duration" : 0.596,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "testDownGradeLPKG",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.596,
+      "id" : "3",
+      "name" : "com.liferay.portal.lpkg.deployer.LPKGDowngradeTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "2017-08-29T13:54:32"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.liferay.portal.lpkg.deployer.LPKGUpgradeTest",
+          "duration" : 0.459,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "testUpgradeLPKG",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.459,
+      "id" : "4",
+      "name" : "com.liferay.portal.lpkg.deployer.LPKGUpgradeTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "2017-08-29T13:41:24"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.liferay.portal.lpkg.deployer.LPKGVersionChangeLogAssertorTest",
+          "duration" : 0.018,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "testUpgradeLog",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.018,
+      "id" : "5",
+      "name" : "com.liferay.portal.lpkg.deployer.LPKGVersionChangeLogAssertorTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "2017-08-29T14:00:14"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "testScanJenkinsLog",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "6",
+      "name" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "2017-08-29_14:07:07"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.liferay.portal.log.assertor.PortalLogAssertorTest",
+          "duration" : 0.146,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "testScanXMLLog",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        },
+        {
+          "age" : 0,
+          "className" : "com.liferay.portal.log.assertor.PortalLogAssertorTest",
+          "duration" : 0.001,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "testScanOSGiLog",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.147,
+      "id" : "7",
+      "name" : "com.liferay.portal.log.assertor.PortalLogAssertorTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "2017-08-29T14:07:03"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.liferay.poshi.runner.PoshiRunner",
+          "duration" : 388.964,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test[PortalSmoke#Smoke]",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 388.964,
+      "id" : "8",
+      "name" : "com.liferay.poshi.runner.PoshiRunner",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "2017-08-29T14:00:28"
+    }
+  ]
+}

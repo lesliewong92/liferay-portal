@@ -1,0 +1,38 @@
+{"properties": [
+    {
+        "name": "github.upstream.branch.name",
+        "value": "master"
+    },
+    {
+        "name": "github.sender.branch.sha",
+        "value": "e5add1417b307cd7964eb5e45a9a721f46d6997a"
+    },
+    {
+        "name": "github.receiver.username",
+        "value": "liferay"
+    },
+    {
+        "name": "github.sender.branch.name",
+        "value": "ci-merge-com-liferay-adaptive-media-master-b75ad7d7f72d7859d3c8c8934f0200740fc3a73c"
+    },
+    {
+        "name": "github.pull.request.number",
+        "value": "1847"
+    },
+    {
+        "name": "github.upstream.branch.sha",
+        "value": "7021f4661b808a2da2551cc724f79ba656575273"
+    },
+    {
+        "name": "github.sender.username",
+        "value": "liferay-continuous-integration"
+    },
+    {
+        "name": "local.git.branch.cached",
+        "value": "true"
+    },
+    {
+        "name": "github.origin.name",
+        "value": "liferay"
+    }
+]}

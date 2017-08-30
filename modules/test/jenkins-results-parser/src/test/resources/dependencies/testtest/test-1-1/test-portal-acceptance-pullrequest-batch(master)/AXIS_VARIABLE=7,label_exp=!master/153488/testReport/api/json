@@ -1,0 +1,1113 @@
+{
+  "duration" : 0.0,
+  "empty" : false,
+  "failCount" : 0,
+  "passCount" : 46,
+  "skipCount" : 0,
+  "suites" : [
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "testScanJenkinsLog",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "0",
+      "name" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "2017-08-29_13:33:34"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.Portlet.AnnotatedProcessActionTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "1",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.Portlet.AnnotatedProcessActionTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013517069"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.Portlet.DestroyTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "2",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.Portlet.DestroyTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013517048"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.Portlet.InitFailedDestroyNotCalledTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "3",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.Portlet.InitFailedDestroyNotCalledTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013517076"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.Portlet.InitPortletExceptionTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "4",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.Portlet.InitPortletExceptionTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013517059"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.Portlet.InitRuntimeExceptionTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "5",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.Portlet.InitRuntimeExceptionTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013517077"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.Portlet.InitTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "6",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.Portlet.InitTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013517063"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.Portlet.InitUnavailableExceptionTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "7",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.Portlet.InitUnavailableExceptionTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013517065"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.Portlet.NoActionProcessActionTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "8",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.Portlet.NoActionProcessActionTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013517067"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.Portlet.OnePortletObjectPerJVMTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "9",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.Portlet.OnePortletObjectPerJVMTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013517078"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.Portlet.PermanentlyUnavailableTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "10",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.Portlet.PermanentlyUnavailableTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013517079"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.Portlet.ProcessActionFinishBeforeRenderTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "11",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.Portlet.ProcessActionFinishBeforeRenderTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013517081"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.Portlet.ProcessActionTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "12",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.Portlet.ProcessActionTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013517068"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.Portlet.ProcessActionUnavailableExceptionTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "13",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.Portlet.ProcessActionUnavailableExceptionTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013517071"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.Portlet.ProcessEventUnavailableExceptionTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "14",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.Portlet.ProcessEventUnavailableExceptionTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013517072"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.Portlet.RenderInvokedForAllPortletsTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "15",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.Portlet.RenderInvokedForAllPortletsTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013517082"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.Portlet.RenderTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "16",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.Portlet.RenderTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013517074"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.Portlet.ServeResourceTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "17",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.Portlet.ServeResourceTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013517075"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.PortletSecurityException.PortletSecurityExceptionCtr1Test",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "18",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.PortletSecurityException.PortletSecurityExceptionCtr1Test",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013524834"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.PortletSecurityException.PortletSecurityExceptionCtr2Test",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "19",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.PortletSecurityException.PortletSecurityExceptionCtr2Test",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013524843"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.PortletSecurityException.PortletSecurityExceptionCtr3Test",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "20",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.PortletSecurityException.PortletSecurityExceptionCtr3Test",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013524847"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.CreateActionURLTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "21",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.CreateActionURLTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013568962"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.CreateRenderURLTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "22",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.CreateRenderURLTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013568971"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.EncodeURLIllegalArgumentExceptionTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "23",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.EncodeURLIllegalArgumentExceptionTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013568973"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.EncodeURLTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "24",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.EncodeURLTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013568976"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.FlushBufferTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "25",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.FlushBufferTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013568978"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.GetBufferSizeTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "26",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.GetBufferSizeTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013568979"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.GetCharacterEncodingTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "27",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.GetCharacterEncodingTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013568981"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.GetContentTypeTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "28",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.GetContentTypeTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013568983"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.GetLocaleTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "29",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.GetLocaleTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013568984"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.GetNamespaceSameValueTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "30",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.GetNamespaceSameValueTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013569007"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.GetNamespaceTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "31",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.GetNamespaceTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013568985"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.GetNullContentTypeTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "32",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.GetNullContentTypeTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013569004"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.GetPortletOutputStreamAfterGetWriterTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "33",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.GetPortletOutputStreamAfterGetWriterTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013568986"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.GetPortletOutputStreamTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "34",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.GetPortletOutputStreamTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013568987"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.GetWriterAfterGetPortletOutputStreamTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "35",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.GetWriterAfterGetPortletOutputStreamTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013568988"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.GetWriterTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "36",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.GetWriterTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013568989"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.IsCommittedTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "37",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.IsCommittedTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013568990"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.ResetBufferIllegalStateExceptionTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "38",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.ResetBufferIllegalStateExceptionTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013568992"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.ResetBufferTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "39",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.ResetBufferTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013568993"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.ResetIllegalStateExceptionTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "40",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.ResetIllegalStateExceptionTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013568994"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.ResetTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "41",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.ResetTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013568995"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.SetBufferSizeTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "42",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.SetBufferSizeTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013568996"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.SetContentTypeTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "43",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.SetContentTypeTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013569002"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.SetInvalidContentTypeTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "44",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.SetInvalidContentTypeTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013569003"
+    },
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.ValidIdentifierTest",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : "45",
+      "name" : "com.sun.ts.tests.portlet.api.javax_portlet.RenderResponse.ValidIdentifierTest",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : "1504013569006"
+    }
+  ]
+}

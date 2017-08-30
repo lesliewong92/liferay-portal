@@ -1,0 +1,99 @@
+{
+  "actions" : [
+    {
+      "parameters" : [
+        {
+          "name" : "AXIS_VARIABLES",
+          "value" : "0 1 2 3 4"
+        },
+        {
+          "name" : "JENKINS_GITHUB_BRANCH_NAME",
+          "value" : ""
+        },
+        {
+          "name" : "JENKINS_GITHUB_BRANCH_USERNAME",
+          "value" : ""
+        },
+        {
+          "name" : "JENKINS_GITHUB_PULL_REQUEST_NUMBER",
+          "value" : ""
+        },
+        {
+          "name" : "JENKINS_GITHUB_PULL_REQUEST_USERNAME",
+          "value" : ""
+        },
+        {
+          "name" : "JOB_VARIANT",
+          "value" : "integration-mariadb100-jdk8"
+        },
+        {
+          "name" : "JSON_MAP_URL",
+          "value" : "http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest(master)/2232/test-portal-acceptance-pullrequest-batch(master)/integration-mariadb100-jdk8/start.properties"
+        }
+      ]
+    },
+    {
+      
+    },
+    {
+      "causes" : [
+        {
+          "shortDescription" : "Started by upstream project \"test-portal-acceptance-pullrequest-batch(master)\" build number 141,058",
+          "upstreamBuild" : 141058,
+          "upstreamProject" : "test-portal-acceptance-pullrequest-batch(master)",
+          "upstreamUrl" : "job/test-portal-acceptance-pullrequest-batch(master)/"
+        }
+      ]
+    },
+    null,
+    {
+      
+    },
+    {
+      
+    },
+    {
+      "failCount" : 0,
+      "skipCount" : 2,
+      "totalCount" : 866,
+      "urlName" : "testReport"
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    }
+  ],
+  "artifacts" : [
+    
+  ],
+  "building" : false,
+  "description" : "<strong>liferay</strong> - <a href=\"https://github.com/liferay/liferay-portal/pull/1847\">PR#1847</a> - <a href=\"https://test-1-2.liferay.com//userContent/jobs/test-portal-acceptance-pullrequest(master)/builds/2232/jenkins-report.html\">Jenkins Report</a>",
+  "duration" : 1586247,
+  "estimatedDuration" : 898287,
+  "executor" : null,
+  "fullDisplayName" : "test-portal-acceptance-pullrequest-batch(master) » 4,!master #141058",
+  "id" : "2017-08-29_06-17-42",
+  "keepLog" : false,
+  "number" : 141058,
+  "result" : "SUCCESS",
+  "timestamp" : 1504012662000,
+  "url" : "${dependencies.url}/testtest/test-1-9/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=4,label_exp=!master/141058",
+  "builtOn" : "cloud-10-0-19-81",
+  "changeSet" : {
+    "items" : [
+      
+    ],
+    "kind" : null
+  },
+  "culprits" : [
+    
+  ]
+}

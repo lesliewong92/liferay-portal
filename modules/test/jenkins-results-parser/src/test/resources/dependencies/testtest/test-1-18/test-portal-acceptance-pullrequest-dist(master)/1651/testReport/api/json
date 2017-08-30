@@ -1,0 +1,200 @@
+{
+  "failCount" : 0,
+  "skipCount" : 0,
+  "totalCount" : 6,
+  "urlName" : "testReport",
+  "childReports" : [
+    {
+      "child" : {
+        "number" : 1651,
+        "url" : "${dependencies.url}/testtest/test-1-18/test-portal-acceptance-pullrequest-dist(master)/AXIS_VARIABLE=tcserver,label_exp=!master/1651"
+      },
+      "result" : {
+        "duration" : 0.0,
+        "empty" : false,
+        "failCount" : 0,
+        "passCount" : 1,
+        "skipCount" : 0,
+        "suites" : [
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.jenkins.Jenkins",
+                "duration" : 0.0,
+                "failedSince" : 0,
+                "name" : "test-portal-acceptance-pullrequest-dist(master)/AXIS_VARIABLE=tcserver,label_exp=!master_jdk8",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 0.0,
+            "id" : null,
+            "name" : "com.liferay.jenkins.Jenkins",
+            "timestamp" : null
+          }
+        ]
+      }
+    },
+    {
+      "child" : {
+        "number" : 1651,
+        "url" : "${dependencies.url}/testtest/test-1-18/test-portal-acceptance-pullrequest-dist(master)/AXIS_VARIABLE=tomcat,label_exp=!master/1651"
+      },
+      "result" : {
+        "duration" : 0.0,
+        "empty" : false,
+        "failCount" : 0,
+        "passCount" : 1,
+        "skipCount" : 0,
+        "suites" : [
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.jenkins.Jenkins",
+                "duration" : 0.0,
+                "failedSince" : 0,
+                "name" : "test-portal-acceptance-pullrequest-dist(master)/AXIS_VARIABLE=tomcat,label_exp=!master_jdk8",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 0.0,
+            "id" : null,
+            "name" : "com.liferay.jenkins.Jenkins",
+            "timestamp" : null
+          }
+        ]
+      }
+    },
+    {
+      "child" : {
+        "number" : 1651,
+        "url" : "${dependencies.url}/testtest/test-1-18/test-portal-acceptance-pullrequest-dist(master)/AXIS_VARIABLE=jboss,label_exp=!master/1651"
+      },
+      "result" : {
+        "duration" : 0.0,
+        "empty" : false,
+        "failCount" : 0,
+        "passCount" : 1,
+        "skipCount" : 0,
+        "suites" : [
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.jenkins.Jenkins",
+                "duration" : 0.0,
+                "failedSince" : 0,
+                "name" : "test-portal-acceptance-pullrequest-dist(master)/AXIS_VARIABLE=jboss,label_exp=!master_jdk8",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 0.0,
+            "id" : null,
+            "name" : "com.liferay.jenkins.Jenkins",
+            "timestamp" : null
+          }
+        ]
+      }
+    },
+    {
+      "child" : {
+        "number" : 1651,
+        "url" : "${dependencies.url}/testtest/test-1-18/test-portal-acceptance-pullrequest-dist(master)/AXIS_VARIABLE=websphere,label_exp=!master/1651"
+      },
+      "result" : {
+        "duration" : 0.0,
+        "empty" : false,
+        "failCount" : 0,
+        "passCount" : 1,
+        "skipCount" : 0,
+        "suites" : [
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.jenkins.Jenkins",
+                "duration" : 0.0,
+                "failedSince" : 0,
+                "name" : "test-portal-acceptance-pullrequest-dist(master)/AXIS_VARIABLE=websphere,label_exp=!master_jdk8",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 0.0,
+            "id" : null,
+            "name" : "com.liferay.jenkins.Jenkins",
+            "timestamp" : null
+          }
+        ]
+      }
+    },
+    {
+      "child" : {
+        "number" : 1651,
+        "url" : "${dependencies.url}/testtest/test-1-18/test-portal-acceptance-pullrequest-dist(master)/AXIS_VARIABLE=wildfly,label_exp=!master/1651"
+      },
+      "result" : {
+        "duration" : 0.0,
+        "empty" : false,
+        "failCount" : 0,
+        "passCount" : 1,
+        "skipCount" : 0,
+        "suites" : [
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.jenkins.Jenkins",
+                "duration" : 0.0,
+                "failedSince" : 0,
+                "name" : "test-portal-acceptance-pullrequest-dist(master)/AXIS_VARIABLE=wildfly,label_exp=!master_jdk8",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 0.0,
+            "id" : null,
+            "name" : "com.liferay.jenkins.Jenkins",
+            "timestamp" : null
+          }
+        ]
+      }
+    },
+    {
+      "child" : {
+        "number" : 1651,
+        "url" : "${dependencies.url}/testtest/test-1-18/test-portal-acceptance-pullrequest-dist(master)/AXIS_VARIABLE=weblogic,label_exp=!master/1651"
+      },
+      "result" : {
+        "duration" : 0.0,
+        "empty" : false,
+        "failCount" : 0,
+        "passCount" : 1,
+        "skipCount" : 0,
+        "suites" : [
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.jenkins.Jenkins",
+                "duration" : 0.0,
+                "failedSince" : 0,
+                "name" : "test-portal-acceptance-pullrequest-dist(master)/AXIS_VARIABLE=weblogic,label_exp=!master_jdk8",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 0.0,
+            "id" : null,
+            "name" : "com.liferay.jenkins.Jenkins",
+            "timestamp" : null
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "actions" : [
+    {
+      "parameters" : [
+        {
+          "name" : "AXIS_VARIABLES",
+          "value" : "0"
+        },
+        {
+          "name" : "JENKINS_GITHUB_BRANCH_NAME",
+          "value" : ""
+        },
+        {
+          "name" : "JENKINS_GITHUB_BRANCH_USERNAME",
+          "value" : ""
+        },
+        {
+          "name" : "JENKINS_GITHUB_PULL_REQUEST_NUMBER",
+          "value" : ""
+        },
+        {
+          "name" : "JENKINS_GITHUB_PULL_REQUEST_USERNAME",
+          "value" : ""
+        },
+        {
+          "name" : "JOB_VARIANT",
+          "value" : "functional-upgrade-tomcat80-postgresql94-jdk8/1"
+        },
+        {
+          "name" : "JSON_MAP_URL",
+          "value" : "http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest(master)/2232/test-portal-acceptance-pullrequest-batch(master)/functional-upgrade-tomcat80-postgresql94-jdk8/1/start.properties"
+        }
+      ]
+    },
+    {
+      "causes" : [
+        {
+          "shortDescription" : "Started by remote host 10.0.16.120"
+        }
+      ]
+    },
+    null,
+    {
+      "failCount" : 0,
+      "skipCount" : 0,
+      "totalCount" : 2,
+      "urlName" : "testReport"
+    },
+    {
+      
+    },
+    {
+      
+    }
+  ],
+  "artifacts" : [
+    
+  ],
+  "building" : false,
+  "description" : null,
+  "duration" : 1196664,
+  "estimatedDuration" : 1348872,
+  "executor" : null,
+  "fullDisplayName" : "test-portal-acceptance-pullrequest-batch(master) #146036",
+  "id" : "2017-08-29_06-17-34",
+  "keepLog" : false,
+  "number" : 146036,
+  "result" : "SUCCESS",
+  "timestamp" : 1504012654000,
+  "url" : "${dependencies.url}/testtest/test-1-19/test-portal-acceptance-pullrequest-batch(master)/146036",
+  "builtOn" : "cloud-10-0-112-241",
+  "changeSet" : {
+    "items" : [
+      
+    ],
+    "kind" : null
+  },
+  "culprits" : [
+    
+  ],
+  "runs" : [
+    {
+      "number" : 146036,
+      "url" : "${dependencies.url}/testtest/test-1-19/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=0,label_exp=!master/146036"
+    },
+    {
+      "number" : 146029,
+      "url" : "https://test-1-19.liferay.com/job/test-portal-acceptance-pullrequest-batch%28master%29/AXIS_VARIABLE=1,label_exp=!master/146029/"
+    },
+    {
+      "number" : 146025,
+      "url" : "https://test-1-19.liferay.com/job/test-portal-acceptance-pullrequest-batch%28master%29/AXIS_VARIABLE=10,label_exp=!master/146025/"
+    },
+    {
+      "number" : 146025,
+      "url" : "https://test-1-19.liferay.com/job/test-portal-acceptance-pullrequest-batch%28master%29/AXIS_VARIABLE=11,label_exp=!master/146025/"
+    },
+    {
+      "number" : 146025,
+      "url" : "https://test-1-19.liferay.com/job/test-portal-acceptance-pullrequest-batch%28master%29/AXIS_VARIABLE=12,label_exp=!master/146025/"
+    },
+    {
+      "number" : 146025,
+      "url" : "https://test-1-19.liferay.com/job/test-portal-acceptance-pullrequest-batch%28master%29/AXIS_VARIABLE=13,label_exp=!master/146025/"
+    },
+    {
+      "number" : 146025,
+      "url" : "https://test-1-19.liferay.com/job/test-portal-acceptance-pullrequest-batch%28master%29/AXIS_VARIABLE=14,label_exp=!master/146025/"
+    },
+    {
+      "number" : 146025,
+      "url" : "https://test-1-19.liferay.com/job/test-portal-acceptance-pullrequest-batch%28master%29/AXIS_VARIABLE=2,label_exp=!master/146025/"
+    },
+    {
+      "number" : 146025,
+      "url" : "https://test-1-19.liferay.com/job/test-portal-acceptance-pullrequest-batch%28master%29/AXIS_VARIABLE=3,label_exp=!master/146025/"
+    },
+    {
+      "number" : 146025,
+      "url" : "https://test-1-19.liferay.com/job/test-portal-acceptance-pullrequest-batch%28master%29/AXIS_VARIABLE=4,label_exp=!master/146025/"
+    },
+    {
+      "number" : 146025,
+      "url" : "https://test-1-19.liferay.com/job/test-portal-acceptance-pullrequest-batch%28master%29/AXIS_VARIABLE=5,label_exp=!master/146025/"
+    },
+    {
+      "number" : 146025,
+      "url" : "https://test-1-19.liferay.com/job/test-portal-acceptance-pullrequest-batch%28master%29/AXIS_VARIABLE=6,label_exp=!master/146025/"
+    },
+    {
+      "number" : 146025,
+      "url" : "https://test-1-19.liferay.com/job/test-portal-acceptance-pullrequest-batch%28master%29/AXIS_VARIABLE=7,label_exp=!master/146025/"
+    },
+    {
+      "number" : 146025,
+      "url" : "https://test-1-19.liferay.com/job/test-portal-acceptance-pullrequest-batch%28master%29/AXIS_VARIABLE=8,label_exp=!master/146025/"
+    },
+    {
+      "number" : 146025,
+      "url" : "https://test-1-19.liferay.com/job/test-portal-acceptance-pullrequest-batch%28master%29/AXIS_VARIABLE=9,label_exp=!master/146025/"
+    }
+  ]
+}

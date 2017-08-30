@@ -1,0 +1,116 @@
+Started by remote host 10.0.16.120
+[EnvInject] - Loading node environment variables.
+[EnvInject] - Preparing an environment for the build.
+[EnvInject] - Keeping Jenkins system variables.
+[EnvInject] - Keeping Jenkins build variables.
+[EnvInject] - Evaluation the following Groovy script content: 
+import groovy.json.JsonSlurper
+
+def jsonSlurper = new JsonSlurper()
+
+def osName = System.properties['os.name']
+
+osName = osName.toLowerCase()
+
+def map = currentBuild.getEnvVars()
+
+if ("${JSON_MAP_URL}" != "") {
+	def jsonMapURL = "${JSON_MAP_URL}"
+
+	jsonMapURL = jsonMapURL.replaceAll("\\(", "%28")
+	jsonMapURL = jsonMapURL.replaceAll("\\)", "%29")
+
+	def processText = ""
+
+	if (osName.contains('windows')) {
+		processText = [ "cmd.exe", "/c", "curl " + jsonMapURL ].execute().text
+	}
+	else {
+		processText = [ "/bin/bash", "-c", "curl " + jsonMapURL ].execute().text
+	}
+
+	def i = 0
+
+	while ((processText == "") && (i < 5)) {
+		println("Retry in 10 seconds.")
+
+		sleep(10000)
+
+		if (osName.contains('windows')) {
+			processText = [ "cmd.exe", "/c", "curl " + jsonMapURL ].execute().text
+		}
+		else {
+			processText = [ "/bin/bash", "-c", "curl " + jsonMapURL ].execute().text
+		}
+
+		i++
+	}
+
+	if (processText == "") {
+		println("Unable to get JSON map.")
+	}
+
+	def jsonObject = jsonSlurper.parseText(processText)
+
+	def jsonArray = jsonObject.properties
+
+	jsonArray.each{
+		map[it.name] = it.value
+	}
+}
+
+map["JENKINS_TEMP_BRANCH"] = "master-temp-" + System.currentTimeMillis()
+
+if (currentJob instanceof hudson.matrix.MatrixProject) {
+	def axisJobs = currentJob.getItems();
+
+	for (axisJob in axisJobs) {
+		println(axisJob);
+
+		axisJob.disabled = false;
+	}
+}
+
+println(map)
+
+return map
+
+hudson.matrix.MatrixConfiguration@7f53b3f5[test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=0,label_exp=!master]
+hudson.matrix.MatrixConfiguration@504bdb21[test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=1,label_exp=!master]
+hudson.matrix.MatrixConfiguration@241f7cb6[test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=10,label_exp=!master]
+hudson.matrix.MatrixConfiguration@f34a341[test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=11,label_exp=!master]
+hudson.matrix.MatrixConfiguration@48ca0833[test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=12,label_exp=!master]
+hudson.matrix.MatrixConfiguration@47e0719a[test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=13,label_exp=!master]
+hudson.matrix.MatrixConfiguration@60425a53[test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=14,label_exp=!master]
+hudson.matrix.MatrixConfiguration@24383084[test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=2,label_exp=!master]
+hudson.matrix.MatrixConfiguration@64f93caf[test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=3,label_exp=!master]
+hudson.matrix.MatrixConfiguration@26ff38f3[test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=4,label_exp=!master]
+hudson.matrix.MatrixConfiguration@3df3ed85[test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=5,label_exp=!master]
+hudson.matrix.MatrixConfiguration@596ed689[test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=6,label_exp=!master]
+hudson.matrix.MatrixConfiguration@7bc6ea3d[test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=7,label_exp=!master]
+hudson.matrix.MatrixConfiguration@403c8a47[test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=8,label_exp=!master]
+hudson.matrix.MatrixConfiguration@469a5c43[test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=9,label_exp=!master]
+[_:/usr/bin/screen, ANT_HOME:/opt/java/ant, ANT_OPTS:-Dhttp.nonProxyHosts="cloud*|files.liferay.org.es|it.liferay.com|localhost|mirrors-no-cache.lax.liferay.com|release*|test*" -Dhttp.proxyHost=squid.lax.liferay.com -Dhttp.proxyPort=3128 -server -verbose:gc -Xloggc:/tmp/ant-gc.log -Xms1024m -Xmx2048m -Xss2m -Xverify:none -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -XX:+PrintGCCause -XX:+PrintGCDetails -XX:+UseParallelOldGC -XX:HeapDumpPath=/tmp/ant-oom-heap-dump.bin -XX:MaxNewSize=512m -XX:MaxPermSize=512m -XX:MaxTenuringThreshold=0 -XX:NewSize=256m -XX:PermSize=100m -XX:SurvivorRatio=65536 -XX:TargetSurvivorRatio=0, AXIS_VARIABLES:0, BUILD_DESCRIPTION:<strong>liferay</strong> - <a href="https://github.com/liferay/liferay-portal/pull/1847">PR#1847</a> - <a href="https://test-1-2.liferay.com//userContent/jobs/test-portal-acceptance-pullrequest(master)/builds/2232/jenkins-report.html">Jenkins Report</a>, BUILD_DISPLAY_NAME:#144327, BUILD_ID:2017-08-29_06-16-21, BUILD_NUMBER:144327, BUILD_TAG:jenkins-test-portal-acceptance-pullrequest-batch(master)-144327, BUILD_URL:${dependencies.url}/testtest/test-1-17/test-portal-acceptance-pullrequest-batch(master)/144327, CLASSPATH:, DISPLAY::0, DIST_PATH:/test-1-2/test-portal-acceptance-pullrequest(master)/2232/dist, DIST_ROOT_PATH:/test-1-2, EMAIL_LIST:qa-slave-verify-fail@liferay.com, EXECUTOR_NUMBER:-1, GAUNTLET:false, GITHUB_ORIGIN_NAME:liferay, GITHUB_PULL_REQUEST_NUMBER:1847, GITHUB_RECEIVER_USERNAME:liferay, GITHUB_SENDER_BRANCH_SHA:e5add1417b307cd7964eb5e45a9a721f46d6997a, GITHUB_SENDER_USERNAME:liferay-continuous-integration, GITHUB_UPSTREAM_BRANCH_SHA:7021f4661b808a2da2551cc724f79ba656575273, HOME:/root, HOSTNAME:cloud-10-0-112-90.lax.liferay.com, HUDSON_HOME:/opt/java/jenkins, HUDSON_SERVER_COOKIE:10c4f3f5cf07d98a, HUDSON_URL:https://test-1-17.liferay.com/, JAVA_HOME:/opt/java/jdk, JENKINS_GITHUB_BRANCH_NAME:, JENKINS_GITHUB_BRANCH_USERNAME:, JENKINS_GITHUB_ORIGIN_NAME:liferay, JENKINS_GITHUB_PULL_REQUEST_NUMBER:0, JENKINS_GITHUB_PULL_REQUEST_USERNAME:, JENKINS_GITHUB_RECEIVER_USERNAME:liferay, JENKINS_GITHUB_SENDER_BRANCH_NAME:master, JENKINS_GITHUB_SENDER_BRANCH_SHA:60f608f17edf7b1cd958fa8a36b05ce161f5dd97, JENKINS_GITHUB_SENDER_USERNAME:liferay, JENKINS_GITHUB_UPSTREAM_BRANCH_NAME:master, JENKINS_GITHUB_UPSTREAM_BRANCH_SHA:60f608f17edf7b1cd958fa8a36b05ce161f5dd97, JENKINS_HOME:/opt/java/jenkins, JENKINS_LOCAL_GIT_BRANCH_CACHED:true, JENKINS_PULL_REQUEST_DIST_NODES:cloud-10-0-14-216,cloud-10-0-11-25,cloud-10-0-12-230,cloud-10-0-112-135,cloud-10-0-112-143,cloud-10-0-17-194,cloud-10-0-113-118,cloud-10-0-16-160,cloud-10-0-111-99,cloud-10-0-112-151,cloud-10-0-113-35,cloud-10-0-16-188,cloud-10-0-11-49,cloud-10-0-16-113,cloud-10-0-10-135,cloud-10-0-19-227,cloud-10-0-112-156,cloud-10-0-110-242,cloud-10-0-16-104,cloud-10-0-19-248,cloud-10-0-13-7,cloud-10-0-11-73,cloud-10-0-112-10, JENKINS_SERVER_COOKIE:10c4f3f5cf07d98a, JENKINS_TEMP_BRANCH:master-temp-1504012581250, JENKINS_URL:https://test-1-17.liferay.com/, JOB_NAME:test-portal-acceptance-pullrequest-batch(master), JOB_URL:https://test-1-17.liferay.com/job/test-portal-acceptance-pullrequest-batch(master)/, JOB_VARIANT:functional-tomcat80-mysql56-jdk8/37, JSON_MAP_URL:http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest(master)/2232/test-portal-acceptance-pullrequest-batch(master)/functional-tomcat80-mysql56-jdk8/37/start.properties, NLSPATH:/usr/dt/lib/nls/msg/%L/%N.cat, NODE_LABELS:cloud-10-0-112-90, NODE_NAME:cloud-10-0-112-90, ORACLE_HOME:/u01/app/oracle/product/12.1.0/db_1, ORACLE_SID:oracl, PATH:/bin:/opt/android/sdk:/opt/android/sdk/platform-tools:/opt/android/sdk/tools:/opt/ibm/db2/V10.5/bin:/opt/java/ant/bin:/opt/java/jdk/bin:/opt/java/maven/bin:/opt/oracle/bin:/opt/sybase/OCS-16_0/bin:/sbin:/usr/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin, PWD:/, RUN_TEST_CASE_METHOD_GROUP:37, RUN_TEST_CASE_METHOD_GROUP_37_0:PGAnnouncements#EditAnnouncementsEntry, SHELL:/bin/sh, SHLVL:2, STY:1910..cloud-10-0-112-90, SUBREPOSITORY_CI_MERGE_FILES:/opt/dev/projects/github/liferay-portal/modules/apps/adaptive-media/ci-merge, SUBREPOSITORY_PACKAGE_NAMES:com.liferay.adaptive,com.liferay.adaptive.media,com.liferay.adaptive.media.blogs,com.liferay.adaptive.media.blogs.editor,com.liferay.adaptive.media.blogs.editor.configuration,com.liferay.adaptive.media.blogs.editor.configuration.internal,com.liferay.adaptive.media.blogs.editor.configuration.internal.dynamic,com.liferay.adaptive.media.blogs.editor.configuration.internal.stat1c,com.liferay.adaptive.media.blogs.internal,com.liferay.adaptive.media.blogs.internal.exportimport,com.liferay.adaptive.media.blogs.internal.exportimport.content,com.liferay.adaptive.media.blogs.internal.exportimport.content.processor,com.liferay.adaptive.media.blogs.item,com.liferay.adaptive.media.blogs.item.selector,com.liferay.adaptive.media.blogs.item.selector.web,com.liferay.adaptive.media.blogs.item.selector.web.internal,com.liferay.adaptive.media.blogs.web,com.liferay.adaptive.media.blogs.web.internal,com.liferay.adaptive.media.blogs.web.internal.attachment,com.liferay.adaptive.media.content,com.liferay.adaptive.media.content.transformer,com.liferay.adaptive.media.document,com.liferay.adaptive.media.document.library,com.liferay.adaptive.media.document.library.item,com.liferay.adaptive.media.document.library.item.selector,com.liferay.adaptive.media.document.library.item.selector.web,com.liferay.adaptive.media.document.library.item.selector.web.internal,com.liferay.adaptive.media.document.library.thumbnails,com.liferay.adaptive.media.document.library.thumbnails.internal,com.liferay.adaptive.media.document.library.thumbnails.internal.commands,com.liferay.adaptive.media.document.library.thumbnails.internal.commands.test,com.liferay.adaptive.media.document.library.thumbnails.internal.commands.test.dependencies,com.liferay.adaptive.media.document.library.thumbnails.internal.test,com.liferay.adaptive.media.document.library.thumbnails.internal.test.util,com.liferay.adaptive.media.document.library.thumbnails.internal.util,com.liferay.adaptive.media.document.library.thumbnails.internal.util.comparator,com.liferay.adaptive.media.image,com.liferay.adaptive.media.image.content,com.liferay.adaptive.media.image.content.transformer,com.liferay.adaptive.media.image.content.transformer.internal,com.liferay.adaptive.media.image.internal,com.liferay.adaptive.media.image.internal.configuration,com.liferay.adaptive.media.image.internal.finder,com.liferay.adaptive.media.image.internal.handler,com.liferay.adaptive.media.image.internal.mediaquery,com.liferay.adaptive.media.image.internal.processor,com.liferay.adaptive.media.image.internal.storage,com.liferay.adaptive.media.image.internal.test,com.liferay.adaptive.media.image.internal.test.dependencies,com.liferay.adaptive.media.image.internal.test.util,com.liferay.adaptive.media.image.internal.url,com.liferay.adaptive.media.image.internal.util,com.liferay.adaptive.media.image.item,com.liferay.adaptive.media.image.item.selector,com.liferay.adaptive.media.image.item.selector.internal,com.liferay.adaptive.media.image.item.selector.internal.resolver,com.liferay.adaptive.media.image.item.selector.internal.resolver.test,com.liferay.adaptive.media.image.item.selector.internal.resolver.test.dependencies,com.liferay.adaptive.media.image.processor,com.liferay.adaptive.media.image.processor.test,com.liferay.adaptive.media.image.processor.test.dependencies,com.liferay.adaptive.media.image.service,com.liferay.adaptive.media.image.service.persistence,com.liferay.adaptive.media.image.service.persistence.test,com.liferay.adaptive.media.image.test,com.liferay.adaptive.media.image.test.util,com.liferay.adaptive.media.image.web,com.liferay.adaptive.media.image.web.html,com.liferay.adaptive.media.item,com.liferay.adaptive.media.item.selector,com.liferay.adaptive.media.item.selector.upload,com.liferay.adaptive.media.item.selector.upload.web,com.liferay.adaptive.media.item.selector.upload.web.internal,com.liferay.adaptive.media.journal,com.liferay.adaptive.media.journal.editor,com.liferay.adaptive.media.journal.editor.configuration,com.liferay.adaptive.media.journal.editor.configuration.internal,com.liferay.adaptive.media.journal.web,com.liferay.adaptive.media.journal.web.internal,com.liferay.adaptive.media.journal.web.internal.messaging,com.liferay.adaptive.media.journal.web.internal.transformer,com.liferay.adaptive.media.web,com.liferay.adaptive.media.web.internal,com.liferay.adaptive.media.web.internal.processor,com.liferay.adaptive.media.web.internal.servlet, SYBASE:/opt/sybase, SYBASE_ASE:ASE-16_0, TERM:screen, TERMCAP:SC|screen|VT 100/ANSI X3.64 virtual terminal:\
+	:DO=\E[%dB:LE=\E[%dD:RI=\E[%dC:UP=\E[%dA:bs:bt=\E[Z:\
+	:cd=\E[J:ce=\E[K:cl=\E[H\E[J:cm=\E[%i%d;%dH:ct=\E[3g:\
+	:do=^J:nd=\E[C:pt:rc=\E8:rs=\Ec:sc=\E7:st=\EH:up=\EM:\
+	:le=^H:bl=^G:cr=^M:it#8:ho=\E[H:nw=\EE:ta=^I:is=\E)0:\
+	:li#24:co#80:am:xn:xv:LP:sr=\EM:al=\E[L:AL=\E[%dL:\
+	:cs=\E[%i%d;%dr:dl=\E[M:DL=\E[%dM:dc=\E[P:DC=\E[%dP:\
+	:im=\E[4h:ei=\E[4l:mi:IC=\E[%d@:ks=\E[?1h\E=:\
+	:ke=\E[?1l\E>:vi=\E[?25l:ve=\E[34h\E[?25h:vs=\E[34l:\
+	:ti=\E[?1049h:te=\E[?1049l:k0=\E[10~:k1=\EOP:k2=\EOQ:\
+	:k3=\EOR:k4=\EOS:k5=\E[15~:k6=\E[17~:k7=\E[18~:\
+	:k8=\E[19~:k9=\E[20~:k;=\E[21~:F1=\E[23~:F2=\E[24~:\
+	:kh=\E[1~:@1=\E[1~:kH=\E[4~:@7=\E[4~:kN=\E[6~:kP=\E[5~:\
+	:kI=\E[2~:kD=\E[3~:ku=\EOA:kd=\EOB:kr=\EOC:kl=\EOD:, TEST_BATCH_NAME:functional-tomcat80-mysql56-jdk8, TEST_BATCH_RUN_TYPE:sequential, TEST_BATCH_SIZE:8, TEST_PORTAL_WEB:false, TOP_LEVEL_BRANCH_NAME:master-temp-20170829123249342, TOP_LEVEL_BUILD_DESCRIPTION:<strong>liferay</strong> - <a href="https://github.com/liferay/liferay-portal/pull/1847">PR#1847</a> - <a href="https://test-1-2.liferay.com//userContent/jobs/test-portal-acceptance-pullrequest(master)/builds/2232/jenkins-report.html">Jenkins Report</a>, TOP_LEVEL_BUILD_NUMBER:2232, TOP_LEVEL_BUILD_URL:${dependencies.url}/testtest/test-1-2/test-portal-acceptance-pullrequest(master)/2232, TOP_LEVEL_GITHUB_COMMENT_ID:325649313, TOP_LEVEL_JOB_NAME:test-portal-acceptance-pullrequest(master), TOP_LEVEL_MASTER_HOSTNAME:test-1-2, TOP_LEVEL_START_TIME:1504009969573, WINDOW:0, XFILESEARCHPATH:/usr/dt/app-defaults/%L/Dt]
+[EnvInject] - Injecting as environment variables the properties content 
+MASTER_HOSTNAME=test-1-17
+
+[EnvInject] - Variables injected successfully.
+[EnvInject] - Injecting contributions.
+Building remotely on cloud-10-0-112-90 in workspace /opt/dev/projects/github/liferay-jenkins-ee
+Triggering 0,!master
+Configuration 0,!master is still in the queue: Waiting for next available executor on !master
+0,!master completed with result SUCCESS
+Finished: SUCCESS

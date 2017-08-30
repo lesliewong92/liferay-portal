@@ -1,0 +1,99 @@
+{
+  "actions" : [
+    {
+      "parameters" : [
+        {
+          "name" : "AXIS_VARIABLES",
+          "value" : "0"
+        },
+        {
+          "name" : "JENKINS_GITHUB_BRANCH_NAME",
+          "value" : ""
+        },
+        {
+          "name" : "JENKINS_GITHUB_BRANCH_USERNAME",
+          "value" : ""
+        },
+        {
+          "name" : "JENKINS_GITHUB_PULL_REQUEST_NUMBER",
+          "value" : ""
+        },
+        {
+          "name" : "JENKINS_GITHUB_PULL_REQUEST_USERNAME",
+          "value" : ""
+        },
+        {
+          "name" : "JOB_VARIANT",
+          "value" : "functional-upgrade-tomcat80-mysql56-jdk8/2"
+        },
+        {
+          "name" : "JSON_MAP_URL",
+          "value" : "http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest(master)/2232/test-portal-acceptance-pullrequest-batch(master)/functional-upgrade-tomcat80-mysql56-jdk8/2/start.properties"
+        }
+      ]
+    },
+    {
+      
+    },
+    {
+      "causes" : [
+        {
+          "shortDescription" : "Started by upstream project \"test-portal-acceptance-pullrequest-batch(master)\" build number 158,145",
+          "upstreamBuild" : 158145,
+          "upstreamProject" : "test-portal-acceptance-pullrequest-batch(master)",
+          "upstreamUrl" : "job/test-portal-acceptance-pullrequest-batch(master)/"
+        }
+      ]
+    },
+    null,
+    {
+      
+    },
+    {
+      
+    },
+    {
+      "failCount" : 0,
+      "skipCount" : 0,
+      "totalCount" : 2,
+      "urlName" : "testReport"
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    }
+  ],
+  "artifacts" : [
+    
+  ],
+  "building" : false,
+  "description" : "<strong>liferay</strong> - <a href=\"https://github.com/liferay/liferay-portal/pull/1847\">PR#1847</a> - <a href=\"https://test-1-2.liferay.com//userContent/jobs/test-portal-acceptance-pullrequest(master)/builds/2232/jenkins-report.html\">Jenkins Report</a><ul><li><strong>PortalSmokeUpgrade#ViewPortalSmokeArchive623</strong><ul><li><a href=\"https://testray.liferay.com/reports/production/logs/test-1-2/1504009969573/test-portal-acceptance-pullrequest%28master%29/2232/functional-upgrade-tomcat80-mysql56-jdk8/2/0/PortalSmokeUpgrade_ViewPortalSmokeArchive623/index.html.gz\">Poshi Report</a></li><li><a href=\"https://testray.liferay.com/reports/production/logs/test-1-2/1504009969573/test-portal-acceptance-pullrequest%28master%29/2232/functional-upgrade-tomcat80-mysql56-jdk8/2/0/PortalSmokeUpgrade_ViewPortalSmokeArchive623/summary.html.gz\">Poshi Summary</a></li></ul></li></ul><br />",
+  "duration" : 1263819,
+  "estimatedDuration" : 1353293,
+  "executor" : null,
+  "fullDisplayName" : "test-portal-acceptance-pullrequest-batch(master) » 0,!master #158145",
+  "id" : "2017-08-29_06-16-51",
+  "keepLog" : false,
+  "number" : 158145,
+  "result" : "SUCCESS",
+  "timestamp" : 1504012611000,
+  "url" : "${dependencies.url}/testtest/test-1-2/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=0,label_exp=!master/158145",
+  "builtOn" : "cloud-10-0-16-31",
+  "changeSet" : {
+    "items" : [
+      
+    ],
+    "kind" : null
+  },
+  "culprits" : [
+    
+  ]
+}

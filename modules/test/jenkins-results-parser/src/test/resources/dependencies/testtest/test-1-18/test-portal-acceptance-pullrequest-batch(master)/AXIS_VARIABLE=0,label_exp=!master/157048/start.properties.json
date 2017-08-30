@@ -1,0 +1,146 @@
+{"properties": [
+    {
+        "name": "JENKINS_GITHUB_SENDER_USERNAME",
+        "value": "liferay"
+    },
+    {
+        "name": "GITHUB_RECEIVER_USERNAME",
+        "value": "liferay"
+    },
+    {
+        "name": "GITHUB_PULL_REQUEST_NUMBER",
+        "value": "1847"
+    },
+    {
+        "name": "GITHUB_SENDER_BRANCH_SHA",
+        "value": "e5add1417b307cd7964eb5e45a9a721f46d6997a"
+    },
+    {
+        "name": "JENKINS_GITHUB_RECEIVER_USERNAME",
+        "value": "liferay"
+    },
+    {
+        "name": "JENKINS_GITHUB_SENDER_BRANCH_SHA",
+        "value": "60f608f17edf7b1cd958fa8a36b05ce161f5dd97"
+    },
+    {
+        "name": "GITHUB_ORIGIN_NAME",
+        "value": "liferay"
+    },
+    {
+        "name": "SUBREPOSITORY_CI_MERGE_FILES",
+        "value": "/opt/dev/projects/github/liferay-portal/modules/apps/adaptive-media/ci-merge"
+    },
+    {
+        "name": "GITHUB_SENDER_USERNAME",
+        "value": "liferay-continuous-integration"
+    },
+    {
+        "name": "TOP_LEVEL_JOB_NAME",
+        "value": "test-portal-acceptance-pullrequest(master)"
+    },
+    {
+        "name": "JENKINS_GITHUB_SENDER_BRANCH_NAME",
+        "value": "master"
+    },
+    {
+        "name": "JENKINS_GITHUB_UPSTREAM_BRANCH_SHA",
+        "value": "60f608f17edf7b1cd958fa8a36b05ce161f5dd97"
+    },
+    {
+        "name": "JENKINS_PULL_REQUEST_DIST_NODES",
+        "value": "cloud-10-0-14-216,cloud-10-0-11-25,cloud-10-0-12-230,cloud-10-0-112-135,cloud-10-0-112-143,cloud-10-0-17-194,cloud-10-0-113-118,cloud-10-0-16-160,cloud-10-0-111-99,cloud-10-0-112-151,cloud-10-0-113-35,cloud-10-0-16-188,cloud-10-0-11-49,cloud-10-0-16-113,cloud-10-0-10-135,cloud-10-0-19-227,cloud-10-0-112-156,cloud-10-0-110-242,cloud-10-0-16-104,cloud-10-0-19-248,cloud-10-0-13-7,cloud-10-0-11-73,cloud-10-0-112-10"
+    },
+    {
+        "name": "EMAIL_LIST",
+        "value": "qa-slave-verify-fail@liferay.com"
+    },
+    {
+        "name": "DIST_PATH",
+        "value": "/test-1-2/test-portal-acceptance-pullrequest(master)/2232/dist"
+    },
+    {
+        "name": "TOP_LEVEL_GITHUB_COMMENT_ID",
+        "value": "325649313"
+    },
+    {
+        "name": "TOP_LEVEL_BUILD_DESCRIPTION",
+        "value": "<strong>liferay<\/strong> - <a href=\"https://github.com/liferay/liferay-portal/pull/1847\">PR#1847<\/a> - <a href=\"https://test-1-2.liferay.com//userContent/jobs/test-portal-acceptance-pullrequest(master)/builds/2232/jenkins-report.html\">Jenkins Report<\/a>"
+    },
+    {
+        "name": "TOP_LEVEL_BRANCH_NAME",
+        "value": "master-temp-20170829123249342"
+    },
+    {
+        "name": "TEST_BATCH_SIZE",
+        "value": "1"
+    },
+    {
+        "name": "JENKINS_GITHUB_ORIGIN_NAME",
+        "value": "liferay"
+    },
+    {
+        "name": "JENKINS_GITHUB_PULL_REQUEST_NUMBER",
+        "value": "0"
+    },
+    {
+        "name": "GAUNTLET",
+        "value": "false"
+    },
+    {
+        "name": "TEST_BATCH_NAME",
+        "value": "ruby-sass-compiler-jdk8"
+    },
+    {
+        "name": "JENKINS_LOCAL_GIT_BRANCH_CACHED",
+        "value": "true"
+    },
+    {
+        "name": "JENKINS_GITHUB_UPSTREAM_BRANCH_NAME",
+        "value": "master"
+    },
+    {
+        "name": "BUILD_DESCRIPTION",
+        "value": "<strong>liferay<\/strong> - <a href=\"https://github.com/liferay/liferay-portal/pull/1847\">PR#1847<\/a> - <a href=\"https://test-1-2.liferay.com//userContent/jobs/test-portal-acceptance-pullrequest(master)/builds/2232/jenkins-report.html\">Jenkins Report<\/a>"
+    },
+    {
+        "name": "DIST_ROOT_PATH",
+        "value": "/test-1-2"
+    },
+    {
+        "name": "TOP_LEVEL_BUILD_NUMBER",
+        "value": "2232"
+    },
+    {
+        "name": "TOP_LEVEL_START_TIME",
+        "value": "1504009969573"
+    },
+    {
+        "name": "TOP_LEVEL_BUILD_URL",
+        "value": "${dependencies.url}/testtest/test-1-2/test-portal-acceptance-pullrequest(master)/2232"
+    },
+    {
+        "name": "TOP_LEVEL_MASTER_HOSTNAME",
+        "value": "test-1-2"
+    },
+    {
+        "name": "TEST_BATCH_RUN_TYPE",
+        "value": "sequential"
+    },
+    {
+        "name": "GITHUB_UPSTREAM_BRANCH_SHA",
+        "value": "7021f4661b808a2da2551cc724f79ba656575273"
+    },
+    {
+        "name": "MODULES_BASE_DIR_NAMES_WITH_CHANGES",
+        "value": "${env.MODULES_BASE_DIR_NAMES_WITH_CHANGES}"
+    },
+    {
+        "name": "SUBREPOSITORY_PACKAGE_NAMES",
+        "value": "com.liferay.adaptive,com.liferay.adaptive.media,com.liferay.adaptive.media.blogs,com.liferay.adaptive.media.blogs.editor,com.liferay.adaptive.media.blogs.editor.configuration,com.liferay.adaptive.media.blogs.editor.configuration.internal,com.liferay.adaptive.media.blogs.editor.configuration.internal.dynamic,com.liferay.adaptive.media.blogs.editor.configuration.internal.stat1c,com.liferay.adaptive.media.blogs.internal,com.liferay.adaptive.media.blogs.internal.exportimport,com.liferay.adaptive.media.blogs.internal.exportimport.content,com.liferay.adaptive.media.blogs.internal.exportimport.content.processor,com.liferay.adaptive.media.blogs.item,com.liferay.adaptive.media.blogs.item.selector,com.liferay.adaptive.media.blogs.item.selector.web,com.liferay.adaptive.media.blogs.item.selector.web.internal,com.liferay.adaptive.media.blogs.web,com.liferay.adaptive.media.blogs.web.internal,com.liferay.adaptive.media.blogs.web.internal.attachment,com.liferay.adaptive.media.content,com.liferay.adaptive.media.content.transformer,com.liferay.adaptive.media.document,com.liferay.adaptive.media.document.library,com.liferay.adaptive.media.document.library.item,com.liferay.adaptive.media.document.library.item.selector,com.liferay.adaptive.media.document.library.item.selector.web,com.liferay.adaptive.media.document.library.item.selector.web.internal,com.liferay.adaptive.media.document.library.thumbnails,com.liferay.adaptive.media.document.library.thumbnails.internal,com.liferay.adaptive.media.document.library.thumbnails.internal.commands,com.liferay.adaptive.media.document.library.thumbnails.internal.commands.test,com.liferay.adaptive.media.document.library.thumbnails.internal.commands.test.dependencies,com.liferay.adaptive.media.document.library.thumbnails.internal.test,com.liferay.adaptive.media.document.library.thumbnails.internal.test.util,com.liferay.adaptive.media.document.library.thumbnails.internal.util,com.liferay.adaptive.media.document.library.thumbnails.internal.util.comparator,com.liferay.adaptive.media.image,com.liferay.adaptive.media.image.content,com.liferay.adaptive.media.image.content.transformer,com.liferay.adaptive.media.image.content.transformer.internal,com.liferay.adaptive.media.image.internal,com.liferay.adaptive.media.image.internal.configuration,com.liferay.adaptive.media.image.internal.finder,com.liferay.adaptive.media.image.internal.handler,com.liferay.adaptive.media.image.internal.mediaquery,com.liferay.adaptive.media.image.internal.processor,com.liferay.adaptive.media.image.internal.storage,com.liferay.adaptive.media.image.internal.test,com.liferay.adaptive.media.image.internal.test.dependencies,com.liferay.adaptive.media.image.internal.test.util,com.liferay.adaptive.media.image.internal.url,com.liferay.adaptive.media.image.internal.util,com.liferay.adaptive.media.image.item,com.liferay.adaptive.media.image.item.selector,com.liferay.adaptive.media.image.item.selector.internal,com.liferay.adaptive.media.image.item.selector.internal.resolver,com.liferay.adaptive.media.image.item.selector.internal.resolver.test,com.liferay.adaptive.media.image.item.selector.internal.resolver.test.dependencies,com.liferay.adaptive.media.image.processor,com.liferay.adaptive.media.image.processor.test,com.liferay.adaptive.media.image.processor.test.dependencies,com.liferay.adaptive.media.image.service,com.liferay.adaptive.media.image.service.persistence,com.liferay.adaptive.media.image.service.persistence.test,com.liferay.adaptive.media.image.test,com.liferay.adaptive.media.image.test.util,com.liferay.adaptive.media.image.web,com.liferay.adaptive.media.image.web.html,com.liferay.adaptive.media.item,com.liferay.adaptive.media.item.selector,com.liferay.adaptive.media.item.selector.upload,com.liferay.adaptive.media.item.selector.upload.web,com.liferay.adaptive.media.item.selector.upload.web.internal,com.liferay.adaptive.media.journal,com.liferay.adaptive.media.journal.editor,com.liferay.adaptive.media.journal.editor.configuration,com.liferay.adaptive.media.journal.editor.configuration.internal,com.liferay.adaptive.media.journal.web,com.liferay.adaptive.media.journal.web.internal,com.liferay.adaptive.media.journal.web.internal.messaging,com.liferay.adaptive.media.journal.web.internal.transformer,com.liferay.adaptive.media.web,com.liferay.adaptive.media.web.internal,com.liferay.adaptive.media.web.internal.processor,com.liferay.adaptive.media.web.internal.servlet"
+    },
+    {
+        "name": "TEST_PORTAL_WEB",
+        "value": "false"
+    }
+]}

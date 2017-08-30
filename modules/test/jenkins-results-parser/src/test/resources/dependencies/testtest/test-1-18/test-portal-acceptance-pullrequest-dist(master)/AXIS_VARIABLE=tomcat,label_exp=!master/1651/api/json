@@ -1,0 +1,99 @@
+{
+  "actions" : [
+    {
+      "parameters" : [
+        {
+          "name" : "AXIS_VARIABLES",
+          "value" : "jboss tcserver tomcat weblogic websphere wildfly"
+        },
+        {
+          "name" : "JENKINS_GITHUB_BRANCH_NAME",
+          "value" : ""
+        },
+        {
+          "name" : "JENKINS_GITHUB_BRANCH_USERNAME",
+          "value" : ""
+        },
+        {
+          "name" : "JENKINS_GITHUB_PULL_REQUEST_NUMBER",
+          "value" : ""
+        },
+        {
+          "name" : "JENKINS_GITHUB_PULL_REQUEST_USERNAME",
+          "value" : ""
+        },
+        {
+          "name" : "JOB_VARIANT",
+          "value" : "jdk8"
+        },
+        {
+          "name" : "JSON_MAP_URL",
+          "value" : "http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest(master)/2232/test-portal-acceptance-pullrequest-dist(master)/jdk8/start.properties"
+        }
+      ]
+    },
+    {
+      
+    },
+    {
+      "causes" : [
+        {
+          "shortDescription" : "Started by upstream project \"test-portal-acceptance-pullrequest-dist(master)\" build number 1,651",
+          "upstreamBuild" : 1651,
+          "upstreamProject" : "test-portal-acceptance-pullrequest-dist(master)",
+          "upstreamUrl" : "job/test-portal-acceptance-pullrequest-dist(master)/"
+        }
+      ]
+    },
+    null,
+    {
+      
+    },
+    {
+      
+    },
+    {
+      "failCount" : 0,
+      "skipCount" : 0,
+      "totalCount" : 1,
+      "urlName" : "testReport"
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    }
+  ],
+  "artifacts" : [
+    
+  ],
+  "building" : false,
+  "description" : "<strong>liferay</strong> - <a href=\"https://github.com/liferay/liferay-portal/pull/1847\">PR#1847</a> - <a href=\"https://test-1-2.liferay.com//userContent/jobs/test-portal-acceptance-pullrequest(master)/builds/2232/jenkins-report.html\">Jenkins Report</a>",
+  "duration" : 1534960,
+  "estimatedDuration" : 2620941,
+  "executor" : null,
+  "fullDisplayName" : "test-portal-acceptance-pullrequest-dist(master) » tomcat,!master #1651",
+  "id" : "2017-08-29_05-36-53",
+  "keepLog" : false,
+  "number" : 1651,
+  "result" : "SUCCESS",
+  "timestamp" : 1504010213000,
+  "url" : "${dependencies.url}/testtest/test-1-18/test-portal-acceptance-pullrequest-dist(master)/AXIS_VARIABLE=tomcat,label_exp=!master/1651",
+  "builtOn" : "cloud-10-0-112-220",
+  "changeSet" : {
+    "items" : [
+      
+    ],
+    "kind" : null
+  },
+  "culprits" : [
+    
+  ]
+}

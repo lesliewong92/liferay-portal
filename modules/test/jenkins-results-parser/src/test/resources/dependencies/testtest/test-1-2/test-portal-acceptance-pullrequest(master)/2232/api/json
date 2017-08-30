@@ -1,0 +1,116 @@
+{
+  "actions" : [
+    {
+      "parameters" : [
+        {
+          "name" : "GAUNTLET",
+          "value" : ""
+        },
+        {
+          "name" : "GITHUB_ORIGIN_NAME",
+          "value" : "liferay"
+        },
+        {
+          "name" : "GITHUB_PULL_REQUEST_NUMBER",
+          "value" : "1847"
+        },
+        {
+          "name" : "GITHUB_RECEIVER_USERNAME",
+          "value" : "liferay"
+        },
+        {
+          "name" : "GITHUB_SENDER_BRANCH_NAME",
+          "value" : "ci-merge-com-liferay-adaptive-media-master-b75ad7d7f72d7859d3c8c8934f0200740fc3a73c"
+        },
+        {
+          "name" : "GITHUB_SENDER_BRANCH_SHA",
+          "value" : "e5add1417b307cd7964eb5e45a9a721f46d6997a"
+        },
+        {
+          "name" : "GITHUB_SENDER_USERNAME",
+          "value" : "liferay-continuous-integration"
+        },
+        {
+          "name" : "GITHUB_UPSTREAM_BRANCH_NAME",
+          "value" : "master"
+        },
+        {
+          "name" : "GITHUB_UPSTREAM_BRANCH_SHA",
+          "value" : "7021f4661b808a2da2551cc724f79ba656575273"
+        },
+        {
+          "name" : "JENKINS_GITHUB_BRANCH_NAME",
+          "value" : ""
+        },
+        {
+          "name" : "JENKINS_GITHUB_BRANCH_USERNAME",
+          "value" : ""
+        },
+        {
+          "name" : "JENKINS_GITHUB_PULL_REQUEST_NUMBER",
+          "value" : ""
+        },
+        {
+          "name" : "JENKINS_GITHUB_PULL_REQUEST_USERNAME",
+          "value" : ""
+        },
+        {
+          "name" : "JENKINS_JOB_VARIANT",
+          "value" : ""
+        },
+        {
+          "name" : "JENKINS_TOP_LEVEL_BUILD_URL",
+          "value" : ""
+        }
+      ]
+    },
+    {
+      "causes" : [
+        {
+          "shortDescription" : "Started by remote host 172.16.168.126"
+        }
+      ]
+    },
+    null,
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    }
+  ],
+  "artifacts" : [
+    
+  ],
+  "building" : false,
+  "description" : "<strong>liferay</strong> - <a href=\"https://github.com/liferay/liferay-portal/pull/1847\">PR#1847</a> - <a href=\"https://test-1-2.liferay.com//userContent/jobs/test-portal-acceptance-pullrequest(master)/builds/2232/jenkins-report.html\">Jenkins Report</a>",
+  "duration" : 8730235,
+  "estimatedDuration" : 5846799,
+  "executor" : null,
+  "fullDisplayName" : "test-portal-acceptance-pullrequest(master) #2232",
+  "id" : "2017-08-29_05-32-13",
+  "keepLog" : false,
+  "number" : 2232,
+  "result" : "FAILURE",
+  "timestamp" : 1504009933000,
+  "url" : "${dependencies.url}/testtest/test-1-2/test-portal-acceptance-pullrequest(master)/2232",
+  "builtOn" : "cloud-10-0-16-120",
+  "changeSet" : {
+    "items" : [
+      
+    ],
+    "kind" : null
+  },
+  "culprits" : [
+    
+  ]
+}

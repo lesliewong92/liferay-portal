@@ -1,0 +1,99 @@
+{
+  "actions" : [
+    {
+      "parameters" : [
+        {
+          "name" : "AXIS_VARIABLES",
+          "value" : "0 1 2 3 4 5 6 7"
+        },
+        {
+          "name" : "JENKINS_GITHUB_BRANCH_NAME",
+          "value" : ""
+        },
+        {
+          "name" : "JENKINS_GITHUB_BRANCH_USERNAME",
+          "value" : ""
+        },
+        {
+          "name" : "JENKINS_GITHUB_PULL_REQUEST_NUMBER",
+          "value" : ""
+        },
+        {
+          "name" : "JENKINS_GITHUB_PULL_REQUEST_USERNAME",
+          "value" : ""
+        },
+        {
+          "name" : "JOB_VARIANT",
+          "value" : "functional-tomcat80-mysql56-jdk8/4"
+        },
+        {
+          "name" : "JSON_MAP_URL",
+          "value" : "http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest(master)/2232/test-portal-acceptance-pullrequest-batch(master)/functional-tomcat80-mysql56-jdk8/4/start.properties"
+        }
+      ]
+    },
+    {
+      
+    },
+    {
+      "causes" : [
+        {
+          "shortDescription" : "Started by upstream project \"test-portal-acceptance-pullrequest-batch(master)\" build number 10,046",
+          "upstreamBuild" : 10046,
+          "upstreamProject" : "test-portal-acceptance-pullrequest-batch(master)",
+          "upstreamUrl" : "job/test-portal-acceptance-pullrequest-batch(master)/"
+        }
+      ]
+    },
+    null,
+    {
+      
+    },
+    {
+      
+    },
+    {
+      "failCount" : 0,
+      "skipCount" : 0,
+      "totalCount" : 4,
+      "urlName" : "testReport"
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    }
+  ],
+  "artifacts" : [
+    
+  ],
+  "building" : false,
+  "description" : "<strong>liferay</strong> - <a href=\"https://github.com/liferay/liferay-portal/pull/1847\">PR#1847</a> - <a href=\"https://test-1-2.liferay.com//userContent/jobs/test-portal-acceptance-pullrequest(master)/builds/2232/jenkins-report.html\">Jenkins Report</a><ul><li><strong>LookAndFeel#ConfigureCustomStylesViaLookAndFeelPG</strong><ul><li><a href=\"https://testray.liferay.com/reports/production/logs/test-1-2/1504009969573/test-portal-acceptance-pullrequest%28master%29/2232/functional-tomcat80-mysql56-jdk8/4/0/LookAndFeel_ConfigureCustomStylesViaLookAndFeelPG/index.html.gz\">Poshi Report</a></li><li><a href=\"https://testray.liferay.com/reports/production/logs/test-1-2/1504009969573/test-portal-acceptance-pullrequest%28master%29/2232/functional-tomcat80-mysql56-jdk8/4/0/LookAndFeel_ConfigureCustomStylesViaLookAndFeelPG/summary.html.gz\">Poshi Summary</a></li></ul></li><li><strong>MySites#JoinSitePrivateNo</strong><ul><li><a href=\"https://testray.liferay.com/reports/production/logs/test-1-2/1504009969573/test-portal-acceptance-pullrequest%28master%29/2232/functional-tomcat80-mysql56-jdk8/4/0/MySites_JoinSitePrivateNo/index.html.gz\">Poshi Report</a></li><li><a href=\"https://testray.liferay.com/reports/production/logs/test-1-2/1504009969573/test-portal-acceptance-pullrequest%28master%29/2232/functional-tomcat80-mysql56-jdk8/4/0/MySites_JoinSitePrivateNo/summary.html.gz\">Poshi Summary</a></li></ul></li><li><strong>MySites#LeaveSite</strong><ul><li><a href=\"https://testray.liferay.com/reports/production/logs/test-1-2/1504009969573/test-portal-acceptance-pullrequest%28master%29/2232/functional-tomcat80-mysql56-jdk8/4/0/MySites_LeaveSite/index.html.gz\">Poshi Report</a></li><li><a href=\"https://testray.liferay.com/reports/production/logs/test-1-2/1504009969573/test-portal-acceptance-pullrequest%28master%29/2232/functional-tomcat80-mysql56-jdk8/4/0/MySites_LeaveSite/summary.html.gz\">Poshi Summary</a></li></ul></li></ul><br />",
+  "duration" : 1386033,
+  "estimatedDuration" : 1308878,
+  "executor" : null,
+  "fullDisplayName" : "test-portal-acceptance-pullrequest-batch(master) » 0,!master #10046",
+  "id" : "2017-08-29_06-16-14",
+  "keepLog" : true,
+  "number" : 10046,
+  "result" : "SUCCESS",
+  "timestamp" : 1504012574000,
+  "url" : "${dependencies.url}/testtest/test-1-23/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=0,label_exp=!master/10046",
+  "builtOn" : "cloud-10-0-11-28",
+  "changeSet" : {
+    "items" : [
+      
+    ],
+    "kind" : null
+  },
+  "culprits" : [
+    
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "failCount" : 0,
+  "skipCount" : 0,
+  "totalCount" : 2,
+  "urlName" : "testReport",
+  "childReports" : [
+    {
+      "child" : {
+        "number" : 154186,
+        "url" : "${dependencies.url}/testtest/test-1-20/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=0,label_exp=!master/154186"
+      },
+      "result" : {
+        "duration" : 910.17,
+        "empty" : false,
+        "failCount" : 0,
+        "passCount" : 2,
+        "skipCount" : 0,
+        "suites" : [
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+                "duration" : 0.0,
+                "failedSince" : 0,
+                "name" : "testScanJenkinsLog",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 0.0,
+            "id" : "0",
+            "name" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+            "timestamp" : "2017-08-29_13:41:04"
+          },
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 910.17,
+                "failedSince" : 0,
+                "name" : "test[CPRolesCPBlogs#ViewBlogsEntryRegRoleInline]",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 910.17,
+            "id" : "1",
+            "name" : "com.liferay.poshi.runner.PoshiRunner",
+            "timestamp" : "2017-08-29T13:25:03"
+          }
+        ]
+      }
+    }
+  ]
+}

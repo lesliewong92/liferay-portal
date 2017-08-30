@@ -1,0 +1,134 @@
+{
+  "failCount" : 0,
+  "skipCount" : 0,
+  "totalCount" : 7,
+  "urlName" : "testReport",
+  "childReports" : [
+    {
+      "child" : {
+        "number" : 144334,
+        "url" : "${dependencies.url}/testtest/test-1-17/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=0,label_exp=!master/144334"
+      },
+      "result" : {
+        "duration" : 3.1749997,
+        "empty" : false,
+        "failCount" : 0,
+        "passCount" : 7,
+        "skipCount" : 0,
+        "suites" : [
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.portal.lpkg.deployer.override.test.LPKGOverrideVerifyCleanStartupTest",
+                "duration" : 0.234,
+                "failedSince" : 0,
+                "name" : "testOverriddenLPKGs",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 0.234,
+            "id" : "0",
+            "name" : "com.liferay.portal.lpkg.deployer.override.test.LPKGOverrideVerifyCleanStartupTest",
+            "timestamp" : "2017-08-29T13:45:21"
+          },
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.portal.lpkg.deployer.override.test.LPKGOverrideVerifySecondStartupTest",
+                "duration" : 0.159,
+                "failedSince" : 0,
+                "name" : "testOverriddenLPKGs",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 0.159,
+            "id" : "1",
+            "name" : "com.liferay.portal.lpkg.deployer.override.test.LPKGOverrideVerifySecondStartupTest",
+            "timestamp" : "2017-08-29T13:39:57"
+          },
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.portal.lpkg.deployer.override.test.LPKGRevertOverrideVerifyTest",
+                "duration" : 0.155,
+                "failedSince" : 0,
+                "name" : "testRevertOverriddenLPKGs",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 0.155,
+            "id" : "2",
+            "name" : "com.liferay.portal.lpkg.deployer.override.test.LPKGRevertOverrideVerifyTest",
+            "timestamp" : "2017-08-29T13:55:26"
+          },
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.portal.lpkg.deployer.override.LPKGOverrideTest",
+                "duration" : 2.343,
+                "failedSince" : 0,
+                "name" : "testOverrideLPKG",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 2.343,
+            "id" : "3",
+            "name" : "com.liferay.portal.lpkg.deployer.override.LPKGOverrideTest",
+            "timestamp" : "2017-08-29T13:33:43"
+          },
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+                "duration" : 0.0,
+                "failedSince" : 0,
+                "name" : "testScanJenkinsLog",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 0.0,
+            "id" : "4",
+            "name" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+            "timestamp" : "2017-08-29_13:55:33"
+          },
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.portal.log.assertor.PortalLogAssertorTest",
+                "duration" : 0.283,
+                "failedSince" : 0,
+                "name" : "testScanXMLLog",
+                "skipped" : false,
+                "status" : "PASSED"
+              },
+              {
+                "age" : 0,
+                "className" : "com.liferay.portal.log.assertor.PortalLogAssertorTest",
+                "duration" : 0.001,
+                "failedSince" : 0,
+                "name" : "testScanOSGiLog",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 0.28399998,
+            "id" : "5",
+            "name" : "com.liferay.portal.log.assertor.PortalLogAssertorTest",
+            "timestamp" : "2017-08-29T13:55:28"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+Started by remote host 10.0.16.120
+[EnvInject] - Loading node environment variables.
+[EnvInject] - [ERROR] - SEVERE ERROR occurs: hudson.remoting.ChannelClosedException: channel is already closed
+[EnvInject] - [ERROR] - SEVERE ERROR occurs: channel is already closed
+Finished: FAILURE

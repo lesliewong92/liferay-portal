@@ -1,0 +1,1954 @@
+Started by upstream project "test-portal-acceptance-pullrequest-batch(master)" build number 144333
+originally caused by:
+ Started by remote host 10.0.16.120
+[EnvInject] - Loading node environment variables.
+[EnvInject] - Preparing an environment for the build.
+[EnvInject] - Keeping Jenkins system variables.
+[EnvInject] - Keeping Jenkins build variables.
+[EnvInject] - Evaluation the following Groovy script content: 
+import groovy.json.JsonSlurper
+
+def jsonSlurper = new JsonSlurper()
+
+def osName = System.properties['os.name']
+
+osName = osName.toLowerCase()
+
+def map = currentBuild.getEnvVars()
+
+if ("${JSON_MAP_URL}" != "") {
+	def jsonMapURL = "${JSON_MAP_URL}"
+
+	jsonMapURL = jsonMapURL.replaceAll("\\(", "%28")
+	jsonMapURL = jsonMapURL.replaceAll("\\)", "%29")
+
+	def processText = ""
+
+	if (osName.contains('windows')) {
+		processText = [ "cmd.exe", "/c", "curl " + jsonMapURL ].execute().text
+	}
+	else {
+		processText = [ "/bin/bash", "-c", "curl " + jsonMapURL ].execute().text
+	}
+
+	def i = 0
+
+	while ((processText == "") && (i < 5)) {
+		println("Retry in 10 seconds.")
+
+		sleep(10000)
+
+		if (osName.contains('windows')) {
+			processText = [ "cmd.exe", "/c", "curl " + jsonMapURL ].execute().text
+		}
+		else {
+			processText = [ "/bin/bash", "-c", "curl " + jsonMapURL ].execute().text
+		}
+
+		i++
+	}
+
+	if (processText == "") {
+		println("Unable to get JSON map.")
+	}
+
+	def jsonObject = jsonSlurper.parseText(processText)
+
+	def jsonArray = jsonObject.properties
+
+	jsonArray.each{
+		map[it.name] = it.value
+	}
+}
+
+map["JENKINS_TEMP_BRANCH"] = "master-temp-" + System.currentTimeMillis()
+
+if (currentJob instanceof hudson.matrix.MatrixProject) {
+	def axisJobs = currentJob.getItems();
+
+	for (axisJob in axisJobs) {
+		println(axisJob);
+
+		axisJob.disabled = false;
+	}
+}
+
+println(map)
+
+return map
+
+[_:/usr/bin/screen, ANT_HOME:/opt/java/ant, ANT_OPTS:-Dhttp.nonProxyHosts="cloud*|files.liferay.org.es|it.liferay.com|localhost|mirrors-no-cache.lax.liferay.com|release*|test*" -Dhttp.proxyHost=squid.lax.liferay.com -Dhttp.proxyPort=3128 -server -verbose:gc -Xloggc:/tmp/ant-gc.log -Xms1024m -Xmx2048m -Xss2m -Xverify:none -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -XX:+PrintGCCause -XX:+PrintGCDetails -XX:+UseParallelOldGC -XX:HeapDumpPath=/tmp/ant-oom-heap-dump.bin -XX:MaxNewSize=512m -XX:MaxPermSize=512m -XX:MaxTenuringThreshold=0 -XX:NewSize=256m -XX:PermSize=100m -XX:SurvivorRatio=65536 -XX:TargetSurvivorRatio=0, AXIS_VARIABLE:3, AXIS_VARIABLES:0 1 2 3 4, BUILD_DESCRIPTION:<strong>liferay</strong> - <a href="https://github.com/liferay/liferay-portal/pull/1847">PR#1847</a> - <a href="https://test-1-2.liferay.com//userContent/jobs/test-portal-acceptance-pullrequest(master)/builds/2232/jenkins-report.html">Jenkins Report</a>, BUILD_DISPLAY_NAME:#144333, BUILD_ID:2017-08-29_06-17-44, BUILD_NUMBER:144333, BUILD_TAG:jenkins-test-portal-acceptance-pullrequest-batch(master)-AXIS_VARIABLE=3,label_exp=!master-144333, BUILD_URL:${dependencies.url}/testtest/test-1-17/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=3,label_exp=!master/144333, CLASSPATH:, DISPLAY::0, DIST_PATH:/test-1-2/test-portal-acceptance-pullrequest(master)/2232/dist, DIST_ROOT_PATH:/test-1-2, EMAIL_LIST:qa-slave-verify-fail@liferay.com, EXECUTOR_NUMBER:0, GAUNTLET:false, GITHUB_ORIGIN_NAME:liferay, GITHUB_PULL_REQUEST_NUMBER:1847, GITHUB_RECEIVER_USERNAME:liferay, GITHUB_SENDER_BRANCH_SHA:e5add1417b307cd7964eb5e45a9a721f46d6997a, GITHUB_SENDER_USERNAME:liferay-continuous-integration, GITHUB_UPSTREAM_BRANCH_SHA:7021f4661b808a2da2551cc724f79ba656575273, HOME:/root, HOSTNAME:cloud-10-0-112-97.lax.liferay.com, HUDSON_HOME:/opt/java/jenkins, HUDSON_SERVER_COOKIE:10c4f3f5cf07d98a, HUDSON_URL:https://test-1-17.liferay.com/, JAVA_HOME:/opt/java/jdk, JENKINS_GITHUB_BRANCH_NAME:, JENKINS_GITHUB_BRANCH_USERNAME:, JENKINS_GITHUB_ORIGIN_NAME:liferay, JENKINS_GITHUB_PULL_REQUEST_NUMBER:0, JENKINS_GITHUB_PULL_REQUEST_USERNAME:, JENKINS_GITHUB_RECEIVER_USERNAME:liferay, JENKINS_GITHUB_SENDER_BRANCH_NAME:master, JENKINS_GITHUB_SENDER_BRANCH_SHA:60f608f17edf7b1cd958fa8a36b05ce161f5dd97, JENKINS_GITHUB_SENDER_USERNAME:liferay, JENKINS_GITHUB_UPSTREAM_BRANCH_NAME:master, JENKINS_GITHUB_UPSTREAM_BRANCH_SHA:60f608f17edf7b1cd958fa8a36b05ce161f5dd97, JENKINS_HOME:/opt/java/jenkins, JENKINS_LOCAL_GIT_BRANCH_CACHED:true, JENKINS_PULL_REQUEST_DIST_NODES:cloud-10-0-14-216,cloud-10-0-11-25,cloud-10-0-12-230,cloud-10-0-112-135,cloud-10-0-112-143,cloud-10-0-17-194,cloud-10-0-113-118,cloud-10-0-16-160,cloud-10-0-111-99,cloud-10-0-112-151,cloud-10-0-113-35,cloud-10-0-16-188,cloud-10-0-11-49,cloud-10-0-16-113,cloud-10-0-10-135,cloud-10-0-19-227,cloud-10-0-112-156,cloud-10-0-110-242,cloud-10-0-16-104,cloud-10-0-19-248,cloud-10-0-13-7,cloud-10-0-11-73,cloud-10-0-112-10, JENKINS_SERVER_COOKIE:10c4f3f5cf07d98a, JENKINS_TEMP_BRANCH:master-temp-1504012666168, JENKINS_URL:https://test-1-17.liferay.com/, JOB_NAME:test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=3,label_exp=!master, JOB_URL:https://test-1-17.liferay.com/job/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=3,label_exp=!master/, JOB_VARIANT:plugins-compile-jdk8, JSON_MAP_URL:http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest(master)/2232/test-portal-acceptance-pullrequest-batch(master)/plugins-compile-jdk8/start.properties, label_exp:!master, MODULES_BASE_DIR_NAMES_WITH_CHANGES:${env.MODULES_BASE_DIR_NAMES_WITH_CHANGES}, NLSPATH:/usr/dt/lib/nls/msg/%L/%N.cat, NODE_LABELS:cloud-10-0-112-97, NODE_NAME:cloud-10-0-112-97, ORACLE_HOME:/u01/app/oracle/product/12.1.0/db_1, ORACLE_SID:oracl, PATH:/bin:/opt/android/sdk:/opt/android/sdk/platform-tools:/opt/android/sdk/tools:/opt/ibm/db2/V10.5/bin:/opt/java/ant/bin:/opt/java/jdk/bin:/opt/java/maven/bin:/opt/oracle/bin:/opt/sybase/OCS-16_0/bin:/sbin:/usr/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin, PWD:/, SHELL:/bin/sh, SHLVL:2, STY:26136..cloud-10-0-112-97, SUBREPOSITORY_CI_MERGE_FILES:/opt/dev/projects/github/liferay-portal/modules/apps/adaptive-media/ci-merge, SUBREPOSITORY_PACKAGE_NAMES:com.liferay.adaptive,com.liferay.adaptive.media,com.liferay.adaptive.media.blogs,com.liferay.adaptive.media.blogs.editor,com.liferay.adaptive.media.blogs.editor.configuration,com.liferay.adaptive.media.blogs.editor.configuration.internal,com.liferay.adaptive.media.blogs.editor.configuration.internal.dynamic,com.liferay.adaptive.media.blogs.editor.configuration.internal.stat1c,com.liferay.adaptive.media.blogs.internal,com.liferay.adaptive.media.blogs.internal.exportimport,com.liferay.adaptive.media.blogs.internal.exportimport.content,com.liferay.adaptive.media.blogs.internal.exportimport.content.processor,com.liferay.adaptive.media.blogs.item,com.liferay.adaptive.media.blogs.item.selector,com.liferay.adaptive.media.blogs.item.selector.web,com.liferay.adaptive.media.blogs.item.selector.web.internal,com.liferay.adaptive.media.blogs.web,com.liferay.adaptive.media.blogs.web.internal,com.liferay.adaptive.media.blogs.web.internal.attachment,com.liferay.adaptive.media.content,com.liferay.adaptive.media.content.transformer,com.liferay.adaptive.media.document,com.liferay.adaptive.media.document.library,com.liferay.adaptive.media.document.library.item,com.liferay.adaptive.media.document.library.item.selector,com.liferay.adaptive.media.document.library.item.selector.web,com.liferay.adaptive.media.document.library.item.selector.web.internal,com.liferay.adaptive.media.document.library.thumbnails,com.liferay.adaptive.media.document.library.thumbnails.internal,com.liferay.adaptive.media.document.library.thumbnails.internal.commands,com.liferay.adaptive.media.document.library.thumbnails.internal.commands.test,com.liferay.adaptive.media.document.library.thumbnails.internal.commands.test.dependencies,com.liferay.adaptive.media.document.library.thumbnails.internal.test,com.liferay.adaptive.media.document.library.thumbnails.internal.test.util,com.liferay.adaptive.media.document.library.thumbnails.internal.util,com.liferay.adaptive.media.document.library.thumbnails.internal.util.comparator,com.liferay.adaptive.media.image,com.liferay.adaptive.media.image.content,com.liferay.adaptive.media.image.content.transformer,com.liferay.adaptive.media.image.content.transformer.internal,com.liferay.adaptive.media.image.internal,com.liferay.adaptive.media.image.internal.configuration,com.liferay.adaptive.media.image.internal.finder,com.liferay.adaptive.media.image.internal.handler,com.liferay.adaptive.media.image.internal.mediaquery,com.liferay.adaptive.media.image.internal.processor,com.liferay.adaptive.media.image.internal.storage,com.liferay.adaptive.media.image.internal.test,com.liferay.adaptive.media.image.internal.test.dependencies,com.liferay.adaptive.media.image.internal.test.util,com.liferay.adaptive.media.image.internal.url,com.liferay.adaptive.media.image.internal.util,com.liferay.adaptive.media.image.item,com.liferay.adaptive.media.image.item.selector,com.liferay.adaptive.media.image.item.selector.internal,com.liferay.adaptive.media.image.item.selector.internal.resolver,com.liferay.adaptive.media.image.item.selector.internal.resolver.test,com.liferay.adaptive.media.image.item.selector.internal.resolver.test.dependencies,com.liferay.adaptive.media.image.processor,com.liferay.adaptive.media.image.processor.test,com.liferay.adaptive.media.image.processor.test.dependencies,com.liferay.adaptive.media.image.service,com.liferay.adaptive.media.image.service.persistence,com.liferay.adaptive.media.image.service.persistence.test,com.liferay.adaptive.media.image.test,com.liferay.adaptive.media.image.test.util,com.liferay.adaptive.media.image.web,com.liferay.adaptive.media.image.web.html,com.liferay.adaptive.media.item,com.liferay.adaptive.media.item.selector,com.liferay.adaptive.media.item.selector.upload,com.liferay.adaptive.media.item.selector.upload.web,com.liferay.adaptive.media.item.selector.upload.web.internal,com.liferay.adaptive.media.journal,com.liferay.adaptive.media.journal.editor,com.liferay.adaptive.media.journal.editor.configuration,com.liferay.adaptive.media.journal.editor.configuration.internal,com.liferay.adaptive.media.journal.web,com.liferay.adaptive.media.journal.web.internal,com.liferay.adaptive.media.journal.web.internal.messaging,com.liferay.adaptive.media.journal.web.internal.transformer,com.liferay.adaptive.media.web,com.liferay.adaptive.media.web.internal,com.liferay.adaptive.media.web.internal.processor,com.liferay.adaptive.media.web.internal.servlet, SYBASE:/opt/sybase, SYBASE_ASE:ASE-16_0, TERM:screen, TERMCAP:SC|screen|VT 100/ANSI X3.64 virtual terminal:\
+	:DO=\E[%dB:LE=\E[%dD:RI=\E[%dC:UP=\E[%dA:bs:bt=\E[Z:\
+	:cd=\E[J:ce=\E[K:cl=\E[H\E[J:cm=\E[%i%d;%dH:ct=\E[3g:\
+	:do=^J:nd=\E[C:pt:rc=\E8:rs=\Ec:sc=\E7:st=\EH:up=\EM:\
+	:le=^H:bl=^G:cr=^M:it#8:ho=\E[H:nw=\EE:ta=^I:is=\E)0:\
+	:li#24:co#80:am:xn:xv:LP:sr=\EM:al=\E[L:AL=\E[%dL:\
+	:cs=\E[%i%d;%dr:dl=\E[M:DL=\E[%dM:dc=\E[P:DC=\E[%dP:\
+	:im=\E[4h:ei=\E[4l:mi:IC=\E[%d@:ks=\E[?1h\E=:\
+	:ke=\E[?1l\E>:vi=\E[?25l:ve=\E[34h\E[?25h:vs=\E[34l:\
+	:ti=\E[?1049h:te=\E[?1049l:k0=\E[10~:k1=\EOP:k2=\EOQ:\
+	:k3=\EOR:k4=\EOS:k5=\E[15~:k6=\E[17~:k7=\E[18~:\
+	:k8=\E[19~:k9=\E[20~:k;=\E[21~:F1=\E[23~:F2=\E[24~:\
+	:kh=\E[1~:@1=\E[1~:kH=\E[4~:@7=\E[4~:kN=\E[6~:kP=\E[5~:\
+	:kI=\E[2~:kD=\E[3~:ku=\EOA:kd=\EOB:kr=\EOC:kl=\EOD:, TEST_BATCH_NAME:plugins-compile-jdk8, TEST_BATCH_RUN_TYPE:sequential, TEST_BATCH_SIZE:5, TEST_PORTAL_WEB:false, TOP_LEVEL_BRANCH_NAME:master-temp-20170829123249342, TOP_LEVEL_BUILD_DESCRIPTION:<strong>liferay</strong> - <a href="https://github.com/liferay/liferay-portal/pull/1847">PR#1847</a> - <a href="https://test-1-2.liferay.com//userContent/jobs/test-portal-acceptance-pullrequest(master)/builds/2232/jenkins-report.html">Jenkins Report</a>, TOP_LEVEL_BUILD_NUMBER:2232, TOP_LEVEL_BUILD_URL:${dependencies.url}/testtest/test-1-2/test-portal-acceptance-pullrequest(master)/2232, TOP_LEVEL_GITHUB_COMMENT_ID:325649313, TOP_LEVEL_JOB_NAME:test-portal-acceptance-pullrequest(master), TOP_LEVEL_MASTER_HOSTNAME:test-1-2, TOP_LEVEL_START_TIME:1504009969573, WINDOW:0, XFILESEARCHPATH:/usr/dt/app-defaults/%L/Dt]
+[EnvInject] - Injecting as environment variables the properties content 
+MASTER_HOSTNAME=test-1-17
+
+[EnvInject] - Variables injected successfully.
+[EnvInject] - Injecting contributions.
+Building remotely on cloud-10-0-112-97 in workspace /opt/dev/projects/github/liferay-jenkins-ee
+[liferay-jenkins-ee] $ /bin/bash -e -x /tmp/hudson9079526752922890360.sh
++ echo 'Update the workspace repository for build steps.'
+Update the workspace repository for build steps.
++ curl -o ./jenkins_local_git.sh http://mirrors/github.com/liferay/liferay-jenkins-ee/jenkins_local_git.sh
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100  8928  100  8928    0     0  1111k      0 --:--:-- --:--:-- --:--:-- 1453k
++ source ./jenkins_local_git.sh
++ update_jenkins
++ record_properties
+++ available_jenkins_pullrequest_properties
+++ [[ liferay != '' ]]
+++ [[ 0 != '' ]]
+++ [[ liferay != '' ]]
+++ [[ master != '' ]]
+++ [[ 60f608f17edf7b1cd958fa8a36b05ce161f5dd97 != '' ]]
+++ [[ liferay != '' ]]
+++ [[ master != '' ]]
+++ [[ 60f608f17edf7b1cd958fa8a36b05ce161f5dd97 != '' ]]
+++ echo true
++ [[ true == \t\r\u\e ]]
++ record_properties_cmd
++ check_jenkins_pullrequest_properties
+++ available_jenkins_pullrequest_properties
+++ [[ liferay != '' ]]
+++ [[ 0 != '' ]]
+++ [[ liferay != '' ]]
+++ [[ master != '' ]]
+++ [[ 60f608f17edf7b1cd958fa8a36b05ce161f5dd97 != '' ]]
+++ [[ liferay != '' ]]
+++ [[ master != '' ]]
+++ [[ 60f608f17edf7b1cd958fa8a36b05ce161f5dd97 != '' ]]
+++ echo true
++ [[ true == \f\a\l\s\e ]]
++ rm -rf /opt/dev/projects/github/liferay-jenkins-ee/git
++ mkdir -p /opt/dev/projects/github/liferay-jenkins-ee/git
++ echo JENKINS_GITHUB_ORIGIN_NAME=liferay
++ echo JENKINS_GITHUB_PULL_REQUEST_NUMBER=0
++ echo JENKINS_GITHUB_RECEIVER_USERNAME=liferay
++ echo JENKINS_GITHUB_SENDER_BRANCH_NAME=master
++ echo JENKINS_GITHUB_SENDER_BRANCH_SHA=60f608f17edf7b1cd958fa8a36b05ce161f5dd97
++ echo JENKINS_GITHUB_SENDER_USERNAME=liferay
++ echo JENKINS_GITHUB_UPSTREAM_BRANCH_NAME=master
++ echo JENKINS_GITHUB_UPSTREAM_BRANCH_SHA=60f608f17edf7b1cd958fa8a36b05ce161f5dd97
++ [[ true != '' ]]
++ echo JENKINS_LOCAL_GIT_BRANCH_CACHED=true
++ echo
+
++ echo '#'
+#
++ echo '# /opt/dev/projects/github/liferay-jenkins-ee/git/git.jenkins.bash.properties'
+# /opt/dev/projects/github/liferay-jenkins-ee/git/git.jenkins.bash.properties
++ echo '#'
+#
++ echo
+
++ cat /opt/dev/projects/github/liferay-jenkins-ee/git/git.jenkins.bash.properties
+JENKINS_GITHUB_ORIGIN_NAME=liferay
+JENKINS_GITHUB_PULL_REQUEST_NUMBER=0
+JENKINS_GITHUB_RECEIVER_USERNAME=liferay
+JENKINS_GITHUB_SENDER_BRANCH_NAME=master
+JENKINS_GITHUB_SENDER_BRANCH_SHA=60f608f17edf7b1cd958fa8a36b05ce161f5dd97
+JENKINS_GITHUB_SENDER_USERNAME=liferay
+JENKINS_GITHUB_UPSTREAM_BRANCH_NAME=master
+JENKINS_GITHUB_UPSTREAM_BRANCH_SHA=60f608f17edf7b1cd958fa8a36b05ce161f5dd97
+JENKINS_LOCAL_GIT_BRANCH_CACHED=true
++ echo
+
++ wait_for_local_git
++ [[ true != \t\r\u\e ]]
++ update_jenkins_cmd
+++ os_type
++++ uname
++++ grep NT
+++ [[ -n '' ]]
+++ echo linux
++ [[ linux == \w\i\n\d\o\w\s ]]
++ cd /opt/dev/projects/github/liferay-jenkins-ee
++ rm -f .git/index.lock
++ '[' -d '.git/rebase-*' ']'
++ git reset --hard
+HEAD is now at 60f608f LRQA-34137 Upgrade com.liferay.jenkins.results.parser.jar to version 1.0.123
+++ date +%s%N
++ local SWAP_TEMP_BRANCH=temp-1504012666318272846
++ git checkout -b temp-1504012666318272846
+Switched to a new branch 'temp-1504012666318272846'
++ rm -f /root/.ssh/known_hosts
+++ cache_branch_name
+++ check_jenkins_pullrequest_properties
++++ available_jenkins_pullrequest_properties
++++ [[ liferay != '' ]]
++++ [[ 0 != '' ]]
++++ [[ liferay != '' ]]
++++ [[ master != '' ]]
++++ [[ 60f608f17edf7b1cd958fa8a36b05ce161f5dd97 != '' ]]
++++ [[ liferay != '' ]]
++++ [[ master != '' ]]
++++ [[ 60f608f17edf7b1cd958fa8a36b05ce161f5dd97 != '' ]]
++++ echo true
+++ [[ true == \f\a\l\s\e ]]
+++ echo cache-liferay-60f608f17edf7b1cd958fa8a36b05ce161f5dd97-liferay-60f608f17edf7b1cd958fa8a36b05ce161f5dd97
++ ./commands/git_custom_fetch_retry.sh -f git@github-dev.liferay.com:liferay/liferay-jenkins-ee.git cache-liferay-60f608f17edf7b1cd958fa8a36b05ce161f5dd97-liferay-60f608f17edf7b1cd958fa8a36b05ce161f5dd97:master-temp-1504012666168
+./commands/git_custom_fetch.sh -f git@github-dev.liferay.com:liferay/liferay-jenkins-ee.git cache-liferay-60f608f17edf7b1cd958fa8a36b05ce161f5dd97-liferay-60f608f17edf7b1cd958fa8a36b05ce161f5dd97:master-temp-1504012666168
+Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-jenkins-ee.git cache-liferay-60f608f17edf7b1cd958fa8a36b05ce161f5dd97-liferay-60f608f17edf7b1cd958fa8a36b05ce161f5dd97:master-temp-1504012666168".
+Warning: Permanently added 'github-dev.liferay.com,10.0.0.28' (RSA) to the list of known hosts.
+
+From github-dev.liferay.com:liferay/liferay-jenkins-ee
+ * [new branch]      cache-liferay-60f608f17edf7b1cd958fa8a36b05ce161f5dd97-liferay-60f608f17edf7b1cd958fa8a36b05ce161f5dd97 -> master-temp-1504012666168
+Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-jenkins-ee.git cache-liferay-60f608f17edf7b1cd958fa8a36b05ce161f5dd97-liferay-60f608f17edf7b1cd958fa8a36b05ce161f5dd97:master-temp-1504012666168" complete.
++ rm -f /root/.ssh/known_hosts
++ ./commands/git_custom_fetch_retry.sh -f git@github-dev.liferay.com:liferay/liferay-jenkins-ee.git master:master
+./commands/git_custom_fetch.sh -f git@github-dev.liferay.com:liferay/liferay-jenkins-ee.git master:master
+Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-jenkins-ee.git master:master".
+Warning: Permanently added 'github-dev.liferay.com,10.0.0.23' (RSA) to the list of known hosts.
+
+From github-dev.liferay.com:liferay/liferay-jenkins-ee
+ = [up to date]      master     -> master
+Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-jenkins-ee.git master:master" complete.
++ git checkout -f master
+Switched to branch 'master'
++ git reset --hard 60f608f17edf7b1cd958fa8a36b05ce161f5dd97
+HEAD is now at 60f608f LRQA-34137 Upgrade com.liferay.jenkins.results.parser.jar to version 1.0.123
++ git checkout -f master-temp-1504012666168
+Switched to branch 'master-temp-1504012666168'
++ git clean -d -f -x --exclude=git
+Removing stop.properties
++ git reset --hard
+HEAD is now at 60f608f LRQA-34137 Upgrade com.liferay.jenkins.results.parser.jar to version 1.0.123
+++ git branch
+++ egrep temp
+++ egrep -v '\*'
++ local 'TEMP_BRANCH_NAMES=  master-temp-1504007521353
+  temp-1504012666318272846'
++ [[ ! -z   master-temp-1504007521353
+  temp-1504012666318272846 ]]
++ echo master-temp-1504007521353 temp-1504012666318272846
++ xargs git branch -D --
+Deleted branch master-temp-1504007521353 (was 60f608f).
+Deleted branch temp-1504012666318272846 (was 60f608f).
++ git log -n 1
+commit 60f608f17edf7b1cd958fa8a36b05ce161f5dd97
+Author: pyoo47 <peter.yoo@liferay.com>
+Date:   Fri Aug 25 15:13:37 2017 -0700
+
+    LRQA-34137 Upgrade com.liferay.jenkins.results.parser.jar to version 1.0.123
++ echo 'Exit shell.'
+Exit shell.
+[liferay-jenkins-ee] $ /bin/bash -e -x /tmp/hudson2789037557655418196.sh
++ echo 'Execute: build-test-portal-acceptance-pullrequest-batch.sh start-current-job'
+Execute: build-test-portal-acceptance-pullrequest-batch.sh start-current-job
++ commands/build-test-portal-acceptance-pullrequest-batch.sh start-current-job
+Execute: ant -f commands/build-test-portal-acceptance-pullrequest-batch.xml start-current-job
+Buildfile: /opt/dev/projects/github/liferay-jenkins-ee/commands/build-test-portal-acceptance-pullrequest-batch.xml
+
+start-current-job:
+     [echo] curl --output /opt/dev/projects/github/liferay-jenkins-ee/json.data --silent --write-out %{http_code} http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest%28master%29/2232/test-portal-acceptance-pullrequest-batch%28master%29/AXIS_VARIABLE=3,label_exp=!master/plugins-compile-jdk8/start.properties
+     [exec] 200
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/commands/20170829131749498
+[beanshell] No JSON found at http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest%28master%29/2232/test-portal-acceptance-pullrequest-batch%28master%29/AXIS_VARIABLE=3,label_exp=!master/plugins-compile-jdk8/start.properties
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/json.data
+     [echo] curl --output /dev/null -d @/opt/dev/projects/github/liferay-jenkins-ee/json.data -H "Content-Type: application/json" --silent --write-out %{http_code} -X POST --write-out %{http_code} http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest%28master%29/2232/test-portal-acceptance-pullrequest-batch%28master%29/AXIS_VARIABLE=3,label_exp=!master/plugins-compile-jdk8/start.properties
+     [exec] 200
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/commands/20170829131749617
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/json.data
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-jenkins-ee
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
++ echo 'Exit shell.'
+Exit shell.
+[EnvInject] - Injecting environment variables from a build step.
+[EnvInject] - Injecting as environment variables the properties file path '/opt/dev/projects/github/liferay-jenkins-ee/start.properties'
+[EnvInject] - Variables injected successfully.
+[description-setter] Description set: <strong>liferay</strong> - <a href="https://github.com/liferay/liferay-portal/pull/1847">PR#1847</a> - <a href="https://test-1-2.liferay.com//userContent/jobs/test-portal-acceptance-pullrequest(master)/builds/2232/jenkins-report.html">Jenkins Report</a>
+[liferay-jenkins-ee] $ /bin/bash -e -x /tmp/hudson6003986231640177568.sh
++ echo 'Execute: build-test-portal-acceptance-pullrequest-batch.sh'
+Execute: build-test-portal-acceptance-pullrequest-batch.sh
++ commands/build-test-portal-acceptance-pullrequest-batch.sh
+Execute: ant -f commands/build-test-portal-acceptance-pullrequest-batch.xml 
+Buildfile: /opt/dev/projects/github/liferay-jenkins-ee/commands/build-test-portal-acceptance-pullrequest-batch.xml
+
+run-current-job:
+
+clean-up-processes:
+
+clean-up-processes-java:
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/clean_up_java_processes.sh
+     [exec] Result: 1
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/find_java_process.sh
+
+clean-up-processes-browser:
+     [exec] Killing Firefox.
+     [exec] firefox: no process killed
+     [exec] Result: 1
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/clean_up_browser_processes.sh
+
+clean-up-processes-database:
+     [exec] Killing DB2.
+     [exec] SQL1032N  No start database manager command was issued.  SQLSTATE=57019
+     [exec] Killing MariaDB.
+     [exec]  ERROR! MySQL server PID file could not be found!
+     [exec] Killing MySQL 5.5.
+     [exec]  ERROR! MySQL server PID file could not be found!
+     [exec] Killing MySQL 5.6.
+     [exec] Stopping mysqld:  [  OK  ]
+     [exec] Killing Oracle.
+     [exec] 
+     [exec] LSNRCTL for Linux: Version 12.1.0.2.0 - Production on 29-AUG-2017 06:17:52
+     [exec] 
+     [exec] Copyright (c) 1991, 2014, Oracle.  All rights reserved.
+     [exec] 
+     [exec] Connecting to (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=cloud-10-0-112-97.lax.liferay.com)(PORT=1521)))
+     [exec] TNS-12541: TNS:no listener
+     [exec]  TNS-12560: TNS:protocol adapter error
+     [exec]   TNS-00511: No listener
+     [exec]    Linux Error: 111: Connection refused
+     [exec] Connecting to (DESCRIPTION=(ADDRESS=(PROTOCOL=IPC)(KEY=EXTPROC1521)))
+     [exec] TNS-12541: TNS:no listener
+     [exec]  TNS-12560: TNS:protocol adapter error
+     [exec]   TNS-00511: No listener
+     [exec]    Linux Error: 2: No such file or directory
+     [exec] 
+     [exec] SQL*Plus: Release 12.1.0.2.0 Production on Tue Aug 29 06:17:52 2017
+     [exec] 
+     [exec] Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+     [exec] 
+     [exec] Connected to an idle instance.
+     [exec] 
+     [exec] SQL> ERROR:
+     [exec] ORA-01034: ORACLE not available
+     [exec] ORA-27101: shared memory realm does not exist
+     [exec] Linux-x86_64 Error: 2: No such file or directory
+     [exec] Additional information: 3640
+     [exec] Additional information: -141692521
+     [exec] Process ID: 0
+     [exec] Session ID: 0 Serial number: 0
+     [exec] 
+     [exec] 
+     [exec] SQL> Disconnected
+     [exec] 
+     [exec] SQL*Plus: Release 12.1.0.2.0 Production on Tue Aug 29 06:17:54 2017
+     [exec] 
+     [exec] Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+     [exec] 
+     [exec] Connected to an idle instance.
+     [exec] 
+     [exec] SQL> ORACLE instance shut down.
+     [exec] SQL> Disconnected
+     [exec] Killing PostgreSQL 9.4.
+     [exec] Stopping postgresql-9.4 service: [  OK  ]
+     [exec] Killing Sybase.
+     [exec] CT-LIBRARY error:
+     [exec] 	ct_connect(): network packet layer: internal net library error: Net-Lib protocol driver call to connect two endpoints failed
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/clean_up_database_processes.sh
+
+prepare-portal-repository:
+     [copy] Copying 1 file to /tmp/jenkins/test-1-2/test-portal-acceptance-pullrequest(master)/2232/git
+     [echo] curl --output /opt/dev/projects/github/liferay-jenkins-ee/json.data --silent --write-out %{http_code} http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest%28master%29/2232/test-portal-acceptance-pullrequest%28master%29/git.portal.properties
+     [exec] 200
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/commands/20170829131758395
+[beanshell] 
+[beanshell] ##
+[beanshell] ## http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest%28master%29/2232/test-portal-acceptance-pullrequest%28master%29/git.portal.properties
+[beanshell] ##
+[beanshell] 
+[beanshell] github.upstream.branch.name=master
+[beanshell] github.sender.branch.sha=e5add1417b307cd7964eb5e45a9a721f46d6997a
+[beanshell] github.receiver.username=liferay
+[beanshell] github.sender.branch.name=ci-merge-com-liferay-adaptive-media-master-b75ad7d7f72d7859d3c8c8934f0200740fc3a73c
+[beanshell] github.pull.request.number=1847
+[beanshell] github.upstream.branch.sha=7021f4661b808a2da2551cc724f79ba656575273
+[beanshell] github.sender.username=liferay-continuous-integration
+[beanshell] local.git.branch.cached=true
+[beanshell] github.origin.name=liferay
+[beanshell] 
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/json.data
+     [exec] HEAD is now at 7021f46 subrepo:ignore Update 'modules/apps/web-experience/journal/.gitrepo'.
+     [exec] Switched to a new branch 'temp-1504012679310837444'
+     [exec] /opt/dev/projects/github/liferay-jenkins-ee/commands/git_custom_fetch.sh -f git@github-dev.liferay.com:liferay/liferay-portal.git cache-liferay-7021f4661b808a2da2551cc724f79ba656575273-liferay-7021f4661b808a2da2551cc724f79ba656575273:masterSwitched to a new branch 'temp-1504012679310837444'
+     [exec] 
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-portal.git cache-liferay-7021f4661b808a2da2551cc724f79ba656575273-liferay-7021f4661b808a2da2551cc724f79ba656575273:master".
+     [exec] Warning: Permanently added 'github-dev.liferay.com,10.0.0.15' (RSA) to the list of known hosts.
+     [exec] From github-dev.liferay.com:liferay/liferay-portal
+     [exec]  = [up to date]      cache-liferay-7021f4661b808a2da2551cc724f79ba656575273-liferay-7021f4661b808a2da2551cc724f79ba656575273 -> master
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-portal.git cache-liferay-7021f4661b808a2da2551cc724f79ba656575273-liferay-7021f4661b808a2da2551cc724f79ba656575273:master" complete.
+     [exec] Switched to branch 'master'
+     [exec] Switched to branch 'master'
+     [exec] HEAD is now at 7021f46 subrepo:ignore Update 'modules/apps/web-experience/journal/.gitrepo'.
+     [exec] /opt/dev/projects/github/liferay-jenkins-ee/commands/git_custom_fetch.sh -f git@github-dev.liferay.com:liferay/liferay-portal.git cache-liferay-7021f4661b808a2da2551cc724f79ba656575273-liferay-e5add1417b307cd7964eb5e45a9a721f46d6997a:master-temp-20170829123249342
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-portal.git cache-liferay-7021f4661b808a2da2551cc724f79ba656575273-liferay-e5add1417b307cd7964eb5e45a9a721f46d6997a:master-temp-20170829123249342".
+     [exec] Warning: Permanently added 'github-dev.liferay.com,10.0.0.12' (RSA) to the list of known hosts.
+     [exec] remote: Counting objects: 10, done.[K
+     [exec] remote: Compressing objects:  20% (1/5)   [K
+     [exec] remote: Compressing objects:  40% (2/5)   [Kremote: Compressing objects:  60% (3/5)   [Kremote: Compressing objects:  80% (4/5)   [Kremote: Compressing objects: 100% (5/5)   [Kremote: Compressing objects: 100% (5/5), done.[Kremote: Total 6 (delta 4), reused 0 (delta 0)[K
+     [exec] Unpacking objects:  16% (1/6)   
+     [exec] Unpacking objects:  33% (2/6)   Unpacking objects:  50% (3/6)   Unpacking objects:  66% (4/6)   Unpacking objects:  83% (5/6)   Unpacking objects: 100% (6/6)   Unpacking objects: 100% (6/6), done.From github-dev.liferay.com:liferay/liferay-portal
+     [exec]  * [new branch]      cache-liferay-7021f4661b808a2da2551cc724f79ba656575273-liferay-e5add1417b307cd7964eb5e45a9a721f46d6997a -> master-temp-20170829123249342
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-portal.git cache-liferay-7021f4661b808a2da2551cc724f79ba656575273-liferay-e5add1417b307cd7964eb5e45a9a721f46d6997a:master-temp-20170829123249342" complete.
+     [exec] Switched to branch 'master-temp-20170829123249342'
+     [exec] Switched to branch 'master-temp-20170829123249342'
+     [exec] Deleted branch master-temp-20170829105246879 (was 39a3865).
+     [exec] Deleted branch temp-1504012679310837444 (was 7021f46).
+     [exec] commit e5add1417b307cd7964eb5e45a9a721f46d6997a
+     [exec] Author: Liferay Continuous Integration <continuous-integration@liferay.com>
+     [exec] Date:   Tue Aug 29 05:32:16 2017 -0700
+     [exec] 
+     [exec]     Create modules/apps/adaptive-media/ci-merge.
+     [exec] On branch master-temp-20170829123249342
+     [exec] nothing to commit, working tree clean
+
+set-portal-app-server-properties:
+     [echo] 
+     [echo] ##
+     [echo] ## /opt/dev/projects/github/liferay-portal/app.server.cloud-10-0-112-97.lax.liferay.com.properties
+     [echo] ##
+     [echo] 
+     [echo] app.server.parent.dir=/opt/dev/projects/github/liferay-portal/bundles
+
+set-portal-build-properties:
+     [echo] 
+     [echo] ##
+     [echo] ## /opt/dev/projects/github/liferay-portal/build.cloud-10-0-112-97.lax.liferay.com.properties
+     [echo] ##
+     [echo] 
+     [echo] build.repository.private.password=0GgG9J3X42k677H
+     [echo] build.repository.private.url=https://repository.liferay.com/nexus/service/local/repo_groups/private/content/
+     [echo] build.repository.private.username=private
+     [echo] liferay.home=/opt/dev/projects/github/liferay-portal/bundles
+     [echo] nodejs.npm.ci.registry=http://mirrors.lax.liferay.com:4873
+     [echo] nodejs.npm.ci.sass.binary.site=http://mirrors.lax.liferay.com/github.com/sass/node-sass/releases/download
+     [echo] shell.executable=/bin/bash
+     [echo] jsp.precompile=off
+     [echo] jsp.precompile.parallel=off
+     [echo] release.versions.test.other.dir=/opt/dev/projects/github/liferay-portal-7.0.x
+
+set-portal-impl-portal-test-ext-properties:
+  [typedef] Could not load definitions from resource org/apache/maven/artifact/ant/antlib.xml. It could not be found.
+  [taskdef] Could not load definitions from resource org/jacoco/ant/antlib.xml. It could not be found.
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+set-portal-impl-portal-test-ext-properties:
+     [echo] 
+     [echo] ##
+     [echo] ## /opt/dev/projects/github/liferay-portal/portal-impl/test/portal-test-ext.properties
+     [echo] ##
+     [echo] 
+     [echo] liferay.home=/opt/dev/projects/github/liferay-portal/bundles
+     [echo] 
+     [echo] jdbc.default.driverClassName=com.mysql.jdbc.Driver
+     [echo] jdbc.default.url=jdbc:mysql://localhost/lportal?characterEncoding=UTF-8&dontTrackOpenResources=true&holdResultsOpenOverStatementClose=true&useFastDateParsing=false&useUnicode=true
+     [echo] jdbc.default.username=root
+     [echo] jdbc.default.password=
+     [echo] 
+     [echo] // HikariCP
+     [echo] 
+     [echo] jdbc.default.connectionTimeout=600000
+     [echo] jdbc.default.maximumPoolSize=20
+     [echo] jdbc.default.minimumIdle=0
+     [echo] 
+     [echo] jdbc.counter.maximumPoolSize=5
+     [echo] jdbc.counter.minimumIdle=0
+     [echo] 
+     [echo] // Tomcat
+     [echo] 
+     [echo] jdbc.default.initialSize=0
+     [echo] jdbc.default.maxActive=20
+     [echo] jdbc.default.maxIdle=0
+     [echo] jdbc.default.minIdle=0
+     [echo] 
+     [echo] jdbc.counter.initialSize=0
+     [echo] jdbc.counter.maxActive=5
+     [echo] jdbc.counter.maxIdle=0
+     [echo] jdbc.counter.minIdle=0
+     [echo] 
+     [echo] counter.jdbc.prefix=jdbc.counter.
+     [echo] module.framework.base.dir=/opt/dev/projects/github/liferay-portal/bundles/osgi
+     [echo] 
+     [echo] sprite.root.dir=/tmp/sprite
+     [echo] 
+     [echo] memory.scheduler.org.quartz.threadPool.threadCount=1
+     [echo] 
+     [echo] persisted.scheduler.org.quartz.threadPool.threadCount=1
+
+set-portal-release-properties:
+     [echo] 
+     [echo] ##
+     [echo] ## /opt/dev/projects/github/liferay-portal/release.cloud-10-0-112-97.lax.liferay.com.properties
+     [echo] ##
+     [echo] 
+     [echo] lp.plugins.dir=/opt/dev/projects/github/liferay-plugins
+
+set-portal-sql-properties:
+     [echo] 
+     [echo] ##
+     [echo] ## /opt/dev/projects/github/liferay-portal/sql/sql.cloud-10-0-112-97.lax.liferay.com.properties
+     [echo] ##
+     [echo] 
+     [echo] db2.executable=db2
+     [echo] mariadb.executable=/opt/mariadb/bin/mysql
+     [echo] mysql.arg.line=-u root
+     [echo] oracle.admin.password=liferay123
+     [echo] sqlserver.executable=sqlcmd
+     [echo] sybase.executable=/opt/sybase/OCS-16_0/bin/isql
+     [echo] database.types=db2,hypersonic,mysql,oracle,postgresql,sqlserver,sybase
+
+set-portal-test-case-method-names-properties:
+     [echo] curl --output /opt/dev/projects/github/liferay-jenkins-ee/json.data --silent --write-out %{http_code} http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest%28master%29/2232/test-portal-acceptance-pullrequest-batch%28master%29/plugins-compile-jdk8/start.properties
+     [exec] 200
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/commands/20170829131808430
+[beanshell] ##
+[beanshell] ## /opt/dev/projects/github/liferay-portal/test.case.method.names.properties
+[beanshell] ##
+[beanshell] 
+[beanshell] 
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/json.data
+
+prepare-portal-ee-repository:
+
+prepare-portal-other-repository:
+
+prepare-portal-legacy-repository:
+     [echo] curl --output /opt/dev/projects/github/liferay-jenkins-ee/json.data --silent --write-out %{http_code} http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest%28master%29/2232/test-portal-acceptance-pullrequest%28master%29/git.legacy.properties
+     [exec] 200
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/commands/20170829131808653
+[beanshell] 
+[beanshell] ##
+[beanshell] ## http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest%28master%29/2232/test-portal-acceptance-pullrequest%28master%29/git.legacy.properties
+[beanshell] ##
+[beanshell] 
+[beanshell] github.upstream.branch.name=master
+[beanshell] github.sender.branch.sha=4d216293b2526adea170f9e678756bf4031cd261
+[beanshell] github.receiver.username=liferay
+[beanshell] github.sender.branch.name=master
+[beanshell] github.pull.request.number=0
+[beanshell] github.upstream.branch.sha=4d216293b2526adea170f9e678756bf4031cd261
+[beanshell] github.sender.username=liferay
+[beanshell] local.git.branch.cached=true
+[beanshell] github.origin.name=liferay
+[beanshell] 
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/json.data
+     [exec] HEAD is now at 4d21629 LRQA-31055 Regen
+     [exec] Switched to a new branch 'temp-1504012689360689705'
+     [exec] Switched to a new branch 'temp-1504012689360689705'
+     [exec] /opt/dev/projects/github/liferay-jenkins-ee/commands/git_custom_fetch.sh -f git@github-dev.liferay.com:liferay/liferay-qa-portal-legacy-ee.git cache-liferay-4d216293b2526adea170f9e678756bf4031cd261-liferay-4d216293b2526adea170f9e678756bf4031cd261:master
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-qa-portal-legacy-ee.git cache-liferay-4d216293b2526adea170f9e678756bf4031cd261-liferay-4d216293b2526adea170f9e678756bf4031cd261:master".
+     [exec] Switched to branch 'master'
+     [exec] Warning: Permanently added 'github-dev.liferay.com,10.0.0.27' (RSA) to the list of known hosts.
+     [exec] Switched to branch 'master'
+     [exec] From github-dev.liferay.com:liferay/liferay-qa-portal-legacy-ee
+     [exec]  = [up to date]      cache-liferay-4d216293b2526adea170f9e678756bf4031cd261-liferay-4d216293b2526adea170f9e678756bf4031cd261 -> master
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-qa-portal-legacy-ee.git cache-liferay-4d216293b2526adea170f9e678756bf4031cd261-liferay-4d216293b2526adea170f9e678756bf4031cd261:master" complete.
+     [exec] HEAD is now at 4d21629 LRQA-31055 Regen
+     [exec] /opt/dev/projects/github/liferay-jenkins-ee/commands/git_custom_fetch.sh -f git@github-dev.liferay.com:liferay/liferay-qa-portal-legacy-ee.git cache-liferay-4d216293b2526adea170f9e678756bf4031cd261-liferay-4d216293b2526adea170f9e678756bf4031cd261:master-temp-20170829123249342
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-qa-portal-legacy-ee.git cache-liferay-4d216293b2526adea170f9e678756bf4031cd261-liferay-4d216293b2526adea170f9e678756bf4031cd261:master-temp-20170829123249342".
+     [exec] Warning: Permanently added 'github-dev.liferay.com,10.0.0.15' (RSA) to the list of known hosts.
+     [exec] From github-dev.liferay.com:liferay/liferay-qa-portal-legacy-ee
+     [exec]  * [new branch]      cache-liferay-4d216293b2526adea170f9e678756bf4031cd261-liferay-4d216293b2526adea170f9e678756bf4031cd261 -> master-temp-20170829123249342
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-qa-portal-legacy-ee.git cache-liferay-4d216293b2526adea170f9e678756bf4031cd261-liferay-4d216293b2526adea170f9e678756bf4031cd261:master-temp-20170829123249342" complete.
+     [exec] Switched to branch 'master-temp-20170829123249342'
+     [exec] Switched to branch 'master-temp-20170829123249342'
+     [exec] Deleted branch master-temp-20170829105246879 (was 4d21629).
+     [exec] Deleted branch temp-1504012689360689705 (was 4d21629).
+     [exec] commit 4d216293b2526adea170f9e678756bf4031cd261
+     [exec] Author: Sharon Choi <sharon.choi@liferay.com>
+     [exec] Date:   Mon Jun 19 11:10:37 2017 -0700
+     [exec] 
+     [exec]     LRQA-31055 Regen
+     [exec] On branch master-temp-20170829123249342
+     [exec] nothing to commit, working tree clean
+
+prepare-plugins-repository:
+     [echo] curl --output /opt/dev/projects/github/liferay-jenkins-ee/json.data --silent --write-out %{http_code} http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest%28master%29/2232/test-portal-acceptance-pullrequest%28master%29/git.plugins.properties
+     [exec] 200
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/commands/20170829131812166
+[beanshell] 
+[beanshell] ##
+[beanshell] ## http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest%28master%29/2232/test-portal-acceptance-pullrequest%28master%29/git.plugins.properties
+[beanshell] ##
+[beanshell] 
+[beanshell] github.upstream.branch.name=master
+[beanshell] github.sender.branch.sha=eec012bd3f2fb075679249987c82b560bc3e7e1c
+[beanshell] github.receiver.username=liferay
+[beanshell] github.sender.branch.name=master
+[beanshell] github.pull.request.number=0
+[beanshell] github.upstream.branch.sha=eec012bd3f2fb075679249987c82b560bc3e7e1c
+[beanshell] github.sender.username=liferay
+[beanshell] local.git.branch.cached=true
+[beanshell] github.origin.name=liferay
+[beanshell] 
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/json.data
+     [exec] HEAD is now at eec012b LRQA-34046 Sync tcserver version to portal
+     [exec] Switched to a new branch 'temp-1504012692727315426'
+     [exec] Switched to a new branch 'temp-1504012692727315426'
+     [exec] /opt/dev/projects/github/liferay-jenkins-ee/commands/git_custom_fetch.sh -f git@github-dev.liferay.com:liferay/liferay-plugins.git cache-liferay-eec012bd3f2fb075679249987c82b560bc3e7e1c-liferay-eec012bd3f2fb075679249987c82b560bc3e7e1c:master
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-plugins.git cache-liferay-eec012bd3f2fb075679249987c82b560bc3e7e1c-liferay-eec012bd3f2fb075679249987c82b560bc3e7e1c:master".
+     [exec] Switched to branch 'master'
+     [exec] Switched to branch 'master'
+     [exec] Warning: Permanently added 'github-dev.liferay.com,10.0.0.25' (RSA) to the list of known hosts.
+     [exec] From github-dev.liferay.com:liferay/liferay-plugins
+     [exec]  = [up to date]      cache-liferay-eec012bd3f2fb075679249987c82b560bc3e7e1c-liferay-eec012bd3f2fb075679249987c82b560bc3e7e1c -> master
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-plugins.git cache-liferay-eec012bd3f2fb075679249987c82b560bc3e7e1c-liferay-eec012bd3f2fb075679249987c82b560bc3e7e1c:master" complete.
+     [exec] HEAD is now at eec012b LRQA-34046 Sync tcserver version to portal
+     [exec] /opt/dev/projects/github/liferay-jenkins-ee/commands/git_custom_fetch.sh -f git@github-dev.liferay.com:liferay/liferay-plugins.git cache-liferay-eec012bd3f2fb075679249987c82b560bc3e7e1c-liferay-eec012bd3f2fb075679249987c82b560bc3e7e1c:master-temp-20170829123249342
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-plugins.git cache-liferay-eec012bd3f2fb075679249987c82b560bc3e7e1c-liferay-eec012bd3f2fb075679249987c82b560bc3e7e1c:master-temp-20170829123249342".
+     [exec] Warning: Permanently added 'github-dev.liferay.com,10.0.0.26' (RSA) to the list of known hosts.
+     [exec] From github-dev.liferay.com:liferay/liferay-plugins
+     [exec]  * [new branch]      cache-liferay-eec012bd3f2fb075679249987c82b560bc3e7e1c-liferay-eec012bd3f2fb075679249987c82b560bc3e7e1c -> master-temp-20170829123249342
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-plugins.git cache-liferay-eec012bd3f2fb075679249987c82b560bc3e7e1c-liferay-eec012bd3f2fb075679249987c82b560bc3e7e1c:master-temp-20170829123249342" complete.
+     [exec] Switched to branch 'master-temp-20170829123249342'
+     [exec] Switched to branch 'master-temp-20170829123249342'
+     [exec] Deleted branch master-temp-20170829105246879 (was eec012b).
+     [exec] Deleted branch temp-1504012692727315426 (was eec012b).
+     [exec] commit eec012bd3f2fb075679249987c82b560bc3e7e1c
+     [exec] Author: Kiyoshi Lee <kiyoshi.lee@liferay.com>
+     [exec] Date:   Wed Jul 26 11:57:06 2017 -0700
+     [exec] 
+     [exec]     LRQA-34046 Sync tcserver version to portal
+     [exec] On branch master-temp-20170829123249342
+     [exec] nothing to commit, working tree clean
+
+set-plugins-build-properties:
+     [echo] 
+     [echo] ##
+     [echo] ## /opt/dev/projects/github/liferay-plugins/build.cloud-10-0-112-97.lax.liferay.com.properties
+     [echo] ##
+     [echo] 
+     [echo] liferay.home=/opt/dev/projects/github/liferay-portal/bundles
+
+prepare-subrepositories:
+     [echo] curl --output /opt/dev/projects/github/liferay-jenkins-ee/json.data --silent --write-out %{http_code} http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest%28master%29/2232/test-portal-acceptance-pullrequest%28master%29/git.com-liferay-adaptive-media.properties
+     [exec] 200
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/commands/20170829131815346
+[beanshell] 
+[beanshell] ##
+[beanshell] ## http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest%28master%29/2232/test-portal-acceptance-pullrequest%28master%29/git.com-liferay-adaptive-media.properties
+[beanshell] ##
+[beanshell] 
+[beanshell] github.upstream.branch.name=master
+[beanshell] github.sender.branch.sha=b75ad7d7f72d7859d3c8c8934f0200740fc3a73c
+[beanshell] github.receiver.username=liferay
+[beanshell] github.sender.branch.name=master
+[beanshell] github.pull.request.number=0
+[beanshell] github.upstream.branch.sha=b75ad7d7f72d7859d3c8c8934f0200740fc3a73c
+[beanshell] github.sender.username=liferay
+[beanshell] local.git.branch.cached=true
+[beanshell] github.origin.name=liferay
+[beanshell] 
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/json.data
+     [exec] HEAD is now at 2db3d30 LPS-74280 Auto SF
+     [exec] Switched to a new branch 'temp-1504012695521793554'
+     [exec] /opt/dev/projects/github/liferay-jenkins-ee/commands/git_custom_fetch.sh -f git@github-dev.liferay.com:liferay/com-liferay-adaptive-media.git cache-liferay-b75ad7d7f72d7859d3c8c8934f0200740fc3a73c-liferay-b75ad7d7f72d7859d3c8c8934f0200740fc3a73c:master
+     [exec] Switched to a new branch 'temp-1504012695521793554'
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/com-liferay-adaptive-media.git cache-liferay-b75ad7d7f72d7859d3c8c8934f0200740fc3a73c-liferay-b75ad7d7f72d7859d3c8c8934f0200740fc3a73c:master".
+     [exec] Switched to branch 'master'
+     [exec] Switched to branch 'master'
+     [exec] Warning: Permanently added 'github-dev.liferay.com,10.0.0.17' (RSA) to the list of known hosts.
+     [exec] remote: Counting objects: 63, done.[K
+     [exec] remote: Compressing objects:   2% (1/36)   [K
+     [exec] remote: Compressing objects:   5% (2/36)   [Kremote: Compressing objects:   8% (3/36)   [Kremote: Compressing objects:  11% (4/36)   [Kremote: Compressing objects:  13% (5/36)   [Kremote: Compressing objects:  16% (6/36)   [Kremote: Compressing objects:  19% (7/36)   [Kremote: Compressing objects:  22% (8/36)   [Kremote: Compressing objects:  25% (9/36)   [Kremote: Compressing objects:  27% (10/36)   [Kremote: Compressing objects:  30% (11/36)   [Kremote: Compressing objects:  33% (12/36)   [Kremote: Compressing objects:  36% (13/36)   [Kremote: Compressing objects:  38% (14/36)   [Kremote: Compressing objects:  41% (15/36)   [Kremote: Compressing objects:  44% (16/36)   [Kremote: Compressing objects:  47% (17/36)   [Kremote: Compressing objects:  50% (18/36)   [Kremote: Compressing objects:  52% (19/36)   [Kremote: Compressing objects:  55% (20/36)   [Kremote: Compressing objects:  58% (21/36)   [Kremote: Compressing objects:  61% (22/36)   [Kremote: Compressing objects:  63% (23/36)   [Kremote: Compressing objects:  66% (24/36)   [Kremote: Compressing objects:  69% (25/36)   [Kremote: Compressing objects:  72% (26/36)   [Kremote: Compressing objects:  75% (27/36)   [Kremote: Compressing objects:  77% (28/36)   [Kremote: Compressing objects:  80% (29/36)   [Kremote: Compressing objects:  83% (30/36)   [Kremote: Compressing objects:  86% (31/36)   [Kremote: Compressing objects:  88% (32/36)   [Kremote: Compressing objects:  91% (33/36)   [Kremote: Compressing objects:  94% (34/36)   [Kremote: Compressing objects:  97% (35/36)   [Kremote: Compressing objects: 100% (36/36)   [Kremote: Compressing objects: 100% (36/36), done.[Kremote: Total 47 (delta 26), reused 25 (delta 9)[K
+     [exec] Unpacking objects:   2% (1/47)   
+     [exec] Unpacking objects:   4% (2/47)   Unpacking objects:   6% (3/47)   Unpacking objects:   8% (4/47)   Unpacking objects:  10% (5/47)   Unpacking objects:  12% (6/47)   Unpacking objects:  14% (7/47)   Unpacking objects:  17% (8/47)   Unpacking objects:  19% (9/47)   Unpacking objects:  21% (10/47)   Unpacking objects:  23% (11/47)   Unpacking objects:  25% (12/47)   Unpacking objects:  27% (13/47)   Unpacking objects:  29% (14/47)   Unpacking objects:  31% (15/47)   Unpacking objects:  34% (16/47)   Unpacking objects:  36% (17/47)   Unpacking objects:  38% (18/47)   Unpacking objects:  40% (19/47)   Unpacking objects:  42% (20/47)   Unpacking objects:  44% (21/47)   Unpacking objects:  46% (22/47)   Unpacking objects:  48% (23/47)   Unpacking objects:  51% (24/47)   Unpacking objects:  53% (25/47)   Unpacking objects:  55% (26/47)   Unpacking objects:  57% (27/47)   Unpacking objects:  59% (28/47)   Unpacking objects:  61% (29/47)   Unpacking objects:  63% (30/47)   Unpacking objects:  65% (31/47)   Unpacking objects:  68% (32/47)   Unpacking objects:  70% (33/47)   Unpacking objects:  72% (34/47)   Unpacking objects:  74% (35/47)   Unpacking objects:  76% (36/47)   Unpacking objects:  78% (37/47)   Unpacking objects:  80% (38/47)   Unpacking objects:  82% (39/47)   Unpacking objects:  85% (40/47)   Unpacking objects:  87% (41/47)   Unpacking objects:  89% (42/47)   Unpacking objects:  91% (43/47)   Unpacking objects:  93% (44/47)   Unpacking objects:  95% (45/47)   Unpacking objects:  97% (46/47)   Unpacking objects: 100% (47/47)   Unpacking objects: 100% (47/47), done.From github-dev.liferay.com:liferay/com-liferay-adaptive-media
+     [exec]    2db3d30..b75ad7d  cache-liferay-b75ad7d7f72d7859d3c8c8934f0200740fc3a73c-liferay-b75ad7d7f72d7859d3c8c8934f0200740fc3a73c -> master
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/com-liferay-adaptive-media.git cache-liferay-b75ad7d7f72d7859d3c8c8934f0200740fc3a73c-liferay-b75ad7d7f72d7859d3c8c8934f0200740fc3a73c:master" complete.
+     [exec] HEAD is now at b75ad7d LPS-73070 Generates package-lock file (auto-generated)
+     [exec] /opt/dev/projects/github/liferay-jenkins-ee/commands/git_custom_fetch.sh -f git@github-dev.liferay.com:liferay/com-liferay-adaptive-media.git cache-liferay-b75ad7d7f72d7859d3c8c8934f0200740fc3a73c-liferay-b75ad7d7f72d7859d3c8c8934f0200740fc3a73c:master-temp-20170829123249342
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/com-liferay-adaptive-media.git cache-liferay-b75ad7d7f72d7859d3c8c8934f0200740fc3a73c-liferay-b75ad7d7f72d7859d3c8c8934f0200740fc3a73c:master-temp-20170829123249342".
+     [exec] Switched to branch 'master-temp-20170829123249342'
+     [exec] Switched to branch 'master-temp-20170829123249342'
+     [exec] Warning: Permanently added 'github-dev.liferay.com,10.0.0.24' (RSA) to the list of known hosts.
+     [exec] From github-dev.liferay.com:liferay/com-liferay-adaptive-media
+     [exec]  * [new branch]      cache-liferay-b75ad7d7f72d7859d3c8c8934f0200740fc3a73c-liferay-b75ad7d7f72d7859d3c8c8934f0200740fc3a73c -> master-temp-20170829123249342
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/com-liferay-adaptive-media.git cache-liferay-b75ad7d7f72d7859d3c8c8934f0200740fc3a73c-liferay-b75ad7d7f72d7859d3c8c8934f0200740fc3a73c:master-temp-20170829123249342" complete.
+     [exec] Deleted branch temp-1504012695521793554 (was 2db3d30).
+     [exec] commit b75ad7d7f72d7859d3c8c8934f0200740fc3a73c
+     [exec] Author: Chema Balsas <jose.balsas@liferay.com>
+     [exec] Date:   Tue Aug 29 13:33:51 2017 +0200
+     [exec] 
+     [exec]     LPS-73070 Generates package-lock file (auto-generated)
+     [exec] On branch master-temp-20170829123249342
+     [exec] nothing to commit, working tree clean
+     [copy] Copying 462 files to /opt/dev/projects/github/liferay-portal/modules/apps/adaptive-media
+  [typedef] Could not load definitions from resource org/apache/maven/artifact/ant/antlib.xml. It could not be found.
+  [taskdef] Could not load definitions from resource org/jacoco/ant/antlib.xml. It could not be found.
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+clean-version-override:
+ [sync-dir] Synchronizing /opt/dev/projects/github/liferay-binaries-cache-2017/.gradle/caches/modules-2/files-2.1 into /opt/dev/projects/github/liferay-portal/.gradle/caches/modules-2/files-2.1
+ [sync-dir] 563 files synchronized in 2714ms
+     [exec] Downloading file:/opt/dev/projects/github/liferay-portal/gradle/wrapper/../../tools/gradle-3.3.LIFERAY-PATCHED-1-bin.zip
+     [exec] ..................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+     [exec] Unzipping /opt/dev/projects/github/liferay-portal/.gradle/wrapper/dists/gradle-3.3.LIFERAY-PATCHED-1-bin/cogu4z91jcnfpn306tlfcz8oj/gradle-3.3.LIFERAY-PATCHED-1-bin.zip to /opt/dev/projects/github/liferay-portal/.gradle/wrapper/dists/gradle-3.3.LIFERAY-PATCHED-1-bin/cogu4z91jcnfpn306tlfcz8oj
+     [exec] Set executable permissions for: /opt/dev/projects/github/liferay-portal/.gradle/wrapper/dists/gradle-3.3.LIFERAY-PATCHED-1-bin/cogu4z91jcnfpn306tlfcz8oj/gradle-3.3/bin/gradle
+     [exec] Using proxy squid.lax.liferay.com:3128.
+     [exec] Download http://repository.liferay.com/nexus/content/groups/public/com/liferay/com.liferay.gradle.plugins.defaults/5.0.28/com.liferay.gradle.plugins.defaults-5.0.28.pom
+     [exec] Download http://repository.liferay.com/nexus/content/groups/public/com/liferay/com.liferay.gradle.plugins/3.4.42/com.liferay.gradle.plugins-3.4.42.pom
+     [exec] Download http://repository.liferay.com/nexus/content/groups/public/com/liferay/com.liferay.gradle.plugins.jasper.jspc/2.0.2/com.liferay.gradle.plugins.jasper.jspc-2.0.2.pom
+     [exec] Download http://repository.liferay.com/nexus/content/groups/public/com/liferay/com.liferay.gradle.plugins.source.formatter/2.1.3/com.liferay.gradle.plugins.source.formatter-2.1.3.pom
+     [exec] Download http://repository.liferay.com/nexus/content/groups/public/com/liferay/com.liferay.gradle.plugins.defaults/5.0.28/com.liferay.gradle.plugins.defaults-5.0.28.jar
+     [exec] Download http://repository.liferay.com/nexus/content/groups/public/com/liferay/com.liferay.gradle.plugins/3.4.42/com.liferay.gradle.plugins-3.4.42.jar
+     [exec] Download http://repository.liferay.com/nexus/content/groups/public/com/liferay/com.liferay.gradle.plugins.jasper.jspc/2.0.2/com.liferay.gradle.plugins.jasper.jspc-2.0.2.jar
+     [exec] Download http://repository.liferay.com/nexus/content/groups/public/com/liferay/com.liferay.gradle.plugins.source.formatter/2.1.3/com.liferay.gradle.plugins.source.formatter-2.1.3.jar
+     [exec] Configuration on demand is an incubating feature.
+     [exec] :cleanVersionOverride
+     [exec] 
+     [exec] BUILD SUCCESSFUL
+     [exec] 
+     [exec] Total time: 6.038 secs
+     [exec] Gradle build finished at 2017-08-29 13:18:26.945.
+     [exec] 
+
+prepare-binaries-cache-repository:
+     [echo] curl --output /opt/dev/projects/github/liferay-jenkins-ee/json.data --silent --write-out %{http_code} http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest%28master%29/2232/test-portal-acceptance-pullrequest%28master%29/git.binaries.cache.properties
+     [exec] 200
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/commands/20170829131827168
+[beanshell] 
+[beanshell] ##
+[beanshell] ## http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest%28master%29/2232/test-portal-acceptance-pullrequest%28master%29/git.binaries.cache.properties
+[beanshell] ##
+[beanshell] 
+[beanshell] github.upstream.branch.name=master
+[beanshell] github.sender.branch.sha=bf703dd17e7899cba5b7481ae0fb938fbb768dfa
+[beanshell] github.receiver.username=liferay
+[beanshell] github.sender.branch.name=master
+[beanshell] github.pull.request.number=0
+[beanshell] github.upstream.branch.sha=bf703dd17e7899cba5b7481ae0fb938fbb768dfa
+[beanshell] github.sender.username=liferay
+[beanshell] local.git.branch.cached=true
+[beanshell] github.origin.name=liferay
+[beanshell] 
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/json.data
+     [exec] HEAD is now at bf703dd Commit cache
+     [exec] Switched to a new branch 'temp-1504012707399381041'
+     [exec] /opt/dev/projects/github/liferay-jenkins-ee/commands/git_custom_fetch.sh -f git@github-dev.liferay.com:liferay/liferay-binaries-cache-2017.git cache-liferay-bf703dd17e7899cba5b7481ae0fb938fbb768dfa-liferay-bf703dd17e7899cba5b7481ae0fb938fbb768dfa:master
+     [exec] Switched to a new branch 'temp-1504012707399381041'
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-binaries-cache-2017.git cache-liferay-bf703dd17e7899cba5b7481ae0fb938fbb768dfa-liferay-bf703dd17e7899cba5b7481ae0fb938fbb768dfa:master".
+     [exec] Warning: Permanently added 'github-dev.liferay.com,10.0.0.15' (RSA) to the list of known hosts.
+     [exec] From github-dev.liferay.com:liferay/liferay-binaries-cache-2017
+     [exec]  = [up to date]      cache-liferay-bf703dd17e7899cba5b7481ae0fb938fbb768dfa-liferay-bf703dd17e7899cba5b7481ae0fb938fbb768dfa -> master
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-binaries-cache-2017.git cache-liferay-bf703dd17e7899cba5b7481ae0fb938fbb768dfa-liferay-bf703dd17e7899cba5b7481ae0fb938fbb768dfa:master" complete.
+     [exec] Switched to branch 'master'
+     [exec] Switched to branch 'master'
+     [exec] HEAD is now at bf703dd Commit cache
+     [exec] /opt/dev/projects/github/liferay-jenkins-ee/commands/git_custom_fetch.sh -f git@github-dev.liferay.com:liferay/liferay-binaries-cache-2017.git cache-liferay-bf703dd17e7899cba5b7481ae0fb938fbb768dfa-liferay-bf703dd17e7899cba5b7481ae0fb938fbb768dfa:master-temp-20170829123249342
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-binaries-cache-2017.git cache-liferay-bf703dd17e7899cba5b7481ae0fb938fbb768dfa-liferay-bf703dd17e7899cba5b7481ae0fb938fbb768dfa:master-temp-20170829123249342".
+     [exec] Warning: Permanently added 'github-dev.liferay.com,10.0.0.24' (RSA) to the list of known hosts.
+     [exec] From github-dev.liferay.com:liferay/liferay-binaries-cache-2017
+     [exec]  * [new branch]      cache-liferay-bf703dd17e7899cba5b7481ae0fb938fbb768dfa-liferay-bf703dd17e7899cba5b7481ae0fb938fbb768dfa -> master-temp-20170829123249342
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-binaries-cache-2017.git cache-liferay-bf703dd17e7899cba5b7481ae0fb938fbb768dfa-liferay-bf703dd17e7899cba5b7481ae0fb938fbb768dfa:master-temp-20170829123249342" complete.
+     [exec] Switched to branch 'master-temp-20170829123249342'
+     [exec] Switched to branch 'master-temp-20170829123249342'
+     [exec] Deleted branch master-temp-20170829105246879 (was bf703dd).
+     [exec] Deleted branch temp-1504012707399381041 (was bf703dd).
+     [exec] commit bf703dd17e7899cba5b7481ae0fb938fbb768dfa
+     [exec] Author: Andrea Di Giorgi <adigiorgi@outlook.com>
+     [exec] Date:   Fri Aug 25 14:24:31 2017 -0700
+     [exec] 
+     [exec]     Commit cache
+     [exec] On branch master-temp-20170829123249342
+     [exec] nothing to commit, working tree clean
+
+prepare-blade-samples-repository:
+     [echo] curl --output /opt/dev/projects/github/liferay-jenkins-ee/json.data --silent --write-out %{http_code} http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest%28master%29/2232/test-portal-acceptance-pullrequest%28master%29/git.blade.samples.properties
+     [exec] 200
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/commands/20170829131830506
+[beanshell] 
+[beanshell] ##
+[beanshell] ## http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest%28master%29/2232/test-portal-acceptance-pullrequest%28master%29/git.blade.samples.properties
+[beanshell] ##
+[beanshell] 
+[beanshell] github.upstream.branch.name=2.x
+[beanshell] github.sender.branch.sha=0d88e7514d0e79911216927cd6670797113703db
+[beanshell] github.receiver.username=liferay
+[beanshell] github.sender.branch.name=2.x
+[beanshell] github.pull.request.number=0
+[beanshell] github.upstream.branch.sha=0d88e7514d0e79911216927cd6670797113703db
+[beanshell] github.sender.username=liferay
+[beanshell] local.git.branch.cached=true
+[beanshell] github.origin.name=liferay
+[beanshell] 
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/json.data
+     [exec] HEAD is now at 0d88e75 simplify CI scripts
+     [exec] Switched to a new branch 'temp-1504012710791771231'
+     [exec] /opt/dev/projects/github/liferay-jenkins-ee/commands/git_custom_fetch.sh -f git@github-dev.liferay.com:liferay/liferay-blade-samples.git cache-liferay-0d88e7514d0e79911216927cd6670797113703db-liferay-0d88e7514d0e79911216927cd6670797113703db:2.x
+     [exec] Switched to a new branch 'temp-1504012710791771231'
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-blade-samples.git cache-liferay-0d88e7514d0e79911216927cd6670797113703db-liferay-0d88e7514d0e79911216927cd6670797113703db:2.x".
+     [exec] Switched to branch '2.x'
+     [exec] Switched to branch '2.x'
+     [exec] Warning: Permanently added 'github-dev.liferay.com,10.0.0.28' (RSA) to the list of known hosts.
+     [exec] From github-dev.liferay.com:liferay/liferay-blade-samples
+     [exec]  = [up to date]      cache-liferay-0d88e7514d0e79911216927cd6670797113703db-liferay-0d88e7514d0e79911216927cd6670797113703db -> 2.x
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-blade-samples.git cache-liferay-0d88e7514d0e79911216927cd6670797113703db-liferay-0d88e7514d0e79911216927cd6670797113703db:2.x" complete.
+     [exec] HEAD is now at 0d88e75 simplify CI scripts
+     [exec] /opt/dev/projects/github/liferay-jenkins-ee/commands/git_custom_fetch.sh -f git@github-dev.liferay.com:liferay/liferay-blade-samples.git cache-liferay-0d88e7514d0e79911216927cd6670797113703db-liferay-0d88e7514d0e79911216927cd6670797113703db:2.x-temp-20170829123249342
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-blade-samples.git cache-liferay-0d88e7514d0e79911216927cd6670797113703db-liferay-0d88e7514d0e79911216927cd6670797113703db:2.x-temp-20170829123249342".
+     [exec] Switched to branch '2.x-temp-20170829123249342'
+     [exec] Switched to branch '2.x-temp-20170829123249342'
+     [exec] Warning: Permanently added 'github-dev.liferay.com,10.0.0.28' (RSA) to the list of known hosts.
+     [exec] From github-dev.liferay.com:liferay/liferay-blade-samples
+     [exec]  * [new branch]      cache-liferay-0d88e7514d0e79911216927cd6670797113703db-liferay-0d88e7514d0e79911216927cd6670797113703db -> 2.x-temp-20170829123249342
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-blade-samples.git cache-liferay-0d88e7514d0e79911216927cd6670797113703db-liferay-0d88e7514d0e79911216927cd6670797113703db:2.x-temp-20170829123249342" complete.
+     [exec] Deleted branch 2.x-temp-20170829105246879 (was 0d88e75).
+     [exec] Deleted branch temp-1504012710791771231 (was 0d88e75).
+     [exec] commit 0d88e7514d0e79911216927cd6670797113703db
+     [exec] Author: Lawrence Lee <lawrence.lee@liferay.com>
+     [exec] Date:   Thu Jul 13 20:59:51 2017 -0500
+     [exec] 
+     [exec]     simplify CI scripts
+     [exec] On branch 2.x-temp-20170829123249342
+     [exec] nothing to commit, working tree clean
+
+prepare-portals-pluto-repository:
+     [echo] curl --output /opt/dev/projects/github/liferay-jenkins-ee/json.data --silent --write-out %{http_code} http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest%28master%29/2232/test-portal-acceptance-pullrequest%28master%29/git.portals.pluto.properties
+     [exec] 200
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/commands/20170829131833126
+[beanshell] 
+[beanshell] ##
+[beanshell] ## http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest%28master%29/2232/test-portal-acceptance-pullrequest%28master%29/git.portals.pluto.properties
+[beanshell] ##
+[beanshell] 
+[beanshell] github.upstream.branch.name=tck3
+[beanshell] github.sender.branch.sha=4ce8ff1f653815e8911d85d643fcd18118039915
+[beanshell] github.receiver.username=liferay
+[beanshell] github.sender.branch.name=tck3
+[beanshell] github.pull.request.number=0
+[beanshell] github.upstream.branch.sha=4ce8ff1f653815e8911d85d643fcd18118039915
+[beanshell] github.sender.username=liferay
+[beanshell] local.git.branch.cached=true
+[beanshell] github.origin.name=liferay
+[beanshell] 
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/json.data
+     [exec] HEAD is now at 4ce8ff1 PLUTO-658 TCK: Contesting V2ADDLENVIRONMENTTESTS_SPEC2_10_CONTEXT_GETREALPATH
+     [exec] Switched to a new branch 'temp-1504012713369681552'
+     [exec] /opt/dev/projects/github/liferay-jenkins-ee/commands/git_custom_fetch.sh -f git@github-dev.liferay.com:liferay/portals-pluto.git cache-liferay-4ce8ff1f653815e8911d85d643fcd18118039915-liferay-4ce8ff1f653815e8911d85d643fcd18118039915:tck3
+     [exec] Switched to a new branch 'temp-1504012713369681552'
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/portals-pluto.git cache-liferay-4ce8ff1f653815e8911d85d643fcd18118039915-liferay-4ce8ff1f653815e8911d85d643fcd18118039915:tck3".
+     [exec] Warning: Permanently added 'github-dev.liferay.com,10.0.0.26' (RSA) to the list of known hosts.
+     [exec] From github-dev.liferay.com:liferay/portals-pluto
+     [exec]  = [up to date]      cache-liferay-4ce8ff1f653815e8911d85d643fcd18118039915-liferay-4ce8ff1f653815e8911d85d643fcd18118039915 -> tck3
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/portals-pluto.git cache-liferay-4ce8ff1f653815e8911d85d643fcd18118039915-liferay-4ce8ff1f653815e8911d85d643fcd18118039915:tck3" complete.
+     [exec] Switched to branch 'tck3'
+     [exec] Switched to branch 'tck3'
+     [exec] HEAD is now at 4ce8ff1 PLUTO-658 TCK: Contesting V2ADDLENVIRONMENTTESTS_SPEC2_10_CONTEXT_GETREALPATH
+     [exec] /opt/dev/projects/github/liferay-jenkins-ee/commands/git_custom_fetch.sh -f git@github-dev.liferay.com:liferay/portals-pluto.git cache-liferay-4ce8ff1f653815e8911d85d643fcd18118039915-liferay-4ce8ff1f653815e8911d85d643fcd18118039915:tck3-temp-20170829123249342
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/portals-pluto.git cache-liferay-4ce8ff1f653815e8911d85d643fcd18118039915-liferay-4ce8ff1f653815e8911d85d643fcd18118039915:tck3-temp-20170829123249342".
+     [exec] Switched to branch 'tck3-temp-20170829123249342'
+     [exec] Switched to branch 'tck3-temp-20170829123249342'
+     [exec] Warning: Permanently added 'github-dev.liferay.com,10.0.0.24' (RSA) to the list of known hosts.
+     [exec] From github-dev.liferay.com:liferay/portals-pluto
+     [exec]  * [new branch]      cache-liferay-4ce8ff1f653815e8911d85d643fcd18118039915-liferay-4ce8ff1f653815e8911d85d643fcd18118039915 -> tck3-temp-20170829123249342
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/portals-pluto.git cache-liferay-4ce8ff1f653815e8911d85d643fcd18118039915-liferay-4ce8ff1f653815e8911d85d643fcd18118039915:tck3-temp-20170829123249342" complete.
+     [exec] Deleted branch tck3-temp-20170829105246879 (was 4ce8ff1).
+     [exec] Deleted branch temp-1504012713369681552 (was 4ce8ff1).
+     [exec] commit 4ce8ff1f653815e8911d85d643fcd18118039915
+     [exec] Author: vsingleton <vsingleton@gmail.com>
+     [exec] Date:   Fri May 5 05:34:05 2017 -0400
+     [exec] 
+     [exec]     PLUTO-658 TCK: Contesting V2ADDLENVIRONMENTTESTS_SPEC2_10_CONTEXT_GETREALPATH
+     [exec] On branch tck3-temp-20170829123249342
+     [exec] nothing to commit, working tree clean
+
+set-test-properties:
+     [echo] 
+     [echo] ##
+     [echo] ## /opt/dev/projects/github/liferay-portal/test.cloud-10-0-112-97.lax.liferay.com.properties
+     [echo] ##
+     [echo] 
+     [echo] 
+     [echo] 			
+     [echo] 				blade.samples.dir=/opt/dev/projects/github/liferay-blade-samples
+     [echo] browser.firefox.bin.file[38.0]=/opt/firefox/firefox
+     [echo] browser.firefox.bin.file[45.0]=/opt/firefox-45.0esr/firefox
+     [echo] database.db2.password=I7Oen70215bieRR
+     [echo] database.postgresql.password=liferay123
+     [echo] database.sybase.password=liferay123
+     [echo] maven.home=/opt/java/maven
+     [echo] portals.pluto.dir=/opt/dev/projects/github/portals-pluto
+     [echo] tck.home=/opt/dev/projects/github/portals-pluto/portlet-tck_3.0
+     [echo] test.build.unit=true
+     [echo] test.jdbc.drivers.url=http://files.liferay.com/private/jdbc
+     [echo] 			
+     [echo] 		
+     [echo] 					
+     [echo] 						test.batch.run.type=sequential
+     [echo] 					
+     [echo] 				
+     [echo] email.address.1=[REDACTED]
+     [echo] email.address.2=[REDACTED]
+     [echo] email.address.3=[REDACTED]
+     [echo] email.address.4=[REDACTED]
+     [echo] email.address.5=[REDACTED]
+     [echo] email.password.1=[REDACTED]
+     [echo] email.password.2=[REDACTED]
+     [echo] email.password.3=[REDACTED]
+     [echo] email.password.4=[REDACTED]
+     [echo] email.password.5=test
+     [exec] Warning: Permanently added 'cloud-10-0-12-230,10.0.12.230' (RSA) to the list of known hosts.
+     [exec] Warning: Permanently added 'cloud-10-0-12-230,10.0.12.230' (RSA) to the list of known hosts.
+     [exec] liferay-portal-bundle-tomcat.zip
+     [exec] liferay-portal-source.zip
+     [exec] 
+     [exec] sent 58 bytes  received 2,449,116,038 bytes  7,938,787.99 bytes/sec
+     [exec] total size is 2,448,518,080  speedup is 1.00
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/commands/20170829131835735
+  [typedef] Could not load definitions from resource org/apache/maven/artifact/ant/antlib.xml. It could not be found.
+  [taskdef] Could not load definitions from resource org/jacoco/ant/antlib.xml. It could not be found.
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+plugins-compile-jdk8:
+  [typedef] Could not load definitions from resource org/apache/maven/artifact/ant/antlib.xml. It could not be found.
+  [taskdef] Could not load definitions from resource org/jacoco/ant/antlib.xml. It could not be found.
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+clean-up-java-processes:
+   [delete] Deleting: /opt/dev/projects/github/liferay-portal/clean_up_java_processes.sh
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+install-portal-snapshots:
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+build-common-java.init-compile:
+
+init-compile:
+     [copy] Copying 156 files to /opt/dev/projects/github/liferay-portal/portal-impl/classes/com/liferay/portal/definitions
+     [copy] Copying 16 files to /opt/dev/projects/github/liferay-portal/portal-impl/classes/com/liferay/portal/deploy/dependencies
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-portal/portal-impl/classes
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-portal/portal-impl/classes
+     [copy] Copying 378 files to /opt/dev/projects/github/liferay-portal/portal-impl/classes
+
+build-common-java.compile:
+
+compile:
+     [echo] August 29, 2017 at 01:24 PM
+
+build-common-java.init-jar:
+
+init-jar:
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+init-compile:
+
+compile:
+
+init-jar:
+
+build-common-java.jar:
+
+jar:
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+init-compile:
+
+compile:
+
+init-jar:
+
+build-common-java.jar:
+
+jar:
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+init-compile:
+
+build-common-java.compile:
+
+compile:
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-portal/util-taglib/classes/META-INF
+
+build-common-java.init-jar:
+
+init-jar:
+
+build-common-java.jar:
+
+jar:
+     [copy] Copying 6 files to /opt/dev/projects/github/liferay-portal/portal-impl/classes/com/liferay/portal/deploy/dependencies
+     [copy] Copying 9 files to /opt/dev/projects/github/liferay-portal/portal-web/docroot/WEB-INF/tld
+
+jar:
+
+jar-sources:
+      [jar] Building jar: /opt/dev/projects/github/liferay-portal/portal-impl/portal-impl-sources.jar
+
+install-portal-snapshot:
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-portal/portal-impl
+   [delete] Deleting directory /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.portal.impl
+[artifact:install] [INFO] Installing /opt/dev/projects/github/liferay-portal/portal-impl/portal-impl.jar to /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.portal.impl/2.21.0-SNAPSHOT/com.liferay.portal.impl-2.21.0-SNAPSHOT.jar
+[artifact:install] [INFO] Installing /opt/dev/projects/github/liferay-portal/portal-impl/portal-impl-sources.jar to /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.portal.impl/2.21.0-SNAPSHOT/com.liferay.portal.impl-2.21.0-SNAPSHOT-sources.jar
+   [delete] Deleting: /opt/dev/projects/github/liferay-portal/portal-impl/pom.xml
+[propertyfile] Updating property file: /opt/dev/projects/github/liferay-portal/.gradle/gradle.properties
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+init-compile:
+
+compile:
+
+init-jar:
+
+jar:
+
+jar-sources:
+      [jar] Building jar: /opt/dev/projects/github/liferay-portal/portal-kernel/portal-kernel-sources.jar
+
+install-portal-snapshot:
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-portal/portal-kernel
+   [delete] Deleting directory /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.portal.kernel
+[artifact:install] [INFO] Installing /opt/dev/projects/github/liferay-portal/portal-kernel/portal-kernel.jar to /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.portal.kernel/2.45.0-SNAPSHOT/com.liferay.portal.kernel-2.45.0-SNAPSHOT.jar
+[artifact:install] [INFO] Installing /opt/dev/projects/github/liferay-portal/portal-kernel/portal-kernel-sources.jar to /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.portal.kernel/2.45.0-SNAPSHOT/com.liferay.portal.kernel-2.45.0-SNAPSHOT-sources.jar
+   [delete] Deleting: /opt/dev/projects/github/liferay-portal/portal-kernel/pom.xml
+[propertyfile] Updating property file: /opt/dev/projects/github/liferay-portal/.gradle/gradle.properties
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+init-compile:
+
+compile:
+
+init-jar:
+
+jar:
+
+jar-sources:
+      [jar] Building jar: /opt/dev/projects/github/liferay-portal/portal-test/portal-test-sources.jar
+
+install-portal-snapshot:
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-portal/portal-test
+   [delete] Deleting directory /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.portal.test
+[artifact:install] [INFO] Installing /opt/dev/projects/github/liferay-portal/portal-test/portal-test.jar to /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.portal.test/3.1.0-SNAPSHOT/com.liferay.portal.test-3.1.0-SNAPSHOT.jar
+[artifact:install] [INFO] Installing /opt/dev/projects/github/liferay-portal/portal-test/portal-test-sources.jar to /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.portal.test/3.1.0-SNAPSHOT/com.liferay.portal.test-3.1.0-SNAPSHOT-sources.jar
+   [delete] Deleting: /opt/dev/projects/github/liferay-portal/portal-test/pom.xml
+[propertyfile] Updating property file: /opt/dev/projects/github/liferay-portal/.gradle/gradle.properties
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+init-compile:
+
+compile:
+
+init-jar:
+
+jar:
+
+jar-sources:
+      [jar] Building jar: /opt/dev/projects/github/liferay-portal/portal-test-integration/portal-test-integration-sources.jar
+
+install-portal-snapshot:
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-portal/portal-test-integration
+   [delete] Deleting directory /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.portal.test.integration
+[artifact:install] [INFO] Installing /opt/dev/projects/github/liferay-portal/portal-test-integration/portal-test-integration.jar to /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.portal.test.integration/3.2.0-SNAPSHOT/com.liferay.portal.test.integration-3.2.0-SNAPSHOT.jar
+[artifact:install] [INFO] Installing /opt/dev/projects/github/liferay-portal/portal-test-integration/portal-test-integration-sources.jar to /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.portal.test.integration/3.2.0-SNAPSHOT/com.liferay.portal.test.integration-3.2.0-SNAPSHOT-sources.jar
+   [delete] Deleting: /opt/dev/projects/github/liferay-portal/portal-test-integration/pom.xml
+[propertyfile] Updating property file: /opt/dev/projects/github/liferay-portal/.gradle/gradle.properties
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+build-dtd:
+
+war:
+      [war] Building war: /opt/dev/projects/github/liferay-portal/portal-web/portal-web.war
+
+install-portal-snapshot:
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-portal/portal-web
+   [delete] Deleting directory /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.portal.web
+[artifact:install] [INFO] Installing /opt/dev/projects/github/liferay-portal/portal-web/portal-web.war to /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.portal.web/1.0.0-SNAPSHOT/com.liferay.portal.web-1.0.0-SNAPSHOT.war
+   [delete] Deleting: /opt/dev/projects/github/liferay-portal/portal-web/pom.xml
+[propertyfile] Updating property file: /opt/dev/projects/github/liferay-portal/.gradle/gradle.properties
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+init-compile:
+
+compile:
+
+init-jar:
+
+build-common-java.jar:
+
+jar:
+
+jar-sources:
+      [jar] Building jar: /opt/dev/projects/github/liferay-portal/util-bridges/util-bridges-sources.jar
+
+install-portal-snapshot:
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-portal/util-bridges
+   [delete] Deleting directory /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.util.bridges
+[artifact:install] [INFO] Installing /opt/dev/projects/github/liferay-portal/util-bridges/util-bridges.jar to /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.util.bridges/2.0.3-SNAPSHOT/com.liferay.util.bridges-2.0.3-SNAPSHOT.jar
+[artifact:install] [INFO] Installing /opt/dev/projects/github/liferay-portal/util-bridges/util-bridges-sources.jar to /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.util.bridges/2.0.3-SNAPSHOT/com.liferay.util.bridges-2.0.3-SNAPSHOT-sources.jar
+   [delete] Deleting: /opt/dev/projects/github/liferay-portal/util-bridges/pom.xml
+[propertyfile] Updating property file: /opt/dev/projects/github/liferay-portal/.gradle/gradle.properties
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+init-compile:
+
+compile:
+
+init-jar:
+
+build-common-java.jar:
+
+jar:
+
+jar-sources:
+      [jar] Building jar: /opt/dev/projects/github/liferay-portal/util-java/util-java-sources.jar
+
+install-portal-snapshot:
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-portal/util-java
+   [delete] Deleting directory /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.util.java
+[artifact:install] [INFO] Installing /opt/dev/projects/github/liferay-portal/util-java/util-java.jar to /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.util.java/2.3.0-SNAPSHOT/com.liferay.util.java-2.3.0-SNAPSHOT.jar
+[artifact:install] [INFO] Installing /opt/dev/projects/github/liferay-portal/util-java/util-java-sources.jar to /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.util.java/2.3.0-SNAPSHOT/com.liferay.util.java-2.3.0-SNAPSHOT-sources.jar
+   [delete] Deleting: /opt/dev/projects/github/liferay-portal/util-java/pom.xml
+[propertyfile] Updating property file: /opt/dev/projects/github/liferay-portal/.gradle/gradle.properties
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+init-compile:
+
+compile:
+
+init-jar:
+
+build-common-java.jar:
+
+jar:
+
+jar-sources:
+      [jar] Building jar: /opt/dev/projects/github/liferay-portal/util-slf4j/util-slf4j-sources.jar
+
+install-portal-snapshot:
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-portal/util-slf4j
+   [delete] Deleting directory /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.util.slf4j
+[artifact:install] [INFO] Installing /opt/dev/projects/github/liferay-portal/util-slf4j/util-slf4j.jar to /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.util.slf4j/1.0.2-SNAPSHOT/com.liferay.util.slf4j-1.0.2-SNAPSHOT.jar
+[artifact:install] [INFO] Installing /opt/dev/projects/github/liferay-portal/util-slf4j/util-slf4j-sources.jar to /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.util.slf4j/1.0.2-SNAPSHOT/com.liferay.util.slf4j-1.0.2-SNAPSHOT-sources.jar
+   [delete] Deleting: /opt/dev/projects/github/liferay-portal/util-slf4j/pom.xml
+[propertyfile] Updating property file: /opt/dev/projects/github/liferay-portal/.gradle/gradle.properties
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+init-compile:
+
+build-common-java.compile:
+
+compile:
+
+build-common-java.init-jar:
+
+init-jar:
+
+build-common-java.jar:
+
+jar:
+     [copy] Copying 5 files to /opt/dev/projects/github/liferay-portal/portal-impl/classes/com/liferay/portal/deploy/dependencies
+     [copy] Copying 9 files to /opt/dev/projects/github/liferay-portal/portal-web/docroot/WEB-INF/tld
+
+jar-sources:
+      [jar] Building jar: /opt/dev/projects/github/liferay-portal/util-taglib/util-taglib-sources.jar
+
+install-portal-snapshot:
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-portal/util-taglib
+   [delete] Deleting directory /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.util.taglib
+[artifact:install] [INFO] Installing /opt/dev/projects/github/liferay-portal/util-taglib/util-taglib.jar to /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.util.taglib/2.9.0-SNAPSHOT/com.liferay.util.taglib-2.9.0-SNAPSHOT.jar
+[artifact:install] [INFO] Installing /opt/dev/projects/github/liferay-portal/util-taglib/util-taglib-sources.jar to /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.util.taglib/2.9.0-SNAPSHOT/com.liferay.util.taglib-2.9.0-SNAPSHOT-sources.jar
+   [delete] Deleting: /opt/dev/projects/github/liferay-portal/util-taglib/pom.xml
+[propertyfile] Updating property file: /opt/dev/projects/github/liferay-portal/.gradle/gradle.properties
+     [echo] ANT_OPTS=-Dhttp.nonProxyHosts="cloud*|files.liferay.org.es|it.liferay.com|localhost|mirrors-no-cache.lax.liferay.com|release*|test*" -Dhttp.proxyHost=squid.lax.liferay.com -Dhttp.proxyPort=3128 -server -verbose:gc -Xloggc:/tmp/ant-gc.log -Xms1024m -Xmx2048m -Xss2m -Xverify:none -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -XX:+PrintGCCause -XX:+PrintGCDetails -XX:+UseParallelOldGC -XX:HeapDumpPath=/tmp/ant-oom-heap-dump.bin -XX:MaxNewSize=512m -XX:MaxMetaspaceSize=512m -XX:MaxTenuringThreshold=0 -XX:NewSize=256m -XX:MetaspaceSize=100m -XX:SurvivorRatio=65536 -XX:TargetSurvivorRatio=0
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+clean-up-db2-processes:
+     [exec] SQL1032N  No start database manager command was issued.  SQLSTATE=57019
+   [delete] Deleting: /opt/dev/projects/github/liferay-portal/clean_up_db2_processes.sh
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+clean-up-java-processes:
+   [delete] Deleting: /opt/dev/projects/github/liferay-portal/clean_up_java_processes.sh
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+record-test-plugin-names:
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+test-plugin-group:
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+test-plugin:
+     [echo] Compiling bible-gateway-portlet.
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/.ivy
+[mirrors-get] /root/.liferay/mirrors/cdn.lfrs.sl/repository.liferay.com/nexus/content/repositories/liferay-public-snapshots/com/liferay/org.apache.ivy/2.4.0.LIFERAY-PATCHED-1-SNAPSHOT/org.apache.ivy-2.4.0.LIFERAY-PATCHED-1-SNAPSHOT.jar is a valid zip file with 857 entries.
+[mirrors-get] Copying /root/.liferay/mirrors/cdn.lfrs.sl/repository.liferay.com/nexus/content/repositories/liferay-public-snapshots/com/liferay/org.apache.ivy/2.4.0.LIFERAY-PATCHED-1-SNAPSHOT/org.apache.ivy-2.4.0.LIFERAY-PATCHED-1-SNAPSHOT.jar to /opt/dev/projects/github/liferay-plugins/.ivy/ivy-2.4.0.LIFERAY-PATCHED-1-SNAPSHOT.jar.
+
+clean:
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+
+compile-jsp:
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/dist
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/shared/portal-compat-shared/classes
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-plugins/shared/portal-compat-shared/classes
+      [jar] Building jar: /opt/dev/projects/github/liferay-plugins/dist/portal-compat-shared-7.0.0.1.jar
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-plugins/portlets/bible-gateway-portlet/docroot/WEB-INF/lib
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/bible-gateway-portlet/docroot/WEB-INF/classes
+     [copy] Warning: commons-logging.jar modified in the future.
+     [copy] Warning: log4j.jar modified in the future.
+     [copy] Warning: util-bridges.jar modified in the future.
+     [copy] Warning: util-java.jar modified in the future.
+     [copy] Warning: util-taglib.jar modified in the future.
+     [copy] Copying 5 files to /opt/dev/projects/github/liferay-plugins/portlets/bible-gateway-portlet/docroot/WEB-INF/lib
+     [copy] Copying 45 files to /opt/dev/projects/github/liferay-plugins/portlets/bible-gateway-portlet/docroot/WEB-INF/classes
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/bible-gateway-portlet/20170829132429359
+     [echo] Aug 29, 2017 1:24:29 PM org.apache.jasper.compiler.TldLocationsCache tldScanJar
+     [echo] INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/bible-gateway-portlet/20170829132429359/classes
+    [javac] Compiling 2 source files to /opt/dev/projects/github/liferay-plugins/portlets/bible-gateway-portlet/20170829132429359/classes
+    [javac] Note: /opt/dev/projects/github/liferay-plugins/portlets/bible-gateway-portlet/20170829132429359/src/org/apache/jsp/view_jsp.java uses or overrides a deprecated API.
+    [javac] Note: Recompile with -Xlint:deprecation for details.
+   [delete] Deleting directory /opt/dev/projects/github/liferay-plugins/portlets/bible-gateway-portlet/20170829132429359
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+test-plugin:
+     [echo] Compiling contacts-portlet.
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+
+clean:
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+
+compile-jsp:
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-plugins/portlets/contacts-portlet/docroot/WEB-INF/lib
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-plugins/shared/contacts-shared/lib
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-plugins/shared/private-messaging-shared/lib
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/shared/private-messaging-shared/classes
+     [copy] Copied 4 empty directories to 4 empty directories under /opt/dev/projects/github/liferay-plugins/shared/private-messaging-shared/classes
+    [javac] Compiling 1 source file to /opt/dev/projects/github/liferay-plugins/shared/private-messaging-shared/classes
+      [jar] Building jar: /opt/dev/projects/github/liferay-plugins/dist/private-messaging-shared-7.0.0.1.jar
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-plugins/shared/contacts-shared/lib
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/shared/contacts-shared/classes
+     [copy] Copied 4 empty directories to 4 empty directories under /opt/dev/projects/github/liferay-plugins/shared/contacts-shared/classes
+    [javac] Compiling 1 source file to /opt/dev/projects/github/liferay-plugins/shared/contacts-shared/classes
+      [jar] Building jar: /opt/dev/projects/github/liferay-plugins/dist/contacts-shared-7.0.0.1.jar
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-plugins/portlets/contacts-portlet/docroot/WEB-INF/lib
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-plugins/portlets/contacts-portlet/docroot/WEB-INF/lib
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/contacts-portlet/docroot/WEB-INF/classes
+     [copy] Warning: jstl-api.jar modified in the future.
+     [copy] Warning: jstl-impl.jar modified in the future.
+     [copy] Copying 2 files to /opt/dev/projects/github/liferay-plugins/portlets/contacts-portlet/docroot/WEB-INF/lib
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-plugins/portlets/contacts-portlet/docroot/WEB-INF/lib
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-plugins/portlets/contacts-portlet/docroot/WEB-INF/tld
+     [copy] Warning: commons-logging.jar modified in the future.
+     [copy] Warning: log4j.jar modified in the future.
+     [copy] Warning: util-bridges.jar modified in the future.
+     [copy] Warning: util-java.jar modified in the future.
+     [copy] Warning: util-taglib.jar modified in the future.
+     [copy] Copying 5 files to /opt/dev/projects/github/liferay-plugins/portlets/contacts-portlet/docroot/WEB-INF/lib
+     [copy] Copying 61 files to /opt/dev/projects/github/liferay-plugins/portlets/contacts-portlet/docroot/WEB-INF/classes
+     [copy] Copied 24 empty directories to 13 empty directories under /opt/dev/projects/github/liferay-plugins/portlets/contacts-portlet/docroot/WEB-INF/classes
+    [javac] Compiling 27 source files to /opt/dev/projects/github/liferay-plugins/portlets/contacts-portlet/docroot/WEB-INF/classes
+    [javac] Note: Some input files use or override a deprecated API.
+    [javac] Note: Recompile with -Xlint:deprecation for details.
+    [javac] Note: Some input files use unchecked or unsafe operations.
+    [javac] Note: Recompile with -Xlint:unchecked for details.
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-plugins/portlets/contacts-portlet/docroot/WEB-INF
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/contacts-portlet/20170829132435940
+     [echo] Aug 29, 2017 1:24:36 PM org.apache.jasper.compiler.TldLocationsCache tldScanJar
+     [echo] INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/contacts-portlet/20170829132435940/classes
+    [javac] Compiling 17 source files to /opt/dev/projects/github/liferay-plugins/portlets/contacts-portlet/20170829132435940/classes
+    [javac] Note: Some input files use or override a deprecated API.
+    [javac] Note: Recompile with -Xlint:deprecation for details.
+    [javac] Note: Some input files use unchecked or unsafe operations.
+    [javac] Note: Recompile with -Xlint:unchecked for details.
+   [delete] Deleting directory /opt/dev/projects/github/liferay-plugins/portlets/contacts-portlet/20170829132435940
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+test-plugin:
+     [echo] Compiling flash-portlet.
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+
+clean:
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+
+compile-jsp:
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-plugins/portlets/flash-portlet/docroot/WEB-INF/lib
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/flash-portlet/docroot/WEB-INF/classes
+     [copy] Warning: jstl-api.jar modified in the future.
+     [copy] Warning: jstl-impl.jar modified in the future.
+     [copy] Copying 2 files to /opt/dev/projects/github/liferay-plugins/portlets/flash-portlet/docroot/WEB-INF/lib
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-plugins/portlets/flash-portlet/docroot/WEB-INF/tld
+     [copy] Warning: commons-logging.jar modified in the future.
+     [copy] Warning: log4j.jar modified in the future.
+     [copy] Warning: util-bridges.jar modified in the future.
+     [copy] Warning: util-java.jar modified in the future.
+     [copy] Warning: util-taglib.jar modified in the future.
+     [copy] Copying 5 files to /opt/dev/projects/github/liferay-plugins/portlets/flash-portlet/docroot/WEB-INF/lib
+     [copy] Copying 47 files to /opt/dev/projects/github/liferay-plugins/portlets/flash-portlet/docroot/WEB-INF/classes
+     [copy] Copied 8 empty directories to 6 empty directories under /opt/dev/projects/github/liferay-plugins/portlets/flash-portlet/docroot/WEB-INF/classes
+    [javac] Compiling 2 source files to /opt/dev/projects/github/liferay-plugins/portlets/flash-portlet/docroot/WEB-INF/classes
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/flash-portlet/20170829132441074
+     [echo] Aug 29, 2017 1:24:41 PM org.apache.jasper.compiler.TldLocationsCache tldScanJar
+     [echo] INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/flash-portlet/20170829132441074/classes
+    [javac] Compiling 3 source files to /opt/dev/projects/github/liferay-plugins/portlets/flash-portlet/20170829132441074/classes
+   [delete] Deleting directory /opt/dev/projects/github/liferay-plugins/portlets/flash-portlet/20170829132441074
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+test-plugin:
+     [echo] Compiling gospel-for-asia-portlet.
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+
+clean:
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+
+compile-jsp:
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+test-plugin:
+     [echo] Compiling logos-reftagger-portlet.
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+
+clean:
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+
+compile-jsp:
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-plugins/portlets/logos-reftagger-portlet/docroot/WEB-INF/lib
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/logos-reftagger-portlet/docroot/WEB-INF/classes
+     [copy] Warning: commons-logging.jar modified in the future.
+     [copy] Warning: log4j.jar modified in the future.
+     [copy] Warning: util-bridges.jar modified in the future.
+     [copy] Warning: util-java.jar modified in the future.
+     [copy] Warning: util-taglib.jar modified in the future.
+     [copy] Copying 5 files to /opt/dev/projects/github/liferay-plugins/portlets/logos-reftagger-portlet/docroot/WEB-INF/lib
+     [copy] Copying 45 files to /opt/dev/projects/github/liferay-plugins/portlets/logos-reftagger-portlet/docroot/WEB-INF/classes
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/logos-reftagger-portlet/20170829132444687
+     [echo] Aug 29, 2017 1:24:44 PM org.apache.jasper.compiler.TldLocationsCache tldScanJar
+     [echo] INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/logos-reftagger-portlet/20170829132444687/classes
+    [javac] Compiling 1 source file to /opt/dev/projects/github/liferay-plugins/portlets/logos-reftagger-portlet/20170829132444687/classes
+   [delete] Deleting directory /opt/dev/projects/github/liferay-plugins/portlets/logos-reftagger-portlet/20170829132444687
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+test-plugin:
+     [echo] Compiling netvibes-widget-portlet.
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+
+clean:
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+
+compile-jsp:
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-plugins/portlets/netvibes-widget-portlet/docroot/WEB-INF/lib
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/netvibes-widget-portlet/docroot/WEB-INF/classes
+     [copy] Warning: jstl-api.jar modified in the future.
+     [copy] Warning: jstl-impl.jar modified in the future.
+     [copy] Copying 2 files to /opt/dev/projects/github/liferay-plugins/portlets/netvibes-widget-portlet/docroot/WEB-INF/lib
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-plugins/portlets/netvibes-widget-portlet/docroot/WEB-INF/tld
+     [copy] Warning: commons-logging.jar modified in the future.
+     [copy] Warning: log4j.jar modified in the future.
+     [copy] Warning: util-bridges.jar modified in the future.
+     [copy] Warning: util-java.jar modified in the future.
+     [copy] Warning: util-taglib.jar modified in the future.
+     [copy] Copying 5 files to /opt/dev/projects/github/liferay-plugins/portlets/netvibes-widget-portlet/docroot/WEB-INF/lib
+     [copy] Copying 46 files to /opt/dev/projects/github/liferay-plugins/portlets/netvibes-widget-portlet/docroot/WEB-INF/classes
+     [copy] Copied 7 empty directories to 5 empty directories under /opt/dev/projects/github/liferay-plugins/portlets/netvibes-widget-portlet/docroot/WEB-INF/classes
+    [javac] Compiling 2 source files to /opt/dev/projects/github/liferay-plugins/portlets/netvibes-widget-portlet/docroot/WEB-INF/classes
+    [javac] Note: /opt/dev/projects/github/liferay-plugins/portlets/netvibes-widget-portlet/docroot/WEB-INF/src/com/liferay/netvibeswidget/util/NetvibesWidgetUtil.java uses or overrides a deprecated API.
+    [javac] Note: Recompile with -Xlint:deprecation for details.
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/netvibes-widget-portlet/20170829132447097
+     [echo] Aug 29, 2017 1:24:47 PM org.apache.jasper.compiler.TldLocationsCache tldScanJar
+     [echo] INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/netvibes-widget-portlet/20170829132447097/classes
+    [javac] Compiling 4 source files to /opt/dev/projects/github/liferay-plugins/portlets/netvibes-widget-portlet/20170829132447097/classes
+    [javac] Note: /opt/dev/projects/github/liferay-plugins/portlets/netvibes-widget-portlet/20170829132447097/src/org/apache/jsp/view_jsp.java uses or overrides a deprecated API.
+    [javac] Note: Recompile with -Xlint:deprecation for details.
+    [javac] Note: /opt/dev/projects/github/liferay-plugins/portlets/netvibes-widget-portlet/20170829132447097/src/org/apache/jsp/configuration_jsp.java uses unchecked or unsafe operations.
+    [javac] Note: Recompile with -Xlint:unchecked for details.
+   [delete] Deleting directory /opt/dev/projects/github/liferay-plugins/portlets/netvibes-widget-portlet/20170829132447097
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+test-plugin:
+     [echo] Compiling release-tools-portlet.
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+
+clean:
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+
+compile-jsp:
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-plugins/portlets/release-tools-portlet/docroot/WEB-INF/lib
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/release-tools-portlet/docroot/WEB-INF/classes
+     [copy] Warning: jstl-api.jar modified in the future.
+     [copy] Warning: jstl-impl.jar modified in the future.
+     [copy] Copying 2 files to /opt/dev/projects/github/liferay-plugins/portlets/release-tools-portlet/docroot/WEB-INF/lib
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-plugins/portlets/release-tools-portlet/docroot/WEB-INF/tld
+     [copy] Warning: commons-logging.jar modified in the future.
+     [copy] Warning: log4j.jar modified in the future.
+     [copy] Warning: util-bridges.jar modified in the future.
+     [copy] Warning: util-java.jar modified in the future.
+     [copy] Warning: util-taglib.jar modified in the future.
+     [copy] Copying 5 files to /opt/dev/projects/github/liferay-plugins/portlets/release-tools-portlet/docroot/WEB-INF/lib
+     [copy] Copying 44 files to /opt/dev/projects/github/liferay-plugins/portlets/release-tools-portlet/docroot/WEB-INF/classes
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/release-tools-portlet/20170829132449744
+     [echo] Aug 29, 2017 1:24:50 PM org.apache.jasper.compiler.TldLocationsCache tldScanJar
+     [echo] INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/release-tools-portlet/20170829132449744/classes
+    [javac] Compiling 1 source file to /opt/dev/projects/github/liferay-plugins/portlets/release-tools-portlet/20170829132449744/classes
+    [javac] Note: /opt/dev/projects/github/liferay-plugins/portlets/release-tools-portlet/20170829132449744/src/org/apache/jsp/view_jsp.java uses unchecked or unsafe operations.
+    [javac] Note: Recompile with -Xlint:unchecked for details.
+   [delete] Deleting directory /opt/dev/projects/github/liferay-plugins/portlets/release-tools-portlet/20170829132449744
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+test-plugin:
+     [echo] Compiling sample-form-navigator-portlet.
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+
+clean:
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+
+compile-jsp:
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-plugins/portlets/sample-form-navigator-portlet/docroot/WEB-INF/lib
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/sample-form-navigator-portlet/docroot/WEB-INF/classes
+     [copy] Warning: commons-logging.jar modified in the future.
+     [copy] Warning: log4j.jar modified in the future.
+     [copy] Warning: util-bridges.jar modified in the future.
+     [copy] Warning: util-java.jar modified in the future.
+     [copy] Warning: util-taglib.jar modified in the future.
+     [copy] Copying 5 files to /opt/dev/projects/github/liferay-plugins/portlets/sample-form-navigator-portlet/docroot/WEB-INF/lib
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/sample-form-navigator-portlet/20170829132452253
+     [echo] Aug 29, 2017 1:24:52 PM org.apache.jasper.compiler.TldLocationsCache tldScanJar
+     [echo] INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/sample-form-navigator-portlet/20170829132452253/classes
+    [javac] Compiling 7 source files to /opt/dev/projects/github/liferay-plugins/portlets/sample-form-navigator-portlet/20170829132452253/classes
+    [javac] Note: /opt/dev/projects/github/liferay-plugins/portlets/sample-form-navigator-portlet/20170829132452253/src/org/apache/jsp/view_jsp.java uses or overrides a deprecated API.
+    [javac] Note: Recompile with -Xlint:deprecation for details.
+   [delete] Deleting directory /opt/dev/projects/github/liferay-plugins/portlets/sample-form-navigator-portlet/20170829132452253
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+test-plugin:
+     [echo] Compiling sample-jsp-portlet.
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+
+clean:
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+
+compile-jsp:
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-plugins/portlets/sample-jsp-portlet/docroot/WEB-INF/lib
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/sample-jsp-portlet/docroot/WEB-INF/classes
+     [copy] Warning: commons-logging.jar modified in the future.
+     [copy] Warning: log4j.jar modified in the future.
+     [copy] Warning: util-bridges.jar modified in the future.
+     [copy] Warning: util-java.jar modified in the future.
+     [copy] Warning: util-taglib.jar modified in the future.
+     [copy] Copying 5 files to /opt/dev/projects/github/liferay-plugins/portlets/sample-jsp-portlet/docroot/WEB-INF/lib
+     [copy] Copying 2 files to /opt/dev/projects/github/liferay-plugins/portlets/sample-jsp-portlet/docroot/WEB-INF/classes
+     [copy] Copied 5 empty directories to 4 empty directories under /opt/dev/projects/github/liferay-plugins/portlets/sample-jsp-portlet/docroot/WEB-INF/classes
+    [javac] Compiling 1 source file to /opt/dev/projects/github/liferay-plugins/portlets/sample-jsp-portlet/docroot/WEB-INF/classes
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/sample-jsp-portlet/20170829132455672
+     [echo] Aug 29, 2017 1:24:55 PM org.apache.jasper.compiler.TldLocationsCache tldScanJar
+     [echo] INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/sample-jsp-portlet/20170829132455672/classes
+    [javac] Compiling 1 source file to /opt/dev/projects/github/liferay-plugins/portlets/sample-jsp-portlet/20170829132455672/classes
+   [delete] Deleting directory /opt/dev/projects/github/liferay-plugins/portlets/sample-jsp-portlet/20170829132455672
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+test-plugin:
+     [echo] Compiling sample-portal-service-portlet.
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+
+clean:
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+
+compile-jsp:
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-plugins/portlets/sample-portal-service-portlet/docroot/WEB-INF/lib
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/sample-portal-service-portlet/docroot/WEB-INF/classes
+     [copy] Warning: commons-logging.jar modified in the future.
+     [copy] Warning: log4j.jar modified in the future.
+     [copy] Warning: util-bridges.jar modified in the future.
+     [copy] Warning: util-java.jar modified in the future.
+     [copy] Warning: util-taglib.jar modified in the future.
+     [copy] Copying 5 files to /opt/dev/projects/github/liferay-plugins/portlets/sample-portal-service-portlet/docroot/WEB-INF/lib
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/sample-portal-service-portlet/20170829132458348
+     [echo] Aug 29, 2017 1:24:58 PM org.apache.jasper.compiler.TldLocationsCache tldScanJar
+     [echo] INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/sample-portal-service-portlet/20170829132458348/classes
+    [javac] Compiling 1 source file to /opt/dev/projects/github/liferay-plugins/portlets/sample-portal-service-portlet/20170829132458348/classes
+   [delete] Deleting directory /opt/dev/projects/github/liferay-plugins/portlets/sample-portal-service-portlet/20170829132458348
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+test-plugin:
+     [echo] Compiling sample-servlet-filter-hook.
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+
+clean:
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+
+compile:
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-plugins/hooks/sample-servlet-filter-hook/docroot/WEB-INF/lib
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/hooks/sample-servlet-filter-hook/docroot/WEB-INF/classes
+     [copy] Warning: commons-logging.jar modified in the future.
+     [copy] Warning: log4j.jar modified in the future.
+     [copy] Warning: util-bridges.jar modified in the future.
+     [copy] Warning: util-java.jar modified in the future.
+     [copy] Warning: util-taglib.jar modified in the future.
+     [copy] Copying 5 files to /opt/dev/projects/github/liferay-plugins/hooks/sample-servlet-filter-hook/docroot/WEB-INF/lib
+     [copy] Copying 2 files to /opt/dev/projects/github/liferay-plugins/hooks/sample-servlet-filter-hook/docroot/WEB-INF/classes
+     [copy] Copied 6 empty directories to 5 empty directories under /opt/dev/projects/github/liferay-plugins/hooks/sample-servlet-filter-hook/docroot/WEB-INF/classes
+    [javac] Compiling 1 source file to /opt/dev/projects/github/liferay-plugins/hooks/sample-servlet-filter-hook/docroot/WEB-INF/classes
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+test-plugin:
+     [echo] Compiling sample-tapestry-portlet.
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+[ivy:resolve] :: Apache Ivy 2.4.0 - 20141213170938 :: http://ant.apache.org/ivy/ ::
+[ivy:resolve] :: loading settings :: file = /opt/dev/projects/github/liferay-plugins/ivy-settings.xml
+[ivy:resolve] javassist#javassist;3.0 is relocated to jboss#javassist;3.0. Please update your dependencies.
+
+clean:
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+
+compile-jsp:
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+test-plugin:
+     [echo] Compiling section-508-theme.
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+
+clean:
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+
+compile:
+     [java] Loading jar:file:/opt/dev/projects/github/liferay-portal/bundles/tomcat-8.0.32/webapps/ROOT/WEB-INF/lib/portal-impl.jar!/system.properties
+     [java] Loading file:/opt/dev/projects/github/liferay-portal/bundles/tomcat-8.0.32/webapps/ROOT/WEB-INF/classes/system-ext.properties
+     [java] Loading jar:file:/opt/dev/projects/github/liferay-portal/bundles/tomcat-8.0.32/webapps/ROOT/WEB-INF/lib/portal-impl.jar!/portal.properties
+     [java] Loading file:/opt/dev/projects/github/liferay-portal/bundles/tomcat-8.0.32/webapps/ROOT/WEB-INF/classes/portal-ext.properties
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/tmp/com.liferay.frontend.theme.unstyled
+    [unzip] Expanding: /opt/dev/projects/github/liferay-plugins/dependencies/com.liferay.css.builder/lib/com.liferay.frontend.theme.unstyled.jar into /opt/dev/projects/github/liferay-plugins/tmp/com.liferay.frontend.theme.unstyled
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/tmp/com.liferay.frontend.theme.styled
+    [unzip] Expanding: /opt/dev/projects/github/liferay-plugins/dependencies/com.liferay.css.builder/lib/com.liferay.frontend.theme.styled.jar into /opt/dev/projects/github/liferay-plugins/tmp/com.liferay.frontend.theme.styled
+     [copy] Copying 1120 files to /opt/dev/projects/github/liferay-plugins/themes/section-508-theme/docroot
+     [copy] Copying 6 files to /opt/dev/projects/github/liferay-plugins/themes/section-508-theme/docroot/templates
+     [copy] Copying 128 files to /opt/dev/projects/github/liferay-plugins/themes/section-508-theme/docroot
+     [copy] Copying 3 files to /opt/dev/projects/github/liferay-plugins/themes/section-508-theme/docroot
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+test-plugin:
+     [echo] Compiling so-announcements-shared.
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+
+clean:
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+
+compile:
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-plugins/shared/so-announcements-shared/lib
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/shared/so-announcements-shared/classes
+     [copy] Copied 5 empty directories to 5 empty directories under /opt/dev/projects/github/liferay-plugins/shared/so-announcements-shared/classes
+    [javac] Compiling 1 source file to /opt/dev/projects/github/liferay-plugins/shared/so-announcements-shared/classes
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+test-plugin:
+     [echo] Compiling so-shared.
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+
+clean:
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+
+compile:
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-plugins/shared/so-shared/lib
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-plugins/shared/microblogs-shared/lib
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/shared/microblogs-shared/classes
+     [copy] Copied 4 empty directories to 4 empty directories under /opt/dev/projects/github/liferay-plugins/shared/microblogs-shared/classes
+    [javac] Compiling 1 source file to /opt/dev/projects/github/liferay-plugins/shared/microblogs-shared/classes
+      [jar] Building jar: /opt/dev/projects/github/liferay-plugins/dist/microblogs-shared-7.0.0.1.jar
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-plugins/shared/so-shared/lib
+      [jar] Building jar: /opt/dev/projects/github/liferay-plugins/dist/so-announcements-shared-7.0.0.1.jar
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-plugins/shared/so-shared/lib
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-plugins/shared/so-configurations-shared/lib
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/shared/so-configurations-shared/classes
+     [copy] Copied 5 empty directories to 5 empty directories under /opt/dev/projects/github/liferay-plugins/shared/so-configurations-shared/classes
+    [javac] Compiling 1 source file to /opt/dev/projects/github/liferay-plugins/shared/so-configurations-shared/classes
+      [jar] Building jar: /opt/dev/projects/github/liferay-plugins/dist/so-configurations-shared-7.0.0.1.jar
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-plugins/shared/so-shared/lib
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/shared/so-shared/classes
+     [copy] Copied 4 empty directories to 4 empty directories under /opt/dev/projects/github/liferay-plugins/shared/so-shared/classes
+    [javac] Compiling 1 source file to /opt/dev/projects/github/liferay-plugins/shared/so-shared/classes
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+test-plugin:
+     [echo] Compiling stocks-portlet.
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+
+clean:
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+
+compile-jsp:
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-plugins/portlets/stocks-portlet/docroot/WEB-INF/lib
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/stocks-portlet/docroot/WEB-INF/classes
+     [copy] Warning: jstl-api.jar modified in the future.
+     [copy] Warning: jstl-impl.jar modified in the future.
+     [copy] Copying 2 files to /opt/dev/projects/github/liferay-plugins/portlets/stocks-portlet/docroot/WEB-INF/lib
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-plugins/portlets/stocks-portlet/docroot/WEB-INF/tld
+     [copy] Warning: commons-logging.jar modified in the future.
+     [copy] Warning: log4j.jar modified in the future.
+     [copy] Warning: util-bridges.jar modified in the future.
+     [copy] Warning: util-java.jar modified in the future.
+     [copy] Warning: util-taglib.jar modified in the future.
+     [copy] Copying 5 files to /opt/dev/projects/github/liferay-plugins/portlets/stocks-portlet/docroot/WEB-INF/lib
+     [copy] Copying 46 files to /opt/dev/projects/github/liferay-plugins/portlets/stocks-portlet/docroot/WEB-INF/classes
+     [copy] Copied 8 empty directories to 6 empty directories under /opt/dev/projects/github/liferay-plugins/portlets/stocks-portlet/docroot/WEB-INF/classes
+    [javac] Compiling 6 source files to /opt/dev/projects/github/liferay-plugins/portlets/stocks-portlet/docroot/WEB-INF/classes
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/stocks-portlet/20170829132522448
+     [echo] Aug 29, 2017 1:25:22 PM org.apache.jasper.compiler.TldLocationsCache tldScanJar
+     [echo] INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/stocks-portlet/20170829132522448/classes
+    [javac] Compiling 3 source files to /opt/dev/projects/github/liferay-plugins/portlets/stocks-portlet/20170829132522448/classes
+    [javac] Note: /opt/dev/projects/github/liferay-plugins/portlets/stocks-portlet/20170829132522448/src/org/apache/jsp/view_jsp.java uses or overrides a deprecated API.
+    [javac] Note: Recompile with -Xlint:deprecation for details.
+   [delete] Deleting directory /opt/dev/projects/github/liferay-plugins/portlets/stocks-portlet/20170829132522448
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+test-plugin:
+     [echo] Compiling test-dependency-able-portlet.
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+
+clean:
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+
+compile-jsp:
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-plugins/portlets/test-dependency-able-portlet/docroot/WEB-INF/lib
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/test-dependency-able-portlet/docroot/WEB-INF/classes
+     [copy] Warning: commons-logging.jar modified in the future.
+     [copy] Warning: log4j.jar modified in the future.
+     [copy] Warning: util-bridges.jar modified in the future.
+     [copy] Warning: util-java.jar modified in the future.
+     [copy] Warning: util-taglib.jar modified in the future.
+     [copy] Copying 5 files to /opt/dev/projects/github/liferay-plugins/portlets/test-dependency-able-portlet/docroot/WEB-INF/lib
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/test-dependency-able-portlet/20170829132525286
+     [echo] 
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/test-dependency-able-portlet/20170829132525286/classes
+    [javac] Compiling 1 source file to /opt/dev/projects/github/liferay-plugins/portlets/test-dependency-able-portlet/20170829132525286/classes
+   [delete] Deleting directory /opt/dev/projects/github/liferay-plugins/portlets/test-dependency-able-portlet/20170829132525286
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+test-plugin:
+     [echo] Compiling test-dependency-fox-portlet.
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+
+clean:
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+
+compile-jsp:
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-plugins/portlets/test-dependency-fox-portlet/docroot/WEB-INF/lib
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/test-dependency-fox-portlet/docroot/WEB-INF/classes
+     [copy] Warning: commons-logging.jar modified in the future.
+     [copy] Warning: log4j.jar modified in the future.
+     [copy] Warning: util-bridges.jar modified in the future.
+     [copy] Warning: util-java.jar modified in the future.
+     [copy] Warning: util-taglib.jar modified in the future.
+     [copy] Copying 5 files to /opt/dev/projects/github/liferay-plugins/portlets/test-dependency-fox-portlet/docroot/WEB-INF/lib
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/test-dependency-fox-portlet/20170829132528183
+     [echo] 
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/test-dependency-fox-portlet/20170829132528183/classes
+    [javac] Compiling 1 source file to /opt/dev/projects/github/liferay-plugins/portlets/test-dependency-fox-portlet/20170829132528183/classes
+   [delete] Deleting directory /opt/dev/projects/github/liferay-plugins/portlets/test-dependency-fox-portlet/20170829132528183
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+test-plugin:
+     [echo] Compiling test-localized-portlet.
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+
+clean:
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+
+compile-jsp:
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-plugins/portlets/test-localized-portlet/docroot/WEB-INF/lib
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/test-localized-portlet/docroot/WEB-INF/classes
+     [copy] Warning: commons-logging.jar modified in the future.
+     [copy] Warning: log4j.jar modified in the future.
+     [copy] Warning: util-bridges.jar modified in the future.
+     [copy] Warning: util-java.jar modified in the future.
+     [copy] Warning: util-taglib.jar modified in the future.
+     [copy] Copying 5 files to /opt/dev/projects/github/liferay-plugins/portlets/test-localized-portlet/docroot/WEB-INF/lib
+     [copy] Copying 9 files to /opt/dev/projects/github/liferay-plugins/portlets/test-localized-portlet/docroot/WEB-INF/classes
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/test-localized-portlet/20170829132530276
+     [echo] Aug 29, 2017 1:25:30 PM org.apache.jasper.compiler.TldLocationsCache tldScanJar
+     [echo] INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/test-localized-portlet/20170829132530276/classes
+    [javac] Compiling 2 source files to /opt/dev/projects/github/liferay-plugins/portlets/test-localized-portlet/20170829132530276/classes
+   [delete] Deleting directory /opt/dev/projects/github/liferay-plugins/portlets/test-localized-portlet/20170829132530276
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+test-plugin:
+     [echo] Compiling test-runtime-action-portlet.
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+
+clean:
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+
+compile-jsp:
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-plugins/portlets/test-runtime-action-portlet/docroot/WEB-INF/lib
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/test-runtime-action-portlet/docroot/WEB-INF/classes
+     [copy] Warning: commons-logging.jar modified in the future.
+     [copy] Warning: log4j.jar modified in the future.
+     [copy] Warning: util-bridges.jar modified in the future.
+     [copy] Warning: util-java.jar modified in the future.
+     [copy] Warning: util-taglib.jar modified in the future.
+     [copy] Copying 5 files to /opt/dev/projects/github/liferay-plugins/portlets/test-runtime-action-portlet/docroot/WEB-INF/lib
+     [copy] Copied 4 empty directories to 4 empty directories under /opt/dev/projects/github/liferay-plugins/portlets/test-runtime-action-portlet/docroot/WEB-INF/classes
+    [javac] Compiling 1 source file to /opt/dev/projects/github/liferay-plugins/portlets/test-runtime-action-portlet/docroot/WEB-INF/classes
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/test-runtime-action-portlet/20170829132532631
+     [echo] Aug 29, 2017 1:25:32 PM org.apache.jasper.compiler.TldLocationsCache tldScanJar
+     [echo] INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/test-runtime-action-portlet/20170829132532631/classes
+    [javac] Compiling 1 source file to /opt/dev/projects/github/liferay-plugins/portlets/test-runtime-action-portlet/20170829132532631/classes
+   [delete] Deleting directory /opt/dev/projects/github/liferay-plugins/portlets/test-runtime-action-portlet/20170829132532631
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+test-plugin:
+     [echo] Compiling test-user-attributes-portlet.
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+
+clean:
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+
+compile-jsp:
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-plugins/portlets/test-user-attributes-portlet/docroot/WEB-INF/lib
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/test-user-attributes-portlet/docroot/WEB-INF/classes
+     [copy] Warning: commons-logging.jar modified in the future.
+     [copy] Warning: log4j.jar modified in the future.
+     [copy] Warning: util-bridges.jar modified in the future.
+     [copy] Warning: util-java.jar modified in the future.
+     [copy] Warning: util-taglib.jar modified in the future.
+     [copy] Copying 5 files to /opt/dev/projects/github/liferay-plugins/portlets/test-user-attributes-portlet/docroot/WEB-INF/lib
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/test-user-attributes-portlet/20170829132534963
+     [echo] Aug 29, 2017 1:25:35 PM org.apache.jasper.compiler.TldLocationsCache tldScanJar
+     [echo] INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/portlets/test-user-attributes-portlet/20170829132534963/classes
+    [javac] Compiling 1 source file to /opt/dev/projects/github/liferay-plugins/portlets/test-user-attributes-portlet/20170829132534963/classes
+   [delete] Deleting directory /opt/dev/projects/github/liferay-plugins/portlets/test-user-attributes-portlet/20170829132534963
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+test-plugin:
+     [echo] Compiling zoe-brochure-theme.
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+
+clean:
+Duplicated project name in import. Project build-common defined first in /opt/dev/projects/github/liferay-portal/build-common.xml and again in /opt/dev/projects/github/liferay-plugins/build-common.xml
+
+compile:
+     [java] Loading jar:file:/opt/dev/projects/github/liferay-portal/bundles/tomcat-8.0.32/webapps/ROOT/WEB-INF/lib/portal-impl.jar!/system.properties
+     [java] Loading file:/opt/dev/projects/github/liferay-portal/bundles/tomcat-8.0.32/webapps/ROOT/WEB-INF/classes/system-ext.properties
+     [java] Loading jar:file:/opt/dev/projects/github/liferay-portal/bundles/tomcat-8.0.32/webapps/ROOT/WEB-INF/lib/portal-impl.jar!/portal.properties
+     [java] Loading file:/opt/dev/projects/github/liferay-portal/bundles/tomcat-8.0.32/webapps/ROOT/WEB-INF/classes/portal-ext.properties
+     [copy] Copying 1120 files to /opt/dev/projects/github/liferay-plugins/themes/zoe-brochure-theme/docroot
+     [copy] Copying 6 files to /opt/dev/projects/github/liferay-plugins/themes/zoe-brochure-theme/docroot/templates
+     [copy] Copying 128 files to /opt/dev/projects/github/liferay-plugins/themes/zoe-brochure-theme/docroot
+     [copy] Copying 24 files to /opt/dev/projects/github/liferay-plugins/themes/zoe-brochure-theme/docroot
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-plugins/themes/zoe-brochure-theme/docroot/WEB-INF/lib
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-plugins/themes/zoe-brochure-theme/docroot/WEB-INF/classes
+     [copy] Warning: commons-logging.jar modified in the future.
+     [copy] Warning: log4j.jar modified in the future.
+     [copy] Warning: util-bridges.jar modified in the future.
+     [copy] Warning: util-java.jar modified in the future.
+     [copy] Warning: util-taglib.jar modified in the future.
+     [copy] Copying 5 files to /opt/dev/projects/github/liferay-plugins/themes/zoe-brochure-theme/docroot/WEB-INF/lib
+     [copy] Copying 27 files to /opt/dev/projects/github/liferay-plugins/themes/zoe-brochure-theme/docroot/WEB-INF/classes
+     [echo] 
+      [get] Getting: ${dependencies.url}/testtest/test-1-17/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=3,label_exp=!master/144333consoleText
+      [get] To: /opt/dev/projects/github/liferay-portal/20170829132537737.txt
+   [delete] Deleting: /opt/dev/projects/github/liferay-portal/20170829132537737.txt
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+merge-test-results:
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-portal/test-results
+[junitreport] Processing /opt/dev/projects/github/liferay-portal/test-results/TESTS-TestSuites.xml to /tmp/null1486074435
+[junitreport] Loading stylesheet jar:file:/opt/java/ant/lib/ant-junit.jar!/org/apache/tools/ant/taskdefs/optional/junit/xsl/junit-frames.xsl
+[junitreport] Transform time: 225ms
+[junitreport] Deleting: /tmp/null1486074435
+     [echo] A report with all the test results can be found at test-results/html/index.html.
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-jenkins-ee/test-results
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-jenkins-ee/test-results
+     [echo] 
+     [echo] Ant GC log:
+     [echo] 
+     [echo] Java HotSpot(TM) Server VM (25.51-b03) for linux-x86 JRE (1.8.0_51-b16), built on Jun  8 2015 18:05:11 by "java_re" with gcc 4.3.0 20080428 (Red Hat 4.3.0-8)
+     [echo] Memory: 4k page, physical 8388608k(5870344k free), swap 2097152k(1988584k free)
+     [echo] CommandLine flags: -XX:-BytecodeVerificationLocal -XX:-BytecodeVerificationRemote -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/ant-oom-heap-dump.bin -XX:InitialHeapSize=1073741824 -XX:InitialTenuringThreshold=0 -XX:MaxHeapSize=2147483648 -XX:MaxMetaspaceSize=536870912 -XX:MaxNewSize=536870912 -XX:MaxTenuringThreshold=0 -XX:MetaspaceSize=104857600 -XX:NewSize=268435456 -XX:+PrintGC -XX:+PrintGCCause -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:SurvivorRatio=65536 -XX:TargetSurvivorRatio=0 -XX:ThreadStackSize=2048 -XX:+UseParallelOldGC 
+     [echo] 3.603: [GC (Allocation Failure) [PSYoungGen: 261632K->0K(261888K)] 261632K->27703K(1048320K), 0.0235167 secs] [Times: user=0.15 sys=0.02, real=0.02 secs] 
+     [echo] 6.102: [GC (Allocation Failure) [PSYoungGen: 261632K->0K(261888K)] 289335K->46920K(1048320K), 0.0193505 secs] [Times: user=0.10 sys=0.01, real=0.01 secs] 
+     [echo] H46.022: [GC (Allocation Failure) [PSYoungGen: 261632K->0K(261888K)] 324337K->88466K(1048320K), 0.0180885 secs] [Times: user=0.10 sys=0.01, real=0.02 secs] 
+     [echo] 379.587: [GC (Allocation Failure) [PSYoungGen: 261632K->0K(261888K)] 350098K->119488K(1048320K), 0.0204557 secs] [Times: user=0.15 sys=0.02, real=0.02 secs] 
+     [echo] 384.751: [GC (Allocation Failure) [PSYoungGen: 261632K->0K(261888K)] 381120K->141484K(1048320K), 0.0209545 secs] [Times: user=0.11 sys=0.01, real=0.02 secs] 
+     [echo] 387.347: [GC (Allocation Failure) [PSYoungGen: 261632K->0K(261888K)] 403116K->159684K(1048320K), 0.0110787 secs] [Times: user=0.06 sys=0.02, real=0.01 secs] 
+     [echo] 389.506: [GC (Allocation Failure) [PSYoungGen: 261632K->0K(261888K)] 421316K->179971K(1048320K), 0.0133070 secs] [Times: user=0.08 sys=0.01, real=0.02 secs] 
+     [echo] 391.714: [GC (Allocation Failure) [PSYoungGen: 261632K->0K(261888K)] 441603K->195324K(1048320K), 0.0114493 secs] [Times: user=0.07 sys=0.01, real=0.01 secs] 
+     [echo] 392.617: [GC (Allocation Failure) [PSYoungGen: 261632K->0K(261888K)] 456956K->213716K(1048320K), 0.0121324 secs] [Times: user=0.06 sys=0.02, real=0.02 secs] 
+     [echo] 393.682: [GC (Allocation Failure) [PSYoungGen: 261632K->0K(261888K)] 475348K->232135K(1048320K), 0.0108592 secs] [Times: user=0.06 sys=0.01, real=0.01 secs] 
+     [echo] 394.606: [GC (Allocation Failure) [PSYoungGen: 261632K->0K(261888K)] 493767K->250421K(1048320K), 0.0093708 secs] [Times: user=0.06 sys=0.01, real=0.01 secs] 
+     [echo] 396.754: [GC (Allocation Failure) [PSYoungGen: 261632K->0K(261888K)] 512053K->272519K(1048320K), 0.0135740 secs] [Times: user=0.06 sys=0.01, real=0.01 secs] 
+     [echo] 397.795: [GC (Allocation Failure) [PSYoungGen: 261632K->0K(261888K)] 534151K->299747K(1048320K), 0.0162927 secs] [Times: user=0.09 sys=0.01, real=0.02 secs] 
+     [echo] 400.896: [GC (Allocation Failure) [PSYoungGen: 261632K->0K(261888K)] 561379K->322880K(1048320K), 0.0175232 secs] [Times: user=0.07 sys=0.01, real=0.02 secs] 
+     [echo] 402.705: [GC (Allocation Failure) [PSYoungGen: 261632K->0K(261888K)] 584512K->351725K(1048320K), 0.0212348 secs] [Times: user=0.10 sys=0.02, real=0.02 secs] 
+     [echo] 404.239: [GC (Allocation Failure) [PSYoungGen: 261632K->0K(261888K)] 613357K->365716K(1048320K), 0.0195408 secs] [Times: user=0.10 sys=0.00, real=0.02 secs] 
+     [echo] 405.563: [GC (Allocation Failure) [PSYoungGen: 261632K->0K(261888K)] 627348K->377027K(1048320K), 0.0252126 secs] [Times: user=0.09 sys=0.00, real=0.02 secs] 
+     [echo] 408.915: [GC (Allocation Failure) [PSYoungGen: 261632K->0K(366592K)] 638659K->393712K(1153024K), 0.0125564 secs] [Times: user=0.05 sys=0.01, real=0.01 secs] 
+     [echo] 412.439: [GC (Allocation Failure) [PSYoungGen: 366336K->0K(356096K)] 760048K->425020K(1142528K), 0.0254069 secs] [Times: user=0.14 sys=0.03, real=0.02 secs] 
+     [echo] 414.149: [GC (Allocation Failure) [PSYoungGen: 355840K->0K(366592K)] 780860K->464313K(1153024K), 0.0351035 secs] [Times: user=0.14 sys=0.04, real=0.03 secs] 
+     [echo] 416.595: [GC (Allocation Failure) [PSYoungGen: 366336K->0K(366592K)] 830649K->495313K(1153024K), 0.0177874 secs] [Times: user=0.11 sys=0.01, real=0.02 secs] 
+     [echo] 418.886: [GC (Allocation Failure) [PSYoungGen: 366336K->0K(356096K)] 861649K->521717K(1142528K), 0.0134675 secs] [Times: user=0.08 sys=0.01, real=0.02 secs] 
+     [echo] 421.316: [GC (Allocation Failure) [PSYoungGen: 355840K->0K(345856K)] 877557K->551503K(1132288K), 0.0215057 secs] [Times: user=0.12 sys=0.02, real=0.02 secs] 
+     [echo] 423.594: [GC (Allocation Failure) [PSYoungGen: 345600K->0K(484096K)] 897103K->581144K(1270528K), 0.0321010 secs] [Times: user=0.12 sys=0.01, real=0.03 secs] 
+     [echo] 424.387: [GC (Metadata GC Threshold) [PSYoungGen: 190726K->0K(513280K)] 771870K->601348K(1299712K), 0.0171769 secs] [Times: user=0.10 sys=0.01, real=0.02 secs] 
+     [echo] 424.405: [Full GC (Metadata GC Threshold) [PSYoungGen: 0K->0K(513280K)] [ParOldGen: 601348K->410200K(786432K)] 601348K->410200K(1299712K), [Metaspace: 97715K->81820K(97584K)], 0.8675004 secs] [Times: user=2.95 sys=0.03, real=0.87 secs] 
+     [echo] 428.464: [GC (Allocation Failure) [PSYoungGen: 513024K->0K(524032K)] 923224K->449896K(1310464K), 0.0366075 secs] [Times: user=0.13 sys=0.00, real=0.04 secs] 
+     [echo] 431.500: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 973672K->493710K(1310464K), 0.0372873 secs] [Times: user=0.16 sys=0.00, real=0.03 secs] 
+     [echo] 436.443: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 1017486K->510253K(1310464K), 0.0199780 secs] [Times: user=0.06 sys=0.00, real=0.02 secs] 
+     [echo] 441.212: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 1034029K->521199K(1310464K), 0.0243805 secs] [Times: user=0.05 sys=0.00, real=0.02 secs] 
+     [echo] 445.587: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 1044975K->566769K(1310464K), 0.0321019 secs] [Times: user=0.12 sys=0.00, real=0.04 secs] 
+     [echo] 447.972: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 1090545K->610324K(1310464K), 0.0318858 secs] [Times: user=0.14 sys=0.02, real=0.03 secs] 
+     [echo] 450.158: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 1134100K->646303K(1310464K), 0.0392450 secs] [Times: user=0.18 sys=0.04, real=0.04 secs] 
+     [echo] 452.464: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 1170079K->682090K(1310464K), 0.0313343 secs] [Times: user=0.12 sys=0.03, real=0.03 secs] 
+     [echo] 455.947: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 1205866K->718361K(1310464K), 0.0277416 secs] [Times: user=0.16 sys=0.02, real=0.03 secs] 
+     [echo] 456.560: [GC (Metadata GC Threshold) [PSYoungGen: 152170K->0K(524032K)] 870531K->735954K(1310464K), 0.0128139 secs] [Times: user=0.06 sys=0.02, real=0.01 secs] 
+     [echo] 456.573: [Full GC (Metadata GC Threshold) [PSYoungGen: 0K->0K(524032K)] [ParOldGen: 735954K->396644K(894976K)] 735954K->396644K(1419008K), [Metaspace: 154715K->153984K(163120K)], 0.7656663 secs] [Times: user=2.92 sys=0.02, real=0.76 secs] 
+     [echo] 460.317: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 920420K->442659K(1419008K), 0.0279544 secs] [Times: user=0.18 sys=0.00, real=0.03 secs] 
+     [echo] 463.722: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 966435K->478820K(1419008K), 0.0153121 secs] [Times: user=0.11 sys=0.00, real=0.01 secs] 
+     [echo] 466.602: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 1002596K->527232K(1419008K), 0.0271038 secs] [Times: user=0.14 sys=0.00, real=0.03 secs] 
+     [echo] 468.969: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 1051008K->581974K(1419008K), 0.0217300 secs] [Times: user=0.14 sys=0.00, real=0.02 secs] 
+     [echo] 
+     [echo] 					
+
+BUILD SUCCESSFUL
+Total time: 7 minutes 50 seconds
++ echo 'Exit shell.'
+Exit shell.
+Recording test results
+Liferay patched class hudson.tasks.junit.JUnitResultArchiver
+[PostBuildScript] - Execution post build scripts.
+[Current build status] check if current [SUCCESS] is worse or equals then [ABORTED] and better or equals then [UNSTABLE]
+Run condition [Current build status] preventing perform for step [Trigger/call builds on other projects]
+[liferay-jenkins-ee] $ /bin/bash -e -x /tmp/hudson56796933859930519.sh
++ echo 'Update the workspace repository for post-build steps.'
+Update the workspace repository for post-build steps.
++ git clean -d -f -x
+Removing git/
+Removing reset.repository.log
+Removing start.properties
+Removing test-results/
++ git reset --hard
+HEAD is now at 60f608f LRQA-34137 Upgrade com.liferay.jenkins.results.parser.jar to version 1.0.123
++ set +e
++ git show-ref --verify --quiet refs/heads/master-temp-1504012666168
++ VERIFY_BRANCH_RESULT=0
++ set -e
++ [[ 0 == 0 ]]
++ git checkout master-temp-1504012666168
+Already on 'master-temp-1504012666168'
++ git log -n 1
+commit 60f608f17edf7b1cd958fa8a36b05ce161f5dd97
+Author: pyoo47 <peter.yoo@liferay.com>
+Date:   Fri Aug 25 15:13:37 2017 -0700
+
+    LRQA-34137 Upgrade com.liferay.jenkins.results.parser.jar to version 1.0.123
++ echo 'Exit shell.'
+Exit shell.
+[liferay-jenkins-ee] $ /bin/bash -e -x /tmp/hudson880440203741095332.sh
++ echo 'Execute: build-test-portal-acceptance-pullrequest-batch.sh stop-current-job'
+Execute: build-test-portal-acceptance-pullrequest-batch.sh stop-current-job
++ commands/build-test-portal-acceptance-pullrequest-batch.sh stop-current-job
+Execute: ant -f commands/build-test-portal-acceptance-pullrequest-batch.xml stop-current-job
+Buildfile: /opt/dev/projects/github/liferay-jenkins-ee/commands/build-test-portal-acceptance-pullrequest-batch.xml
+
+stop-current-job:
+     [echo] curl --output /opt/dev/projects/github/liferay-jenkins-ee/json.data --silent --write-out %{http_code} http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest%28master%29/2232/test-portal-acceptance-pullrequest-batch%28master%29/AXIS_VARIABLE=3,label_exp=!master/plugins-compile-jdk8/stop.properties
+     [exec] 200
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/commands/20170829132540954
+[beanshell] No JSON found at http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest%28master%29/2232/test-portal-acceptance-pullrequest-batch%28master%29/AXIS_VARIABLE=3,label_exp=!master/plugins-compile-jdk8/stop.properties
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/json.data
+     [echo] curl --output /dev/null -d @/opt/dev/projects/github/liferay-jenkins-ee/json.data -H "Content-Type: application/json" --silent --write-out %{http_code} -X POST --write-out %{http_code} http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest%28master%29/2232/test-portal-acceptance-pullrequest-batch%28master%29/AXIS_VARIABLE=3,label_exp=!master/plugins-compile-jdk8/stop.properties
+     [exec] 200
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/commands/20170829132541085
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/json.data
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-jenkins-ee
+   [delete] Deleting: /opt/dev/projects/github/liferay-portal/test.case.method.names.properties
+
+clean-up-processes:
+
+clean-up-processes-java:
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/clean_up_java_processes.sh
+     [exec] Result: 1
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/find_java_process.sh
+
+clean-up-processes-browser:
+     [exec] Killing Firefox.
+     [exec] firefox: no process killed
+     [exec] Result: 1
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/clean_up_browser_processes.sh
+
+clean-up-processes-database:
+     [exec] Killing DB2.
+     [exec] SQL1032N  No start database manager command was issued.  SQLSTATE=57019
+     [exec] Killing MariaDB.
+     [exec]  ERROR! MySQL server PID file could not be found!
+     [exec] Killing MySQL 5.5.
+     [exec]  ERROR! MySQL server PID file could not be found!
+     [exec] Killing MySQL 5.6.
+     [exec] Stopping mysqld:  [  OK  ]
+     [exec] Killing Oracle.
+     [exec] 
+     [exec] LSNRCTL for Linux: Version 12.1.0.2.0 - Production on 29-AUG-2017 06:25:43
+     [exec] 
+     [exec] Copyright (c) 1991, 2014, Oracle.  All rights reserved.
+     [exec] 
+     [exec] Connecting to (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=cloud-10-0-112-97.lax.liferay.com)(PORT=1521)))
+     [exec] TNS-12541: TNS:no listener
+     [exec]  TNS-12560: TNS:protocol adapter error
+     [exec]   TNS-00511: No listener
+     [exec]    Linux Error: 111: Connection refused
+     [exec] Connecting to (DESCRIPTION=(ADDRESS=(PROTOCOL=IPC)(KEY=EXTPROC1521)))
+     [exec] TNS-12541: TNS:no listener
+     [exec]  TNS-12560: TNS:protocol adapter error
+     [exec]   TNS-00511: No listener
+     [exec]    Linux Error: 2: No such file or directory
+     [exec] 
+     [exec] SQL*Plus: Release 12.1.0.2.0 Production on Tue Aug 29 06:25:43 2017
+     [exec] 
+     [exec] Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+     [exec] 
+     [exec] Connected to an idle instance.
+     [exec] 
+     [exec] SQL> ERROR:
+     [exec] ORA-01034: ORACLE not available
+     [exec] ORA-27101: shared memory realm does not exist
+     [exec] Linux-x86_64 Error: 2: No such file or directory
+     [exec] Additional information: 3640
+     [exec] Additional information: -141692521
+     [exec] Process ID: 0
+     [exec] Session ID: 0 Serial number: 0
+     [exec] 
+     [exec] 
+     [exec] SQL> Disconnected
+     [exec] 
+     [exec] SQL*Plus: Release 12.1.0.2.0 Production on Tue Aug 29 06:25:45 2017
+     [exec] 
+     [exec] Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+     [exec] 
+     [exec] Connected to an idle instance.
+     [exec] 
+     [exec] SQL> ORACLE instance shut down.
+     [exec] SQL> Disconnected
+     [exec] Killing PostgreSQL 9.4.
+     [exec] Stopping postgresql-9.4 service: [  OK  ]
+     [exec] Killing Sybase.
+     [exec] CT-LIBRARY error:
+     [exec] 	ct_connect(): network packet layer: internal net library error: Net-Lib protocol driver call to connect two endpoints failed
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/clean_up_database_processes.sh
+     [exec] HEAD is now at e5add14 Create modules/apps/adaptive-media/ci-merge.
+     [exec] Switched to branch 'master'
+     [exec] Switched to branch 'master'
+
+BUILD SUCCESSFUL
+Total time: 13 seconds
++ echo 'Exit shell.'
+Exit shell.
+[EnvInject] - Injecting environment variables from a build step.
+[EnvInject] - Injecting as environment variables the properties file path '/opt/dev/projects/github/liferay-jenkins-ee/stop.properties'
+[EnvInject] - Variables injected successfully.
+[description-setter] Description set: <strong>liferay</strong> - <a href="https://github.com/liferay/liferay-portal/pull/1847">PR#1847</a> - <a href="https://test-1-2.liferay.com//userContent/jobs/test-portal-acceptance-pullrequest(master)/builds/2232/jenkins-report.html">Jenkins Report</a>
+Finished: SUCCESS

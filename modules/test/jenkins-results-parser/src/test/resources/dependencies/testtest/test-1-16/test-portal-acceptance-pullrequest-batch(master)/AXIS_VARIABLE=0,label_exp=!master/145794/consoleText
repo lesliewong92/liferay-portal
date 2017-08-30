@@ -1,0 +1,1975 @@
+Started by upstream project "test-portal-acceptance-pullrequest-batch(master)" build number 145794
+originally caused by:
+ Started by remote host 10.0.16.120
+[EnvInject] - Loading node environment variables.
+[EnvInject] - Preparing an environment for the build.
+[EnvInject] - Keeping Jenkins system variables.
+[EnvInject] - Keeping Jenkins build variables.
+[EnvInject] - Evaluation the following Groovy script content: 
+import groovy.json.JsonSlurper
+
+def jsonSlurper = new JsonSlurper()
+
+def osName = System.properties['os.name']
+
+osName = osName.toLowerCase()
+
+def map = currentBuild.getEnvVars()
+
+if ("${JSON_MAP_URL}" != "") {
+	def jsonMapURL = "${JSON_MAP_URL}"
+
+	jsonMapURL = jsonMapURL.replaceAll("\\(", "%28")
+	jsonMapURL = jsonMapURL.replaceAll("\\)", "%29")
+
+	def processText = ""
+
+	if (osName.contains('windows')) {
+		processText = [ "cmd.exe", "/c", "curl " + jsonMapURL ].execute().text
+	}
+	else {
+		processText = [ "/bin/bash", "-c", "curl " + jsonMapURL ].execute().text
+	}
+
+	def i = 0
+
+	while ((processText == "") && (i < 5)) {
+		println("Retry in 10 seconds.")
+
+		sleep(10000)
+
+		if (osName.contains('windows')) {
+			processText = [ "cmd.exe", "/c", "curl " + jsonMapURL ].execute().text
+		}
+		else {
+			processText = [ "/bin/bash", "-c", "curl " + jsonMapURL ].execute().text
+		}
+
+		i++
+	}
+
+	if (processText == "") {
+		println("Unable to get JSON map.")
+	}
+
+	def jsonObject = jsonSlurper.parseText(processText)
+
+	def jsonArray = jsonObject.properties
+
+	jsonArray.each{
+		map[it.name] = it.value
+	}
+}
+
+map["JENKINS_TEMP_BRANCH"] = "master-temp-" + System.currentTimeMillis()
+
+if (currentJob instanceof hudson.matrix.MatrixProject) {
+	def axisJobs = currentJob.getItems();
+
+	for (axisJob in axisJobs) {
+		println(axisJob);
+
+		axisJob.disabled = false;
+	}
+}
+
+println(map)
+
+return map
+
+[_:/usr/bin/screen, ANT_HOME:/opt/java/ant, ANT_OPTS:-Dhttp.nonProxyHosts="cloud*|files.liferay.org.es|it.liferay.com|localhost|mirrors-no-cache.lax.liferay.com|release*|test*" -Dhttp.proxyHost=squid.lax.liferay.com -Dhttp.proxyPort=3128 -server -verbose:gc -Xloggc:/tmp/ant-gc.log -Xms1024m -Xmx2048m -Xss2m -Xverify:none -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -XX:+PrintGCCause -XX:+PrintGCDetails -XX:+UseParallelOldGC -XX:HeapDumpPath=/tmp/ant-oom-heap-dump.bin -XX:MaxNewSize=512m -XX:MaxPermSize=512m -XX:MaxTenuringThreshold=0 -XX:NewSize=256m -XX:PermSize=100m -XX:SurvivorRatio=65536 -XX:TargetSurvivorRatio=0, AXIS_VARIABLE:0, AXIS_VARIABLES:0, BUILD_DESCRIPTION:<strong>liferay</strong> - <a href="https://github.com/liferay/liferay-portal/pull/1847">PR#1847</a> - <a href="https://test-1-2.liferay.com//userContent/jobs/test-portal-acceptance-pullrequest(master)/builds/2232/jenkins-report.html">Jenkins Report</a>, BUILD_DISPLAY_NAME:#145794, BUILD_ID:2017-08-29_06-17-44, BUILD_NUMBER:145794, BUILD_TAG:jenkins-test-portal-acceptance-pullrequest-batch(master)-AXIS_VARIABLE=0,label_exp=!master-145794, BUILD_URL:${dependencies.url}/testtest/test-1-16/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=0,label_exp=!master/145794, CLASSPATH:, DISPLAY::0, DIST_PATH:/test-1-2/test-portal-acceptance-pullrequest(master)/2232/dist, DIST_ROOT_PATH:/test-1-2, EMAIL_LIST:qa-slave-verify-fail@liferay.com, EXECUTOR_NUMBER:0, GAUNTLET:false, GITHUB_ORIGIN_NAME:liferay, GITHUB_PULL_REQUEST_NUMBER:1847, GITHUB_RECEIVER_USERNAME:liferay, GITHUB_SENDER_BRANCH_SHA:e5add1417b307cd7964eb5e45a9a721f46d6997a, GITHUB_SENDER_USERNAME:liferay-continuous-integration, GITHUB_UPSTREAM_BRANCH_SHA:7021f4661b808a2da2551cc724f79ba656575273, HOME:/root, HOSTNAME:cloud-10-0-111-250.lax.liferay.com, HUDSON_HOME:/opt/java/jenkins, HUDSON_SERVER_COOKIE:ab0a7cc11443a09b, HUDSON_URL:https://test-1-16.liferay.com/, JAVA_HOME:/opt/java/jdk, JENKINS_GITHUB_BRANCH_NAME:, JENKINS_GITHUB_BRANCH_USERNAME:, JENKINS_GITHUB_ORIGIN_NAME:liferay, JENKINS_GITHUB_PULL_REQUEST_NUMBER:0, JENKINS_GITHUB_PULL_REQUEST_USERNAME:, JENKINS_GITHUB_RECEIVER_USERNAME:liferay, JENKINS_GITHUB_SENDER_BRANCH_NAME:master, JENKINS_GITHUB_SENDER_BRANCH_SHA:60f608f17edf7b1cd958fa8a36b05ce161f5dd97, JENKINS_GITHUB_SENDER_USERNAME:liferay, JENKINS_GITHUB_UPSTREAM_BRANCH_NAME:master, JENKINS_GITHUB_UPSTREAM_BRANCH_SHA:60f608f17edf7b1cd958fa8a36b05ce161f5dd97, JENKINS_HOME:/opt/java/jenkins, JENKINS_LOCAL_GIT_BRANCH_CACHED:true, JENKINS_PULL_REQUEST_DIST_NODES:cloud-10-0-14-216,cloud-10-0-11-25,cloud-10-0-12-230,cloud-10-0-112-135,cloud-10-0-112-143,cloud-10-0-17-194,cloud-10-0-113-118,cloud-10-0-16-160,cloud-10-0-111-99,cloud-10-0-112-151,cloud-10-0-113-35,cloud-10-0-16-188,cloud-10-0-11-49,cloud-10-0-16-113,cloud-10-0-10-135,cloud-10-0-19-227,cloud-10-0-112-156,cloud-10-0-110-242,cloud-10-0-16-104,cloud-10-0-19-248,cloud-10-0-13-7,cloud-10-0-11-73,cloud-10-0-112-10, JENKINS_SERVER_COOKIE:ab0a7cc11443a09b, JENKINS_TEMP_BRANCH:master-temp-1504012667413, JENKINS_URL:https://test-1-16.liferay.com/, JOB_NAME:test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=0,label_exp=!master, JOB_URL:https://test-1-16.liferay.com/job/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=0,label_exp=!master/, JOB_VARIANT:service-builder-jdk8, JSON_MAP_URL:http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest(master)/2232/test-portal-acceptance-pullrequest-batch(master)/service-builder-jdk8/start.properties, label_exp:!master, MODULES_BASE_DIR_NAMES_WITH_CHANGES:${env.MODULES_BASE_DIR_NAMES_WITH_CHANGES}, NLSPATH:/usr/dt/lib/nls/msg/%L/%N.cat, NODE_LABELS:cloud-10-0-111-250, NODE_NAME:cloud-10-0-111-250, ORACLE_HOME:/u01/app/oracle/product/12.1.0/db_1, ORACLE_SID:oracl, PATH:/bin:/opt/android/sdk:/opt/android/sdk/platform-tools:/opt/android/sdk/tools:/opt/ibm/db2/V10.5/bin:/opt/java/ant/bin:/opt/java/jdk/bin:/opt/java/maven/bin:/opt/oracle/bin:/opt/sybase/OCS-16_0/bin:/sbin:/usr/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin, PWD:/, SHELL:/bin/sh, SHLVL:2, STY:23651..cloud-10-0-111-250, SUBREPOSITORY_CI_MERGE_FILES:/opt/dev/projects/github/liferay-portal/modules/apps/adaptive-media/ci-merge, SUBREPOSITORY_PACKAGE_NAMES:com.liferay.adaptive,com.liferay.adaptive.media,com.liferay.adaptive.media.blogs,com.liferay.adaptive.media.blogs.editor,com.liferay.adaptive.media.blogs.editor.configuration,com.liferay.adaptive.media.blogs.editor.configuration.internal,com.liferay.adaptive.media.blogs.editor.configuration.internal.dynamic,com.liferay.adaptive.media.blogs.editor.configuration.internal.stat1c,com.liferay.adaptive.media.blogs.internal,com.liferay.adaptive.media.blogs.internal.exportimport,com.liferay.adaptive.media.blogs.internal.exportimport.content,com.liferay.adaptive.media.blogs.internal.exportimport.content.processor,com.liferay.adaptive.media.blogs.item,com.liferay.adaptive.media.blogs.item.selector,com.liferay.adaptive.media.blogs.item.selector.web,com.liferay.adaptive.media.blogs.item.selector.web.internal,com.liferay.adaptive.media.blogs.web,com.liferay.adaptive.media.blogs.web.internal,com.liferay.adaptive.media.blogs.web.internal.attachment,com.liferay.adaptive.media.content,com.liferay.adaptive.media.content.transformer,com.liferay.adaptive.media.document,com.liferay.adaptive.media.document.library,com.liferay.adaptive.media.document.library.item,com.liferay.adaptive.media.document.library.item.selector,com.liferay.adaptive.media.document.library.item.selector.web,com.liferay.adaptive.media.document.library.item.selector.web.internal,com.liferay.adaptive.media.document.library.thumbnails,com.liferay.adaptive.media.document.library.thumbnails.internal,com.liferay.adaptive.media.document.library.thumbnails.internal.commands,com.liferay.adaptive.media.document.library.thumbnails.internal.commands.test,com.liferay.adaptive.media.document.library.thumbnails.internal.commands.test.dependencies,com.liferay.adaptive.media.document.library.thumbnails.internal.test,com.liferay.adaptive.media.document.library.thumbnails.internal.test.util,com.liferay.adaptive.media.document.library.thumbnails.internal.util,com.liferay.adaptive.media.document.library.thumbnails.internal.util.comparator,com.liferay.adaptive.media.image,com.liferay.adaptive.media.image.content,com.liferay.adaptive.media.image.content.transformer,com.liferay.adaptive.media.image.content.transformer.internal,com.liferay.adaptive.media.image.internal,com.liferay.adaptive.media.image.internal.configuration,com.liferay.adaptive.media.image.internal.finder,com.liferay.adaptive.media.image.internal.handler,com.liferay.adaptive.media.image.internal.mediaquery,com.liferay.adaptive.media.image.internal.processor,com.liferay.adaptive.media.image.internal.storage,com.liferay.adaptive.media.image.internal.test,com.liferay.adaptive.media.image.internal.test.dependencies,com.liferay.adaptive.media.image.internal.test.util,com.liferay.adaptive.media.image.internal.url,com.liferay.adaptive.media.image.internal.util,com.liferay.adaptive.media.image.item,com.liferay.adaptive.media.image.item.selector,com.liferay.adaptive.media.image.item.selector.internal,com.liferay.adaptive.media.image.item.selector.internal.resolver,com.liferay.adaptive.media.image.item.selector.internal.resolver.test,com.liferay.adaptive.media.image.item.selector.internal.resolver.test.dependencies,com.liferay.adaptive.media.image.processor,com.liferay.adaptive.media.image.processor.test,com.liferay.adaptive.media.image.processor.test.dependencies,com.liferay.adaptive.media.image.service,com.liferay.adaptive.media.image.service.persistence,com.liferay.adaptive.media.image.service.persistence.test,com.liferay.adaptive.media.image.test,com.liferay.adaptive.media.image.test.util,com.liferay.adaptive.media.image.web,com.liferay.adaptive.media.image.web.html,com.liferay.adaptive.media.item,com.liferay.adaptive.media.item.selector,com.liferay.adaptive.media.item.selector.upload,com.liferay.adaptive.media.item.selector.upload.web,com.liferay.adaptive.media.item.selector.upload.web.internal,com.liferay.adaptive.media.journal,com.liferay.adaptive.media.journal.editor,com.liferay.adaptive.media.journal.editor.configuration,com.liferay.adaptive.media.journal.editor.configuration.internal,com.liferay.adaptive.media.journal.web,com.liferay.adaptive.media.journal.web.internal,com.liferay.adaptive.media.journal.web.internal.messaging,com.liferay.adaptive.media.journal.web.internal.transformer,com.liferay.adaptive.media.web,com.liferay.adaptive.media.web.internal,com.liferay.adaptive.media.web.internal.processor,com.liferay.adaptive.media.web.internal.servlet, SYBASE:/opt/sybase, SYBASE_ASE:ASE-16_0, TERM:screen, TERMCAP:SC|screen|VT 100/ANSI X3.64 virtual terminal:\
+	:DO=\E[%dB:LE=\E[%dD:RI=\E[%dC:UP=\E[%dA:bs:bt=\E[Z:\
+	:cd=\E[J:ce=\E[K:cl=\E[H\E[J:cm=\E[%i%d;%dH:ct=\E[3g:\
+	:do=^J:nd=\E[C:pt:rc=\E8:rs=\Ec:sc=\E7:st=\EH:up=\EM:\
+	:le=^H:bl=^G:cr=^M:it#8:ho=\E[H:nw=\EE:ta=^I:is=\E)0:\
+	:li#24:co#80:am:xn:xv:LP:sr=\EM:al=\E[L:AL=\E[%dL:\
+	:cs=\E[%i%d;%dr:dl=\E[M:DL=\E[%dM:dc=\E[P:DC=\E[%dP:\
+	:im=\E[4h:ei=\E[4l:mi:IC=\E[%d@:ks=\E[?1h\E=:\
+	:ke=\E[?1l\E>:vi=\E[?25l:ve=\E[34h\E[?25h:vs=\E[34l:\
+	:ti=\E[?1049h:te=\E[?1049l:k0=\E[10~:k1=\EOP:k2=\EOQ:\
+	:k3=\EOR:k4=\EOS:k5=\E[15~:k6=\E[17~:k7=\E[18~:\
+	:k8=\E[19~:k9=\E[20~:k;=\E[21~:F1=\E[23~:F2=\E[24~:\
+	:kh=\E[1~:@1=\E[1~:kH=\E[4~:@7=\E[4~:kN=\E[6~:kP=\E[5~:\
+	:kI=\E[2~:kD=\E[3~:ku=\EOA:kd=\EOB:kr=\EOC:kl=\EOD:, TEST_BATCH_NAME:service-builder-jdk8, TEST_BATCH_RUN_TYPE:sequential, TEST_BATCH_SIZE:1, TEST_PORTAL_WEB:false, TOP_LEVEL_BRANCH_NAME:master-temp-20170829123249342, TOP_LEVEL_BUILD_DESCRIPTION:<strong>liferay</strong> - <a href="https://github.com/liferay/liferay-portal/pull/1847">PR#1847</a> - <a href="https://test-1-2.liferay.com//userContent/jobs/test-portal-acceptance-pullrequest(master)/builds/2232/jenkins-report.html">Jenkins Report</a>, TOP_LEVEL_BUILD_NUMBER:2232, TOP_LEVEL_BUILD_URL:${dependencies.url}/testtest/test-1-2/test-portal-acceptance-pullrequest(master)/2232, TOP_LEVEL_GITHUB_COMMENT_ID:325649313, TOP_LEVEL_JOB_NAME:test-portal-acceptance-pullrequest(master), TOP_LEVEL_MASTER_HOSTNAME:test-1-2, TOP_LEVEL_START_TIME:1504009969573, WINDOW:0, XFILESEARCHPATH:/usr/dt/app-defaults/%L/Dt]
+[EnvInject] - Injecting as environment variables the properties content 
+MASTER_HOSTNAME=test-1-16
+
+[EnvInject] - Variables injected successfully.
+[EnvInject] - Injecting contributions.
+Building remotely on cloud-10-0-111-250 in workspace /opt/dev/projects/github/liferay-jenkins-ee
+[liferay-jenkins-ee] $ /bin/bash -e -x /tmp/hudson9127829740507777113.sh
++ echo 'Update the workspace repository for build steps.'
+Update the workspace repository for build steps.
++ curl -o ./jenkins_local_git.sh http://mirrors/github.com/liferay/liferay-jenkins-ee/jenkins_local_git.sh
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100  8928  100  8928    0     0  1135k      0 --:--:-- --:--:-- --:--:-- 1453k
++ source ./jenkins_local_git.sh
++ update_jenkins
++ record_properties
+++ available_jenkins_pullrequest_properties
+++ [[ liferay != '' ]]
+++ [[ 0 != '' ]]
+++ [[ liferay != '' ]]
+++ [[ master != '' ]]
+++ [[ 60f608f17edf7b1cd958fa8a36b05ce161f5dd97 != '' ]]
+++ [[ liferay != '' ]]
+++ [[ master != '' ]]
+++ [[ 60f608f17edf7b1cd958fa8a36b05ce161f5dd97 != '' ]]
+++ echo true
++ [[ true == \t\r\u\e ]]
++ record_properties_cmd
++ check_jenkins_pullrequest_properties
+++ available_jenkins_pullrequest_properties
+++ [[ liferay != '' ]]
+++ [[ 0 != '' ]]
+++ [[ liferay != '' ]]
+++ [[ master != '' ]]
+++ [[ 60f608f17edf7b1cd958fa8a36b05ce161f5dd97 != '' ]]
+++ [[ liferay != '' ]]
+++ [[ master != '' ]]
+++ [[ 60f608f17edf7b1cd958fa8a36b05ce161f5dd97 != '' ]]
+++ echo true
++ [[ true == \f\a\l\s\e ]]
++ rm -rf /opt/dev/projects/github/liferay-jenkins-ee/git
++ mkdir -p /opt/dev/projects/github/liferay-jenkins-ee/git
++ echo JENKINS_GITHUB_ORIGIN_NAME=liferay
++ echo JENKINS_GITHUB_PULL_REQUEST_NUMBER=0
++ echo JENKINS_GITHUB_RECEIVER_USERNAME=liferay
++ echo JENKINS_GITHUB_SENDER_BRANCH_NAME=master
++ echo JENKINS_GITHUB_SENDER_BRANCH_SHA=60f608f17edf7b1cd958fa8a36b05ce161f5dd97
++ echo JENKINS_GITHUB_SENDER_USERNAME=liferay
++ echo JENKINS_GITHUB_UPSTREAM_BRANCH_NAME=master
++ echo JENKINS_GITHUB_UPSTREAM_BRANCH_SHA=60f608f17edf7b1cd958fa8a36b05ce161f5dd97
++ [[ true != '' ]]
++ echo JENKINS_LOCAL_GIT_BRANCH_CACHED=true
++ echo
+
++ echo '#'
+#
++ echo '# /opt/dev/projects/github/liferay-jenkins-ee/git/git.jenkins.bash.properties'
+# /opt/dev/projects/github/liferay-jenkins-ee/git/git.jenkins.bash.properties
++ echo '#'
+#
++ echo
+
++ cat /opt/dev/projects/github/liferay-jenkins-ee/git/git.jenkins.bash.properties
+JENKINS_GITHUB_ORIGIN_NAME=liferay
+JENKINS_GITHUB_PULL_REQUEST_NUMBER=0
+JENKINS_GITHUB_RECEIVER_USERNAME=liferay
+JENKINS_GITHUB_SENDER_BRANCH_NAME=master
+JENKINS_GITHUB_SENDER_BRANCH_SHA=60f608f17edf7b1cd958fa8a36b05ce161f5dd97
+JENKINS_GITHUB_SENDER_USERNAME=liferay
+JENKINS_GITHUB_UPSTREAM_BRANCH_NAME=master
+JENKINS_GITHUB_UPSTREAM_BRANCH_SHA=60f608f17edf7b1cd958fa8a36b05ce161f5dd97
+JENKINS_LOCAL_GIT_BRANCH_CACHED=true
++ echo
+
++ wait_for_local_git
++ [[ true != \t\r\u\e ]]
++ update_jenkins_cmd
+++ os_type
++++ uname
++++ grep NT
+++ [[ -n '' ]]
+++ echo linux
++ [[ linux == \w\i\n\d\o\w\s ]]
++ cd /opt/dev/projects/github/liferay-jenkins-ee
++ rm -f .git/index.lock
++ '[' -d '.git/rebase-*' ']'
++ git reset --hard
+HEAD is now at 60f608f LRQA-34137 Upgrade com.liferay.jenkins.results.parser.jar to version 1.0.123
+++ date +%s%N
++ local SWAP_TEMP_BRANCH=temp-1504012667542514471
++ git checkout -b temp-1504012667542514471
+Switched to a new branch 'temp-1504012667542514471'
++ rm -f /root/.ssh/known_hosts
+++ cache_branch_name
+++ check_jenkins_pullrequest_properties
++++ available_jenkins_pullrequest_properties
++++ [[ liferay != '' ]]
++++ [[ 0 != '' ]]
++++ [[ liferay != '' ]]
++++ [[ master != '' ]]
++++ [[ 60f608f17edf7b1cd958fa8a36b05ce161f5dd97 != '' ]]
++++ [[ liferay != '' ]]
++++ [[ master != '' ]]
++++ [[ 60f608f17edf7b1cd958fa8a36b05ce161f5dd97 != '' ]]
++++ echo true
+++ [[ true == \f\a\l\s\e ]]
+++ echo cache-liferay-60f608f17edf7b1cd958fa8a36b05ce161f5dd97-liferay-60f608f17edf7b1cd958fa8a36b05ce161f5dd97
++ ./commands/git_custom_fetch_retry.sh -f git@github-dev.liferay.com:liferay/liferay-jenkins-ee.git cache-liferay-60f608f17edf7b1cd958fa8a36b05ce161f5dd97-liferay-60f608f17edf7b1cd958fa8a36b05ce161f5dd97:master-temp-1504012667413
+./commands/git_custom_fetch.sh -f git@github-dev.liferay.com:liferay/liferay-jenkins-ee.git cache-liferay-60f608f17edf7b1cd958fa8a36b05ce161f5dd97-liferay-60f608f17edf7b1cd958fa8a36b05ce161f5dd97:master-temp-1504012667413
+Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-jenkins-ee.git cache-liferay-60f608f17edf7b1cd958fa8a36b05ce161f5dd97-liferay-60f608f17edf7b1cd958fa8a36b05ce161f5dd97:master-temp-1504012667413".
+Warning: Permanently added 'github-dev.liferay.com,10.0.0.15' (RSA) to the list of known hosts.
+
+From github-dev.liferay.com:liferay/liferay-jenkins-ee
+ * [new branch]      cache-liferay-60f608f17edf7b1cd958fa8a36b05ce161f5dd97-liferay-60f608f17edf7b1cd958fa8a36b05ce161f5dd97 -> master-temp-1504012667413
+Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-jenkins-ee.git cache-liferay-60f608f17edf7b1cd958fa8a36b05ce161f5dd97-liferay-60f608f17edf7b1cd958fa8a36b05ce161f5dd97:master-temp-1504012667413" complete.
++ rm -f /root/.ssh/known_hosts
++ ./commands/git_custom_fetch_retry.sh -f git@github-dev.liferay.com:liferay/liferay-jenkins-ee.git master:master
+./commands/git_custom_fetch.sh -f git@github-dev.liferay.com:liferay/liferay-jenkins-ee.git master:master
+Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-jenkins-ee.git master:master".
+Warning: Permanently added 'github-dev.liferay.com,10.0.0.23' (RSA) to the list of known hosts.
+
+From github-dev.liferay.com:liferay/liferay-jenkins-ee
+ = [up to date]      master     -> master
+Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-jenkins-ee.git master:master" complete.
++ git checkout -f master
+Switched to branch 'master'
++ git reset --hard 60f608f17edf7b1cd958fa8a36b05ce161f5dd97
+HEAD is now at 60f608f LRQA-34137 Upgrade com.liferay.jenkins.results.parser.jar to version 1.0.123
++ git checkout -f master-temp-1504012667413
+Switched to branch 'master-temp-1504012667413'
++ git clean -d -f -x --exclude=git
++ git reset --hard
+HEAD is now at 60f608f LRQA-34137 Upgrade com.liferay.jenkins.results.parser.jar to version 1.0.123
+++ git branch
+++ egrep temp
+++ egrep -v '\*'
++ local 'TEMP_BRANCH_NAMES=  temp-1504012667542514471'
++ [[ ! -z   temp-1504012667542514471 ]]
++ echo temp-1504012667542514471
++ xargs git branch -D --
+Deleted branch temp-1504012667542514471 (was 60f608f).
++ git log -n 1
+commit 60f608f17edf7b1cd958fa8a36b05ce161f5dd97
+Author: pyoo47 <peter.yoo@liferay.com>
+Date:   Fri Aug 25 15:13:37 2017 -0700
+
+    LRQA-34137 Upgrade com.liferay.jenkins.results.parser.jar to version 1.0.123
++ echo 'Exit shell.'
+Exit shell.
+[liferay-jenkins-ee] $ /bin/bash -e -x /tmp/hudson2654868531354269055.sh
++ echo 'Execute: build-test-portal-acceptance-pullrequest-batch.sh start-current-job'
+Execute: build-test-portal-acceptance-pullrequest-batch.sh start-current-job
++ commands/build-test-portal-acceptance-pullrequest-batch.sh start-current-job
+Execute: ant -f commands/build-test-portal-acceptance-pullrequest-batch.xml start-current-job
+Buildfile: /opt/dev/projects/github/liferay-jenkins-ee/commands/build-test-portal-acceptance-pullrequest-batch.xml
+
+start-current-job:
+     [echo] curl --output /opt/dev/projects/github/liferay-jenkins-ee/json.data --silent --write-out %{http_code} http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest%28master%29/2232/test-portal-acceptance-pullrequest-batch%28master%29/AXIS_VARIABLE=0,label_exp=!master/service-builder-jdk8/start.properties
+     [exec] 200
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/commands/20170829131750484
+[beanshell] No JSON found at http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest%28master%29/2232/test-portal-acceptance-pullrequest-batch%28master%29/AXIS_VARIABLE=0,label_exp=!master/service-builder-jdk8/start.properties
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/json.data
+     [echo] curl --output /dev/null -d @/opt/dev/projects/github/liferay-jenkins-ee/json.data -H "Content-Type: application/json" --silent --write-out %{http_code} -X POST --write-out %{http_code} http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest%28master%29/2232/test-portal-acceptance-pullrequest-batch%28master%29/AXIS_VARIABLE=0,label_exp=!master/service-builder-jdk8/start.properties
+     [exec] 200
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/commands/20170829131750589
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/json.data
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-jenkins-ee
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
++ echo 'Exit shell.'
+Exit shell.
+[EnvInject] - Injecting environment variables from a build step.
+[EnvInject] - Injecting as environment variables the properties file path '/opt/dev/projects/github/liferay-jenkins-ee/start.properties'
+[EnvInject] - Variables injected successfully.
+[description-setter] Description set: <strong>liferay</strong> - <a href="https://github.com/liferay/liferay-portal/pull/1847">PR#1847</a> - <a href="https://test-1-2.liferay.com//userContent/jobs/test-portal-acceptance-pullrequest(master)/builds/2232/jenkins-report.html">Jenkins Report</a>
+[liferay-jenkins-ee] $ /bin/bash -e -x /tmp/hudson5303649538246079625.sh
++ echo 'Execute: build-test-portal-acceptance-pullrequest-batch.sh'
+Execute: build-test-portal-acceptance-pullrequest-batch.sh
++ commands/build-test-portal-acceptance-pullrequest-batch.sh
+Execute: ant -f commands/build-test-portal-acceptance-pullrequest-batch.xml 
+Buildfile: /opt/dev/projects/github/liferay-jenkins-ee/commands/build-test-portal-acceptance-pullrequest-batch.xml
+
+run-current-job:
+
+clean-up-processes:
+
+clean-up-processes-java:
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/clean_up_java_processes.sh
+     [exec] Result: 1
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/find_java_process.sh
+
+clean-up-processes-browser:
+     [exec] Killing Firefox.
+     [exec] firefox: no process killed
+     [exec] Result: 1
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/clean_up_browser_processes.sh
+
+clean-up-processes-database:
+     [exec] Killing DB2.
+     [exec] SQL1032N  No start database manager command was issued.  SQLSTATE=57019
+     [exec] Killing MariaDB.
+     [exec]  ERROR! MySQL server PID file could not be found!
+     [exec] Killing MySQL 5.5.
+     [exec]  ERROR! MySQL server PID file could not be found!
+     [exec] Killing MySQL 5.6.
+     [exec] Stopping mysqld:  [  OK  ]
+     [exec] Killing Oracle.
+     [exec] 
+     [exec] LSNRCTL for Linux: Version 12.1.0.2.0 - Production on 29-AUG-2017 06:17:52
+     [exec] 
+     [exec] Copyright (c) 1991, 2014, Oracle.  All rights reserved.
+     [exec] 
+     [exec] Connecting to (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=cloud-10-0-111-250.lax.liferay.com)(PORT=1521)))
+     [exec] TNS-12541: TNS:no listener
+     [exec]  TNS-12560: TNS:protocol adapter error
+     [exec]   TNS-00511: No listener
+     [exec]    Linux Error: 111: Connection refused
+     [exec] Connecting to (DESCRIPTION=(ADDRESS=(PROTOCOL=IPC)(KEY=EXTPROC1521)))
+     [exec] TNS-12541: TNS:no listener
+     [exec]  TNS-12560: TNS:protocol adapter error
+     [exec]   TNS-00511: No listener
+     [exec]    Linux Error: 2: No such file or directory
+     [exec] 
+     [exec] SQL*Plus: Release 12.1.0.2.0 Production on Tue Aug 29 06:17:52 2017
+     [exec] 
+     [exec] Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+     [exec] 
+     [exec] Connected to an idle instance.
+     [exec] 
+     [exec] SQL> ERROR:
+     [exec] ORA-01034: ORACLE not available
+     [exec] ORA-27101: shared memory realm does not exist
+     [exec] Linux-x86_64 Error: 2: No such file or directory
+     [exec] Additional information: 3640
+     [exec] Additional information: -141692521
+     [exec] Process ID: 0
+     [exec] Session ID: 0 Serial number: 0
+     [exec] 
+     [exec] 
+     [exec] SQL> Disconnected
+     [exec] 
+     [exec] SQL*Plus: Release 12.1.0.2.0 Production on Tue Aug 29 06:17:54 2017
+     [exec] 
+     [exec] Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+     [exec] 
+     [exec] Connected to an idle instance.
+     [exec] 
+     [exec] SQL> ORACLE instance shut down.
+     [exec] SQL> Disconnected
+     [exec] Killing PostgreSQL 9.4.
+     [exec] Stopping postgresql-9.4 service: [  OK  ]
+     [exec] Killing Sybase.
+     [exec] CT-LIBRARY error:
+     [exec] 	ct_connect(): network packet layer: internal net library error: Net-Lib protocol driver call to connect two endpoints failed
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/clean_up_database_processes.sh
+
+prepare-portal-repository:
+     [copy] Copying 1 file to /tmp/jenkins/test-1-2/test-portal-acceptance-pullrequest(master)/2232/git
+     [echo] curl --output /opt/dev/projects/github/liferay-jenkins-ee/json.data --silent --write-out %{http_code} http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest%28master%29/2232/test-portal-acceptance-pullrequest%28master%29/git.portal.properties
+     [exec] 200
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/commands/20170829131759094
+[beanshell] 
+[beanshell] ##
+[beanshell] ## http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest%28master%29/2232/test-portal-acceptance-pullrequest%28master%29/git.portal.properties
+[beanshell] ##
+[beanshell] 
+[beanshell] github.upstream.branch.name=master
+[beanshell] github.sender.branch.sha=e5add1417b307cd7964eb5e45a9a721f46d6997a
+[beanshell] github.receiver.username=liferay
+[beanshell] github.sender.branch.name=ci-merge-com-liferay-adaptive-media-master-b75ad7d7f72d7859d3c8c8934f0200740fc3a73c
+[beanshell] github.pull.request.number=1847
+[beanshell] github.upstream.branch.sha=7021f4661b808a2da2551cc724f79ba656575273
+[beanshell] github.sender.username=liferay-continuous-integration
+[beanshell] local.git.branch.cached=true
+[beanshell] github.origin.name=liferay
+[beanshell] 
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/json.data
+     [exec] HEAD is now at 7021f46 subrepo:ignore Update 'modules/apps/web-experience/journal/.gitrepo'.
+     [exec] Switched to a new branch 'temp-1504012679851925327'
+     [exec] Switched to a new branch 'temp-1504012679851925327'
+     [exec] /opt/dev/projects/github/liferay-jenkins-ee/commands/git_custom_fetch.sh -f git@github-dev.liferay.com:liferay/liferay-portal.git cache-liferay-7021f4661b808a2da2551cc724f79ba656575273-liferay-7021f4661b808a2da2551cc724f79ba656575273:master
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-portal.git cache-liferay-7021f4661b808a2da2551cc724f79ba656575273-liferay-7021f4661b808a2da2551cc724f79ba656575273:master".
+     [exec] Warning: Permanently added 'github-dev.liferay.com,10.0.0.14' (RSA) to the list of known hosts.
+     [exec] From github-dev.liferay.com:liferay/liferay-portal
+     [exec]  = [up to date]      cache-liferay-7021f4661b808a2da2551cc724f79ba656575273-liferay-7021f4661b808a2da2551cc724f79ba656575273 -> master
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-portal.git cache-liferay-7021f4661b808a2da2551cc724f79ba656575273-liferay-7021f4661b808a2da2551cc724f79ba656575273:master" complete.
+     [exec] Switched to branch 'master'
+     [exec] Switched to branch 'master'
+     [exec] HEAD is now at 7021f46 subrepo:ignore Update 'modules/apps/web-experience/journal/.gitrepo'.
+     [exec] /opt/dev/projects/github/liferay-jenkins-ee/commands/git_custom_fetch.sh -f git@github-dev.liferay.com:liferay/liferay-portal.git cache-liferay-7021f4661b808a2da2551cc724f79ba656575273-liferay-e5add1417b307cd7964eb5e45a9a721f46d6997a:master-temp-20170829123249342
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-portal.git cache-liferay-7021f4661b808a2da2551cc724f79ba656575273-liferay-e5add1417b307cd7964eb5e45a9a721f46d6997a:master-temp-20170829123249342".
+     [exec] Warning: Permanently added 'github-dev.liferay.com,10.0.0.23' (RSA) to the list of known hosts.
+     [exec] remote: Counting objects: 1   [K
+     [exec] remote: Counting objects: 10, done.[Kremote: Compressing objects:  20% (1/5)   [K
+     [exec] remote: Compressing objects:  40% (2/5)   [Kremote: Compressing objects:  60% (3/5)   [Kremote: Compressing objects:  80% (4/5)   [Kremote: Compressing objects: 100% (5/5)   [Kremote: Compressing objects: 100% (5/5), done.[Kremote: Total 6 (delta 4), reused 0 (delta 0)[K
+     [exec] Unpacking objects:  16% (1/6)   
+     [exec] Unpacking objects:  33% (2/6)   Unpacking objects:  50% (3/6)   Unpacking objects:  66% (4/6)   Unpacking objects:  83% (5/6)   Unpacking objects: 100% (6/6)   Unpacking objects: 100% (6/6), done.From github-dev.liferay.com:liferay/liferay-portal
+     [exec]  * [new branch]      cache-liferay-7021f4661b808a2da2551cc724f79ba656575273-liferay-e5add1417b307cd7964eb5e45a9a721f46d6997a -> master-temp-20170829123249342
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-portal.git cache-liferay-7021f4661b808a2da2551cc724f79ba656575273-liferay-e5add1417b307cd7964eb5e45a9a721f46d6997a:master-temp-20170829123249342" complete.
+     [exec] Switched to branch 'master-temp-20170829123249342'
+     [exec] Switched to branch 'master-temp-20170829123249342'
+     [exec] Deleted branch temp-1504012679851925327 (was 7021f46).
+     [exec] commit e5add1417b307cd7964eb5e45a9a721f46d6997a
+     [exec] Author: Liferay Continuous Integration <continuous-integration@liferay.com>
+     [exec] Date:   Tue Aug 29 05:32:16 2017 -0700
+     [exec] 
+     [exec]     Create modules/apps/adaptive-media/ci-merge.
+     [exec] On branch master-temp-20170829123249342
+     [exec] nothing to commit, working tree clean
+
+set-portal-app-server-properties:
+     [echo] 
+     [echo] ##
+     [echo] ## /opt/dev/projects/github/liferay-portal/app.server.cloud-10-0-111-250.lax.liferay.com.properties
+     [echo] ##
+     [echo] 
+     [echo] app.server.parent.dir=/opt/dev/projects/github/liferay-portal/bundles
+
+set-portal-build-properties:
+     [echo] 
+     [echo] ##
+     [echo] ## /opt/dev/projects/github/liferay-portal/build.cloud-10-0-111-250.lax.liferay.com.properties
+     [echo] ##
+     [echo] 
+     [echo] build.repository.private.password=0GgG9J3X42k677H
+     [echo] build.repository.private.url=https://repository.liferay.com/nexus/service/local/repo_groups/private/content/
+     [echo] build.repository.private.username=private
+     [echo] liferay.home=/opt/dev/projects/github/liferay-portal/bundles
+     [echo] nodejs.npm.ci.registry=http://mirrors.lax.liferay.com:4873
+     [echo] nodejs.npm.ci.sass.binary.site=http://mirrors.lax.liferay.com/github.com/sass/node-sass/releases/download
+     [echo] shell.executable=/bin/bash
+     [echo] jsp.precompile=off
+     [echo] jsp.precompile.parallel=off
+     [echo] release.versions.test.other.dir=/opt/dev/projects/github/liferay-portal-7.0.x
+
+set-portal-impl-portal-test-ext-properties:
+  [typedef] Could not load definitions from resource org/apache/maven/artifact/ant/antlib.xml. It could not be found.
+  [taskdef] Could not load definitions from resource org/jacoco/ant/antlib.xml. It could not be found.
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+set-portal-impl-portal-test-ext-properties:
+     [echo] 
+     [echo] ##
+     [echo] ## /opt/dev/projects/github/liferay-portal/portal-impl/test/portal-test-ext.properties
+     [echo] ##
+     [echo] 
+     [echo] liferay.home=/opt/dev/projects/github/liferay-portal/bundles
+     [echo] 
+     [echo] jdbc.default.driverClassName=com.mysql.jdbc.Driver
+     [echo] jdbc.default.url=jdbc:mysql://localhost/lportal?characterEncoding=UTF-8&dontTrackOpenResources=true&holdResultsOpenOverStatementClose=true&useFastDateParsing=false&useUnicode=true
+     [echo] jdbc.default.username=root
+     [echo] jdbc.default.password=
+     [echo] 
+     [echo] // HikariCP
+     [echo] 
+     [echo] jdbc.default.connectionTimeout=600000
+     [echo] jdbc.default.maximumPoolSize=20
+     [echo] jdbc.default.minimumIdle=0
+     [echo] 
+     [echo] jdbc.counter.maximumPoolSize=5
+     [echo] jdbc.counter.minimumIdle=0
+     [echo] 
+     [echo] // Tomcat
+     [echo] 
+     [echo] jdbc.default.initialSize=0
+     [echo] jdbc.default.maxActive=20
+     [echo] jdbc.default.maxIdle=0
+     [echo] jdbc.default.minIdle=0
+     [echo] 
+     [echo] jdbc.counter.initialSize=0
+     [echo] jdbc.counter.maxActive=5
+     [echo] jdbc.counter.maxIdle=0
+     [echo] jdbc.counter.minIdle=0
+     [echo] 
+     [echo] counter.jdbc.prefix=jdbc.counter.
+     [echo] module.framework.base.dir=/opt/dev/projects/github/liferay-portal/bundles/osgi
+     [echo] 
+     [echo] sprite.root.dir=/tmp/sprite
+     [echo] 
+     [echo] memory.scheduler.org.quartz.threadPool.threadCount=1
+     [echo] 
+     [echo] persisted.scheduler.org.quartz.threadPool.threadCount=1
+
+set-portal-release-properties:
+     [echo] 
+     [echo] ##
+     [echo] ## /opt/dev/projects/github/liferay-portal/release.cloud-10-0-111-250.lax.liferay.com.properties
+     [echo] ##
+     [echo] 
+     [echo] lp.plugins.dir=/opt/dev/projects/github/liferay-plugins
+
+set-portal-sql-properties:
+     [echo] 
+     [echo] ##
+     [echo] ## /opt/dev/projects/github/liferay-portal/sql/sql.cloud-10-0-111-250.lax.liferay.com.properties
+     [echo] ##
+     [echo] 
+     [echo] db2.executable=db2
+     [echo] mariadb.executable=/opt/mariadb/bin/mysql
+     [echo] mysql.arg.line=-u root
+     [echo] oracle.admin.password=liferay123
+     [echo] sqlserver.executable=sqlcmd
+     [echo] sybase.executable=/opt/sybase/OCS-16_0/bin/isql
+     [echo] database.types=db2,hypersonic,mysql,oracle,postgresql,sqlserver,sybase
+
+set-portal-test-case-method-names-properties:
+     [echo] curl --output /opt/dev/projects/github/liferay-jenkins-ee/json.data --silent --write-out %{http_code} http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest%28master%29/2232/test-portal-acceptance-pullrequest-batch%28master%29/service-builder-jdk8/start.properties
+     [exec] 200
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/commands/20170829131818365
+[beanshell] ##
+[beanshell] ## /opt/dev/projects/github/liferay-portal/test.case.method.names.properties
+[beanshell] ##
+[beanshell] 
+[beanshell] 
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/json.data
+
+prepare-portal-ee-repository:
+
+prepare-portal-other-repository:
+
+prepare-portal-legacy-repository:
+     [echo] curl --output /opt/dev/projects/github/liferay-jenkins-ee/json.data --silent --write-out %{http_code} http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest%28master%29/2232/test-portal-acceptance-pullrequest%28master%29/git.legacy.properties
+     [exec] 200
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/commands/20170829131818574
+[beanshell] 
+[beanshell] ##
+[beanshell] ## http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest%28master%29/2232/test-portal-acceptance-pullrequest%28master%29/git.legacy.properties
+[beanshell] ##
+[beanshell] 
+[beanshell] github.upstream.branch.name=master
+[beanshell] github.sender.branch.sha=4d216293b2526adea170f9e678756bf4031cd261
+[beanshell] github.receiver.username=liferay
+[beanshell] github.sender.branch.name=master
+[beanshell] github.pull.request.number=0
+[beanshell] github.upstream.branch.sha=4d216293b2526adea170f9e678756bf4031cd261
+[beanshell] github.sender.username=liferay
+[beanshell] local.git.branch.cached=true
+[beanshell] github.origin.name=liferay
+[beanshell] 
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/json.data
+     [exec] HEAD is now at 4d21629 LRQA-31055 Regen
+     [exec] Switched to a new branch 'temp-1504012698693594474'
+     [exec] Switched to a new branch 'temp-1504012698693594474'
+     [exec] /opt/dev/projects/github/liferay-jenkins-ee/commands/git_custom_fetch.sh -f git@github-dev.liferay.com:liferay/liferay-qa-portal-legacy-ee.git cache-liferay-4d216293b2526adea170f9e678756bf4031cd261-liferay-4d216293b2526adea170f9e678756bf4031cd261:master
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-qa-portal-legacy-ee.git cache-liferay-4d216293b2526adea170f9e678756bf4031cd261-liferay-4d216293b2526adea170f9e678756bf4031cd261:master".
+     [exec] Switched to branch 'master'
+     [exec] Warning: Permanently added 'github-dev.liferay.com,10.0.0.23' (RSA) to the list of known hosts.
+     [exec] From github-dev.liferay.com:liferay/liferay-qa-portal-legacy-ee
+     [exec] Switched to branch 'master' = [up to date]      cache-liferay-4d216293b2526adea170f9e678756bf4031cd261-liferay-4d216293b2526adea170f9e678756bf4031cd261 -> master
+     [exec] 
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-qa-portal-legacy-ee.git cache-liferay-4d216293b2526adea170f9e678756bf4031cd261-liferay-4d216293b2526adea170f9e678756bf4031cd261:master" complete.
+     [exec] HEAD is now at 4d21629 LRQA-31055 Regen
+     [exec] /opt/dev/projects/github/liferay-jenkins-ee/commands/git_custom_fetch.sh -f git@github-dev.liferay.com:liferay/liferay-qa-portal-legacy-ee.git cache-liferay-4d216293b2526adea170f9e678756bf4031cd261-liferay-4d216293b2526adea170f9e678756bf4031cd261:master-temp-20170829123249342
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-qa-portal-legacy-ee.git cache-liferay-4d216293b2526adea170f9e678756bf4031cd261-liferay-4d216293b2526adea170f9e678756bf4031cd261:master-temp-20170829123249342".
+     [exec] Switched to branch 'master-temp-20170829123249342'
+     [exec] Switched to branch 'master-temp-20170829123249342'
+     [exec] Warning: Permanently added 'github-dev.liferay.com,10.0.0.11' (RSA) to the list of known hosts.
+     [exec] From github-dev.liferay.com:liferay/liferay-qa-portal-legacy-ee
+     [exec]  * [new branch]      cache-liferay-4d216293b2526adea170f9e678756bf4031cd261-liferay-4d216293b2526adea170f9e678756bf4031cd261 -> master-temp-20170829123249342
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-qa-portal-legacy-ee.git cache-liferay-4d216293b2526adea170f9e678756bf4031cd261-liferay-4d216293b2526adea170f9e678756bf4031cd261:master-temp-20170829123249342" complete.
+     [exec] Deleted branch temp-1504012698693594474 (was 4d21629).
+     [exec] commit 4d216293b2526adea170f9e678756bf4031cd261
+     [exec] Author: Sharon Choi <sharon.choi@liferay.com>
+     [exec] Date:   Mon Jun 19 11:10:37 2017 -0700
+     [exec] 
+     [exec]     LRQA-31055 Regen
+     [exec] On branch master-temp-20170829123249342
+     [exec] nothing to commit, working tree clean
+
+prepare-plugins-repository:
+     [echo] curl --output /opt/dev/projects/github/liferay-jenkins-ee/json.data --silent --write-out %{http_code} http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest%28master%29/2232/test-portal-acceptance-pullrequest%28master%29/git.plugins.properties
+     [exec] 200
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/commands/20170829131821396
+[beanshell] 
+[beanshell] ##
+[beanshell] ## http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest%28master%29/2232/test-portal-acceptance-pullrequest%28master%29/git.plugins.properties
+[beanshell] ##
+[beanshell] 
+[beanshell] github.upstream.branch.name=master
+[beanshell] github.sender.branch.sha=eec012bd3f2fb075679249987c82b560bc3e7e1c
+[beanshell] github.receiver.username=liferay
+[beanshell] github.sender.branch.name=master
+[beanshell] github.pull.request.number=0
+[beanshell] github.upstream.branch.sha=eec012bd3f2fb075679249987c82b560bc3e7e1c
+[beanshell] github.sender.username=liferay
+[beanshell] local.git.branch.cached=true
+[beanshell] github.origin.name=liferay
+[beanshell] 
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/json.data
+     [exec] HEAD is now at eec012b LRQA-34046 Sync tcserver version to portal
+     [exec] Switched to a new branch 'temp-1504012701490661503'
+     [exec] Switched to a new branch 'temp-1504012701490661503'
+     [exec] /opt/dev/projects/github/liferay-jenkins-ee/commands/git_custom_fetch.sh -f git@github-dev.liferay.com:liferay/liferay-plugins.git cache-liferay-eec012bd3f2fb075679249987c82b560bc3e7e1c-liferay-eec012bd3f2fb075679249987c82b560bc3e7e1c:master
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-plugins.git cache-liferay-eec012bd3f2fb075679249987c82b560bc3e7e1c-liferay-eec012bd3f2fb075679249987c82b560bc3e7e1c:master".
+     [exec] Switched to branch 'master'
+     [exec] Warning: Permanently added 'github-dev.liferay.com,10.0.0.16' (RSA) to the list of known hosts.
+     [exec] Switched to branch 'master'
+     [exec] From github-dev.liferay.com:liferay/liferay-plugins
+     [exec]  = [up to date]      cache-liferay-eec012bd3f2fb075679249987c82b560bc3e7e1c-liferay-eec012bd3f2fb075679249987c82b560bc3e7e1c -> master
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-plugins.git cache-liferay-eec012bd3f2fb075679249987c82b560bc3e7e1c-liferay-eec012bd3f2fb075679249987c82b560bc3e7e1c:master" complete.
+     [exec] HEAD is now at eec012b LRQA-34046 Sync tcserver version to portal
+     [exec] /opt/dev/projects/github/liferay-jenkins-ee/commands/git_custom_fetch.sh -f git@github-dev.liferay.com:liferay/liferay-plugins.git cache-liferay-eec012bd3f2fb075679249987c82b560bc3e7e1c-liferay-eec012bd3f2fb075679249987c82b560bc3e7e1c:master-temp-20170829123249342
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-plugins.git cache-liferay-eec012bd3f2fb075679249987c82b560bc3e7e1c-liferay-eec012bd3f2fb075679249987c82b560bc3e7e1c:master-temp-20170829123249342".
+     [exec] Warning: Permanently added 'github-dev.liferay.com,10.0.0.14' (RSA) to the list of known hosts.
+     [exec] From github-dev.liferay.com:liferay/liferay-plugins
+     [exec]  * [new branch]      cache-liferay-eec012bd3f2fb075679249987c82b560bc3e7e1c-liferay-eec012bd3f2fb075679249987c82b560bc3e7e1c -> master-temp-20170829123249342
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-plugins.git cache-liferay-eec012bd3f2fb075679249987c82b560bc3e7e1c-liferay-eec012bd3f2fb075679249987c82b560bc3e7e1c:master-temp-20170829123249342" complete.
+     [exec] Switched to branch 'master-temp-20170829123249342'
+     [exec] Switched to branch 'master-temp-20170829123249342'
+     [exec] Deleted branch temp-1504012701490661503 (was eec012b).
+     [exec] commit eec012bd3f2fb075679249987c82b560bc3e7e1c
+     [exec] Author: Kiyoshi Lee <kiyoshi.lee@liferay.com>
+     [exec] Date:   Wed Jul 26 11:57:06 2017 -0700
+     [exec] 
+     [exec]     LRQA-34046 Sync tcserver version to portal
+     [exec] On branch master-temp-20170829123249342
+     [exec] nothing to commit, working tree clean
+
+set-plugins-build-properties:
+     [echo] 
+     [echo] ##
+     [echo] ## /opt/dev/projects/github/liferay-plugins/build.cloud-10-0-111-250.lax.liferay.com.properties
+     [echo] ##
+     [echo] 
+     [echo] liferay.home=/opt/dev/projects/github/liferay-portal/bundles
+
+prepare-subrepositories:
+     [echo] curl --output /opt/dev/projects/github/liferay-jenkins-ee/json.data --silent --write-out %{http_code} http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest%28master%29/2232/test-portal-acceptance-pullrequest%28master%29/git.com-liferay-adaptive-media.properties
+     [exec] 200
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/commands/20170829131824020
+[beanshell] 
+[beanshell] ##
+[beanshell] ## http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest%28master%29/2232/test-portal-acceptance-pullrequest%28master%29/git.com-liferay-adaptive-media.properties
+[beanshell] ##
+[beanshell] 
+[beanshell] github.upstream.branch.name=master
+[beanshell] github.sender.branch.sha=b75ad7d7f72d7859d3c8c8934f0200740fc3a73c
+[beanshell] github.receiver.username=liferay
+[beanshell] github.sender.branch.name=master
+[beanshell] github.pull.request.number=0
+[beanshell] github.upstream.branch.sha=b75ad7d7f72d7859d3c8c8934f0200740fc3a73c
+[beanshell] github.sender.username=liferay
+[beanshell] local.git.branch.cached=true
+[beanshell] github.origin.name=liferay
+[beanshell] 
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/json.data
+     [exec] HEAD is now at 2897499 LPS-74042 CODEOWNERS
+     [exec] Switched to a new branch 'temp-1504012704059982372'
+     [exec] Switched to a new branch 'temp-1504012704059982372'
+     [exec] /opt/dev/projects/github/liferay-jenkins-ee/commands/git_custom_fetch.sh -f git@github-dev.liferay.com:liferay/com-liferay-adaptive-media.git cache-liferay-b75ad7d7f72d7859d3c8c8934f0200740fc3a73c-liferay-b75ad7d7f72d7859d3c8c8934f0200740fc3a73c:master
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/com-liferay-adaptive-media.git cache-liferay-b75ad7d7f72d7859d3c8c8934f0200740fc3a73c-liferay-b75ad7d7f72d7859d3c8c8934f0200740fc3a73c:master".
+     [exec] Switched to branch 'master'
+     [exec] Warning: Permanently added 'github-dev.liferay.com,10.0.0.11' (RSA) to the list of known hosts.
+     [exec] Switched to branch 'master'remote: Counting objects: 448, done.[K
+     [exec] 
+     [exec] remote: Compressing objects:   0% (1/121)   [K
+     [exec] remote: Compressing objects:   1% (2/121)   [Kremote: Compressing objects:   2% (3/121)   [Kremote: Compressing objects:   3% (4/121)   [Kremote: Compressing objects:   4% (5/121)   [Kremote: Compressing objects:   5% (7/121)   [Kremote: Compressing objects:   6% (8/121)   [Kremote: Compressing objects:   7% (9/121)   [Kremote: Compressing objects:   8% (10/121)   [Kremote: Compressing objects:   9% (11/121)   [Kremote: Compressing objects:  10% (13/121)   [Kremote: Compressing objects:  11% (14/121)   [Kremote: Compressing objects:  12% (15/121)   [Kremote: Compressing objects:  13% (16/121)   [Kremote: Compressing objects:  14% (17/121)   [Kremote: Compressing objects:  15% (19/121)   [Kremote: Compressing objects:  16% (20/121)   [Kremote: Compressing objects:  17% (21/121)   [Kremote: Compressing objects:  18% (22/121)   [Kremote: Compressing objects:  19% (23/121)   [Kremote: Compressing objects:  20% (25/121)   [Kremote: Compressing objects:  21% (26/121)   [Kremote: Compressing objects:  22% (27/121)   [Kremote: Compressing objects:  23% (28/121)   [Kremote: Compressing objects:  24% (30/121)   [Kremote: Compressing objects:  25% (31/121)   [Kremote: Compressing objects:  26% (32/121)   [Kremote: Compressing objects:  27% (33/121)   [Kremote: Compressing objects:  28% (34/121)   [Kremote: Compressing objects:  29% (36/121)   [Kremote: Compressing objects:  30% (37/121)   [Kremote: Compressing objects:  31% (38/121)   [Kremote: Compressing objects:  32% (39/121)   [Kremote: Compressing objects:  33% (40/121)   [Kremote: Compressing objects:  34% (42/121)   [Kremote: Compressing objects:  35% (43/121)   [Kremote: Compressing objects:  36% (44/121)   [Kremote: Compressing objects:  37% (45/121)   [Kremote: Compressing objects:  38% (46/121)   [Kremote: Compressing objects:  39% (48/121)   [Kremote: Compressing objects:  40% (49/121)   [Kremote: Compressing objects:  41% (50/121)   [Kremote: Compressing objects:  42% (51/121)   [Kremote: Compressing objects:  43% (53/121)   [Kremote: Compressing objects:  44% (54/121)   [Kremote: Compressing objects:  45% (55/121)   [Kremote: Compressing objects:  46% (56/121)   [Kremote: Compressing objects:  47% (57/121)   [Kremote: Compressing objects:  48% (59/121)   [Kremote: Compressing objects:  49% (60/121)   [Kremote: Compressing objects:  50% (61/121)   [Kremote: Compressing objects:  51% (62/121)   [Kremote: Compressing objects:  52% (63/121)   [Kremote: Compressing objects:  53% (65/121)   [Kremote: Compressing objects:  54% (66/121)   [Kremote: Compressing objects:  55% (67/121)   [Kremote: Compressing objects:  56% (68/121)   [Kremote: Compressing objects:  57% (69/121)   [Kremote: Compressing objects:  58% (71/121)   [Kremote: Compressing objects:  59% (72/121)   [Kremote: Compressing objects:  60% (73/121)   [Kremote: Compressing objects:  61% (74/121)   [Kremote: Compressing objects:  62% (76/121)   [Kremote: Compressing objects:  63% (77/121)   [Kremote: Compressing objects:  64% (78/121)   [Kremote: Compressing objects:  65% (79/121)   [Kremote: Compressing objects:  66% (80/121)   [Kremote: Compressing objects:  67% (82/121)   [Kremote: Compressing objects:  68% (83/121)   [Kremote: Compressing objects:  69% (84/121)   [Kremote: Compressing objects:  70% (85/121)   [Kremote: Compressing objects:  71% (86/121)   [Kremote: Compressing objects:  72% (88/121)   [Kremote: Compressing objects:  73% (89/121)   [Kremote: Compressing objects:  74% (90/121)   [Kremote: Compressing objects:  75% (91/121)   [Kremote: Compressing objects:  76% (92/121)   [Kremote: Compressing objects:  77% (94/121)   [Kremote: Compressing objects:  78% (95/121)   [Kremote: Compressing objects:  79% (96/121)   [Kremote: Compressing objects:  80% (97/121)   [Kremote: Compressing objects:  81% (99/121)   [Kremote: Compressing objects:  82% (100/121)   [Kremote: Compressing objects:  83% (101/121)   [Kremote: Compressing objects:  84% (102/121)   [Kremote: Compressing objects:  85% (103/121)   [Kremote: Compressing objects:  86% (105/121)   [Kremote: Compressing objects:  87% (106/121)   [Kremote: Compressing objects:  88% (107/121)   [Kremote: Compressing objects:  89% (108/121)   [Kremote: Compressing objects:  90% (109/121)   [Kremote: Compressing objects:  91% (111/121)   [Kremote: Compressing objects:  92% (112/121)   [Kremote: Compressing objects:  93% (113/121)   [Kremote: Compressing objects:  94% (114/121)   [Kremote: Compressing objects:  95% (115/121)   [Kremote: Compressing objects:  96% (117/121)   [Kremote: Compressing objects:  97% (118/121)   [Kremote: Compressing objects:  98% (119/121)   [Kremote: Compressing objects:  99% (120/121)   [Kremote: Compressing objects: 100% (121/121)   [Kremote: Compressing objects: 100% (121/121), done.[KReceiving objects:   0% (1/379)   
+     [exec] Receiving objects:   1% (4/379)   Receiving objects:   2% (8/379)   Receiving objects:   3% (12/379)   Receiving objects:   4% (16/379)   Receiving objects:   5% (19/379)   Receiving objects:   6% (23/379)   Receiving objects:   7% (27/379)   Receiving objects:   8% (31/379)   Receiving objects:   9% (35/379)   Receiving objects:  10% (38/379)   Receiving objects:  11% (42/379)   Receiving objects:  12% (46/379)   Receiving objects:  13% (50/379)   Receiving objects:  14% (54/379)   Receiving objects:  15% (57/379)   Receiving objects:  16% (61/379)   Receiving objects:  17% (65/379)   Receiving objects:  18% (69/379)   Receiving objects:  19% (73/379)   Receiving objects:  20% (76/379)   Receiving objects:  21% (80/379)   Receiving objects:  22% (84/379)   Receiving objects:  23% (88/379)   Receiving objects:  24% (91/379)   Receiving objects:  25% (95/379)   Receiving objects:  26% (99/379)   Receiving objects:  27% (103/379)   Receiving objects:  28% (107/379)   Receiving objects:  29% (110/379)   Receiving objects:  30% (114/379)   Receiving objects:  31% (118/379)   Receiving objects:  32% (122/379)   Receiving objects:  33% (126/379)   Receiving objects:  34% (129/379)   Receiving objects:  35% (133/379)   Receiving objects:  36% (137/379)   remote: Total 379 (delta 149), reused 338 (delta 113)[KReceiving objects:  37% (141/379)   
+     [exec] Receiving objects:  38% (145/379)   Receiving objects:  39% (148/379)   Receiving objects:  40% (152/379)   Receiving objects:  41% (156/379)   Receiving objects:  42% (160/379)   Receiving objects:  43% (163/379)   Receiving objects:  44% (167/379)   Receiving objects:  45% (171/379)   Receiving objects:  46% (175/379)   Receiving objects:  47% (179/379)   Receiving objects:  48% (182/379)   Receiving objects:  49% (186/379)   Receiving objects:  50% (190/379)   Receiving objects:  51% (194/379)   Receiving objects:  52% (198/379)   Receiving objects:  53% (201/379)   Receiving objects:  54% (205/379)   Receiving objects:  55% (209/379)   Receiving objects:  56% (213/379)   Receiving objects:  57% (217/379)   Receiving objects:  58% (220/379)   Receiving objects:  59% (224/379)   Receiving objects:  60% (228/379)   Receiving objects:  61% (232/379)   Receiving objects:  62% (235/379)   Receiving objects:  63% (239/379)   Receiving objects:  64% (243/379)   Receiving objects:  65% (247/379)   Receiving objects:  66% (251/379)   Receiving objects:  67% (254/379)   Receiving objects:  68% (258/379)   Receiving objects:  69% (262/379)   Receiving objects:  70% (266/379)   Receiving objects:  71% (270/379)   Receiving objects:  72% (273/379)   Receiving objects:  73% (277/379)   Receiving objects:  74% (281/379)   Receiving objects:  75% (285/379)   Receiving objects:  76% (289/379)   Receiving objects:  77% (292/379)   Receiving objects:  78% (296/379)   Receiving objects:  79% (300/379)   Receiving objects:  80% (304/379)   Receiving objects:  81% (307/379)   Receiving objects:  82% (311/379)   Receiving objects:  83% (315/379)   Receiving objects:  84% (319/379)   Receiving objects:  85% (323/379)   Receiving objects:  86% (326/379)   Receiving objects:  87% (330/379)   Receiving objects:  88% (334/379)   Receiving objects:  89% (338/379)   Receiving objects:  90% (342/379)   Receiving objects:  91% (345/379)   Receiving objects:  92% (349/379)   Receiving objects:  93% (353/379)   Receiving objects:  94% (357/379)   Receiving objects:  95% (361/379)   Receiving objects:  96% (364/379)   Receiving objects:  97% (368/379)   Receiving objects:  98% (372/379)   Receiving objects:  99% (376/379)   Receiving objects: 100% (379/379)   Receiving objects: 100% (379/379), 66.02 KiB | 0 bytes/s, done.Resolving deltas:   0% (0/149)   
+     [exec] Resolving deltas:   4% (6/149)   Resolving deltas:   6% (10/149)   Resolving deltas:   8% (13/149)   Resolving deltas:   9% (14/149)   Resolving deltas:  10% (15/149)   Resolving deltas:  11% (17/149)   Resolving deltas:  12% (18/149)   Resolving deltas:  13% (20/149)   Resolving deltas:  14% (21/149)   Resolving deltas:  28% (43/149)   Resolving deltas:  38% (57/149)   Resolving deltas:  40% (61/149)   Resolving deltas:  42% (63/149)   Resolving deltas:  43% (65/149)   Resolving deltas:  44% (67/149)   Resolving deltas:  46% (69/149)   Resolving deltas:  48% (72/149)   Resolving deltas:  51% (76/149)   Resolving deltas:  52% (78/149)   Resolving deltas:  57% (85/149)   Resolving deltas:  59% (88/149)   Resolving deltas:  61% (91/149)   Resolving deltas:  63% (94/149)   Resolving deltas:  66% (99/149)   Resolving deltas:  67% (101/149)   Resolving deltas:  69% (104/149)   Resolving deltas:  71% (107/149)   Resolving deltas:  73% (110/149)   Resolving deltas:  77% (116/149)   Resolving deltas:  81% (122/149)   Resolving deltas:  83% (124/149)   Resolving deltas:  85% (127/149)   Resolving deltas:  88% (132/149)   Resolving deltas:  91% (136/149)   Resolving deltas:  92% (138/149)   Resolving deltas:  93% (140/149)   Resolving deltas:  95% (142/149)   Resolving deltas:  96% (144/149)   Resolving deltas:  97% (145/149)   Resolving deltas:  98% (147/149)   Resolving deltas: 100% (149/149)   Resolving deltas: 100% (149/149), completed with 36 local objects.From github-dev.liferay.com:liferay/com-liferay-adaptive-media
+     [exec]    2897499..b75ad7d  cache-liferay-b75ad7d7f72d7859d3c8c8934f0200740fc3a73c-liferay-b75ad7d7f72d7859d3c8c8934f0200740fc3a73c -> master
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/com-liferay-adaptive-media.git cache-liferay-b75ad7d7f72d7859d3c8c8934f0200740fc3a73c-liferay-b75ad7d7f72d7859d3c8c8934f0200740fc3a73c:master" complete.
+     [exec] HEAD is now at b75ad7d LPS-73070 Generates package-lock file (auto-generated)
+     [exec] /opt/dev/projects/github/liferay-jenkins-ee/commands/git_custom_fetch.sh -f git@github-dev.liferay.com:liferay/com-liferay-adaptive-media.git cache-liferay-b75ad7d7f72d7859d3c8c8934f0200740fc3a73c-liferay-b75ad7d7f72d7859d3c8c8934f0200740fc3a73c:master-temp-20170829123249342
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/com-liferay-adaptive-media.git cache-liferay-b75ad7d7f72d7859d3c8c8934f0200740fc3a73c-liferay-b75ad7d7f72d7859d3c8c8934f0200740fc3a73c:master-temp-20170829123249342".
+     [exec] Warning: Permanently added 'github-dev.liferay.com,10.0.0.23' (RSA) to the list of known hosts.
+     [exec] From github-dev.liferay.com:liferay/com-liferay-adaptive-media
+     [exec]  * [new branch]      cache-liferay-b75ad7d7f72d7859d3c8c8934f0200740fc3a73c-liferay-b75ad7d7f72d7859d3c8c8934f0200740fc3a73c -> master-temp-20170829123249342
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/com-liferay-adaptive-media.git cache-liferay-b75ad7d7f72d7859d3c8c8934f0200740fc3a73c-liferay-b75ad7d7f72d7859d3c8c8934f0200740fc3a73c:master-temp-20170829123249342" complete.
+     [exec] Deleted branch temp-1504012704059982372 (was 2897499).
+     [exec] commit b75ad7d7f72d7859d3c8c8934f0200740fc3a73c
+     [exec] Author: Chema Balsas <jose.balsas@liferay.com>
+     [exec] Date:   Tue Aug 29 13:33:51 2017 +0200
+     [exec] 
+     [exec]     LPS-73070 Generates package-lock file (auto-generated)
+     [exec] On branch master-temp-20170829123249342
+     [exec] nothing to commit, working tree clean
+     [exec] Switched to branch 'master-temp-20170829123249342'
+     [exec] Switched to branch 'master-temp-20170829123249342'
+     [copy] Copying 462 files to /opt/dev/projects/github/liferay-portal/modules/apps/adaptive-media
+  [typedef] Could not load definitions from resource org/apache/maven/artifact/ant/antlib.xml. It could not be found.
+  [taskdef] Could not load definitions from resource org/jacoco/ant/antlib.xml. It could not be found.
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+clean-version-override:
+ [sync-dir] Synchronizing /opt/dev/projects/github/liferay-binaries-cache-2017/.gradle/caches/modules-2/files-2.1 into /opt/dev/projects/github/liferay-portal/.gradle/caches/modules-2/files-2.1
+ [sync-dir] 563 files synchronized in 296ms
+     [exec] Downloading file:/opt/dev/projects/github/liferay-portal/gradle/wrapper/../../tools/gradle-3.3.LIFERAY-PATCHED-1-bin.zip
+     [exec] ..................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+     [exec] Unzipping /opt/dev/projects/github/liferay-portal/.gradle/wrapper/dists/gradle-3.3.LIFERAY-PATCHED-1-bin/cogu4z91jcnfpn306tlfcz8oj/gradle-3.3.LIFERAY-PATCHED-1-bin.zip to /opt/dev/projects/github/liferay-portal/.gradle/wrapper/dists/gradle-3.3.LIFERAY-PATCHED-1-bin/cogu4z91jcnfpn306tlfcz8oj
+     [exec] Set executable permissions for: /opt/dev/projects/github/liferay-portal/.gradle/wrapper/dists/gradle-3.3.LIFERAY-PATCHED-1-bin/cogu4z91jcnfpn306tlfcz8oj/gradle-3.3/bin/gradle
+     [exec] Using proxy squid.lax.liferay.com:3128.
+     [exec] Download http://repository.liferay.com/nexus/content/groups/public/com/liferay/com.liferay.gradle.plugins.defaults/5.0.28/com.liferay.gradle.plugins.defaults-5.0.28.pom
+     [exec] Download http://repository.liferay.com/nexus/content/groups/public/com/liferay/com.liferay.gradle.plugins/3.4.42/com.liferay.gradle.plugins-3.4.42.pom
+     [exec] Download http://repository.liferay.com/nexus/content/groups/public/com/liferay/com.liferay.gradle.plugins.jasper.jspc/2.0.2/com.liferay.gradle.plugins.jasper.jspc-2.0.2.pom
+     [exec] Download http://repository.liferay.com/nexus/content/groups/public/com/liferay/com.liferay.gradle.plugins.source.formatter/2.1.3/com.liferay.gradle.plugins.source.formatter-2.1.3.pom
+     [exec] Download http://repository.liferay.com/nexus/content/groups/public/com/liferay/com.liferay.gradle.plugins.defaults/5.0.28/com.liferay.gradle.plugins.defaults-5.0.28.jar
+     [exec] Download http://repository.liferay.com/nexus/content/groups/public/com/liferay/com.liferay.gradle.plugins/3.4.42/com.liferay.gradle.plugins-3.4.42.jar
+     [exec] Download http://repository.liferay.com/nexus/content/groups/public/com/liferay/com.liferay.gradle.plugins.jasper.jspc/2.0.2/com.liferay.gradle.plugins.jasper.jspc-2.0.2.jar
+     [exec] Download http://repository.liferay.com/nexus/content/groups/public/com/liferay/com.liferay.gradle.plugins.source.formatter/2.1.3/com.liferay.gradle.plugins.source.formatter-2.1.3.jar
+     [exec] Configuration on demand is an incubating feature.
+     [exec] :cleanVersionOverride
+     [exec] 
+     [exec] BUILD SUCCESSFUL
+     [exec] 
+     [exec] Total time: 4.501 secs
+     [exec] Gradle build finished at 2017-08-29 13:18:31.439.
+     [exec] 
+
+prepare-binaries-cache-repository:
+     [echo] curl --output /opt/dev/projects/github/liferay-jenkins-ee/json.data --silent --write-out %{http_code} http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest%28master%29/2232/test-portal-acceptance-pullrequest%28master%29/git.binaries.cache.properties
+     [exec] 200
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/commands/20170829131831648
+[beanshell] 
+[beanshell] ##
+[beanshell] ## http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest%28master%29/2232/test-portal-acceptance-pullrequest%28master%29/git.binaries.cache.properties
+[beanshell] ##
+[beanshell] 
+[beanshell] github.upstream.branch.name=master
+[beanshell] github.sender.branch.sha=bf703dd17e7899cba5b7481ae0fb938fbb768dfa
+[beanshell] github.receiver.username=liferay
+[beanshell] github.sender.branch.name=master
+[beanshell] github.pull.request.number=0
+[beanshell] github.upstream.branch.sha=bf703dd17e7899cba5b7481ae0fb938fbb768dfa
+[beanshell] github.sender.username=liferay
+[beanshell] local.git.branch.cached=true
+[beanshell] github.origin.name=liferay
+[beanshell] 
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/json.data
+     [exec] HEAD is now at bf703dd Commit cache
+     [exec] Switched to a new branch 'temp-1504012711783335777'
+     [exec] /opt/dev/projects/github/liferay-jenkins-ee/commands/git_custom_fetch.sh -f git@github-dev.liferay.com:liferay/liferay-binaries-cache-2017.git cache-liferay-bf703dd17e7899cba5b7481ae0fb938fbb768dfa-liferay-bf703dd17e7899cba5b7481ae0fb938fbb768dfa:master
+     [exec] Switched to a new branch 'temp-1504012711783335777'
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-binaries-cache-2017.git cache-liferay-bf703dd17e7899cba5b7481ae0fb938fbb768dfa-liferay-bf703dd17e7899cba5b7481ae0fb938fbb768dfa:master".
+     [exec] Warning: Permanently added 'github-dev.liferay.com,10.0.0.14' (RSA) to the list of known hosts.
+     [exec] From github-dev.liferay.com:liferay/liferay-binaries-cache-2017
+     [exec]  = [up to date]      cache-liferay-bf703dd17e7899cba5b7481ae0fb938fbb768dfa-liferay-bf703dd17e7899cba5b7481ae0fb938fbb768dfa -> master
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-binaries-cache-2017.git cache-liferay-bf703dd17e7899cba5b7481ae0fb938fbb768dfa-liferay-bf703dd17e7899cba5b7481ae0fb938fbb768dfa:master" complete.
+     [exec] Switched to branch 'master'
+     [exec] Switched to branch 'master'
+     [exec] HEAD is now at bf703dd Commit cache
+     [exec] /opt/dev/projects/github/liferay-jenkins-ee/commands/git_custom_fetch.sh -f git@github-dev.liferay.com:liferay/liferay-binaries-cache-2017.git cache-liferay-bf703dd17e7899cba5b7481ae0fb938fbb768dfa-liferay-bf703dd17e7899cba5b7481ae0fb938fbb768dfa:master-temp-20170829123249342
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-binaries-cache-2017.git cache-liferay-bf703dd17e7899cba5b7481ae0fb938fbb768dfa-liferay-bf703dd17e7899cba5b7481ae0fb938fbb768dfa:master-temp-20170829123249342".
+     [exec] Warning: Permanently added 'github-dev.liferay.com,10.0.0.18' (RSA) to the list of known hosts.
+     [exec] From github-dev.liferay.com:liferay/liferay-binaries-cache-2017
+     [exec]  * [new branch]      cache-liferay-bf703dd17e7899cba5b7481ae0fb938fbb768dfa-liferay-bf703dd17e7899cba5b7481ae0fb938fbb768dfa -> master-temp-20170829123249342
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-binaries-cache-2017.git cache-liferay-bf703dd17e7899cba5b7481ae0fb938fbb768dfa-liferay-bf703dd17e7899cba5b7481ae0fb938fbb768dfa:master-temp-20170829123249342" complete.
+     [exec] Switched to branch 'master-temp-20170829123249342'
+     [exec] Switched to branch 'master-temp-20170829123249342'
+     [exec] Deleted branch temp-1504012711783335777 (was bf703dd).
+     [exec] commit bf703dd17e7899cba5b7481ae0fb938fbb768dfa
+     [exec] Author: Andrea Di Giorgi <adigiorgi@outlook.com>
+     [exec] Date:   Fri Aug 25 14:24:31 2017 -0700
+     [exec] 
+     [exec]     Commit cache
+     [exec] On branch master-temp-20170829123249342
+     [exec] nothing to commit, working tree clean
+
+prepare-blade-samples-repository:
+     [echo] curl --output /opt/dev/projects/github/liferay-jenkins-ee/json.data --silent --write-out %{http_code} http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest%28master%29/2232/test-portal-acceptance-pullrequest%28master%29/git.blade.samples.properties
+     [exec] 200
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/commands/20170829131834678
+[beanshell] 
+[beanshell] ##
+[beanshell] ## http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest%28master%29/2232/test-portal-acceptance-pullrequest%28master%29/git.blade.samples.properties
+[beanshell] ##
+[beanshell] 
+[beanshell] github.upstream.branch.name=2.x
+[beanshell] github.sender.branch.sha=0d88e7514d0e79911216927cd6670797113703db
+[beanshell] github.receiver.username=liferay
+[beanshell] github.sender.branch.name=2.x
+[beanshell] github.pull.request.number=0
+[beanshell] github.upstream.branch.sha=0d88e7514d0e79911216927cd6670797113703db
+[beanshell] github.sender.username=liferay
+[beanshell] local.git.branch.cached=true
+[beanshell] github.origin.name=liferay
+[beanshell] 
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/json.data
+     [exec] HEAD is now at 686ecf1 Merge pull request #167 from gamerson/pr-275
+     [exec] Switched to a new branch 'temp-1504012714717376733'
+     [exec] /opt/dev/projects/github/liferay-jenkins-ee/commands/git_custom_fetch.sh -f git@github-dev.liferay.com:liferay/liferay-blade-samples.git cache-liferay-0d88e7514d0e79911216927cd6670797113703db-liferay-0d88e7514d0e79911216927cd6670797113703db:2.x
+     [exec] Switched to a new branch 'temp-1504012714717376733'
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-blade-samples.git cache-liferay-0d88e7514d0e79911216927cd6670797113703db-liferay-0d88e7514d0e79911216927cd6670797113703db:2.x".
+     [exec] Warning: Permanently added 'github-dev.liferay.com,10.0.0.24' (RSA) to the list of known hosts.
+     [exec] From github-dev.liferay.com:liferay/liferay-blade-samples
+     [exec]  = [up to date]      cache-liferay-0d88e7514d0e79911216927cd6670797113703db-liferay-0d88e7514d0e79911216927cd6670797113703db -> 2.x
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-blade-samples.git cache-liferay-0d88e7514d0e79911216927cd6670797113703db-liferay-0d88e7514d0e79911216927cd6670797113703db:2.x" complete.
+     [exec] Switched to branch '2.x'
+     [exec] HEAD is now at 0d88e75 simplify CI scripts
+     [exec] Switched to branch '2.x'
+     [exec] /opt/dev/projects/github/liferay-jenkins-ee/commands/git_custom_fetch.sh -f git@github-dev.liferay.com:liferay/liferay-blade-samples.git cache-liferay-0d88e7514d0e79911216927cd6670797113703db-liferay-0d88e7514d0e79911216927cd6670797113703db:2.x-temp-20170829123249342
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-blade-samples.git cache-liferay-0d88e7514d0e79911216927cd6670797113703db-liferay-0d88e7514d0e79911216927cd6670797113703db:2.x-temp-20170829123249342".
+     [exec] Warning: Permanently added 'github-dev.liferay.com,10.0.0.23' (RSA) to the list of known hosts.
+     [exec] Switched to branch '2.x-temp-20170829123249342'
+     [exec] From github-dev.liferay.com:liferay/liferay-blade-samples
+     [exec] Switched to branch '2.x-temp-20170829123249342' * [new branch]      cache-liferay-0d88e7514d0e79911216927cd6670797113703db-liferay-0d88e7514d0e79911216927cd6670797113703db -> 2.x-temp-20170829123249342
+     [exec] 
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/liferay-blade-samples.git cache-liferay-0d88e7514d0e79911216927cd6670797113703db-liferay-0d88e7514d0e79911216927cd6670797113703db:2.x-temp-20170829123249342" complete.
+     [exec] Deleted branch temp-1504012714717376733 (was 686ecf1).
+     [exec] commit 0d88e7514d0e79911216927cd6670797113703db
+     [exec] Author: Lawrence Lee <lawrence.lee@liferay.com>
+     [exec] Date:   Thu Jul 13 20:59:51 2017 -0500
+     [exec] 
+     [exec]     simplify CI scripts
+     [exec] On branch 2.x-temp-20170829123249342
+     [exec] nothing to commit, working tree clean
+
+prepare-portals-pluto-repository:
+     [echo] curl --output /opt/dev/projects/github/liferay-jenkins-ee/json.data --silent --write-out %{http_code} http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest%28master%29/2232/test-portal-acceptance-pullrequest%28master%29/git.portals.pluto.properties
+     [exec] 200
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/commands/20170829131837006
+[beanshell] 
+[beanshell] ##
+[beanshell] ## http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest%28master%29/2232/test-portal-acceptance-pullrequest%28master%29/git.portals.pluto.properties
+[beanshell] ##
+[beanshell] 
+[beanshell] github.upstream.branch.name=tck3
+[beanshell] github.sender.branch.sha=4ce8ff1f653815e8911d85d643fcd18118039915
+[beanshell] github.receiver.username=liferay
+[beanshell] github.sender.branch.name=tck3
+[beanshell] github.pull.request.number=0
+[beanshell] github.upstream.branch.sha=4ce8ff1f653815e8911d85d643fcd18118039915
+[beanshell] github.sender.username=liferay
+[beanshell] local.git.branch.cached=true
+[beanshell] github.origin.name=liferay
+[beanshell] 
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/json.data
+     [exec] HEAD is now at 8cb2fa5 PLUTO-663 Migrate Portlet 3.0 TCK from java.util.logging to SLF4J (code review)
+     [exec] /opt/dev/projects/github/liferay-jenkins-ee/commands/git_custom_fetch.sh -f git@github-dev.liferay.com:liferay/portals-pluto.git cache-liferay-4ce8ff1f653815e8911d85d643fcd18118039915-liferay-4ce8ff1f653815e8911d85d643fcd18118039915:tck3
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/portals-pluto.git cache-liferay-4ce8ff1f653815e8911d85d643fcd18118039915-liferay-4ce8ff1f653815e8911d85d643fcd18118039915:tck3".
+     [exec] Switched to a new branch 'temp-1504012717071813402'
+     [exec] Switched to a new branch 'temp-1504012717071813402'
+     [exec] Warning: Permanently added 'github-dev.liferay.com,10.0.0.24' (RSA) to the list of known hosts.
+     [exec] From github-dev.liferay.com:liferay/portals-pluto
+     [exec]  = [up to date]      cache-liferay-4ce8ff1f653815e8911d85d643fcd18118039915-liferay-4ce8ff1f653815e8911d85d643fcd18118039915 -> tck3
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/portals-pluto.git cache-liferay-4ce8ff1f653815e8911d85d643fcd18118039915-liferay-4ce8ff1f653815e8911d85d643fcd18118039915:tck3" complete.
+     [exec] HEAD is now at 4ce8ff1 PLUTO-658 TCK: Contesting V2ADDLENVIRONMENTTESTS_SPEC2_10_CONTEXT_GETREALPATH
+     [exec] /opt/dev/projects/github/liferay-jenkins-ee/commands/git_custom_fetch.sh -f git@github-dev.liferay.com:liferay/portals-pluto.git cache-liferay-4ce8ff1f653815e8911d85d643fcd18118039915-liferay-4ce8ff1f653815e8911d85d643fcd18118039915:tck3-temp-20170829123249342
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/portals-pluto.git cache-liferay-4ce8ff1f653815e8911d85d643fcd18118039915-liferay-4ce8ff1f653815e8911d85d643fcd18118039915:tck3-temp-20170829123249342".
+     [exec] Switched to branch 'tck3'
+     [exec] Switched to branch 'tck3'
+     [exec] Warning: Permanently added 'github-dev.liferay.com,10.0.0.16' (RSA) to the list of known hosts.
+     [exec] From github-dev.liferay.com:liferay/portals-pluto
+     [exec]  * [new branch]      cache-liferay-4ce8ff1f653815e8911d85d643fcd18118039915-liferay-4ce8ff1f653815e8911d85d643fcd18118039915 -> tck3-temp-20170829123249342
+     [exec] Executing "git fetch --progress -v -f git@github-dev.liferay.com:liferay/portals-pluto.git cache-liferay-4ce8ff1f653815e8911d85d643fcd18118039915-liferay-4ce8ff1f653815e8911d85d643fcd18118039915:tck3-temp-20170829123249342" complete.
+     [exec] Deleted branch temp-1504012717071813402 (was 8cb2fa5).
+     [exec] commit 4ce8ff1f653815e8911d85d643fcd18118039915
+     [exec] Author: vsingleton <vsingleton@gmail.com>
+     [exec] Date:   Fri May 5 05:34:05 2017 -0400
+     [exec] 
+     [exec]     PLUTO-658 TCK: Contesting V2ADDLENVIRONMENTTESTS_SPEC2_10_CONTEXT_GETREALPATH
+     [exec] On branch tck3-temp-20170829123249342
+     [exec] nothing to commit, working tree clean
+     [exec] Switched to branch 'tck3-temp-20170829123249342'
+     [exec] Switched to branch 'tck3-temp-20170829123249342'
+
+set-test-properties:
+     [echo] 
+     [echo] ##
+     [echo] ## /opt/dev/projects/github/liferay-portal/test.cloud-10-0-111-250.lax.liferay.com.properties
+     [echo] ##
+     [echo] 
+     [echo] 
+     [echo] 			
+     [echo] 				blade.samples.dir=/opt/dev/projects/github/liferay-blade-samples
+     [echo] browser.firefox.bin.file[38.0]=/opt/firefox/firefox
+     [echo] browser.firefox.bin.file[45.0]=/opt/firefox-45.0esr/firefox
+     [echo] database.db2.password=I7Oen70215bieRR
+     [echo] database.postgresql.password=liferay123
+     [echo] database.sybase.password=liferay123
+     [echo] maven.home=/opt/java/maven
+     [echo] portals.pluto.dir=/opt/dev/projects/github/portals-pluto
+     [echo] tck.home=/opt/dev/projects/github/portals-pluto/portlet-tck_3.0
+     [echo] test.build.unit=true
+     [echo] test.jdbc.drivers.url=http://files.liferay.com/private/jdbc
+     [echo] 			
+     [echo] 		
+     [echo] 					
+     [echo] 						test.batch.run.type=sequential
+     [echo] 					
+     [echo] 				
+     [echo] email.address.1=[REDACTED]
+     [echo] email.address.2=[REDACTED]
+     [echo] email.address.3=[REDACTED]
+     [echo] email.address.4=[REDACTED]
+     [echo] email.address.5=[REDACTED]
+     [echo] email.password.1=[REDACTED]
+     [echo] email.password.2=[REDACTED]
+     [echo] email.password.3=[REDACTED]
+     [echo] email.password.4=[REDACTED]
+     [echo] email.password.5=test
+     [exec] Warning: Permanently added 'cloud-10-0-110-242,10.0.110.242' (RSA) to the list of known hosts.
+     [exec] Warning: Permanently added 'cloud-10-0-110-242,10.0.110.242' (RSA) to the list of known hosts.
+     [exec] liferay-portal-bundle-tomcat.zip
+     [exec] liferay-portal-source.zip
+     [exec] 
+     [exec] sent 58 bytes  received 2,449,116,038 bytes  8,430,692.24 bytes/sec
+     [exec] total size is 2,448,518,080  speedup is 1.00
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/commands/20170829131839395
+  [typedef] Could not load definitions from resource org/apache/maven/artifact/ant/antlib.xml. It could not be found.
+  [taskdef] Could not load definitions from resource org/jacoco/ant/antlib.xml. It could not be found.
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+service-builder-jdk8:
+  [typedef] Could not load definitions from resource org/apache/maven/artifact/ant/antlib.xml. It could not be found.
+  [taskdef] Could not load definitions from resource org/jacoco/ant/antlib.xml. It could not be found.
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+clean-up-java-processes:
+   [delete] Deleting: /opt/dev/projects/github/liferay-portal/clean_up_java_processes.sh
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+install-portal-snapshots:
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+build-common-java.init-compile:
+
+init-compile:
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-portal/portal-impl/classes/com/liferay/portal/definitions
+     [copy] Copying 34 files to /opt/dev/projects/github/liferay-portal/portal-impl/classes/com/liferay/portal/tools/sql/dependencies
+     [copy] Copying 58 files to /opt/dev/projects/github/liferay-portal/portal-impl/classes
+
+build-common-java.compile:
+
+compile:
+     [echo] August 29, 2017 at 01:23 PM
+
+build-common-java.init-jar:
+
+init-jar:
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+init-compile:
+
+compile:
+
+init-jar:
+
+build-common-java.jar:
+
+jar:
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+init-compile:
+
+compile:
+
+init-jar:
+
+build-common-java.jar:
+
+jar:
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+init-compile:
+
+build-common-java.compile:
+
+compile:
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-portal/util-taglib/classes/META-INF
+
+build-common-java.init-jar:
+
+init-jar:
+
+build-common-java.jar:
+
+jar:
+     [copy] Copying 6 files to /opt/dev/projects/github/liferay-portal/portal-impl/classes/com/liferay/portal/deploy/dependencies
+     [copy] Copying 9 files to /opt/dev/projects/github/liferay-portal/portal-web/docroot/WEB-INF/tld
+
+jar:
+
+jar-sources:
+      [jar] Building jar: /opt/dev/projects/github/liferay-portal/portal-impl/portal-impl-sources.jar
+
+install-portal-snapshot:
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-portal/portal-impl
+   [delete] Deleting directory /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.portal.impl
+[artifact:install] [INFO] Installing /opt/dev/projects/github/liferay-portal/portal-impl/portal-impl.jar to /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.portal.impl/2.21.0-SNAPSHOT/com.liferay.portal.impl-2.21.0-SNAPSHOT.jar
+[artifact:install] [INFO] Installing /opt/dev/projects/github/liferay-portal/portal-impl/portal-impl-sources.jar to /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.portal.impl/2.21.0-SNAPSHOT/com.liferay.portal.impl-2.21.0-SNAPSHOT-sources.jar
+   [delete] Deleting: /opt/dev/projects/github/liferay-portal/portal-impl/pom.xml
+[propertyfile] Updating property file: /opt/dev/projects/github/liferay-portal/.gradle/gradle.properties
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+init-compile:
+
+compile:
+
+init-jar:
+
+jar:
+
+jar-sources:
+      [jar] Building jar: /opt/dev/projects/github/liferay-portal/portal-kernel/portal-kernel-sources.jar
+
+install-portal-snapshot:
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-portal/portal-kernel
+   [delete] Deleting directory /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.portal.kernel
+[artifact:install] [INFO] Installing /opt/dev/projects/github/liferay-portal/portal-kernel/portal-kernel.jar to /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.portal.kernel/2.45.0-SNAPSHOT/com.liferay.portal.kernel-2.45.0-SNAPSHOT.jar
+[artifact:install] [INFO] Installing /opt/dev/projects/github/liferay-portal/portal-kernel/portal-kernel-sources.jar to /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.portal.kernel/2.45.0-SNAPSHOT/com.liferay.portal.kernel-2.45.0-SNAPSHOT-sources.jar
+   [delete] Deleting: /opt/dev/projects/github/liferay-portal/portal-kernel/pom.xml
+[propertyfile] Updating property file: /opt/dev/projects/github/liferay-portal/.gradle/gradle.properties
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+init-compile:
+
+compile:
+
+init-jar:
+
+jar:
+
+jar-sources:
+      [jar] Building jar: /opt/dev/projects/github/liferay-portal/portal-test/portal-test-sources.jar
+
+install-portal-snapshot:
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-portal/portal-test
+   [delete] Deleting directory /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.portal.test
+[artifact:install] [INFO] Installing /opt/dev/projects/github/liferay-portal/portal-test/portal-test.jar to /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.portal.test/3.1.0-SNAPSHOT/com.liferay.portal.test-3.1.0-SNAPSHOT.jar
+[artifact:install] [INFO] Installing /opt/dev/projects/github/liferay-portal/portal-test/portal-test-sources.jar to /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.portal.test/3.1.0-SNAPSHOT/com.liferay.portal.test-3.1.0-SNAPSHOT-sources.jar
+   [delete] Deleting: /opt/dev/projects/github/liferay-portal/portal-test/pom.xml
+[propertyfile] Updating property file: /opt/dev/projects/github/liferay-portal/.gradle/gradle.properties
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+init-compile:
+
+compile:
+
+init-jar:
+
+jar:
+
+jar-sources:
+      [jar] Building jar: /opt/dev/projects/github/liferay-portal/portal-test-integration/portal-test-integration-sources.jar
+
+install-portal-snapshot:
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-portal/portal-test-integration
+   [delete] Deleting directory /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.portal.test.integration
+[artifact:install] [INFO] Installing /opt/dev/projects/github/liferay-portal/portal-test-integration/portal-test-integration.jar to /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.portal.test.integration/3.2.0-SNAPSHOT/com.liferay.portal.test.integration-3.2.0-SNAPSHOT.jar
+[artifact:install] [INFO] Installing /opt/dev/projects/github/liferay-portal/portal-test-integration/portal-test-integration-sources.jar to /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.portal.test.integration/3.2.0-SNAPSHOT/com.liferay.portal.test.integration-3.2.0-SNAPSHOT-sources.jar
+   [delete] Deleting: /opt/dev/projects/github/liferay-portal/portal-test-integration/pom.xml
+[propertyfile] Updating property file: /opt/dev/projects/github/liferay-portal/.gradle/gradle.properties
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+build-dtd:
+
+war:
+      [war] Building war: /opt/dev/projects/github/liferay-portal/portal-web/portal-web.war
+
+install-portal-snapshot:
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-portal/portal-web
+   [delete] Deleting directory /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.portal.web
+[artifact:install] [INFO] Installing /opt/dev/projects/github/liferay-portal/portal-web/portal-web.war to /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.portal.web/1.0.0-SNAPSHOT/com.liferay.portal.web-1.0.0-SNAPSHOT.war
+   [delete] Deleting: /opt/dev/projects/github/liferay-portal/portal-web/pom.xml
+[propertyfile] Updating property file: /opt/dev/projects/github/liferay-portal/.gradle/gradle.properties
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+init-compile:
+
+compile:
+
+init-jar:
+
+build-common-java.jar:
+
+jar:
+
+jar-sources:
+      [jar] Building jar: /opt/dev/projects/github/liferay-portal/util-bridges/util-bridges-sources.jar
+
+install-portal-snapshot:
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-portal/util-bridges
+   [delete] Deleting directory /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.util.bridges
+[artifact:install] [INFO] Installing /opt/dev/projects/github/liferay-portal/util-bridges/util-bridges.jar to /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.util.bridges/2.0.3-SNAPSHOT/com.liferay.util.bridges-2.0.3-SNAPSHOT.jar
+[artifact:install] [INFO] Installing /opt/dev/projects/github/liferay-portal/util-bridges/util-bridges-sources.jar to /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.util.bridges/2.0.3-SNAPSHOT/com.liferay.util.bridges-2.0.3-SNAPSHOT-sources.jar
+   [delete] Deleting: /opt/dev/projects/github/liferay-portal/util-bridges/pom.xml
+[propertyfile] Updating property file: /opt/dev/projects/github/liferay-portal/.gradle/gradle.properties
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+init-compile:
+
+compile:
+
+init-jar:
+
+build-common-java.jar:
+
+jar:
+
+jar-sources:
+      [jar] Building jar: /opt/dev/projects/github/liferay-portal/util-java/util-java-sources.jar
+
+install-portal-snapshot:
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-portal/util-java
+   [delete] Deleting directory /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.util.java
+[artifact:install] [INFO] Installing /opt/dev/projects/github/liferay-portal/util-java/util-java.jar to /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.util.java/2.3.0-SNAPSHOT/com.liferay.util.java-2.3.0-SNAPSHOT.jar
+[artifact:install] [INFO] Installing /opt/dev/projects/github/liferay-portal/util-java/util-java-sources.jar to /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.util.java/2.3.0-SNAPSHOT/com.liferay.util.java-2.3.0-SNAPSHOT-sources.jar
+   [delete] Deleting: /opt/dev/projects/github/liferay-portal/util-java/pom.xml
+[propertyfile] Updating property file: /opt/dev/projects/github/liferay-portal/.gradle/gradle.properties
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+init-compile:
+
+compile:
+
+init-jar:
+
+build-common-java.jar:
+
+jar:
+
+jar-sources:
+
+install-portal-snapshot:
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-portal/util-slf4j
+   [delete] Deleting directory /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.util.slf4j
+[artifact:install] [INFO] Installing /opt/dev/projects/github/liferay-portal/util-slf4j/util-slf4j.jar to /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.util.slf4j/1.0.2-SNAPSHOT/com.liferay.util.slf4j-1.0.2-SNAPSHOT.jar
+[artifact:install] [INFO] Installing /opt/dev/projects/github/liferay-portal/util-slf4j/util-slf4j-sources.jar to /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.util.slf4j/1.0.2-SNAPSHOT/com.liferay.util.slf4j-1.0.2-SNAPSHOT-sources.jar
+   [delete] Deleting: /opt/dev/projects/github/liferay-portal/util-slf4j/pom.xml
+[propertyfile] Updating property file: /opt/dev/projects/github/liferay-portal/.gradle/gradle.properties
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+init-compile:
+
+build-common-java.compile:
+
+compile:
+
+build-common-java.init-jar:
+
+init-jar:
+
+build-common-java.jar:
+
+jar:
+     [copy] Copying 5 files to /opt/dev/projects/github/liferay-portal/portal-impl/classes/com/liferay/portal/deploy/dependencies
+     [copy] Copying 9 files to /opt/dev/projects/github/liferay-portal/portal-web/docroot/WEB-INF/tld
+
+jar-sources:
+      [jar] Building jar: /opt/dev/projects/github/liferay-portal/util-taglib/util-taglib-sources.jar
+
+install-portal-snapshot:
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-portal/util-taglib
+   [delete] Deleting directory /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.util.taglib
+[artifact:install] [INFO] Installing /opt/dev/projects/github/liferay-portal/util-taglib/util-taglib.jar to /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.util.taglib/2.9.0-SNAPSHOT/com.liferay.util.taglib-2.9.0-SNAPSHOT.jar
+[artifact:install] [INFO] Installing /opt/dev/projects/github/liferay-portal/util-taglib/util-taglib-sources.jar to /opt/dev/projects/github/liferay-portal/.m2/com/liferay/portal/com.liferay.util.taglib/2.9.0-SNAPSHOT/com.liferay.util.taglib-2.9.0-SNAPSHOT-sources.jar
+   [delete] Deleting: /opt/dev/projects/github/liferay-portal/util-taglib/pom.xml
+[propertyfile] Updating property file: /opt/dev/projects/github/liferay-portal/.gradle/gradle.properties
+     [echo] ANT_OPTS=-Dhttp.nonProxyHosts="cloud*|files.liferay.org.es|it.liferay.com|localhost|mirrors-no-cache.lax.liferay.com|release*|test*" -Dhttp.proxyHost=squid.lax.liferay.com -Dhttp.proxyPort=3128 -server -verbose:gc -Xloggc:/tmp/ant-gc.log -Xms1024m -Xmx2048m -Xss2m -Xverify:none -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -XX:+PrintGCCause -XX:+PrintGCDetails -XX:+UseParallelOldGC -XX:HeapDumpPath=/tmp/ant-oom-heap-dump.bin -XX:MaxNewSize=512m -XX:MaxMetaspaceSize=512m -XX:MaxTenuringThreshold=0 -XX:NewSize=256m -XX:MetaspaceSize=100m -XX:SurvivorRatio=65536 -XX:TargetSurvivorRatio=0
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+clean-up-db2-processes:
+     [exec] SQL1032N  No start database manager command was issued.  SQLSTATE=57019
+   [delete] Deleting: /opt/dev/projects/github/liferay-portal/clean_up_db2_processes.sh
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+clean-up-java-processes:
+   [delete] Deleting: /opt/dev/projects/github/liferay-portal/clean_up_java_processes.sh
+ [sync-dir] Synchronizing /opt/dev/projects/github/liferay-binaries-cache-2017/.gradle/caches/modules-2/files-2.1 into /opt/dev/projects/github/liferay-portal/.gradle/caches/modules-2/files-2.1
+ [sync-dir] 0 files synchronized in 172ms
+     [exec] Using proxy squid.lax.liferay.com:3128.
+     [exec] Configuration on demand is an incubating feature.
+     [exec] :util:portal-tools-service-builder:cleanBuildCSS UP-TO-DATE
+     [exec] :util:portal-tools-service-builder:cleanCompileJSP UP-TO-DATE
+     [exec] :util:portal-tools-service-builder:cleanCompileJava UP-TO-DATE
+     [exec] :util:portal-tools-service-builder:cleanCompileTestIntegrationJava UP-TO-DATE
+     [exec] :util:portal-tools-service-builder:cleanCompileTestJava UP-TO-DATE
+     [exec] :util:portal-tools-service-builder:cleanCopyLibs UP-TO-DATE
+     [exec] :util:portal-tools-service-builder:cleanCopyTLDDocResources UP-TO-DATE
+     [exec] :util:portal-tools-service-builder:cleanDistTar UP-TO-DATE
+     [exec] :util:portal-tools-service-builder:cleanDistZip UP-TO-DATE
+     [exec] :util:portal-tools-service-builder:cleanDownloadNode UP-TO-DATE
+     [exec] :util:portal-tools-service-builder:cleanEclipseJdt UP-TO-DATE
+     [exec] :util:portal-tools-service-builder:cleanFindbugsMain UP-TO-DATE
+     [exec] :util:portal-tools-service-builder:cleanFindbugsTest UP-TO-DATE
+     [exec] :util:portal-tools-service-builder:cleanFindbugsTestIntegration UP-TO-DATE
+     [exec] :util:portal-tools-service-builder:cleanGenerateJSPJava UP-TO-DATE
+     [exec] :util:portal-tools-service-builder:cleanInstallDist UP-TO-DATE
+     [exec] :util:portal-tools-service-builder:cleanJar UP-TO-DATE
+     [exec] :util:portal-tools-service-builder:cleanJarJSP UP-TO-DATE
+     [exec] :util:portal-tools-service-builder:cleanJarJavadoc UP-TO-DATE
+     [exec] :util:portal-tools-service-builder:cleanJarSources UP-TO-DATE
+     [exec] :util:portal-tools-service-builder:cleanJarTLDDoc UP-TO-DATE
+     [exec] :util:portal-tools-service-builder:cleanJavadoc UP-TO-DATE
+     [exec] :util:portal-tools-service-builder:cleanPmdMain UP-TO-DATE
+     [exec] :util:portal-tools-service-builder:cleanPmdTest UP-TO-DATE
+     [exec] :util:portal-tools-service-builder:cleanPmdTestIntegration UP-TO-DATE
+     [exec] :util:portal-tools-service-builder:cleanProcessResources UP-TO-DATE
+     [exec] :util:portal-tools-service-builder:cleanProcessTestIntegrationResources UP-TO-DATE
+     [exec] :util:portal-tools-service-builder:cleanProcessTestResources UP-TO-DATE
+     [exec] :util:portal-tools-service-builder:cleanStartScripts UP-TO-DATE
+     [exec] :util:portal-tools-service-builder:cleanTest UP-TO-DATE
+     [exec] :util:portal-tools-service-builder:cleanTestIntegration UP-TO-DATE
+     [exec] :util:portal-tools-service-builder:cleanTlddoc UP-TO-DATE
+     [exec] :util:portal-tools-service-builder:cleanTranspileJS UP-TO-DATE
+     [exec] :util:portal-tools-service-builder:cleanWriteFindBugsProject UP-TO-DATE
+     [exec] :util:portal-tools-service-builder:cleanWriteMavenSettings UP-TO-DATE
+     [exec] :util:portal-tools-service-builder:clean
+     [exec] Note: /opt/dev/projects/github/liferay-portal/modules/util/portal-tools-service-builder/src/main/java/com/liferay/portal/tools/service/builder/ServiceBuilder.java uses or overrides a deprecated API.
+     [exec] Note: Recompile with -Xlint:deprecation for details.
+     [exec] Note: Some input files use unchecked or unsafe operations.
+     [exec] Note: Recompile with -Xlint:unchecked for details.
+     [exec] :util:portal-tools-service-builder:compileJava
+     [exec] :util:portal-tools-service-builder:buildCSS UP-TO-DATE
+     [exec] :util:portal-tools-service-builder:processResources
+     [exec] :util:portal-tools-service-builder:transpileJS SKIPPED
+     [exec] :util:portal-tools-service-builder:configJSModules SKIPPED
+     [exec] :util:portal-tools-service-builder:copyLibs SKIPPED
+     [exec] :util:portal-tools-service-builder:replaceSoyTranslation UP-TO-DATE
+     [exec] :util:portal-tools-service-builder:wrapSoyAlloyTemplate SKIPPED
+     [exec] :util:portal-tools-service-builder:classes
+     [exec] :util:portal-tools-service-builder:jar
+     [exec] :util:portal-tools-service-builder:deploy
+     [exec] :util:portal-tools-service-builder:deployDependencies UP-TO-DATE
+     [exec] 
+     [exec] BUILD SUCCESSFUL
+     [exec] 
+     [exec] Total time: 7.379 secs
+     [exec] Gradle build finished at 2017-08-29 13:24:18.372.
+     [exec] 
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+build-services:
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+build-service-counter:
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+build-service:
+     [echo] Java HotSpot(TM) Server VM warning: ignoring option MaxPermSize=512m; support was removed in 8.0
+     [echo] Building Counter
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+init-compile:
+
+compile:
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+build-service-portal:
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+build-service:
+     [echo] Java HotSpot(TM) Server VM warning: ignoring option MaxPermSize=512m; support was removed in 8.0
+     [echo] Building Account
+     [echo] Building Address
+     [echo] Building BrowserTracker
+     [echo] Building ClassName
+     [echo] Building ClusterGroup
+     [echo] Building Company
+     [echo] Building Contact
+     [echo] Building Country
+     [echo] Building EmailAddress
+     [echo] Building Group
+     [echo] Building Image
+     [echo] Building Layout
+     [echo] Building LayoutBranch
+     [echo] Building LayoutFriendlyURL
+     [echo] Building LayoutPrototype
+     [echo] Building LayoutRevision
+     [echo] Building LayoutSet
+     [echo] Building LayoutSetBranch
+     [echo] Building LayoutSetPrototype
+     [echo] Building LayoutTemplate
+     [echo] Building ListType
+     [echo] Building MembershipRequest
+     [echo] Building Organization
+     [echo] Building OrgGroupRole
+     [echo] Building OrgLabor
+     [echo] Building PasswordPolicy
+     [echo] Building PasswordPolicyRel
+     [echo] Building PasswordTracker
+     [echo] Building Permission
+     [echo] Building Phone
+     [echo] Building PluginSetting
+     [echo] Building Portal
+     [echo] Building PortalPreferences
+     [echo] Building Portlet
+     [echo] Building PortletItem
+     [echo] Building PortletPreferences
+     [echo] Building RecentLayoutBranch
+     [echo] Building RecentLayoutRevision
+     [echo] Building RecentLayoutSetBranch
+     [echo] Building Region
+     [echo] Building Release
+     [echo] Building Repository
+     [echo] Building RepositoryEntry
+     [echo] Building Resource
+     [echo] Building ResourceAction
+     [echo] Building ResourceBlock
+     [echo] Building ResourceBlockPermission
+     [echo] Building ResourcePermission
+     [echo] ["=",<110> [103:138-103:139]]
+     [echo] Building ResourceTypePermission
+     [echo] Building Role
+     [echo] Building ServiceComponent
+     [echo] Building SystemEvent
+     [echo] Building Team
+     [echo] Building Theme
+     [echo] Building Ticket
+     [echo] Building User
+     [echo] Building UserGroup
+     [echo] Building UserGroupGroupRole
+     [echo] Building UserGroupRole
+     [echo] Building UserIdMapper
+     [echo] Building UserNotificationDelivery
+     [echo] Building UserNotificationEvent
+     [echo] Building UserTracker
+     [echo] Building UserTrackerPath
+     [echo] Building VirtualHost
+     [echo] Building WebDAVProps
+     [echo] Building Website
+     [echo] Building WorkflowDefinitionLink
+     [echo] Building WorkflowInstanceLink
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+init-compile:
+
+compile:
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+build-service-portlets:
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+build-service-portlet-announcements:
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+build-service:
+     [echo] Java HotSpot(TM) Server VM warning: ignoring option MaxPermSize=512m; support was removed in 8.0
+     [echo] Building AnnouncementsDelivery
+     [echo] Building AnnouncementsEntry
+     [echo] Building AnnouncementsFlag
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+init-compile:
+
+compile:
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+build-service-portlet-asset:
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+build-service:
+     [echo] Java HotSpot(TM) Server VM warning: ignoring option MaxPermSize=512m; support was removed in 8.0
+     [echo] Building AssetCategory
+     [echo] Building AssetCategoryProperty
+     [echo] Building AssetEntry
+     [echo] Building AssetLink
+     [echo] Building AssetTag
+     [echo] Building AssetTagStats
+     [echo] Building AssetVocabulary
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+init-compile:
+
+compile:
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+build-service-portlet-documentlibrary:
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+build-service:
+     [echo] Java HotSpot(TM) Server VM warning: ignoring option MaxPermSize=512m; support was removed in 8.0
+     [echo] Building DLApp
+     [echo] Building DLAppHelper
+     [echo] Building DLContent
+     [echo] Building DLFileEntry
+     [echo] Building DLFileEntryMetadata
+     [echo] Building DLFileEntryType
+     [echo] Building DLFileRank
+     [echo] Building DLFileShortcut
+     [echo] Building DLFileVersion
+     [echo] Building DLFolder
+     [echo] Building DLSyncEvent
+     [echo] Building DLTrash
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+init-compile:
+
+compile:
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+build-service-portlet-expando:
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+build-service:
+     [echo] Java HotSpot(TM) Server VM warning: ignoring option MaxPermSize=512m; support was removed in 8.0
+     [echo] Building ExpandoColumn
+     [echo] Building ExpandoRow
+     [echo] Building ExpandoTable
+     [echo] Building ExpandoValue
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+init-compile:
+
+compile:
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+build-service-portlet-exportimport:
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+build-service:
+     [echo] Java HotSpot(TM) Server VM warning: ignoring option MaxPermSize=512m; support was removed in 8.0
+     [echo] Building ExportImport
+     [echo] Building ExportImportConfiguration
+     [echo] Building Staging
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+init-compile:
+
+compile:
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+build-service-portlet-messageboards:
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+build-service:
+     [echo] Java HotSpot(TM) Server VM warning: ignoring option MaxPermSize=512m; support was removed in 8.0
+     [echo] Building MBBan
+     [echo] Building MBCategory
+     [echo] Building MBDiscussion
+     [echo] Building MBMailingList
+     [echo] Building MBMessage
+     [echo] Building MBStatsUser
+     [echo] Building MBThread
+     [echo] Building MBThreadFlag
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+init-compile:
+
+compile:
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+build-service-portlet-ratings:
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+build-service:
+     [echo] Java HotSpot(TM) Server VM warning: ignoring option MaxPermSize=512m; support was removed in 8.0
+     [echo] Building RatingsEntry
+     [echo] Building RatingsStats
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+init-compile:
+
+compile:
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+build-service-portlet-social:
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+build-service:
+     [echo] Java HotSpot(TM) Server VM warning: ignoring option MaxPermSize=512m; support was removed in 8.0
+     [echo] Building SocialActivity
+     [echo] Building SocialActivityAchievement
+     [echo] Building SocialActivityCounter
+     [echo] Building SocialActivityInterpreter
+     [echo] Building SocialActivityLimit
+     [echo] Building SocialActivitySet
+     [echo] Building SocialActivitySetting
+     [echo] Building SocialRelation
+     [echo] Building SocialRequest
+     [echo] Building SocialRequestInterpreter
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+init-compile:
+
+compile:
+     [exec] Using proxy squid.lax.liferay.com:3128.
+     [exec] Configuration on demand is an incubating feature.
+     [exec] Generating JAR file 'gradle-test-kit-3.3.jar'
+     [exec] Generating JAR file 'gradle-api-3.3.jar'
+     [exec] The TaskInputs.source(Object) method has been deprecated and is scheduled to be removed in Gradle 4.0. Please use TaskInputs.file(Object).skipWhenEmpty() instead.
+     [exec] 	at org.gradle.api.internal.tasks.DefaultTaskInputs.source(DefaultTaskInputs.java:136)
+     [exec] 	at org.gradle.api.tasks.TaskInputs$source.call(Unknown Source)
+     [exec] 	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)
+     [exec] 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:113)
+     [exec] 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:125)
+     [exec] 	at org.ysb33r.gradle.gradletest.TestSet$_addSourceSets_closure6$_closure12.doCall(TestSet.groovy:177)
+     [exec] 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+     [exec] 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+     [exec] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+     [exec] 	at java.lang.reflect.Method.invoke(Method.java:497)
+     [exec] 	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+     [exec] 	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+     [exec] 	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:294)
+     [exec] 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1024)
+     [exec] 	at groovy.lang.Closure.call(Closure.java:414)
+     [exec] 	at groovy.lang.Closure.call(Closure.java:430)
+     [exec] 	at org.gradle.api.internal.ClosureBackedAction.execute(ClosureBackedAction.java:70)
+     [exec] 	at org.gradle.util.ConfigureUtil.configureTarget(ConfigureUtil.java:160)
+     [exec] 	at org.gradle.util.ConfigureUtil.configureSelf(ConfigureUtil.java:136)
+     [exec] 	at org.gradle.api.internal.AbstractTask.configure(AbstractTask.java:528)
+     [exec] 	at org.gradle.api.Task$configure.call(Unknown Source)
+     [exec] 	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)
+     [exec] 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:113)
+     [exec] 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:125)
+     [exec] 	at org.ysb33r.gradle.gradletest.TestSet$_addSourceSets_closure6.doCall(TestSet.groovy:173)
+     [exec] 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+     [exec] 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+     [exec] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+     [exec] 	at java.lang.reflect.Method.invoke(Method.java:497)
+     [exec] 	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+     [exec] 	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+     [exec] 	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:294)
+     [exec] 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1024)
+     [exec] 	at groovy.lang.Closure.call(Closure.java:414)
+     [exec] 	at org.gradle.listener.ClosureBackedMethodInvocationDispatch.dispatch(ClosureBackedMethodInvocationDispatch.java:40)
+     [exec] 	at org.gradle.listener.ClosureBackedMethodInvocationDispatch.dispatch(ClosureBackedMethodInvocationDispatch.java:25)
+     [exec] 	at org.gradle.internal.event.AbstractBroadcastDispatch.dispatch(AbstractBroadcastDispatch.java:44)
+     [exec] 	at org.gradle.internal.event.BroadcastDispatch.dispatch(BroadcastDispatch.java:79)
+     [exec] 	at org.gradle.internal.event.BroadcastDispatch.dispatch(BroadcastDispatch.java:30)
+     [exec] 	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:93)
+     [exec] 	at com.sun.proxy.$Proxy13.afterEvaluate(Unknown Source)
+     [exec] 	at org.gradle.configuration.project.LifecycleProjectEvaluator.notifyAfterEvaluate(LifecycleProjectEvaluator.java:82)
+     [exec] 	at org.gradle.configuration.project.LifecycleProjectEvaluator.doConfigure(LifecycleProjectEvaluator.java:76)
+     [exec] 	at org.gradle.configuration.project.LifecycleProjectEvaluator.access$000(LifecycleProjectEvaluator.java:33)
+     [exec] 	at org.gradle.configuration.project.LifecycleProjectEvaluator$1.execute(LifecycleProjectEvaluator.java:53)
+     [exec] 	at org.gradle.configuration.project.LifecycleProjectEvaluator$1.execute(LifecycleProjectEvaluator.java:50)
+     [exec] 	at org.gradle.internal.Transformers$4.transform(Transformers.java:169)
+     [exec] 	at org.gradle.internal.progress.DefaultBuildOperationExecutor.run(DefaultBuildOperationExecutor.java:106)
+     [exec] 	at org.gradle.internal.progress.DefaultBuildOperationExecutor.run(DefaultBuildOperationExecutor.java:61)
+     [exec] 	at org.gradle.configuration.project.LifecycleProjectEvaluator.evaluate(LifecycleProjectEvaluator.java:50)
+     [exec] 	at org.gradle.api.internal.project.DefaultProject.evaluate(DefaultProject.java:628)
+     [exec] 	at org.gradle.api.internal.project.DefaultProject.evaluate(DefaultProject.java:129)
+     [exec] 	at org.gradle.execution.TaskPathProjectEvaluator.configure(TaskPathProjectEvaluator.java:35)
+     [exec] 	at com.liferay.gradle.plugins.defaults.LiferayOSGiDefaultsPlugin$33.execute(LiferayOSGiDefaultsPlugin.java:1845)
+     [exec] 	at com.liferay.gradle.plugins.defaults.LiferayOSGiDefaultsPlugin$33.execute(LiferayOSGiDefaultsPlugin.java:1814)
+     [exec] 	at org.gradle.internal.Actions$FilteredAction.execute(Actions.java:205)
+     [exec] 	at org.gradle.listener.ActionBroadcast.execute(ActionBroadcast.java:39)
+     [exec] 	at org.gradle.api.internal.CompositeDomainObjectSet.all(CompositeDomainObjectSet.java:131)
+     [exec] 	at org.gradle.api.internal.DelegatingDomainObjectSet.all(DelegatingDomainObjectSet.java:50)
+     [exec] 	at org.gradle.api.internal.CompositeDomainObjectSet.addCollection(CompositeDomainObjectSet.java:94)
+     [exec] 	at org.gradle.api.internal.artifacts.configurations.DefaultConfiguration.extendsFrom(DefaultConfiguration.java:281)
+     [exec] 	at org.gradle.api.internal.artifacts.dsl.dependencies.DefaultDependencyHandler.doAdd(DefaultDependencyHandler.java:79)
+     [exec] 	at org.gradle.api.internal.artifacts.dsl.dependencies.DefaultDependencyHandler.add(DefaultDependencyHandler.java:61)
+     [exec] 	at org.gradle.api.internal.artifacts.dsl.dependencies.DefaultDependencyHandler.add(DefaultDependencyHandler.java:57)
+     [exec] 	at com.liferay.gradle.plugins.jasper.jspc.JspCPlugin._addDependenciesJspC(JspCPlugin.java:127)
+     [exec] 	at com.liferay.gradle.plugins.jasper.jspc.JspCPlugin.access$000(JspCPlugin.java:45)
+     [exec] 	at com.liferay.gradle.plugins.jasper.jspc.JspCPlugin$1.execute(JspCPlugin.java:74)
+     [exec] 	at com.liferay.gradle.plugins.jasper.jspc.JspCPlugin$1.execute(JspCPlugin.java:70)
+     [exec] 	at org.gradle.internal.event.BroadcastDispatch$ActionInvocationHandler.dispatch(BroadcastDispatch.java:93)
+     [exec] 	at org.gradle.internal.event.BroadcastDispatch$ActionInvocationHandler.dispatch(BroadcastDispatch.java:82)
+     [exec] 	at org.gradle.internal.event.AbstractBroadcastDispatch.dispatch(AbstractBroadcastDispatch.java:44)
+     [exec] 	at org.gradle.internal.event.BroadcastDispatch.dispatch(BroadcastDispatch.java:79)
+     [exec] 	at org.gradle.internal.event.BroadcastDispatch.dispatch(BroadcastDispatch.java:30)
+     [exec] 	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:93)
+     [exec] 	at com.sun.proxy.$Proxy13.afterEvaluate(Unknown Source)
+     [exec] 	at org.gradle.configuration.project.LifecycleProjectEvaluator.notifyAfterEvaluate(LifecycleProjectEvaluator.java:82)
+     [exec] 	at org.gradle.configuration.project.LifecycleProjectEvaluator.doConfigure(LifecycleProjectEvaluator.java:76)
+     [exec] 	at org.gradle.configuration.project.LifecycleProjectEvaluator.access$000(LifecycleProjectEvaluator.java:33)
+     [exec] 	at org.gradle.configuration.project.LifecycleProjectEvaluator$1.execute(LifecycleProjectEvaluator.java:53)
+     [exec] 	at org.gradle.configuration.project.LifecycleProjectEvaluator$1.execute(LifecycleProjectEvaluator.java:50)
+     [exec] 	at org.gradle.internal.Transformers$4.transform(Transformers.java:169)
+     [exec] 	at org.gradle.internal.progress.DefaultBuildOperationExecutor.run(DefaultBuildOperationExecutor.java:106)
+     [exec] 	at org.gradle.internal.progress.DefaultBuildOperationExecutor.run(DefaultBuildOperationExecutor.java:61)
+     [exec] 	at org.gradle.configuration.project.LifecycleProjectEvaluator.evaluate(LifecycleProjectEvaluator.java:50)
+     [exec] 	at org.gradle.api.internal.project.DefaultProject.evaluate(DefaultProject.java:628)
+     [exec] 	at org.gradle.api.internal.project.DefaultProject.evaluate(DefaultProject.java:129)
+     [exec] 	at org.gradle.execution.TaskPathProjectEvaluator.configure(TaskPathProjectEvaluator.java:35)
+     [exec] 	at org.gradle.execution.TaskPathProjectEvaluator.configureHierarchy(TaskPathProjectEvaluator.java:62)
+     [exec] 	at org.gradle.execution.TaskSelector.getSelection(TaskSelector.java:100)
+     [exec] 	at org.gradle.execution.TaskSelector.getSelection(TaskSelector.java:81)
+     [exec] 	at org.gradle.execution.commandline.CommandLineTaskParser.parseTasks(CommandLineTaskParser.java:42)
+     [exec] 	at org.gradle.execution.TaskNameResolvingBuildConfigurationAction.configure(TaskNameResolvingBuildConfigurationAction.java:44)
+     [exec] 	at org.gradle.execution.DefaultBuildConfigurationActionExecuter.configure(DefaultBuildConfigurationActionExecuter.java:48)
+     [exec] 	at org.gradle.execution.DefaultBuildConfigurationActionExecuter.access$000(DefaultBuildConfigurationActionExecuter.java:25)
+     [exec] 	at org.gradle.execution.DefaultBuildConfigurationActionExecuter$1.proceed(DefaultBuildConfigurationActionExecuter.java:54)
+     [exec] 	at org.gradle.execution.DefaultTasksBuildExecutionAction.configure(DefaultTasksBuildExecutionAction.java:44)
+     [exec] 	at org.gradle.execution.DefaultBuildConfigurationActionExecuter.configure(DefaultBuildConfigurationActionExecuter.java:48)
+     [exec] 	at org.gradle.execution.DefaultBuildConfigurationActionExecuter.access$000(DefaultBuildConfigurationActionExecuter.java:25)
+     [exec] 	at org.gradle.execution.DefaultBuildConfigurationActionExecuter$1.proceed(DefaultBuildConfigurationActionExecuter.java:54)
+     [exec] 	at org.gradle.execution.ExcludedTaskFilteringBuildConfigurationAction.configure(ExcludedTaskFilteringBuildConfigurationAction.java:47)
+     [exec] 	at org.gradle.execution.DefaultBuildConfigurationActionExecuter.configure(DefaultBuildConfigurationActionExecuter.java:48)
+     [exec] 	at org.gradle.execution.DefaultBuildConfigurationActionExecuter.select(DefaultBuildConfigurationActionExecuter.java:36)
+     [exec] 	at org.gradle.initialization.DefaultGradleLauncher$2.execute(DefaultGradleLauncher.java:185)
+     [exec] 	at org.gradle.initialization.DefaultGradleLauncher$2.execute(DefaultGradleLauncher.java:182)
+     [exec] 	at org.gradle.internal.Transformers$4.transform(Transformers.java:169)
+     [exec] 	at org.gradle.internal.progress.DefaultBuildOperationExecutor.run(DefaultBuildOperationExecutor.java:106)
+     [exec] 	at org.gradle.internal.progress.DefaultBuildOperationExecutor.run(DefaultBuildOperationExecutor.java:56)
+     [exec] 	at org.gradle.initialization.DefaultGradleLauncher.doBuildStages(DefaultGradleLauncher.java:182)
+     [exec] 	at org.gradle.initialization.DefaultGradleLauncher.doBuild(DefaultGradleLauncher.java:119)
+     [exec] 	at org.gradle.initialization.DefaultGradleLauncher.run(DefaultGradleLauncher.java:102)
+     [exec] 	at org.gradle.launcher.exec.GradleBuildController.run(GradleBuildController.java:71)
+     [exec] 	at org.gradle.tooling.internal.provider.ExecuteBuildActionRunner.run(ExecuteBuildActionRunner.java:28)
+     [exec] 	at org.gradle.launcher.exec.ChainingBuildActionRunner.run(ChainingBuildActionRunner.java:35)
+     [exec] 	at org.gradle.launcher.exec.InProcessBuildActionExecuter.execute(InProcessBuildActionExecuter.java:41)
+     [exec] 	at org.gradle.launcher.exec.InProcessBuildActionExecuter.execute(InProcessBuildActionExecuter.java:26)
+     [exec] 	at org.gradle.tooling.internal.provider.ContinuousBuildActionExecuter.execute(ContinuousBuildActionExecuter.java:75)
+     [exec] 	at org.gradle.tooling.internal.provider.ContinuousBuildActionExecuter.execute(ContinuousBuildActionExecuter.java:49)
+     [exec] 	at org.gradle.tooling.internal.provider.ServicesSetupBuildActionExecuter.execute(ServicesSetupBuildActionExecuter.java:44)
+     [exec] 	at org.gradle.tooling.internal.provider.ServicesSetupBuildActionExecuter.execute(ServicesSetupBuildActionExecuter.java:29)
+     [exec] 	at org.gradle.launcher.cli.RunBuildAction.run(RunBuildAction.java:51)
+     [exec] 	at org.gradle.internal.Actions$RunnableActionAdapter.execute(Actions.java:173)
+     [exec] 	at org.gradle.launcher.cli.CommandLineActionFactory$ParseAndBuildAction.execute(CommandLineActionFactory.java:244)
+     [exec] 	at org.gradle.launcher.cli.CommandLineActionFactory$ParseAndBuildAction.execute(CommandLineActionFactory.java:217)
+     [exec] 	at org.gradle.launcher.cli.JavaRuntimeValidationAction.execute(JavaRuntimeValidationAction.java:33)
+     [exec] 	at org.gradle.launcher.cli.JavaRuntimeValidationAction.execute(JavaRuntimeValidationAction.java:24)
+     [exec] 	at org.gradle.launcher.cli.ExceptionReportingAction.execute(ExceptionReportingAction.java:33)
+     [exec] 	at org.gradle.launcher.cli.ExceptionReportingAction.execute(ExceptionReportingAction.java:22)
+     [exec] 	at org.gradle.launcher.cli.CommandLineActionFactory$WithLogging.execute(CommandLineActionFactory.java:210)
+     [exec] 	at org.gradle.launcher.cli.CommandLineActionFactory$WithLogging.execute(CommandLineActionFactory.java:174)
+     [exec] 	at org.gradle.launcher.Main.doAction(Main.java:33)
+     [exec] 	at org.gradle.launcher.bootstrap.EntryPoint.run(EntryPoint.java:45)
+     [exec] 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+     [exec] 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+     [exec] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+     [exec] 	at java.lang.reflect.Method.invoke(Method.java:497)
+     [exec] 	at org.gradle.launcher.bootstrap.ProcessBootstrap.runNoExit(ProcessBootstrap.java:60)
+     [exec] 	at org.gradle.launcher.bootstrap.ProcessBootstrap.run(ProcessBootstrap.java:37)
+     [exec] 	at org.gradle.launcher.GradleMain.main(GradleMain.java:23)
+     [exec] 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+     [exec] 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+     [exec] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+     [exec] 	at java.lang.reflect.Method.invoke(Method.java:497)
+     [exec] 	at org.gradle.wrapper.BootstrapMainStarter.start(BootstrapMainStarter.java:31)
+     [exec] 	at org.gradle.wrapper.WrapperExecutor.execute(WrapperExecutor.java:108)
+     [exec] 	at org.gradle.wrapper.GradleWrapperMain.main(GradleWrapperMain.java:61)
+     [exec] :test:external-data-source-test-service:buildService
+     [exec] Building TestEntity
+     [exec] :apps:chat:chat-service:buildService
+     [exec] Building Entry
+     [exec] Building Status
+     [exec] :apps:knowledge-base:knowledge-base-service:buildService
+     [exec] Building KBArticle
+     [exec] Building KBComment
+     [exec] Building KBFolder
+     [exec] Building KBTemplate
+     [exec] :apps:mail-reader:mail-reader-service:buildService
+     [exec] Building Account
+     [exec] Building Attachment
+     [exec] Building Folder
+     [exec] Building Message
+     [exec] :apps:marketplace:marketplace-service:buildService
+     [exec] Building App
+     [exec] Building Module
+     [exec] :apps:opensocial:opensocial-portlet:build-service
+     [exec] [ant:echo] Java HotSpot(TM) Server VM warning: ignoring option MaxPermSize=512m; support was removed in 8.0
+     [exec] [ant:echo] Building Gadget
+     [exec] [ant:echo] Building OAuthConsumer
+     [exec] [ant:echo] Building OAuthToken
+     [exec] [ant:echo] Writing /opt/dev/projects/github/liferay-portal/modules/apps/opensocial/opensocial-portlet/docroot/WEB-INF/src/service.properties
+     [exec] Note: Some input files use unchecked or unsafe operations.
+     [exec] Note: Recompile with -Xlint:unchecked for details.
+     [exec] :apps:opensocial:opensocial-portlet:buildService
+     [exec] :apps:portal-security-wedeploy-auth:portal-security-wedeploy-auth-service:buildService
+     [exec] Building WeDeployAuthApp
+     [exec] Building WeDeployAuthToken
+     [exec] :apps:powwow:powwow-portlet:copyIvyDependencies
+     [exec] :apps:powwow:powwow-portlet:build-service
+     [exec] [ant:echo] Java HotSpot(TM) Server VM warning: ignoring option MaxPermSize=512m; support was removed in 8.0
+     [exec] [ant:echo] Building PowwowMeeting
+     [exec] [ant:echo] Building PowwowParticipant
+     [exec] [ant:echo] Building PowwowServer
+     [exec] [ant:echo] Writing /opt/dev/projects/github/liferay-portal/modules/apps/powwow/powwow-portlet/docroot/WEB-INF/src/service.properties
+     [exec] Note: Some input files use unchecked or unsafe operations.
+     [exec] Note: Recompile with -Xlint:unchecked for details.
+     [exec] :apps:powwow:powwow-portlet:buildService
+     [exec] :apps:push-notifications:push-notifications-service:buildService
+     [exec] Building PushNotificationsDevice
+     [exec] :apps:screens:screens-service:buildService
+     [exec] Building ScreensAssetEntry
+     [exec] Building ScreensComment
+     [exec] Building ScreensDDLRecord
+     [exec] Building ScreensDDMStructureVersion
+     [exec] Building ScreensJournalArticle
+     [exec] Building ScreensRatingsEntry
+     [exec] :apps:shopping:shopping-service:buildService
+     [exec] Building ShoppingCart
+     [exec] Building ShoppingCategory
+     [exec] Building ShoppingCoupon
+     [exec] Building ShoppingItem
+     [exec] Building ShoppingItemField
+     [exec] Building ShoppingItemPrice
+     [exec] Building ShoppingOrder
+     [exec] Building ShoppingOrderItem
+     [exec] :apps:social-networking:social-networking-service:buildService
+     [exec] Building MeetupsEntry
+     [exec] Building MeetupsRegistration
+     [exec] Building WallEntry
+     [exec] :apps:social-private-messaging:social-private-messaging-service:buildService
+     [exec] Building UserThread
+     [exec] :apps:sync:sync-service:buildService
+     [exec] Building SyncDevice
+     [exec] Building SyncDLFileVersionDiff
+     [exec] Building SyncDLObject
+     [exec] :apps:tasks:tasks-portlet:copyIvyDependencies
+     [exec] :apps:tasks:tasks-portlet:build-service
+     [exec] [ant:echo] Java HotSpot(TM) Server VM warning: ignoring option MaxPermSize=512m; support was removed in 8.0
+     [exec] [ant:echo] Building TasksEntry
+     [exec] [ant:echo] Writing /opt/dev/projects/github/liferay-portal/modules/apps/tasks/tasks-portlet/docroot/WEB-INF/src/service.properties
+     [exec] Note: Some input files use unchecked or unsafe operations.
+     [exec] Note: Recompile with -Xlint:unchecked for details.
+     [exec] :apps:tasks:tasks-portlet:buildService
+     [exec] :apps:twitter:twitter-service:buildService
+     [exec] Building Feed
+     [exec] :apps:wsrp:wsrp-service:buildService
+     [exec] Building WSRPConsumer
+     [exec] Building WSRPConsumerPortlet
+     [exec] Building WSRPProducer
+     [exec] :apps:collaboration:blogs:blogs-service:buildService
+     [exec] Building BlogsEntry
+     [exec] Building BlogsStatsUser
+     [exec] :apps:collaboration:bookmarks:bookmarks-service:buildService
+     [exec] Building BookmarksEntry
+     [exec] Building BookmarksFolder
+     [exec] :apps:collaboration:flags:flags-service:buildService
+     [exec] Building FlagsEntry
+     [exec] :apps:collaboration:invitation:invitation-invite-members-service:buildService
+     [exec] Building MemberRequest
+     [exec] :apps:collaboration:microblogs:microblogs-service:buildService
+     [exec] Building MicroblogsEntry
+     [exec] :apps:collaboration:subscription:subscription-service:buildService
+     [exec] Building Subscription
+     [exec] :apps:collaboration:wiki:wiki-service:buildService
+     [exec] Building WikiNode
+     [exec] Building WikiPage
+     [exec] Building WikiPageResource
+     [exec] :apps:forms-and-workflow:calendar:calendar-service:buildService
+     [exec] Building Calendar
+     [exec] Building CalendarBooking
+     [exec] Building CalendarNotificationTemplate
+     [exec] Building CalendarResource
+     [exec] :apps:forms-and-workflow:dynamic-data-lists:dynamic-data-lists-service:buildService
+     [exec] Building DDLRecord
+     [exec] Building DDLRecordSet
+     [exec] Building DDLRecordSetVersion
+     [exec] Building DDLRecordVersion
+     [exec] :apps:forms-and-workflow:polls:polls-service:buildService
+     [exec] Building PollsChoice
+     [exec] Building PollsQuestion
+     [exec] Building PollsVote
+     [exec] :apps:foundation:contacts:contacts-service:buildService
+     [exec] Building Entry
+     [exec] :apps:foundation:friendly-url:friendly-url-service:buildService
+     [exec] Building FriendlyURLEntry
+     [exec] Building FriendlyURLEntryLocalization
+     [exec] :apps:foundation:mobile-device-rules:mobile-device-rules-service:buildService
+     [exec] Building MDRAction
+     [exec] Building MDRRule
+     [exec] Building MDRRuleGroup
+     [exec] Building MDRRuleGroupInstance
+     [exec] :apps:foundation:portal-background-task:portal-background-task-service:buildService
+     [exec] Building BackgroundTask
+     [exec] :apps:foundation:portal-instances:portal-instances-service:buildService
+     [exec] Building PortalInstances
+     [exec] :apps:foundation:portal-lock:portal-lock-service:buildService
+     [exec] Building Lock
+     [exec] :apps:foundation:portal-security:portal-security-service-access-policy-service:buildService
+     [exec] Building SAPEntry
+     [exec] :apps:web-experience:asset:asset-display-template-service:buildService
+     [exec] Building AssetDisplayTemplate
+     [exec] :apps:web-experience:modern-site-building:modern-site-building-fragment-service:buildService
+     [exec] Building MSBFragmentCollection
+     [exec] Building MSBFragmentEntry
+     [exec] :apps:web-experience:site:site-service:buildService
+     [exec] Building SiteFriendlyURL
+     [exec] :apps:web-experience:trash:trash-service:buildService
+     [exec] Building TrashEntry
+     [exec] Building TrashVersion
+     [exec] 
+     [exec] BUILD SUCCESSFUL
+     [exec] 
+     [exec] Total time: 6 mins 12.449 secs
+     [exec] Gradle build finished at 2017-08-29 13:35:44.008.
+     [exec] 
+   [delete] Deleting: /opt/dev/projects/github/liferay-portal/build.services.output.txt
+     [echo] 
+      [get] Getting: ${dependencies.url}/testtest/test-1-16/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=0,label_exp=!master/145794consoleText
+      [get] To: /opt/dev/projects/github/liferay-portal/20170829133544265.txt
+   [delete] Deleting: /opt/dev/projects/github/liferay-portal/20170829133544265.txt
+  [taskdef] Could not load definitions from resource tasks.properties. It could not be found.
+
+merge-test-results:
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-portal/test-results
+[junitreport] Processing /opt/dev/projects/github/liferay-portal/test-results/TESTS-TestSuites.xml to /tmp/null910113731
+[junitreport] Loading stylesheet jar:file:/opt/java/ant/lib/ant-junit.jar!/org/apache/tools/ant/taskdefs/optional/junit/xsl/junit-frames.xsl
+[junitreport] Transform time: 248ms
+[junitreport] Deleting: /tmp/null910113731
+     [echo] A report with all the test results can be found at test-results/html/index.html.
+    [mkdir] Created dir: /opt/dev/projects/github/liferay-jenkins-ee/test-results
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-jenkins-ee/test-results
+     [echo] 
+     [echo] Ant GC log:
+     [echo] 
+     [echo] Java HotSpot(TM) Server VM (25.51-b03) for linux-x86 JRE (1.8.0_51-b16), built on Jun  8 2015 18:05:11 by "java_re" with gcc 4.3.0 20080428 (Red Hat 4.3.0-8)
+     [echo] Memory: 4k page, physical 8388608k(2985264k free), swap 2097152k(1840756k free)
+     [echo] CommandLine flags: -XX:-BytecodeVerificationLocal -XX:-BytecodeVerificationRemote -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/ant-oom-heap-dump.bin -XX:InitialHeapSize=1073741824 -XX:InitialTenuringThreshold=0 -XX:MaxHeapSize=2147483648 -XX:MaxMetaspaceSize=536870912 -XX:MaxNewSize=536870912 -XX:MaxTenuringThreshold=0 -XX:MetaspaceSize=104857600 -XX:NewSize=268435456 -XX:+PrintGC -XX:+PrintGCCause -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:SurvivorRatio=65536 -XX:TargetSurvivorRatio=0 -XX:ThreadStackSize=2048 -XX:+UseParallelOldGC 
+     [echo] 4.041: [GC (Allocation Failure) [PSYoungGen: 261632K->0K(261888K)] 261632K->46956K(1048320K), 0.0424963 secs] [Times: user=0.15 sys=0.02, real=0.05 secs] 
+     [echo] 7.065: [GC (Allocation Failure) [PSYoungGen: 261632K->0K(523520K)] 308588K->92028K(1309952K), 0.0912345 secs] [Times: user=0.24 sys=0.03, real=0.09 secs] 
+     [echo] 14.027: [GC (Allocation Failure) [PSYoungGen: 523264K->0K(523520K)] 615292K->146475K(1309952K), 0.1181330 secs] [Times: user=0.27 sys=0.02, real=0.12 secs] 
+     [echo] 19.585: [GC (Allocation Failure) [PSYoungGen: 523264K->0K(524032K)] 669739K->198024K(1310464K), 0.1082759 secs] [Times: user=0.26 sys=0.03, real=0.11 secs] 
+     [echo] 21.257: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 721800K->199780K(1310464K), 0.0339441 secs] [Times: user=0.11 sys=0.00, real=0.03 secs] 
+     [echo] 22.585: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 723556K->201724K(1310464K), 0.0348259 secs] [Times: user=0.09 sys=0.01, real=0.03 secs] 
+     [echo] 23.846: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 725500K->203413K(1310464K), 0.0087733 secs] [Times: user=0.02 sys=0.00, real=0.01 secs] 
+     [echo] 25.004: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 727189K->205469K(1310464K), 0.0137091 secs] [Times: user=0.04 sys=0.00, real=0.01 secs] 
+     [echo] 26.131: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 729245K->207499K(1310464K), 0.0143194 secs] [Times: user=0.04 sys=0.00, real=0.02 secs] 
+     [echo] 27.247: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 731275K->208699K(1310464K), 0.0110769 secs] [Times: user=0.02 sys=0.00, real=0.01 secs] 
+     [echo] 28.031: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 732475K->209964K(1310464K), 0.0135627 secs] [Times: user=0.03 sys=0.00, real=0.02 secs] 
+     [echo] 28.816: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 733740K->212145K(1310464K), 0.0079058 secs] [Times: user=0.01 sys=0.00, real=0.01 secs] 
+     [echo] 29.621: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 735921K->215435K(1310464K), 0.0218452 secs] [Times: user=0.03 sys=0.01, real=0.02 secs] 
+     [echo] 34.330: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 739211K->266601K(1310464K), 0.0776940 secs] [Times: user=0.22 sys=0.02, real=0.08 secs] 
+     [echo] 37.466: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 790377K->321201K(1310464K), 0.0561071 secs] [Times: user=0.20 sys=0.03, real=0.06 secs] 
+     [echo] 40.501: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 844977K->368624K(1310464K), 0.0826543 secs] [Times: user=0.34 sys=0.03, real=0.09 secs] 
+     [echo] 43.939: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 892400K->412526K(1310464K), 0.0589245 secs] [Times: user=0.20 sys=0.02, real=0.06 secs] 
+     [echo] 45.530: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 936302K->456513K(1310464K), 0.0967424 secs] [Times: user=0.15 sys=0.03, real=0.10 secs] 
+     [echo] 47.314: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 980289K->501727K(1310464K), 0.0770873 secs] [Times: user=0.17 sys=0.02, real=0.07 secs] 
+     [echo] 49.173: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 1025503K->547660K(1310464K), 0.0881044 secs] [Times: user=0.18 sys=0.04, real=0.08 secs] 
+     [echo] 51.206: [GC (All1073.708: [GC (Allocation Failure) [PSYoungGen: 330240K->0K(321536K)] 816617K->510947K(1107968K), 0.0146143 secs] [Times: user=0.08 sys=0.01, real=0.01 secs] 
+     [echo] 1075.393: [GC (Allocation Failure) [PSYoungGen: 321280K->0K(312832K)] 832227K->528991K(1099264K), 0.0098419 secs] [Times: user=0.06 sys=0.01, real=0.03 secs] 
+     [echo] ation Failure) [PSYoungGen: 523776K->0K(524032K)] 1158578K->679735K(1310464K), 0.0639030 secs] [Times: user=0.24 sys=0.02, real=0.06 secs] 
+     [echo] 55.949: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 1203511K->724031K(1310464K), 0.0629772 secs] [Times: user=0.20 sys=0.01, real=0.07 secs] 
+     [echo] 56.012: [Full GC (Ergonomics) [PSYoungGen: 0K->0K(524032K)] [ParOldGen: 724031K->683013K(1175552K)] 724031K->683013K(1699584K), [Metaspace: 35420K->33923K(43312K)], 3.1186685 secs] [Times: user=10.76 sys=0.10, real=3.11 secs] 
+     [echo] 60.980: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 1206789K->728106K(1699584K), 0.0405502 secs] [Times: user=0.19 sys=0.00, real=0.04 secs] 
+     [echo] 62.364: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 1251882K->772207K(1699584K), 0.0483608 secs] [Times: user=0.20 sys=0.01, real=0.05 secs] 
+     [echo] 64.603: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 1295983K->822255K(1699584K), 0.0638336 secs] [Times: user=0.18 sys=0.03, real=0.06 secs] 
+     [echo] 67.409: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 1346031K->878275K(1699584K), 0.0706425 secs] [Times: user=0.31 sys=0.05, real=0.07 secs] 
+     [echo] 69.883: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 1402051K->934327K(1699584K), 0.0686788 secs] [Times: user=0.34 sys=0.03, real=0.07 secs] 
+     [echo] 71.295: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 1458103K->978611K(1699584K), 0.0789902 secs] [Times: user=0.19 sys=0.04, real=0.08 secs] 
+     [echo] 72.881: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 1502387K->1021413K(1699584K), 0.0795320 secs] [Times: user=0.20 sys=0.02, real=0.08 secs] 
+     [echo] 74.332: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 1545189K->1065195K(1699584K), 0.0478981 secs] [Times: user=0.17 sys=0.04, real=0.04 secs] 
+     [echo] 76.002: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 1588971K->1110791K(1699584K), 0.0721718 secs] [Times: user=0.19 sys=0.04, real=0.07 secs] 
+     [echo] 76.074: [Full GC (Ergonomics) [PSYoungGen: 0K->0K(524032K)] [ParOldGen: 1110791K->1064700K(1572864K)] 1110791K->1064700K(2096896K), [Metaspace: 40663K->40564K(49456K)], 4.5450233 secs] [Times: user=13.04 sys=0.07, real=4.54 secs] 
+     [echo] 82.065: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 1588476K->1108681K(2096896K), 0.0799762 secs] [Times: user=0.17 sys=0.00, real=0.08 secs] 
+     [echo] 84.814: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 1632457K->1167194K(2096896K), 0.0855755 secs] [Times: user=0.22 sys=0.03, real=0.08 secs] 
+     [echo] 88.537: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 1690970K->1212382K(2096896K), 0.0840990 secs] [Times: user=0.23 sys=0.02, real=0.08 secs] 
+     [echo] 92.465: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 1736158K->1261581K(2096896K), 0.0817908 secs] [Times: user=0.27 sys=0.03, real=0.08 secs] 
+     [echo] 95.310: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 1785357K->1308643K(2096896K), 0.0502386 secs] [Times: user=0.23 sys=0.01, real=0.05 secs] 
+     [echo] 97.485: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 1832419K->1357366K(2096896K), 0.0613647 secs] [Times: user=0.21 sys=0.02, real=0.06 secs] 
+     [echo] 102.298: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 1881142K->1435724K(2096896K), 0.1078918 secs] [Times: user=0.55 sys=0.03, real=0.11 secs] 
+     [echo] 265.757: [GC (Allocation Failure) [PSYoungGen: 523776K->0K(524032K)] 1959500K->1457411K(2096896K), 0.0199284 secs] [Times: user=0.08 sys=0.00, real=0.02 secs] 
+     [echo] Heap
+     [echo]  PSYoungGen      total 524032K, used 214905K [0x86e00000, 0xa6e00000, 0xa6e00000)
+     [echo]   eden space 523776K, 41% used [0x86e00000,0x93fde600,0xa6d80000)
+     [echo]   from space 256K, 0% used [0xa6d80000,0xa6d80000,0xa6dc0000)
+     [echo]   to   space 256K, 0% used [0xa6dc0000,0xa6dc0000,0xa6e00000)
+     [echo]  ParOldGen       total 1572864K, used 1457411K [0x26e00000, 0x86e00000, 0x86e00000)
+     [echo]   object space 1572864K, 92% used [0x26e00000,0x7fd40fa0,0x86e00000)
+     [echo]  Metaspace       used 58375K, capacity 72654K, committed 72728K, reserved 73008K
+     [echo] 
+     [echo] 					
+
+BUILD SUCCESSFUL
+Total time: 17 minutes 56 seconds
++ echo 'Exit shell.'
+Exit shell.
+Recording test results
+Liferay patched class hudson.tasks.junit.JUnitResultArchiver
+[PostBuildScript] - Execution post build scripts.
+[Current build status] check if current [SUCCESS] is worse or equals then [ABORTED] and better or equals then [UNSTABLE]
+Run condition [Current build status] preventing perform for step [Trigger/call builds on other projects]
+[liferay-jenkins-ee] $ /bin/bash -e -x /tmp/hudson7308091341358932152.sh
++ echo 'Update the workspace repository for post-build steps.'
+Update the workspace repository for post-build steps.
++ git clean -d -f -x
+Removing git/
+Removing reset.repository.log
+Removing start.properties
+Removing test-results/
++ git reset --hard
+HEAD is now at 60f608f LRQA-34137 Upgrade com.liferay.jenkins.results.parser.jar to version 1.0.123
++ set +e
++ git show-ref --verify --quiet refs/heads/master-temp-1504012667413
++ VERIFY_BRANCH_RESULT=0
++ set -e
++ [[ 0 == 0 ]]
++ git checkout master-temp-1504012667413
+Already on 'master-temp-1504012667413'
++ git log -n 1
+commit 60f608f17edf7b1cd958fa8a36b05ce161f5dd97
+Author: pyoo47 <peter.yoo@liferay.com>
+Date:   Fri Aug 25 15:13:37 2017 -0700
+
+    LRQA-34137 Upgrade com.liferay.jenkins.results.parser.jar to version 1.0.123
++ echo 'Exit shell.'
+Exit shell.
+[liferay-jenkins-ee] $ /bin/bash -e -x /tmp/hudson4333939489916264232.sh
++ echo 'Execute: build-test-portal-acceptance-pullrequest-batch.sh stop-current-job'
+Execute: build-test-portal-acceptance-pullrequest-batch.sh stop-current-job
++ commands/build-test-portal-acceptance-pullrequest-batch.sh stop-current-job
+Execute: ant -f commands/build-test-portal-acceptance-pullrequest-batch.xml stop-current-job
+Buildfile: /opt/dev/projects/github/liferay-jenkins-ee/commands/build-test-portal-acceptance-pullrequest-batch.xml
+
+stop-current-job:
+     [echo] curl --output /opt/dev/projects/github/liferay-jenkins-ee/json.data --silent --write-out %{http_code} http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest%28master%29/2232/test-portal-acceptance-pullrequest-batch%28master%29/AXIS_VARIABLE=0,label_exp=!master/service-builder-jdk8/stop.properties
+     [exec] 200
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/commands/20170829133548351
+[beanshell] No JSON found at http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest%28master%29/2232/test-portal-acceptance-pullrequest-batch%28master%29/AXIS_VARIABLE=0,label_exp=!master/service-builder-jdk8/stop.properties
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/json.data
+     [echo] curl --output /dev/null -d @/opt/dev/projects/github/liferay-jenkins-ee/json.data -H "Content-Type: application/json" --silent --write-out %{http_code} -X POST --write-out %{http_code} http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest%28master%29/2232/test-portal-acceptance-pullrequest-batch%28master%29/AXIS_VARIABLE=0,label_exp=!master/service-builder-jdk8/stop.properties
+     [exec] 200
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/commands/20170829133555481
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/json.data
+     [copy] Copying 1 file to /opt/dev/projects/github/liferay-jenkins-ee
+   [delete] Deleting: /opt/dev/projects/github/liferay-portal/test.case.method.names.properties
+
+clean-up-processes:
+
+clean-up-processes-java:
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/clean_up_java_processes.sh
+     [exec] Result: 1
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/find_java_process.sh
+
+clean-up-processes-browser:
+     [exec] Killing Firefox.
+     [exec] firefox: no process killed
+     [exec] Result: 1
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/clean_up_browser_processes.sh
+
+clean-up-processes-database:
+     [exec] Killing DB2.
+     [exec] SQL1032N  No start database manager command was issued.  SQLSTATE=57019
+     [exec] Killing MariaDB.
+     [exec]  ERROR! MySQL server PID file could not be found!
+     [exec] Killing MySQL 5.5.
+     [exec]  ERROR! MySQL server PID file could not be found!
+     [exec] Killing MySQL 5.6.
+     [exec] Stopping mysqld:  [  OK  ]
+     [exec] Killing Oracle.
+     [exec] 
+     [exec] LSNRCTL for Linux: Version 12.1.0.2.0 - Production on 29-AUG-2017 06:35:57
+     [exec] 
+     [exec] Copyright (c) 1991, 2014, Oracle.  All rights reserved.
+     [exec] 
+     [exec] Connecting to (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=cloud-10-0-111-250.lax.liferay.com)(PORT=1521)))
+     [exec] TNS-12541: TNS:no listener
+     [exec]  TNS-12560: TNS:protocol adapter error
+     [exec]   TNS-00511: No listener
+     [exec]    Linux Error: 111: Connection refused
+     [exec] Connecting to (DESCRIPTION=(ADDRESS=(PROTOCOL=IPC)(KEY=EXTPROC1521)))
+     [exec] TNS-12541: TNS:no listener
+     [exec]  TNS-12560: TNS:protocol adapter error
+     [exec]   TNS-00511: No listener
+     [exec]    Linux Error: 2: No such file or directory
+     [exec] 
+     [exec] SQL*Plus: Release 12.1.0.2.0 Production on Tue Aug 29 06:35:57 2017
+     [exec] 
+     [exec] Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+     [exec] 
+     [exec] Connected to an idle instance.
+     [exec] 
+     [exec] SQL> ERROR:
+     [exec] ORA-01034: ORACLE not available
+     [exec] ORA-27101: shared memory realm does not exist
+     [exec] Linux-x86_64 Error: 2: No such file or directory
+     [exec] Additional information: 3640
+     [exec] Additional information: -141692521
+     [exec] Process ID: 0
+     [exec] Session ID: 0 Serial number: 0
+     [exec] 
+     [exec] 
+     [exec] SQL> Disconnected
+     [exec] 
+     [exec] SQL*Plus: Release 12.1.0.2.0 Production on Tue Aug 29 06:35:59 2017
+     [exec] 
+     [exec] Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+     [exec] 
+     [exec] Connected to an idle instance.
+     [exec] 
+     [exec] SQL> ORACLE instance shut down.
+     [exec] SQL> Disconnected
+     [exec] Killing PostgreSQL 9.4.
+     [exec] Stopping postgresql-9.4 service: [  OK  ]
+     [exec] Killing Sybase.
+     [exec] CT-LIBRARY error:
+     [exec] 	ct_connect(): network packet layer: internal net library error: Net-Lib protocol driver call to connect two endpoints failed
+   [delete] Deleting: /opt/dev/projects/github/liferay-jenkins-ee/clean_up_database_processes.sh
+     [exec] HEAD is now at e5add14 Create modules/apps/adaptive-media/ci-merge.
+     [exec] Switched to branch 'master'
+     [exec] Switched to branch 'master'
+
+BUILD SUCCESSFUL
+Total time: 24 seconds
++ echo 'Exit shell.'
+Exit shell.
+[EnvInject] - Injecting environment variables from a build step.
+[EnvInject] - Injecting as environment variables the properties file path '/opt/dev/projects/github/liferay-jenkins-ee/stop.properties'
+[EnvInject] - Variables injected successfully.
+[description-setter] Description set: <strong>liferay</strong> - <a href="https://github.com/liferay/liferay-portal/pull/1847">PR#1847</a> - <a href="https://test-1-2.liferay.com//userContent/jobs/test-portal-acceptance-pullrequest(master)/builds/2232/jenkins-report.html">Jenkins Report</a>
+Finished: SUCCESS

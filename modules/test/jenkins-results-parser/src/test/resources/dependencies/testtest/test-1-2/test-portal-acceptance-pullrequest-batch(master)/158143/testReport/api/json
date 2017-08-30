@@ -1,0 +1,526 @@
+{
+  "failCount" : 0,
+  "skipCount" : 0,
+  "totalCount" : 30,
+  "urlName" : "testReport",
+  "childReports" : [
+    {
+      "child" : {
+        "number" : 158143,
+        "url" : "${dependencies.url}/testtest/test-1-2/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=2,label_exp=!master/158143"
+      },
+      "result" : {
+        "duration" : 480.646,
+        "empty" : false,
+        "failCount" : 0,
+        "passCount" : 4,
+        "skipCount" : 0,
+        "suites" : [
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+                "duration" : 0.0,
+                "failedSince" : 0,
+                "name" : "testScanJenkinsLog",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 0.0,
+            "id" : "0",
+            "name" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+            "timestamp" : "2017-08-29_13:33:23"
+          },
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 110.578,
+                "failedSince" : 0,
+                "name" : "test[CPRolesPGPage#RemoveNoGuestInlineView]",
+                "skipped" : false,
+                "status" : "PASSED"
+              },
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 190.534,
+                "failedSince" : 0,
+                "name" : "test[CPSitememberships#AddMembersSiteUser]",
+                "skipped" : false,
+                "status" : "PASSED"
+              },
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 179.534,
+                "failedSince" : 0,
+                "name" : "test[CPSitememberships#RemoveMember]",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 480.646,
+            "id" : "1",
+            "name" : "com.liferay.poshi.runner.PoshiRunner",
+            "timestamp" : "2017-08-29T13:24:39"
+          }
+        ]
+      }
+    },
+    {
+      "child" : {
+        "number" : 158143,
+        "url" : "${dependencies.url}/testtest/test-1-2/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=6,label_exp=!master/158143"
+      },
+      "result" : {
+        "duration" : 409.773,
+        "empty" : false,
+        "failCount" : 0,
+        "passCount" : 4,
+        "skipCount" : 0,
+        "suites" : [
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+                "duration" : 0.0,
+                "failedSince" : 0,
+                "name" : "testScanJenkinsLog",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 0.0,
+            "id" : "0",
+            "name" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+            "timestamp" : "2017-08-29_13:36:19"
+          },
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 159.996,
+                "failedSince" : 0,
+                "name" : "test[CPSiteteams#DeleteSiteTeam]",
+                "skipped" : false,
+                "status" : "PASSED"
+              },
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 137.797,
+                "failedSince" : 0,
+                "name" : "test[CPSiteteams#EditSiteTeam]",
+                "skipped" : false,
+                "status" : "PASSED"
+              },
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 111.98,
+                "failedSince" : 0,
+                "name" : "test[CPSitetemplates#DeleteSiteTemplate]",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 409.773,
+            "id" : "1",
+            "name" : "com.liferay.poshi.runner.PoshiRunner",
+            "timestamp" : "2017-08-29T13:28:41"
+          }
+        ]
+      }
+    },
+    {
+      "child" : {
+        "number" : 158143,
+        "url" : "${dependencies.url}/testtest/test-1-2/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=3,label_exp=!master/158143"
+      },
+      "result" : {
+        "duration" : 628.437,
+        "empty" : false,
+        "failCount" : 0,
+        "passCount" : 4,
+        "skipCount" : 0,
+        "suites" : [
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+                "duration" : 0.0,
+                "failedSince" : 0,
+                "name" : "testScanJenkinsLog",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 0.0,
+            "id" : "0",
+            "name" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+            "timestamp" : "2017-08-29_13:36:37"
+          },
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 213.121,
+                "failedSince" : 0,
+                "name" : "test[CPSitepages#AddSitePublicChildPage]",
+                "skipped" : false,
+                "status" : "PASSED"
+              },
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 248.788,
+                "failedSince" : 0,
+                "name" : "test[CPSitepages#DeleteSitePages]",
+                "skipped" : false,
+                "status" : "PASSED"
+              },
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 166.528,
+                "failedSince" : 0,
+                "name" : "test[CPSitepages#EditSitePage]",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 628.437,
+            "id" : "1",
+            "name" : "com.liferay.poshi.runner.PoshiRunner",
+            "timestamp" : "2017-08-29T13:25:14"
+          }
+        ]
+      }
+    },
+    {
+      "child" : {
+        "number" : 158143,
+        "url" : "${dependencies.url}/testtest/test-1-2/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=5,label_exp=!master/158143"
+      },
+      "result" : {
+        "duration" : 591.511,
+        "empty" : false,
+        "failCount" : 0,
+        "passCount" : 4,
+        "skipCount" : 0,
+        "suites" : [
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+                "duration" : 0.0,
+                "failedSince" : 0,
+                "name" : "testScanJenkinsLog",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 0.0,
+            "id" : "0",
+            "name" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+            "timestamp" : "2017-08-29_13:36:44"
+          },
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 133.637,
+                "failedSince" : 0,
+                "name" : "test[CPSites#SearchSite]",
+                "skipped" : false,
+                "status" : "PASSED"
+              },
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 205.482,
+                "failedSince" : 0,
+                "name" : "test[CPSiteteams#AddSiteTeamMultiple]",
+                "skipped" : false,
+                "status" : "PASSED"
+              },
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 252.392,
+                "failedSince" : 0,
+                "name" : "test[CPSiteteams#AddSiteTeamRemoveUser]",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 591.511,
+            "id" : "1",
+            "name" : "com.liferay.poshi.runner.PoshiRunner",
+            "timestamp" : "2017-08-29T13:25:58"
+          }
+        ]
+      }
+    },
+    {
+      "child" : {
+        "number" : 158143,
+        "url" : "${dependencies.url}/testtest/test-1-2/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=7,label_exp=!master/158143"
+      },
+      "result" : {
+        "duration" : 179.689,
+        "empty" : false,
+        "failCount" : 0,
+        "passCount" : 2,
+        "skipCount" : 0,
+        "suites" : [
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+                "duration" : 0.0,
+                "failedSince" : 0,
+                "name" : "testScanJenkinsLog",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 0.0,
+            "id" : "0",
+            "name" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+            "timestamp" : "2017-08-29_13:28:59"
+          },
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 179.689,
+                "failedSince" : 0,
+                "name" : "test[CPSitetemplates#EditSiteTemplateStatus]",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 179.689,
+            "id" : "1",
+            "name" : "com.liferay.poshi.runner.PoshiRunner",
+            "timestamp" : "2017-08-29T13:25:00"
+          }
+        ]
+      }
+    },
+    {
+      "child" : {
+        "number" : 158143,
+        "url" : "${dependencies.url}/testtest/test-1-2/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=4,label_exp=!master/158143"
+      },
+      "result" : {
+        "duration" : 420.969,
+        "empty" : false,
+        "failCount" : 0,
+        "passCount" : 4,
+        "skipCount" : 0,
+        "suites" : [
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+                "duration" : 0.0,
+                "failedSince" : 0,
+                "name" : "testScanJenkinsLog",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 0.0,
+            "id" : "0",
+            "name" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+            "timestamp" : "2017-08-29_13:37:25"
+          },
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 164.927,
+                "failedSince" : 0,
+                "name" : "test[CPSites#AddChildSite]",
+                "skipped" : false,
+                "status" : "PASSED"
+              },
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 121.042,
+                "failedSince" : 0,
+                "name" : "test[CPSites#DeleteSite]",
+                "skipped" : false,
+                "status" : "PASSED"
+              },
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 135.0,
+                "failedSince" : 0,
+                "name" : "test[CPSites#EditSite]",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 420.969,
+            "id" : "1",
+            "name" : "com.liferay.poshi.runner.PoshiRunner",
+            "timestamp" : "2017-08-29T13:29:34"
+          }
+        ]
+      }
+    },
+    {
+      "child" : {
+        "number" : 158143,
+        "url" : "${dependencies.url}/testtest/test-1-2/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=0,label_exp=!master/158143"
+      },
+      "result" : {
+        "duration" : 1204.7759,
+        "empty" : false,
+        "failCount" : 0,
+        "passCount" : 4,
+        "skipCount" : 0,
+        "suites" : [
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+                "duration" : 0.0,
+                "failedSince" : 0,
+                "name" : "testScanJenkinsLog",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 0.0,
+            "id" : "0",
+            "name" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+            "timestamp" : "2017-08-29_13:51:48"
+          },
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 320.072,
+                "failedSince" : 0,
+                "name" : "test[CPRolesPGBlogs#DeleteBlogsEntryOrgRoleDefaultPermission]",
+                "skipped" : false,
+                "status" : "PASSED"
+              },
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 346.372,
+                "failedSince" : 0,
+                "name" : "test[CPRolesPGBlogs#DeleteBlogsEntryOrgRoleDefinePermission]",
+                "skipped" : false,
+                "status" : "PASSED"
+              },
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 538.332,
+                "failedSince" : 0,
+                "name" : "test[CPRolesPGBlogs#SubscribeBlogsRegRole]",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 1204.7759,
+            "id" : "1",
+            "name" : "com.liferay.poshi.runner.PoshiRunner",
+            "timestamp" : "2017-08-29T13:30:46"
+          }
+        ]
+      }
+    },
+    {
+      "child" : {
+        "number" : 158143,
+        "url" : "${dependencies.url}/testtest/test-1-2/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=1,label_exp=!master/158143"
+      },
+      "result" : {
+        "duration" : 1642.599,
+        "empty" : false,
+        "failCount" : 0,
+        "passCount" : 4,
+        "skipCount" : 0,
+        "suites" : [
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+                "duration" : 0.0,
+                "failedSince" : 0,
+                "name" : "testScanJenkinsLog",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 0.0,
+            "id" : "0",
+            "name" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+            "timestamp" : "2017-08-29_13:55:44"
+          },
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 940.642,
+                "failedSince" : 0,
+                "name" : "test[CPRolesPGBlogs#ViewBlogsPermissionsRegRole]",
+                "skipped" : false,
+                "status" : "PASSED"
+              },
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 213.915,
+                "failedSince" : 0,
+                "name" : "test[CPRolesPGDocumentsandmedia#AddDMDocumentRegRoleDefaultPermissions]",
+                "skipped" : false,
+                "status" : "PASSED"
+              },
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 488.042,
+                "failedSince" : 0,
+                "name" : "test[CPRolesPGDocumentsandmedia#AddDMDocumentRegRoleDefinePermissions]",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 1642.599,
+            "id" : "1",
+            "name" : "com.liferay.poshi.runner.PoshiRunner",
+            "timestamp" : "2017-08-29T13:27:25"
+          }
+        ]
+      }
+    }
+  ]
+}

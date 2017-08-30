@@ -1,0 +1,133 @@
+{
+  "failCount" : 0,
+  "skipCount" : 0,
+  "totalCount" : 7,
+  "urlName" : "testReport",
+  "childReports" : [
+    {
+      "child" : {
+        "number" : 10369,
+        "url" : "${dependencies.url}/testtest/test-1-22/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=1,label_exp=!master/10369"
+      },
+      "result" : {
+        "duration" : 629.899,
+        "empty" : false,
+        "failCount" : 0,
+        "passCount" : 3,
+        "skipCount" : 0,
+        "suites" : [
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+                "duration" : 0.0,
+                "failedSince" : 0,
+                "name" : "testScanJenkinsLog",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 0.0,
+            "id" : "0",
+            "name" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+            "timestamp" : "2017-08-29_06:48:13"
+          },
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 207.967,
+                "failedSince" : 0,
+                "name" : "test[CalendarCreateResource#AddAndViewOtherCalendars]",
+                "skipped" : false,
+                "status" : "PASSED"
+              },
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 421.932,
+                "failedSince" : 0,
+                "name" : "test[WorkflowCalendar#ApproveEventWithInvitedUser]",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 629.899,
+            "id" : "1",
+            "name" : "com.liferay.poshi.runner.PoshiRunner",
+            "timestamp" : "2017-08-29T13:36:47"
+          }
+        ]
+      }
+    },
+    {
+      "child" : {
+        "number" : 10369,
+        "url" : "${dependencies.url}/testtest/test-1-22/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=0,label_exp=!master/10369"
+      },
+      "result" : {
+        "duration" : 707.761,
+        "empty" : false,
+        "failCount" : 0,
+        "passCount" : 4,
+        "skipCount" : 0,
+        "suites" : [
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+                "duration" : 0.0,
+                "failedSince" : 0,
+                "name" : "testScanJenkinsLog",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 0.0,
+            "id" : "0",
+            "name" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+            "timestamp" : "2017-08-29_06:40:25"
+          },
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 248.527,
+                "failedSince" : 0,
+                "name" : "test[CalendarConfiguration#ViewWeekStartMonday]",
+                "skipped" : false,
+                "status" : "PASSED"
+              },
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 230.943,
+                "failedSince" : 0,
+                "name" : "test[CalendarCreateEvent#AddAllDay]",
+                "skipped" : false,
+                "status" : "PASSED"
+              },
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 228.291,
+                "failedSince" : 0,
+                "name" : "test[CalendarCreateEvent#AddRepeatingMonthly2Times]",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 707.761,
+            "id" : "1",
+            "name" : "com.liferay.poshi.runner.PoshiRunner",
+            "timestamp" : "2017-08-29T13:27:53"
+          }
+        ]
+      }
+    }
+  ]
+}

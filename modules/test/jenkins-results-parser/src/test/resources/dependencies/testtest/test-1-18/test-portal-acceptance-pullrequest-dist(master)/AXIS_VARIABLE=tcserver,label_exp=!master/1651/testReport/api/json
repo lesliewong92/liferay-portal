@@ -1,0 +1,33 @@
+{
+  "duration" : 0.0,
+  "empty" : false,
+  "failCount" : 0,
+  "passCount" : 1,
+  "skipCount" : 0,
+  "suites" : [
+    {
+      "cases" : [
+        {
+          "age" : 0,
+          "className" : "com.liferay.jenkins.Jenkins",
+          "duration" : 0.0,
+          "errorDetails" : null,
+          "errorStackTrace" : null,
+          "failedSince" : 0,
+          "name" : "test-portal-acceptance-pullrequest-dist(master)/AXIS_VARIABLE=tcserver,label_exp=!master_jdk8",
+          "skipped" : false,
+          "skippedMessage" : null,
+          "status" : "PASSED",
+          "stderr" : "",
+          "stdout" : ""
+        }
+      ],
+      "duration" : 0.0,
+      "id" : null,
+      "name" : "com.liferay.jenkins.Jenkins",
+      "stderr" : "",
+      "stdout" : "",
+      "timestamp" : null
+    }
+  ]
+}

@@ -1,0 +1,401 @@
+{
+  "failCount" : 0,
+  "skipCount" : 0,
+  "totalCount" : 23,
+  "urlName" : "testReport",
+  "childReports" : [
+    {
+      "child" : {
+        "number" : 155453,
+        "url" : "${dependencies.url}/testtest/test-1-4/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=2,label_exp=!master/155453"
+      },
+      "result" : {
+        "duration" : 1071.179,
+        "empty" : false,
+        "failCount" : 0,
+        "passCount" : 4,
+        "skipCount" : 0,
+        "suites" : [
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+                "duration" : 0.0,
+                "failedSince" : 0,
+                "name" : "testScanJenkinsLog",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 0.0,
+            "id" : "0",
+            "name" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+            "timestamp" : "2017-08-29_13:45:43"
+          },
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 525.347,
+                "failedSince" : 0,
+                "name" : "test[WorkflowadminPGWiki#ApproveFrontPageUserEdit]",
+                "skipped" : false,
+                "status" : "PASSED"
+              },
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 406.93,
+                "failedSince" : 0,
+                "name" : "test[WorkflowadminUsecase#AddDDLRecordWithDoubleApproverDefinition]",
+                "skipped" : false,
+                "status" : "PASSED"
+              },
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 138.902,
+                "failedSince" : 0,
+                "name" : "test[WorkflowadminUsecase#DeactivateAndDeleteUploadedDefinition]",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 1071.179,
+            "id" : "1",
+            "name" : "com.liferay.poshi.runner.PoshiRunner",
+            "timestamp" : "2017-08-29T13:27:03"
+          }
+        ]
+      }
+    },
+    {
+      "child" : {
+        "number" : 155453,
+        "url" : "${dependencies.url}/testtest/test-1-4/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=1,label_exp=!master/155453"
+      },
+      "result" : {
+        "duration" : 1026.984,
+        "empty" : false,
+        "failCount" : 0,
+        "passCount" : 4,
+        "skipCount" : 0,
+        "suites" : [
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+                "duration" : 0.0,
+                "failedSince" : 0,
+                "name" : "testScanJenkinsLog",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 0.0,
+            "id" : "0",
+            "name" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+            "timestamp" : "2017-08-29_13:44:17"
+          },
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 353.0,
+                "failedSince" : 0,
+                "name" : "test[WorkflowadminPGPagecomments#ApprovePageCommentPG]",
+                "skipped" : false,
+                "status" : "PASSED"
+              },
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 256.192,
+                "failedSince" : 0,
+                "name" : "test[WorkflowadminPGPagecomments#EditCommentAssignedToMe]",
+                "skipped" : false,
+                "status" : "PASSED"
+              },
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 417.792,
+                "failedSince" : 0,
+                "name" : "test[WorkflowadminPGPagerevision#ViewApprovedPageAfterStagingDeactivated]",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 1026.984,
+            "id" : "1",
+            "name" : "com.liferay.poshi.runner.PoshiRunner",
+            "timestamp" : "2017-08-29T13:26:10"
+          }
+        ]
+      }
+    },
+    {
+      "child" : {
+        "number" : 155453,
+        "url" : "${dependencies.url}/testtest/test-1-4/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=3,label_exp=!master/155453"
+      },
+      "result" : {
+        "duration" : 1156.556,
+        "empty" : false,
+        "failCount" : 0,
+        "passCount" : 4,
+        "skipCount" : 0,
+        "suites" : [
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+                "duration" : 0.0,
+                "failedSince" : 0,
+                "name" : "testScanJenkinsLog",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 0.0,
+            "id" : "0",
+            "name" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+            "timestamp" : "2017-08-29_13:48:09"
+          },
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 960.008,
+                "failedSince" : 0,
+                "name" : "test[WorkflowadminUsecase#ViewWorkflowSubmissionsFromDifferentUsers]",
+                "skipped" : false,
+                "status" : "PASSED"
+              },
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 87.258,
+                "failedSince" : 0,
+                "name" : "test[XssUsecase#ValidateXSSVulnerabilities]",
+                "skipped" : false,
+                "status" : "PASSED"
+              },
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 109.29,
+                "failedSince" : 0,
+                "name" : "test[XssUsecase#ViewControlPanelNoXSS]",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 1156.556,
+            "id" : "1",
+            "name" : "com.liferay.poshi.runner.PoshiRunner",
+            "timestamp" : "2017-08-29T13:28:01"
+          }
+        ]
+      }
+    },
+    {
+      "child" : {
+        "number" : 155453,
+        "url" : "${dependencies.url}/testtest/test-1-4/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=4,label_exp=!master/155453"
+      },
+      "result" : {
+        "duration" : 347.086,
+        "empty" : false,
+        "failCount" : 0,
+        "passCount" : 4,
+        "skipCount" : 0,
+        "suites" : [
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+                "duration" : 0.0,
+                "failedSince" : 0,
+                "name" : "testScanJenkinsLog",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 0.0,
+            "id" : "0",
+            "name" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+            "timestamp" : "2017-08-29_13:30:53"
+          },
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 116.827,
+                "failedSince" : 0,
+                "name" : "test[XssUsecase#ViewGoogleAnalyticsIDNoXSS]",
+                "skipped" : false,
+                "status" : "PASSED"
+              },
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 86.369,
+                "failedSince" : 0,
+                "name" : "test[XssUsecase#ViewJSONWSNoXSS]",
+                "skipped" : false,
+                "status" : "PASSED"
+              },
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 143.89,
+                "failedSince" : 0,
+                "name" : "test[XssUsecase#ViewLiferayPortletListNoXSS]",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 347.086,
+            "id" : "1",
+            "name" : "com.liferay.poshi.runner.PoshiRunner",
+            "timestamp" : "2017-08-29T13:24:17"
+          }
+        ]
+      }
+    },
+    {
+      "child" : {
+        "number" : 155453,
+        "url" : "${dependencies.url}/testtest/test-1-4/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=0,label_exp=!master/155453"
+      },
+      "result" : {
+        "duration" : 798.922,
+        "empty" : false,
+        "failCount" : 0,
+        "passCount" : 4,
+        "skipCount" : 0,
+        "suites" : [
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+                "duration" : 0.0,
+                "failedSince" : 0,
+                "name" : "testScanJenkinsLog",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 0.0,
+            "id" : "0",
+            "name" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+            "timestamp" : "2017-08-29_13:42:41"
+          },
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 295.633,
+                "failedSince" : 0,
+                "name" : "test[WorkflowadminMysubmissions#WithdrawTaskAssignedToMeByActions]",
+                "skipped" : false,
+                "status" : "PASSED"
+              },
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 313.751,
+                "failedSince" : 0,
+                "name" : "test[WorkflowadminMyworkflowtasks#ResubmitTaskByDetails]",
+                "skipped" : false,
+                "status" : "PASSED"
+              },
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 189.538,
+                "failedSince" : 0,
+                "name" : "test[WorkflowadminMyworkflowtasks#UpdateDueDateTaskByActions]",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 798.922,
+            "id" : "1",
+            "name" : "com.liferay.poshi.runner.PoshiRunner",
+            "timestamp" : "2017-08-29T13:28:31"
+          }
+        ]
+      }
+    },
+    {
+      "child" : {
+        "number" : 155453,
+        "url" : "${dependencies.url}/testtest/test-1-4/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=5,label_exp=!master/155453"
+      },
+      "result" : {
+        "duration" : 281.673,
+        "empty" : false,
+        "failCount" : 0,
+        "passCount" : 3,
+        "skipCount" : 0,
+        "suites" : [
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+                "duration" : 0.0,
+                "failedSince" : 0,
+                "name" : "testScanJenkinsLog",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 0.0,
+            "id" : "0",
+            "name" : "com.liferay.jenkins.JenkinsLogAsserterTest",
+            "timestamp" : "2017-08-29_13:34:27"
+          },
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 148.824,
+                "failedSince" : 0,
+                "name" : "test[XssUsecase#ViewLookAndFeelNoXSS]",
+                "skipped" : false,
+                "status" : "PASSED"
+              },
+              {
+                "age" : 0,
+                "className" : "com.liferay.poshi.runner.PoshiRunner",
+                "duration" : 132.849,
+                "failedSince" : 0,
+                "name" : "test[XssUsecase#ViewRecycleBinNoXSS]",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 281.673,
+            "id" : "1",
+            "name" : "com.liferay.poshi.runner.PoshiRunner",
+            "timestamp" : "2017-08-29T13:28:56"
+          }
+        ]
+      }
+    }
+  ]
+}

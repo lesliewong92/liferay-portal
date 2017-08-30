@@ -1,0 +1,143 @@
+{
+  "actions" : [
+    {
+      "parameters" : [
+        {
+          "name" : "AXIS_VARIABLES",
+          "value" : "0 1 2 3 4 5 6 7 8 9 10 11 12 13 14"
+        },
+        {
+          "name" : "JENKINS_GITHUB_BRANCH_NAME",
+          "value" : ""
+        },
+        {
+          "name" : "JENKINS_GITHUB_BRANCH_USERNAME",
+          "value" : ""
+        },
+        {
+          "name" : "JENKINS_GITHUB_PULL_REQUEST_NUMBER",
+          "value" : ""
+        },
+        {
+          "name" : "JENKINS_GITHUB_PULL_REQUEST_USERNAME",
+          "value" : ""
+        },
+        {
+          "name" : "JOB_VARIANT",
+          "value" : "modules-integration-db2105-jdk8"
+        },
+        {
+          "name" : "JSON_MAP_URL",
+          "value" : "http://cloud-10-0-0-31/osb-jenkins-web/map/test-1-2/test-portal-acceptance-pullrequest(master)/2232/test-portal-acceptance-pullrequest-batch(master)/modules-integration-db2105-jdk8/start.properties"
+        }
+      ]
+    },
+    {
+      "causes" : [
+        {
+          "shortDescription" : "Started by remote host 10.0.16.120"
+        }
+      ]
+    },
+    null,
+    {
+      "failCount" : 0,
+      "skipCount" : 815,
+      "totalCount" : 8471,
+      "urlName" : "testReport"
+    },
+    {
+      
+    },
+    {
+      
+    }
+  ],
+  "artifacts" : [
+    
+  ],
+  "building" : false,
+  "description" : null,
+  "duration" : 3829183,
+  "estimatedDuration" : 995331,
+  "executor" : null,
+  "fullDisplayName" : "test-portal-acceptance-pullrequest-batch(master) #95598",
+  "id" : "2017-08-29_06-17-41",
+  "keepLog" : false,
+  "number" : 95598,
+  "result" : "SUCCESS",
+  "timestamp" : 1504012661000,
+  "url" : "${dependencies.url}/testtest/test-1-15/test-portal-acceptance-pullrequest-batch(master)/95598",
+  "builtOn" : "cloud-10-0-111-135",
+  "changeSet" : {
+    "items" : [
+      
+    ],
+    "kind" : null
+  },
+  "culprits" : [
+    
+  ],
+  "runs" : [
+    {
+      "number" : 95598,
+      "url" : "${dependencies.url}/testtest/test-1-15/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=0,label_exp=!master/95598"
+    },
+    {
+      "number" : 95598,
+      "url" : "${dependencies.url}/testtest/test-1-15/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=1,label_exp=!master/95598"
+    },
+    {
+      "number" : 95598,
+      "url" : "${dependencies.url}/testtest/test-1-15/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=10,label_exp=!master/95598"
+    },
+    {
+      "number" : 95598,
+      "url" : "${dependencies.url}/testtest/test-1-15/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=11,label_exp=!master/95598"
+    },
+    {
+      "number" : 95598,
+      "url" : "${dependencies.url}/testtest/test-1-15/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=12,label_exp=!master/95598"
+    },
+    {
+      "number" : 95598,
+      "url" : "${dependencies.url}/testtest/test-1-15/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=13,label_exp=!master/95598"
+    },
+    {
+      "number" : 95598,
+      "url" : "${dependencies.url}/testtest/test-1-15/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=14,label_exp=!master/95598"
+    },
+    {
+      "number" : 95598,
+      "url" : "${dependencies.url}/testtest/test-1-15/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=2,label_exp=!master/95598"
+    },
+    {
+      "number" : 95598,
+      "url" : "${dependencies.url}/testtest/test-1-15/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=3,label_exp=!master/95598"
+    },
+    {
+      "number" : 95598,
+      "url" : "${dependencies.url}/testtest/test-1-15/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=4,label_exp=!master/95598"
+    },
+    {
+      "number" : 95598,
+      "url" : "${dependencies.url}/testtest/test-1-15/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=5,label_exp=!master/95598"
+    },
+    {
+      "number" : 95598,
+      "url" : "${dependencies.url}/testtest/test-1-15/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=6,label_exp=!master/95598"
+    },
+    {
+      "number" : 95598,
+      "url" : "${dependencies.url}/testtest/test-1-15/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=7,label_exp=!master/95598"
+    },
+    {
+      "number" : 95598,
+      "url" : "${dependencies.url}/testtest/test-1-15/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=8,label_exp=!master/95598"
+    },
+    {
+      "number" : 95598,
+      "url" : "${dependencies.url}/testtest/test-1-15/test-portal-acceptance-pullrequest-batch(master)/AXIS_VARIABLE=9,label_exp=!master/95598"
+    }
+  ]
+}
