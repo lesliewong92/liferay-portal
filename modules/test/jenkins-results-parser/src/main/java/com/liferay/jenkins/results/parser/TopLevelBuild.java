@@ -290,11 +290,13 @@ public class TopLevelBuild extends BaseBuild {
 	}
 
 	protected Element getBaseBranchDetailsElement() {
-		String baseBranchURL =
-			"https://github.com/liferay/" + getBaseRepositoryName() + "/tree/" +
-				getBranchName();
+		return getBaseBranchDetailsElement(getBaseRepositoryName());
+	}
 
-		String baseRepositoryName = getBaseRepositoryName();
+	protected Element getBaseBranchDetailsElement(String baseRepositoryName) {
+		String baseBranchURL =
+			"https://github.com/liferay/" + baseRepositoryName + "/tree/" +
+				getBranchName();
 
 		String baseRepositorySHA = null;
 
