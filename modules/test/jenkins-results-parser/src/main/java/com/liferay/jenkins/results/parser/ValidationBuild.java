@@ -14,17 +14,46 @@
 
 package com.liferay.jenkins.results.parser;
 
+import org.dom4j.Element;
+
 /**
  * @author Leslie Wong
  */
 public class ValidationBuild extends TopLevelBuild {
 
-    protected ValidationBuild(String url) {
-        this(url, null);
-    }
+	protected ValidationBuild(String url) {
+		this(url, null);
+	}
 
-    protected ValidationBuild(String url, TopLevelBuild  topLevelBuild) {
-        super(url, topLevelBuild);
-    }
+	protected ValidationBuild(String url, TopLevelBuild topLevelBuild) {
+		super(url, topLevelBuild);
+	}
+
+	@Override
+	protected Element getResultElement() {
+		Element resultElement = Dom4JUtil.getNewElement("h1");
+
+		String result = getResult();
+
+		if (!result.equals("SUCCESS")) {
+			resultElement.addText("Validation FAILED.");
+		}
+		else {
+			resultElement.addText("Validation PASSED. Running batch tests.");
+		}
+
+		return resultElement;
+	}
+
+	protected Element getTopGitHubMessageElement() {
+		update();
+
+		Element rootElement = Dom4JUtil.getNewElement(
+			"html", null, getResultElement(), getBuildTimeElement(),
+			Dom4JUtil.getNewElement("h4", null, "Base Branch:"),
+			getBaseBranchDetailsElement());
+
+		return rootElement;
+	}
 
 }
