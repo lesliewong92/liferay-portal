@@ -1552,6 +1552,21 @@ public abstract class BaseBuild implements Build {
 		return null;
 	}
 
+	protected Element getFailureMessageElement(String console) {
+		for (FailureMessageGenerator failureMessageGenerator :
+				getFailureMessageGenerators()) {
+
+			Element failureMessage = failureMessageGenerator.getMessageElement(
+				console);
+
+			if (failureMessage != null) {
+				return failureMessage;
+			}
+		}
+
+		return null;
+	}
+
 	protected FailureMessageGenerator[] getFailureMessageGenerators() {
 		return _FAILURE_MESSAGE_GENERATORS;
 	}
