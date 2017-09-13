@@ -14,18 +14,86 @@
 
 package com.liferay.jenkins.results.parser;
 
+import org.dom4j.Element;
+
 /**
  * @author Leslie Wong
  */
 public class ValidationBuild extends BaseBuild {
 
-    protected ValidationBuild(String url) {
-        this(url, null);
-    }
+	@Override
+	public Element getGitHubMessageElement() {
+		update();
 
-    protected ValidationBuild(String url, TopLevelBuild  topLevelBuild) {
-        super(url, topLevelBuild);
-    }
+		Element rootElement = Dom4JUtil.getNewElement(
+			"html", null, getResultElement(), getBuildTimeElement(),
+			Dom4JUtil.getNewElement("h4", null, "Base Branch:"),
+			getBaseBranchDetailsElement());
+
+		return rootElement;
+	}
+
+	protected ValidationBuild(String url) {
+		this(url, null);
+	}
+
+	protected ValidationBuild(String url, TopLevelBuild topLevelBuild) {
+		super(url, topLevelBuild);
+	}
+
+	protected Element getBaseBranchDetailsElement() {
+		String baseBranchURL =
+			"https://github.com/liferay/" + getBaseRepositoryName() + "/tree/" +
+				getBranchName();
+
+		String baseRepositoryName = getBaseRepositoryName();
+
+		String baseRepositorySHA = null;
+
+		if (!baseRepositoryName.equals("liferay-jenkins-ee") &&
+			baseRepositoryName.endsWith("-ee")) {
+
+			baseRepositorySHA = getBaseRepositorySHA(
+				baseRepositoryName.substring(
+					0, baseRepositoryName.length() - 3));
+		}
+		else {
+			baseRepositorySHA = getBaseRepositorySHA(baseRepositoryName);
+		}
+
+		String baseRepositoryCommitURL =
+			"https://github.com/liferay/" + baseRepositoryName + "/commit/" +
+				baseRepositorySHA;
+
+		Element baseBranchDetailsElement = Dom4JUtil.getNewElement(
+			"p", null, "Branch Name: ",
+			Dom4JUtil.getNewAnchorElement(baseBranchURL, getBranchName()));
+
+		if (baseRepositorySHA != null) {
+			Dom4JUtil.addToElement(
+				baseBranchDetailsElement, Dom4JUtil.getNewElement("br"),
+				"Branch GIT ID: ",
+				Dom4JUtil.getNewAnchorElement(
+					baseRepositoryCommitURL, baseRepositorySHA));
+		}
+
+		return baseBranchDetailsElement;
+	}
+
+	protected Element getResultElement() {
+		Element resultElement = Dom4JUtil.getNewElement("h1");
+
+		String result = getResult();
+
+		if (!result.equals("SUCCESS")) {
+			resultElement.addText("Validation FAILED.");
+		}
+		else {
+			resultElement.addText("Validation PASSED. Running batch tests.");
+		}
+
+		return resultElement;
+	}
 
     @Override
     protected Element getGitHubMessageJobResultsElement() {
