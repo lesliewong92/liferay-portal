@@ -14,6 +14,9 @@
 
 package com.liferay.jenkins.results.parser;
 
+/**
+ * @author Leslie Wong
+ */
 public class ValidationBuild extends TopLevelBuild {
 
     protected ValidationBuild(String url) {
