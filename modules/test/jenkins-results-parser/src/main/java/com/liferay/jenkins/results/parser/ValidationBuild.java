@@ -14,6 +14,11 @@
 
 package com.liferay.jenkins.results.parser;
 
+import com.liferay.jenkins.results.parser.failure.message.generator.FailureMessageGenerator;
+import com.liferay.jenkins.results.parser.failure.message.generator.GenericFailureMessageGenerator;
+import com.liferay.jenkins.results.parser.failure.message.generator.RebaseFailureMessageGenerator;
+import com.liferay.jenkins.results.parser.failure.message.generator.SubrepositorySourceFormatFailureMessageGenerator;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -72,7 +77,23 @@ public class ValidationBuild extends TopLevelBuild {
 			Dom4JUtil.getNewElement("h4", null, "Base Branch:"),
 			getBaseBranchDetailsElement());
 
+		String consoleText = getConsoleText();
+
+		String[] consoleSnippets = consoleText.split(
+			"Executing subrepository task ");
+
+		if (consoleSnippets.length <= 1) {
+			Dom4JUtil.addToElement(rootElement, getFailureMessageElement());
+		}
+
 		return rootElement;
 	}
+
+	private static final FailureMessageGenerator[] _failureMessageGenerators = {
+		new RebaseFailureMessageGenerator(),
+		new SubrepositorySourceFormatFailureMessageGenerator(),
+
+		new GenericFailureMessageGenerator()
+	};
 
 }
