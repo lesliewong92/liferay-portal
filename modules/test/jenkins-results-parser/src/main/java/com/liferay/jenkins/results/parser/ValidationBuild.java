@@ -14,6 +14,11 @@
 
 package com.liferay.jenkins.results.parser;
 
+import com.liferay.jenkins.results.parser.failure.message.generator.FailureMessageGenerator;
+import com.liferay.jenkins.results.parser.failure.message.generator.GenericFailureMessageGenerator;
+import com.liferay.jenkins.results.parser.failure.message.generator.RebaseFailureMessageGenerator;
+import com.liferay.jenkins.results.parser.failure.message.generator.SubrepositorySourceFormatFailureMessageGenerator;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -34,6 +39,15 @@ public class ValidationBuild extends BaseBuild {
 			"html", null, getResultElement(), getBuildTimeElement(),
 			Dom4JUtil.getNewElement("h4", null, "Base Branch:"),
 			getBaseBranchDetailsElement());
+
+		String consoleText = getConsoleText();
+
+		String[] consoleSnippets = consoleText.split(
+			"Executing subrepository task ");
+
+		if (consoleSnippets.length <= 1) {
+			Dom4JUtil.addToElement(rootElement, getFailureMessageElement());
+		}
 
 		return rootElement;
 	}
@@ -99,6 +113,11 @@ public class ValidationBuild extends BaseBuild {
 		return baseBranchDetailsElement;
 	}
 
+	@Override
+	protected Element getGitHubMessageJobResultsElement() {
+		return null;
+	}
+
 	protected Element getResultElement() {
 		Element resultElement = Dom4JUtil.getNewElement("h1");
 
@@ -114,9 +133,11 @@ public class ValidationBuild extends BaseBuild {
 		return resultElement;
 	}
 
-    @Override
-    protected Element getGitHubMessageJobResultsElement() {
-        return null;
-    }
+	private static final FailureMessageGenerator[] _failureMessageGenerators = {
+		new RebaseFailureMessageGenerator(),
+		new SubrepositorySourceFormatFailureMessageGenerator(),
+
+		new GenericFailureMessageGenerator()
+	};
 
 }
