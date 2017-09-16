@@ -16,8 +16,6 @@ package com.liferay.jenkins.results.parser.failure.message.generator;
 
 import com.liferay.jenkins.results.parser.Build;
 
-import java.util.Hashtable;
-
 import org.dom4j.Element;
 
 /**
@@ -25,9 +23,8 @@ import org.dom4j.Element;
  */
 public interface FailureMessageGenerator {
 
-	public String getMessage(
-		String buildURL, String consoleOutput, Hashtable<?, ?> properties);
-
 	public Element getMessageElement(Build build);
+
+	public Element getMessageElement(String consoleText);
 
 }

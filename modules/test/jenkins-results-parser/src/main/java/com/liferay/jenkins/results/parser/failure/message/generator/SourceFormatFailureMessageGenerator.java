@@ -16,8 +16,6 @@ package com.liferay.jenkins.results.parser.failure.message.generator;
 
 import com.liferay.jenkins.results.parser.Build;
 
-import java.util.Hashtable;
-
 import org.dom4j.Element;
 
 /**
@@ -28,32 +26,12 @@ public class SourceFormatFailureMessageGenerator
 	extends BaseFailureMessageGenerator {
 
 	@Override
-	public String getMessage(
-		String buildURL, String consoleOutput, Hashtable<?, ?> properties) {
-
-		if (!consoleOutput.contains(_TOKEN_SOURCE_FORMAT)) {
-			return null;
-		}
-
-		int start = consoleOutput.lastIndexOf(_TOKEN_FORMAT_SOURCE);
-
-		start = consoleOutput.indexOf(_TOKEN_UTIL_SYSTEM_EXT_PROPERTIES, start);
-
-		start = consoleOutput.indexOf("\n", start);
-
-		int end = consoleOutput.indexOf(_TOKEN_MERGE_TEST_RESULTS, start);
-
-		end = consoleOutput.lastIndexOf(_TOKEN_SOURCE_FORMAT, end);
-
-		end = consoleOutput.indexOf("\n", end);
-
-		return getConsoleOutputSnippet(consoleOutput, true, start, end);
+	public Element getMessageElement(Build build) {
+		return getMessageElement(build.getConsoleText());
 	}
 
 	@Override
-	public Element getMessageElement(Build build) {
-		String consoleText = build.getConsoleText();
-
+	public Element getMessageElement(String consoleText) {
 		if (!consoleText.contains(_TOKEN_SOURCE_FORMAT)) {
 			return null;
 		}

@@ -17,7 +17,6 @@ package com.liferay.jenkins.results.parser.failure.message.generator;
 import com.liferay.jenkins.results.parser.Build;
 import com.liferay.jenkins.results.parser.Dom4JUtil;
 
-import java.util.Hashtable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,47 +29,12 @@ public class PoshiTestFailureMessageGenerator
 	extends BaseFailureMessageGenerator {
 
 	@Override
-	public String getMessage(
-		String buildURL, String consoleOutput, Hashtable<?, ?> properties) {
-
-		Matcher poshiTestFailureMatcher = _poshiTestFailurePattern.matcher(
-			consoleOutput);
-
-		if (!poshiTestFailureMatcher.find()) {
-			return null;
-		}
-
-		String failedPoshiTaskToken = poshiTestFailureMatcher.group(1);
-
-		int end = consoleOutput.indexOf(failedPoshiTaskToken);
-
-		end = consoleOutput.indexOf(_TOKEN_TRY, end);
-
-		end = consoleOutput.lastIndexOf("\n", end);
-
-		int start = consoleOutput.lastIndexOf(_TOKEN_JAVA_LANG_EXCEPTION, end);
-
-		start = consoleOutput.lastIndexOf("\n", start);
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("<p>POSHI Test Failure: </p><strong>");
-
-		sb.append(failedPoshiTaskToken);
-
-		sb.append("</strong><pre><code>");
-
-		sb.append(getConsoleOutputSnippet(consoleOutput, true, start, end));
-
-		sb.append("</code></pre>");
-
-		return sb.toString();
+	public Element getMessageElement(Build build) {
+		return getMessageElement(build.getConsoleText());
 	}
 
 	@Override
-	public Element getMessageElement(Build build) {
-		String consoleText = build.getConsoleText();
-
+	public Element getMessageElement(String consoleText) {
 		Matcher poshiTestFailureMatcher = _poshiTestFailurePattern.matcher(
 			consoleText);
 
