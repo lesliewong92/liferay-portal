@@ -116,6 +116,8 @@ public interface Build {
 
 	public Map<String, String> getStopPropertiesTempMap();
 
+	public int getTestCountByStatus(String status);
+
 	public JSONObject getTestReportJSONObject();
 
 	public List<TestResult> getTestResults(String testStatus);

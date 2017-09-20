@@ -801,6 +801,25 @@ public abstract class BaseBuild implements Build {
 	}
 
 	@Override
+	public int getTestCountByStatus(String status) {
+		JSONObject testReportJSONObject = getTestReportJSONObject();
+
+		int failCount = testReportJSONObject.getInt("failCount");
+		int skipCount = testReportJSONObject.getInt("skipCount");
+		int totalCount = testReportJSONObject.getInt("totalCount");
+
+		if (status.equals("SUCCESS")) {
+			return totalCount - skipCount - failCount;
+		}
+
+		if (status.equals("FAILURE")) {
+			return failCount;
+		}
+
+		throw new IllegalArgumentException("Invalid status: " + status);
+	}
+
+	@Override
 	public JSONObject getTestReportJSONObject() {
 		try {
 			return JenkinsResultsParserUtil.toJSONObject(
