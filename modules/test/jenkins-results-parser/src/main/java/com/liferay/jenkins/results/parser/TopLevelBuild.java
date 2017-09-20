@@ -195,6 +195,17 @@ public class TopLevelBuild extends BaseBuild {
 	}
 
 	@Override
+	public int getTestCountByStatus(String status) {
+		int testCount = 0;
+
+		for (Build build : getDownstreamBuilds(null)) {
+			testCount += build.getTestCountByStatus(status);
+		}
+
+		return testCount;
+	}
+
+	@Override
 	public JSONObject getTestReportJSONObject() {
 		return null;
 	}
