@@ -19,6 +19,9 @@ import com.liferay.jenkins.results.parser.failure.message.generator.GenericFailu
 import com.liferay.jenkins.results.parser.failure.message.generator.RebaseFailureMessageGenerator;
 import com.liferay.jenkins.results.parser.failure.message.generator.SubrepositorySourceFormatFailureMessageGenerator;
 
+import java.io.IOException;
+
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -32,6 +35,39 @@ import org.json.JSONObject;
  * @author Leslie Wong
  */
 public class ValidationBuild extends TopLevelBuild {
+
+	@Override
+	public int getTestCountByStatus(String status) {
+		JSONObject testReportJSONObject = getTestReportJSONObject();
+
+		int failCount = testReportJSONObject.getInt("failCount");
+		int passCount = testReportJSONObject.getInt("passCount");
+		int skipCount = testReportJSONObject.getInt("skipCount");
+
+		if (status.equals("SUCCESS")) {
+			return passCount;
+		}
+
+		if (status.equals("FAILURE")) {
+			return failCount;
+		}
+
+		throw new IllegalArgumentException("Invalid status: " + status);
+	}
+
+	@Override
+	public JSONObject getTestReportJSONObject() {
+		try {
+			return JenkinsResultsParserUtil.toJSONObject(
+				JenkinsResultsParserUtil.getLocalURL(
+					getBuildURL() + "testReport/api/json"),
+				false);
+		}
+		catch (IOException ioe) {
+			throw new RuntimeException(
+				"Unable to get test report JSON object", ioe);
+		}
+	}
 
 	@Override
 	public List<TestResult> getTestResults(String testStatus) {
@@ -55,6 +91,23 @@ public class ValidationBuild extends TopLevelBuild {
 		super(url, topLevelBuild);
 	}
 
+	protected Element getGitHubMessageTestResultsElement() {
+		int failCount = getTestCountByStatus("FAILURE");
+		int successCount = getTestCountByStatus("SUCCESS");
+
+		return Dom4JUtil.getNewElement(
+			"div", null, Dom4JUtil.getNewElement("h6", null, "Test Results:"),
+			Dom4JUtil.getNewElement(
+				"p", null, Integer.toString(successCount),
+				JenkinsResultsParserUtil.getNounForm(
+					successCount, " Tests", " Test"),
+				" Passed.", Dom4JUtil.getNewElement("br"),
+				Integer.toString(failCount),
+				JenkinsResultsParserUtil.getNounForm(
+					failCount, " Tests", " Test"),
+				" Failed."));
+	}
+
 	@Override
 	protected Element getResultElement() {
 		Element resultElement = Dom4JUtil.getNewElement("h1");
@@ -76,7 +129,7 @@ public class ValidationBuild extends TopLevelBuild {
 			return " :x:";
 		}
 
-		if (result.equals("SUCCESS")) {
+		if (result.equals("SUCCESSFUL")) {
 			return " :white_check_mark:";
 		}
 
@@ -97,8 +150,7 @@ public class ValidationBuild extends TopLevelBuild {
 		Element taskSummaryIndexElement = Dom4JUtil.getNewElement("li", null);
 
 		Dom4JUtil.addToElement(
-			taskSummaryIndexElement,
-			Dom4JUtil.getNewElement("strong", null, taskName), " - ",
+			taskSummaryIndexElement, taskName, " - ",
 			getTaskResultIcon(taskResult));
 
 		if (taskResult.equals("FAILED")) {
@@ -111,6 +163,36 @@ public class ValidationBuild extends TopLevelBuild {
 		}
 
 		return taskSummaryIndexElement;
+	}
+
+	protected Element getTestSummaryElement() {
+		List<TestResult> testResults = getTestResults(null);
+
+		if (testResults.isEmpty()) {
+
+			// Add code to say "No tests were ran"
+
+		}
+
+		Element testSummaryElement = Dom4JUtil.getNewElement(
+			"div", null, getGitHubMessageTestResultsElement());
+
+		List<Element> failureElements = new ArrayList<>();
+
+		for (TestResult testResult : getTestResults(null)) {
+			String testStatus = testResult.getStatus();
+
+			if (testStatus.equals("PASSED") || testStatus.equals("SKIPPED")) {
+				continue;
+			}
+
+			failureElements.add(testResult.getGitHubElement());
+		}
+
+		Dom4JUtil.getOrderedListElement(
+			failureElements, testSummaryElement, 10);
+
+		return testSummaryElement;
 	}
 
 	protected Element getTopGitHubMessageElement() {
@@ -145,6 +227,10 @@ public class ValidationBuild extends TopLevelBuild {
 					taskSummaryListElement,
 					getTaskSummaryIndexElement(consoleSnippet));
 			}
+
+			Dom4JUtil.addToElement(
+				rootElement, Dom4JUtil.getNewElement("hr"),
+				getTestSummaryElement());
 		}
 		else {
 			Dom4JUtil.addToElement(rootElement, getFailureMessageElement());
