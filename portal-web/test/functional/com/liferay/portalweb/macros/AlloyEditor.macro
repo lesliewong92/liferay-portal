@@ -3,10 +3,6 @@
 		<execute function="Type#typeEditor" locator1="AlloyEditor#CONTENT_FIELD" value1="${content}" />
 	</command>
 
-	<command name="addDescription">
-		<execute function="Type#typeEditor" locator1="AlloyEditor#DESCRIPTION_FIELD" value1="${description}" />
-	</command>
-
 	<command name="addSourceContent">
 		<execute macro="AlloyEditor#clickContentField" />
 
