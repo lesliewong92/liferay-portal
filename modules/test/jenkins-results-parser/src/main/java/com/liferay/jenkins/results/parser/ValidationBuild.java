@@ -47,6 +47,45 @@ public class ValidationBuild extends TopLevelBuild {
 			this, testReportJSONObject.getJSONArray("suites"), testStatus);
 	}
 
+	@Override
+	public Element getGitHubMessageElement() {
+		Element rootElement = Dom4JUtil.getNewElement(
+			"html", null, getResultElement(), getBuildTimeElement(),
+			Dom4JUtil.getNewElement("h4", null, "Base Branch:"),
+			getBaseBranchDetailsElement());
+
+		String consoleText = getConsoleText();
+
+		String[] consoleSnippets = consoleText.split(
+			"Executing subrepository task ");
+
+		if (consoleSnippets.length > 1) {
+			Dom4JUtil.addToElement(
+				rootElement,
+				Dom4JUtil.getNewElement("h4", null, "Task Summary:"));
+
+			Element taskSummaryListElement = Dom4JUtil.getNewElement(
+				"ul", rootElement);
+
+			for (int i = 1; i < consoleSnippets.length; i++) {
+				String consoleSnippet = consoleSnippets[i];
+
+				if (consoleSnippet.contains("merge-test-results:")) {
+					continue;
+				}
+
+				Dom4JUtil.addToElement(
+					taskSummaryListElement,
+					getTaskSummaryIndexElement(consoleSnippet));
+			}
+		}
+		else {
+			Dom4JUtil.addToElement(rootElement, getFailureMessageElement());
+		}
+
+		return rootElement;
+	}
+
 	protected ValidationBuild(String url) {
 		this(url, null);
 	}
@@ -111,46 +150,6 @@ public class ValidationBuild extends TopLevelBuild {
 		}
 
 		return taskSummaryIndexElement;
-	}
-
-	protected Element getTopGitHubMessageElement() {
-		update();
-
-		Element rootElement = Dom4JUtil.getNewElement(
-			"html", null, getResultElement(), getBuildTimeElement(),
-			Dom4JUtil.getNewElement("h4", null, "Base Branch:"),
-			getBaseBranchDetailsElement());
-
-		String consoleText = getConsoleText();
-
-		String[] consoleSnippets = consoleText.split(
-			"Executing subrepository task ");
-
-		if (consoleSnippets.length > 1) {
-			Dom4JUtil.addToElement(
-				rootElement,
-				Dom4JUtil.getNewElement("h4", null, "Task Summary:"));
-
-			Element taskSummaryListElement = Dom4JUtil.getNewElement(
-				"ul", rootElement);
-
-			for (int i = 1; i < consoleSnippets.length; i++) {
-				String consoleSnippet = consoleSnippets[i];
-
-				if (consoleSnippet.contains("merge-test-results:")) {
-					continue;
-				}
-
-				Dom4JUtil.addToElement(
-					taskSummaryListElement,
-					getTaskSummaryIndexElement(consoleSnippet));
-			}
-		}
-		else {
-			Dom4JUtil.addToElement(rootElement, getFailureMessageElement());
-		}
-
-		return rootElement;
 	}
 
 	private static final Pattern _consoleResultPattern = Pattern.compile(
