@@ -34,20 +34,6 @@ import org.json.JSONObject;
 public class ValidationBuild extends TopLevelBuild {
 
 	@Override
-	public List<TestResult> getTestResults(String testStatus) {
-		String status = getStatus();
-
-		if (!status.equals("completed")) {
-			return Collections.emptyList();
-		}
-
-		JSONObject testReportJSONObject = getTestReportJSONObject();
-
-		return TestResult.getTestResults(
-			this, testReportJSONObject.getJSONArray("suites"), testStatus);
-	}
-
-	@Override
 	public Element getGitHubMessageElement() {
 		Element rootElement = Dom4JUtil.getNewElement(
 			"html", null, getResultElement(), getBuildTimeElement(),
@@ -84,6 +70,20 @@ public class ValidationBuild extends TopLevelBuild {
 		}
 
 		return rootElement;
+	}
+
+	@Override
+	public List<TestResult> getTestResults(String testStatus) {
+		String status = getStatus();
+
+		if (!status.equals("completed")) {
+			return Collections.emptyList();
+		}
+
+		JSONObject testReportJSONObject = getTestReportJSONObject();
+
+		return TestResult.getTestResults(
+			this, testReportJSONObject.getJSONArray("suites"), testStatus);
 	}
 
 	protected ValidationBuild(String url) {
