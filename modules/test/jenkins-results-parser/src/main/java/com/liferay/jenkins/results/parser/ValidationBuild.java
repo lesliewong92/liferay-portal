@@ -288,6 +288,15 @@ public class ValidationBuild extends BaseBuild {
 		Dom4JUtil.getOrderedListElement(
 			failureElements, testSummaryElement, 10);
 
+		if (failureElements.size() > 10) {
+			Element testReportElement = Dom4JUtil.getNewElement(
+				"h5", null, "For all test failures, click ",
+				Dom4JUtil.getNewAnchorElement(
+					getBuildURL() + "/testReport", "here"), ".");
+
+			Dom4JUtil.addToElement(testSummaryElement, testReportElement);
+		}
+
 		return testSummaryElement;
 	}
 
