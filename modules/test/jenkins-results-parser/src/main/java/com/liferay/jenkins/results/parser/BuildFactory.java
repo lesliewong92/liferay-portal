@@ -64,6 +64,11 @@ public class BuildFactory {
 			}
 		}
 
+		if (jobName.startsWith("test-subrepository-acceptance-pullrequest(")) {
+			return new SubrepositoryTopLevelBuild(
+				url, (TopLevelBuild)parentBuild);
+		}
+
 		return topLevelBuild;
 	}
 
