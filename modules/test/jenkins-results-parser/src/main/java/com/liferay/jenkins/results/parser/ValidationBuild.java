@@ -51,7 +51,7 @@ public class ValidationBuild extends BaseBuild {
 		if (consoleSnippets.length > 1) {
 			Dom4JUtil.addToElement(
 				rootElement,
-				Dom4JUtil.getNewElement("h4", null, "Task Summary:"));
+				Dom4JUtil.getNewElement("h6", null, "Task Summary:"));
 
 			Element taskSummaryListElement = Dom4JUtil.getNewElement(
 				"ul", rootElement);
