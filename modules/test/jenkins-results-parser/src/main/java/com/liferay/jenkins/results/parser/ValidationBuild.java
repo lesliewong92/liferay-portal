@@ -34,7 +34,7 @@ import org.json.JSONObject;
 /**
  * @author Leslie Wong
  */
-public class ValidationBuild extends TopLevelBuild {
+public class ValidationBuild extends BaseBuild {
 
 	@Override
 	public Element getGitHubMessageElement() {
@@ -133,6 +133,52 @@ public class ValidationBuild extends TopLevelBuild {
 		super(url, topLevelBuild);
 	}
 
+	protected Element getBaseBranchDetailsElement() {
+		String baseBranchURL =
+			"https://github.com/liferay/" + getBaseRepositoryName() + "/tree/" +
+				getBranchName();
+
+		String baseRepositoryName = getBaseRepositoryName();
+
+		System.out.println("baseRepositoryName: " + baseRepositoryName);
+
+		String baseRepositorySHA = null;
+
+		if (!baseRepositoryName.equals("liferay-jenkins-ee") &&
+			baseRepositoryName.endsWith("-ee")) {
+
+			baseRepositorySHA = getBaseRepositorySHA(
+				baseRepositoryName.substring(
+					0, baseRepositoryName.length() - 3));
+		}
+		else {
+			baseRepositorySHA = getBaseRepositorySHA(baseRepositoryName);
+		}
+
+		String baseRepositoryCommitURL =
+			"https://github.com/liferay/" + baseRepositoryName + "/commit/" +
+				baseRepositorySHA;
+
+		Element baseBranchDetailsElement = Dom4JUtil.getNewElement(
+			"p", null, "Branch Name: ",
+			Dom4JUtil.getNewAnchorElement(baseBranchURL, getBranchName()));
+
+		if (baseRepositorySHA != null) {
+			Dom4JUtil.addToElement(
+				baseBranchDetailsElement, Dom4JUtil.getNewElement("br"),
+				"Branch GIT ID: ",
+				Dom4JUtil.getNewAnchorElement(
+					baseRepositoryCommitURL, baseRepositorySHA));
+		}
+
+		return baseBranchDetailsElement;
+	}
+
+	@Override
+	protected Element getGitHubMessageJobResultsElement() {
+		return null;
+	}
+
 	protected Element getGitHubMessageTestResultsElement() {
 		int failCount = getTestCountByStatus("FAILURE");
 		int successCount = getTestCountByStatus("SUCCESS");
@@ -150,7 +196,6 @@ public class ValidationBuild extends TopLevelBuild {
 				" Failed."));
 	}
 
-	@Override
 	protected Element getResultElement() {
 		Element resultElement = Dom4JUtil.getNewElement("h1");
 
