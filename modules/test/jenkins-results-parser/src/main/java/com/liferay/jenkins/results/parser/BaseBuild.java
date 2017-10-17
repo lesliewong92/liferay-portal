@@ -1646,6 +1646,12 @@ public abstract class BaseBuild implements Build {
 		return jsonObject.getJSONArray("builds");
 	}
 
+	protected Element getBuildTimeElement() {
+		return Dom4JUtil.getNewElement(
+			"p", null, "Build Time: ",
+			JenkinsResultsParserUtil.toDurationString(getDuration()));
+	}
+
 	protected int getDownstreamBuildCountByResult(String result) {
 		int count = 0;
 
