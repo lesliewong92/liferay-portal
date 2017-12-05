@@ -15,6 +15,7 @@
 package com.liferay.jenkins.results.parser;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.StringReader;
 
@@ -23,6 +24,8 @@ import java.net.URL;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
+
+import java.util.Properties;
 
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -89,8 +92,29 @@ public abstract class BaseJenkinsResultsParserTestCase {
 		deleteFile(new File(fileName));
 	}
 
-	protected abstract void downloadSample(File sampleDir, URL url)
-		throws Exception;
+	protected void downloadSample(File sampleDir, URL url) throws Exception {
+		Build build = BuildFactory.newBuild(
+			JenkinsResultsParserUtil.getLocalURL(url.toExternalForm()), null);
+
+		build.archive(getSimpleClassName() + "/" + sampleDir.getName());
+	}
+
+	protected void downloadSample(
+			String sampleKey, String buildNumber, String jobName,
+			String hostName)
+		throws Exception {
+
+		String urlString =
+			"https://${hostName}.liferay.com/job/${jobName}/${buildNumber}/";
+
+		urlString = replaceToken(urlString, "buildNumber", buildNumber);
+		urlString = replaceToken(urlString, "hostName", hostName);
+		urlString = replaceToken(urlString, "jobName", jobName);
+
+		URL url = JenkinsResultsParserUtil.createURL(urlString);
+
+		downloadSample(sampleKey, url);
+	}
 
 	protected void downloadSample(String sampleKey, URL url) throws Exception {
 		String sampleDirName = dependenciesDir.getPath() + "/" + sampleKey;
@@ -185,12 +209,35 @@ public abstract class BaseJenkinsResultsParserTestCase {
 		return formattedXML;
 	}
 
-	protected abstract String getMessage(File sampleDir) throws Exception;
+	protected String getMessage(File sampleDir) throws Exception {
+		Build build = BuildFactory.newBuildFromArchive(
+			"BuildTest/" + sampleDir.getName());
+
+		build.setCompareToUpstream(false);
+
+		return Dom4JUtil.format(build.getGitHubMessageElement(), true);
+	}
 
 	protected String getSimpleClassName() {
 		Class<?> clazz = getClass();
 
 		return clazz.getSimpleName();
+	}
+
+	protected Properties loadProperties(String sampleName) throws Exception {
+		Class<?> clazz = getClass();
+
+		Properties properties = new Properties();
+
+		String content = JenkinsResultsParserUtil.toString(
+			JenkinsResultsParserUtil.getLocalURL(
+				JenkinsResultsParserUtil.combine(
+					"${dependencies.url}", clazz.getSimpleName(), "/",
+					sampleName, "/sample.properties")));
+
+		properties.load(new StringReader(content));
+
+		return properties;
 	}
 
 	protected String read(File file) throws IOException {
@@ -207,6 +254,14 @@ public abstract class BaseJenkinsResultsParserTestCase {
 		}
 
 		return string.replace("${" + token + "}", value);
+	}
+
+	protected void saveProperties(File file, Properties properties)
+		throws Exception {
+
+		try (FileOutputStream fileOutputStream = new FileOutputStream(file)) {
+			properties.store(fileOutputStream, null);
+		}
 	}
 
 	protected String toURLString(File file) throws Exception {
