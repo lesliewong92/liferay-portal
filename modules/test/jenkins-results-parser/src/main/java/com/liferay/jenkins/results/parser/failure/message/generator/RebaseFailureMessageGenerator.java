@@ -28,9 +28,7 @@ public class RebaseFailureMessageGenerator extends BaseFailureMessageGenerator {
 	public Element getMessageElement(Build build) {
 		String consoleText = build.getConsoleText();
 
-		if (!consoleText.contains(_TOKEN_REBASE_END) ||
-			!consoleText.contains(_TOKEN_REBASE_START)) {
-
+		if (!consoleText.contains(_TOKEN_REBASE_START)) {
 			return null;
 		}
 
@@ -51,10 +49,10 @@ public class RebaseFailureMessageGenerator extends BaseFailureMessageGenerator {
 				Dom4JUtil.getNewElement(
 					"strong", null,
 					getBaseBranchAnchorElement(build.getTopLevelBuild())),
-				getConsoleTextSnippetElement(consoleText, true, start, end)));
+				getConsoleTextSnippetElement(consoleText, false, start, end)));
 	}
 
-	private static final String _TOKEN_REBASE_END = "git rebase --abort";
+	private static final String _TOKEN_REBASE_END = "BUILD FAILED";
 
 	private static final String _TOKEN_REBASE_START = "Unable to rebase";
 
