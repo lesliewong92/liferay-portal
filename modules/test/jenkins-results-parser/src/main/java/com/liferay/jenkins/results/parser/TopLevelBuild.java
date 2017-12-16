@@ -21,6 +21,7 @@ import com.liferay.jenkins.results.parser.failure.message.generator.PoshiTestFai
 import com.liferay.jenkins.results.parser.failure.message.generator.PoshiValidationFailureMessageGenerator;
 import com.liferay.jenkins.results.parser.failure.message.generator.RebaseFailureMessageGenerator;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.StringWriter;
 
@@ -125,11 +126,7 @@ public class TopLevelBuild extends BaseBuild {
 	}
 
 	public Map<String, String> getBaseGitRepositoryDetailsTempMap() {
-		String repositoryType = getBaseRepositoryType();
-
-		String tempMapName = "git." + repositoryType + ".properties";
-
-		return getTempMap(tempMapName);
+		return getGitRepositoryDetailsTempMap(getBaseRepositoryType());
 	}
 
 	public String getCompanionBranchName() {
@@ -144,16 +141,13 @@ public class TopLevelBuild extends BaseBuild {
 	public Map<String, String> getCompanionGitRepositoryDetailsTempMap() {
 		String branchName = getBranchName();
 		String branchType = "ee";
-		String repositoryType = getBaseRepositoryType();
 
 		if (branchName.endsWith("-private")) {
 			branchType = "base";
 		}
 
-		String tempMapName = JenkinsResultsParserUtil.combine(
-			"git.", repositoryType, ".", branchType, ".properties");
-
-		return getTempMap(tempMapName);
+		return getGitRepositoryDetailsTempMap(
+			getBaseRepositoryType() + "." + branchType);
 	}
 
 	public String getCompanionRepositorySHA() {
@@ -195,6 +189,12 @@ public class TopLevelBuild extends BaseBuild {
 		}
 
 		return super.getGitHubMessageElement();
+	}
+
+	public Map<String, String> getGitRepositoryDetailsTempMap(
+		String repositoryType) {
+
+		return getTempMap("git." + repositoryType + ".properties");
 	}
 
 	public String getJenkinsReport() {
@@ -557,6 +557,61 @@ public class TopLevelBuild extends BaseBuild {
 		}
 
 		return companionBranchDetailsElement;
+	}
+
+	protected Element getCompanionPullRequestDetailsElement(String content) {
+		Element pullRequestDetailsElement = Dom4JUtil.getNewElement("p");
+
+		for (String repositoryName : content.split("\n")) {
+			repositoryName = repositoryName.trim();
+
+			Map<String, String> gitRepositoryDetailsMap =
+				getGitRepositoryDetailsTempMap(repositoryName);
+
+			String userName = gitRepositoryDetailsMap.get(
+				"github.receiver.username");
+
+			String pullrequestNumber = gitRepositoryDetailsMap.get(
+				"github.pull.request.number");
+
+			String pullrequestSHA = gitRepositoryDetailsMap.get(
+				"github.sender.branch.sha");
+
+			String pullRequestCommitURL = JenkinsResultsParserUtil.combine(
+				"https://github.com/", userName, "/", repositoryName, "/pull/",
+				pullrequestNumber, "/commits/", pullrequestSHA);
+
+			String upstreamSHA = gitRepositoryDetailsMap.get(
+				"github.upstream.branch.sha");
+
+			String upstreamBranchName = gitRepositoryDetailsMap.get(
+				"github.upstream.branch.name");
+
+			String baseRepositoryURL =
+				"https://github.com/liferay/" + repositoryName;
+
+			String upstreamBranchURL =
+				baseRepositoryURL + "/tree/" + upstreamBranchName;
+
+			String upstreamCommitURL =
+				baseRepositoryURL + "/commit/" + upstreamSHA;
+
+			Dom4JUtil.addToElement(
+				pullRequestDetailsElement, "Pull Request repository: ",
+				Dom4JUtil.getNewAnchorElement(
+					baseRepositoryURL, repositoryName),
+				Dom4JUtil.getNewElement("br"), "Pull Request SHA: ",
+				Dom4JUtil.getNewAnchorElement(
+					pullRequestCommitURL, pullrequestSHA),
+				Dom4JUtil.getNewElement("br"), "Upstream branch name: ",
+				Dom4JUtil.getNewAnchorElement(
+					upstreamBranchURL, upstreamBranchName),
+				Dom4JUtil.getNewElement("br"), "Upstream SHA: ",
+				Dom4JUtil.getNewAnchorElement(upstreamCommitURL, upstreamSHA),
+				Dom4JUtil.getNewElement("br"));
+		}
+
+		return pullRequestDetailsElement;
 	}
 
 	protected Element getDownstreamGitHubMessageElement() {
@@ -1077,6 +1132,24 @@ public class TopLevelBuild extends BaseBuild {
 				rootElement,
 				Dom4JUtil.getNewElement("h4", null, companionBranchLabel),
 				getCompanionBranchDetailsElement());
+		}
+
+		try {
+			File flagFile = new File("companion-subrepos");
+
+			if (flagFile.exists()) {
+				Dom4JUtil.addToElement(
+					rootElement,
+					Dom4JUtil.getNewElement(
+						"h4", null, "Subrepo changes pulled in:"),
+					getCompanionPullRequestDetailsElement(
+						JenkinsResultsParserUtil.toString(
+							flagFile.toString())));
+			}
+		}
+		catch (IOException ioe) {
+			throw new RuntimeException(
+				"Unable to fetch companion subrepository pull requests");
 		}
 
 		int successCount = getDownstreamBuildCountByResult("SUCCESS");
