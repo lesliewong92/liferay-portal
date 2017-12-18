@@ -78,13 +78,13 @@ public class RebaseFailureMessageGenerator extends BaseFailureMessageGenerator {
 			return null;
 		}
 
-		int start = consoleText.lastIndexOf(_TOKEN_REBASE_START);
-
-		start = consoleText.lastIndexOf("\n", start);
-
-		int end = consoleText.indexOf(_TOKEN_REBASE_END, start);
+		int end = consoleText.indexOf(_TOKEN_REBASE_END);
 
 		end = consoleText.lastIndexOf("\n", end);
+
+		int start = consoleText.lastIndexOf(_TOKEN_REBASE_START, end);
+
+		start = consoleText.lastIndexOf("\n", start);
 
 		Map<String, String> repositoryGitDetails = getRepositoryGitDetails(
 			consoleText.substring(start, end));
