@@ -1135,16 +1135,24 @@ public class TopLevelBuild extends BaseBuild {
 		}
 
 		try {
-			File flagFile = new File("companion-subrepos");
+			Properties buildProperties =
+				JenkinsResultsParserUtil.getBuildProperties();
 
-			if (flagFile.exists()) {
+			File gitCommitSubrepoFile = new File(
+				JenkinsResultsParserUtil.combine(
+					buildProperties.getProperty("github.base.dir"), "/",
+					getBaseRepositoryName(), "/git-commit-subrepositories"));
+
+			if (gitCommitSubrepoFile.exists()) {
 				Dom4JUtil.addToElement(
 					rootElement,
 					Dom4JUtil.getNewElement(
-						"h4", null, "Subrepo changes pulled in:"),
+						"h4", null,
+						"Copied in subrepository pullrequest changes:"),
 					getCompanionPullRequestDetailsElement(
 						JenkinsResultsParserUtil.toString(
-							flagFile.toString())));
+							"file://" +
+								gitCommitSubrepoFile.getAbsolutePath())));
 			}
 		}
 		catch (IOException ioe) {
