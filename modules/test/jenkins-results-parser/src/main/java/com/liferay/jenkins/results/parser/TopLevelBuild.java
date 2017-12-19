@@ -226,6 +226,19 @@ public class TopLevelBuild extends BaseBuild {
 			Integer.toString(getBuildNumber()), "/jenkins-report.html");
 	}
 
+	public String getGitCommitSubrepositoriesFilePath() throws IOException {
+		if (fromArchive) {
+			return getBuildURL() + "/git-commit-subrepositories";
+		}
+
+		Properties buildProperties =
+			JenkinsResultsParserUtil.getBuildProperties();
+
+		return JenkinsResultsParserUtil.combine(
+			buildProperties.getProperty("base.repository.dir"), "/",
+			getBaseRepositoryName(), "/git-commit-subrepositories");
+	}
+
 	@Override
 	public String getResult() {
 		String result = super.getResult();
@@ -559,27 +572,34 @@ public class TopLevelBuild extends BaseBuild {
 		return companionBranchDetailsElement;
 	}
 
-	protected Element getCompanionPullRequestDetailsElement(String content) {
+	protected Element getCompanionPullRequestDetailsElement(
+		List<String> pullRequestURLs) {
+
 		Element pullRequestDetailsElement = Dom4JUtil.getNewElement("p");
 
-		for (String repositoryName : content.split("\n")) {
-			repositoryName = repositoryName.trim();
+		for (int i = 0; i < pullRequestURLs.size(); i++) {
+			String pullRequestURL = pullRequestURLs.get(i);;
+
+			pullRequestURL = pullRequestURL.trim();
+
+			Matcher matcher = pullRequestURLPattern.matcher(pullRequestURL);
+
+			if (!matcher.matches()) {
+				continue;
+			}
+
+			String pullrequestNumber = matcher.group("pullRequestNumber");
+			String repositoryType = matcher.group("repositoryType");
+			String userName = matcher.group("pullRequestReceiver");
 
 			Map<String, String> gitRepositoryDetailsMap =
-				getGitRepositoryDetailsTempMap(repositoryName);
-
-			String userName = gitRepositoryDetailsMap.get(
-				"github.receiver.username");
-
-			String pullrequestNumber = gitRepositoryDetailsMap.get(
-				"github.pull.request.number");
+				getGitRepositoryDetailsTempMap(repositoryType);
 
 			String pullrequestSHA = gitRepositoryDetailsMap.get(
 				"github.sender.branch.sha");
 
 			String pullRequestCommitURL = JenkinsResultsParserUtil.combine(
-				"https://github.com/", userName, "/", repositoryName, "/pull/",
-				pullrequestNumber, "/commits/", pullrequestSHA);
+				pullRequestURL, "/commits/", pullrequestSHA);
 
 			String upstreamSHA = gitRepositoryDetailsMap.get(
 				"github.upstream.branch.sha");
@@ -588,7 +608,7 @@ public class TopLevelBuild extends BaseBuild {
 				"github.upstream.branch.name");
 
 			String baseRepositoryURL =
-				"https://github.com/liferay/" + repositoryName;
+				"https://github.com/liferay/" + repositoryType;
 
 			String upstreamBranchURL =
 				baseRepositoryURL + "/tree/" + upstreamBranchName;
@@ -596,19 +616,40 @@ public class TopLevelBuild extends BaseBuild {
 			String upstreamCommitURL =
 				baseRepositoryURL + "/commit/" + upstreamSHA;
 
+			String senderUserName = gitRepositoryDetailsMap.get(
+				"github.sender.username");
+
+			String senderBranchName = gitRepositoryDetailsMap.get(
+				"github.sender.branch.name");
+
+			String senderBranchURL = JenkinsResultsParserUtil.combine(
+				"https://github.com/", senderUserName, "/", repositoryType,
+				"/tree/", senderBranchName);
+
+			String pullRequestBranchName =
+				senderUserName + "/" + senderBranchName;
+
 			Dom4JUtil.addToElement(
-				pullRequestDetailsElement, "Pull Request repository: ",
+				pullRequestDetailsElement, "Pull Request Repository: ",
 				Dom4JUtil.getNewAnchorElement(
-					baseRepositoryURL, repositoryName),
-				Dom4JUtil.getNewElement("br"), "Pull Request SHA: ",
+					baseRepositoryURL, repositoryType),
+				Dom4JUtil.getNewElement("br"), "Pull Request Branch Name: ",
+				Dom4JUtil.getNewAnchorElement(
+					senderBranchURL, pullRequestBranchName),
+				Dom4JUtil.getNewElement("br"), "Pull Request GIT ID: ",
 				Dom4JUtil.getNewAnchorElement(
 					pullRequestCommitURL, pullrequestSHA),
-				Dom4JUtil.getNewElement("br"), "Upstream branch name: ",
+				Dom4JUtil.getNewElement("br"), "Upstream Branch Name: ",
 				Dom4JUtil.getNewAnchorElement(
 					upstreamBranchURL, upstreamBranchName),
-				Dom4JUtil.getNewElement("br"), "Upstream SHA: ",
-				Dom4JUtil.getNewAnchorElement(upstreamCommitURL, upstreamSHA),
-				Dom4JUtil.getNewElement("br"));
+				Dom4JUtil.getNewElement("br"), "Upstream GIT ID: ",
+				Dom4JUtil.getNewAnchorElement(upstreamCommitURL, upstreamSHA));
+
+			if (i < (pullRequestURLs.size() - 1)) {
+				Dom4JUtil.addToElement(
+					pullRequestDetailsElement, Dom4JUtil.getNewElement("br"),
+					Dom4JUtil.getNewElement("br"));
+			}
 		}
 
 		return pullRequestDetailsElement;
@@ -1110,6 +1151,26 @@ public class TopLevelBuild extends BaseBuild {
 		return testCount;
 	}
 
+	protected List<String> getPullRequestURLsFromFile(String filePath)
+		throws IOException {
+
+		if (!filePath.startsWith("file://")) {
+			filePath = "file://" + filePath;
+		}
+
+		String content = JenkinsResultsParserUtil.toString(filePath);
+	
+		List<String> pullRequestURLs = new ArrayList<String>();
+
+		for (String line : content.split("\n")) {
+			if (line.startsWith("https://github.com/")) {
+				pullRequestURLs.add(line);
+			}
+		}
+
+		return pullRequestURLs;
+	}
+
 	protected Element getTopGitHubMessageElement() {
 		update();
 
@@ -1138,21 +1199,18 @@ public class TopLevelBuild extends BaseBuild {
 			Properties buildProperties =
 				JenkinsResultsParserUtil.getBuildProperties();
 
-			File gitCommitSubrepoFile = new File(
-				JenkinsResultsParserUtil.combine(
-					buildProperties.getProperty("github.base.dir"), "/",
-					getBaseRepositoryName(), "/git-commit-subrepositories"));
+			String filePath = getGitCommitSubrepositoriesFilePath();
 
-			if (gitCommitSubrepoFile.exists()) {
+			File gitCommitSubrepositoriesFile = new File(filePath);
+
+			if (gitCommitSubrepositoriesFile.exists()) {
 				Dom4JUtil.addToElement(
 					rootElement,
 					Dom4JUtil.getNewElement(
 						"h4", null,
-						"Copied in subrepository pullrequest changes:"),
+						"Copied in Subrepository Pull Request Changes:"),
 					getCompanionPullRequestDetailsElement(
-						JenkinsResultsParserUtil.toString(
-							"file://" +
-								gitCommitSubrepoFile.getAbsolutePath())));
+						getPullRequestURLsFromFile(filePath)));
 			}
 		}
 		catch (IOException ioe) {
@@ -1310,6 +1368,9 @@ public class TopLevelBuild extends BaseBuild {
 
 	protected static final Pattern gitRepositoryTempMapNamePattern =
 		Pattern.compile("git\\.(?<repositoryType>.*)\\.properties");
+	protected static final Pattern pullRequestURLPattern = Pattern.compile(
+		"https://github.com/(?<pullRequestReceiver>[^/]+)/" +
+			"(?<repositoryType>[^/]+)/pull/(?<pullRequestNumber>\\d+)");
 
 	private static final long _DOWNSTREAM_BUILDS_LISTING_INTERVAL =
 		1000 * 60 * 5;
