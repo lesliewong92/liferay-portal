@@ -21,7 +21,6 @@ import com.liferay.jenkins.results.parser.failure.message.generator.PoshiTestFai
 import com.liferay.jenkins.results.parser.failure.message.generator.PoshiValidationFailureMessageGenerator;
 import com.liferay.jenkins.results.parser.failure.message.generator.RebaseFailureMessageGenerator;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.StringWriter;
 
@@ -224,19 +223,6 @@ public class TopLevelBuild extends BaseBuild {
 			"https://", jenkinsMaster.getName(), ".liferay.com/",
 			"userContent/jobs/", getJobName(), "/builds/",
 			Integer.toString(getBuildNumber()), "/jenkins-report.html");
-	}
-
-	public String getGitCommitSubrepositoriesFilePath() throws IOException {
-		if (fromArchive) {
-			return getBuildURL() + "/git-commit-subrepositories";
-		}
-
-		Properties buildProperties =
-			JenkinsResultsParserUtil.getBuildProperties();
-
-		return JenkinsResultsParserUtil.combine(
-			buildProperties.getProperty("base.repository.dir"), "/",
-			getBaseRepositoryName(), "/git-commit-subrepositories");
 	}
 
 	@Override
@@ -573,12 +559,14 @@ public class TopLevelBuild extends BaseBuild {
 	}
 
 	protected Element getCompanionPullRequestDetailsElement(
-		List<String> pullRequestURLs) {
+		String pullRequestURLs) {
 
 		Element pullRequestDetailsElement = Dom4JUtil.getNewElement("p");
 
-		for (int i = 0; i < pullRequestURLs.size(); i++) {
-			String pullRequestURL = pullRequestURLs.get(i);;
+		String[] pullRequestURLArray = pullRequestURLs.split(",");
+
+		for (int i = 0; i < pullRequestURLArray.length; i++) {
+			String pullRequestURL = pullRequestURLArray[i];
 
 			pullRequestURL = pullRequestURL.trim();
 
@@ -645,7 +633,7 @@ public class TopLevelBuild extends BaseBuild {
 				Dom4JUtil.getNewElement("br"), "Upstream GIT ID: ",
 				Dom4JUtil.getNewAnchorElement(upstreamCommitURL, upstreamSHA));
 
-			if (i < (pullRequestURLs.size() - 1)) {
+			if (i < (pullRequestURLArray.length - 1)) {
 				Dom4JUtil.addToElement(
 					pullRequestDetailsElement, Dom4JUtil.getNewElement("br"),
 					Dom4JUtil.getNewElement("br"));
@@ -1151,26 +1139,6 @@ public class TopLevelBuild extends BaseBuild {
 		return testCount;
 	}
 
-	protected List<String> getPullRequestURLsFromFile(String filePath)
-		throws IOException {
-
-		if (!filePath.startsWith("file://")) {
-			filePath = "file://" + filePath;
-		}
-
-		String content = JenkinsResultsParserUtil.toString(filePath);
-	
-		List<String> pullRequestURLs = new ArrayList<String>();
-
-		for (String line : content.split("\n")) {
-			if (line.startsWith("https://github.com/")) {
-				pullRequestURLs.add(line);
-			}
-		}
-
-		return pullRequestURLs;
-	}
-
 	protected Element getTopGitHubMessageElement() {
 		update();
 
@@ -1195,27 +1163,20 @@ public class TopLevelBuild extends BaseBuild {
 				getCompanionBranchDetailsElement());
 		}
 
-		try {
-			Properties buildProperties =
-				JenkinsResultsParserUtil.getBuildProperties();
+		Map<String, String> startPropertiesTempMap =
+			getStartPropertiesTempMap();
 
-			String filePath = getGitCommitSubrepositoriesFilePath();
+		String subrepositoryPullRequestURLs = startPropertiesTempMap.get(
+			"SUBREPOSITORY_PULL_REQUEST_URLS");
 
-			File gitCommitSubrepositoriesFile = new File(filePath);
-
-			if (gitCommitSubrepositoriesFile.exists()) {
-				Dom4JUtil.addToElement(
-					rootElement,
-					Dom4JUtil.getNewElement(
-						"h4", null,
-						"Copied in Subrepository Pull Request Changes:"),
-					getCompanionPullRequestDetailsElement(
-						getPullRequestURLsFromFile(filePath)));
-			}
-		}
-		catch (IOException ioe) {
-			throw new RuntimeException(
-				"Unable to fetch companion subrepository pull requests");
+		if (subrepositoryPullRequestURLs != null) {
+			Dom4JUtil.addToElement(
+				rootElement,
+				Dom4JUtil.getNewElement(
+					"h4", null,
+					"Copied in Subrepository Pull Request Changes:"),
+				getCompanionPullRequestDetailsElement(
+					subrepositoryPullRequestURLs));
 		}
 
 		int successCount = getDownstreamBuildCountByResult("SUCCESS");
