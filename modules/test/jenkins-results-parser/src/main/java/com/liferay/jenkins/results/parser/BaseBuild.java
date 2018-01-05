@@ -2032,6 +2032,30 @@ public abstract class BaseBuild implements Build {
 		return false;
 	}
 
+	protected boolean isTestReportPresent() {
+		JSONObject buildJSONObject = getBuildJSONObject("actions[urlName]");
+
+		JSONArray actionsJSONArray = buildJSONObject.getJSONArray("actions");
+
+		for (int i = 0; i < actionsJSONArray.length(); i++) {
+			Object object = actionsJSONArray.get(i);
+
+			if (object.equals(JSONObject.NULL)) {
+				continue;
+			}
+
+			JSONObject actionJSONObject = actionsJSONArray.getJSONObject(i);
+
+			String urlName = actionJSONObject.optString("urlName");
+
+			if ((urlName != null) && urlName.equals("testReport")) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	protected void loadParametersFromBuildJSONObject() {
 		if (getBuildURL() == null) {
 			return;

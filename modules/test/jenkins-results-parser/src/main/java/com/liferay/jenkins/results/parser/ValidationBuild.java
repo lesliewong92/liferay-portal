@@ -241,16 +241,21 @@ public class ValidationBuild extends BaseBuild {
 		Element testSummaryElement = Dom4JUtil.getNewElement(
 			"div", null, Dom4JUtil.getNewElement("h6", null, "Test Results:"));
 
-		List<TestResult> testResults = getTestResults(null);
+		boolean noTestResults = true;
 
-		boolean noTestResults = testResults.isEmpty();
+		if (isTestReportPresent()) {
+			List<TestResult> testResults = getTestResults(null);
 
-		if (testResults.size() == 1) {
-			TestResult testResult = testResults.get(0);
+			if (testResults.size() == 1) {
+				TestResult testResult = testResults.get(0);
 
-			String className = testResult.getClassName();
+				String className = testResult.getClassName();
 
-			noTestResults = className.equals("com.liferay.jenkins.Jenkins");
+				noTestResults = className.equals("com.liferay.jenkins.Jenkins");
+			}
+			else {
+				noTestResults = false;
+			}
 		}
 
 		if (noTestResults) {
