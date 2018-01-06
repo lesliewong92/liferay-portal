@@ -48,6 +48,12 @@ public class ValidationBuild extends BaseBuild {
 			Dom4JUtil.getNewElement("h4", null, "Base Branch:"),
 			getBaseBranchDetailsElement());
 
+		String status = getStatus();
+
+		if (status.equals("ABORTED")) {
+
+		}
+
 		String consoleText = getConsoleText();
 
 		String[] consoleSnippets = consoleText.split(
