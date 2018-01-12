@@ -1025,7 +1025,7 @@ public class GitWorkingDirectory {
 			throw new RuntimeException(
 				JenkinsResultsParserUtil.combine(
 					"Unable to rebase ", targetBranch.getName(), " to ",
-					sourceBranch.getName(), "\n",
+					sourceBranch.getName(), " in ", _repositoryName ,"\n",
 					executionResult.getStandardError()));
 		}
 	}
