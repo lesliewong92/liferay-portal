@@ -16,6 +16,16 @@ package com.liferay.jenkins.results.parser.failure.message.generator;
 
 import com.liferay.jenkins.results.parser.Build;
 import com.liferay.jenkins.results.parser.Dom4JUtil;
+import com.liferay.jenkins.results.parser.JenkinsResultsParserUtil;
+import com.liferay.jenkins.results.parser.TopLevelBuild;
+
+import java.io.IOException;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.dom4j.Element;
 
@@ -38,7 +48,10 @@ public class RebaseFailureMessageGenerator extends BaseFailureMessageGenerator {
 
 		int start = consoleText.lastIndexOf(_TOKEN_REBASE_START, end);
 
-		start = consoleText.lastIndexOf("\n", start);
+		start = consoleText.lastIndexOf("\n", start) +  1;
+
+		Map<String, String> repositoryGitDetails = getRepositoryGitDetails(
+			build, consoleText.substring(start, end));
 
 		return Dom4JUtil.getNewElement(
 			"div", null,
@@ -48,12 +61,57 @@ public class RebaseFailureMessageGenerator extends BaseFailureMessageGenerator {
 				" on ",
 				Dom4JUtil.getNewElement(
 					"strong", null,
-					getBaseBranchAnchorElement(build.getTopLevelBuild())),
+					getBaseBranchAnchorElement(repositoryGitDetails)),
 				getConsoleTextSnippetElement(consoleText, false, start, end)));
+	}
+
+	protected Map<String, String> getRepositoryGitDetails(
+		Build build, String consoleText) {
+
+		TopLevelBuild topLevelBuild = build.getTopLevelBuild();
+
+		int x = consoleText.indexOf("\n");
+
+		String errorMessage = consoleText.substring(0, x);
+
+		Matcher matcher = _errorMessagePattern.matcher(errorMessage);
+
+		if (matcher.matches()) {
+			String repositoryName = matcher.group("repositoryName");
+
+			Properties buildProperties = null;
+
+			try {
+				buildProperties = JenkinsResultsParserUtil.getBuildProperties();
+			}
+			catch (IOException ioe) {
+				throw new RuntimeException("Unable to get build properties");
+			}
+
+			String repositoryType = buildProperties.getProperty(
+				"repository.type[" + repositoryName + "]");
+
+			if (repositoryType == null) {
+				repositoryType = repositoryName;
+			}
+
+			Map<String, String> gitRepositoryDetailsMap = new HashMap<>(
+				topLevelBuild.getGitRepositoryDetailsTempMap(repositoryType));
+
+			gitRepositoryDetailsMap.put(
+				"github.base.repository.name", repositoryName);
+
+			return gitRepositoryDetailsMap;
+		}
+
+		return new HashMap<>();
 	}
 
 	private static final String _TOKEN_REBASE_END = "BUILD FAILED";
 
 	private static final String _TOKEN_REBASE_START = "Unable to rebase";
+
+	private static final Pattern _errorMessagePattern = Pattern.compile(
+		".*Unable to rebase \\S+ to \\S+ in (?<repositoryName>.+)");
 
 }
