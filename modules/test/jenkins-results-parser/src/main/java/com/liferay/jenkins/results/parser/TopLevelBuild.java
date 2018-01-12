@@ -125,11 +125,7 @@ public class TopLevelBuild extends BaseBuild {
 	}
 
 	public Map<String, String> getBaseGitRepositoryDetailsTempMap() {
-		String repositoryType = getBaseRepositoryType();
-
-		String tempMapName = "git." + repositoryType + ".properties";
-
-		return getTempMap(tempMapName);
+		return getGitRepositoryDetailsTempMap(getBaseRepositoryType());
 	}
 
 	public String getCompanionBranchName() {
@@ -144,16 +140,13 @@ public class TopLevelBuild extends BaseBuild {
 	public Map<String, String> getCompanionGitRepositoryDetailsTempMap() {
 		String branchName = getBranchName();
 		String branchType = "ee";
-		String repositoryType = getBaseRepositoryType();
 
 		if (branchName.endsWith("-private")) {
 			branchType = "base";
 		}
 
-		String tempMapName = JenkinsResultsParserUtil.combine(
-			"git.", repositoryType, ".", branchType, ".properties");
-
-		return getTempMap(tempMapName);
+		return getGitRepositoryDetailsTempMap(
+			getBaseRepositoryType() + "." + branchType);
 	}
 
 	public String getCompanionRepositorySHA() {
@@ -195,6 +188,12 @@ public class TopLevelBuild extends BaseBuild {
 		}
 
 		return super.getGitHubMessageElement();
+	}
+
+	public Map<String, String> getGitRepositoryDetailsTempMap(
+		String repositoryType) {
+
+		return getTempMap("git." + repositoryType + ".properties");
 	}
 
 	public String getJenkinsReport() {
