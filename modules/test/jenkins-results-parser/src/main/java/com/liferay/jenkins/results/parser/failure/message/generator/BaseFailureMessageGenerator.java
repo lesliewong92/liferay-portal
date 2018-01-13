@@ -60,14 +60,8 @@ public abstract class BaseFailureMessageGenerator
 	}
 
 	protected Element getBaseBranchAnchorElement(TopLevelBuild topLevelBuild) {
-		Map<String, String> gitRepositoryDetailsMap = new HashMap<>(
+		return getBaseBranchAnchorElement(
 			topLevelBuild.getBaseGitRepositoryDetailsTempMap());
-
-		gitRepositoryDetailsMap.put(
-			"github.base.repository.name",
-			topLevelBuild.getBaseRepositoryName());
-
-		return getBaseBranchAnchorElement(gitRepositoryDetailsMap);
 	}
 
 	protected String getConsoleTextSnippet(

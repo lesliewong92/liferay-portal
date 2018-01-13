@@ -95,13 +95,7 @@ public class RebaseFailureMessageGenerator extends BaseFailureMessageGenerator {
 				repositoryType = repositoryName;
 			}
 
-			Map<String, String> gitRepositoryDetailsMap = new HashMap<>(
-				topLevelBuild.getGitRepositoryDetailsTempMap(repositoryType));
-
-			gitRepositoryDetailsMap.put(
-				"github.base.repository.name", repositoryName);
-
-			return gitRepositoryDetailsMap;
+			return topLevelBuild.getGitRepositoryDetailsTempMap(repositoryType);
 		}
 
 		return new HashMap<>();
