@@ -20,13 +20,13 @@ import java.io.StringReader;
 
 import java.net.URL;
 
-import java.util.Hashtable;
 import java.util.Properties;
 
 /**
  * @author Leslie Wong
  */
-public abstract class BaseBuildTestCase extends BaseJenkinsResultsParserTestCase {
+public abstract class BaseBuildTestCase
+	extends BaseJenkinsResultsParserTestCase {
 
 	@Override
 	protected void downloadSample(File sampleDir, URL url) throws Exception {
@@ -51,7 +51,7 @@ public abstract class BaseBuildTestCase extends BaseJenkinsResultsParserTestCase
 		URL url = JenkinsResultsParserUtil.createURL(urlString);
 
 		downloadSample(sampleKey, url);
-    }
+	}
 
 	protected Properties loadProperties(String sampleName) throws Exception {
 		Class<?> clazz = getClass();

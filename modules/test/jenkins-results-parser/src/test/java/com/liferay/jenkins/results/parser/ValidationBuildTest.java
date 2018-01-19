@@ -15,13 +15,8 @@
 package com.liferay.jenkins.results.parser;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.StringReader;
-
-import java.net.URL;
 
 import java.util.Hashtable;
-import java.util.Properties;
 
 import org.junit.After;
 import org.junit.Before;
@@ -37,9 +32,9 @@ public class ValidationBuildTest extends BaseBuildTestCase {
 		JenkinsResultsParserUtil.setBuildProperties(
 			JenkinsResultsParserUtil.getBuildProperties());
 
-		downloadSample(
-			"test-jenkins-acceptance-pullrequest_passed", "117",
-			"test-jenkins-acceptance-pullrequest", "test-1-17");
+		// downloadSample(
+		// 	"test-jenkins-acceptance-pullrequest_passed", "117",
+		// 	"test-jenkins-acceptance-pullrequest", "test-1-17");
 	}
 
 	@After

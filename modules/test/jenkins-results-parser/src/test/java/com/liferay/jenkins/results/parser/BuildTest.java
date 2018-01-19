@@ -15,13 +15,8 @@
 package com.liferay.jenkins.results.parser;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.StringReader;
-
-import java.net.URL;
 
 import java.util.Hashtable;
-import java.util.Properties;
 
 import org.junit.After;
 import org.junit.Before;
