@@ -94,16 +94,9 @@ public class BuildTest extends BaseJenkinsResultsParserTestCase {
 			String hostName)
 		throws Exception {
 
-		String urlString =
-			"https://${hostName}.liferay.com/job/${jobName}/${buildNumber}/";
-
-		urlString = replaceToken(urlString, "buildNumber", buildNumber);
-		urlString = replaceToken(urlString, "hostName", hostName);
-		urlString = replaceToken(urlString, "jobName", jobName);
-
-		URL url = JenkinsResultsParserUtil.createURL(urlString);
-
-		downloadSample(sampleKey, url);
+		downloadSample(
+			sampleKey,
+			getBuildURL(sampleKey, null, buildNumber, jobName, hostName));
 	}
 
 	@Override
