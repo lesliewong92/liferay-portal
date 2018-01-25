@@ -20,55 +20,102 @@ import java.io.StringReader;
 
 import java.net.URL;
 
+import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Properties;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
 
 /**
  * @author Peter Yoo
  */
+@RunWith(Parameterized.class)
 public class BuildTest extends BaseJenkinsResultsParserTestCase {
+
+	@Parameters(name = "{3}")
+	public static List<String[]> getList() throws Exception {
+		List<String[]> samplesList = new ArrayList<>();
+
+		samplesList.add(
+			new String[] {
+				"117", "test-1-17", "test-jenkins-acceptance-pullrequest",
+				"test-jenkins-acceptance-pullrequest_passed"
+			});
+		samplesList.add(
+			new String[] {
+				"66", "test-1-8",
+				"test-plugins-acceptance-pullrequest(ee-6.2.x)",
+				"test-plugins-acceptance-pullrequest(ee-6.2.x)_passed"
+			});
+		samplesList.add(
+			new String[] {
+				"103", "test-1-14", "test-portal-acceptance-pullrequest(7.0.x)",
+				"test-portal-acceptance-pullrequest(7.0.x)" +
+					"_unresolved-req-failure"
+			});
+		samplesList.add(
+			new String[] {
+				"1375", "test-1-1",
+				"test-portal-acceptance-pullrequest(master)",
+				"test-portal-acceptance-pullrequest(master)_generic-failure"
+			});
+		samplesList.add(
+			new String[] {
+				"999", "test-1-21",
+				"test-portal-acceptance-pullrequest(master)",
+				"test-portal-acceptance-pullrequest(master)" +
+					"_modules-compile-failure"
+			});
+		samplesList.add(
+			new String[] {
+				"446", "test-1-8", "test-portal-acceptance-pullrequest(master)",
+				"test-portal-acceptance-pullrequest(master)_passed"
+			});
+		samplesList.add(
+			new String[] {
+				"1268", "test-1-9",
+				"test-portal-acceptance-pullrequest(master)",
+				"test-portal-acceptance-pullrequest(master)_poshi-test-failure"
+			});
+		samplesList.add(
+			new String[] {
+				"2003", "test-1-3",
+				"test-portal-acceptance-pullrequest(master)",
+				"test-portal-acceptance-pullrequest(master)" +
+					"_semantic_versioning_failure"
+			});
+		samplesList.add(
+			new String[] {
+				"2209", "test-1-2",
+				"test-portal-acceptance-pullrequest(master)",
+				"test-portal-acceptance-pullrequest(master)" +
+					"_source-format-failure"
+			});
+
+		return samplesList;
+	}
+
+	public BuildTest(
+		String buildNumber, String hostName, String jobName, String sampleKey) {
+
+		_buildNumber = buildNumber;
+		_hostName = hostName;
+		_jobName = jobName;
+		_sampleKey = sampleKey;
+	}
 
 	@Before
 	public void setUp() throws Exception {
 		JenkinsResultsParserUtil.setBuildProperties(
 			JenkinsResultsParserUtil.getBuildProperties());
 
-		downloadSample(
-			"test-jenkins-acceptance-pullrequest_passed", "117",
-			"test-jenkins-acceptance-pullrequest", "test-1-17");
-		downloadSample(
-			"test-plugins-acceptance-pullrequest(ee-6.2.x)_passed", "66",
-			"test-plugins-acceptance-pullrequest(ee-6.2.x)", "test-1-8");
-		downloadSample(
-			"test-portal-acceptance-pullrequest(7.0.x)_unresolved-req-failure",
-			"103", "test-portal-acceptance-pullrequest(7.0.x)", "test-1-14");
-		downloadSample(
-			"test-portal-acceptance-pullrequest(ee-6.2.x)_passed", "337",
-			"test-portal-acceptance-pullrequest(ee-6.2.x)", "test-1-17");
-		downloadSample(
-			"test-portal-acceptance-pullrequest(master)_generic-failure",
-			"1375", "test-portal-acceptance-pullrequest(master)", "test-1-1");
-		downloadSample(
-			"test-portal-acceptance-pullrequest(master)" +
-				"_modules-compile-failure",
-			"999", "test-portal-acceptance-pullrequest(master)", "test-1-21");
-		downloadSample(
-			"test-portal-acceptance-pullrequest(master)_passed", "446",
-			"test-portal-acceptance-pullrequest(master)", "test-1-8");
-		downloadSample(
-			"test-portal-acceptance-pullrequest(master)_poshi-test-failure",
-			"1268", "test-portal-acceptance-pullrequest(master)", "test-1-9");
-		downloadSample(
-			"test-portal-acceptance-pullrequest(master)" +
-				"_semantic_versioning_failure",
-			"2003", "test-portal-acceptance-pullrequest(master)", "test-1-3");
-		downloadSample(
-			"test-portal-acceptance-pullrequest(master)_source-format-failure",
-			"2209", "test-portal-acceptance-pullrequest(master)", "test-1-2");
+		downloadSample(_sampleKey, _buildNumber, _jobName, _hostName);
 	}
 
 	@After
@@ -154,5 +201,10 @@ public class BuildTest extends BaseJenkinsResultsParserTestCase {
 
 		JenkinsResultsParserUtil.write(expectedMessageFile, expectedMessage);
 	}
+
+	private final String _buildNumber;
+	private final String _hostName;
+	private final String _jobName;
+	private final String _sampleKey;
 
 }
