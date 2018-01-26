@@ -17,13 +17,12 @@ package com.liferay.jenkins.results.parser;
 /**
  * @author Leslie Wong
  */
-
 public class TestSample {
 
-    public TestSample(String sampleKey, String url) {
-        
-    }
+	public TestSample(String sampleKey, String url) {
+	}
 
-    public String sampleKey;
-    public String url;
+	public String sampleKey;
+	public String url;
+
 }

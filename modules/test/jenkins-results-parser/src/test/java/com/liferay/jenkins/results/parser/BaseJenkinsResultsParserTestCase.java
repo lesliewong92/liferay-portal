@@ -187,6 +187,29 @@ public abstract class BaseJenkinsResultsParserTestCase {
 
 	protected abstract String getMessage(File sampleDir) throws Exception;
 
+	protected URL getSampleURL(
+			String sampleKey, String axisVariable, String buildNumber,
+			String jobName, String hostName)
+		throws Exception {
+
+		String urlString =
+			"https://${hostName}.liferay.com/job/${jobName}//${buildNumber}/";
+
+		if (axisVariable != null) {
+			urlString =
+				"https://${hostName}.liferay.com/job/${jobName}" +
+					"/AXIS_VARIABLE=${axis}/${buildNumber}/";
+
+			urlString = replaceToken(urlString, "axis", axisVariable);
+		}
+
+		urlString = replaceToken(urlString, "buildNumber", buildNumber);
+		urlString = replaceToken(urlString, "hostName", hostName);
+		urlString = replaceToken(urlString, "jobName", jobName);
+
+		return JenkinsResultsParserUtil.createURL(urlString);
+	}
+
 	protected String getSimpleClassName() {
 		Class<?> clazz = getClass();
 
