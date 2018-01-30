@@ -28,108 +28,78 @@ import java.util.List;
 import java.util.Properties;
 
 import org.junit.After;
-import org.junit.Assume;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
 
 /**
  * @author Peter Yoo
  */
-@RunWith(Parameterized.class)
+
 public class BuildTest extends BaseJenkinsResultsParserTestCase {
 
-	@Parameters(name = "{3}")
-	public static List<Object[]> getList() throws Exception {
-		List<Object[]> samplesList = new ArrayList<>();
-
-		samplesList.add(
-			new Object[] {
-				"117", "test-1-17", "test-jenkins-acceptance-pullrequest",
-				"test-jenkins-acceptance-pullrequest_passed",
-				Arrays.asList(new Report[] {Report.GITHUB_MESSAGE})
-			});
-		samplesList.add(
-			new Object[] {
-				"66", "test-1-8",
-				"test-plugins-acceptance-pullrequest(ee-6.2.x)",
-				"test-plugins-acceptance-pullrequest(ee-6.2.x)_passed",
-				Arrays.asList(new Report[] {Report.GITHUB_MESSAGE})
-			});
-		samplesList.add(
-			new Object[] {
-				"103", "test-1-14", "test-portal-acceptance-pullrequest(7.0.x)",
-				"test-portal-acceptance-pullrequest(7.0.x)" +
-					"_unresolved-req-failure",
-				Arrays.asList(new Report[] {Report.GITHUB_MESSAGE})
-			});
-		samplesList.add(
-			new Object[] {
-				"1375", "test-1-1",
-				"test-portal-acceptance-pullrequest(master)",
-				"test-portal-acceptance-pullrequest(master)_generic-failure",
-				Arrays.asList(new Report[] {Report.GITHUB_MESSAGE})
-			});
-		samplesList.add(
-			new Object[] {
-				"999", "test-1-21",
-				"test-portal-acceptance-pullrequest(master)",
-				"test-portal-acceptance-pullrequest(master)" +
-					"_modules-compile-failure",
-				Arrays.asList(new Report[] {Report.GITHUB_MESSAGE})
-			});
-		samplesList.add(
-			new Object[] {
-				"446", "test-1-8", "test-portal-acceptance-pullrequest(master)",
-				"test-portal-acceptance-pullrequest(master)_passed",
-				Arrays.asList(new Report[] {Report.GITHUB_MESSAGE})
-			});
-		samplesList.add(
-			new Object[] {
-				"1268", "test-1-9",
-				"test-portal-acceptance-pullrequest(master)",
-				"test-portal-acceptance-pullrequest(master)_poshi-test-failure",
-				Arrays.asList(new Report[] {Report.GITHUB_MESSAGE})
-			});
-		samplesList.add(
-			new Object[] {
-				"2003", "test-1-3",
-				"test-portal-acceptance-pullrequest(master)",
-				"test-portal-acceptance-pullrequest(master)" +
-					"_semantic_versioning_failure",
-				Arrays.asList(new Report[] {Report.GITHUB_MESSAGE})
-			});
-		samplesList.add(
-			new Object[] {
-				"2209", "test-1-2",
-				"test-portal-acceptance-pullrequest(master)",
-				"test-portal-acceptance-pullrequest(master)" +
-					"_source-format-failure",
-				Arrays.asList(new Report[] {Report.GITHUB_MESSAGE})
-			});
-
-		return samplesList;
-	}
-
-	public BuildTest(
-		String buildNumber, String hostName, String jobName, String sampleKey,
-		List<Report> reports) {
-
-		_buildNumber = buildNumber;
-		_hostName = hostName;
-		_jobName = jobName;
-		_sampleKey = sampleKey;
-		_reports = reports;
-	}
-
-	@Before
+	@BeforeClass
 	public void setUp() throws Exception {
 		JenkinsResultsParserUtil.setBuildProperties(
 			JenkinsResultsParserUtil.getBuildProperties());
 
-		downloadSample(_sampleKey, _buildNumber, _jobName, _hostName);
+		TestSample testSample = new TestSample(
+			"test-jenkins-acceptance-pullrequest_passed",
+			getSampleURL(
+				null, "117", "test-jenkins-acceptance-pullrequest",
+				"test-1-17"),
+			Arrays.asList(
+				new TestSample.Report[] {TestSample.Report.GITHUB_MESSAGE}));
+
+		downloadSample(
+			"test-jenkins-acceptance-pullrequest_passed",
+			getSampleURL(
+				null, "117", "test-jenkins-acceptance-pullrequest",
+				"test-1-17"));
+
+		downloadSample(
+			"test-plugins-acceptance-pullrequest(ee-6.2.x)_passed",
+			getSampleURL(
+				null, "66", "test-plugins-acceptance-pullrequest(ee-6.2.x)",
+				"test-1-8"));
+
+		// downloadSample(
+		// 	"test-portal-acceptance-pullrequest(7.0.x)_unresolved-req-failure",
+		// 	getSampleURL(
+		// 		null, "103", "test-portal-acceptance-pullrequest(7.0.x)",
+		// 		"test-1-14"));
+		// downloadSample(
+		// 	"test-portal-acceptance-pullrequest(master)_generic-failure",
+		// 	getSampleURL(
+		// 		null, "1375", "test-portal-acceptance-pullrequest(master)",
+		// 		"test-1-1"));
+		// downloadSample(
+		// 	"test-portal-acceptance-pullrequest(master)" +
+		// 		"_modules-compile-failure",
+		// 	getSampleURL(
+		// 		null, "999", "test-portal-acceptance-pullrequest(master)",
+		// 		"test-1-21"));
+		// downloadSample(
+		// 	"test-portal-acceptance-pullrequest(master)_passed",
+		// 	getSampleURL(
+		// 		null, "446", "test-portal-acceptance-pullrequest(master)",
+		// 		"test-1-8"));
+		// downloadSample(
+		// 	"test-portal-acceptance-pullrequest(master)_poshi-test-failure",
+		// 	getSampleURL(
+		// 		null, "1268", "test-portal-acceptance-pullrequest(master)",
+		// 		"test-1-9"));
+		// downloadSample(
+		// 	"test-portal-acceptance-pullrequest(master)" +
+		// 		"_semantic_versioning_failure",
+		// 	getSampleURL(
+		// 		null, "2003", "test-portal-acceptance-pullrequest(master)",
+		// 		"test-1-3"));
+		// downloadSample(
+		// 	"test-portal-acceptance-pullrequest(master)_source-format-failure",
+		// 	getSampleURL(
+		// 		null, "2209", "test-portal-acceptance-pullrequest(master)",
+		// 		"test-1-2"));
 	}
 
 	@After
@@ -139,21 +109,22 @@ public class BuildTest extends BaseJenkinsResultsParserTestCase {
 
 	@Test
 	public void testGetGitHubMessage() throws Exception {
-		Assume.assumeTrue(_reports.contains(Report.GITHUB_MESSAGE));
+		// assertSamples("expected_message.html");
 
-		_report = Report.GITHUB_MESSAGE;
+		File file = new File(
+			dependenciesDir, "test-jenkins-acceptance-pullrequest_passed");
 
-		File sampleDir = new File(dependenciesDir, _sampleKey);
-
-		assertSample(sampleDir);
+		assertSample(file, "expected_message.html");
 	}
 
-	@Override
-	protected void downloadSample(File sampleDir, URL url) throws Exception {
-		Build build = BuildFactory.newBuild(
-			JenkinsResultsParserUtil.getLocalURL(url.toExternalForm()), null);
+	@Test
+	public void testGetJenkinsReport() throws Exception {
+		assertSamples("expected_jenkins_report.html");
+	}
 
-		build.archive(getSimpleClassName() + "/" + sampleDir.getName());
+	@Test
+	public void testGetValidationGitHubMessage() throws Exception {
+		assertSamples("expected_validation_message.html");
 	}
 
 	protected void downloadSample(
@@ -162,8 +133,7 @@ public class BuildTest extends BaseJenkinsResultsParserTestCase {
 		throws Exception {
 
 		downloadSample(
-			sampleKey,
-			getSampleURL(sampleKey, null, buildNumber, jobName, hostName));
+			sampleKey, getSampleURL(null, buildNumber, jobName, hostName));
 	}
 
 	@Override
@@ -197,100 +167,9 @@ public class BuildTest extends BaseJenkinsResultsParserTestCase {
 
 	@Override
 	protected void writeExpectedMessage(File sampleDir) throws Exception {
-		for (Report report : _reports) {
-			report.writeExpectedMessage(sampleDir);
-		}
+		_report.writeExpectedMessage(sampleDir);
 	}
 
-	protected enum Report {
-
-		GITHUB_MESSAGE {
-
-			@Override
-			public String getMessage(File sampleDir) throws IOException {
-				Build build = BuildFactory.newBuildFromArchive(
-					"BuildTest/" + sampleDir.getName());
-
-				build.setCompareToUpstream(false);
-
-				return Dom4JUtil.format(build.getGitHubMessageElement(), true);
-			}
-
-			@Override
-			public void writeExpectedMessage(File sampleDir)
-				throws IOException {
-
-				writeExpectedMessage(sampleDir, "expected_message.html");
-			}
-
-		},
-
-		JENKINS_REPORT {
-
-			@Override
-			public String getMessage(File sampleDir) throws IOException {
-				TopLevelBuild topLevelBuild =
-					(TopLevelBuild)BuildFactory.newBuildFromArchive(
-						"BuildTest/" + sampleDir.getName());
-
-				return Dom4JUtil.format(
-					topLevelBuild.getJenkinsReportElement(), true);
-			}
-
-			@Override
-			public void writeExpectedMessage(File sampleDir)
-				throws IOException {
-
-				writeExpectedMessage(sampleDir, "expected_jenkins_report.html");
-			}
-
-		},
-
-		VALIDATION_GITHUB_MESSAGE {
-
-			@Override
-			public String getMessage(File sampleDir) throws IOException {
-				TopLevelBuild topLevelBuild =
-					(TopLevelBuild)BuildFactory.newBuildFromArchive(
-						"BuildTest/" + sampleDir.getName());
-
-				return Dom4JUtil.format(
-					topLevelBuild.getValidationGitHubMessage(), true);
-			}
-
-			@Override
-			public void writeExpectedMessage(File sampleDir)
-				throws IOException {
-
-				writeExpectedMessage(
-					sampleDir, "expected_validation_message.html");
-			}
-
-		};
-
-		public abstract String getMessage(File sampleDir) throws IOException;
-
-		public abstract void writeExpectedMessage(File sampleDir)
-			throws IOException;
-
-		public void writeExpectedMessage(File sampleDir, String fileName)
-			throws IOException {
-
-			File expectedMessageFile = new File(sampleDir, fileName);
-
-			String expectedMessage = getMessage(sampleDir);
-
-			JenkinsResultsParserUtil.write(
-				expectedMessageFile, expectedMessage);
-		}
-
-	};
-
-	private final String _buildNumber;
-	private final String _hostName;
-	private final String _jobName;
-	private Report _report;
-	private final List<Report> _reports;
-	private final String _sampleKey;
+	private final TestSample.Report _report = TestSample.Report.GITHUB_MESSAGE;
 
 }

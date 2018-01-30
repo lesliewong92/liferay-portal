@@ -35,34 +35,44 @@ import org.junit.Assert;
  */
 public abstract class BaseJenkinsResultsParserTestCase {
 
-	protected void assertSample(File sampleDir) throws Exception {
-		System.out.print("Asserting sample " + sampleDir.getName() + ": ");
+	protected void assertSample(File sampleDir, String expectedMessageFileName)
+		throws Exception {
 
-		File expectedMessageFile = new File(sampleDir, "expected_message.html");
+		File expectedMessageFile = new File(sampleDir, expectedMessageFileName);
 
-		String expectedMessage = read(expectedMessageFile);
+		if (expectedMessageFile.exists()) {
+			System.out.print("Asserting sample " + sampleDir.getName() + ": ");
 
-		String actualMessage = fixMessage(getMessage(sampleDir));
+			String expectedMessage = read(expectedMessageFile);
 
-		boolean value = expectedMessage.equals(actualMessage);
+			String actualMessage = fixMessage(getMessage(sampleDir));
 
-		if (value) {
-			System.out.println(" PASSED");
+			boolean value = expectedMessage.equals(actualMessage);
+
+			if (value) {
+				System.out.println(" PASSED");
+			}
+			else {
+				System.out.println(" FAILED");
+				System.out.println("\nActual message: \n" + actualMessage);
+				System.out.println("\nExpected message: \n" + expectedMessage);
+			}
+
+			Assert.assertTrue(value);
 		}
-		else {
-			System.out.println(" FAILED");
-			System.out.println("\nActual message: \n" + actualMessage);
-			System.out.println("\nExpected message: \n" + expectedMessage);
-		}
-
-		Assert.assertTrue(value);
 	}
 
 	protected void assertSamples() throws Exception {
+		assertSamples("expected_message.html");
+	}
+
+	protected void assertSamples(String expectedMessageFileName)
+		throws Exception {
+
 		File[] files = dependenciesDir.listFiles();
 
 		for (File file : files) {
-			assertSample(file);
+			assertSample(file, expectedMessageFileName);
 		}
 	}
 
@@ -188,8 +198,8 @@ public abstract class BaseJenkinsResultsParserTestCase {
 	protected abstract String getMessage(File sampleDir) throws Exception;
 
 	protected URL getSampleURL(
-			String sampleKey, String axisVariable, String buildNumber,
-			String jobName, String hostName)
+			String axisVariable, String buildNumber, String jobName,
+			String hostName)
 		throws Exception {
 
 		String urlString =
