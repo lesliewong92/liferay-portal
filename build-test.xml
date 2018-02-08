@@ -7402,14 +7402,7 @@ auto.deploy.dest.dir=C:/WINDOWS/system32/config/systemprofile/liferay/websphere-
 			</then>
 		</if>
 
-		<if>
-			<not>
-				<isset property="test.assert.console.errors" />
-			</not>
-			<then>
-				<get-testcase-property property.name="test.assert.console.errors" />
-			</then>
-		</if>
+		<get-testcase-property property.name="test.assert.console.errors" />
 
 		<if>
 			<or>
@@ -8366,10 +8359,13 @@ auto.deploy.dest.dir=C:/WINDOWS/system32/config/systemprofile/liferay/websphere-
 		<get-testcase-property property.name="test.assert.javascript.errors" />
 
 		<if>
-			<equals arg1="${test.assert.javascript.errors}" arg2="false" />
+			<or>
+				<equals arg1="${test.assert.javascript.errors}" arg2="false" />
+				<equals arg1="${test.assert.javascript.errors}" arg2="true" />
+			</or>
 			<then>
 				<echo append="true" file="${test.ext.properties.file}">
-					test.assert.javascript.errors=false
+					test.assert.javascript.errors=${test.assert.javascript.errors}
 				</echo>
 			</then>
 		</if>
