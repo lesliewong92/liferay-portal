@@ -50,7 +50,7 @@ public class LoadBalancerUtilTest extends BaseJenkinsResultsParserTestCase {
 	public void testGetMostAvailableMasterURL() throws Exception {
 		JenkinsMaster.maxRecentBatchAge = 0;
 
-		assertSamples(
+		setJenkinsResultsParserExpectedMessageGenerator(
 			new JenkinsResultsParserExpectedMessageGenerator() {
 
 				@Override
@@ -64,6 +64,8 @@ public class LoadBalancerUtilTest extends BaseJenkinsResultsParserTestCase {
 				}
 
 			});
+
+		assertSamples();
 	}
 
 	protected static Properties getDownloadProperties(

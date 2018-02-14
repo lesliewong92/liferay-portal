@@ -39,18 +39,14 @@ public abstract class BaseJenkinsResultsParserTestCase {
 	@Rule
 	public ErrorCollector errorCollector = new ErrorCollector();
 
-	protected void assertSample(
-			File sampleDir,
-			JenkinsResultsParserExpectedMessageGenerator
-				jenkinsResultsParserExpectedMessageGenerator)
-		throws Exception {
-
+	protected void assertSample(File sampleDir) throws Exception {
 		String sampleKey = sampleDir.getName();
 
 		System.out.print("Asserting sample " + sampleKey + ": ");
 
 		String actualMessage = fixMessage(
-			jenkinsResultsParserExpectedMessageGenerator.getMessage(sampleKey));
+			_jenkinsResultsParserExpectedMessageGenerator.getMessage(
+				sampleKey));
 
 		File expectedMessageFile = new File(sampleDir, "expected_message.html");
 
@@ -84,15 +80,11 @@ public abstract class BaseJenkinsResultsParserTestCase {
 		}
 	}
 
-	protected void assertSamples(
-			JenkinsResultsParserExpectedMessageGenerator
-				jenkinsResultsParserExpectedMessageGenerator)
-		throws Exception {
-
+	protected void assertSamples() throws Exception {
 		File[] files = dependenciesDir.listFiles();
 
 		for (File file : files) {
-			assertSample(file, jenkinsResultsParserExpectedMessageGenerator);
+			assertSample(file);
 		}
 	}
 
@@ -262,6 +254,14 @@ public abstract class BaseJenkinsResultsParserTestCase {
 		return string.replace("${" + token + "}", value);
 	}
 
+	protected void setJenkinsResultsParserExpectedMessageGenerator(
+		JenkinsResultsParserExpectedMessageGenerator
+			jenkinsResultsParserExpectedMessageGenerator) {
+
+		_jenkinsResultsParserExpectedMessageGenerator =
+			jenkinsResultsParserExpectedMessageGenerator;
+	}
+
 	protected String toURLString(File file) throws Exception {
 		URI uri = file.toURI();
 
@@ -289,5 +289,8 @@ public abstract class BaseJenkinsResultsParserTestCase {
 		{"<pre>", "<pre><![CDATA["}, {"</pre>", "]]></pre>"},
 		{"&raquo;", "[raquo]"}
 	};
+
+	private JenkinsResultsParserExpectedMessageGenerator
+		_jenkinsResultsParserExpectedMessageGenerator;
 
 }

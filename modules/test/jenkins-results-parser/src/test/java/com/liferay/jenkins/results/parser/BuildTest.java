@@ -78,7 +78,7 @@ public class BuildTest extends BaseJenkinsResultsParserTestCase {
 
 	@Test
 	public void testGetGitHubMessage() throws Exception {
-		assertSamples(
+		setJenkinsResultsParserExpectedMessageGenerator(
 			new JenkinsResultsParserExpectedMessageGenerator() {
 
 				@Override
@@ -93,6 +93,8 @@ public class BuildTest extends BaseJenkinsResultsParserTestCase {
 				}
 
 			});
+
+		assertSamples();
 	}
 
 	@Override
