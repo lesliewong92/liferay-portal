@@ -47,6 +47,26 @@ public class BuildTest extends BaseJenkinsResultsParserTestCase {
 			"test-portal-acceptance-pullrequest(7.0.x)_unresolved-req-failure",
 			"103", "test-portal-acceptance-pullrequest(7.0.x)", "test-1-14");
 		downloadSample(
+			"test-portal-acceptance-pullrequest(7.0.x-private)" +
+				"_validation-compile-failure",
+			"94", "test-portal-acceptance-pullrequest(7.0.x-private)",
+			"test-1-5");
+		downloadSample(
+			"test-portal-acceptance-pullrequest(7.0.x-private)" +
+				"_validation-no-unit",
+			"70", "test-portal-acceptance-pullrequest(7.0.x-private)",
+			"test-1-13");
+		downloadSample(
+			"test-portal-acceptance-pullrequest(7.0.x-private)" +
+				"_validation-passed",
+			"77", "test-portal-acceptance-pullrequest(7.0.x-private)",
+			"test-1-10");
+		downloadSample(
+			"test-portal-acceptance-pullrequest(7.0.x-private)" +
+				"_validation-unit-failure",
+			"78", "test-portal-acceptance-pullrequest(7.0.x-private)",
+			"test-1-10");
+		downloadSample(
 			"test-portal-acceptance-pullrequest(ee-6.2.x)_passed", "337",
 			"test-portal-acceptance-pullrequest(ee-6.2.x)", "test-1-17");
 		downloadSample(
@@ -112,6 +132,42 @@ public class BuildTest extends BaseJenkinsResultsParserTestCase {
 				"_semantic_versioning_failure");
 		assertSample(
 			"test-portal-acceptance-pullrequest(master)_source-format-failure");
+	}
+
+	@Test
+	public void testGetValidationGitHubMessage() throws Exception {
+		setExpectedMessageFileName("expected_validation_message.html");
+
+		setJenkinsResultsParserExpectedMessageGenerator(
+			new JenkinsResultsParserExpectedMessageGenerator() {
+
+				@Override
+				public String getMessage(String sampleKey) throws Exception {
+					TopLevelBuild topLevelBuild =
+						(TopLevelBuild)BuildFactory.newBuildFromArchive(
+							"BuildTest/" + sampleKey);
+
+					topLevelBuild.setCompareToUpstream(false);
+
+					return Dom4JUtil.format(
+						topLevelBuild.getValidationGitHubMessageElement(),
+						true);
+				}
+
+			});
+
+		assertSample(
+			"test-portal-acceptance-pullrequest(7.0.x-private)" +
+				"_validation-compile-failure");
+		assertSample(
+			"test-portal-acceptance-pullrequest(7.0.x-private)" +
+				"_validation-no-unit");
+		assertSample(
+			"test-portal-acceptance-pullrequest(7.0.x-private)" +
+				"_validation-passed");
+		assertSample(
+			"test-portal-acceptance-pullrequest(7.0.x-private)" +
+				"_validation-unit-failure");
 	}
 
 	@Override
