@@ -94,7 +94,24 @@ public class BuildTest extends BaseJenkinsResultsParserTestCase {
 
 			});
 
-		assertSamples();
+		assertSample("test-jenkins-acceptance-pullrequest_passed");
+		assertSample("test-plugins-acceptance-pullrequest(ee-6.2.x)_passed");
+		assertSample(
+			"test-portal-acceptance-pullrequest(7.0.x)_unresolved-req-failure");
+		assertSample("test-portal-acceptance-pullrequest(ee-6.2.x)_passed");
+		assertSample(
+			"test-portal-acceptance-pullrequest(master)_generic-failure");
+		assertSample(
+			"test-portal-acceptance-pullrequest(master)" +
+				"_modules-compile-failure");
+		assertSample("test-portal-acceptance-pullrequest(master)_passed");
+		assertSample(
+			"test-portal-acceptance-pullrequest(master)_poshi-test-failure");
+		assertSample(
+			"test-portal-acceptance-pullrequest(master)" +
+				"_semantic_versioning_failure");
+		assertSample(
+			"test-portal-acceptance-pullrequest(master)_source-format-failure");
 	}
 
 	@Override

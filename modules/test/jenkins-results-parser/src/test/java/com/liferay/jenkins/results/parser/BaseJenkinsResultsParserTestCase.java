@@ -48,13 +48,14 @@ public abstract class BaseJenkinsResultsParserTestCase {
 			_jenkinsResultsParserExpectedMessageGenerator.getMessage(
 				sampleKey));
 
-		File expectedMessageFile = new File(sampleDir, "expected_message.html");
+		File expectedMessageFile = new File(
+			sampleDir, _expectedMessageFileName);
 
 		if (!expectedMessageFile.exists()) {
 			errorCollector.addError(
 				new Throwable(
-					"Unable to find expected_message.html for sample '" +
-						sampleKey + "'. Generating file."));
+					"Unable to find " + _expectedMessageFileName +
+						" for sample '" + sampleKey + "'. Generating file."));
 
 			JenkinsResultsParserUtil.write(expectedMessageFile, actualMessage);
 
@@ -78,6 +79,10 @@ public abstract class BaseJenkinsResultsParserTestCase {
 					"Expected message mismatch in sample '" + sampleKey +
 						"'."));
 		}
+	}
+
+	protected void assertSample(String sampleKey) throws Exception {
+		assertSample(new File(dependenciesDir, sampleKey));
 	}
 
 	protected void assertSamples() throws Exception {
@@ -254,6 +259,10 @@ public abstract class BaseJenkinsResultsParserTestCase {
 		return string.replace("${" + token + "}", value);
 	}
 
+	protected void setExpectedMessageFileName(String fileName) {
+		_expectedMessageFileName = fileName;
+	}
+
 	protected void setJenkinsResultsParserExpectedMessageGenerator(
 		JenkinsResultsParserExpectedMessageGenerator
 			jenkinsResultsParserExpectedMessageGenerator) {
@@ -290,6 +299,7 @@ public abstract class BaseJenkinsResultsParserTestCase {
 		{"&raquo;", "[raquo]"}
 	};
 
+	private String _expectedMessageFileName = "expected_message.html";
 	private JenkinsResultsParserExpectedMessageGenerator
 		_jenkinsResultsParserExpectedMessageGenerator;
 
