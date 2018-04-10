@@ -14,9 +14,9 @@
 
 package com.liferay.jenkins.results.parser;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * @author Michael Hashimoto
@@ -34,7 +34,7 @@ public class PortalAcceptancePullRequestJob extends PortalRepositoryJob {
 	}
 
 	@Override
-	public List<String> getBatchNames() {
+	public Set<String> getBatchNames() {
 		String testBatchNames = getProperty(
 			portalTestProperties, "test.batch.names[" + _testSuiteName + "]");
 
@@ -43,10 +43,10 @@ public class PortalAcceptancePullRequestJob extends PortalRepositoryJob {
 				portalTestProperties, "test.batch.names");
 		}
 
-		List<String> testBatchNamesList = getListFromString(testBatchNames);
+		Set<String> testBatchNamesSet = getSetFromString(testBatchNames);
 
 		if (_isPortalWebOnly()) {
-			testBatchNamesList = new ArrayList<>();
+			testBatchNamesSet = new TreeSet<>();
 
 			for (String testBatchName : testBatchNames.split(",")) {
 				if (testBatchName.contains("compile-jsp") ||
@@ -54,16 +54,16 @@ public class PortalAcceptancePullRequestJob extends PortalRepositoryJob {
 					testBatchName.contains("portal-web") ||
 					testBatchName.contains("source-format")) {
 
-					testBatchNamesList.add(testBatchName);
+					testBatchNamesSet.add(testBatchName);
 				}
 			}
 		}
 
-		return testBatchNamesList;
+		return testBatchNamesSet;
 	}
 
 	@Override
-	public List<String> getDistTypes() {
+	public Set<String> getDistTypes() {
 		String testBatchDistAppServers = getProperty(
 			portalTestProperties,
 			"test.batch.dist.app.servers[" + _testSuiteName + "]");
@@ -73,7 +73,7 @@ public class PortalAcceptancePullRequestJob extends PortalRepositoryJob {
 				portalTestProperties, "test.batch.dist.app.servers");
 		}
 
-		return getListFromString(testBatchDistAppServers);
+		return getSetFromString(testBatchDistAppServers);
 	}
 
 	@Override
