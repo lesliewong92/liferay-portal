@@ -71,11 +71,11 @@ public class FunctionalBatchTestClassGroup extends BatchTestClassGroup {
 			File workingDirectory =
 				portalGitWorkingDirectory.getWorkingDirectory();
 
-			throw new RuntimeException(
-				JenkinsResultsParserUtil.combine(
-					"Unable to get module directories in ",
-					workingDirectory.getPath()),
-				ioe);
+			String exceptionMessage = JenkinsResultsParserUtil.combine(
+				"Unable to get module directories in ",
+				workingDirectory.getPath());
+
+			throw new RuntimeException(exceptionMessage, ioe);
 		}
 
 		StringBuilder sb = new StringBuilder();
