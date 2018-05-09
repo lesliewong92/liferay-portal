@@ -262,6 +262,8 @@
 					<arg value="UTF-8" />
 					<return name="roleTitleEncoded" />
 				</execute>
+
+				<var method="StringUtil#replace('${roleTitleEncoded}','+','%20')" name="roleTitleEncoded" />
 			</then>
 			<else>
 				<fail message="Please set 'roleTitle'." />
