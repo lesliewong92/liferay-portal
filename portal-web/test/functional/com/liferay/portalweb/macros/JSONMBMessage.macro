@@ -37,7 +37,7 @@
 		</execute>
 	</command>
 
-	<command name="getmessageId" returns="messageId">
+	<command name="getmessageId" return="messageId">
 
 		<var method="selenium#getLocation()" name="messageBoardsThreadURL" />
 

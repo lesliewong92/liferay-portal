@@ -9,7 +9,7 @@
 		</execute>
 	</command>
 
-	<command name="checkFacetAndViewURL" returns="updatedSearchURL">
+	<command name="checkFacetAndViewURL" return="updatedSearchURL">
 		<execute macro="SearchFacetPortlet#checkFacet">
 			<var name="facetValueName" value="${facetValueName}" />
 		</execute>
@@ -29,7 +29,7 @@
 		<return name="updatedSearchURL" value="${searchURL}" />
 	</command>
 
-	<command name="clearAllFacetsAndViewURL" returns="updatedSearchURL">
+	<command name="clearAllFacetsAndViewURL" return="updatedSearchURL">
 		<while>
 			<condition function="IsElementPresent" locator1="SearchResults#FACET_PORTLET_CLEAR_GENERIC" />
 			<then>
@@ -64,7 +64,7 @@
 		</if>
 	</command>
 
-	<command name="clearFacetAndViewURL" returns="updatedSearchURL">
+	<command name="clearFacetAndViewURL" return="updatedSearchURL">
 		<if>
 			<isset var="facetClass" />
 			<then>
@@ -108,7 +108,7 @@
 		<execute macro="IFrame#closeFrame" />
 	</command>
 
-	<command name="generateFacetCheckedURL" returns="updatedSearchURL">
+	<command name="generateFacetCheckedURL" return="updatedSearchURL">
 		<if>
 			<not>
 				<isset var="searchURL" />
@@ -180,7 +180,7 @@
 		<return name="updatedSearchURL" value="${searchURL}" />
 	</command>
 
-	<command name="generateFacetClearedURL" returns="updatedSearchURL">
+	<command name="generateFacetClearedURL" return="updatedSearchURL">
 		<var method="StringUtil#toLowerCase('${facetClass}')" name="facetClass" />
 
 		<var method="RegexUtil#replace('${searchURL}', '^(.*?)((?:&amp;${facetClass}[^&amp;]+)+)(.*)', '1')" name="beforeFacetGroup" />
@@ -192,7 +192,7 @@
 		<return name="updatedSearchURL" value="${searchURL}" />
 	</command>
 
-	<command name="generateFacetUncheckedURL" returns="updatedSearchURL">
+	<command name="generateFacetUncheckedURL" return="updatedSearchURL">
 		<if>
 			<equals arg1="${facetClass}" arg2="type" />
 			<then>
@@ -247,7 +247,7 @@
 		<return name="updatedSearchURL" value="${searchURL}" />
 	</command>
 
-	<command name="getFacetTypeValue" returns="facetTypeValue">
+	<command name="getFacetTypeValue" return="facetTypeValue">
 		<if>
 			<contains string="${facetTypeValueName}" substring="Blogs" />
 			<then>
@@ -306,7 +306,7 @@
 		</execute>
 	</command>
 
-	<command name="uncheckFacetAndViewURL" returns="updatedSearchURL">
+	<command name="uncheckFacetAndViewURL" return="updatedSearchURL">
 		<execute macro="SearchFacetPortlet#uncheckFacet">
 			<var name="facetValueName" value="${facetValueName}" />
 		</execute>

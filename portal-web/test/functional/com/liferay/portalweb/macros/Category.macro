@@ -283,7 +283,7 @@
 		<execute macro="PortletEntry#save" />
 	</command>
 
-	<command name="getAssetId" returns="assetId">
+	<command name="getAssetId" return="assetId">
 		<var method="selenium#getAttribute('//table[contains(@class,\'table-list\')]//tr[contains(.,\'${assetName}\')]/td[1]//input@value')" name="assetId" />
 
 		<return name="assetId" value="${assetId}" />

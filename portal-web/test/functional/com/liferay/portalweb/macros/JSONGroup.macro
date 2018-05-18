@@ -350,7 +350,7 @@
 		</execute>
 	</command>
 
-	<command name="getGroupIdByName" returns="groupId">
+	<command name="getGroupIdByName" return="groupId">
 		<if>
 			<not>
 				<isset var="groupName" />
@@ -396,7 +396,7 @@
 		<return name="groupId" value="${groupId}" />
 	</command>
 
-	<command name="getGroupName" returns="groupName">
+	<command name="getGroupName" return="groupName">
 		<if>
 			<not>
 				<isset var="groupId" />

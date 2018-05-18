@@ -1071,7 +1071,7 @@
 		<execute function="Confirm" value1="Are you sure you want to expire the selected version?" />
 	</command>
 
-	<command name="getAssetId" returns="assetId">
+	<command name="getAssetId" return="assetId">
 		<if>
 			<isset var="webContentAsset" />
 			<then>

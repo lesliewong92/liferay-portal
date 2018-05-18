@@ -219,7 +219,7 @@
 		</execute>
 	</command>
 
-	<command name="getUserEmailAddress" returns="userEmailAddress">
+	<command name="getUserEmailAddress" return="userEmailAddress">
 		<if>
 			<not>
 				<isset var="userId" />
@@ -251,7 +251,7 @@
 		<return name="userEmailAddress" value="${userEmailAddress}" />
 	</command>
 
-	<command name="getUserFirstName" returns="userFirstName">
+	<command name="getUserFirstName" return="userFirstName">
 		<if>
 			<not>
 				<isset var="userId" />
@@ -283,7 +283,7 @@
 		<return name="userFirstName" value="${userFirstName}" />
 	</command>
 
-	<command name="getUserIdByEmailAddress" returns="userId">
+	<command name="getUserIdByEmailAddress" return="userId">
 		<if>
 			<not>
 				<isset var="userEmailAddress" />

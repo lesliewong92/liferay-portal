@@ -70,7 +70,7 @@
 		<execute macro="IFrame#closeFrame" />
 	</command>
 
-	<command name="getSearchTermURL" returns="searchURL">
+	<command name="getSearchTermURL" return="searchURL">
 		<if>
 			<contains string="${searchPage}" substring=" " />
 			<then>
