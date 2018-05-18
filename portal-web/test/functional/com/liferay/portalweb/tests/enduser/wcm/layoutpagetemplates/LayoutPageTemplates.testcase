@@ -56,7 +56,7 @@
 		</execute>
 
 		<execute macro="TestCase#getFileContent">
-			<return from="fileContent" name="htmlSnippet" />
+			<return name="htmlSnippet" />
 			<var name="fileName" value="Document_3.html" />
 		</execute>
 
@@ -115,7 +115,7 @@
 		</execute>
 
 		<execute macro="TestCase#getFileContent">
-			<return from="fileContent" name="htmlSnippet" />
+			<return name="htmlSnippet" />
 			<var name="fileName" value="Document_4.html" />
 		</execute>
 
@@ -125,7 +125,7 @@
 		</execute>
 
 		<execute macro="TestCase#getFileContent">
-			<return from="fileContent" name="cssSnippet" />
+			<return name="cssSnippet" />
 			<var name="fileName" value="Document_4.css" />
 		</execute>
 
@@ -179,7 +179,7 @@
 		</execute>
 
 		<execute macro="TestCase#getFileContent">
-			<return from="fileContent" name="htmlSnippet" />
+			<return name="htmlSnippet" />
 			<var name="fileName" value="Document_1.html" />
 		</execute>
 
@@ -388,7 +388,7 @@
 		</execute>
 
 		<execute macro="TestCase#getFileContent">
-			<return from="fileContent" name="htmlSnippet" />
+			<return name="htmlSnippet" />
 			<var name="fileName" value="Document_1.html" />
 		</execute>
 
@@ -398,7 +398,7 @@
 		</execute>
 
 		<execute macro="TestCase#getFileContent">
-			<return from="fileContent" name="cssSnippet" />
+			<return name="cssSnippet" />
 			<var name="fileName" value="Document_1.css" />
 		</execute>
 
@@ -414,7 +414,7 @@
 		</execute>
 
 		<execute macro="TestCase#getFileContent">
-			<return from="fileContent" name="htmlSnippet" />
+			<return name="htmlSnippet" />
 			<var name="fileName" value="Document_2.html" />
 		</execute>
 
@@ -424,7 +424,7 @@
 		</execute>
 
 		<execute macro="TestCase#getFileContent">
-			<return from="fileContent" name="cssSnippet" />
+			<return name="cssSnippet" />
 			<var name="fileName" value="Document_2.css" />
 		</execute>
 
