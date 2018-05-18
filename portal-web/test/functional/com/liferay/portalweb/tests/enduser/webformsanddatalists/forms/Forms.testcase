@@ -253,7 +253,7 @@
 		</execute>
 
 		<execute macro="FormFields#getFieldName">
-			<return from="fieldName" name="fieldName1" />
+			<return name="fieldName1" />
 		</execute>
 
 		<execute macro="Form#closeSidebar" />
@@ -273,7 +273,7 @@
 		</execute>
 
 		<execute macro="FormFields#getFieldName">
-			<return from="fieldName" name="fieldName2" />
+			<return name="fieldName2" />
 		</execute>
 
 		<execute macro="Form#closeSidebar" />
@@ -3716,7 +3716,7 @@
 		<execute macro="FormsAdminNavigator#gotoPublishCopyURLLink" />
 
 		<execute macro="Form#getPublishedFormPublicURL">
-			<return from="publicURL" name="publishedFormPublicURL" />
+			<return name="publishedFormPublicURL" />
 			<var name="publishedFormPublicURL" value="${publishedFormPublicURL}" />
 		</execute>
 
@@ -4204,7 +4204,7 @@
 		</execute>
 
 		<execute macro="FormFields#editValidation">
-			<var name="validationArgument" value="Contains" />
+			<var name="validationArgument" value="Does not contain" />
 			<var name="validationErrorMessage" value="Text must contain &apos;&apos;Test&apos;&apos;" />
 			<var name="validationInput" value="Test" />
 		</execute>

@@ -265,7 +265,7 @@
 		<property name="test.name.skip.portal.instance" value="RolesandpermissionsUsecase#GroupScopePermissionCheck" />
 
 		<execute macro="TestCase#getSiteName">
-			<return from="siteName" name="siteName" />
+			<return name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
@@ -795,7 +795,7 @@
 
 	<command name="RolesPermissionsDynamicDataLists" priority="4">
 		<execute macro="TestCase#getSiteName">
-			<return from="siteName" name="siteName" />
+			<return name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
@@ -1130,7 +1130,7 @@
 
 		<var name="key_ddlDataDefinitionName" value="Employee Profile Data Definition" />
 
-		<execute function="AssertTextEquals" locator1="DDL#TOOLBAR_ADD" value1="Add Employee Profile Data Definition" />
+		<execute function="AssertElementPresent" locator1="DDL#TOOLBAR_ADD" />
 		<execute function="AssertElementPresent" locator1="DDL#RECORD_TABLE_ELLIPSIS_1" />
 
 		<execute macro="User#logoutPG" />
@@ -1157,7 +1157,7 @@
 
 	<command name="RolesSiteSearch" priority="4">
 		<execute macro="TestCase#getSiteName">
-			<return from="siteName" name="siteName" />
+			<return name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
@@ -1996,7 +1996,7 @@
 
 	<command name="SiteRoleBookmarksInlinePermissions" priority="4">
 		<execute macro="TestCase#getSiteName">
-			<return from="siteName" name="siteName" />
+			<return name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
@@ -2390,7 +2390,7 @@
 		<property name="osgi.app.includes" value="currency-converter" />
 
 		<execute macro="TestCase#getSiteName">
-			<return from="siteName" name="siteName" />
+			<return name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 

@@ -218,7 +218,7 @@
 		</execute>
 	</command>
 
-	<command name="getPublishedFormPublicURL" returns="publicURL">
+	<command name="getPublishedFormPublicURL" return="publicURL">
 		<var method="selenium#getElementValue(Form#PUBLISH_FORM_PUBLIC_URL)" name="publicURL" />
 
 		<return name="publicURL" value="${publicURL}" />
