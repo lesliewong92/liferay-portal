@@ -24,7 +24,7 @@ import java.util.concurrent.Future;
 /**
  * @author Shuyang Zhou
  */
-public class AsyncBroker<K, V> {
+public class AsyncBrokers<K, V> {
 
 	public Map<K, NoticeableFuture<V>> getOpenBids() {
 		return Collections.<K, NoticeableFuture<V>>unmodifiableMap(
