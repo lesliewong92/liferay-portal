@@ -15,7 +15,9 @@
 package com.liferay.jenkins.results.parser;
 
 import java.io.File;
+import java.io.IOException;
 
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -66,6 +68,30 @@ public class PortalAcceptancePullRequestJob
 			}
 
 			return portalWebOnlyBatchNamesSet;
+		}
+
+		try {
+			PortalGitWorkingDirectory portalGitWorkingDirectory =
+				(PortalGitWorkingDirectory)getGitWorkingDirectory();
+
+			List<File> modifiedModuleDirsList =
+				portalGitWorkingDirectory.getModifiedModuleDirsList();
+
+			if (modifiedModuleDirsList.isEmpty()) {
+				Set<String> noModulesChangeBatchNamesSet = new TreeSet<>();
+
+				for (String testBatchName : testBatchNamesSet) {
+					if (!testBatchName.contains("modules-compile")) {
+						noModulesChangeBatchNamesSet.add(testBatchName);
+					}
+				}
+
+				return noModulesChangeBatchNamesSet;
+			}
+		}
+		catch (IOException ioe) {
+			throw new RuntimeException(
+				"Failure occured when searching for modified modules", ioe);
 		}
 
 		return testBatchNamesSet;
