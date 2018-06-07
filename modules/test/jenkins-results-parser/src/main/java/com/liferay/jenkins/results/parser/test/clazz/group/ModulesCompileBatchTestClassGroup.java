@@ -30,6 +30,25 @@ import java.util.List;
 public class ModulesCompileBatchTestClassGroup
 	extends ModulesBatchTestClassGroup {
 
+	public static class ModulesCompileBatchTestClass
+		extends ModulesBatchTestClass {
+
+		protected static ModulesCompileBatchTestClass getInstance(
+			File moduleBaseDir, File modulesDir) {
+
+			return new ModulesCompileBatchTestClass(moduleBaseDir, modulesDir);
+		}
+
+		protected ModulesCompileBatchTestClass(
+			File moduleBaseDir, File modulesDir) {
+
+			super(moduleBaseDir);
+
+			initTestMethods(moduleBaseDir, modulesDir, "assemble");
+		}
+
+	}
+
 	protected ModulesCompileBatchTestClassGroup(
 		String batchName, PortalTestClassJob portalTestClassJob) {
 
@@ -62,9 +81,13 @@ public class ModulesCompileBatchTestClassGroup
 			}
 		}
 
+		File portalModulesBaseDir = new File(
+			portalGitWorkingDirectory.getWorkingDirectory(), "modules");
+
 		for (File moduleDir : moduleDirsList) {
 			testClasses.add(
-				ModulesBatchTestClass.getInstance(batchName, moduleDir));
+				ModulesCompileBatchTestClass.getInstance(
+					moduleDir, portalModulesBaseDir));
 		}
 	}
 
