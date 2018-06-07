@@ -29,6 +29,25 @@ import java.util.List;
 public class SemVerBaselineBatchTestClassGroup
 	extends ModulesBatchTestClassGroup {
 
+	public static class SemVerBaselineBatchTestClass
+		extends ModulesBatchTestClass {
+
+		protected static SemVerBaselineBatchTestClass getInstance(
+			File moduleBaseDir, File modulesDir) {
+
+			return new SemVerBaselineBatchTestClass(moduleBaseDir, modulesDir);
+		}
+
+		protected SemVerBaselineBatchTestClass(
+			File moduleBaseDir, File modulesDir) {
+
+			super(moduleBaseDir);
+
+			initTestMethods(moduleBaseDir, modulesDir, "baseline");
+		}
+
+	}
+
 	protected SemVerBaselineBatchTestClassGroup(
 		String batchName, PortalTestClassJob portalTestClassJob) {
 
@@ -44,12 +63,12 @@ public class SemVerBaselineBatchTestClassGroup
 			portalGitWorkingDirectory.getModifiedModuleDirsList(
 				excludesPathMatchers, includesPathMatchers);
 
+		File portalModulesBaseDir = new File(
+			portalGitWorkingDirectory.getWorkingDirectory(), "modules");
+
 		if (!testRelevantChanges) {
 			moduleDirsList = portalGitWorkingDirectory.getModuleDirsList(
 				excludesPathMatchers, includesPathMatchers);
-
-			File portalModulesBaseDir = new File(
-				portalGitWorkingDirectory.getWorkingDirectory(), "modules");
 
 			List<File> semVerMarkerFiles = JenkinsResultsParserUtil.findFiles(
 				portalModulesBaseDir, "\\.lfrbuild-semantic-versioning");
@@ -61,7 +80,8 @@ public class SemVerBaselineBatchTestClassGroup
 
 		for (File moduleDir : moduleDirsList) {
 			testClasses.add(
-				ModulesBatchTestClass.getInstance(batchName, moduleDir));
+				SemVerBaselineBatchTestClass.getInstance(
+					moduleDir, portalModulesBaseDir));
 		}
 	}
 
