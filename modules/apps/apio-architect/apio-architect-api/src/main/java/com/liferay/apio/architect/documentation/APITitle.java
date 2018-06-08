@@ -19,7 +19,7 @@ import java.util.function.Supplier;
 /**
  * Returns the API title.
  *
- * @author Alejandro Hernández
+ * @author Leslie Wong
  */
 public interface APITitle extends Supplier<String> {
 }
