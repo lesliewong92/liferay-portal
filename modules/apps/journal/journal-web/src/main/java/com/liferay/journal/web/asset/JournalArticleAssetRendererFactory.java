@@ -60,6 +60,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Juan Fernández
  * @author Raymond Augé
  * @author Sergio González
+ * @author Test Test
  */
 @Component(
 	immediate = true,
