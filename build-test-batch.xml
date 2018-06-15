@@ -3762,6 +3762,8 @@ app.server.type=@{app.server.type}]]></echo>
 				</for>
 
 				<antcall inheritAll="false" target="compile" />
+
+				<antcall inheritAll="false" target="install-portal-snapshots" />
 			</test-set-up>
 		</run-batch-test>
 	</target>
