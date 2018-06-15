@@ -3760,6 +3760,8 @@ app.server.type=@{app.server.type}]]></echo>
 						<delete file="@{log.file}" />
 					</sequential>
 				</for>
+
+				<antcall inheritAll="false" target="compile" />
 			</test-set-up>
 		</run-batch-test>
 	</target>
