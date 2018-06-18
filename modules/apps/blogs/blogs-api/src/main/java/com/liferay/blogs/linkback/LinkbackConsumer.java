@@ -25,4 +25,6 @@ public interface LinkbackConsumer {
 
 	public void verifyTrackback(long commentId, String url, String entryURL);
 
+	// Test
+
 }
