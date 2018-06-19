@@ -79,9 +79,7 @@ public abstract class ModulesBatchTestClassGroup extends BatchTestClassGroup {
 
 			if (includedModulesRequired != null) {
 				includesPathMatchers.addAll(
-					getPathMatchers(
-						getFirstPropertyValue(includedModulesRequired),
-						modulesDir));
+					getPathMatchers(includedModulesRequired, modulesDir));
 
 				System.out.println("5");
 			}
