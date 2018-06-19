@@ -109,47 +109,33 @@ public class ModulesSemVerBatchTestClassGroup
 		PortalGitWorkingDirectory portalGitWorkingDirectory =
 			getPortalGitWorkingDirectory();
 
-		System.out.println("6");
-
 		File portalModulesBaseDir = new File(
 			portalGitWorkingDirectory.getWorkingDirectory(), "modules");
 
-		System.out.println("7");
-
 		List<File> moduleDirsList = null;
 
-		System.out.println("8");
-
 		if ((testSuiteName != null) && testSuiteName.equals("default")) {
-			System.out.println("9");
-
 			moduleDirsList = portalGitWorkingDirectory.getModuleDirsList(
 				excludesPathMatchers, includesPathMatchers);
-
-			System.out.println("10");
 
 			List<File> semVerMarkerFiles = JenkinsResultsParserUtil.findFiles(
 				portalModulesBaseDir, "\\.lfrbuild-semantic-versioning");
 
-			System.out.println("11");
-
 			for (File semVerMarkerFile : semVerMarkerFiles) {
-				System.out.println("12");
-
 				moduleDirsList.add(semVerMarkerFile.getParentFile());
 			}
 		}
 		else {
-			System.out.println("13");
-
 			moduleDirsList =
 				portalGitWorkingDirectory.getModifiedModuleDirsList(
 					excludesPathMatchers, includesPathMatchers);
 		}
 
-		for (File moduleDir : moduleDirsList) {
-			System.out.println("14");
+		if (!requiredModules.isEmpty()) {
+			moduleDirsList.addAll(requiredModules);
+		}
 
+		for (File moduleDir : moduleDirsList) {
 			testClasses.add(
 				ModulesSemVerBatchTestClass.getInstance(
 					moduleDir, portalModulesBaseDir));
