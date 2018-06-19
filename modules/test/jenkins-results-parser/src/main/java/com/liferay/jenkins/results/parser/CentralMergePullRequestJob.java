@@ -32,10 +32,15 @@ public class CentralMergePullRequestJob
 
 		_subrepositoryName = _getSubrepositoryName(gitWorkingDirectory);
 
+		File subrepositoryWorkingDirectory = getSubrepositoryWorkingDirectory();
+
+		System.out.println(
+			"subrepositoryWorkingDirectory: " +
+				subrepositoryWorkingDirectory.getAbsolutePath());
+
 		jobProperties.putAll(
 			JenkinsResultsParserUtil.getProperties(
-				new File(
-					getSubrepositoryWorkingDirectory(), "test.properties")));
+				new File(subrepositoryWorkingDirectory, "test.properties")));
 	}
 
 	@Override
