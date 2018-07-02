@@ -27,17 +27,17 @@
 		</execute>
 
 		<execute macro="TestOAuth#getApplicationCredentials">
-			<return from="applicationCredentials" name="applicationCredentials" />
+			<return name="applicationCredentials" />
 			<var name="applicationName" value="oauth1" />
 		</execute>
 
 		<execute macro="TestOAuth#getConsumerSecret">
-			<return from="consumerSecret" name="consumerSecret" />
+			<return name="consumerSecret" />
 			<var name="applicationCredentials" value="${applicationCredentials}" />
 		</execute>
 
 		<execute macro="TestOAuth#getConsumerKey">
-			<return from="consumerKey" name="consumerKey" />
+			<return name="consumerKey" />
 			<var name="applicationCredentials" value="${applicationCredentials}" />
 			<var name="consumerSecret" value="${applicationCredentials}" />
 		</execute>

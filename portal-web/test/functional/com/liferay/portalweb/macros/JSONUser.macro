@@ -47,11 +47,11 @@
 		</if>
 
 		<execute macro="JSONCompany#getCompanyId">
-			<return from="companyId" name="companyId" />
+			<return name="companyId" />
 		</execute>
 
 		<execute macro="JSONCompany#getPortalURL">
-			<return from="portalURL" name="portalURL" />
+			<return name="portalURL" />
 		</execute>
 
 		<var name="curl">
@@ -115,11 +115,11 @@
 
 		<execute macro="JSONUser#getUserEmailAddress">
 			<var name="userId" value="${userId}" />
-			<return from="userEmailAddress" name="userEmailAddress" />
+			<return name="userEmailAddress" />
 		</execute>
 
 		<execute macro="JSONCompany#getPortalURL">
-			<return from="portalURL" name="portalURL" />
+			<return name="portalURL" />
 		</execute>
 
 		<var name="curl">
@@ -196,7 +196,7 @@
 
 		<execute macro="JSONUser#getUserIdByEmailAddress">
 			<var name="userEmailAddress" value="${userEmailAddress}" />
-			<return from="userId" name="userId" />
+			<return name="userId" />
 		</execute>
 
 		<execute macro="JSONUser#_deleteUser">
@@ -219,7 +219,7 @@
 		</execute>
 	</command>
 
-	<command name="getUserEmailAddress" returns="userEmailAddress">
+	<command name="getUserEmailAddress">
 		<if>
 			<not>
 				<isset var="userId" />
@@ -230,11 +230,11 @@
 		</if>
 
 		<execute macro="JSONCompany#getCompanyId">
-			<return from="companyId" name="companyId" />
+			<return name="companyId" />
 		</execute>
 
 		<execute macro="JSONCompany#getPortalURL">
-			<return from="portalURL" name="portalURL" />
+			<return name="portalURL" />
 		</execute>
 
 		<var name="curl">
@@ -248,10 +248,10 @@
 			<return name="userEmailAddress" />
 		</execute>
 
-		<return name="userEmailAddress" value="${userEmailAddress}" />
+		<return value="${userEmailAddress}" />
 	</command>
 
-	<command name="getUserFirstName" returns="userFirstName">
+	<command name="getUserFirstName">
 		<if>
 			<not>
 				<isset var="userId" />
@@ -262,11 +262,11 @@
 		</if>
 
 		<execute macro="JSONCompany#getCompanyId">
-			<return from="companyId" name="companyId" />
+			<return name="companyId" />
 		</execute>
 
 		<execute macro="JSONCompany#getPortalURL">
-			<return from="portalURL" name="portalURL" />
+			<return name="portalURL" />
 		</execute>
 
 		<var name="curl">
@@ -280,10 +280,10 @@
 			<return name="userFirstName" />
 		</execute>
 
-		<return name="userFirstName" value="${userFirstName}" />
+		<return value="${userFirstName}" />
 	</command>
 
-	<command name="getUserIdByEmailAddress" returns="userId">
+	<command name="getUserIdByEmailAddress">
 		<if>
 			<not>
 				<isset var="userEmailAddress" />
@@ -294,11 +294,11 @@
 		</if>
 
 		<execute macro="JSONCompany#getCompanyId">
-			<return from="companyId" name="companyId" />
+			<return name="companyId" />
 		</execute>
 
 		<execute macro="JSONCompany#getPortalURL">
-			<return from="portalURL" name="portalURL" />
+			<return name="portalURL" />
 		</execute>
 
 		<var name="curl">
@@ -312,7 +312,7 @@
 			<return name="userId" />
 		</execute>
 
-		<return name="userId" value="${userId}" />
+		<return value="${userId}" />
 	</command>
 
 	<command name="tearDownByFirstName">
@@ -326,11 +326,11 @@
 		</if>
 
 		<execute macro="JSONCompany#getCompanyId">
-			<return from="companyId" name="companyId" />
+			<return name="companyId" />
 		</execute>
 
 		<execute macro="JSONCompany#getPortalURL">
-			<return from="portalURL" name="portalURL" />
+			<return name="portalURL" />
 		</execute>
 
 		<var name="curl">
@@ -379,7 +379,7 @@
 		<for list="${userIds}" param="userId">
 			<execute macro="JSONUser#getUserFirstName">
 				<var name="userId" value="${userId}" />
-				<return from="userFirstName" name="currentUserFirstName" />
+				<return name="currentUserFirstName" />
 			</execute>
 
 			<if>
