@@ -769,7 +769,7 @@ public class DLFileEntryLocalServiceImpl
 		if (dlFileEntry.getStatus() == WorkflowConstants.STATUS_APPROVED) {
 			long folderId = dlFileEntry.getFolderId();
 
- 			if (folderId != DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+			if (folderId != DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 				dlFolderLocalService.updateLastPostDate(folderId, new Date());
 			}
 		}
@@ -2490,7 +2490,7 @@ public class DLFileEntryLocalServiceImpl
 
 		if (newFolderId != DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 			dlFolderLocalService.updateLastPostDate(
-					newFolderId, serviceContext.getModifiedDate(null));
+				newFolderId, serviceContext.getModifiedDate(null));
 		}
 
 		if (oldFolderId != DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
