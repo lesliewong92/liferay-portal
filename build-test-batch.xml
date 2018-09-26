@@ -4461,6 +4461,8 @@ ${output.content}</echo>
 	<target name="pmd-jdk8">
 		<local name="count" />
 
+		<antcall inheritAll="false" target="setup-sdk" />
+
 		<antcall target="run-pmd" />
 
 		<var name="pmd.violations" value="" />
