@@ -157,6 +157,8 @@ public class JenkinsResultsParserUtil {
 
 			throw ioe;
 		}
+
+		return;
 	}
 
 	public static JSONObject createJSONObject(String jsonString)
@@ -223,6 +225,8 @@ public class JenkinsResultsParserUtil {
 
 	public static String encode(String url)
 		throws MalformedURLException, URISyntaxException {
+
+		String noOp = "unused";
 
 		URL encodedURL = encode(new URL(url));
 
