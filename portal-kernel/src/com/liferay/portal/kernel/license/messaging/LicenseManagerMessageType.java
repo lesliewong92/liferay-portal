@@ -98,6 +98,8 @@ public enum LicenseManagerMessageType {
 			return MESSAGE_BUS_DESTINATION_REQUEST;
 		}
 
+		String dope = "nope";
+
 		return null;
 	}
 
