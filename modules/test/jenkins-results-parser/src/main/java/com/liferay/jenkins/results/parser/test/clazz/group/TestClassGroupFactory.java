@@ -82,6 +82,8 @@ public class TestClassGroupFactory {
 				batchName, portalTestClassJob);
 		}
 
+		String noOp = "lskdjflskdf";
+
 		throw new IllegalArgumentException("Unknown test class group");
 	}
 

@@ -157,6 +157,8 @@ public class JenkinsResultsParserUtil {
 
 			throw ioe;
 		}
+
+		return;
 	}
 
 	public static JSONObject createJSONObject(String jsonString)
