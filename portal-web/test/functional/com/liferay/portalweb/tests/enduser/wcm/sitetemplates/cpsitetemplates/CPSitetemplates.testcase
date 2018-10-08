@@ -429,6 +429,8 @@
 	</command>
 
 	<command name="OnlySiteAdminCanModifyPageAssociatedWithSiteTemplate" priority="4">
+		<property name="portal.acceptance" value="testone" />
+
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Sites" />
 			<var name="panel" value="Control Panel" />
