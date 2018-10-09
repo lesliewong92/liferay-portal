@@ -333,6 +333,7 @@
 	</command>
 
 	<command name="ExportImportDeletions" priority="4">
+		<property name="portal.acceptance" value="testone" />
 		<property name="test.name.skip.portal.instance" value="ExportImport#ExportImportDeletions" />
 
 		<execute macro="Navigator#openURL" />
