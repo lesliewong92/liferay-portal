@@ -176,6 +176,8 @@
 	</command>
 
 	<command name="PortletPreferencesPersistWithSiteTemplateWhenSamePortletAddedOnSecondPage" priority="4">
+		<property name="portal.acceptance" value="select" />
+
 		<description message="This is a use case for LPS-81629" />
 
 		<execute macro="TestCase#getSiteName">
@@ -448,6 +450,8 @@
 	</command>
 
 	<command name="SitesTemplateResourceInheritance" priority="3">
+		<property name="portal.acceptance" value="select" />
+
 		<execute macro="TestCase#getSiteName">
 			<return name="siteName" />
 			<var name="siteName" value="${siteName}" />
