@@ -448,6 +448,8 @@
 	</command>
 
 	<command name="SitesTemplateResourceInheritance" priority="3">
+		<property name="portal.acceptance" value="testone" />
+
 		<execute macro="TestCase#getSiteName">
 			<return name="siteName" />
 			<var name="siteName" value="${siteName}" />
