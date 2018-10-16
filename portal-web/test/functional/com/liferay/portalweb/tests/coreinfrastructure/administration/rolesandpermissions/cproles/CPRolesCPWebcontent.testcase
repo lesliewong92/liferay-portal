@@ -376,7 +376,7 @@
 	</command>
 
 	<command name="AddTemplateSiteRoleDefaultPermission" priority="5">
-		<property name="portal.acceptance" value="true" />
+		<property name="portal.acceptance" value="testone" />
 		<property name="test.name.skip.portal.instance" value="CPRolesCPWebcontent#AddTemplateSiteRoleDefaultPermission" />
 
 		<execute macro="Permissions#setUpSiteRoleCP">
