@@ -15,6 +15,7 @@
 package com.liferay.analytics.oauth2.internal.instance.lifecycle;
 
 import com.liferay.oauth2.provider.constants.ClientProfile;
+import com.liferay.oauth2.provider.constants.GrantType;
 import com.liferay.oauth2.provider.model.OAuth2Application;
 import com.liferay.oauth2.provider.service.OAuth2ApplicationLocalService;
 import com.liferay.petra.string.StringBundler;
@@ -68,28 +69,32 @@ public class AnalyticsOAuth2PortalInstanceLifecycleListener
 
 		_addSAPEntry(company.getCompanyId(), user.getUserId());
 
-		ClientProfile clientProfile = ClientProfile.WEB_APPLICATION;
-
 		OAuth2Application oAuth2Application =
 			_oAuth2ApplicationLocalService.addOAuth2Application(
 				company.getCompanyId(), user.getUserId(), user.getScreenName(),
-				new ArrayList<>(clientProfile.grantTypes()),
-				_generateRandomId(), clientProfile.id(),
-				_generateRandomSecret(), null,
-				Collections.singletonList("token_introspection"),
+				new ArrayList<GrantType>() {
+					{
+						add(GrantType.AUTHORIZATION_CODE);
+						add(GrantType.REFRESH_TOKEN);
+					}
+				},
+				_generateRandomId(), ClientProfile.WEB_APPLICATION.id(),
+				_generateRandomSecret(), null, null,
 				"https://analytics.liferay.com", 0, _APPLICATION_NAME, null,
 				Collections.singletonList(
 					"https://analytics.liferay.com/oauth/receive"),
 				Arrays.asList("everything.read", "preferences.write"),
 				new ServiceContext());
 
-		Class<?> clazz = getClass();
+		if (false) {
+			Class<?> clazz = getClass();
 
-		InputStream inputStream = clazz.getResourceAsStream(
-			"dependencies/logo.png");
+			InputStream inputStream = clazz.getResourceAsStream(
+				"dependencies/logo.png");
 
-		_oAuth2ApplicationLocalService.updateIcon(
-			oAuth2Application.getOAuth2ApplicationId(), inputStream);
+			_oAuth2ApplicationLocalService.updateIcon(
+				oAuth2Application.getOAuth2ApplicationId(), inputStream);
+		}
 	}
 
 	private static String _generateRandomId() {
