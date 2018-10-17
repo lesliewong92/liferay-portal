@@ -1587,6 +1587,8 @@ public class GitWorkingDirectory {
 
 	public void rebaseAbort() {
 		rebaseAbort(true);
+
+		return;
 	}
 
 	public void rebaseAbort(boolean ignoreFailure) {
