@@ -106,6 +106,8 @@
 	</command>
 
 	<command name="AddBlogsEntry" priority="5">
+		<property name="portal.acceptance" value="testone" />
+
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
