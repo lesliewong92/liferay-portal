@@ -10147,7 +10147,17 @@ jdbc.default.password=${database.mysql.password}</echo>
 			</then>
 		</if>
 
-		<antcall target="run-poshi-runner" />
+		<stopwatch name="timer1"/>
+
+		<for list="1,2,3,4,5,6,7,8,9,10" param="index">
+			<sequential>
+				<antcall target="run-poshi-runner" />
+
+				<stopwatch name="timer1" action="elapsed"/>
+			</sequential>
+		</for>
+
+		<stopwatch name="timer1" action="total"/>
 
 		<property name="test.class" value="${test.simple.class.name}#${test.method.name}" />
 
