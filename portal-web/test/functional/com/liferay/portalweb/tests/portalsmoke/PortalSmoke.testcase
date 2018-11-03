@@ -9,6 +9,8 @@
 		<execute macro="TestCase#setUpPortalInstance" />
 
 		<execute macro="SignIn#signInTestSetup" />
+
+		<fail message="This is intentional" />
 	</set-up>
 
 	<tear-down>
