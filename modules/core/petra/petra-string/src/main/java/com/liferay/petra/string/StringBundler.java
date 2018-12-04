@@ -51,6 +51,8 @@ public class StringBundler implements Serializable {
 			}
 		}
 
+		Syssstem.out.println("FALILURE");
+
 		return _toString(strings, strings.length);
 	}
 
