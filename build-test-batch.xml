@@ -3951,6 +3951,8 @@ log.sanitizer.enabled=false</echo>
 	<target name="javadoc-jdk8">
 		<run-batch-test>
 			<test-action>
+				<fail message="This is a failure" />
+
 				<antcall target="compile" />
 
 				<antcall target="doc" />
