@@ -374,6 +374,17 @@ public abstract class BaseBuild implements Build {
 	}
 
 	@Override
+	public int getCurrentSlaveUsageCount() {
+		int currentSlaveUsageCount = 1;
+
+		for (Build downstreamBuild : downstreamBuilds) {
+			currentSlaveUsageCount += downstreamBuild.getSlaveUsageCount();
+		}
+
+		return currentSlaveUsageCount;
+	}
+
+	@Override
 	public String getDatabase() {
 		return null;
 	}
@@ -1410,6 +1421,8 @@ public abstract class BaseBuild implements Build {
 	}
 
 	protected BaseBuild(String url, Build parentBuild) {
+		_buildEventSender.subscribe("buildStatus", new BuildEventListener());
+
 		_parentBuild = parentBuild;
 
 		if (url.contains("buildWithParameters")) {
@@ -2354,6 +2367,9 @@ public abstract class BaseBuild implements Build {
 
 			statusModifiedTime = System.currentTimeMillis();
 
+			// Payload to use
+			_buildEventSender.notify("buildStatus", this);
+
 			if (isParentBuildRoot()) {
 				System.out.println(getBuildMessage());
 			}
@@ -2582,6 +2598,7 @@ public abstract class BaseBuild implements Build {
 			"jenkins.report.time.zone");
 	}
 
+	private BuildEventSender _buildEventSender = new BuildEventSender();
 	private int _buildNumber = -1;
 	private JenkinsMaster _jenkinsMaster;
 	private JenkinsSlave _jenkinsSlave;
