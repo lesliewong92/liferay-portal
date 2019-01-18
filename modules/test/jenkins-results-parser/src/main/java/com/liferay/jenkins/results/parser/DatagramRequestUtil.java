@@ -1,0 +1,65 @@
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
+package com.liferay.jenkins.results.parser;
+
+import java.io.IOException;
+
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.SocketException;
+import java.net.UnknownHostException;
+
+/**
+ * @author Leslie Wong
+ */
+
+public class DatagramRequestUtil {
+
+    public static void send(String message)
+        throws IOException, SocketException, UnknownHostException {
+
+        try (DatagramSocket datagramSocket = new DatagramSocket()) {
+            System.out.println("Message to send: " + message);
+
+            InetAddress inetAddress = InetAddress.getByName("localhost");
+
+            int portNum = 9125;
+
+            DatagramPacket datagramPacket = new DatagramPacket(
+                message.getBytes(), message.length(), inetAddress, portNum);
+
+            datagramSocket.connect(inetAddress, portNum);
+
+            if (JenkinsResultsParserUtil.debug) {
+                System.out.println("IsBound : " + datagramSocket.isBound());
+                System.out.println("isConnected : " + datagramSocket.isConnected());
+                System.out.println("InetAddress : " + datagramSocket.getInetAddress());
+                System.out.println("Port : " + datagramSocket.getPort());
+
+                System.out.println(
+                    "Remote socket address : " +
+                        datagramSocket.getRemoteSocketAddress());
+
+                System.out.println(
+                    "Local socket address : " +
+                        datagramSocket.getLocalSocketAddress());
+            }
+
+            datagramSocket.send(datagramPacket);
+        }
+    }
+
+}
