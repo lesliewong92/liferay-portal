@@ -17,12 +17,10 @@ package com.liferay.jenkins.results.parser;
 /**
  * @author Leslie Wong
  */
-public abstract class BuildStatusEventListener implements EventListener {
+public class BuildStatusEventListener implements EventListener {
 
     @Override
     public void update(Build build) {
-        int currentSlaveUsageCount = build.getCurrentSlaveUsageCount();
-
         TopLevelBuild topLevelBuild = getTopLevelBuild();
 
         String topLevelJobName = topLevelBuild.getJobName();
@@ -37,15 +35,39 @@ public abstract class BuildStatusEventListener implements EventListener {
 
         StringBuilder sb = new StringBuilder();
 
-        sb.append("build.slave.usage.value:");
-        sb.append(currentSlaveUsageCount);
-        sb.append("|g");
-        sb.append("|#top.level.job.name:");
+        sb.append(_getSlaveUsageGaugeDeltaMessage(build));
+        sb.append("|#top_level_job_name:");
         sb.append(topLevelJobName);
-        sb.append(",batch.name:");
+        sb.append(",batch_name:");
         sb.append(batchName);
 
-        // build.slave.usage.value:currentSlaveUsageCount|#top.level.job.name:topLevelJobName,batch.name:batchName
+        DatagramRequestUtil.send(sb.toString());
     }
+
+    private String _getSlaveUsageGaugeDeltaMessage(Build build) {
+        StringBuilder sb = new StringBuilder();
+
+        int currentSlaveUsageCount = build.getCurrentSlaveUsageCount();
+
+        int slaveUsageDelta = _currentSlaveUsageCount - currentSlaveUsageCount;
+
+        if (slaveUsageDelta != 0) {
+            sb.append("build_slave_usage_value:");
+
+            if (slaveUsageDelta > 0) {
+                sb.append("+");
+            }
+            else {
+                sb.append("-");
+            }
+
+            sb.append(Math.abs(slaveUsageDelta));
+            sb.append("|g");
+        }
+
+        return sb.toString();
+    }
+
+    private int _currentSlaveUsageCount = 0;
 
 }
