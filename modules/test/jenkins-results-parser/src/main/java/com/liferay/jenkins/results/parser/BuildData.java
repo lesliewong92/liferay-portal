@@ -34,6 +34,10 @@ public interface BuildData {
 
 	public File getArtifactDir();
 
+	public Long getBuildDataCreationTime();
+
+	public String getBuildDataCreationTimeString();
+
 	public String getBuildDescription();
 
 	public Long getBuildDuration();

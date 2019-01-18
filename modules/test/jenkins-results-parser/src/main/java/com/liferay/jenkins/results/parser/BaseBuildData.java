@@ -56,6 +56,17 @@ public abstract class BaseBuildData implements BuildData {
 	}
 
 	@Override
+	public Long getBuildDataCreationTime() {
+		return buildDataCreationTime;
+	}
+
+	@Override
+	public String getBuildDataCreationTimeString() {
+		return JenkinsResultsParserUtil.toDurationString(
+			getBuildDataCreationTime());
+	}
+
+	@Override
 	public String getBuildDescription() {
 		return getString("build_description");
 	}
@@ -311,6 +322,8 @@ public abstract class BaseBuildData implements BuildData {
 	}
 
 	protected BaseBuildData(String runID, String jobName, String buildURL) {
+		buildDataCreationTime = System.currentTimeMillis();
+
 		JSONObject jsonObject = buildDatabase.getBuildDataJSONObject(runID);
 
 		String json = jsonObject.toString();
@@ -432,6 +445,7 @@ public abstract class BaseBuildData implements BuildData {
 
 	protected static final BuildDatabase buildDatabase =
 		BuildDatabaseUtil.getBuildDatabase();
+	protected final Long buildDataCreationTime;
 
 	private JSONObject _getBuildURLJSONObject() {
 		String buildURL = getBuildURL();
