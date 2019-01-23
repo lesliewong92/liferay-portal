@@ -116,7 +116,7 @@ public interface Build {
 
 	public String getResult();
 
-	public int getCurrentSlaveUsageCount();
+    public int getSlaveUsageCount(String status);
 
 	public Map<String, String> getStartPropertiesTempMap();
 
@@ -141,8 +141,6 @@ public interface Build {
 	public TopLevelBuild getTopLevelBuild();
 
 	public long getTotalDuration();
-
-	public int getTotalSlavesUsedCount();
 
 	public boolean hasBuildURL(String buildURL);
 

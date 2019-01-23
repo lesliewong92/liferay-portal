@@ -374,17 +374,6 @@ public abstract class BaseBuild implements Build {
 	}
 
 	@Override
-	public int getCurrentSlaveUsageCount() {
-		int currentSlaveUsageCount = 1;
-
-		for (Build downstreamBuild : downstreamBuilds) {
-			currentSlaveUsageCount += downstreamBuild.getSlaveUsageCount();
-		}
-
-		return currentSlaveUsageCount;
-	}
-
-	@Override
 	public String getDatabase() {
 		return null;
 	}
@@ -853,6 +842,17 @@ public abstract class BaseBuild implements Build {
 		return _result;
 	}
 
+    @Override
+    public int getSlaveUsageCount(String status) {
+        int totalSlavesUsedCount = 1;
+
+        for (Build downstreamBuild : getDownstreamBuilds(status)) {
+            totalSlavesUsedCount += downstreamBuild.getSlaveUsageCount(status);
+        }
+
+        return totalSlavesUsedCount;
+    }
+
 	@Override
 	public Map<String, String> getStartPropertiesTempMap() {
 		return getTempMap("start.properties");
@@ -1064,17 +1064,6 @@ public abstract class BaseBuild implements Build {
 		}
 
 		return totalDuration;
-	}
-
-	@Override
-	public int getTotalSlavesUsedCount() {
-		int totalSlavesUsedCount = 1;
-
-		for (Build downstreamBuild : getDownstreamBuilds(null)) {
-			totalSlavesUsedCount += downstreamBuild.getTotalSlavesUsedCount();
-		}
-
-		return totalSlavesUsedCount;
 	}
 
 	@Override
