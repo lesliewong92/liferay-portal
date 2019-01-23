@@ -842,16 +842,16 @@ public abstract class BaseBuild implements Build {
 		return _result;
 	}
 
-    @Override
-    public int getSlaveUsageCount(String status) {
-        int totalSlavesUsedCount = 1;
+	@Override
+	public int getSlaveUsageCount(String status) {
+		int totalSlavesUsedCount = 1;
 
-        for (Build downstreamBuild : getDownstreamBuilds(status)) {
-            totalSlavesUsedCount += downstreamBuild.getSlaveUsageCount(status);
-        }
+		for (Build downstreamBuild : getDownstreamBuilds(status)) {
+			totalSlavesUsedCount += downstreamBuild.getSlaveUsageCount(status);
+		}
 
-        return totalSlavesUsedCount;
-    }
+		return totalSlavesUsedCount;
+	}
 
 	@Override
 	public Map<String, String> getStartPropertiesTempMap() {
