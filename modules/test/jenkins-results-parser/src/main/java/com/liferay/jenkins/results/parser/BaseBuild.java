@@ -1292,8 +1292,6 @@ public abstract class BaseBuild implements Build {
 					}
 				}
 
-				status = getStatus();
-
 				if (downstreamBuilds != null) {
 					List<Callable<Object>> callables = new ArrayList<>();
 
