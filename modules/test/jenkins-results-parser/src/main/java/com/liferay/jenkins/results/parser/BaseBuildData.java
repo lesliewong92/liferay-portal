@@ -168,6 +168,11 @@ public abstract class BaseBuildData implements BuildData {
 	}
 
 	@Override
+	public int getCurrentSlaveUsageCount() {
+		return optInt("current_slave_usage_count");
+	}
+
+	@Override
 	public Host getHost() {
 		if (_host != null) {
 			return _host;
@@ -279,6 +284,11 @@ public abstract class BaseBuildData implements BuildData {
 		put("master_hostname", matcher.group("masterHostname"));
 		put("start_time", _getStartTime());
 		put("type", getType());
+	}
+
+	@Override
+	public void setCurrentSlaveUsageCount(int currentSlaveUsageCount) {
+		put("current_slave_usage_count", currentSlaveUsageCount);
 	}
 
 	@Override
@@ -445,6 +455,7 @@ public abstract class BaseBuildData implements BuildData {
 
 	protected static final BuildDatabase buildDatabase =
 		BuildDatabaseUtil.getBuildDatabase();
+
 	protected final Long buildDataCreationTime;
 
 	private JSONObject _getBuildURLJSONObject() {

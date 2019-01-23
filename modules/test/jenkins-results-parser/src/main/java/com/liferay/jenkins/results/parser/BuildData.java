@@ -58,6 +58,8 @@ public interface BuildData {
 
 	public String getCohortName();
 
+	public int getCurrentSlaveUsageCount();
+
 	public Host getHost();
 
 	public String getHostname();
@@ -101,6 +103,8 @@ public interface BuildData {
 	public void setBuildStatus(String buildStatus);
 
 	public void setBuildURL(String buildURL);
+
+	public void setCurrentSlaveUsageCount(int currentSlaveUsageCount);
 
 	public void setInvocationTime(Long invocationTime);
 
