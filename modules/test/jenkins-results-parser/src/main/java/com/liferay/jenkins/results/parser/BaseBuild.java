@@ -2609,7 +2609,7 @@ public abstract class BaseBuild implements Build {
 	private Map<String, String> _parameters = new HashMap<>();
 	private final Build _parentBuild;
 	private String _result;
-	private int _slaveUsageValue;
+	private final int _slaveUsageValue;
 	private String _status;
 
 }
