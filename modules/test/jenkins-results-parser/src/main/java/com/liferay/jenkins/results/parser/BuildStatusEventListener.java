@@ -14,60 +14,87 @@
 
 package com.liferay.jenkins.results.parser;
 
+import java.util.Map;
+
 /**
  * @author Leslie Wong
  */
-public class BuildStatusEventListener implements EventListener {
+public abstract class BuildStatusEventListener implements EventListener {
 
-    @Override
-    public void update(Build build) {
-        TopLevelBuild topLevelBuild = getTopLevelBuild();
+	protected String generateCountMetric(
+		String metricName, int metricValue, Map<String, String> labels) {
 
-        String topLevelJobName = topLevelBuild.getJobName();
+		if (metricValue < 0) {
+			System.out.println("Count metric values cannot be negative");
 
-        String batchName = build.getJobVariant();
+			return null;
+		}
 
-        int x = batchName.indexOf("/");
+		StringBuilder sb = new StringBuilder();
 
-        if (x != -1) {
-            batchName = jobVariant.substring(0, x);
-        }
+		sb.append(metricName);
+		sb.append(":");
+		sb.append(metricValue);
+		sb.append("|c");
+		sb.append(generateMetricLabels(labels));
 
-        StringBuilder sb = new StringBuilder();
+		return sb.toString();
+	}
 
-        sb.append(_getSlaveUsageGaugeDeltaMessage(build));
-        sb.append("|#top_level_job_name:");
-        sb.append(topLevelJobName);
-        sb.append(",batch_name:");
-        sb.append(batchName);
+	protected String generateGaugeDeltaMetric(
+		String metricName, int metricValue, Map<String, String> labels) {
 
-        DatagramRequestUtil.send(sb.toString());
-    }
+		if (metricValue == 0) {
+			System.out.println("Gauge metric values cannot be zero");
 
-    private String _getSlaveUsageGaugeDeltaMessage(Build build) {
-        StringBuilder sb = new StringBuilder();
+			return null;
+		}
 
-        int currentSlaveUsageCount = build.getCurrentSlaveUsageCount();
+		StringBuilder sb = new StringBuilder();
 
-        int slaveUsageDelta = _currentSlaveUsageCount - currentSlaveUsageCount;
+		sb.append(metricName);
+		sb.append(":");
 
-        if (slaveUsageDelta != 0) {
-            sb.append("build_slave_usage_value:");
+		if (metricValue < 0) {
+			sb.append("-");
+		}
+		else {
+			sb.append("+");
+		}
 
-            if (slaveUsageDelta > 0) {
-                sb.append("+");
-            }
-            else {
-                sb.append("-");
-            }
+		sb.append(Math.abs(metricValue));
 
-            sb.append(Math.abs(slaveUsageDelta));
-            sb.append("|g");
-        }
+		sb.append("|g");
+		sb.append(generateMetricLabels(labels));
 
-        return sb.toString();
-    }
+		return sb.toString();
+	}
 
-    private int _currentSlaveUsageCount = 0;
+	protected String generateMetricLabels(Map<String, String> labels) {
+		if ((labels == null) && labels.isEmpty()) {
+			return "";
+		}
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("|#");
+
+		for (Map.Entry<String, String> label : labels.entrySet()) {
+			sb.append(label.getKey());
+			sb.append(":");
+			sb.append(label.getValue());
+			sb.append(",");
+		}
+
+		sb.setLength(sb.length() - 1);
+
+		return sb.toString();
+	}
+
+	protected void send(String message) {
+		if (message != null) {
+			DatagramRequestUtil.send(message);
+		}
+	}
 
 }

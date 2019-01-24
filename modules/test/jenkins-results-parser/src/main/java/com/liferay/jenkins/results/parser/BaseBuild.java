@@ -843,14 +843,8 @@ public abstract class BaseBuild implements Build {
 	}
 
 	@Override
-	public int getSlaveUsageCount(String status) {
-		int totalSlavesUsedCount = 1;
-
-		for (Build downstreamBuild : getDownstreamBuilds(status)) {
-			totalSlavesUsedCount += downstreamBuild.getSlaveUsageCount(status);
-		}
-
-		return totalSlavesUsedCount;
+	public int getSlaveUsageValue() {
+		return _slaveUsageValue;
 	}
 
 	@Override
@@ -1064,6 +1058,22 @@ public abstract class BaseBuild implements Build {
 		}
 
 		return totalDuration;
+	}
+
+	@Override
+	public int getTotalSlaveUsageCount(String status) {
+		int totalSlavesUsedCount = 0;
+
+		if ((status == null) || status.equals(_status)) {
+			totalSlavesUsedCount = _slaveUsageValue;
+		}
+
+		for (Build downstreamBuild : getDownstreamBuilds(status)) {
+			totalSlavesUsedCount +=
+				downstreamBuild.getTotalSlaveUsageCount(status);
+		}
+
+		return totalSlavesUsedCount;
 	}
 
 	@Override
@@ -1403,14 +1413,13 @@ public abstract class BaseBuild implements Build {
 		return false;
 	}
 
-	protected BaseBuild(String url) {
-		this(url, null);
-	}
-
-	protected BaseBuild(String url, Build parentBuild) {
-		_buildEventSender.subscribe("buildStatus", new BuildEventListener());
+	protected BaseBuild(String url, Build parentBuild, int slaveUsageValue) {
+		_eventSender.subscribe(
+			"buildCompleted", new BuildCompletedEventListener());
+		_eventSender.subscribe("buildRunning", new BuildRunningEventListener());
 
 		_parentBuild = parentBuild;
+		_slaveUsageValue = slaveUsageValue;
 
 		if (url.contains("buildWithParameters")) {
 			setInvocationURL(url);
@@ -1420,6 +1429,10 @@ public abstract class BaseBuild implements Build {
 		}
 
 		update();
+	}
+
+	protected BaseBuild(String url, int slaveUsageValue) {
+		this(url, null, slaveUsageValue);
 	}
 
 	protected void addDownstreamBuildsTimelineData(
@@ -2354,8 +2367,12 @@ public abstract class BaseBuild implements Build {
 
 			statusModifiedTime = System.currentTimeMillis();
 
-			// Payload to use
-			_buildEventSender.notify("buildStatus", this);
+			if (status.equals("completed")) {
+				_eventSender.notify("buildCompleted", this);
+			}
+			else if (status.equals("running")) {
+				_eventSender.notify("buildRunning", this);
+			}
 
 			if (isParentBuildRoot()) {
 				System.out.println(getBuildMessage());
@@ -2585,13 +2602,14 @@ public abstract class BaseBuild implements Build {
 			"jenkins.report.time.zone");
 	}
 
-	private BuildEventSender _buildEventSender = new BuildEventSender();
 	private int _buildNumber = -1;
+	private EventSender _eventSender = new EventSender();
 	private JenkinsMaster _jenkinsMaster;
 	private JenkinsSlave _jenkinsSlave;
 	private Map<String, String> _parameters = new HashMap<>();
 	private final Build _parentBuild;
 	private String _result;
+	private int _slaveUsageValue;
 	private String _status;
 
 }

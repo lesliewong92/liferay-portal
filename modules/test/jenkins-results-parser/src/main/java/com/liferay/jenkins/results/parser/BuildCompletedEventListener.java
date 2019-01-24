@@ -17,8 +17,15 @@ package com.liferay.jenkins.results.parser;
 /**
  * @author Leslie Wong
  */
-public interface EventListener {
+public class BuildCompletedEventListener extends BuildStatusEventListener {
 
-	public void update(Build build);
+	@Override
+	public void update(Build build) {
+		int slaveUsageValue = build.getSlaveUsageValue();
+
+		if (slaveUsageValue > 0) {
+			send(generateGaugeDeltaMetric("build_slave_usage_value", -1, null));
+		}
+	}
 
 }

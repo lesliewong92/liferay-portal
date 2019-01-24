@@ -54,6 +54,7 @@ public class EventSender {
 		}
 	}
 
-	private Map<String, List<EventListener>> _eventListeners = new HashMap<>();
+	private final Map<String, List<EventListener>> _eventListeners =
+		new HashMap<>();
 
 }

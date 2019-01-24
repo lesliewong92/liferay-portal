@@ -214,11 +214,6 @@ public class BatchBuild extends BaseBuild {
 	}
 
 	@Override
-	public int getSlaveUsageCount(String status) {
-		return super.getSlaveUsageCount(status) - 1;
-	}
-
-	@Override
 	public List<TestResult> getTestResults(String testStatus) {
 		String status = getStatus();
 
@@ -357,7 +352,7 @@ public class BatchBuild extends BaseBuild {
 	}
 
 	protected BatchBuild(String url, TopLevelBuild topLevelBuild) {
-		super(url, topLevelBuild);
+		super(url, topLevelBuild, 0);
 	}
 
 	protected AxisBuild getAxisBuild(String axisVariable) {

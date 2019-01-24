@@ -19,47 +19,47 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.net.SocketException;
-import java.net.UnknownHostException;
 
 /**
  * @author Leslie Wong
  */
-
 public class DatagramRequestUtil {
 
-    public static void send(String message)
-        throws IOException, SocketException, UnknownHostException {
+	public static void send(String message) {
+		try (DatagramSocket datagramSocket = new DatagramSocket()) {
+			System.out.println("Message to send: " + message);
 
-        try (DatagramSocket datagramSocket = new DatagramSocket()) {
-            System.out.println("Message to send: " + message);
+			InetAddress inetAddress = InetAddress.getByName("localhost");
 
-            InetAddress inetAddress = InetAddress.getByName("localhost");
+			int portNum = 9125;
 
-            int portNum = 9125;
+			DatagramPacket datagramPacket = new DatagramPacket(
+				message.getBytes(), message.length(), inetAddress, portNum);
 
-            DatagramPacket datagramPacket = new DatagramPacket(
-                message.getBytes(), message.length(), inetAddress, portNum);
+			datagramSocket.connect(inetAddress, portNum);
 
-            datagramSocket.connect(inetAddress, portNum);
+			if (JenkinsResultsParserUtil.debug) {
+				System.out.println("IsBound : " + datagramSocket.isBound());
+				System.out.println(
+					"isConnected : " + datagramSocket.isConnected());
+				System.out.println(
+					"InetAddress : " + datagramSocket.getInetAddress());
+				System.out.println("Port : " + datagramSocket.getPort());
 
-            if (JenkinsResultsParserUtil.debug) {
-                System.out.println("IsBound : " + datagramSocket.isBound());
-                System.out.println("isConnected : " + datagramSocket.isConnected());
-                System.out.println("InetAddress : " + datagramSocket.getInetAddress());
-                System.out.println("Port : " + datagramSocket.getPort());
+				System.out.println(
+					"Remote socket address : " +
+						datagramSocket.getRemoteSocketAddress());
 
-                System.out.println(
-                    "Remote socket address : " +
-                        datagramSocket.getRemoteSocketAddress());
+				System.out.println(
+					"Local socket address : " +
+						datagramSocket.getLocalSocketAddress());
+			}
 
-                System.out.println(
-                    "Local socket address : " +
-                        datagramSocket.getLocalSocketAddress());
-            }
-
-            datagramSocket.send(datagramPacket);
-        }
-    }
+			datagramSocket.send(datagramPacket);
+		}
+		catch (IOException ioe) {
+			ioe.printStackTrace();
+		}
+	}
 
 }

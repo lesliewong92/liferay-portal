@@ -354,7 +354,7 @@ public class TopLevelBuild extends BaseBuild {
 	}
 
 	protected TopLevelBuild(String url, TopLevelBuild topLevelBuild) {
-		super(url, topLevelBuild);
+		super(url, topLevelBuild, 1);
 	}
 
 	@Override
@@ -931,7 +931,7 @@ public class TopLevelBuild extends BaseBuild {
 				JenkinsResultsParserUtil.toDurationString(getTotalDuration())),
 			Dom4JUtil.getNewElement(
 				"p", null, "Total number of Jenkins slaves used: ",
-				String.valueOf(getTotalSlavesUsedCount())),
+				String.valueOf(getTotalSlaveUsageCount(null))),
 			Dom4JUtil.getNewElement(
 				"p", null, "Average delay time for invoked build to start: ",
 				JenkinsResultsParserUtil.toDurationString(
