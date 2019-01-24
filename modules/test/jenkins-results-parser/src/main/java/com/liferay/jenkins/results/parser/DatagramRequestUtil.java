@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.util.Properties;
 
 /**
  * @author Leslie Wong
@@ -29,14 +30,29 @@ public class DatagramRequestUtil {
 		try (DatagramSocket datagramSocket = new DatagramSocket()) {
 			System.out.println("Message to send: " + message);
 
-			InetAddress inetAddress = InetAddress.getByName("localhost");
+			Properties buildProperties = null;
 
-			int portNum = 9125;
+			try {
+				buildProperties = JenkinsResultsParserUtil.getBuildProperties();
+			}
+			catch (IOException ioe) {
+				throw new RuntimeException(
+					"Unable to get build.properties", ioe);
+			}
+
+			String metricsHostName = buildProperties.getProperty(
+				"build.metrics.host.name");
+
+			InetAddress inetAddress = InetAddress.getByName(metricsHostName);
+
+			int metricsHostPort = Integer.valueOf(
+				buildProperties.getProperty("build.metrics.host.port"));
 
 			DatagramPacket datagramPacket = new DatagramPacket(
-				message.getBytes(), message.length(), inetAddress, portNum);
+				message.getBytes(), message.length(), inetAddress,
+				metricsHostPort);
 
-			datagramSocket.connect(inetAddress, portNum);
+			datagramSocket.connect(inetAddress, metricsHostPort);
 
 			if (JenkinsResultsParserUtil.debug) {
 				System.out.println("IsBound : " + datagramSocket.isBound());
