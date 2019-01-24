@@ -1414,9 +1414,24 @@ public abstract class BaseBuild implements Build {
 	}
 
 	protected BaseBuild(String url, Build parentBuild, int slaveUsageValue) {
-		_eventSender.subscribe(
-			"buildCompleted", new BuildCompletedEventListener());
-		_eventSender.subscribe("buildRunning", new BuildRunningEventListener());
+		Properties buildProperties = null;
+
+		try {
+			buildProperties = JenkinsResultsParserUtil.getBuildProperties();
+		}
+		catch (IOException ioe) {
+			throw new RuntimeException("Unable to get build.properties", ioe);
+		}
+
+		String sendBuildEvents = buildProperties.getProperty(
+			"build.metrics.send.events");
+
+		if ((sendBuildEvents != null) && sendBuildEvents.equals("true")) {
+			_eventSender.subscribe(
+				"buildCompleted", new BuildCompletedEventListener());
+			_eventSender.subscribe(
+				"buildRunning", new BuildRunningEventListener());
+		}
 
 		_parentBuild = parentBuild;
 		_slaveUsageValue = slaveUsageValue;
