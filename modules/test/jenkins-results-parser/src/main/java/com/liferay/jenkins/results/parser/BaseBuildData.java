@@ -179,6 +179,21 @@ public abstract class BaseBuildData implements BuildData {
 	}
 
 	@Override
+	public Long getInvocationTime() {
+		return optLong("invocation_time", Long.valueOf(0));
+	}
+
+	@Override
+	public String getInvocationTimeString() {
+		return getFormattedDate(getInvocationTime());
+	}
+
+	@Override
+	public String getInvocationURL() {
+		return optString("invocation_url");
+	}
+
+	@Override
 	public String getJenkinsGitHubURL() {
 		return getString("jenkins_github_url");
 	}

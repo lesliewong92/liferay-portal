@@ -58,6 +58,12 @@ public interface BuildData {
 
 	public String getHostname();
 
+	public Long getInvocationTime();
+
+	public String getInvocationTimeString();
+
+	public String getInvocationURL();
+
 	public String getJenkinsGitHubURL();
 
 	public String getJobName();
