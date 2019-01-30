@@ -19,7 +19,13 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 import java.util.concurrent.ExecutorService;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -380,6 +386,20 @@ public class BatchBuild extends BaseBuild {
 		return batchName.substring(x, y);
 	}
 
+	protected String getBatchName(Build build) {
+		String jobVariant = build.getJobVariant();
+
+		if (jobVariant != null) {
+			Matcher matcher = _jobVariantPattern.matcher(jobVariant);
+
+			if (matcher.matches()) {
+				return matcher.group("batchName");
+			}
+		}
+
+		return null;
+	}
+
 	protected String getEnvironment(String environmentType) {
 		Properties buildProperties = null;
 
@@ -534,11 +554,6 @@ public class BatchBuild extends BaseBuild {
 	}
 
 	@Override
-	protected Map<String, String> getMetricLabels() {
-		return new HashMap<>();
-	}
-
-	@Override
 	protected int getTestCountByStatus(String status) {
 		JSONObject testReportJSONObject = getTestReportJSONObject();
 
@@ -563,5 +578,7 @@ public class BatchBuild extends BaseBuild {
 
 	private static ExecutorService _executorService =
 		JenkinsResultsParserUtil.getNewThreadPoolExecutor(20, true);
+	private static final Pattern _jobVariantPattern = Pattern.compile(
+		"(?<batchName>[\\w-]+)(/\\d)?");
 
 }

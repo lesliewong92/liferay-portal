@@ -442,7 +442,10 @@ public class AxisBuild extends BaseBuild {
 		TopLevelBuild topLevelBuild = getTopLevelBuild();
 
 		metricLabels.put("job_type", topLevelBuild.getJobName());
-		metricLabels.put("batch_type", getJobVariant());
+
+		BatchBuild batchBuild = (BatchBuild)getParentBuild();
+
+		metricLabels.put("batch_type", batchBuild.getJobVariant());
 
 		return metricLabels;
 	}

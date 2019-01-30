@@ -1974,7 +1974,9 @@ public abstract class BaseBuild implements Build {
 		return parameterNames;
 	}
 
-	protected abstract Map<String, String> getMetricLabels();
+	protected Map<String, String> getMetricLabels() {
+		return new HashMap<>();
+	}
 
 	protected Map<String, String> getParameters(JSONArray jsonArray) {
 		Map<String, String> parameters = new HashMap<>(jsonArray.length());
