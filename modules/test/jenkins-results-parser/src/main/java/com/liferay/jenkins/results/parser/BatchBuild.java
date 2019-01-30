@@ -19,13 +19,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -537,6 +531,11 @@ public class BatchBuild extends BaseBuild {
 		}
 
 		return tableRowElements;
+	}
+
+	@Override
+	protected Map<String, String> getMetricLabels() {
+		return new HashMap<>();
 	}
 
 	@Override

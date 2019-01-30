@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -1184,6 +1185,14 @@ public class TopLevelBuild extends BaseBuild {
 		}
 
 		return jobSummaryListElement;
+	}
+
+	protected Map<String, String> getMetricLabels() {
+		Map<String, String> metricLabels = new HashMap<>();
+
+		metricLabels.put("job_name", getJobName());
+
+		return metricLabels;
 	}
 
 	protected Element getMoreDetailsElement() {

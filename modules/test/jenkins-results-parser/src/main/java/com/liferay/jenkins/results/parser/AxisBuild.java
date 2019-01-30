@@ -40,7 +40,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -431,6 +433,18 @@ public class AxisBuild extends BaseBuild {
 		String result, String status) {
 
 		return Collections.emptyList();
+	}
+
+	@Override
+	protected Map<String, String> getMetricLabels() {
+		Map<String, String> metricLabels = new HashMap<>();
+
+		TopLevelBuild topLevelBuild = getTopLevelBuild();
+
+		metricLabels.put("job_type", topLevelBuild.getJobName());
+		metricLabels.put("batch_type", getJobVariant());
+
+		return metricLabels;
 	}
 
 	@Override
