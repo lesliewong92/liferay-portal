@@ -36,6 +36,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeoutException;
@@ -805,6 +806,10 @@ public abstract class BaseBuild implements Build {
 		return longestRunningTest;
 	}
 
+	public Map<String, String> getMetricLabels() {
+		return new TreeMap<>();
+	}
+
 	@Override
 	public List<Build> getModifiedDownstreamBuilds() {
 		return getModifiedDownstreamBuildsByStatus(null);
@@ -815,7 +820,9 @@ public abstract class BaseBuild implements Build {
 		List<Build> modifiedDownstreamBuilds = new ArrayList<>();
 
 		for (Build downstreamBuild : downstreamBuilds) {
-			if (downstreamBuild.isBuildModified()) {
+			if (downstreamBuild.isBuildModified() ||
+				downstreamBuild.hasModifiedDownstreamBuilds()) {
+
 				modifiedDownstreamBuilds.add(downstreamBuild);
 			}
 		}
@@ -1088,10 +1095,34 @@ public abstract class BaseBuild implements Build {
 
 	@Override
 	public int getTotalSlavesUsedCount() {
+		return getTotalSlavesUsedCount(null, false);
+	}
+
+	@Override
+	public int getTotalSlavesUsedCount(
+		String status, boolean modifiedBuildsOnly) {
+
 		int totalSlavesUsedCount = 1;
 
-		for (Build downstreamBuild : getDownstreamBuilds(null)) {
-			totalSlavesUsedCount += downstreamBuild.getTotalSlavesUsedCount();
+		if ((modifiedBuildsOnly && !isBuildModified()) ||
+			((status != null) && !_status.equals(status))) {
+
+			totalSlavesUsedCount = 0;
+		}
+
+		List<Build> downstreamBuilds;
+
+		if (modifiedBuildsOnly) {
+			downstreamBuilds = getModifiedDownstreamBuildsByStatus(status);
+		}
+		else {
+			downstreamBuilds = getDownstreamBuilds(status);
+		}
+
+		for (Build downstreamBuild : downstreamBuilds) {
+			totalSlavesUsedCount +=
+				downstreamBuild.getTotalSlavesUsedCount(
+					status, modifiedBuildsOnly);
 		}
 
 		return totalSlavesUsedCount;
@@ -1120,6 +1151,17 @@ public abstract class BaseBuild implements Build {
 
 		for (Build downstreamBuild : downstreamBuilds) {
 			if (downstreamBuild.hasBuildURL(buildURL)) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	@Override
+	public boolean hasModifiedDownstreamBuilds() {
+		for (Build downstreamBuild : downstreamBuilds) {
+			if (downstreamBuild.isBuildModified()) {
 				return true;
 			}
 		}

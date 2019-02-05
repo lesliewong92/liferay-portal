@@ -52,6 +52,10 @@ public class BatchBuild extends BaseBuild {
 		return getEnvironment("app.server");
 	}
 
+	public String getBatchName() {
+		return batchName;
+	}
+
 	@Override
 	public String getBrowser() {
 		return getEnvironment("browser");
@@ -209,6 +213,17 @@ public class BatchBuild extends BaseBuild {
 	}
 
 	@Override
+	public Map<String, String> getMetricLabels() {
+		Build parentBuild = getParentBuild();
+
+		Map<String, String> metricLabels = parentBuild.getMetricLabels();
+
+		metricLabels.put("batch_name", batchName);
+
+		return metricLabels;
+	}
+
+	@Override
 	public String getOperatingSystem() {
 		return getEnvironment("operating.system");
 	}
@@ -303,7 +318,21 @@ public class BatchBuild extends BaseBuild {
 
 	@Override
 	public int getTotalSlavesUsedCount() {
-		return super.getTotalSlavesUsedCount() - 1;
+		return getTotalSlavesUsedCount(null, false);
+	}
+
+	@Override
+	public int getTotalSlavesUsedCount(
+		String status, boolean modifiedBuildsOnly) {
+
+		int totalSlavesUsedCount = super.getTotalSlavesUsedCount(
+			status, modifiedBuildsOnly);
+
+		if (modifiedBuildsOnly && isBuildModified()) {
+			totalSlavesUsedCount--;
+		}
+
+		return totalSlavesUsedCount;
 	}
 
 	@Override
@@ -358,6 +387,19 @@ public class BatchBuild extends BaseBuild {
 
 	protected BatchBuild(String url, TopLevelBuild topLevelBuild) {
 		super(url, topLevelBuild);
+
+		String jobVariant = getJobVariant();
+
+		Matcher matcher = _jobVariantPattern.matcher(jobVariant);
+
+		if (!matcher.matches()) {
+			throw new RuntimeException(
+				"Unable to find batch name of batch build from job variant '" +
+					jobVariant + "'. Job variant must match pattern '" +
+						_jobVariantPattern + "'.");
+		}
+
+		batchName = matcher.group("batchName");
 	}
 
 	protected AxisBuild getAxisBuild(String axisVariable) {
@@ -559,10 +601,13 @@ public class BatchBuild extends BaseBuild {
 		throw new IllegalArgumentException("Invalid status: " + status);
 	}
 
+	protected final String batchName;
 	protected final Pattern majorVersionPattern = Pattern.compile(
 		"((\\d+)\\.?(\\d+?)).*");
 
 	private static ExecutorService _executorService =
 		JenkinsResultsParserUtil.getNewThreadPoolExecutor(20, true);
+	private static final Pattern _jobVariantPattern = Pattern.compile(
+		"(?<batchName>[^/]+)(/.*)?");
 
 }
