@@ -1106,9 +1106,16 @@ public abstract class BaseBuild implements Build {
 	public int getTotalSlavesUsedCount(
 		String status, boolean modifiedBuildsOnly) {
 
+		return getTotalSlavesUsedCount(status, modifiedBuildsOnly, false);
+	}
+
+	@Override
+	public int getTotalSlavesUsedCount(
+		String status, boolean modifiedBuildsOnly, boolean ignoreCurrentBuild) {
+
 		int totalSlavesUsedCount = 1;
 
-		if ((modifiedBuildsOnly && !isBuildModified()) ||
+		if (ignoreCurrentBuild || (modifiedBuildsOnly && !isBuildModified()) ||
 			((status != null) && !_status.equals(status))) {
 
 			totalSlavesUsedCount = 0;
@@ -1142,6 +1149,10 @@ public abstract class BaseBuild implements Build {
 
 		buildURL = JenkinsResultsParserUtil.getLocalURL(buildURL);
 
+		if (!buildURL.endsWith("/")) {
+			buildURL += "/";
+		}
+
 		String thisBuildURL = getBuildURL();
 
 		if (thisBuildURL != null) {
@@ -1164,7 +1175,9 @@ public abstract class BaseBuild implements Build {
 	@Override
 	public boolean hasModifiedDownstreamBuilds() {
 		for (Build downstreamBuild : downstreamBuilds) {
-			if (downstreamBuild.isBuildModified()) {
+			if (downstreamBuild.isBuildModified() ||
+				downstreamBuild.hasModifiedDownstreamBuilds()) {
+
 				return true;
 			}
 		}
@@ -1343,11 +1356,14 @@ public abstract class BaseBuild implements Build {
 
 	@Override
 	public void update() {
-		_previousStatus = _status;
-
 		String status = getStatus();
 
-		if (!status.equals("completed")) {
+		if ((status.equals("completed") &&
+			 (isBuildModified() || hasModifiedDownstreamBuilds())) ||
+			!status.equals("completed")) {
+
+			_previousStatus = _status;
+
 			try {
 				if (status.equals("missing") || status.equals("queued") ||
 					status.equals("starting")) {
@@ -1374,8 +1390,6 @@ public abstract class BaseBuild implements Build {
 						}
 					}
 				}
-
-				status = getStatus();
 
 				if (downstreamBuilds != null) {
 					List<Callable<Object>> callables = new ArrayList<>();
@@ -1502,7 +1516,9 @@ public abstract class BaseBuild implements Build {
 			setBuildURL(url);
 		}
 
-		update();
+		if (fromArchive || fromCompletedBuild) {
+			update();
+		}
 	}
 
 	protected void addDownstreamBuildsTimelineData(
@@ -2336,9 +2352,9 @@ public abstract class BaseBuild implements Build {
 				"Unable to decode " + buildURL, uee);
 		}
 
-		try {
-			BaseBuild parentBuild = (BaseBuild)getParentBuild();
+		BaseBuild parentBuild = (BaseBuild)getParentBuild();
 
+		try {
 			if (parentBuild != null) {
 				fromArchive = parentBuild.fromArchive;
 			}
@@ -2378,6 +2394,15 @@ public abstract class BaseBuild implements Build {
 		consoleReadCursor = 0;
 
 		setStatus("running");
+
+		if (parentBuild != null) {
+			fromCompletedBuild = parentBuild.fromCompletedBuild;
+		}
+		else {
+			String consoleText = getConsoleText();
+
+			fromCompletedBuild = consoleText.contains("stop-current-job:");
+		}
 	}
 
 	protected void setInvocationURL(String invocationURL) {
@@ -2517,6 +2542,7 @@ public abstract class BaseBuild implements Build {
 	protected int consoleReadCursor;
 	protected List<Build> downstreamBuilds = new ArrayList<>();
 	protected boolean fromArchive;
+	protected boolean fromCompletedBuild;
 	protected String gitRepositoryName;
 	protected Long invokedTime;
 	protected String jobName;

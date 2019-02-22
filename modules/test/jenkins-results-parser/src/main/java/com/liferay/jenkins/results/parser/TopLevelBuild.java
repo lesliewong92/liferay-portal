@@ -360,7 +360,7 @@ public class TopLevelBuild extends BaseBuild {
 
 		_updateDuration = System.currentTimeMillis() - start;
 
-		if (_sendBuildMetrics) {
+		if (!fromArchive && !fromCompletedBuild) {
 			sendBuildMetricsOnModifiedBuilds();
 		}
 	}
@@ -1405,9 +1405,11 @@ public class TopLevelBuild extends BaseBuild {
 	}
 
 	protected void sendBuildMetrics(String message) {
+		System.out.println("Build Metric Message: '" + message.trim() + "'");
+
 		if (_sendBuildMetrics) {
 			DatagramRequestUtil.send(
-				message, _metricsHostName, _metricsHostPort);
+				message.trim(), _metricsHostName, _metricsHostPort);
 		}
 	}
 
@@ -1423,11 +1425,14 @@ public class TopLevelBuild extends BaseBuild {
 			Map<String, String> metricLabels = slaveUsageEntry.getKey();
 			Integer slaveUsage = slaveUsageEntry.getValue();
 
-			sb.append(
+			String buildMetricMessage =
 				StatsDMetricsUtil.generateGaugeDeltaMetric(
-					"build_slave_usage_gauge", slaveUsage, metricLabels));
+					"build_slave_usage_gauge", slaveUsage, metricLabels);
 
-			sb.append("\n");
+			if (buildMetricMessage != null) {
+				sb.append(buildMetricMessage);
+				sb.append("\n");
+			}
 		}
 
 		if (sb.length() > 0) {
