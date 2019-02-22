@@ -502,6 +502,17 @@ public class AxisBuild extends BaseBuild {
 		loadParametersFromBuildJSONObject();
 
 		setStatus("running");
+
+		BaseBuild parentBuild = (BaseBuild)getParentBuild();
+
+		if (parentBuild != null) {
+			fromCompletedBuild = parentBuild.fromCompletedBuild;
+		}
+		else {
+			String consoleText = getConsoleText();
+
+			fromCompletedBuild = consoleText.contains("stop-current-job:");
+		}
 	}
 
 	protected static final Pattern archiveBuildURLPattern = Pattern.compile(
