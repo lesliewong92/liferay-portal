@@ -2355,9 +2355,9 @@ public abstract class BaseBuild implements Build {
 				"Unable to decode " + buildURL, uee);
 		}
 
-		try {
-			BaseBuild parentBuild = (BaseBuild)getParentBuild();
+		BaseBuild parentBuild = (BaseBuild)getParentBuild();
 
+		try {
 			if (parentBuild != null) {
 				fromArchive = parentBuild.fromArchive;
 			}
@@ -2397,6 +2397,15 @@ public abstract class BaseBuild implements Build {
 		consoleReadCursor = 0;
 
 		setStatus("running");
+
+		if (parentBuild != null) {
+			fromCompletedBuild = parentBuild.fromCompletedBuild;
+		}
+		else {
+			String consoleText = getConsoleText();
+
+			fromCompletedBuild = consoleText.contains("stop-current-job:");
+		}
 	}
 
 	protected void setInvocationURL(String invocationURL) {
@@ -2536,6 +2545,7 @@ public abstract class BaseBuild implements Build {
 	protected int consoleReadCursor;
 	protected List<Build> downstreamBuilds = new ArrayList<>();
 	protected boolean fromArchive;
+	protected boolean fromCompletedBuild;
 	protected String gitRepositoryName;
 	protected Long invokedTime;
 	protected String jobName;
