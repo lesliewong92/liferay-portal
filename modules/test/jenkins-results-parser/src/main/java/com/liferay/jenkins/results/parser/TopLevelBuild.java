@@ -360,7 +360,7 @@ public class TopLevelBuild extends BaseBuild {
 
 		_updateDuration = System.currentTimeMillis() - start;
 
-		if (_sendBuildMetrics && !fromArchive && !fromCompletedBuild) {
+		if (!fromArchive && !fromCompletedBuild) {
 			sendBuildMetricsOnModifiedBuilds();
 		}
 	}
@@ -1405,6 +1405,8 @@ public class TopLevelBuild extends BaseBuild {
 	}
 
 	protected void sendBuildMetrics(String message) {
+		System.out.println("Build Metric Message: '" + message.trim() + "'");
+
 		if (_sendBuildMetrics) {
 			DatagramRequestUtil.send(
 				message.trim(), _metricsHostName, _metricsHostPort);
