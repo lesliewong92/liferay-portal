@@ -1175,7 +1175,9 @@ public abstract class BaseBuild implements Build {
 	@Override
 	public boolean hasModifiedDownstreamBuilds() {
 		for (Build downstreamBuild : downstreamBuilds) {
-			if (downstreamBuild.isBuildModified()) {
+			if (downstreamBuild.isBuildModified() ||
+				downstreamBuild.hasModifiedDownstreamBuilds()) {
+
 				return true;
 			}
 		}
@@ -1356,7 +1358,8 @@ public abstract class BaseBuild implements Build {
 	public void update() {
 		String status = getStatus();
 
-		if ((status.equals("completed") && isBuildModified()) ||
+		if ((status.equals("completed") &&
+			 (isBuildModified() || hasModifiedDownstreamBuilds())) ||
 			!status.equals("completed")) {
 
 			_previousStatus = _status;
