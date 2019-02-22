@@ -360,8 +360,15 @@ public class TopLevelBuild extends BaseBuild {
 
 		_updateDuration = System.currentTimeMillis() - start;
 
-		if (_sendBuildMetrics && !fromArchive && !fromCompletedBuild) {
-			sendBuildMetricsOnModifiedBuilds();
+		if (_sendBuildMetrics && !fromArchive && (getParentBuild() == null)) {
+			if (!fromCompletedBuild) {
+				sendBuildMetricsOnModifiedBuilds();
+			}
+			else {
+				sendBuildMetrics(
+					StatsDMetricsUtil.generateGaugeDeltaMetric(
+						"build_slave_usage_gauge", -1, getMetricLabels()));
+			}
 		}
 	}
 
@@ -404,6 +411,12 @@ public class TopLevelBuild extends BaseBuild {
 			catch (NumberFormatException nfe) {
 				throw new IllegalArgumentException(
 					"Please set \"build.metrics.host.port\" to an integer");
+			}
+
+			if (topLevelBuild == null) {
+				sendBuildMetrics(
+					StatsDMetricsUtil.generateGaugeDeltaMetric(
+						"build_slave_usage_gauge", 1, getMetricLabels()));
 			}
 		}
 	}
