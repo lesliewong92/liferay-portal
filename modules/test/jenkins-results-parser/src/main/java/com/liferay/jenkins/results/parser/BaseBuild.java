@@ -1183,7 +1183,9 @@ public abstract class BaseBuild implements Build {
 	@Override
 	public boolean hasModifiedDownstreamBuilds() {
 		for (Build downstreamBuild : downstreamBuilds) {
-			if (downstreamBuild.isBuildModified()) {
+			if (downstreamBuild.isBuildModified() ||
+				downstreamBuild.hasModifiedDownstreamBuilds()) {
+
 				return true;
 			}
 		}
@@ -1364,7 +1366,8 @@ public abstract class BaseBuild implements Build {
 	public void update() {
 		String status = getStatus();
 
-		if ((status.equals("completed") && isBuildModified()) ||
+		if ((status.equals("completed") &&
+			 (isBuildModified() || hasModifiedDownstreamBuilds())) ||
 			!status.equals("completed")) {
 
 			_previousStatus = _status;
@@ -1521,7 +1524,9 @@ public abstract class BaseBuild implements Build {
 			setBuildURL(url);
 		}
 
-		update();
+		if (fromArchive || fromCompletedBuild) {
+			update();
+		}
 	}
 
 	protected void addDownstreamBuildsTimelineData(
@@ -2355,9 +2360,9 @@ public abstract class BaseBuild implements Build {
 				"Unable to decode " + buildURL, uee);
 		}
 
-		try {
-			BaseBuild parentBuild = (BaseBuild)getParentBuild();
+		BaseBuild parentBuild = (BaseBuild)getParentBuild();
 
+		try {
 			if (parentBuild != null) {
 				fromArchive = parentBuild.fromArchive;
 			}
@@ -2397,6 +2402,15 @@ public abstract class BaseBuild implements Build {
 		consoleReadCursor = 0;
 
 		setStatus("running");
+
+		if (parentBuild != null) {
+			fromCompletedBuild = parentBuild.fromCompletedBuild;
+		}
+		else {
+			String consoleText = getConsoleText();
+
+			fromCompletedBuild = consoleText.contains("stop-current-job:");
+		}
 	}
 
 	protected void setInvocationURL(String invocationURL) {
@@ -2519,8 +2533,9 @@ public abstract class BaseBuild implements Build {
 			".*/(?<buildNumber>\\d+)/?"));
 	protected static final Pattern buildURLPattern = Pattern.compile(
 		JenkinsResultsParserUtil.combine(
-			"\\w+://(?<master>[^/]+)/+job/+(?<jobName>[^/]+).*/(?<buildNumber>",
-			"\\d+)/?"));
+			"\\w+://(?<master>[^/]+)/+job/+(?<jobName>[^/]+)/",
+			"((?<axisVariable>AXIS_VARIABLE=[^,]+,[^/]+)/)?",
+			"(?<buildNumber>\\d+)/?"));
 	protected static final Pattern downstreamBuildURLPattern = Pattern.compile(
 		"[\\'\\\"].*[\\'\\\"] started at (?<url>.+)\\.");
 	protected static final Pattern invocationURLPattern = Pattern.compile(
@@ -2536,6 +2551,7 @@ public abstract class BaseBuild implements Build {
 	protected int consoleReadCursor;
 	protected List<Build> downstreamBuilds = new ArrayList<>();
 	protected boolean fromArchive;
+	protected boolean fromCompletedBuild;
 	protected String gitRepositoryName;
 	protected Long invokedTime;
 	protected String jobName;
