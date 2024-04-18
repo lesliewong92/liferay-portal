@@ -847,6 +847,15 @@ public class ProjectController extends BaseFaroController {
 			friendlyURL);
 	}
 
+	private String _getDeletionFailedErrorMessage(User user) {
+		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
+			"content.Language", user.getLocale(), getClass());
+
+		return language.get(
+			resourceBundle,
+			"cant-delete-workspace-because-it-has-received-data-recently");
+	}
+
 	private String _getEmailAddressDomainsErrorMessage(
 		Collection<String> invalidEmailAddressDomains) {
 
@@ -1015,13 +1024,6 @@ public class ProjectController extends BaseFaroController {
 		projectDisplay.setStateStartDate((Date)globalStateMap.get("startDate"));
 
 		return projectDisplay;
-	}
-
-	private String _getDeletionFailedErrorMessage(User user) {
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", user.getLocale(), getClass());
-
-		return language.get(resourceBundle, "deletion-failed");
 	}
 
 	private String _getTimeZoneIdErrorMessage(User user) {
