@@ -1021,7 +1021,10 @@ public class ProjectController extends BaseFaroController {
 		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
 			"content.Language", user.getLocale(), getClass());
 
-		return language.get(resourceBundle, "deletion-failed");
+		return language.get(
+			resourceBundle,
+			"the-workspace-cannot-be-deleted-because-it-contains-incoming-" +
+				"data-within-the-last-3-days");
 	}
 
 	private String _getTimeZoneIdErrorMessage(User user) {
