@@ -129,10 +129,10 @@ public class SegmentsEntryUpgradeProcessTest {
 			criterion
 		).add(
 			RestrictionsFactoryUtil.or(
-				RestrictionsFactoryUtil.eq("criteria", "%deviceScreen%"),
+				RestrictionsFactoryUtil.like("criteria", "%deviceScreen%"),
 				RestrictionsFactoryUtil.or(
-					RestrictionsFactoryUtil.eq("criteria", "%deviceModel%"),
-					RestrictionsFactoryUtil.eq("criteria", "%deviceBrand%")))
+					RestrictionsFactoryUtil.like("criteria", "%deviceModel%"),
+					RestrictionsFactoryUtil.like("criteria", "%deviceBrand%")))
 		);
 
 		Assert.assertEquals(
