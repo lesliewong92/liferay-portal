@@ -10,9 +10,11 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuil
 import com.liferay.osb.faro.admin.web.internal.model.FaroProjectAdminDisplay;
 import com.liferay.osb.faro.model.FaroProject;
 import com.liferay.petra.function.transform.TransformUtil;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.dao.search.EmptyOnClickRowChecker;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.search.Indexer;
@@ -22,6 +24,7 @@ import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -94,6 +97,25 @@ public class FaroAdminDisplayContext {
 					faroProjectAdminDisplay.getGroupId());
 				dropdownItem.setLabel(
 					LanguageUtil.get(_httpServletRequest, "refresh-project"));
+			}
+		).add(
+			dropdownItem -> {
+				dropdownItem.setHref(
+					StringBundler.concat(
+						"javascript:",
+						"Liferay.Util.openModal({iframeBodyCssClass: '', title: '",
+						"test", "', url: '",
+						PortletURLBuilder.createRenderURL(
+							PortalUtil.getLiferayPortletResponse(
+								_renderResponse)
+						).setMVCRenderCommandName(
+							"/faro_admin/delete_project_render"
+						).setWindowState(
+							LiferayWindowState.POP_UP
+						).buildString(),
+						"'});;"));
+				dropdownItem.setLabel(
+					LanguageUtil.get(_httpServletRequest, "delete"));
 			}
 		).build();
 	}
