@@ -10,9 +10,11 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuil
 import com.liferay.osb.faro.admin.web.internal.model.FaroProjectAdminDisplay;
 import com.liferay.osb.faro.model.FaroProject;
 import com.liferay.petra.function.transform.TransformUtil;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.dao.search.EmptyOnClickRowChecker;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.portlet.url.builder.ActionURLBuilder;
 import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.search.Indexer;
@@ -94,6 +96,25 @@ public class FaroAdminDisplayContext {
 					faroProjectAdminDisplay.getGroupId());
 				dropdownItem.setLabel(
 					LanguageUtil.get(_httpServletRequest, "refresh-project"));
+			}
+		).add(
+			dropdownItem -> {
+				dropdownItem.setHref(
+					StringBundler.concat(
+						"javascript:", "Liferay.Util.openConfirmModal({",
+						"message: '",
+						LanguageUtil.get(
+							_httpServletRequest,
+							"are-you-sure-you-want-to-delete-this"),
+						"',", "onConfirm: (isConfirmed) => {location.href='",
+						ActionURLBuilder.createActionURL(
+							_renderResponse
+						).setActionName(
+							"/faro_admin/delete_project"
+						).buildString(),
+						"'}})"));
+				dropdownItem.setLabel(
+					LanguageUtil.get(_httpServletRequest, "delete"));
 			}
 		).build();
 	}
