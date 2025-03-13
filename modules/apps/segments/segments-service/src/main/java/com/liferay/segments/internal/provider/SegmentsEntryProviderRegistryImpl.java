@@ -15,6 +15,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.SetUtil;
+import com.liferay.segments.constants.SegmentsEntryConstants;
 import com.liferay.segments.context.Context;
 import com.liferay.segments.model.SegmentsEntry;
 import com.liferay.segments.provider.SegmentsEntryProvider;
@@ -126,6 +127,8 @@ public class SegmentsEntryProviderRegistryImpl
 
 		Set<Long> segmentsEntryIdsSet = SetUtil.fromArray(
 			finalSegmentsEntryIds);
+
+		segmentsEntryIdsSet.add(SegmentsEntryConstants.ID_DEFAULT);
 
 		return ArrayUtil.toLongArray(segmentsEntryIdsSet);
 	}
