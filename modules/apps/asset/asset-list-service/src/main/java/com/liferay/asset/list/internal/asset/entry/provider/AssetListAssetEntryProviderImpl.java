@@ -681,10 +681,6 @@ public class AssetListAssetEntryProviderImpl
 			return SegmentsEntryConstants.ID_DEFAULT;
 		}
 
-		if (segmentsEntryIds.length == 1) {
-			return segmentsEntryIds[0];
-		}
-
 		List<AssetListEntrySegmentsEntryRel> assetListEntrySegmentsEntryRels =
 			_assetListEntrySegmentsEntryRelLocalService.
 				getAssetListEntrySegmentsEntryRels(
@@ -692,6 +688,10 @@ public class AssetListAssetEntryProviderImpl
 					1,
 					AssetListEntrySegmentsEntryRelPriorityComparator.
 						getInstance(true));
+
+		if (assetListEntrySegmentsEntryRels.isEmpty()) {
+			return SegmentsEntryConstants.ID_DEFAULT;
+		}
 
 		AssetListEntrySegmentsEntryRel assetListEntrySegmentsEntryRel =
 			assetListEntrySegmentsEntryRels.get(0);
