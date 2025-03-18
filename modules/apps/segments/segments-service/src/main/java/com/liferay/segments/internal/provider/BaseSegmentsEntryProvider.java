@@ -266,7 +266,7 @@ public abstract class BaseSegmentsEntryProvider
 				matchesModel = UserSegmentsEntryMembershipChecker.isMember(
 					StringBundler.concat(
 						"(", modelFilterString, ") and (classPK eq '", classPK,
-						"')"),
+						"') and (type eq '1')"),
 					userAttributes);
 			}
 			catch (Exception exception) {
@@ -373,6 +373,8 @@ public abstract class BaseSegmentsEntryProvider
 			"segmentsEntryIds", _getSegmentsEntryIds(user)
 		).put(
 			"teamIds", user.getTeamIds()
+		).put(
+			"type", user.getType()
 		).put(
 			"userGroupIds", user.getUserGroupIds()
 		).put(
