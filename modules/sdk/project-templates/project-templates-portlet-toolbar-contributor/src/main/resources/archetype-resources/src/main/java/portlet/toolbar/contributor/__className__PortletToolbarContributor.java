@@ -15,7 +15,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javax.portlet.PortletRequest;
-import javax.portlet.PortletResponse;
+import jakarta.portlet.PortletResponse;
 
 import org.osgi.service.component.annotations.Component;
 

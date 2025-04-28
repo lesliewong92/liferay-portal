@@ -15,10 +15,10 @@ import java.util.Locale;
 import java.util.Map;
 
 import javax.portlet.PortletRequest;
-import javax.portlet.PortletResponse;
+import jakarta.portlet.PortletResponse;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;

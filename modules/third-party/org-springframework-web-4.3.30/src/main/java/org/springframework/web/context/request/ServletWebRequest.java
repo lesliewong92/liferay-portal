@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.TimeZone;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -40,7 +40,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.util.WebUtils;
 
 /**
- * {@link WebRequest} adapter for an {@link javax.servlet.http.HttpServletRequest}.
+ * {@link WebRequest} adapter for an {@link jakarta.servlet.http.HttpServletRequest}.
  *
  * @author Juergen Hoeller
  * @author Brian Clozel

@@ -40,7 +40,7 @@ import org.apache.http.util.EntityUtils;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.Closeable;
 import java.io.IOException;
@@ -739,7 +739,7 @@ public class ProxyServlet extends HttpServlet {
   }
 
   /**
-   * Allow overrides of {@link javax.servlet.http.HttpServletRequest#getPathInfo()}.
+   * Allow overrides of {@link jakarta.servlet.http.HttpServletRequest#getPathInfo()}.
    * Useful when url-pattern of servlet-mapping (web.xml) requires manipulation.
    */
   protected String rewritePathInfoFromRequest(HttpServletRequest servletRequest) {

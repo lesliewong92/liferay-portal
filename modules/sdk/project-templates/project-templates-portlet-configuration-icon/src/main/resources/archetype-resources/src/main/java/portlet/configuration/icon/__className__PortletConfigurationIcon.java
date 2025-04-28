@@ -8,7 +8,7 @@ import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import java.util.ResourceBundle;
 
 import javax.portlet.PortletRequest;
-import javax.portlet.PortletResponse;
+import jakarta.portlet.PortletResponse;
 
 import org.osgi.service.component.annotations.Component;
 

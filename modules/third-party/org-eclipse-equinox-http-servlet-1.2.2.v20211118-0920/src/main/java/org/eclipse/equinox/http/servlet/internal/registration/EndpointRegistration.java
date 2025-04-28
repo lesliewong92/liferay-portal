@@ -13,7 +13,7 @@ package org.eclipse.equinox.http.servlet.internal.registration;
 
 import java.io.IOException;
 import javax.servlet.*;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.eclipse.equinox.http.servlet.internal.context.ContextController;
 import org.eclipse.equinox.http.servlet.internal.context.ContextController.ServiceHolder;
