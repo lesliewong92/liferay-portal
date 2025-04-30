@@ -193,9 +193,11 @@
 
 								mv ./build/docker/bundles/tomcat-${app.server.tomcat.version} ./build/docker/bundles/tomcat
 
-								ln -s ./build/docker/bundles/tomcat ./build/docker/bundles/tomcat-${app.server.tomcat.version}
-
 								cd ./build/docker
+
+								ls -al
+
+								ls -al bundles
 
 								docker build . -t ${analytics.cloud.faro.image.name}
 
