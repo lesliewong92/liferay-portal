@@ -191,6 +191,8 @@
 
 								cp -R ${app.server.parent.dir} ./build/docker/bundles
 
+								rm -rf ./build/docker/bundles/jboss-eap-${app.server.jboss.version}
+
 								mv ./build/docker/bundles/tomcat-${app.server.tomcat.version} ./build/docker/bundles/tomcat
 
 								cd ./build/docker
