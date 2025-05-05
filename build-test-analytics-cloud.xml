@@ -826,6 +826,8 @@ OSB_FARO_FRONTEND_URL=${analytics.cloud.faro.frontend.url}</echo>
 
 										docker logs ${analytics.cloud.faro.container.name}
 
+										sleep 120
+
 										docker system df
 									</execute-analytics-cloud>
 
