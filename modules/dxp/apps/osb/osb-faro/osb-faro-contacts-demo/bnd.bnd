@@ -6,6 +6,10 @@ Import-Package:\
 	\
 	!jakarta.faces.*,\
 	\
+	!javax.transaction.*,\
+	\
+	!javax.xml.ws.*,\
+	\
 	!org.apache.commons.lang3.*,\
 	\
 	!org.yaml.snakeyaml.*,\

@@ -102,6 +102,12 @@ Import-Package:\
 	\
 	!javax.persistence.*,\
 	\
+	!javax.servlet.*,\
+	\
+	!javax.transaction.*,\
+	\
+	!javax.xml.ws.*,\
+	\
 	!javax.validation.*,\
 	\
 	!jdk.jfr.*,\

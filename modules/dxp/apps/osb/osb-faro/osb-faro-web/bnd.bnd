@@ -6,6 +6,10 @@ Import-Package:\
 	\
 	!jakarta.xml.bind.*,\
 	\
+	!javax.transaction.*,\
+	\
+	!javax.xml.ws.*,\
+	\
 	!javax.validation.*,\
 	\
 	!org.yaml.snakeyaml.*,\
