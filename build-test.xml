@@ -2911,9 +2911,8 @@ sendPasswordCaptchaEnabled=&quot;false&quot;</echo>
 		<resource-root path="${jdbc.driver}" />
 	</resources>
 	<dependencies>
-		<module name="javax.api" />
-		<module name="javax.servlet.api" optional="true" />
-		<module name="javax.transaction.api" />
+		<module name="jakarta.servlet.api" optional="true" />
+		<module name="jakarta.transaction.api" />
 	</dependencies>
 </module>]]></echo>
 
@@ -3046,7 +3045,7 @@ sendPasswordCaptchaEnabled=&quot;false&quot;</echo>
 				<equals arg1="${app.server.type}" arg2="jboss" />
 				<then>
 					<echo file="${liferay.home}/tools/portal-tools-db-upgrade-client/app-server.properties">dir=${app.server.dir}
-extra.lib.dirs=modules/system/layers/base/javax/mail,modules/system/layers/base/javax/persistence,modules/system/layers/base/javax/servlet,modules/system/layers/base/javax/transaction
+extra.lib.dirs=modules/system/layers/base/jakarta/mail,modules/system/layers/base/jakarta/persistence,modules/system/layers/base/jakarta/servlet,modules/system/layers/base/jakarta/transaction
 global.lib.dir=modules/com/liferay/portal/main
 portal.dir=standalone/deployments/ROOT.war
 server.detector.server.id=jboss</echo>
@@ -3087,7 +3086,7 @@ server.detector.server.id=weblogic</echo>
 					<equals arg1="${app.server.type}" arg2="wildfly" />
 					<then>
 						<echo file="${liferay.home}/tools/portal-tools-db-upgrade-client/app-server.properties">dir=${app.server.dir}
-extra.lib.dirs=modules/system/layers/base/javax/mail,modules/system/layers/base/javax/persistence,modules/system/layers/base/javax/servlet,modules/system/layers/base/javax/transaction
+extra.lib.dirs=modules/system/layers/base/jakarta/mail,modules/system/layers/base/jakarta/persistence,modules/system/layers/base/jakarta/servlet,modules/system/layers/base/jakarta/transaction
 global.lib.dir=modules/com/liferay/portal/main
 portal.dir=standalone/deployments/ROOT.war
 server.detector.server.id=wildfly</echo>
@@ -6660,7 +6659,7 @@ ${custom.upgrade.properties}</echo>
 					<var name="app.server.lib.global.dir" value="${app.server.dir}/modules/com/liferay/portal/main" />
 					<var name="app.server.lib.portal.dir" value="${app.server.dir}/standalone/deployments/ROOT.war/WEB-INF/lib/" />
 					<var name="app.server.shielded-container-lib.portal.dir" value="${app.server.dir}/standalone/deployments/ROOT.war/WEB-INF/shielded-container-lib/" />
-					<var name="app.server.zip.url" value="http://download.jboss.org/wildfly/@{app.server.version}.Final/${app.server.zip.name}" />
+					<var name="app.server.zip.url" value="https://github.com/wildfly/wildfly/releases/download/${app.server.wildfly.version}.Final/${app.server.wildfly.zip.name}" />
 				</then>
 			</if>
 
@@ -7093,7 +7092,7 @@ log.sanitizer.enabled=false</echo>
 					</then>
 				</elseif>
 				<else>
-					<var name="app.server.tomcat.version" value="9.0.104" />
+					<var name="app.server.tomcat.version" value="10.1.40" />
 				</else>
 			</if>
 
@@ -9925,8 +9924,8 @@ org.apache.catalina.ha.session.level=INFO]]>
 			failOnNoReplacements="true"
 			file="${app.server.tomcat.dir}/webapps/ROOT/WEB-INF/web.xml"
 		>
-			<replacetoken><![CDATA[xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">]]></replacetoken>
-			<replacevalue><![CDATA[xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+			<replacetoken><![CDATA[xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">]]></replacetoken>
+			<replacevalue><![CDATA[xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
 	<distributable />]]></replacevalue>
 		</replace>
 	</target>
@@ -12811,7 +12810,7 @@ captcha.enforce.disabled=true</echo>
 				<replace
 					file="${app.server.dir}/conf/server.xml"
 					token="&lt;Service name=&quot;Catalina&quot;&gt;"
-					value="&lt;Service name= &quot;Catalina&quot;&gt;${line.separator}    &lt;Connector port=&quot;8443&quot; protocol=&quot;org.apache.coyote.http11.Http11NioProtocol&quot;${line.separator}           maxThreads=&quot;150&quot; SSLEnabled=&quot;true&quot; scheme=&quot;https&quot; secure=&quot;true&quot;${line.separator}           clientAuth=&quot;false&quot; sslProtocol=&quot;TLS&quot; keystoreFile=&quot;${app.server.parent.dir}/keystore.jks&quot; keystorePass=&quot;liferay&quot; /&gt;"
+					value="&lt;Service name=&quot;Catalina&quot;&gt;${line.separator}    &lt;Connector port=&quot;8443&quot; protocol=&quot;org.apache.coyote.http11.Http11NioProtocol&quot;${line.separator}               maxThreads=&quot;150&quot; SSLEnabled=&quot;true&quot; scheme=&quot;https&quot; secure=&quot;true&quot;${line.separator}               clientAuth=&quot;false&quot; sslProtocol=&quot;TLS&quot;&gt;${line.separator}        &lt;SSLHostConfig&gt;${line.separator}            &lt;Certificate certificateKeystoreFile=&quot;${app.server.parent.dir}/keystore.jks&quot;${line.separator}                          certificateKeystorePassword=&quot;liferay&quot;${line.separator}                          type=&quot;RSA&quot; /&gt;${line.separator}        &lt;/SSLHostConfig&gt;${line.separator}    &lt;/Connector&gt;"
 				/>
 			</then>
 			<else>
