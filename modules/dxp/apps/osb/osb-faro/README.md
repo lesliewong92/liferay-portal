@@ -16,7 +16,7 @@ make sure "Expose daemon on tcp://localhost:2375 without TLS" on the "General" p
 
 1. Start the image: `./gradlew startDocker`.
 
-#### Building Local Docker Image
+#### Building Local Docker Images
 
 1. Install 1Password.
 
