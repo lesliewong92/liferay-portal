@@ -46,7 +46,7 @@ export async function navigateToACAdmin({page}: {page: Page}) {
 
 export async function navigateToACWorkspace({
 	page,
-	workspaceName = 'FARO-DEV-liferay Liferay Demo Enterprise Plan',
+	workspaceName = faroConfig.environment.workspaceName + ' Basic Plan',
 }: {
 	page: Page;
 	workspaceName?: string;
