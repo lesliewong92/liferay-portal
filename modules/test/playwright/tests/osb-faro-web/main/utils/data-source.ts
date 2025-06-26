@@ -34,7 +34,7 @@ export async function createDataSource(page) {
 
 	await page
 		.getByRole('link', {
-			name: 'FARO-DEV-liferay',
+			name: faroConfig.environment.workspaceName,
 		})
 		.click();
 

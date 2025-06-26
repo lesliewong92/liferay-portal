@@ -7,6 +7,7 @@ import {mergeTests} from '@playwright/test';
 
 import {apiHelpersTest} from '../../../fixtures/apiHelpersTest';
 import {dataApiHelpersTest} from '../../../fixtures/dataApiHelpersTest';
+import {faroConfig} from './faro.config';
 import {featureFlagsTest} from '../../../fixtures/featureFlagsTest';
 import {loginAnalyticsCloudTest} from '../../../fixtures/loginAnalyticsCloudTest';
 import {loginTest} from '../../../fixtures/loginTest';
@@ -58,7 +59,7 @@ test(
 
 		const projects = await apiHelpers.jsonWebServicesOSBFaro.getProjects();
 
-		const project = projects.find(({name}) => name === 'FARO-DEV-liferay');
+		const project = projects.find(({name}) => name === faroConfig.environment.workspaceName);
 
 		await test.step('go to AC Properties Page', async () => {
 			await navigateToACSettingsViaURL({

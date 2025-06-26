@@ -6,6 +6,7 @@
 import {Page} from '@playwright/test';
 
 import {ApiHelpers} from '../../../../helpers/ApiHelpers';
+import {faroConfig} from '../faro.config';
 
 export async function createChannel({
 	apiHelpers,
@@ -19,7 +20,7 @@ export async function createChannel({
 }> {
 	const projects = await apiHelpers.jsonWebServicesOSBFaro.getProjects();
 
-	const project = projects.find(({name}) => name === 'FARO-DEV-liferay');
+	const project = projects.find(({name}) => name === faroConfig.environment.workspaceName);
 
 	const channel = await apiHelpers.jsonWebServicesOSBFaro.createChannel(
 		channelName,
