@@ -772,7 +772,11 @@ definition {
 
 		Click(locator1 = "ACDXPSettings#AC_GENERIC_ADD_OR_CONFIRMATION_BUTTON");
 
+		Pause(value1 = 15000);
+
 		Click(locator1 = "ACSettings#DXP_DATA_SOURCE_OPTION");
+
+		Pause(value1 = 15000);
 
 		Click(locator1 = "ACSettings#COPY_TOKEN_BUTTON");
 	}
