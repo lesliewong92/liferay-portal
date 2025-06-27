@@ -12926,9 +12926,14 @@ feature.flag.LPD-11342=true</echo>
 		</if>
 
 		<echo append="true" file="portal-impl/src/portal-ext.properties">
-analytics.cloud.domain.allowed=*
-
 captcha.enforce.disabled=true</echo>
+
+		<loadfile
+			property="portal.ext.file.content"
+			srcFile="portal-impl/src/portal-ext.properties"
+		/>
+
+		<echo message="${portal.ext.file.content}" />
 
 		<apply-portal-ext-properties />
 	</target>
