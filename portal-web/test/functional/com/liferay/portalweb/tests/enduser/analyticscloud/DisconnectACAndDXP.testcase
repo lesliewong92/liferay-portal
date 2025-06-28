@@ -53,7 +53,7 @@ definition {
 
 		task ("See that the connection screen returned to the wizard") {
 			AssertElementPresent(
-				key_textValue = "Connect Analytics Cloud",
+				key_textValue = "Connect to Analytics Cloud",
 				locator1 = "ACUtils#GENERIC_TEXT");
 		}
 
