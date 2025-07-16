@@ -18,27 +18,20 @@ import com.liferay.depot.service.DepotEntryGroupRelLocalService;
 import com.liferay.depot.service.DepotEntryLocalService;
 import com.liferay.depot.service.DepotEntryService;
 import com.liferay.petra.function.transform.TransformUtil;
-import com.liferay.portal.kernel.dao.orm.QueryUtil;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.model.Group;
+import com.liferay.portal.kernel.model.GroupConstants;
 import com.liferay.portal.kernel.model.role.RoleConstants;
 import com.liferay.portal.kernel.portlet.PortletURLFactory;
 import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
-import com.liferay.portal.kernel.search.Field;
-import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.Validator;
 
-import com.liferay.portal.vulcan.pagination.Pagination;
-import com.liferay.portal.vulcan.util.SearchUtil;
-
 import jakarta.portlet.PortletRequest;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.ArrayList;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -55,41 +48,47 @@ public class ConnectionInfoResourceImpl extends BaseConnectionInfoResourceImpl {
 
 	@Override
 	public ConnectionInfo getConnectionInfo(Long spaceId) throws Exception {
-		String analyticsSettingsPortletURL = PortletURLBuilder.create(
-			_portal.getControlPanelPortletURL(
-				contextHttpServletRequest,
-				ConfigurationAdminPortletKeys.INSTANCE_SETTINGS,
-				PortletRequest.RENDER_PHASE)
-		).setMVCRenderCommandName(
-			"/configuration_admin/view_configuration_screen"
-		).setParameter(
-			"configurationScreenKey", "analytics-cloud-connection"
-		).buildString();
+//		Group controlPanelGroup = groupLocalService.getGroup(
+//			contextCompany.getCompanyId(), GroupConstants.CONTROL_PANEL);
 
-		String siteEditDepotEntryDepotAdminPortletURL =
-			PortletURLBuilder.create(
-				_portletURLFactory.create(
-					contextHttpServletRequest, _DEPOT_ADMIN_PORTLET_ID,
-					PortletRequest.RENDER_PHASE)
-			).setMVCRenderCommandName(
-				"/depot/edit_depot_entry"
-			).setParameter(
-				"depotEntryId", depotEntry.getDepotEntryId()
-			).setParameter(
-				"screenNavigationEntryKey", "sites"
-			).buildString();
+		String analyticsSettingsPortletURL = "";
+//		String analyticsSettingsPortletURL = PortletURLBuilder.create(
+//			_portal.getControlPanelPortletURL(
+//				contextHttpServletRequest,
+//				ConfigurationAdminPortletKeys.INSTANCE_SETTINGS,
+//				PortletRequest.RENDER_PHASE)
+//		).setMVCRenderCommandName(
+//			"/configuration_admin/view_configuration_screen"
+//		).setParameter(
+//			"configurationScreenKey", "analytics-cloud-connection"
+//		).buildString();
+
+		DepotEntry depotEntry = _depotEntryService.getDepotEntry(spaceId);
+
+		String siteEditDepotEntryDepotAdminPortletURL = "";
+
+//		String siteEditDepotEntryDepotAdminPortletURL =
+//			PortletURLBuilder.create(
+//				_portletURLFactory.create(
+//					contextHttpServletRequest, _DEPOT_ADMIN_PORTLET_ID,
+//					PortletRequest.RENDER_PHASE)
+//			).setMVCRenderCommandName(
+//				"/depot/edit_depot_entry"
+//			).setParameter(
+//				"depotEntryId", depotEntry.getDepotEntryId()
+//			).setParameter(
+//				"screenNavigationEntryKey", "sites"
+//			).buildString();
 
 		AnalyticsConfiguration analyticsConfiguration =
 			_analyticsSettingsManager.getAnalyticsConfiguration(
 				contextUser.getCompanyId());
 
-		DepotEntry depotEntry = _depotEntryService.getDepotEntry(spaceId);
-
 		List<Long> groupIds = _getDepotEntryGroupRelToGroupId(depotEntry);
 
 		return _toConnectionInfo(
 			roleLocalService.hasUserRole(
-				contextUser.getUserId(), contextUser.getUserId(),
+				contextUser.getUserId(), contextUser.getCompanyId(),
 				RoleConstants.ADMINISTRATOR, true),
 			analyticsSettingsPortletURL,
 			!Validator.isBlank(analyticsConfiguration.token()),

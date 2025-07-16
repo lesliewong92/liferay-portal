@@ -20,7 +20,7 @@ dependencies {
 	compileOnly project(":apps:asset:asset-entry-rel-api")
 	compileOnly project(":apps:depot:depot-api")
 	compileOnly project(":apps:object:object-api")
-	compileOnly project(":apps:portal-configuration:portal-configuration-module-configuration-api")
+	compileOnly project(":apps:configuration-admin:configuration-admin-api")
 	compileOnly project(":apps:portal-odata:portal-odata-api")
 	compileOnly project(":apps:portal-vulcan:portal-vulcan-api")
 	compileOnly project(":core:petra:petra-function")
