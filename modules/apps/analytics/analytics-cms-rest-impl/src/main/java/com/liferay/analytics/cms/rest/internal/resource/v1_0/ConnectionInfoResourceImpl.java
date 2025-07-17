@@ -46,31 +46,7 @@ public class ConnectionInfoResourceImpl extends BaseConnectionInfoResourceImpl {
 
 	@Override
 	public ConnectionInfo getConnectionInfo(Long spaceId) throws Exception {
-		String analyticsSettingsPortletURL = PortletURLBuilder.create(
-			_portal.getControlPanelPortletURL(
-				contextHttpServletRequest,
-				ConfigurationAdminPortletKeys.INSTANCE_SETTINGS,
-				PortletRequest.RENDER_PHASE)
-		).setMVCRenderCommandName(
-			"/configuration_admin/view_configuration_screen"
-		).setParameter(
-			"configurationScreenKey", "analytics-cloud-connection"
-		).buildString();
-
 		DepotEntry depotEntry = _depotEntryService.getDepotEntry(spaceId);
-
-		String siteEditDepotEntryDepotAdminPortletURL =
-			PortletURLBuilder.create(
-				_portletURLFactory.create(
-					contextHttpServletRequest, _DEPOT_ADMIN_PORTLET_ID,
-					PortletRequest.RENDER_PHASE)
-			).setMVCRenderCommandName(
-				"/depot/edit_depot_entry"
-			).setParameter(
-				"depotEntryId", depotEntry.getDepotEntryId()
-			).setParameter(
-				"screenNavigationEntryKey", "sites"
-			).buildString();
 
 		AnalyticsConfiguration analyticsConfiguration =
 			_analyticsSettingsManager.getAnalyticsConfiguration(
@@ -82,9 +58,8 @@ public class ConnectionInfoResourceImpl extends BaseConnectionInfoResourceImpl {
 			roleLocalService.hasUserRole(
 				contextUser.getUserId(), contextUser.getCompanyId(),
 				RoleConstants.ADMINISTRATOR, true),
-			analyticsSettingsPortletURL,
-			!Validator.isBlank(analyticsConfiguration.token()),
-			!groupIds.isEmpty(), siteEditDepotEntryDepotAdminPortletURL,
+			"", !Validator.isBlank(analyticsConfiguration.token()),
+			!groupIds.isEmpty(), "",
 			_hasSitesSyncedToAnalyticsCloud(
 				analyticsConfiguration.syncedGroupIds(), groupIds));
 	}
