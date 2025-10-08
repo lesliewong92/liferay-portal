@@ -52,6 +52,27 @@ public class FieldMappingConstants {
 
 	public static final String TYPE_TEXT = "Text";
 
+	public static final Map<String, String>
+		demographicsFieldMappingLanguageKeys = HashMapBuilder.put(
+			"birthday", "field.birth-date"
+		).put(
+			"emailAddress", "field.email-address"
+		).put(
+			"firstName", "field.first-name"
+		).put(
+			"jobTitle", "field.job-title"
+		).put(
+			"languageId", "selected-language"
+		).put(
+			"lastName", "field.last-name"
+		).put(
+			"middleName", "middle-name"
+		).put(
+			"modifiedDate", "field.date-modified"
+		).put(
+			"screenName", "field.screen-name"
+		).build();
+
 	public static Map<String, String> getContexts() {
 		return _contexts;
 	}
