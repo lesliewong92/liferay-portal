@@ -52,33 +52,18 @@ public class FieldMappingConstants {
 
 	public static final String TYPE_TEXT = "Text";
 
-	public static final Map<String, String>
-		demographicsFieldMappingLanguageKeys = HashMapBuilder.put(
-			"birthday", "field.birth-date"
-		).put(
-			"emailAddress", "field.email-address"
-		).put(
-			"firstName", "field.first-name"
-		).put(
-			"jobTitle", "field.job-title"
-		).put(
-			"languageId", "selected-language"
-		).put(
-			"lastName", "field.last-name"
-		).put(
-			"middleName", "middle-name"
-		).put(
-			"modifiedDate", "field.date-modified"
-		).put(
-			"screenName", "field.screen-name"
-		).build();
-
 	public static Map<String, String> getContexts() {
 		return _contexts;
 	}
 
 	public static List<FieldMappingMap> getDefaultFieldMappingMaps() {
 		return _defaultFieldMappingMaps;
+	}
+
+	public static Map<String, String>
+		getDemographicsFieldMappingLanguageKeys() {
+
+		return _demographicsFieldMappingLanguageKeys;
 	}
 
 	public static Map<String, String> getFieldTypes() {
@@ -138,6 +123,26 @@ public class FieldMappingConstants {
 			new FieldMappingMap(null, "image", TYPE_TEXT),
 			new FieldMappingMap(null, "jobTitle", TYPE_TEXT),
 			new FieldMappingMap(null, "worksFor", TYPE_TEXT));
+	private static final Map<String, String>
+		_demographicsFieldMappingLanguageKeys = HashMapBuilder.put(
+			"birthday", "field.birth-date"
+		).put(
+			"emailAddress", "field.email-address"
+		).put(
+			"firstName", "field.first-name"
+		).put(
+			"jobTitle", "field.job-title"
+		).put(
+			"languageId", "selected-language"
+		).put(
+			"lastName", "field.last-name"
+		).put(
+			"middleName", "middle-name"
+		).put(
+			"modifiedDate", "field.date-modified"
+		).put(
+			"screenName", "field.screen-name"
+		).build();
 	private static final Map<String, String> _fieldTypes = HashMapBuilder.put(
 		"boolean", TYPE_BOOLEAN
 	).put(

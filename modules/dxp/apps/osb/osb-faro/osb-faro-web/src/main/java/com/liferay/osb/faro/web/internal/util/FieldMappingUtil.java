@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -28,17 +29,21 @@ import java.util.Set;
 public class FieldMappingUtil {
 
 	public static String getDisplayName(FieldMapping fieldMapping) {
-		String key =
-			FieldMappingConstants.demographicsFieldMappingLanguageKeys.get(
+		Map<String, String> demographicsFieldMappingLanguageKeys =
+			FieldMappingConstants.getDemographicsFieldMappingLanguageKeys();
+
+		String demographicsFieldMappingLanguageKey =
+			demographicsFieldMappingLanguageKeys.get(
 				fieldMapping.getFieldName());
 
-		if (key != null) {
+		if (demographicsFieldMappingLanguageKey != null) {
 			PermissionChecker permissionChecker =
 				PermissionThreadLocal.getPermissionChecker();
 
 			User user = permissionChecker.getUser();
 
-			return LanguageUtil.get(user.getLocale(), key);
+			return LanguageUtil.get(
+				user.getLocale(), demographicsFieldMappingLanguageKey);
 		}
 
 		return fieldMapping.getDisplayName();
