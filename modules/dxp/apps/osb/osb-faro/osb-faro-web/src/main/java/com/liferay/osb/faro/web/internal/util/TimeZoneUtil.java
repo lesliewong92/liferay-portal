@@ -48,6 +48,18 @@ public class TimeZoneUtil {
 
 	public static boolean validate(String timeZoneId) {
 		try {
+			if (_log.isInfoEnabled()) {
+				_log.info("Validating timeZoneId " + timeZoneId);
+			}
+
+			if (!_timeZoneIdCountryMap.containsKey(timeZoneId)) {
+				if (_log.isInfoEnabled()) {
+					_log.info(
+						"TimeZoneId " + timeZoneId + " not found in " +
+							_timeZoneIdCountryMap.toString());
+				}
+			}
+
 			return _timeZoneIdCountryMap.containsKey(timeZoneId);
 		}
 		catch (ZoneRulesException zoneRulesException) {
