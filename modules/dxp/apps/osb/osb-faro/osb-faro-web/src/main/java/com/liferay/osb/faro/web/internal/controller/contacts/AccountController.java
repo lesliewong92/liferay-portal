@@ -13,6 +13,7 @@ import com.liferay.osb.faro.engine.client.util.OrderByField;
 import com.liferay.osb.faro.web.internal.constants.FaroConstants;
 import com.liferay.osb.faro.web.internal.controller.BaseFaroController;
 import com.liferay.osb.faro.web.internal.controller.FaroController;
+import com.liferay.osb.faro.web.internal.model.display.FaroFDSResultsDisplay;
 import com.liferay.osb.faro.web.internal.model.display.FaroResultsDisplay;
 import com.liferay.osb.faro.web.internal.model.display.contacts.AccountDisplay;
 import com.liferay.osb.faro.web.internal.param.FaroParam;
@@ -161,6 +162,27 @@ public class AccountController extends BaseFaroController {
 			groupId, channelId, dataSourceId, individualSegmentId, filterString,
 			query, includePropertyNamesFaroParam.getValue(), cur, delta,
 			orderByFieldsFaroParam.getValue());
+	}
+
+	@GET
+	@Path("/fds_field_values")
+	@RolesAllowed(RoleConstants.SITE_MEMBER)
+	public FaroFDSResultsDisplay<Object> searchFDSFieldValues(
+			@PathParam("groupId") long groupId,
+			@QueryParam("channelId") long channelId,
+			@QueryParam("fieldMappingFieldName") String fieldMappingFieldName,
+			@QueryParam("query") String query, @QueryParam("page") int page,
+			@QueryParam("pageSize") int pageSize)
+		throws Exception {
+
+		Results<Object> results = contactsEngineClient.getAccountFieldValues(
+			faroProjectLocalService.getFaroProjectByGroupId(groupId), channelId,
+			fieldMappingFieldName, query, page, pageSize);
+
+		Function<Object, Map<String, String>> function =
+			object -> Collections.singletonMap("name", String.valueOf(object));
+
+		return new FaroFDSResultsDisplay<>(results, function, page, pageSize);
 	}
 
 	@GET
