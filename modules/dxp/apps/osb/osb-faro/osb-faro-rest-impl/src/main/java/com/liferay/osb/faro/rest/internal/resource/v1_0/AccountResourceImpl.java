@@ -6,13 +6,15 @@
 package com.liferay.osb.faro.rest.internal.resource.v1_0;
 
 import com.liferay.osb.faro.engine.client.ContactsEngineClient;
+import com.liferay.osb.faro.engine.client.model.Results;
 import com.liferay.osb.faro.model.FaroProject;
 import com.liferay.osb.faro.rest.dto.v1_0.Account;
-import com.liferay.osb.faro.rest.internal.dto.v1_0.util.FaroDTOUtil;
+import com.liferay.osb.faro.rest.internal.dto.v1_0.converter.FaroDTOConverterContext;
 import com.liferay.osb.faro.rest.internal.dto.v1_0.util.FaroPaginationUtil;
 import com.liferay.osb.faro.rest.resource.v1_0.AccountResource;
 import com.liferay.osb.faro.service.FaroProjectLocalService;
 import com.liferay.portal.kernel.search.Sort;
+import com.liferay.portal.vulcan.dto.converter.DTOConverter;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
@@ -36,7 +38,10 @@ public class AccountResourceImpl extends BaseAccountResourceImpl {
 		FaroProject faroProject =
 			_faroProjectLocalService.getFaroProjectByGroupId(siteId);
 
-		return FaroDTOUtil.toAccount(
+		return _accountDTOConverter.toDTO(
+			new FaroDTOConverterContext(
+				contextAcceptLanguage.isAcceptAllLanguages(), accountId,
+				contextAcceptLanguage.getPreferredLocale()),
 			_contactsEngineClient.getAccount(faroProject, accountId));
 	}
 
@@ -49,13 +54,30 @@ public class AccountResourceImpl extends BaseAccountResourceImpl {
 		FaroProject faroProject =
 			_faroProjectLocalService.getFaroProjectByGroupId(siteId);
 
-		return FaroPaginationUtil.toPage(
+		Results<com.liferay.osb.faro.engine.client.model.Account> results =
 			_contactsEngineClient.getAccounts(
 				faroProject, channelId, null, search,
 				FaroPaginationUtil.getCur(pagination),
-				FaroPaginationUtil.getDelta(pagination), null),
-			pagination, FaroDTOUtil::toAccount);
+				FaroPaginationUtil.getDelta(pagination), null);
+
+		return Page.of(
+			transform(
+				results.getItems(),
+				engineAccount -> _accountDTOConverter.toDTO(
+					new FaroDTOConverterContext(
+						contextAcceptLanguage.isAcceptAllLanguages(),
+						engineAccount.getId(),
+						contextAcceptLanguage.getPreferredLocale()),
+					engineAccount)),
+			pagination, results.getTotal());
 	}
+
+	@Reference(
+		target = "(component.name=com.liferay.osb.faro.rest.internal.dto.v1_0.converter.AccountDTOConverter)"
+	)
+	private DTOConverter
+		<com.liferay.osb.faro.engine.client.model.Account, Account>
+			_accountDTOConverter;
 
 	@Reference
 	private ContactsEngineClient _contactsEngineClient;

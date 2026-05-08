@@ -6,15 +6,17 @@
 package com.liferay.osb.faro.rest.internal.resource.v1_0;
 
 import com.liferay.osb.faro.engine.client.ContactsEngineClient;
+import com.liferay.osb.faro.engine.client.model.Results;
 import com.liferay.osb.faro.model.FaroProject;
 import com.liferay.osb.faro.rest.dto.v1_0.Individual;
-import com.liferay.osb.faro.rest.internal.dto.v1_0.util.FaroDTOUtil;
+import com.liferay.osb.faro.rest.internal.dto.v1_0.converter.FaroDTOConverterContext;
 import com.liferay.osb.faro.rest.internal.dto.v1_0.util.FaroPaginationUtil;
 import com.liferay.osb.faro.rest.internal.graphql.client.FaroGraphQLClient;
 import com.liferay.osb.faro.rest.internal.graphql.dto.GetSiteIndividualProfileResponse;
 import com.liferay.osb.faro.rest.resource.v1_0.IndividualResource;
 import com.liferay.osb.faro.service.FaroProjectLocalService;
 import com.liferay.portal.kernel.search.Sort;
+import com.liferay.portal.vulcan.dto.converter.DTOConverter;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
@@ -41,7 +43,10 @@ public class IndividualResourceImpl extends BaseIndividualResourceImpl {
 		FaroProject faroProject =
 			_faroProjectLocalService.getFaroProjectByGroupId(siteId);
 
-		return FaroDTOUtil.toIndividual(
+		return _individualDTOConverter.toDTO(
+			new FaroDTOConverterContext(
+				contextAcceptLanguage.isAcceptAllLanguages(), individualId,
+				contextAcceptLanguage.getPreferredLocale()),
 			_contactsEngineClient.getIndividual(
 				faroProject, individualId, channelId));
 	}
@@ -58,7 +63,11 @@ public class IndividualResourceImpl extends BaseIndividualResourceImpl {
 			Collections.singletonMap("individualId", individualId),
 			GetSiteIndividualProfileResponse.class);
 
-		return _toIndividual(response.getIndividual());
+		return _individualProfileDTOConverter.toDTO(
+			new FaroDTOConverterContext(
+				contextAcceptLanguage.isAcceptAllLanguages(), individualId,
+				contextAcceptLanguage.getPreferredLocale()),
+			response.getIndividual());
 	}
 
 	@Override
@@ -72,39 +81,25 @@ public class IndividualResourceImpl extends BaseIndividualResourceImpl {
 		FaroProject faroProject =
 			_faroProjectLocalService.getFaroProjectByGroupId(siteId);
 
-		return FaroPaginationUtil.toPage(
+		Results<com.liferay.osb.faro.engine.client.model.Individual> results =
 			_contactsEngineClient.getIndividuals(
 				faroProject, accountId, channelId, dataSourceId,
 				individualSegmentId, null, interestName, null, null, search,
 				null, (includeAnonymousUsers != null) && includeAnonymousUsers,
 				FaroPaginationUtil.getCur(pagination),
 				FaroPaginationUtil.getDelta(pagination),
-				FaroPaginationUtil.toOrderByFields(sorts)),
-			pagination, FaroDTOUtil::toIndividual);
-	}
+				FaroPaginationUtil.toOrderByFields(sorts));
 
-	private Individual _toIndividual(
-		GetSiteIndividualProfileResponse.Individual graphQLIndividual) {
-
-		if (graphQLIndividual == null) {
-			return null;
-		}
-
-		Individual individual = new Individual();
-
-		individual.setAccountName(graphQLIndividual::getAccountName);
-		individual.setActivitiesCount(graphQLIndividual::getActivitiesCount);
-		individual.setDateCreated(graphQLIndividual::getDateCreated);
-		individual.setDateModified(graphQLIndividual::getDateModified);
-		individual.setFirstActivityDate(
-			graphQLIndividual::getFirstActivityDate);
-		individual.setId(graphQLIndividual::getId);
-		individual.setLastActivityDate(graphQLIndividual::getLastActivityDate);
-		individual.setLastSessionCountry(
-			graphQLIndividual::getLastSessionCountry);
-		individual.setProfileType(graphQLIndividual::getProfileType);
-
-		return individual;
+		return Page.of(
+			transform(
+				results.getItems(),
+				engineIndividual -> _individualDTOConverter.toDTO(
+					new FaroDTOConverterContext(
+						contextAcceptLanguage.isAcceptAllLanguages(),
+						engineIndividual.getId(),
+						contextAcceptLanguage.getPreferredLocale()),
+					engineIndividual)),
+			pagination, results.getTotal());
 	}
 
 	@Reference
@@ -115,5 +110,19 @@ public class IndividualResourceImpl extends BaseIndividualResourceImpl {
 
 	@Reference
 	private FaroProjectLocalService _faroProjectLocalService;
+
+	@Reference(
+		target = "(component.name=com.liferay.osb.faro.rest.internal.dto.v1_0.converter.IndividualDTOConverter)"
+	)
+	private DTOConverter
+		<com.liferay.osb.faro.engine.client.model.Individual, Individual>
+			_individualDTOConverter;
+
+	@Reference(
+		target = "(component.name=com.liferay.osb.faro.rest.internal.dto.v1_0.converter.IndividualProfileDTOConverter)"
+	)
+	private DTOConverter
+		<GetSiteIndividualProfileResponse.Individual, Individual>
+			_individualProfileDTOConverter;
 
 }

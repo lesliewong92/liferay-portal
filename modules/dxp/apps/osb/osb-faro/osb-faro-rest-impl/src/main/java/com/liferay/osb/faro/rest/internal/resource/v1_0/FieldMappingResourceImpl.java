@@ -6,12 +6,14 @@
 package com.liferay.osb.faro.rest.internal.resource.v1_0;
 
 import com.liferay.osb.faro.engine.client.ContactsEngineClient;
+import com.liferay.osb.faro.engine.client.model.Results;
 import com.liferay.osb.faro.model.FaroProject;
 import com.liferay.osb.faro.rest.dto.v1_0.FieldMapping;
-import com.liferay.osb.faro.rest.internal.dto.v1_0.util.FaroDTOUtil;
+import com.liferay.osb.faro.rest.internal.dto.v1_0.converter.FaroDTOConverterContext;
 import com.liferay.osb.faro.rest.internal.dto.v1_0.util.FaroPaginationUtil;
 import com.liferay.osb.faro.rest.resource.v1_0.FieldMappingResource;
 import com.liferay.osb.faro.service.FaroProjectLocalService;
+import com.liferay.portal.vulcan.dto.converter.DTOConverter;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
@@ -35,7 +37,10 @@ public class FieldMappingResourceImpl extends BaseFieldMappingResourceImpl {
 		FaroProject faroProject =
 			_faroProjectLocalService.getFaroProjectByGroupId(siteId);
 
-		return FaroDTOUtil.toFieldMapping(
+		return _fieldMappingDTOConverter.toDTO(
+			new FaroDTOConverterContext(
+				contextAcceptLanguage.isAcceptAllLanguages(), fieldMappingId,
+				contextAcceptLanguage.getPreferredLocale()),
 			_contactsEngineClient.getFieldMapping(faroProject, fieldMappingId));
 	}
 
@@ -48,12 +53,22 @@ public class FieldMappingResourceImpl extends BaseFieldMappingResourceImpl {
 		FaroProject faroProject =
 			_faroProjectLocalService.getFaroProjectByGroupId(siteId);
 
-		return FaroPaginationUtil.toPage(
+		Results<com.liferay.osb.faro.engine.client.model.FieldMapping> results =
 			_contactsEngineClient.getFieldMappings(
 				faroProject, context, null, ownerType, search,
 				FaroPaginationUtil.getCur(pagination),
-				FaroPaginationUtil.getDelta(pagination), null),
-			pagination, FaroDTOUtil::toFieldMapping);
+				FaroPaginationUtil.getDelta(pagination), null);
+
+		return Page.of(
+			transform(
+				results.getItems(),
+				engineFieldMapping -> _fieldMappingDTOConverter.toDTO(
+					new FaroDTOConverterContext(
+						contextAcceptLanguage.isAcceptAllLanguages(),
+						engineFieldMapping.getFieldName(),
+						contextAcceptLanguage.getPreferredLocale()),
+					engineFieldMapping)),
+			pagination, results.getTotal());
 	}
 
 	@Reference
@@ -61,5 +76,12 @@ public class FieldMappingResourceImpl extends BaseFieldMappingResourceImpl {
 
 	@Reference
 	private FaroProjectLocalService _faroProjectLocalService;
+
+	@Reference(
+		target = "(component.name=com.liferay.osb.faro.rest.internal.dto.v1_0.converter.FieldMappingDTOConverter)"
+	)
+	private DTOConverter
+		<com.liferay.osb.faro.engine.client.model.FieldMapping, FieldMapping>
+			_fieldMappingDTOConverter;
 
 }

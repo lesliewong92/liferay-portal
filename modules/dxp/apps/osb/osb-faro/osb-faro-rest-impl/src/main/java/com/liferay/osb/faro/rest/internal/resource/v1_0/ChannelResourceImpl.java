@@ -6,12 +6,14 @@
 package com.liferay.osb.faro.rest.internal.resource.v1_0;
 
 import com.liferay.osb.faro.engine.client.ContactsEngineClient;
+import com.liferay.osb.faro.engine.client.model.Results;
 import com.liferay.osb.faro.model.FaroProject;
 import com.liferay.osb.faro.rest.dto.v1_0.Channel;
-import com.liferay.osb.faro.rest.internal.dto.v1_0.util.FaroDTOUtil;
+import com.liferay.osb.faro.rest.internal.dto.v1_0.converter.FaroDTOConverterContext;
 import com.liferay.osb.faro.rest.internal.dto.v1_0.util.FaroPaginationUtil;
 import com.liferay.osb.faro.rest.resource.v1_0.ChannelResource;
 import com.liferay.osb.faro.service.FaroProjectLocalService;
+import com.liferay.portal.vulcan.dto.converter.DTOConverter;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
@@ -35,7 +37,10 @@ public class ChannelResourceImpl extends BaseChannelResourceImpl {
 		FaroProject faroProject =
 			_faroProjectLocalService.getFaroProjectByGroupId(siteId);
 
-		return FaroDTOUtil.toChannel(
+		return _channelDTOConverter.toDTO(
+			new FaroDTOConverterContext(
+				contextAcceptLanguage.isAcceptAllLanguages(), channelId,
+				contextAcceptLanguage.getPreferredLocale()),
 			_contactsEngineClient.getChannel(faroProject, channelId));
 	}
 
@@ -46,12 +51,29 @@ public class ChannelResourceImpl extends BaseChannelResourceImpl {
 		FaroProject faroProject =
 			_faroProjectLocalService.getFaroProjectByGroupId(siteId);
 
-		return FaroPaginationUtil.toPage(
+		Results<com.liferay.osb.faro.engine.client.model.Channel> results =
 			_contactsEngineClient.getChannels(
 				faroProject, FaroPaginationUtil.getCur(pagination),
-				FaroPaginationUtil.getDelta(pagination), null, null),
-			pagination, FaroDTOUtil::toChannel);
+				FaroPaginationUtil.getDelta(pagination), null, null);
+
+		return Page.of(
+			transform(
+				results.getItems(),
+				engineChannel -> _channelDTOConverter.toDTO(
+					new FaroDTOConverterContext(
+						contextAcceptLanguage.isAcceptAllLanguages(),
+						engineChannel.getId(),
+						contextAcceptLanguage.getPreferredLocale()),
+					engineChannel)),
+			pagination, results.getTotal());
 	}
+
+	@Reference(
+		target = "(component.name=com.liferay.osb.faro.rest.internal.dto.v1_0.converter.ChannelDTOConverter)"
+	)
+	private DTOConverter
+		<com.liferay.osb.faro.engine.client.model.Channel, Channel>
+			_channelDTOConverter;
 
 	@Reference
 	private ContactsEngineClient _contactsEngineClient;

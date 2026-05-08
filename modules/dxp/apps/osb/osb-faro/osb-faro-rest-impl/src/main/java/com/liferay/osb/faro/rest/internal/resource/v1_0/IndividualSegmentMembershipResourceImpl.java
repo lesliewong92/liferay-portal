@@ -6,13 +6,15 @@
 package com.liferay.osb.faro.rest.internal.resource.v1_0;
 
 import com.liferay.osb.faro.engine.client.ContactsEngineClient;
+import com.liferay.osb.faro.engine.client.model.Results;
 import com.liferay.osb.faro.model.FaroProject;
 import com.liferay.osb.faro.rest.dto.v1_0.IndividualSegmentMembership;
-import com.liferay.osb.faro.rest.internal.dto.v1_0.util.FaroDTOUtil;
+import com.liferay.osb.faro.rest.internal.dto.v1_0.converter.FaroDTOConverterContext;
 import com.liferay.osb.faro.rest.internal.dto.v1_0.util.FaroPaginationUtil;
 import com.liferay.osb.faro.rest.resource.v1_0.IndividualSegmentMembershipResource;
 import com.liferay.osb.faro.service.FaroProjectLocalService;
 import com.liferay.portal.kernel.search.Sort;
+import com.liferay.portal.vulcan.dto.converter.DTOConverter;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
@@ -41,13 +43,26 @@ public class IndividualSegmentMembershipResourceImpl
 		FaroProject faroProject =
 			_faroProjectLocalService.getFaroProjectByGroupId(siteId);
 
-		return FaroPaginationUtil.toPage(
-			_contactsEngineClient.getIndividualSegmentMemberships(
-				faroProject, individualSegmentId,
-				FaroPaginationUtil.getCur(pagination),
-				FaroPaginationUtil.getDelta(pagination),
-				FaroPaginationUtil.toOrderByFields(sorts)),
-			pagination, FaroDTOUtil::toIndividualSegmentMembership);
+		Results
+			<com.liferay.osb.faro.engine.client.model.
+				IndividualSegmentMembership> results =
+					_contactsEngineClient.getIndividualSegmentMemberships(
+						faroProject, individualSegmentId,
+						FaroPaginationUtil.getCur(pagination),
+						FaroPaginationUtil.getDelta(pagination),
+						FaroPaginationUtil.toOrderByFields(sorts));
+
+		return Page.of(
+			transform(
+				results.getItems(),
+				engineMembership ->
+					_individualSegmentMembershipDTOConverter.toDTO(
+						new FaroDTOConverterContext(
+							contextAcceptLanguage.isAcceptAllLanguages(),
+							engineMembership.getIndividualId(),
+							contextAcceptLanguage.getPreferredLocale()),
+						engineMembership)),
+			pagination, results.getTotal());
 	}
 
 	@Reference
@@ -55,5 +70,12 @@ public class IndividualSegmentMembershipResourceImpl
 
 	@Reference
 	private FaroProjectLocalService _faroProjectLocalService;
+
+	@Reference(
+		target = "(component.name=com.liferay.osb.faro.rest.internal.dto.v1_0.converter.IndividualSegmentMembershipDTOConverter)"
+	)
+	private DTOConverter
+		<com.liferay.osb.faro.engine.client.model.IndividualSegmentMembership,
+		 IndividualSegmentMembership> _individualSegmentMembershipDTOConverter;
 
 }
