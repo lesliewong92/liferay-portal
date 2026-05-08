@@ -5,8 +5,8 @@
 
 package com.liferay.osb.faro.rest.internal.resource.v1_0;
 
-import com.liferay.osb.faro.rest.dto.v1_0.Event;
-import com.liferay.osb.faro.rest.resource.v1_0.EventResource;
+import com.liferay.osb.faro.rest.dto.v1_0.IndividualSegmentMembership;
+import com.liferay.osb.faro.rest.resource.v1_0.IndividualSegmentMembershipResource;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -15,12 +15,14 @@ import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.service.ResourceActionLocalService;
 import com.liferay.portal.kernel.service.ResourcePermissionLocalService;
 import com.liferay.portal.kernel.service.RoleLocalService;
+import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.odata.filter.ExpressionConvert;
 import com.liferay.portal.odata.filter.FilterParserProvider;
 import com.liferay.portal.odata.sort.SortParserProvider;
 import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
+import com.liferay.portal.vulcan.resource.EntityModelResource;
 import com.liferay.portal.vulcan.util.ActionUtil;
 import com.liferay.portal.vulcan.util.UriInfoUtil;
 
@@ -29,6 +31,7 @@ import jakarta.annotation.Generated;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import jakarta.ws.rs.core.MultivaluedMap;
 import jakarta.ws.rs.core.UriInfo;
 
 import java.util.Collection;
@@ -42,15 +45,16 @@ import java.util.Map;
  */
 @Generated("")
 @jakarta.ws.rs.Path("/v1.0")
-public abstract class BaseEventResourceImpl implements EventResource {
+public abstract class BaseIndividualSegmentMembershipResourceImpl
+	implements EntityModelResource, IndividualSegmentMembershipResource {
 
 	/**
 	 * Invoke this method with the command line:
 	 *
-	 * curl -X 'GET' 'http://localhost:8080/o/faro-rest/v1.0/sites/{siteId}/channels/{channelId}/events'  -u 'test@liferay.com:test'
+	 * curl -X 'GET' 'http://localhost:8080/o/faro-rest/v1.0/sites/{siteId}/individual-segments/{individualSegmentId}/memberships'  -u 'test@liferay.com:test'
 	 */
 	@io.swagger.v3.oas.annotations.Operation(
-		description = "List tracked analytics events (page views, custom events, form submissions, etc.) for a specific channel, optionally narrowed to a single Individual or to a date range. Use this to inspect raw activity for a channel; for aggregated metrics across events, prefer `getSiteAssetSummariesPage` or `getSitePagesPage`."
+		description = "List Individuals currently or formerly in a given segment. Returns a paginated list of memberships for an IndividualSegment. Each entry links one Individual to the segment and records when the Individual entered (and, if applicable, exited). Use the resulting `individualId` values with `getSiteIndividual` to retrieve the full Individual records."
 	)
 	@io.swagger.v3.oas.annotations.Parameters(
 		value = {
@@ -60,11 +64,7 @@ public abstract class BaseEventResourceImpl implements EventResource {
 			),
 			@io.swagger.v3.oas.annotations.Parameter(
 				in = io.swagger.v3.oas.annotations.enums.ParameterIn.PATH,
-				name = "channelId"
-			),
-			@io.swagger.v3.oas.annotations.Parameter(
-				in = io.swagger.v3.oas.annotations.enums.ParameterIn.QUERY,
-				name = "includeAnonymousUsers"
+				name = "individualSegmentId"
 			),
 			@io.swagger.v3.oas.annotations.Parameter(
 				in = io.swagger.v3.oas.annotations.enums.ParameterIn.QUERY,
@@ -75,58 +75,48 @@ public abstract class BaseEventResourceImpl implements EventResource {
 				name = "pageSize"
 			),
 			@io.swagger.v3.oas.annotations.Parameter(
+				example = "dateCreated:desc",
 				in = io.swagger.v3.oas.annotations.enums.ParameterIn.QUERY,
-				name = "rangeEnd"
-			),
-			@io.swagger.v3.oas.annotations.Parameter(
-				in = io.swagger.v3.oas.annotations.enums.ParameterIn.QUERY,
-				name = "rangeKey"
-			),
-			@io.swagger.v3.oas.annotations.Parameter(
-				in = io.swagger.v3.oas.annotations.enums.ParameterIn.QUERY,
-				name = "rangeStart"
-			),
-			@io.swagger.v3.oas.annotations.Parameter(
-				in = io.swagger.v3.oas.annotations.enums.ParameterIn.QUERY,
-				name = "search"
+				name = "sort"
 			)
 		}
 	)
 	@io.swagger.v3.oas.annotations.tags.Tags(
-		value = {@io.swagger.v3.oas.annotations.tags.Tag(name = "Event")}
+		value = {
+			@io.swagger.v3.oas.annotations.tags.Tag(
+				name = "IndividualSegmentMembership"
+			)
+		}
 	)
 	@jakarta.ws.rs.GET
-	@jakarta.ws.rs.Path("/sites/{siteId}/channels/{channelId}/events")
+	@jakarta.ws.rs.Path(
+		"/sites/{siteId}/individual-segments/{individualSegmentId}/memberships"
+	)
 	@jakarta.ws.rs.Produces({"application/json", "application/xml"})
 	@Override
-	public Page<Event> getSiteChannelEventsPage(
-			@io.swagger.v3.oas.annotations.Parameter(hidden = true)
-			@jakarta.validation.constraints.NotNull
-			@jakarta.ws.rs.PathParam("siteId")
-			Long siteId,
-			@io.swagger.v3.oas.annotations.Parameter(hidden = true)
-			@jakarta.validation.constraints.NotNull
-			@jakarta.ws.rs.PathParam("channelId")
-			String channelId,
-			@io.swagger.v3.oas.annotations.Parameter(hidden = true)
-			@jakarta.ws.rs.QueryParam("includeAnonymousUsers")
-			Boolean includeAnonymousUsers,
-			@io.swagger.v3.oas.annotations.Parameter(hidden = true)
-			@jakarta.ws.rs.QueryParam("rangeEnd")
-			String rangeEnd,
-			@io.swagger.v3.oas.annotations.Parameter(hidden = true)
-			@jakarta.ws.rs.QueryParam("rangeKey")
-			Integer rangeKey,
-			@io.swagger.v3.oas.annotations.Parameter(hidden = true)
-			@jakarta.ws.rs.QueryParam("rangeStart")
-			String rangeStart,
-			@io.swagger.v3.oas.annotations.Parameter(hidden = true)
-			@jakarta.ws.rs.QueryParam("search")
-			String search,
-			@jakarta.ws.rs.core.Context Pagination pagination)
+	public Page<IndividualSegmentMembership>
+			getSiteIndividualSegmentMembershipsPage(
+				@io.swagger.v3.oas.annotations.Parameter(hidden = true)
+				@jakarta.validation.constraints.NotNull
+				@jakarta.ws.rs.PathParam("siteId")
+				Long siteId,
+				@io.swagger.v3.oas.annotations.Parameter(hidden = true)
+				@jakarta.validation.constraints.NotNull
+				@jakarta.ws.rs.PathParam("individualSegmentId")
+				String individualSegmentId,
+				@jakarta.ws.rs.core.Context Pagination pagination,
+				@jakarta.ws.rs.core.Context
+					com.liferay.portal.kernel.search.Sort[] sorts)
 		throws Exception {
 
 		return Page.of(Collections.emptyList());
+	}
+
+	@Override
+	public EntityModel getEntityModel(MultivaluedMap multivaluedMap)
+		throws Exception {
+
+		return null;
 	}
 
 	public void setContextAcceptLanguage(AcceptLanguage contextAcceptLanguage) {
@@ -571,7 +561,8 @@ public abstract class BaseEventResourceImpl implements EventResource {
 	protected SortParserProvider sortParserProvider;
 
 	private static final com.liferay.portal.kernel.log.Log _log =
-		LogFactoryUtil.getLog(BaseEventResourceImpl.class);
+		LogFactoryUtil.getLog(
+			BaseIndividualSegmentMembershipResourceImpl.class);
 
 }
-// LIFERAY-REST-BUILDER-HASH:2085333413
+// LIFERAY-REST-BUILDER-HASH:1906640042

@@ -5,8 +5,8 @@
 
 package com.liferay.osb.faro.rest.internal.resource.v1_0;
 
-import com.liferay.osb.faro.rest.dto.v1_0.Event;
-import com.liferay.osb.faro.rest.resource.v1_0.EventResource;
+import com.liferay.osb.faro.rest.dto.v1_0.Channel;
+import com.liferay.osb.faro.rest.resource.v1_0.ChannelResource;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -42,15 +42,15 @@ import java.util.Map;
  */
 @Generated("")
 @jakarta.ws.rs.Path("/v1.0")
-public abstract class BaseEventResourceImpl implements EventResource {
+public abstract class BaseChannelResourceImpl implements ChannelResource {
 
 	/**
 	 * Invoke this method with the command line:
 	 *
-	 * curl -X 'GET' 'http://localhost:8080/o/faro-rest/v1.0/sites/{siteId}/channels/{channelId}/events'  -u 'test@liferay.com:test'
+	 * curl -X 'GET' 'http://localhost:8080/o/faro-rest/v1.0/sites/{siteId}/channels/{channelId}'  -u 'test@liferay.com:test'
 	 */
 	@io.swagger.v3.oas.annotations.Operation(
-		description = "List tracked analytics events (page views, custom events, form submissions, etc.) for a specific channel, optionally narrowed to a single Individual or to a date range. Use this to inspect raw activity for a channel; for aggregated metrics across events, prefer `getSiteAssetSummariesPage` or `getSitePagesPage`."
+		description = "Fetch a single Channel from a site's FaroProject. Returns a single Channel by id from a site's FaroProject. A Channel is a logical grouping of data sources (a website, a CRM connection) under which Faro contacts and activities are scoped."
 	)
 	@io.swagger.v3.oas.annotations.Parameters(
 		value = {
@@ -61,10 +61,43 @@ public abstract class BaseEventResourceImpl implements EventResource {
 			@io.swagger.v3.oas.annotations.Parameter(
 				in = io.swagger.v3.oas.annotations.enums.ParameterIn.PATH,
 				name = "channelId"
-			),
+			)
+		}
+	)
+	@io.swagger.v3.oas.annotations.tags.Tags(
+		value = {@io.swagger.v3.oas.annotations.tags.Tag(name = "Channel")}
+	)
+	@jakarta.ws.rs.GET
+	@jakarta.ws.rs.Path("/sites/{siteId}/channels/{channelId}")
+	@jakarta.ws.rs.Produces({"application/json", "application/xml"})
+	@Override
+	public Channel getSiteChannel(
+			@io.swagger.v3.oas.annotations.Parameter(hidden = true)
+			@jakarta.validation.constraints.NotNull
+			@jakarta.ws.rs.PathParam("siteId")
+			Long siteId,
+			@io.swagger.v3.oas.annotations.Parameter(hidden = true)
+			@jakarta.validation.constraints.NotNull
+			@jakarta.ws.rs.PathParam("channelId")
+			String channelId)
+		throws Exception {
+
+		return new Channel();
+	}
+
+	/**
+	 * Invoke this method with the command line:
+	 *
+	 * curl -X 'GET' 'http://localhost:8080/o/faro-rest/v1.0/sites/{siteId}/channels'  -u 'test@liferay.com:test'
+	 */
+	@io.swagger.v3.oas.annotations.Operation(
+		description = "List Channels configured under a site's FaroProject. Returns a paginated list of Channels configured under a site's FaroProject. To fetch a single Channel by id, use `getChannel`."
+	)
+	@io.swagger.v3.oas.annotations.Parameters(
+		value = {
 			@io.swagger.v3.oas.annotations.Parameter(
-				in = io.swagger.v3.oas.annotations.enums.ParameterIn.QUERY,
-				name = "includeAnonymousUsers"
+				in = io.swagger.v3.oas.annotations.enums.ParameterIn.PATH,
+				name = "siteId"
 			),
 			@io.swagger.v3.oas.annotations.Parameter(
 				in = io.swagger.v3.oas.annotations.enums.ParameterIn.QUERY,
@@ -73,56 +106,21 @@ public abstract class BaseEventResourceImpl implements EventResource {
 			@io.swagger.v3.oas.annotations.Parameter(
 				in = io.swagger.v3.oas.annotations.enums.ParameterIn.QUERY,
 				name = "pageSize"
-			),
-			@io.swagger.v3.oas.annotations.Parameter(
-				in = io.swagger.v3.oas.annotations.enums.ParameterIn.QUERY,
-				name = "rangeEnd"
-			),
-			@io.swagger.v3.oas.annotations.Parameter(
-				in = io.swagger.v3.oas.annotations.enums.ParameterIn.QUERY,
-				name = "rangeKey"
-			),
-			@io.swagger.v3.oas.annotations.Parameter(
-				in = io.swagger.v3.oas.annotations.enums.ParameterIn.QUERY,
-				name = "rangeStart"
-			),
-			@io.swagger.v3.oas.annotations.Parameter(
-				in = io.swagger.v3.oas.annotations.enums.ParameterIn.QUERY,
-				name = "search"
 			)
 		}
 	)
 	@io.swagger.v3.oas.annotations.tags.Tags(
-		value = {@io.swagger.v3.oas.annotations.tags.Tag(name = "Event")}
+		value = {@io.swagger.v3.oas.annotations.tags.Tag(name = "Channel")}
 	)
 	@jakarta.ws.rs.GET
-	@jakarta.ws.rs.Path("/sites/{siteId}/channels/{channelId}/events")
+	@jakarta.ws.rs.Path("/sites/{siteId}/channels")
 	@jakarta.ws.rs.Produces({"application/json", "application/xml"})
 	@Override
-	public Page<Event> getSiteChannelEventsPage(
+	public Page<Channel> getSiteChannelsPage(
 			@io.swagger.v3.oas.annotations.Parameter(hidden = true)
 			@jakarta.validation.constraints.NotNull
 			@jakarta.ws.rs.PathParam("siteId")
 			Long siteId,
-			@io.swagger.v3.oas.annotations.Parameter(hidden = true)
-			@jakarta.validation.constraints.NotNull
-			@jakarta.ws.rs.PathParam("channelId")
-			String channelId,
-			@io.swagger.v3.oas.annotations.Parameter(hidden = true)
-			@jakarta.ws.rs.QueryParam("includeAnonymousUsers")
-			Boolean includeAnonymousUsers,
-			@io.swagger.v3.oas.annotations.Parameter(hidden = true)
-			@jakarta.ws.rs.QueryParam("rangeEnd")
-			String rangeEnd,
-			@io.swagger.v3.oas.annotations.Parameter(hidden = true)
-			@jakarta.ws.rs.QueryParam("rangeKey")
-			Integer rangeKey,
-			@io.swagger.v3.oas.annotations.Parameter(hidden = true)
-			@jakarta.ws.rs.QueryParam("rangeStart")
-			String rangeStart,
-			@io.swagger.v3.oas.annotations.Parameter(hidden = true)
-			@jakarta.ws.rs.QueryParam("search")
-			String search,
 			@jakarta.ws.rs.core.Context Pagination pagination)
 		throws Exception {
 
@@ -571,7 +569,7 @@ public abstract class BaseEventResourceImpl implements EventResource {
 	protected SortParserProvider sortParserProvider;
 
 	private static final com.liferay.portal.kernel.log.Log _log =
-		LogFactoryUtil.getLog(BaseEventResourceImpl.class);
+		LogFactoryUtil.getLog(BaseChannelResourceImpl.class);
 
 }
-// LIFERAY-REST-BUILDER-HASH:2085333413
+// LIFERAY-REST-BUILDER-HASH:-1314249880

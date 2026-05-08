@@ -42,7 +42,7 @@ import org.osgi.service.component.annotations.Reference;
 )
 @Generated("")
 @OpenAPIDefinition(
-	info = @Info(description = "Read-only headless REST API for Liferay Faro (Analytics Cloud / Experience Cloud). Exposes events, pages, and asset-summary metrics from the Faro Cerebro engine for use as MCP tools and external integrations. All endpoints are scoped to a Liferay site that has a provisioned FaroProject. A Java client JAR is available for use with the group ID 'com.liferay', artifact ID 'com.liferay.osb.faro.rest.client', and version '1.0.0'.", license = @License(name = "Apache 2.0", url = "http://www.apache.org/licenses/LICENSE-2.0.html"), title = "Faro Headless REST API", version = "v1.0")
+	info = @Info(description = "Read-only headless REST API for Liferay Faro (Analytics Cloud / Experience Cloud). Exposes Individuals, IndividualSegments, Accounts, Channels, and FieldMappings from the Faro Contacts engine for use as MCP tools and external integrations. All endpoints are scoped to a Liferay site that has a provisioned FaroProject.. A Java client JAR is available for use with the group ID 'com.liferay', artifact ID 'com.liferay.osb.faro.rest.client', and version '1.0.0'.", license = @License(name = "Apache 2.0", url = "http://www.apache.org/licenses/LICENSE-2.0.html"), title = "Faro Headless REST API", version = "v1.0")
 )
 @Path("/v1.0")
 public class OpenAPIResourceImpl {
@@ -85,9 +85,21 @@ public class OpenAPIResourceImpl {
 
 	private final Set<Class<?>> _resourceClasses = new HashSet<Class<?>>() {
 		{
+			add(AccountResourceImpl.class);
+
 			add(AssetSummaryMetricResourceImpl.class);
 
+			add(ChannelResourceImpl.class);
+
 			add(EventResourceImpl.class);
+
+			add(FieldMappingResourceImpl.class);
+
+			add(IndividualResourceImpl.class);
+
+			add(IndividualSegmentResourceImpl.class);
+
+			add(IndividualSegmentMembershipResourceImpl.class);
 
 			add(PageMetricResourceImpl.class);
 
@@ -96,4 +108,4 @@ public class OpenAPIResourceImpl {
 	};
 
 }
-// LIFERAY-REST-BUILDER-HASH:1276090393
+// LIFERAY-REST-BUILDER-HASH:-943057448
