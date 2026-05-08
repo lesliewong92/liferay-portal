@@ -1,0 +1,7 @@
+dependencies {
+	testIntegrationImplementation group: "com.liferay.portal", name: "release.dxp.api", version: "2026.q1.5"
+	testIntegrationImplementation project(":dxp:apps:osb:osb-faro:osb-faro-api")
+	testIntegrationImplementation project(":dxp:apps:osb:osb-faro:osb-faro-rest-api")
+	testIntegrationImplementation project(":dxp:apps:osb:osb-faro:osb-faro-rest-client")
+	testIntegrationImplementation project(":test:arquillian-extension-junit-bridge")
+}
