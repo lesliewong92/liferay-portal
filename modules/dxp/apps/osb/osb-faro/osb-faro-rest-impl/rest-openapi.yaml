@@ -1,5 +1,57 @@
 components:
     schemas:
+        Account:
+            description:
+                "A B2B account (company) tracked by the Faro Contacts engine. Accounts aggregate Individuals (contacts)
+                employed by or associated with a single organization."
+            properties:
+                accountName:
+                    description:
+                        "Display name of the account (company name)."
+                    readOnly: true
+                    type: string
+                annualRevenue:
+                    description:
+                        "Annual revenue of the account, when known. Currency is implied by the source data and not
+                        normalized."
+                    format: double
+                    readOnly: true
+                    type: number
+                country:
+                    description:
+                        "ISO country name (not code) where the account is headquartered, when known."
+                    readOnly: true
+                    type: string
+                dateModified:
+                    description:
+                        "Last time the account record was modified in the Contacts engine."
+                    format: date-time
+                    readOnly: true
+                    type: string
+                id:
+                    description:
+                        "Stable Faro-internal account identifier. Use this with `getAccount` to fetch the account
+                        directly."
+                    readOnly: true
+                    type: string
+                industry:
+                    description:
+                        "Industry classification of the account, e.g. 'Software', 'Manufacturing'. Free-form text from
+                        the upstream data source."
+                    readOnly: true
+                    type: string
+                lastActivityDate:
+                    description:
+                        "Most recent activity from any Individual associated with this account."
+                    format: date-time
+                    readOnly: true
+                    type: string
+                lifecycleStage:
+                    description:
+                        "Sales/marketing lifecycle stage of the account, e.g. 'Prospect', 'Customer'. Source-dependent."
+                    readOnly: true
+                    type: string
+            type: object
         AssetSummaryMetric:
             description:
                 "An aggregated set of analytics metrics for a single tracked asset (page, blog, document, form, journal,
@@ -71,6 +123,22 @@ components:
                     readOnly: true
                     type: number
             type: object
+        Channel:
+            description:
+                "A Faro Channel — a logical grouping of data sources (a website, an app, a CRM connection) under which
+                Individuals, Activities, and Segments are scoped."
+            properties:
+                id:
+                    description:
+                        "Stable Faro-internal channel identifier."
+                    readOnly: true
+                    type: string
+                name:
+                    description:
+                        "Display name of the channel."
+                    readOnly: true
+                    type: string
+            type: object
         Event:
             description:
                 "A single tracked analytics event captured by the Cerebro engine — page views, custom events, form
@@ -92,8 +160,8 @@ components:
                         type: string
                     description:
                         "Free-form event properties as a name→value map. Keys are property names defined in
-                        EventAttributeDefinition; values are stringified per their underlying data type. (Mapped from
-                        the engine's repeated `properties: [{name, value}]` shape.)"
+                        EventAttributeDefinition; values are stringified per their underlying data type. (Mapped from the
+                        engine's repeated `properties: [{name, value}]` shape.)"
                     readOnly: true
                     type: object
                 canonicalUrl:
@@ -141,6 +209,280 @@ components:
                 url:
                     description:
                         "Actual URL of the page where the event was emitted (may differ from canonicalUrl)."
+                    readOnly: true
+                    type: string
+            type: object
+        FieldMapping:
+            description:
+                "A FieldMapping defines how a logical Faro field (e.g. an Individual attribute like 'jobTitle') is
+                sourced from one or more underlying data sources. Inspect FieldMappings to discover what custom
+                attributes exist on Individuals or Accounts in a given Faro project."
+            properties:
+                context:
+                    description:
+                        "The entity type the field is attached to. Common values: 'individual', 'account'."
+                    readOnly: true
+                    type: string
+                dateModified:
+                    description:
+                        "Last time this field mapping was modified."
+                    format: date-time
+                    readOnly: true
+                    type: string
+                displayName:
+                    description:
+                        "Human-readable name shown in Faro admin UI for this field."
+                    readOnly: true
+                    type: string
+                displayType:
+                    description:
+                        "UI display hint, e.g. 'text', 'select'. Source for UI rendering decisions; not the data type."
+                    readOnly: true
+                    type: string
+                fieldName:
+                    description:
+                        "Canonical (logical) name of the field. This is the name used in filter expressions and OData
+                        queries."
+                    readOnly: true
+                    type: string
+                fieldType:
+                    description:
+                        "Logical data type of the field: 'string', 'number', 'boolean', 'date', etc."
+                    readOnly: true
+                    type: string
+                ownerType:
+                    description:
+                        "Sub-type of the owning entity, e.g. 'KNOWN' or 'ANONYMOUS' for Individuals."
+                    readOnly: true
+                    type: string
+                repeatable:
+                    description:
+                        "True if this field can have multiple values per entity (e.g. tags). False for scalar fields."
+                    readOnly: true
+                    type: boolean
+            type: object
+        Individual:
+            description:
+                "A single contact (person) tracked by the Faro Contacts engine. Individuals are aggregated from website
+                visitors, CRM contacts, and other data sources, and may be either 'known' (identified by email/account)
+                or 'anonymous' (browser-tracked only)."
+            properties:
+                accountName:
+                    description:
+                        "Display name of the Account this Individual is primarily associated with, when known."
+                    readOnly: true
+                    type: string
+                activitiesCount:
+                    description:
+                        "Total number of tracked activities (page views, events, etc.) attributed to this Individual."
+                    format: int64
+                    readOnly: true
+                    type: integer
+                dateCreated:
+                    description:
+                        "First time this Individual was observed by the Contacts engine."
+                    format: date-time
+                    readOnly: true
+                    type: string
+                dateModified:
+                    description:
+                        "Last time this Individual's profile was modified by the Contacts engine (data import, profile
+                        merge, attribute update)."
+                    format: date-time
+                    readOnly: true
+                    type: string
+                demographics:
+                    additionalProperties:
+                        items:
+                            $ref: "#/components/schemas/IndividualDemographicField"
+                        type: array
+                    description:
+                        "Per-category demographic attributes attached to this Individual. The map key is the demographic
+                        category (e.g. 'profile', 'address', 'employment'), and each value is a list of attribute
+                        records. Use `IndividualDemographicField.fieldType` to interpret each `value`."
+                    readOnly: true
+                    type: object
+                firstActivityDate:
+                    description:
+                        "Date of the earliest tracked activity for this Individual."
+                    format: date-time
+                    readOnly: true
+                    type: string
+                id:
+                    description:
+                        "Stable Faro-internal Individual identifier. Use this with `getIndividual` to fetch a single
+                        Individual."
+                    readOnly: true
+                    type: string
+                lastActivityDate:
+                    description:
+                        "Date of the most recent tracked activity for this Individual."
+                    format: date-time
+                    readOnly: true
+                    type: string
+                lastSessionCountry:
+                    description:
+                        "Country (ISO name) detected for the Individual's most recent session, derived from IP
+                        geolocation when available."
+                    readOnly: true
+                    type: string
+                profileType:
+                    description:
+                        "Either 'KNOWN' (identified by email/account) or 'ANONYMOUS' (browser-tracked only)."
+                    readOnly: true
+                    type: string
+            type: object
+        IndividualDemographicField:
+            description:
+                "A single demographic attribute attached to an Individual — e.g. job title, age, country. Sourced from
+                an upstream data source (CRM, signup form, enrichment provider). Multiple attributes can share a
+                category in `Individual.demographics`."
+            properties:
+                fieldType:
+                    description:
+                        "Logical data type of the value: 'string', 'number', 'boolean', 'date', etc. Use this to
+                        interpret the `value` field."
+                    readOnly: true
+                    type: string
+                label:
+                    description:
+                        "Human-readable label for the attribute, e.g. 'Job Title'."
+                    readOnly: true
+                    type: string
+                name:
+                    description:
+                        "Canonical attribute name, used in filter expressions and OData queries, e.g. 'jobTitle'."
+                    readOnly: true
+                    type: string
+                value:
+                    description:
+                        "Attribute value, always serialized as a string. Use `fieldType` to convert to the appropriate
+                        type."
+                    readOnly: true
+                    type: string
+            type: object
+        IndividualSegment:
+            description:
+                "A saved audience definition that selects Individuals matching a filter expression. Segments are how
+                Faro groups contacts for targeting, reporting, and activation."
+            properties:
+                activeIndividualCount:
+                    description:
+                        "Number of Individuals currently in the segment whose membership is active."
+                    format: int64
+                    readOnly: true
+                    type: integer
+                anonymousIndividualCount:
+                    description:
+                        "Number of anonymous (browser-tracked, unidentified) Individuals in this segment."
+                    format: int64
+                    readOnly: true
+                    type: integer
+                channelId:
+                    description:
+                        "Identifier of the Channel this segment is scoped to. Cross-channel segments may have a null
+                        channelId."
+                    readOnly: true
+                    type: string
+                dateCreated:
+                    description:
+                        "When the segment was created."
+                    format: date-time
+                    readOnly: true
+                    type: string
+                dateModified:
+                    description:
+                        "Last time the segment definition was modified."
+                    format: date-time
+                    readOnly: true
+                    type: string
+                filter:
+                    description:
+                        "OData-style filter expression that defines segment membership, e.g. `lastSessionCountry eq 'US'
+                        and activitiesCount gt 5`."
+                    readOnly: true
+                    type: string
+                id:
+                    description:
+                        "Stable Faro-internal segment identifier. Use this with `getIndividualSegment` to fetch a single
+                        segment."
+                    readOnly: true
+                    type: string
+                includeAnonymousUsers:
+                    description:
+                        "True if anonymous (unidentified) Individuals are eligible for membership in this segment."
+                    readOnly: true
+                    type: boolean
+                individualCount:
+                    description:
+                        "Total Individuals in the segment, including inactive memberships."
+                    format: int64
+                    readOnly: true
+                    type: integer
+                knownIndividualCount:
+                    description:
+                        "Number of identified (non-anonymous) Individuals in this segment."
+                    format: int64
+                    readOnly: true
+                    type: integer
+                lastActivityDate:
+                    description:
+                        "Most recent activity by any Individual currently in the segment."
+                    format: date-time
+                    readOnly: true
+                    type: string
+                name:
+                    description:
+                        "Display name of the segment."
+                    readOnly: true
+                    type: string
+                segmentType:
+                    description:
+                        "Either 'BATCH' (re-evaluated periodically) or 'REAL_TIME' (evaluated on each event)."
+                    readOnly: true
+                    type: string
+                state:
+                    description:
+                        "Build state of the segment: 'READY', 'IN_PROGRESS', or 'DISABLED'."
+                    readOnly: true
+                    type: string
+                status:
+                    description:
+                        "Lifecycle status of the segment: 'ACTIVE' or 'INACTIVE'."
+                    readOnly: true
+                    type: string
+            type: object
+        IndividualSegmentMembership:
+            description:
+                "A single Individual's membership in an IndividualSegment. Captures when the Individual entered the
+                segment and (if applicable) when they exited."
+            properties:
+                dateCreated:
+                    description:
+                        "When the Individual entered the segment."
+                    format: date-time
+                    readOnly: true
+                    type: string
+                dateRemoved:
+                    description:
+                        "When the Individual exited the segment. Null if membership is still active."
+                    format: date-time
+                    readOnly: true
+                    type: string
+                individualId:
+                    description:
+                        "Identifier of the Individual whose membership this record describes. Use with `getIndividual`
+                        to fetch the Individual."
+                    readOnly: true
+                    type: string
+                individualSegmentId:
+                    description:
+                        "Identifier of the segment this membership belongs to."
+                    readOnly: true
+                    type: string
+                status:
+                    description:
+                        "Either 'ACTIVE' (currently a member) or 'INACTIVE' (formerly a member)."
                     readOnly: true
                     type: string
             type: object
@@ -241,10 +583,11 @@ components:
             type: object
 info:
     description:
-        "Read-only headless REST API for Liferay Faro (Analytics Cloud / Experience Cloud). Exposes events, pages, and
-        asset-summary metrics from the Faro Cerebro engine for use as MCP tools and external integrations. All endpoints
-        are scoped to a Liferay site that has a provisioned FaroProject. A Java client JAR is available for use with the
-        group ID 'com.liferay', artifact ID 'com.liferay.osb.faro.rest.client', and version '1.0.0'."
+        "Read-only headless REST API for Liferay Faro (Analytics Cloud / Experience Cloud). Exposes Individuals,
+        IndividualSegments, Accounts, Channels, and FieldMappings from the Faro Contacts engine for use as MCP tools and
+        external integrations. All endpoints are scoped to a Liferay site that has a provisioned FaroProject.. A Java
+        client JAR is available for use with the group ID 'com.liferay', artifact ID 'com.liferay.osb.faro.rest.client',
+        and version '1.0.0'."
     license:
         name: Apache 2.0
         url: http://www.apache.org/licenses/LICENSE-2.0.html
@@ -253,6 +596,100 @@ info:
     x-class-name: FaroRest
 openapi: 3.0.1
 paths:
+    "/sites/{siteId}/accounts":
+        get:
+            description:
+                "List or search Accounts known to a site's FaroProject. Returns a paginated list of Accounts (B2B
+                companies) known to the Faro Contacts engine for a given site. Use this to browse or search Accounts by
+                name. To fetch a single Account by id, use `getAccount`."
+            operationId: getSiteAccountsPage
+            parameters:
+            -   in: path
+                description:
+                    "Identifier of the Liferay site that owns the FaroProject."
+                name: siteId
+                required: true
+                schema:
+                    format: int64
+                    type: integer
+            -   in: query
+                description:
+                    "Optional Channel id to scope results to a single channel."
+                name: channelId
+                schema:
+                    type: string
+            -   in: query
+                description:
+                    "1-based page number. Defaults to 1 when omitted."
+                name: page
+                schema:
+                    type: integer
+            -   in: query
+                description:
+                    "Page size. Defaults to the Faro engine's default when omitted (typically 20)."
+                name: pageSize
+                schema:
+                    type: integer
+            -   in: query
+                description:
+                    "Free-text search across account name and related fields."
+                name: search
+                schema:
+                    type: string
+            -   in: query
+                description:
+                    "Sort expression, e.g. `accountName:asc`. Multiple fields comma-separated."
+                example: accountName:asc
+                name: sort
+                schema:
+                    type: string
+            responses:
+                200:
+                    content:
+                        application/json:
+                            schema:
+                                items:
+                                    $ref: "#/components/schemas/Account"
+                                type: array
+                        application/xml:
+                            schema:
+                                items:
+                                    $ref: "#/components/schemas/Account"
+                                type: array
+            tags: ["Account"]
+    "/sites/{siteId}/accounts/{accountId}":
+        get:
+            description:
+                "Fetch a single Account from a site's FaroProject. Returns a single Account by id from a site's
+                FaroProject. Use this when you already have an Account id from a previous call (e.g.
+                `getSiteAccountsPage`). To search Accounts by name or filter, use `getSiteAccountsPage`."
+            operationId: getSiteAccount
+            parameters:
+            -   in: path
+                description:
+                    "Identifier of the Liferay site that owns the FaroProject."
+                name: siteId
+                required: true
+                schema:
+                    format: int64
+                    type: integer
+            -   in: path
+                description:
+                    "Faro-internal identifier of the Account to fetch."
+                name: accountId
+                required: true
+                schema:
+                    type: string
+            responses:
+                200:
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Account"
+                        application/xml:
+                            schema:
+                                $ref: "#/components/schemas/Account"
+            tags: ["Account"]
     "/sites/{siteId}/asset-summaries":
         get:
             description:
@@ -337,6 +774,80 @@ paths:
                                     $ref: "#/components/schemas/AssetSummaryMetric"
                                 type: array
             tags: ["AssetSummaryMetric"]
+    "/sites/{siteId}/channels":
+        get:
+            description:
+                "List Channels configured under a site's FaroProject. Returns a paginated list of Channels configured
+                under a site's FaroProject. To fetch a single Channel by id, use `getChannel`."
+            operationId: getSiteChannelsPage
+            parameters:
+            -   in: path
+                description:
+                    "Identifier of the Liferay site that owns the FaroProject."
+                name: siteId
+                required: true
+                schema:
+                    format: int64
+                    type: integer
+            -   in: query
+                description:
+                    "1-based page number. Defaults to 1 when omitted."
+                name: page
+                schema:
+                    type: integer
+            -   in: query
+                description:
+                    "Page size. Defaults to the Faro engine's default when omitted (typically 20)."
+                name: pageSize
+                schema:
+                    type: integer
+            responses:
+                200:
+                    content:
+                        application/json:
+                            schema:
+                                items:
+                                    $ref: "#/components/schemas/Channel"
+                                type: array
+                        application/xml:
+                            schema:
+                                items:
+                                    $ref: "#/components/schemas/Channel"
+                                type: array
+            tags: ["Channel"]
+    "/sites/{siteId}/channels/{channelId}":
+        get:
+            description:
+                "Fetch a single Channel from a site's FaroProject. Returns a single Channel by id from a site's
+                FaroProject. A Channel is a logical grouping of data sources (a website, a CRM connection) under which
+                Faro contacts and activities are scoped."
+            operationId: getSiteChannel
+            parameters:
+            -   in: path
+                description:
+                    "Identifier of the Liferay site that owns the FaroProject."
+                name: siteId
+                required: true
+                schema:
+                    format: int64
+                    type: integer
+            -   in: path
+                description:
+                    "Faro-internal identifier of the Channel to fetch."
+                name: channelId
+                required: true
+                schema:
+                    type: string
+            responses:
+                200:
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Channel"
+                        application/xml:
+                            schema:
+                                $ref: "#/components/schemas/Channel"
+            tags: ["Channel"]
     "/sites/{siteId}/channels/{channelId}/events":
         get:
             description:
@@ -418,6 +929,424 @@ paths:
                                     $ref: "#/components/schemas/Event"
                                 type: array
             tags: ["Event"]
+    "/sites/{siteId}/field-mappings":
+        get:
+            description:
+                "List FieldMappings to discover custom attributes in a FaroProject. Returns a paginated list of
+                FieldMappings for a site's FaroProject. Use this to discover which custom Individual or Account
+                attributes exist in a given project (e.g. before constructing a `filter` expression that references a
+                custom field)."
+            operationId: getSiteFieldMappingsPage
+            parameters:
+            -   in: path
+                description:
+                    "Identifier of the Liferay site that owns the FaroProject."
+                name: siteId
+                required: true
+                schema:
+                    format: int64
+                    type: integer
+            -   in: query
+                description:
+                    "Restrict results to a specific entity context, e.g. 'individual' or 'account'."
+                name: context
+                schema:
+                    type: string
+            -   in: query
+                description:
+                    "Filter by ownerType, e.g. 'KNOWN' or 'ANONYMOUS' for Individual contexts."
+                name: ownerType
+                schema:
+                    type: string
+            -   in: query
+                description:
+                    "1-based page number. Defaults to 1 when omitted."
+                name: page
+                schema:
+                    type: integer
+            -   in: query
+                description:
+                    "Page size. Defaults to the Faro engine's default when omitted (typically 20)."
+                name: pageSize
+                schema:
+                    type: integer
+            -   in: query
+                description:
+                    "Free-text search across displayName and fieldName."
+                name: search
+                schema:
+                    type: string
+            responses:
+                200:
+                    content:
+                        application/json:
+                            schema:
+                                items:
+                                    $ref: "#/components/schemas/FieldMapping"
+                                type: array
+                        application/xml:
+                            schema:
+                                items:
+                                    $ref: "#/components/schemas/FieldMapping"
+                                type: array
+            tags: ["FieldMapping"]
+    "/sites/{siteId}/field-mappings/{fieldMappingId}":
+        get:
+            description:
+                "Fetch a single FieldMapping from a site's FaroProject. Returns a single FieldMapping by id from a
+                site's FaroProject. To list FieldMappings, use `getSiteFieldMappingsPage`."
+            operationId: getSiteFieldMapping
+            parameters:
+            -   in: path
+                description:
+                    "Identifier of the Liferay site that owns the FaroProject."
+                name: siteId
+                required: true
+                schema:
+                    format: int64
+                    type: integer
+            -   in: path
+                description:
+                    "Faro-internal identifier of the FieldMapping to fetch."
+                name: fieldMappingId
+                required: true
+                schema:
+                    type: string
+            responses:
+                200:
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/FieldMapping"
+                        application/xml:
+                            schema:
+                                $ref: "#/components/schemas/FieldMapping"
+            tags: ["FieldMapping"]
+    "/sites/{siteId}/individual-segments":
+        get:
+            description:
+                "List or search IndividualSegments under a site's FaroProject. Returns a paginated list of
+                IndividualSegments (audiences) configured under a site's FaroProject. To fetch a single segment by id,
+                use `getIndividualSegment`. To list the Individuals currently in a specific segment, use
+                `getIndividualSegmentMembershipsPage`."
+            operationId: getSiteIndividualSegmentsPage
+            parameters:
+            -   in: path
+                description:
+                    "Identifier of the Liferay site that owns the FaroProject."
+                name: siteId
+                required: true
+                schema:
+                    format: int64
+                    type: integer
+            -   in: query
+                description:
+                    "Optional Channel id to scope results to a single channel."
+                name: channelId
+                schema:
+                    type: string
+            -   in: query
+                description:
+                    "Optional segment name to match exactly."
+                name: name
+                schema:
+                    type: string
+            -   in: query
+                description:
+                    "1-based page number. Defaults to 1 when omitted."
+                name: page
+                schema:
+                    type: integer
+            -   in: query
+                description:
+                    "Page size. Defaults to the Faro engine's default when omitted (typically 20)."
+                name: pageSize
+                schema:
+                    type: integer
+            -   in: query
+                description:
+                    "Free-text search across segment name and related fields."
+                name: search
+                schema:
+                    type: string
+            -   in: query
+                description:
+                    "Filter by segment lifecycle status: 'ACTIVE' or 'INACTIVE'."
+                name: status
+                schema:
+                    type: string
+            responses:
+                200:
+                    content:
+                        application/json:
+                            schema:
+                                items:
+                                    $ref: "#/components/schemas/IndividualSegment"
+                                type: array
+                        application/xml:
+                            schema:
+                                items:
+                                    $ref: "#/components/schemas/IndividualSegment"
+                                type: array
+            tags: ["IndividualSegment"]
+    "/sites/{siteId}/individual-segments/{individualSegmentId}":
+        get:
+            description:
+                "Fetch a single IndividualSegment with its filter and counts. Returns a single IndividualSegment by id
+                from a site's FaroProject, including the filter expression that defines membership and aggregate counts.
+                To list segments, use `getSiteIndividualSegmentsPage`. To list members of a segment, use
+                `getSiteIndividualSegmentMembershipsPage`."
+            operationId: getSiteIndividualSegment
+            parameters:
+            -   in: path
+                description:
+                    "Identifier of the Liferay site that owns the FaroProject."
+                name: siteId
+                required: true
+                schema:
+                    format: int64
+                    type: integer
+            -   in: path
+                description:
+                    "Faro-internal identifier of the IndividualSegment to fetch."
+                name: individualSegmentId
+                required: true
+                schema:
+                    type: string
+            responses:
+                200:
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/IndividualSegment"
+                        application/xml:
+                            schema:
+                                $ref: "#/components/schemas/IndividualSegment"
+            tags: ["IndividualSegment"]
+    "/sites/{siteId}/individual-segments/{individualSegmentId}/memberships":
+        get:
+            description:
+                "List Individuals currently or formerly in a given segment. Returns a paginated list of memberships for
+                an IndividualSegment. Each entry links one Individual to the segment and records when the Individual
+                entered (and, if applicable, exited). Use the resulting `individualId` values with `getSiteIndividual`
+                to retrieve the full Individual records."
+            operationId: getSiteIndividualSegmentMembershipsPage
+            parameters:
+            -   in: path
+                description:
+                    "Identifier of the Liferay site that owns the FaroProject."
+                name: siteId
+                required: true
+                schema:
+                    format: int64
+                    type: integer
+            -   in: path
+                description:
+                    "Faro-internal identifier of the IndividualSegment whose memberships should be listed."
+                name: individualSegmentId
+                required: true
+                schema:
+                    type: string
+            -   in: query
+                description:
+                    "1-based page number. Defaults to 1 when omitted."
+                name: page
+                schema:
+                    type: integer
+            -   in: query
+                description:
+                    "Page size. Defaults to the Faro engine's default when omitted (typically 20)."
+                name: pageSize
+                schema:
+                    type: integer
+            -   in: query
+                description:
+                    "Sort expression, e.g. `dateCreated:desc`. Multiple fields comma-separated."
+                example: dateCreated:desc
+                name: sort
+                schema:
+                    type: string
+            responses:
+                200:
+                    content:
+                        application/json:
+                            schema:
+                                items:
+                                    $ref: "#/components/schemas/IndividualSegmentMembership"
+                                type: array
+                        application/xml:
+                            schema:
+                                items:
+                                    $ref: "#/components/schemas/IndividualSegmentMembership"
+                                type: array
+            tags: ["IndividualSegmentMembership"]
+    "/sites/{siteId}/individuals":
+        get:
+            description:
+                "List or search Individuals (contacts) for a site's FaroProject. Returns a paginated list of Individuals
+                (contacts) known to a site's FaroProject. Supports free-text search, OData-style filtering, and scoping
+                by Account, Channel, DataSource, IndividualSegment, or interest. Use this for contact discovery,
+                audience browsing, and 'find a person' queries. To fetch a single Individual by id (when you already
+                have one), use `getIndividual` instead."
+            operationId: getSiteIndividualsPage
+            parameters:
+            -   in: path
+                description:
+                    "Identifier of the Liferay site that owns the FaroProject."
+                name: siteId
+                required: true
+                schema:
+                    format: int64
+                    type: integer
+            -   in: query
+                description:
+                    "Optional Account id to restrict results to Individuals associated with that account."
+                name: accountId
+                schema:
+                    type: string
+            -   in: query
+                description:
+                    "Optional Channel id to scope results to a single channel."
+                name: channelId
+                schema:
+                    type: string
+            -   in: query
+                description:
+                    "Optional DataSource id to restrict results to Individuals sourced from that data source."
+                name: dataSourceId
+                schema:
+                    type: string
+            -   in: query
+                description:
+                    "If true, anonymous (browser-tracked) Individuals are included. Defaults to false."
+                name: includeAnonymousUsers
+                schema:
+                    type: boolean
+            -   in: query
+                description:
+                    "Optional IndividualSegment id to restrict results to members of that segment."
+                name: individualSegmentId
+                schema:
+                    type: string
+            -   in: query
+                description:
+                    "Optional interest name to match."
+                name: interestName
+                schema:
+                    type: string
+            -   in: query
+                description:
+                    "1-based page number. Defaults to 1 when omitted."
+                name: page
+                schema:
+                    type: integer
+            -   in: query
+                description:
+                    "Page size. Defaults to the Faro engine's default when omitted (typically 20)."
+                name: pageSize
+                schema:
+                    type: integer
+            -   in: query
+                description:
+                    "Free-text search across name, email, and other Individual fields."
+                name: search
+                schema:
+                    type: string
+            -   in: query
+                description:
+                    "Sort expression, e.g. `lastActivityDate:desc`. Multiple fields comma-separated."
+                example: lastActivityDate:desc
+                name: sort
+                schema:
+                    type: string
+            responses:
+                200:
+                    content:
+                        application/json:
+                            schema:
+                                items:
+                                    $ref: "#/components/schemas/Individual"
+                                type: array
+                        application/xml:
+                            schema:
+                                items:
+                                    $ref: "#/components/schemas/Individual"
+                                type: array
+            tags: ["Individual"]
+    "/sites/{siteId}/individuals/{individualId}":
+        get:
+            description:
+                "Fetch a single Individual from a site's FaroProject. Returns a single Individual by id from a site's
+                FaroProject. Use this to fetch a contact's full profile once you have an id (from
+                `getSiteIndividualsPage` or from segment memberships). To search Individuals by name, email, or other
+                attributes, use `getSiteIndividualsPage`."
+            operationId: getSiteIndividual
+            parameters:
+            -   in: path
+                description:
+                    "Identifier of the Liferay site that owns the FaroProject."
+                name: siteId
+                required: true
+                schema:
+                    format: int64
+                    type: integer
+            -   in: path
+                description:
+                    "Faro-internal identifier of the Individual to fetch."
+                name: individualId
+                required: true
+                schema:
+                    type: string
+            -   in: query
+                description:
+                    "Optional Channel id to scope the lookup to a single channel."
+                name: channelId
+                schema:
+                    type: string
+            responses:
+                200:
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Individual"
+                        application/xml:
+                            schema:
+                                $ref: "#/components/schemas/Individual"
+            tags: ["Individual"]
+    "/sites/{siteId}/individuals/{individualId}/profile":
+        get:
+            description:
+                "Fetch a richer Individual profile via the Cerebro GraphQL engine. Returns a richer Individual profile
+                fetched directly from the Cerebro engine via GraphQL. Use this when you need fields not available
+                through the engine client's REST surface (e.g. computed insights, real-time activity metrics). For
+                routine lookup by id, prefer `getSiteIndividual`."
+            operationId: getSiteIndividualProfile
+            parameters:
+            -   in: path
+                description:
+                    "Identifier of the Liferay site that owns the FaroProject."
+                name: siteId
+                required: true
+                schema:
+                    format: int64
+                    type: integer
+            -   in: path
+                description:
+                    "Faro-internal identifier of the Individual to fetch."
+                name: individualId
+                required: true
+                schema:
+                    type: string
+            responses:
+                200:
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Individual"
+                        application/xml:
+                            schema:
+                                $ref: "#/components/schemas/Individual"
+            tags: ["Individual"]
     "/sites/{siteId}/pages":
         get:
             description:
@@ -485,8 +1414,8 @@ paths:
                         type: string
                 -   in: query
                     description:
-                        "Sort expression `column:asc|desc`. Defaults to `views:desc`. Common columns: views, visitors,
-                        bounceRate, avgTimeOnPage."
+                        "Sort expression `column:asc|desc`. Defaults to `views:desc`. Common columns: views,
+                        visitors, bounceRate, avgTimeOnPage."
                     example: views:desc
                     name: sort
                     schema:
