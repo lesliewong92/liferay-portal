@@ -5,9 +5,18 @@
 
 package com.liferay.osb.faro.rest.internal.resource.v1_0;
 
+import com.liferay.osb.faro.engine.client.ContactsEngineClient;
+import com.liferay.osb.faro.model.FaroProject;
+import com.liferay.osb.faro.rest.dto.v1_0.FieldMapping;
+import com.liferay.osb.faro.rest.internal.dto.v1_0.util.FaroDTOUtil;
+import com.liferay.osb.faro.rest.internal.dto.v1_0.util.FaroPaginationUtil;
 import com.liferay.osb.faro.rest.resource.v1_0.FieldMappingResource;
+import com.liferay.osb.faro.service.FaroProjectLocalService;
+import com.liferay.portal.vulcan.pagination.Page;
+import com.liferay.portal.vulcan.pagination.Pagination;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ServiceScope;
 
 /**
@@ -18,5 +27,39 @@ import org.osgi.service.component.annotations.ServiceScope;
 	scope = ServiceScope.PROTOTYPE, service = FieldMappingResource.class
 )
 public class FieldMappingResourceImpl extends BaseFieldMappingResourceImpl {
+
+	@Override
+	public FieldMapping getSiteFieldMapping(Long siteId, String fieldMappingId)
+		throws Exception {
+
+		FaroProject faroProject =
+			_faroProjectLocalService.getFaroProjectByGroupId(siteId);
+
+		return FaroDTOUtil.toFieldMapping(
+			_contactsEngineClient.getFieldMapping(faroProject, fieldMappingId));
+	}
+
+	@Override
+	public Page<FieldMapping> getSiteFieldMappingsPage(
+			Long siteId, String context, String ownerType, String search,
+			Pagination pagination)
+		throws Exception {
+
+		FaroProject faroProject =
+			_faroProjectLocalService.getFaroProjectByGroupId(siteId);
+
+		return FaroPaginationUtil.toPage(
+			_contactsEngineClient.getFieldMappings(
+				faroProject, context, null, ownerType, search,
+				FaroPaginationUtil.getCur(pagination),
+				FaroPaginationUtil.getDelta(pagination), null),
+			pagination, FaroDTOUtil::toFieldMapping);
+	}
+
+	@Reference
+	private ContactsEngineClient _contactsEngineClient;
+
+	@Reference
+	private FaroProjectLocalService _faroProjectLocalService;
+
 }
-// LIFERAY-REST-BUILDER-HASH:1127299751

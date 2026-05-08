@@ -1,0 +1,20 @@
+# Resolves the GET /sites/{siteId}/individuals/{individualId}/profile
+# headless endpoint. Sent by FaroGraphQLClient to the Cerebro engine's
+# /graphql endpoint. The variables map carries `individualId` (a String).
+#
+# Field selection here mirrors the response shape consumed by
+# GetSiteIndividualProfileResponse on the Java side; widen or narrow
+# both together when adding fields.
+query getSiteIndividualProfile($individualId: String!) {
+	individual(id: $individualId) {
+		id
+		accountName
+		profileType
+		activitiesCount
+		dateCreated
+		dateModified
+		firstActivityDate
+		lastActivityDate
+		lastSessionCountry
+	}
+}

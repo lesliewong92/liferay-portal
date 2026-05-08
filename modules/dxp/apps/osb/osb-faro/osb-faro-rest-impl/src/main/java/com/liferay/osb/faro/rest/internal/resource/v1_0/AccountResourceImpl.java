@@ -5,9 +5,19 @@
 
 package com.liferay.osb.faro.rest.internal.resource.v1_0;
 
+import com.liferay.osb.faro.engine.client.ContactsEngineClient;
+import com.liferay.osb.faro.model.FaroProject;
+import com.liferay.osb.faro.rest.dto.v1_0.Account;
+import com.liferay.osb.faro.rest.internal.dto.v1_0.util.FaroDTOUtil;
+import com.liferay.osb.faro.rest.internal.dto.v1_0.util.FaroPaginationUtil;
 import com.liferay.osb.faro.rest.resource.v1_0.AccountResource;
+import com.liferay.osb.faro.service.FaroProjectLocalService;
+import com.liferay.portal.kernel.search.Sort;
+import com.liferay.portal.vulcan.pagination.Page;
+import com.liferay.portal.vulcan.pagination.Pagination;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ServiceScope;
 
 /**
@@ -18,5 +28,39 @@ import org.osgi.service.component.annotations.ServiceScope;
 	scope = ServiceScope.PROTOTYPE, service = AccountResource.class
 )
 public class AccountResourceImpl extends BaseAccountResourceImpl {
+
+	@Override
+	public Account getSiteAccount(Long siteId, String accountId)
+		throws Exception {
+
+		FaroProject faroProject =
+			_faroProjectLocalService.getFaroProjectByGroupId(siteId);
+
+		return FaroDTOUtil.toAccount(
+			_contactsEngineClient.getAccount(faroProject, accountId));
+	}
+
+	@Override
+	public Page<Account> getSiteAccountsPage(
+			Long siteId, String channelId, String search, Pagination pagination,
+			Sort[] sorts)
+		throws Exception {
+
+		FaroProject faroProject =
+			_faroProjectLocalService.getFaroProjectByGroupId(siteId);
+
+		return FaroPaginationUtil.toPage(
+			_contactsEngineClient.getAccounts(
+				faroProject, channelId, null, search,
+				FaroPaginationUtil.getCur(pagination),
+				FaroPaginationUtil.getDelta(pagination), null),
+			pagination, FaroDTOUtil::toAccount);
+	}
+
+	@Reference
+	private ContactsEngineClient _contactsEngineClient;
+
+	@Reference
+	private FaroProjectLocalService _faroProjectLocalService;
+
 }
-// LIFERAY-REST-BUILDER-HASH:126436837
