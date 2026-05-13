@@ -5,9 +5,8 @@ dependencies {
 	testIntegrationImplementation group: "com.liferay", name: "jakarta.ws.rs", version: "3.1.0.LIFERAY-PATCHED-1"
 	testIntegrationImplementation group: "com.liferay.portal", name: "com.liferay.portal.test", version: "default"
 	testIntegrationImplementation group: "com.liferay.portal", name: "com.liferay.portal.test.integration", version: "default"
+	testIntegrationImplementation group: "com.liferay.portal", name: "release.dxp.api", version: "2026.q1.5"
 	testIntegrationImplementation group: "jakarta.annotation", name: "jakarta.annotation-api", version: "2.1.1"
-	testIntegrationImplementation project(":apps:portal-odata:portal-odata-api")
-	testIntegrationImplementation project(":apps:portal-vulcan:portal-vulcan-api")
 	testIntegrationImplementation project(":dxp:apps:osb:osb-faro:osb-faro-rest-api")
 	testIntegrationImplementation project(":dxp:apps:osb:osb-faro:osb-faro-rest-client")
 	testIntegrationImplementation project(":test:arquillian-extension-junit-bridge")
