@@ -4,3 +4,14 @@ Bundle-Version: 1.0.0
 Export-Package:\
 	com.liferay.osb.faro.rest.dto.v1_0,\
 	com.liferay.osb.faro.rest.resource.v1_0
+Import-Package:\
+	com.liferay.petra.function;version="[1.5.0,9999.0.0)",\
+	com.liferay.petra.string;version="[1.0.0,9999.0.0)",\
+	com.liferay.portal.kernel.exception;version="[1.0.0,9999.0.0)",\
+	com.liferay.portal.kernel.model;version="[29.0.0,9999.0.0)",\
+	com.liferay.portal.kernel.search;version="[1.0.0,9999.0.0)",\
+	com.liferay.portal.kernel.search.filter;version="[1.0.0,9999.0.0)",\
+	com.liferay.portal.kernel.service;version="[22.0.0,9999.0.0)",\
+	com.liferay.portal.kernel.util;version="[59.0.0,9999.0.0)",\
+	\
+	*
