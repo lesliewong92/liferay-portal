@@ -464,4 +464,3 @@ public class HttpInvoker {
 	private String _path;
 
 }
-// LIFERAY-REST-BUILDER-HASH:-54998591

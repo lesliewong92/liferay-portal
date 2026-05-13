@@ -353,4 +353,3 @@ public class PageMetric implements Cloneable, Serializable {
 	}
 
 }
-// LIFERAY-REST-BUILDER-HASH:431801719

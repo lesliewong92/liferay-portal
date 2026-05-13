@@ -329,4 +329,3 @@ public class PageMetricResourceFactoryImpl
 	}
 
 }
-// LIFERAY-REST-BUILDER-HASH:-107590480

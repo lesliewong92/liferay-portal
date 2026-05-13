@@ -18,4 +18,3 @@ public interface UnsafeSupplier<T, E extends Throwable> {
 	public T get() throws E;
 
 }
-// LIFERAY-REST-BUILDER-HASH:-1640326918

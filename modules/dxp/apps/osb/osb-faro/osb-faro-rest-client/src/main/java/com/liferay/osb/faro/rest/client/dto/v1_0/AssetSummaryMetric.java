@@ -294,4 +294,3 @@ public class AssetSummaryMetric implements Cloneable, Serializable {
 	}
 
 }
-// LIFERAY-REST-BUILDER-HASH:-2092426612

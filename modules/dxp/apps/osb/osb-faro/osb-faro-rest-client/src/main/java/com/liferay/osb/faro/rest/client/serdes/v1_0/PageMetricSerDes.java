@@ -570,4 +570,3 @@ public class PageMetricSerDes {
 	}
 
 }
-// LIFERAY-REST-BUILDER-HASH:-1325645830

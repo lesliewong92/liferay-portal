@@ -111,4 +111,3 @@ public class ServletDataImpl implements ServletData {
 		_pageMetricResourceComponentServiceObjects;
 
 }
-// LIFERAY-REST-BUILDER-HASH:-2109415230

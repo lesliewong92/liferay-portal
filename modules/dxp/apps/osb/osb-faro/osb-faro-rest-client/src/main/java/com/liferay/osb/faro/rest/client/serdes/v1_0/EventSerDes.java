@@ -526,4 +526,3 @@ public class EventSerDes {
 	}
 
 }
-// LIFERAY-REST-BUILDER-HASH:-843582957

@@ -191,4 +191,3 @@ public class Permission {
 	}
 
 }
-// LIFERAY-REST-BUILDER-HASH:659952587

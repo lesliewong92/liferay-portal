@@ -26,4 +26,3 @@ import org.osgi.service.component.annotations.Component;
 @Generated("")
 public class FaroRestApplication extends Application {
 }
-// LIFERAY-REST-BUILDER-HASH:-1971589366
