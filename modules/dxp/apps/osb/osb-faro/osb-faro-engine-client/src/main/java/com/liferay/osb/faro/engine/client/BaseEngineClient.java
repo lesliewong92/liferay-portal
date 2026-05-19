@@ -48,11 +48,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.http.HttpStatus;
-import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
-import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.hc.core5.http.ClassicHttpRequest;
+import org.apache.hc.core5.http.message.BasicClassicHttpRequest;
 
-import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.cache.Cache;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.hateoas.EntityModel;
@@ -66,6 +64,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -354,11 +353,6 @@ public abstract class BaseEngineClient {
 	}
 
 	protected RestTemplate getRestTemplate(FaroProject faroProject) {
-		RestTemplateBuilder restTemplateBuilder = new RestTemplateBuilder();
-
-		restTemplateBuilder = restTemplateBuilder.uriTemplateHandler(
-			new UriTemplateHandler());
-
 		MappingJackson2HttpMessageConverter
 			mappingJackson2HttpMessageConverter =
 				new MappingJackson2HttpMessageConverter();
@@ -368,10 +362,13 @@ public abstract class BaseEngineClient {
 		mappingJackson2HttpMessageConverter.setSupportedMediaTypes(
 			Arrays.asList(MediaType.APPLICATION_JSON, MediaTypes.HAL_JSON));
 
-		restTemplateBuilder = restTemplateBuilder.messageConverters(
-			mappingJackson2HttpMessageConverter);
+		List<HttpMessageConverter<?>> converters = new ArrayList<>();
 
-		RestTemplate restTemplate = restTemplateBuilder.build();
+		converters.add(mappingJackson2HttpMessageConverter);
+
+		RestTemplate restTemplate = new RestTemplate(converters);
+
+		restTemplate.setUriTemplateHandler(new UriTemplateHandler());
 
 		restTemplate.setErrorHandler(new ResponseErrorHandler());
 
@@ -403,21 +400,12 @@ public abstract class BaseEngineClient {
 			new HttpComponentsClientHttpRequestFactory() {
 
 				@Override
-				protected HttpUriRequest createHttpUriRequest(
+				protected ClassicHttpRequest createHttpUriRequest(
 					HttpMethod httpMethod, URI uri) {
 
 					if (httpMethod == HttpMethod.GET) {
-						return new HttpEntityEnclosingRequestBase() {
-							{
-								setURI(uri);
-							}
-
-							@Override
-							public String getMethod() {
-								return HttpMethod.GET.name();
-							}
-
-						};
+						return new BasicClassicHttpRequest(
+							HttpMethod.GET.name(), uri);
 					}
 
 					return super.createHttpUriRequest(httpMethod, uri);
@@ -443,7 +431,7 @@ public abstract class BaseEngineClient {
 			},
 			getUriVariables(faroProject));
 
-		if (responseEntity.getStatusCodeValue() != HttpStatus.SC_OK) {
+		if (responseEntity.getStatusCode().value() != 200) {
 			throw new IllegalStateException("Invalid url: " + engineURL);
 		}
 
