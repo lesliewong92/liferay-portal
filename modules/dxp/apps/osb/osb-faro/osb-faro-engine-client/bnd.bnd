@@ -79,8 +79,16 @@ Import-Package:\
 	!io.smallrye.*,\
 	\
 	!io.undertow.*,\
-		\
+	\
 	!jakarta.jms.*,\
+	\
+	!jakarta.persistence.*,\
+	\
+	!jakarta.servlet.*,\
+	\
+	!jakarta.transaction.*,\
+	\
+	!jakarta.validation.*,\
 	\
 	!javax.annotation.*,\
 	\
@@ -124,9 +132,13 @@ Import-Package:\
 	\
 	!oracle.ucp.*,\
 	\
+	!org.crac.management.*,\
+	\
 	!org.HdrHistogram.*,\
 	\
 	!org.antlr.stringtemplate.*,\
+	\
+	!org.messaginghub.pooled.*,\
 	\
 	!org.apache.catalina.*,\
 	!org.apache.commons.cli.*,\
@@ -179,9 +191,15 @@ Import-Package:\
 	\
 	!org.slf4j.*,\
 	\
+	!org.springframework.aot.*,\
+	!org.springframework.beans.factory.aot.*,\
 	!org.springframework.core.metrics.*,\
+	!org.springframework.context.aot.*,\
 	!org.springframework.instrument.*,\
+	!org.springframework.javapoet.*,\
+	!org.springframework.jms.connection.*,\
 	!org.springframework.messaging.rsocket.*,\
+	!org.springframework.mock.web.*,\
 	!org.springframework.oxm.*,\
 	!org.springframework.plugin.*,\
 	!org.springframework.r2dbc.connection.*,\
@@ -191,13 +209,15 @@ Import-Package:\
 	!org.springframework.security.web.server.util.matcher.*,\
 	!org.springframework.security.web.util.matcher.*,\
 	!org.springframework.test.web.reactive.*,\
+	!org.springframework.validation.method.*,\
 	!org.springframework.web.reactive.*,\
 	!org.springframework.web.servlet.*,\
 	!org.springframework.ws.*,\
 	!org.springframework.xml.transform.*,\
 	\
 	!org.synchronoss.cloud.nio.*,\
-	
+	\
+	!org.vibur.dbcp.*,\
 	\
 	!org.xnio.*,\
 	\
