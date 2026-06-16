@@ -587,7 +587,6 @@ paths:
             tags: ["PerformanceAssetConsumption"]
     "/performance-metric-views-by-categorization/export":
         get:
-            operationId: getPerformanceMetricViewsByCategorizationExport
             parameters:
                 -   in: query
                     name: depotEntryIds
@@ -610,7 +609,6 @@ paths:
             tags: ["Export"]
     "/performance-metric-views-by-location/export":
         get:
-            operationId: getPerformanceMetricViewsByLocationExport
             parameters:
                 -   in: query
                     name: depotEntryIds
@@ -658,7 +656,6 @@ paths:
             tags: ["PerformanceOverviewMetric"]
     "/performance-top-asset/export":
         get:
-            operationId: getPerformanceTopAssetExport
             parameters:
                 -   in: query
                     name: assetFilter

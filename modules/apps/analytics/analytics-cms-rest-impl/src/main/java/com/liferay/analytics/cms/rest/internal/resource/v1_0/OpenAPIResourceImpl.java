@@ -91,6 +91,8 @@ public class OpenAPIResourceImpl {
 
 			add(ExpiredAssetResourceImpl.class);
 
+			add(ExportResourceImpl.class);
+
 			add(InventoryAnalysisResourceImpl.class);
 
 			add(ObjectEntryAcquisitionChannelResourceImpl.class);
@@ -112,4 +114,4 @@ public class OpenAPIResourceImpl {
 	};
 
 }
-// LIFERAY-REST-BUILDER-HASH:1523237586
+// LIFERAY-REST-BUILDER-HASH:-1689076206
