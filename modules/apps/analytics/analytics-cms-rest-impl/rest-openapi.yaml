@@ -585,6 +585,52 @@ paths:
                             schema:
                                 $ref: "#/components/schemas/PerformanceAssetConsumption"
             tags: ["PerformanceAssetConsumption"]
+    "/performance-metric-views-by-categorization/export":
+        get:
+            operationId: getPerformanceMetricViewsByCategorizationExport
+            parameters:
+                -   in: query
+                    name: depotEntryIds
+                    schema:
+                        items:
+                            format: int64
+                            type: integer
+                        type: array
+                -   in: query
+                    name: rangeKey
+                    schema:
+                        type: integer
+            responses:
+                200:
+                    content:
+                        application/octet-stream:
+                            schema:
+                                format: binary
+                                type: string
+            tags: ["Export"]
+    "/performance-metric-views-by-location/export":
+        get:
+            operationId: getPerformanceMetricViewsByLocationExport
+            parameters:
+                -   in: query
+                    name: depotEntryIds
+                    schema:
+                        items:
+                            format: int64
+                            type: integer
+                        type: array
+                -   in: query
+                    name: rangeKey
+                    schema:
+                        type: integer
+            responses:
+                200:
+                    content:
+                        application/octet-stream:
+                            schema:
+                                format: binary
+                                type: string
+            tags: ["Export"]
     "/performance-overview-metric":
         get:
             operationId: getPerformanceOverviewMetric
@@ -610,3 +656,34 @@ paths:
                             schema:
                                 $ref: "#/components/schemas/PerformanceOverviewMetric"
             tags: ["PerformanceOverviewMetric"]
+    "/performance-top-asset/export":
+        get:
+            operationId: getPerformanceTopAssetExport
+            parameters:
+                -   in: query
+                    name: assetFilter
+                    schema:
+                        type: string
+                -   in: query
+                    name: depotEntryIds
+                    schema:
+                        items:
+                            format: int64
+                            type: integer
+                        type: array
+                -   in: query
+                    name: rangeKey
+                    schema:
+                        type: integer
+                -   in: query
+                    name: sort
+                    schema:
+                        type: string
+            responses:
+                200:
+                    content:
+                        application/octet-stream:
+                            schema:
+                                format: binary
+                                type: string
+            tags: ["Export"]
