@@ -64,6 +64,45 @@ public class AnalyticsCloudClient {
 		_objectDefinitionLocalService = objectDefinitionLocalService;
 	}
 
+	public String getExport(
+			AnalyticsConfiguration analyticsConfiguration, List<Long> groupIds,
+			String path, Integer rangeKey)
+		throws PortalException {
+
+		try {
+			Http.Options options = _getOptions(analyticsConfiguration);
+
+			options.setLocation(
+				_getLocation(
+					analyticsConfiguration.liferayAnalyticsDataSourceId(), null,
+					groupIds,
+					analyticsConfiguration.liferayAnalyticsFaroBackendURL(),
+					path, rangeKey, null));
+
+			String content = _http.URLtoString(options);
+
+			Http.Response response = options.getResponse();
+
+			if (response.getResponseCode() != HttpURLConnection.HTTP_OK) {
+				if (_log.isDebugEnabled()) {
+					_log.debug("Response code " + response.getResponseCode());
+				}
+
+				throw new PortalException("Unable to download export " + path);
+			}
+
+			return content;
+		}
+		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception);
+			}
+
+			throw new PortalException(
+				"Unable to download export " + path, exception);
+		}
+	}
+
 	public List<ObjectEntryAcquisitionChannel>
 			getObjectEntryAcquisitionChannels(
 				AnalyticsConfiguration analyticsConfiguration,
