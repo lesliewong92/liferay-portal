@@ -32,6 +32,7 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.Http;
@@ -65,8 +66,8 @@ public class AnalyticsCloudClient {
 	}
 
 	public String getExport(
-			AnalyticsConfiguration analyticsConfiguration, List<Long> groupIds,
-			String path, Integer rangeKey)
+			AnalyticsConfiguration analyticsConfiguration, String assetFilter,
+			List<Long> groupIds, String path, Integer rangeKey, Sort[] sorts)
 		throws PortalException {
 
 		try {

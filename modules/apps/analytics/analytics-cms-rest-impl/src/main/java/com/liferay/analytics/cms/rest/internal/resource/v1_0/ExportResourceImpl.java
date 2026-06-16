@@ -11,6 +11,7 @@ import com.liferay.analytics.cms.rest.resource.v1_0.ExportResource;
 import com.liferay.analytics.settings.rest.manager.AnalyticsSettingsManager;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.license.util.LicenseManagerUtil;
+import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.util.Http;
 
 import jakarta.ws.rs.core.Response;
@@ -31,34 +32,39 @@ import org.osgi.service.component.annotations.ServiceScope;
 public class ExportResourceImpl extends BaseExportResourceImpl {
 
 	@Override
-	public Response getCategoryExport(Long[] depotEntryIds, Integer rangeKey)
+	public Response getPerformanceMetricViewsByCategorizationExport(
+			Long[] depotEntryIds, Integer rangeKey)
 		throws Exception {
 
 		return _getExportResponse(
-			"views-by-categories", "/categories/export", depotEntryIds,
-			rangeKey);
+			null, depotEntryIds, "views-by-categories", "/categories/export",
+			rangeKey, null);
 	}
 
 	@Override
-	public Response getGeolocationExport(Long[] depotEntryIds, Integer rangeKey)
+	public Response getPerformanceMetricViewsByLocationExport(
+			Long[] depotEntryIds, Integer rangeKey)
 		throws Exception {
 
 		return _getExportResponse(
-			"views-by-geolocation", "/geolocation/export", depotEntryIds,
-			rangeKey);
+			null, depotEntryIds, "views-by-geolocation", "/geolocation/export",
+			rangeKey, null);
 	}
 
 	@Override
-	public Response getSummaryExport(Long[] depotEntryIds, Integer rangeKey)
+	public Response getPerformanceTopAssetExport(
+			String assetFilter, Long[] depotEntryIds, Integer rangeKey,
+			Sort[] sorts)
 		throws Exception {
 
 		return _getExportResponse(
-			"top-assets", "/summaries/export", depotEntryIds, rangeKey);
+			assetFilter, depotEntryIds, "top-assets", "/summaries/export",
+			rangeKey, sorts);
 	}
 
 	private Response _getExportResponse(
-			String fileName, String path, Long[] depotEntryIds,
-			Integer rangeKey)
+			String assetFilter, Long[] depotEntryIds, String fileName,
+			String path, Integer rangeKey, Sort[] sorts)
 		throws Exception {
 
 		LicenseManagerUtil.checkFreeTier();
@@ -73,7 +79,7 @@ public class ExportResourceImpl extends BaseExportResourceImpl {
 		String content = analyticsCloudClient.getExport(
 			_analyticsSettingsManager.getAnalyticsConfiguration(
 				contextCompany.getCompanyId()),
-			Arrays.asList(groupIds), path, rangeKey);
+			assetFilter, Arrays.asList(groupIds), path, rangeKey, sorts);
 
 		return Response.ok(
 			content
