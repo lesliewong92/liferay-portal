@@ -249,6 +249,7 @@ public class PerformanceTopAssetResourceTest
 	private void _testGetPerformanceTopAssetPageResponse() throws Exception {
 		String assetId = RandomTestUtil.randomString();
 		String assetTitle = RandomTestUtil.randomString();
+		String assetType = RandomTestUtil.randomString();
 		int downloads = RandomTestUtil.nextInt();
 		double engagement = RandomTestUtil.nextDouble();
 		double engagementTrend = RandomTestUtil.nextDouble();
@@ -267,6 +268,8 @@ public class PerformanceTopAssetResourceTest
 							"assetId", assetId
 						).put(
 							"assetTitle", assetTitle
+						).put(
+							"assetType", assetType
 						).put(
 							"downloadsMetric", JSONUtil.put("value", downloads)
 						).put(
@@ -323,6 +326,8 @@ public class PerformanceTopAssetResourceTest
 			Trend.Classification.POSITIVE.toString(),
 			String.valueOf(trend.getClassification()));
 		Assert.assertEquals(engagementTrend, trend.getPercentage(), 0);
+
+		Assert.assertEquals(assetType, performanceTopAsset.getType());
 
 		Assert.assertEquals(views, performanceTopAsset.getViews(), 0);
 	}
