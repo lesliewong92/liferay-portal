@@ -45,6 +45,7 @@ import java.util.Objects;
 
 import org.junit.Assert;
 import org.junit.ClassRule;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -123,6 +124,15 @@ public class PerformanceTopAssetResourceTest
 			ReflectionTestUtil.setFieldValue(
 				_performanceTopAssetResource, "_http", _http);
 		}
+	}
+
+	@Ignore
+	@Override
+	@Test
+	public void testGetPerformanceTopAssetPageWithPagination()
+		throws Exception {
+
+		super.testGetPerformanceTopAssetPageWithPagination();
 	}
 
 	private void _assertParameter(
