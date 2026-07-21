@@ -236,6 +236,32 @@ public class WorkflowDefinitionContentUtilTest {
 		Assert.assertEquals("en_US", attributeNode.getNodeValue());
 	}
 
+	@Test
+	public void testTagWithSpecialCharactersToXML() throws Exception {
+		Document document = _toDocument("tag-with-special-characters.json");
+
+		Element rootElement = document.getDocumentElement();
+
+		Assert.assertEquals("http-request", rootElement.getTagName());
+
+		NodeList urlNodeList = rootElement.getElementsByTagName("url");
+
+		Assert.assertEquals(1, urlNodeList.getLength());
+
+		Node urlNode = urlNodeList.item(0);
+
+		Assert.assertEquals(
+			"{{portalURL}}/o/search/v1.0/search?search={{keywords}}" +
+				"&pageSize=5&filter=<expression>",
+			urlNode.getTextContent());
+
+		NamedNodeMap attributes = urlNode.getAttributes();
+
+		Node attributeNode = attributes.getNamedItem("test-attribute");
+
+		Assert.assertEquals("a&b\"c<d", attributeNode.getNodeValue());
+	}
+
 	private String _read(String fileName) throws Exception {
 		Class<?> clazz = getClass();
 

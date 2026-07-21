@@ -1,0 +1,10 @@
+{
+	"#child-nodes": [
+		{
+			"#tag-name": "url",
+			"#value": "{{portalURL}}/o/search/v1.0/search?search={{keywords}}&pageSize=5&filter=<expression>",
+			"test-attribute": "a&b\"c<d"
+		}
+	],
+	"#tag-name": "http-request"
+}
