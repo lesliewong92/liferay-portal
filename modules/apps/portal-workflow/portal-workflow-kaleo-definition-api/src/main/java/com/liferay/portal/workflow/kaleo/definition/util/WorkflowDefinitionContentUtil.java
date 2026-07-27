@@ -13,6 +13,7 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.security.xml.SecureXMLFactoryProviderUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowException;
 
@@ -112,7 +113,7 @@ public class WorkflowDefinitionContentUtil {
 			sb.append(key);
 			sb.append(StringPool.EQUAL);
 			sb.append(StringPool.QUOTE);
-			sb.append(jsonObject.get(key));
+			sb.append(_escapeXML(jsonObject.getString(key)));
 			sb.append(StringPool.QUOTE);
 		}
 	}
@@ -180,8 +181,14 @@ public class WorkflowDefinitionContentUtil {
 			sb.append(cdataSB);
 		}
 		else if (jsonObject.has("#value")) {
-			sb.append(jsonObject.getString("#value"));
+			sb.append(_escapeXML(jsonObject.getString("#value")));
 		}
+	}
+
+	private static String _escapeXML(String value) {
+		return StringUtil.replace(
+			value, new String[] {"&", "\"", "'", "<", ">"},
+			new String[] {"&amp;", "&quot;", "&apos;", "&lt;", "&gt;"});
 	}
 
 	private static boolean _hasContent(String value) {
