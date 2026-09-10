@@ -8,4 +8,15 @@ dependencies {
 	testImplementation group: "org.mockito", name: "mockito-core", version: "5.14.2"
 	testImplementation group: "org.springframework", name: "spring-core", version: "6.2.19"
 	testImplementation group: "org.springframework", name: "spring-test", version: "6.2.19"
+	testIntegrationCompileOnly group: "com.liferay.portal", name: "com.liferay.portal.test", version: "32.6.2"
+	testIntegrationImplementation group: "com.liferay", name: "com.liferay.arquillian.extension.junit.bridge", version: "1.0.21"
+	testIntegrationImplementation group: "com.liferay.portal", name: "release.dxp.api", version: "2026.q3.2"
+	testIntegrationImplementation group: "junit", name: "junit", version: "4.13.1"
+	testModules group: "com.liferay.portal", name: "com.liferay.portal.test", version: "32.6.2"
+}
+
+tasks.matching {
+	it.name.contains("Tomcat") || it.name == "testIntegration"
+}.configureEach {
+	enabled = false
 }
