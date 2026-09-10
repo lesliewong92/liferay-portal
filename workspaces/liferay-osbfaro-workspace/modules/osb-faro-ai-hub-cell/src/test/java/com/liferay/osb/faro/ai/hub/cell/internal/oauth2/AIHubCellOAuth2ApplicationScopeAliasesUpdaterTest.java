@@ -87,13 +87,9 @@ public class AIHubCellOAuth2ApplicationScopeAliasesUpdaterTest {
 		_aiHubCellOAuth2ApplicationScopeAliasesUpdater.updateScopeAliases(
 			_COMPANY_ID);
 
-		List<String> scopeAliasesList = _getScopeAliasesList();
-
 		Assert.assertEquals(
-			scopeAliasesList.toString(), 3, scopeAliasesList.size());
-		Assert.assertTrue(
-			scopeAliasesList.containsAll(
-				Arrays.asList(scopeAlias1, scopeAlias2, _SCOPE_ALIAS)));
+			Arrays.asList(scopeAlias1, scopeAlias2, _SCOPE_ALIAS),
+			_getScopeAliasesList());
 	}
 
 	@Test

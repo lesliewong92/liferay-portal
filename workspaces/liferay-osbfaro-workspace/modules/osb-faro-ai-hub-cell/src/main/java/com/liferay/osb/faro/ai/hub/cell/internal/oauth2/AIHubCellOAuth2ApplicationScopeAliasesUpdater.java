@@ -50,8 +50,9 @@ public class AIHubCellOAuth2ApplicationScopeAliasesUpdater {
 		if (oAuth2Application == null) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"The AI Hub Cell OAuth2 application does not exist for " +
-						"company " + companyId);
+					StringBundler.concat(
+						"The AI Hub Cell OAuth2 application does not exist ",
+						"for company ", companyId));
 			}
 
 			return;
