@@ -65,8 +65,6 @@ public class AIHubCellOAuth2ApplicationScopeAliasesUpdater {
 			return;
 		}
 
-		_scopeLocator.getLiferayOAuth2Scopes(companyId);
-
 		scopeAliasesList.add(_SCOPE_ALIAS);
 
 		for (String scopeAlias : scopeAliasesList) {

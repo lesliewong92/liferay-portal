@@ -87,12 +87,6 @@ public class AIHubCellOAuth2ApplicationScopeAliasesUpdaterTest {
 		_aiHubCellOAuth2ApplicationScopeAliasesUpdater.updateScopeAliases(
 			_COMPANY_ID);
 
-		Mockito.verify(
-			_scopeLocator
-		).getLiferayOAuth2Scopes(
-			_COMPANY_ID
-		);
-
 		List<String> scopeAliasesList = _getScopeAliasesList();
 
 		Assert.assertEquals(
