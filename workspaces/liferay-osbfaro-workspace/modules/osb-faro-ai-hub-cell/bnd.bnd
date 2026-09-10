@@ -1,0 +1,11 @@
+Bundle-Name: Liferay OSB Faro AI Hub Cell
+Bundle-SymbolicName: com.liferay.osb.faro.ai.hub.cell
+Bundle-Version: 1.0.0
+Import-Package:\
+	com.liferay.oauth2.provider.model;version="[4.1.0,9999.0.0)",\
+	com.liferay.oauth2.provider.scope.liferay;version="[4.0.0,9999.0.0)",\
+	com.liferay.oauth2.provider.service;version="[3.0.0,9999.0.0)",\
+	com.liferay.portal.kernel.exception;version="[1.0.0,9999.0.0)",\
+	com.liferay.portal.kernel.log;version="[1.0.0,9999.0.0)",\
+	\
+	*

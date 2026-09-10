@@ -6,6 +6,7 @@
 		<suppress checks="GradleDependencyVersionCheck" files=".*" />
 		<suppress checks="GradleTestDependencyVersionCheck" files=".*" />
 		<suppress checks="GradleVersionCheck" files=".*" />
+		<suppress checks="JavaComponentAnnotationsCheck" files=".*/com/liferay/osb/faro/ai/hub/cell/internal/oauth2/AIHubCellOAuth2ApplicationScopeAliasesUpdater\.java" />
 		<suppress checks="JavaComponentAnnotationsCheck" files=".*/com/liferay/osb/faro/rest/internal/graphql/client/FaroGraphQLClient\.java" />
 		<suppress checks="JavaComponentAnnotationsCheck" files="osb-faro-contacts-demo/.*" />
 		<suppress checks="JavaComponentAnnotationsCheck" files="osb-faro-web/.*" />
