@@ -5,11 +5,14 @@ Import-Package:\
 	com.liferay.oauth2.provider.model;version="[4.1.0,9999.0.0)",\
 	com.liferay.oauth2.provider.scope.liferay;version="[4.0.0,9999.0.0)",\
 	com.liferay.oauth2.provider.service;version="[3.0.0,9999.0.0)",\
+	com.liferay.petra.string;version="[1.7.0,9999.0.0)",\
 	com.liferay.portal.instance.lifecycle;version="[3.0.0,9999.0.0)",\
 	com.liferay.portal.kernel.exception;version="[1.0.0,9999.0.0)",\
 	com.liferay.portal.kernel.log;version="[1.0.0,9999.0.0)",\
 	com.liferay.portal.kernel.model;version="[29.0.0,9999.0.0)",\
 	com.liferay.portal.kernel.module.framework;version="[1.4.0,9999.0.0)",\
 	com.liferay.portal.kernel.util;version="[59.0.0,9999.0.0)",\
+	\
+	jakarta.ws.rs.core;version="[3.1.0,9999.0.0)",\
 	\
 	*
