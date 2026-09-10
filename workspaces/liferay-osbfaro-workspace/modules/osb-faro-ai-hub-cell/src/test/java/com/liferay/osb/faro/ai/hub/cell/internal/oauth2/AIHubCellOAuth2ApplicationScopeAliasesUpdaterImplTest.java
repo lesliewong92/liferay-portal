@@ -28,7 +28,7 @@ import org.mockito.Mockito;
 /**
  * @author Leslie Wong
  */
-public class AIHubCellOAuth2ApplicationScopeAliasesUpdaterTest {
+public class AIHubCellOAuth2ApplicationScopeAliasesUpdaterImplTest {
 
 	@Before
 	public void setUp() {
@@ -65,14 +65,14 @@ public class AIHubCellOAuth2ApplicationScopeAliasesUpdaterTest {
 		);
 
 		ReflectionTestUtil.setFieldValue(
-			_aiHubCellOAuth2ApplicationScopeAliasesUpdater,
+			_aiHubCellOAuth2ApplicationScopeAliasesUpdaterImpl,
 			"_oAuth2ApplicationLocalService", _oAuth2ApplicationLocalService);
 		ReflectionTestUtil.setFieldValue(
-			_aiHubCellOAuth2ApplicationScopeAliasesUpdater,
+			_aiHubCellOAuth2ApplicationScopeAliasesUpdaterImpl,
 			"_oAuth2ApplicationScopeAliasesLocalService",
 			_oAuth2ApplicationScopeAliasesLocalService);
 		ReflectionTestUtil.setFieldValue(
-			_aiHubCellOAuth2ApplicationScopeAliasesUpdater, "_scopeLocator",
+			_aiHubCellOAuth2ApplicationScopeAliasesUpdaterImpl, "_scopeLocator",
 			_scopeLocator);
 	}
 
@@ -84,7 +84,7 @@ public class AIHubCellOAuth2ApplicationScopeAliasesUpdaterTest {
 		_mockLiferayOAuth2Scopes(scopeAlias1, scopeAlias2, _SCOPE_ALIAS);
 		_mockScopeAliasesList(scopeAlias1, scopeAlias2);
 
-		_aiHubCellOAuth2ApplicationScopeAliasesUpdater.updateScopeAliases(
+		_aiHubCellOAuth2ApplicationScopeAliasesUpdaterImpl.updateScopeAliases(
 			_COMPANY_ID);
 
 		Assert.assertEquals(
@@ -98,7 +98,7 @@ public class AIHubCellOAuth2ApplicationScopeAliasesUpdaterTest {
 
 		_mockScopeAliasesList(RandomTestUtil.randomString(), _SCOPE_ALIAS);
 
-		_aiHubCellOAuth2ApplicationScopeAliasesUpdater.updateScopeAliases(
+		_aiHubCellOAuth2ApplicationScopeAliasesUpdaterImpl.updateScopeAliases(
 			_COMPANY_ID);
 
 		_verifyNoUpdate();
@@ -118,7 +118,7 @@ public class AIHubCellOAuth2ApplicationScopeAliasesUpdaterTest {
 			null
 		);
 
-		_aiHubCellOAuth2ApplicationScopeAliasesUpdater.updateScopeAliases(
+		_aiHubCellOAuth2ApplicationScopeAliasesUpdaterImpl.updateScopeAliases(
 			_COMPANY_ID);
 
 		_verifyNoUpdate();
@@ -132,7 +132,7 @@ public class AIHubCellOAuth2ApplicationScopeAliasesUpdaterTest {
 		_mockLiferayOAuth2Scopes(_SCOPE_ALIAS);
 		_mockScopeAliasesList();
 
-		_aiHubCellOAuth2ApplicationScopeAliasesUpdater.updateScopeAliases(
+		_aiHubCellOAuth2ApplicationScopeAliasesUpdaterImpl.updateScopeAliases(
 			_COMPANY_ID);
 
 		Assert.assertEquals(
@@ -152,7 +152,7 @@ public class AIHubCellOAuth2ApplicationScopeAliasesUpdaterTest {
 			new PortalException()
 		);
 
-		_aiHubCellOAuth2ApplicationScopeAliasesUpdater.updateScopeAliases(
+		_aiHubCellOAuth2ApplicationScopeAliasesUpdaterImpl.updateScopeAliases(
 			_COMPANY_ID);
 	}
 
@@ -165,14 +165,14 @@ public class AIHubCellOAuth2ApplicationScopeAliasesUpdaterTest {
 		_mockLiferayOAuth2Scopes(scopeAlias);
 		_mockScopeAliasesList(scopeAlias);
 
-		_aiHubCellOAuth2ApplicationScopeAliasesUpdater.updateScopeAliases(
+		_aiHubCellOAuth2ApplicationScopeAliasesUpdaterImpl.updateScopeAliases(
 			_COMPANY_ID);
 
 		_verifyNoUpdate();
 
 		_mockLiferayOAuth2Scopes(_SCOPE_ALIAS);
 
-		_aiHubCellOAuth2ApplicationScopeAliasesUpdater.updateScopeAliases(
+		_aiHubCellOAuth2ApplicationScopeAliasesUpdaterImpl.updateScopeAliases(
 			_COMPANY_ID);
 
 		_verifyNoUpdate();
@@ -238,9 +238,9 @@ public class AIHubCellOAuth2ApplicationScopeAliasesUpdaterTest {
 
 	private static final String _USER_NAME = RandomTestUtil.randomString();
 
-	private final AIHubCellOAuth2ApplicationScopeAliasesUpdater
-		_aiHubCellOAuth2ApplicationScopeAliasesUpdater =
-			new AIHubCellOAuth2ApplicationScopeAliasesUpdater();
+	private final AIHubCellOAuth2ApplicationScopeAliasesUpdaterImpl
+		_aiHubCellOAuth2ApplicationScopeAliasesUpdaterImpl =
+			new AIHubCellOAuth2ApplicationScopeAliasesUpdaterImpl();
 	private final OAuth2Application _oAuth2Application = Mockito.mock(
 		OAuth2Application.class);
 	private final OAuth2ApplicationLocalService _oAuth2ApplicationLocalService =
