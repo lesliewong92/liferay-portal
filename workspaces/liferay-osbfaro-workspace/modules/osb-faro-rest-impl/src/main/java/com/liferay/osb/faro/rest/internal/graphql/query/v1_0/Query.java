@@ -6,6 +6,7 @@
 package com.liferay.osb.faro.rest.internal.graphql.query.v1_0;
 
 import com.liferay.osb.faro.rest.dto.v1_0.Account;
+import com.liferay.osb.faro.rest.dto.v1_0.AccountLifecycleStageTransition;
 import com.liferay.osb.faro.rest.dto.v1_0.AssetSummaryMetric;
 import com.liferay.osb.faro.rest.dto.v1_0.Channel;
 import com.liferay.osb.faro.rest.dto.v1_0.Event;
@@ -15,6 +16,7 @@ import com.liferay.osb.faro.rest.dto.v1_0.IndividualSegmentMembership;
 import com.liferay.osb.faro.rest.dto.v1_0.PageMetric;
 import com.liferay.osb.faro.rest.dto.v1_0.SearchTerm;
 import com.liferay.osb.faro.rest.dto.v1_0.Workspace;
+import com.liferay.osb.faro.rest.resource.v1_0.AccountLifecycleStageTransitionResource;
 import com.liferay.osb.faro.rest.resource.v1_0.AccountResource;
 import com.liferay.osb.faro.rest.resource.v1_0.AssetSummaryMetricResource;
 import com.liferay.osb.faro.rest.resource.v1_0.ChannelResource;
@@ -62,6 +64,15 @@ public class Query {
 
 		_accountResourceComponentServiceObjects =
 			accountResourceComponentServiceObjects;
+	}
+
+	public static void
+		setAccountLifecycleStageTransitionResourceComponentServiceObjects(
+			ComponentServiceObjects<AccountLifecycleStageTransitionResource>
+				accountLifecycleStageTransitionResourceComponentServiceObjects) {
+
+		_accountLifecycleStageTransitionResourceComponentServiceObjects =
+			accountLifecycleStageTransitionResourceComponentServiceObjects;
 	}
 
 	public static void setAssetSummaryMetricResourceComponentServiceObjects(
@@ -181,6 +192,46 @@ public class Query {
 				accountResource.getWorkspaceGroupChannelAccountsPage(
 					groupId, channelId, search, Pagination.of(page, pageSize),
 					_sortsBiFunction.apply(accountResource, sortsString))));
+	}
+
+	/**
+	 * Invoke this method with the command line:
+	 *
+	 * curl -H 'Content-Type: text/plain; charset=utf-8' -X 'POST' 'http://localhost:8080/o/graphql' -d $'{"query": "query {workspaceGroupAccountLifecycleStageTransitions(accountLifecycleId: ___, country: ___, fromStageId: ___, groupId: ___, industry: ___, page: ___, pageSize: ___, rangeEnd: ___, rangeKey: ___, rangeStart: ___, segmentId: ___, sorts: ___, toStageId: ___){items {__}, page, pageSize, totalCount}}"}' -u 'test@liferay.com:test'
+	 */
+	@GraphQLField(
+		description = "List the accounts that moved from one account lifecycle stage to another within a date range, one entry per move and most recent first. Each entry names the account, the stage it left, the stage it entered, and when the move happened. Filter by origin stage (`fromStageId`), destination stage (`toStageId`), account country or industry, or segment membership. For date-range filtering pass `rangeKey` as one of LAST_24_HOURS, YESTERDAY, LAST_7_DAYS, LAST_28_DAYS, LAST_30_DAYS, LAST_90_DAYS, LAST_180_DAYS, LAST_YEAR; it defaults to LAST_90_DAYS, roughly the last quarter. Alternatively, pass `rangeStart` and `rangeEnd` as dates for a custom window."
+	)
+	public AccountLifecycleStageTransitionPage
+			workspaceGroupAccountLifecycleStageTransitions(
+				@GraphQLName("groupId") Long groupId,
+				@GraphQLName("accountLifecycleId") String accountLifecycleId,
+				@GraphQLName("country") String country,
+				@GraphQLName("fromStageId") String fromStageId,
+				@GraphQLName("industry") String industry,
+				@GraphQLName("rangeEnd") String rangeEnd,
+				@GraphQLName("rangeKey") String rangeKey,
+				@GraphQLName("rangeStart") String rangeStart,
+				@GraphQLName("segmentId") Long segmentId,
+				@GraphQLName("toStageId") String toStageId,
+				@GraphQLName("pageSize") int pageSize,
+				@GraphQLName("page") int page,
+				@GraphQLName("sort") String sortsString)
+		throws Exception {
+
+		return _applyComponentServiceObjects(
+			_accountLifecycleStageTransitionResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			accountLifecycleStageTransitionResource ->
+				new AccountLifecycleStageTransitionPage(
+					accountLifecycleStageTransitionResource.
+						getWorkspaceGroupAccountLifecycleStageTransitionsPage(
+							groupId, accountLifecycleId, country, fromStageId,
+							industry, rangeEnd, rangeKey, rangeStart, segmentId,
+							toStageId, Pagination.of(page, pageSize),
+							_sortsBiFunction.apply(
+								accountLifecycleStageTransitionResource,
+								sortsString))));
 	}
 
 	/**
@@ -509,6 +560,41 @@ public class Query {
 
 		@GraphQLField
 		protected java.util.Collection<Account> items;
+
+		@GraphQLField
+		protected long lastPage;
+
+		@GraphQLField
+		protected long page;
+
+		@GraphQLField
+		protected long pageSize;
+
+		@GraphQLField
+		protected long totalCount;
+
+	}
+
+	@GraphQLName("AccountLifecycleStageTransitionPage")
+	public class AccountLifecycleStageTransitionPage {
+
+		public AccountLifecycleStageTransitionPage(
+			Page accountLifecycleStageTransitionPage) {
+
+			actions = accountLifecycleStageTransitionPage.getActions();
+
+			items = accountLifecycleStageTransitionPage.getItems();
+			lastPage = accountLifecycleStageTransitionPage.getLastPage();
+			page = accountLifecycleStageTransitionPage.getPage();
+			pageSize = accountLifecycleStageTransitionPage.getPageSize();
+			totalCount = accountLifecycleStageTransitionPage.getTotalCount();
+		}
+
+		@GraphQLField
+		protected Map<String, Map<String, String>> actions;
+
+		@GraphQLField
+		protected java.util.Collection<AccountLifecycleStageTransition> items;
 
 		@GraphQLField
 		protected long lastPage;
@@ -860,6 +946,30 @@ public class Query {
 	}
 
 	private void _populateResourceContext(
+			AccountLifecycleStageTransitionResource
+				accountLifecycleStageTransitionResource)
+		throws Exception {
+
+		accountLifecycleStageTransitionResource.setContextAcceptLanguage(
+			_acceptLanguage);
+		accountLifecycleStageTransitionResource.setContextCompany(_company);
+		accountLifecycleStageTransitionResource.setContextHttpServletRequest(
+			_httpServletRequest);
+		accountLifecycleStageTransitionResource.setContextHttpServletResponse(
+			_httpServletResponse);
+		accountLifecycleStageTransitionResource.setContextUriInfo(_uriInfo);
+		accountLifecycleStageTransitionResource.setContextUser(_user);
+		accountLifecycleStageTransitionResource.setGroupLocalService(
+			_groupLocalService);
+		accountLifecycleStageTransitionResource.setResourceActionLocalService(
+			_resourceActionLocalService);
+		accountLifecycleStageTransitionResource.
+			setResourcePermissionLocalService(_resourcePermissionLocalService);
+		accountLifecycleStageTransitionResource.setRoleLocalService(
+			_roleLocalService);
+	}
+
+	private void _populateResourceContext(
 			AssetSummaryMetricResource assetSummaryMetricResource)
 		throws Exception {
 
@@ -1027,6 +1137,9 @@ public class Query {
 
 	private static ComponentServiceObjects<AccountResource>
 		_accountResourceComponentServiceObjects;
+	private static ComponentServiceObjects
+		<AccountLifecycleStageTransitionResource>
+			_accountLifecycleStageTransitionResourceComponentServiceObjects;
 	private static ComponentServiceObjects<AssetSummaryMetricResource>
 		_assetSummaryMetricResourceComponentServiceObjects;
 	private static ComponentServiceObjects<ChannelResource>
@@ -1063,4 +1176,4 @@ public class Query {
 	private com.liferay.portal.kernel.model.User _user;
 
 }
-// LIFERAY-REST-BUILDER-HASH:1907113082
+// LIFERAY-REST-BUILDER-HASH:1580965998
