@@ -13,6 +13,7 @@ import com.liferay.osb.faro.engine.client.model.AccountDetails;
 import com.liferay.osb.faro.engine.client.model.AccountLifecycle;
 import com.liferay.osb.faro.engine.client.model.AccountLifecycleMetric;
 import com.liferay.osb.faro.engine.client.model.AccountLifecycleStageMetric;
+import com.liferay.osb.faro.engine.client.model.AccountLifecycleStageTransition;
 import com.liferay.osb.faro.engine.client.model.AccountLifecycleStatus;
 import com.liferay.osb.faro.engine.client.model.AccountMetric;
 import com.liferay.osb.faro.engine.client.model.AccountName;
@@ -409,6 +410,20 @@ public abstract class BaseMockContactsEngineClientImpl
 
 		return contactsEngineClient.getAccountLifecycleStageMetrics(
 			faroProject, country, id, industry, segmentId);
+	}
+
+	@Override
+	public Results<AccountLifecycleStageTransition>
+			getAccountLifecycleStageTransitions(
+				FaroProject faroProject, String country, String fromStageId,
+				String id, String industry, String rangeEnd, Integer rangeKey,
+				String rangeStart, Long segmentId, String toStageId, int cur,
+				int delta, List<OrderByField> orderByFields)
+		throws FaroEngineClientException {
+
+		return contactsEngineClient.getAccountLifecycleStageTransitions(
+			faroProject, country, fromStageId, id, industry, rangeEnd, rangeKey,
+			rangeStart, segmentId, toStageId, cur, delta, orderByFields);
 	}
 
 	@Override
