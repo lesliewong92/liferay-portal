@@ -888,9 +888,9 @@ public class ContactsEngineClientImpl
 	@Override
 	public Results<AccountLifecycleStageTransition>
 			getAccountLifecycleStageTransitions(
-				FaroProject faroProject, String country, String fromStageId,
+				FaroProject faroProject, String country, String fromStageName,
 				String id, String industry, String rangeEnd, Integer rangeKey,
-				String rangeStart, Long segmentId, String toStageId, int cur,
+				String rangeStart, Long segmentId, String toStageName, int cur,
 				int delta, List<OrderByField> orderByFields)
 		throws FaroEngineClientException {
 
@@ -901,8 +901,8 @@ public class ContactsEngineClientImpl
 			uriVariables.put("country", country);
 		}
 
-		if (Validator.isNotNull(fromStageId)) {
-			uriVariables.put("fromStageId", fromStageId);
+		if (Validator.isNotNull(fromStageName)) {
+			uriVariables.put("fromStageName", fromStageName);
 		}
 
 		uriVariables.put("id", id);
@@ -927,8 +927,8 @@ public class ContactsEngineClientImpl
 			uriVariables.put("segmentId", segmentId);
 		}
 
-		if (Validator.isNotNull(toStageId)) {
-			uriVariables.put("toStageId", toStageId);
+		if (Validator.isNotNull(toStageName)) {
+			uriVariables.put("toStageName", toStageName);
 		}
 
 		PagedModel<?, AccountLifecycleStageTransition> pagedModel = get(
