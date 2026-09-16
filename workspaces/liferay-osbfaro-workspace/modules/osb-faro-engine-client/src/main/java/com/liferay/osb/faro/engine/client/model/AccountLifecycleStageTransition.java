@@ -20,12 +20,12 @@ public class AccountLifecycleStageTransition {
 		return _accountName;
 	}
 
-	public AccountLifecycleStage getFromStage() {
-		return _fromStage;
+	public AccountLifecycleStage getFromAccountLifecycleStage() {
+		return _fromAccountLifecycleStage;
 	}
 
-	public AccountLifecycleStage getToStage() {
-		return _toStage;
+	public AccountLifecycleStage getToAccountLifecycleStage() {
+		return _toAccountLifecycleStage;
 	}
 
 	public Date getTransitionDate() {
@@ -44,12 +44,16 @@ public class AccountLifecycleStageTransition {
 		_accountName = accountName;
 	}
 
-	public void setFromStage(AccountLifecycleStage fromStage) {
-		_fromStage = fromStage;
+	public void setFromAccountLifecycleStage(
+		AccountLifecycleStage fromAccountLifecycleStage) {
+
+		_fromAccountLifecycleStage = fromAccountLifecycleStage;
 	}
 
-	public void setToStage(AccountLifecycleStage toStage) {
-		_toStage = toStage;
+	public void setToAccountLifecycleStage(
+		AccountLifecycleStage toAccountLifecycleStage) {
+
+		_toAccountLifecycleStage = toAccountLifecycleStage;
 	}
 
 	public void setTransitionDate(Date transitionDate) {
@@ -60,8 +64,8 @@ public class AccountLifecycleStageTransition {
 
 	private String _accountId;
 	private String _accountName;
-	private AccountLifecycleStage _fromStage;
-	private AccountLifecycleStage _toStage;
+	private AccountLifecycleStage _fromAccountLifecycleStage;
+	private AccountLifecycleStage _toAccountLifecycleStage;
 	private Date _transitionDate;
 
 }
