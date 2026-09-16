@@ -116,7 +116,7 @@ public abstract class BaseAccountLifecycleStageTransitionResourceImpl
 				name = "segmentId"
 			),
 			@io.swagger.v3.oas.annotations.Parameter(
-				description = "Sort expression `column:asc|desc`. Defaults to `transitionDate:desc`. Columns: accountId, accountName, fromStageId, toStageId, transitionDate.",
+				description = "Sort expression `column:asc|desc`. Defaults to `transitionDate:desc`. Columns: accountId, accountName, fromAccountLifecycleStageId, toAccountLifecycleStageId, transitionDate.",
 				example = "transitionDate:desc",
 				in = io.swagger.v3.oas.annotations.enums.ParameterIn.QUERY,
 				name = "sort"
@@ -637,4 +637,4 @@ public abstract class BaseAccountLifecycleStageTransitionResourceImpl
 			BaseAccountLifecycleStageTransitionResourceImpl.class);
 
 }
-// LIFERAY-REST-BUILDER-HASH:-1292517359
+// LIFERAY-REST-BUILDER-HASH:1121941041
