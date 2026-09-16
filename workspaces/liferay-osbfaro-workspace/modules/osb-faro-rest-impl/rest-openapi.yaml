@@ -686,7 +686,7 @@ paths:
                         type: integer
                 -   in: query
                     description:
-                        "Sort expression `column:asc|desc`. Defaults to `transitionDate:desc`. Columns: accountId, accountName, fromStageId, toStageId, transitionDate."
+                        "Sort expression `column:asc|desc`. Defaults to `transitionDate:desc`. Columns: accountId, accountName, fromAccountLifecycleStageId, toAccountLifecycleStageId, transitionDate."
                     example: transitionDate:desc
                     name: sort
                     schema:
