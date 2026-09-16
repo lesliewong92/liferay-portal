@@ -54,7 +54,7 @@ public abstract class BaseAccountLifecycleStageTransitionResourceImpl
 	 * curl -X 'GET' 'http://localhost:8080/o/faro-rest/v1.0/workspace/{groupId}/account-lifecycles/{accountLifecycleId}/stage-transitions'  -u 'test@liferay.com:test'
 	 */
 	@io.swagger.v3.oas.annotations.Operation(
-		description = "List the accounts that moved from one account lifecycle stage to another within a date range, one entry per move and most recent first. Each entry names the account, the stage it left, the stage it entered, and when the move happened. Filter by origin stage (`fromStageId`), destination stage (`toStageId`), account country or industry, or segment membership. For date-range filtering pass `rangeKey` as one of LAST_24_HOURS, YESTERDAY, LAST_7_DAYS, LAST_28_DAYS, LAST_30_DAYS, LAST_90_DAYS, LAST_180_DAYS, LAST_YEAR; it defaults to LAST_90_DAYS, roughly the last quarter. Alternatively, pass `rangeStart` and `rangeEnd` as dates for a custom window."
+		description = "List the accounts that moved from one account lifecycle stage to another within a date range, one entry per move and most recent first. Each entry names the account, the stage it left, the stage it entered, and when the move happened. Filter by origin stage (`fromStageName`), destination stage (`toStageName`), account country or industry, or segment membership. Stage names are matched case-insensitively against the stage type (e.g. PIPELINE or 'at risk') or the stage description. For date-range filtering pass `rangeKey` as one of LAST_24_HOURS, YESTERDAY, LAST_7_DAYS, LAST_28_DAYS, LAST_30_DAYS, LAST_90_DAYS, LAST_180_DAYS, LAST_YEAR; it defaults to LAST_90_DAYS, roughly the last quarter. Alternatively, pass `rangeStart` and `rangeEnd` as dates for a custom window."
 	)
 	@io.swagger.v3.oas.annotations.Parameters(
 		value = {
@@ -74,9 +74,10 @@ public abstract class BaseAccountLifecycleStageTransitionResourceImpl
 				name = "country"
 			),
 			@io.swagger.v3.oas.annotations.Parameter(
-				description = "Only include moves out of this stage. Use a stage `id` of the lifecycle.",
+				description = "Only include moves out of this stage. Give the stage type (e.g. PIPELINE) or its description; matching is case-insensitive.",
+				example = "PIPELINE",
 				in = io.swagger.v3.oas.annotations.enums.ParameterIn.QUERY,
-				name = "fromStageId"
+				name = "fromStageName"
 			),
 			@io.swagger.v3.oas.annotations.Parameter(
 				description = "Only include accounts in this industry.",
@@ -121,9 +122,10 @@ public abstract class BaseAccountLifecycleStageTransitionResourceImpl
 				name = "sort"
 			),
 			@io.swagger.v3.oas.annotations.Parameter(
-				description = "Only include moves into this stage. Use a stage `id` of the lifecycle.",
+				description = "Only include moves into this stage. Give the stage type (e.g. ONBOARDING) or its description; matching is case-insensitive.",
+				example = "ONBOARDING",
 				in = io.swagger.v3.oas.annotations.enums.ParameterIn.QUERY,
-				name = "toStageId"
+				name = "toStageName"
 			)
 		}
 	)
@@ -154,8 +156,8 @@ public abstract class BaseAccountLifecycleStageTransitionResourceImpl
 				@jakarta.ws.rs.QueryParam("country")
 				String country,
 				@io.swagger.v3.oas.annotations.Parameter(hidden = true)
-				@jakarta.ws.rs.QueryParam("fromStageId")
-				String fromStageId,
+				@jakarta.ws.rs.QueryParam("fromStageName")
+				String fromStageName,
 				@io.swagger.v3.oas.annotations.Parameter(hidden = true)
 				@jakarta.ws.rs.QueryParam("industry")
 				String industry,
@@ -172,8 +174,8 @@ public abstract class BaseAccountLifecycleStageTransitionResourceImpl
 				@jakarta.ws.rs.QueryParam("segmentId")
 				Long segmentId,
 				@io.swagger.v3.oas.annotations.Parameter(hidden = true)
-				@jakarta.ws.rs.QueryParam("toStageId")
-				String toStageId,
+				@jakarta.ws.rs.QueryParam("toStageName")
+				String toStageName,
 				@jakarta.ws.rs.core.Context Pagination pagination,
 				@jakarta.ws.rs.core.Context
 					com.liferay.portal.kernel.search.Sort[] sorts)
@@ -635,4 +637,4 @@ public abstract class BaseAccountLifecycleStageTransitionResourceImpl
 			BaseAccountLifecycleStageTransitionResourceImpl.class);
 
 }
-// LIFERAY-REST-BUILDER-HASH:-1294193004
+// LIFERAY-REST-BUILDER-HASH:-1007395449
