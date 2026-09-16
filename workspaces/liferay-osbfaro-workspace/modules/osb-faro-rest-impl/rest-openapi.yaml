@@ -74,7 +74,7 @@ components:
                     type: integer
                 stageType:
                     description:
-                        "Stage type: AWARE, ENGAGED, PIPELINE, ONBOARDING, ESTABLISHED, or AT_RISK. Use it (or the description) as `fromStageName` or `toStageName` to filter stage transitions."
+                        "Stage type: AWARE, ENGAGED, PIPELINE, ONBOARDING, ESTABLISHED, or AT_RISK. Use it (or the description) as `fromLifecycleStage` or `toLifecycleStage` to filter stage transitions."
                     readOnly: true
                     type: string
             type: object
@@ -608,7 +608,7 @@ paths:
     "/workspace/{groupId}/account-lifecycles/{accountLifecycleId}/stage-transitions":
         get:
             description:
-                "List the accounts that moved from one account lifecycle stage to another within a date range, one entry per move and most recent first. Each entry names the account, the stage it left, the stage it entered, and when the move happened. Filter by origin stage (`fromStageName`), destination stage (`toStageName`), account country or industry, or segment membership. Stage names are matched case-insensitively against the stage type (e.g. PIPELINE or 'at risk') or the stage description. For date-range filtering pass `rangeKey` as one of LAST_24_HOURS, YESTERDAY, LAST_7_DAYS, LAST_28_DAYS, LAST_30_DAYS, LAST_90_DAYS, LAST_180_DAYS, LAST_YEAR; it defaults to LAST_90_DAYS, roughly the last quarter. Alternatively, pass `rangeStart` and `rangeEnd` as dates for a custom window."
+                "List the accounts that moved from one account lifecycle stage to another within a date range, one entry per move and most recent first. Each entry names the account, the stage it left, the stage it entered, and when the move happened. Filter by origin stage (`fromLifecycleStage`), destination stage (`toLifecycleStage`), account country or industry, or segment membership. Lifecycle stage values are matched case-insensitively against the stage type (e.g. PIPELINE or 'at risk') or the stage description. For date-range filtering pass `rangeKey` as one of LAST_24_HOURS, YESTERDAY, LAST_7_DAYS, LAST_28_DAYS, LAST_30_DAYS, LAST_90_DAYS, LAST_180_DAYS, LAST_YEAR; it defaults to LAST_90_DAYS, roughly the last quarter. Alternatively, pass `rangeStart` and `rangeEnd` as dates for a custom window."
             operationId: getWorkspaceGroupAccountLifecycleStageTransitionsPage
             parameters:
                 -   in: path
@@ -636,7 +636,7 @@ paths:
                     description:
                         "Only include moves out of this stage. Give the stage type (e.g. PIPELINE) or its description; matching is case-insensitive."
                     example: PIPELINE
-                    name: fromStageName
+                    name: fromLifecycleStage
                     schema:
                         type: string
                 -   in: query
@@ -695,7 +695,7 @@ paths:
                     description:
                         "Only include moves into this stage. Give the stage type (e.g. ONBOARDING) or its description; matching is case-insensitive."
                     example: ONBOARDING
-                    name: toStageName
+                    name: toLifecycleStage
                     schema:
                         type: string
             responses:

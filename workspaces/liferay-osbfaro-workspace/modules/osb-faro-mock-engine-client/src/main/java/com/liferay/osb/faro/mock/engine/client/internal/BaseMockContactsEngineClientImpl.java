@@ -415,15 +415,16 @@ public abstract class BaseMockContactsEngineClientImpl
 	@Override
 	public Results<AccountLifecycleStageTransition>
 			getAccountLifecycleStageTransitions(
-				FaroProject faroProject, String country, String fromStageName,
-				String id, String industry, String rangeEnd, Integer rangeKey,
-				String rangeStart, Long segmentId, String toStageName, int cur,
-				int delta, List<OrderByField> orderByFields)
+				FaroProject faroProject, String country,
+				String fromLifecycleStage, String id, String industry,
+				String rangeEnd, Integer rangeKey, String rangeStart,
+				Long segmentId, String toLifecycleStage, int cur, int delta,
+				List<OrderByField> orderByFields)
 		throws FaroEngineClientException {
 
 		return contactsEngineClient.getAccountLifecycleStageTransitions(
-			faroProject, country, fromStageName, id, industry, rangeEnd,
-			rangeKey, rangeStart, segmentId, toStageName, cur, delta,
+			faroProject, country, fromLifecycleStage, id, industry, rangeEnd,
+			rangeKey, rangeStart, segmentId, toLifecycleStage, cur, delta,
 			orderByFields);
 	}
 

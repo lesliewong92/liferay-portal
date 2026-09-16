@@ -235,10 +235,11 @@ public interface ContactsEngineClient {
 
 	public Results<AccountLifecycleStageTransition>
 			getAccountLifecycleStageTransitions(
-				FaroProject faroProject, String country, String fromStageName,
-				String id, String industry, String rangeEnd, Integer rangeKey,
-				String rangeStart, Long segmentId, String toStageName, int cur,
-				int delta, List<OrderByField> orderByFields)
+				FaroProject faroProject, String country,
+				String fromLifecycleStage, String id, String industry,
+				String rangeEnd, Integer rangeKey, String rangeStart,
+				Long segmentId, String toLifecycleStage, int cur, int delta,
+				List<OrderByField> orderByFields)
 		throws FaroEngineClientException;
 
 	public AccountLifecycleStatus getAccountLifecycleStatus(
