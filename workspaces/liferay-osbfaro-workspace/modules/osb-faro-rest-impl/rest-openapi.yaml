@@ -92,12 +92,12 @@ components:
                         "Name of the account."
                     readOnly: true
                     type: string
-                fromStage:
+                fromAccountLifecycleStage:
                     $ref: "#/components/schemas/AccountLifecycleStage"
                     description:
                         "Stage the account left."
                     readOnly: true
-                toStage:
+                toAccountLifecycleStage:
                     $ref: "#/components/schemas/AccountLifecycleStage"
                     description:
                         "Stage the account entered."
