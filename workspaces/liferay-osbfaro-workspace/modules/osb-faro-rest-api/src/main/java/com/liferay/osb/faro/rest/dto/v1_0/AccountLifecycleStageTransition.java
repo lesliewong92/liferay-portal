@@ -152,30 +152,33 @@ public class AccountLifecycleStageTransition implements Serializable {
 		description = "Stage the account left."
 	)
 	@Valid
-	public AccountLifecycleStage getFromStage() {
-		if (_fromStageSupplier != null) {
-			fromStage = _fromStageSupplier.get();
+	public AccountLifecycleStage getFromAccountLifecycleStage() {
+		if (_fromAccountLifecycleStageSupplier != null) {
+			fromAccountLifecycleStage =
+				_fromAccountLifecycleStageSupplier.get();
 
-			_fromStageSupplier = null;
+			_fromAccountLifecycleStageSupplier = null;
 		}
 
-		return fromStage;
+		return fromAccountLifecycleStage;
 	}
 
-	public void setFromStage(AccountLifecycleStage fromStage) {
-		this.fromStage = fromStage;
+	public void setFromAccountLifecycleStage(
+		AccountLifecycleStage fromAccountLifecycleStage) {
 
-		_fromStageSupplier = null;
+		this.fromAccountLifecycleStage = fromAccountLifecycleStage;
+
+		_fromAccountLifecycleStageSupplier = null;
 	}
 
 	@JsonIgnore
-	public void setFromStage(
+	public void setFromAccountLifecycleStage(
 		UnsafeSupplier<AccountLifecycleStage, Exception>
-			fromStageUnsafeSupplier) {
+			fromAccountLifecycleStageUnsafeSupplier) {
 
-		_fromStageSupplier = () -> {
+		_fromAccountLifecycleStageSupplier = () -> {
 			try {
-				return fromStageUnsafeSupplier.get();
+				return fromAccountLifecycleStageUnsafeSupplier.get();
 			}
 			catch (RuntimeException runtimeException) {
 				throw runtimeException;
@@ -188,39 +191,41 @@ public class AccountLifecycleStageTransition implements Serializable {
 
 	@GraphQLField(description = "Stage the account left.")
 	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
-	protected AccountLifecycleStage fromStage;
+	protected AccountLifecycleStage fromAccountLifecycleStage;
 
 	@JsonIgnore
-	private Supplier<AccountLifecycleStage> _fromStageSupplier;
+	private Supplier<AccountLifecycleStage> _fromAccountLifecycleStageSupplier;
 
 	@io.swagger.v3.oas.annotations.media.Schema(
 		description = "Stage the account entered."
 	)
 	@Valid
-	public AccountLifecycleStage getToStage() {
-		if (_toStageSupplier != null) {
-			toStage = _toStageSupplier.get();
+	public AccountLifecycleStage getToAccountLifecycleStage() {
+		if (_toAccountLifecycleStageSupplier != null) {
+			toAccountLifecycleStage = _toAccountLifecycleStageSupplier.get();
 
-			_toStageSupplier = null;
+			_toAccountLifecycleStageSupplier = null;
 		}
 
-		return toStage;
+		return toAccountLifecycleStage;
 	}
 
-	public void setToStage(AccountLifecycleStage toStage) {
-		this.toStage = toStage;
+	public void setToAccountLifecycleStage(
+		AccountLifecycleStage toAccountLifecycleStage) {
 
-		_toStageSupplier = null;
+		this.toAccountLifecycleStage = toAccountLifecycleStage;
+
+		_toAccountLifecycleStageSupplier = null;
 	}
 
 	@JsonIgnore
-	public void setToStage(
+	public void setToAccountLifecycleStage(
 		UnsafeSupplier<AccountLifecycleStage, Exception>
-			toStageUnsafeSupplier) {
+			toAccountLifecycleStageUnsafeSupplier) {
 
-		_toStageSupplier = () -> {
+		_toAccountLifecycleStageSupplier = () -> {
 			try {
-				return toStageUnsafeSupplier.get();
+				return toAccountLifecycleStageUnsafeSupplier.get();
 			}
 			catch (RuntimeException runtimeException) {
 				throw runtimeException;
@@ -233,10 +238,10 @@ public class AccountLifecycleStageTransition implements Serializable {
 
 	@GraphQLField(description = "Stage the account entered.")
 	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
-	protected AccountLifecycleStage toStage;
+	protected AccountLifecycleStage toAccountLifecycleStage;
 
 	@JsonIgnore
-	private Supplier<AccountLifecycleStage> _toStageSupplier;
+	private Supplier<AccountLifecycleStage> _toAccountLifecycleStageSupplier;
 
 	@io.swagger.v3.oas.annotations.media.Schema(
 		description = "When the account entered the new stage."
@@ -345,28 +350,30 @@ public class AccountLifecycleStageTransition implements Serializable {
 			sb.append("\"");
 		}
 
-		AccountLifecycleStage fromStage = getFromStage();
+		AccountLifecycleStage fromAccountLifecycleStage =
+			getFromAccountLifecycleStage();
 
-		if (fromStage != null) {
+		if (fromAccountLifecycleStage != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
 
-			sb.append("\"fromStage\": ");
+			sb.append("\"fromAccountLifecycleStage\": ");
 
-			sb.append(String.valueOf(fromStage));
+			sb.append(String.valueOf(fromAccountLifecycleStage));
 		}
 
-		AccountLifecycleStage toStage = getToStage();
+		AccountLifecycleStage toAccountLifecycleStage =
+			getToAccountLifecycleStage();
 
-		if (toStage != null) {
+		if (toAccountLifecycleStage != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
 
-			sb.append("\"toStage\": ");
+			sb.append("\"toAccountLifecycleStage\": ");
 
-			sb.append(String.valueOf(toStage));
+			sb.append(String.valueOf(toAccountLifecycleStage));
 		}
 
 		Date transitionDate = getTransitionDate();
@@ -486,4 +493,4 @@ public class AccountLifecycleStageTransition implements Serializable {
 	private Map<String, Serializable> _extendedProperties;
 
 }
-// LIFERAY-REST-BUILDER-HASH:1671312134
+// LIFERAY-REST-BUILDER-HASH:1099544326

@@ -773,16 +773,24 @@ public abstract class BaseAccountLifecycleStageTransitionResourceTestCase {
 				continue;
 			}
 
-			if (Objects.equals("fromStage", additionalAssertFieldName)) {
-				if (accountLifecycleStageTransition.getFromStage() == null) {
+			if (Objects.equals(
+					"fromAccountLifecycleStage", additionalAssertFieldName)) {
+
+				if (accountLifecycleStageTransition.
+						getFromAccountLifecycleStage() == null) {
+
 					valid = false;
 				}
 
 				continue;
 			}
 
-			if (Objects.equals("toStage", additionalAssertFieldName)) {
-				if (accountLifecycleStageTransition.getToStage() == null) {
+			if (Objects.equals(
+					"toAccountLifecycleStage", additionalAssertFieldName)) {
+
+				if (accountLifecycleStageTransition.
+						getToAccountLifecycleStage() == null) {
+
 					valid = false;
 				}
 
@@ -944,10 +952,14 @@ public abstract class BaseAccountLifecycleStageTransitionResourceTestCase {
 				continue;
 			}
 
-			if (Objects.equals("fromStage", additionalAssertFieldName)) {
+			if (Objects.equals(
+					"fromAccountLifecycleStage", additionalAssertFieldName)) {
+
 				if (!Objects.deepEquals(
-						accountLifecycleStageTransition1.getFromStage(),
-						accountLifecycleStageTransition2.getFromStage())) {
+						accountLifecycleStageTransition1.
+							getFromAccountLifecycleStage(),
+						accountLifecycleStageTransition2.
+							getFromAccountLifecycleStage())) {
 
 					return false;
 				}
@@ -955,10 +967,14 @@ public abstract class BaseAccountLifecycleStageTransitionResourceTestCase {
 				continue;
 			}
 
-			if (Objects.equals("toStage", additionalAssertFieldName)) {
+			if (Objects.equals(
+					"toAccountLifecycleStage", additionalAssertFieldName)) {
+
 				if (!Objects.deepEquals(
-						accountLifecycleStageTransition1.getToStage(),
-						accountLifecycleStageTransition2.getToStage())) {
+						accountLifecycleStageTransition1.
+							getToAccountLifecycleStage(),
+						accountLifecycleStageTransition2.
+							getToAccountLifecycleStage())) {
 
 					return false;
 				}
@@ -1179,12 +1195,12 @@ public abstract class BaseAccountLifecycleStageTransitionResourceTestCase {
 			return sb.toString();
 		}
 
-		if (entityFieldName.equals("fromStage")) {
+		if (entityFieldName.equals("fromAccountLifecycleStage")) {
 			throw new IllegalArgumentException(
 				"Invalid entity field " + entityFieldName);
 		}
 
-		if (entityFieldName.equals("toStage")) {
+		if (entityFieldName.equals("toAccountLifecycleStage")) {
 			throw new IllegalArgumentException(
 				"Invalid entity field " + entityFieldName);
 		}
@@ -1510,4 +1526,4 @@ public abstract class BaseAccountLifecycleStageTransitionResourceTestCase {
 			_accountLifecycleStageTransitionResource;
 
 }
-// LIFERAY-REST-BUILDER-HASH:-1592425950
+// LIFERAY-REST-BUILDER-HASH:-682377298

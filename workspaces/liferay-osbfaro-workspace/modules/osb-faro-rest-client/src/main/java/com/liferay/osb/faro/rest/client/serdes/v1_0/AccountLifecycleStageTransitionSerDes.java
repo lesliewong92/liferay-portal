@@ -85,26 +85,34 @@ public class AccountLifecycleStageTransitionSerDes {
 			sb.append("\"");
 		}
 
-		if (accountLifecycleStageTransition.getFromStage() != null) {
+		if (accountLifecycleStageTransition.getFromAccountLifecycleStage() !=
+				null) {
+
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
 
-			sb.append("\"fromStage\": ");
+			sb.append("\"fromAccountLifecycleStage\": ");
 
 			sb.append(
-				String.valueOf(accountLifecycleStageTransition.getFromStage()));
+				String.valueOf(
+					accountLifecycleStageTransition.
+						getFromAccountLifecycleStage()));
 		}
 
-		if (accountLifecycleStageTransition.getToStage() != null) {
+		if (accountLifecycleStageTransition.getToAccountLifecycleStage() !=
+				null) {
+
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
 
-			sb.append("\"toStage\": ");
+			sb.append("\"toAccountLifecycleStage\": ");
 
 			sb.append(
-				String.valueOf(accountLifecycleStageTransition.getToStage()));
+				String.valueOf(
+					accountLifecycleStageTransition.
+						getToAccountLifecycleStage()));
 		}
 
 		if (accountLifecycleStageTransition.getTransitionDate() != null) {
@@ -167,22 +175,30 @@ public class AccountLifecycleStageTransitionSerDes {
 					accountLifecycleStageTransition.getAccountName()));
 		}
 
-		if (accountLifecycleStageTransition.getFromStage() == null) {
-			map.put("fromStage", null);
+		if (accountLifecycleStageTransition.getFromAccountLifecycleStage() ==
+				null) {
+
+			map.put("fromAccountLifecycleStage", null);
 		}
 		else {
 			map.put(
-				"fromStage",
-				String.valueOf(accountLifecycleStageTransition.getFromStage()));
+				"fromAccountLifecycleStage",
+				String.valueOf(
+					accountLifecycleStageTransition.
+						getFromAccountLifecycleStage()));
 		}
 
-		if (accountLifecycleStageTransition.getToStage() == null) {
-			map.put("toStage", null);
+		if (accountLifecycleStageTransition.getToAccountLifecycleStage() ==
+				null) {
+
+			map.put("toAccountLifecycleStage", null);
 		}
 		else {
 			map.put(
-				"toStage",
-				String.valueOf(accountLifecycleStageTransition.getToStage()));
+				"toAccountLifecycleStage",
+				String.valueOf(
+					accountLifecycleStageTransition.
+						getToAccountLifecycleStage()));
 		}
 
 		if (accountLifecycleStageTransition.getTransitionDate() == null) {
@@ -219,10 +235,14 @@ public class AccountLifecycleStageTransitionSerDes {
 			else if (Objects.equals(jsonParserFieldName, "accountName")) {
 				return false;
 			}
-			else if (Objects.equals(jsonParserFieldName, "fromStage")) {
+			else if (Objects.equals(
+						jsonParserFieldName, "fromAccountLifecycleStage")) {
+
 				return false;
 			}
-			else if (Objects.equals(jsonParserFieldName, "toStage")) {
+			else if (Objects.equals(
+						jsonParserFieldName, "toAccountLifecycleStage")) {
+
 				return false;
 			}
 			else if (Objects.equals(jsonParserFieldName, "transitionDate")) {
@@ -249,16 +269,21 @@ public class AccountLifecycleStageTransitionSerDes {
 						(String)jsonParserFieldValue);
 				}
 			}
-			else if (Objects.equals(jsonParserFieldName, "fromStage")) {
+			else if (Objects.equals(
+						jsonParserFieldName, "fromAccountLifecycleStage")) {
+
 				if (jsonParserFieldValue != null) {
-					accountLifecycleStageTransition.setFromStage(
-						AccountLifecycleStageSerDes.toDTO(
-							(String)jsonParserFieldValue));
+					accountLifecycleStageTransition.
+						setFromAccountLifecycleStage(
+							AccountLifecycleStageSerDes.toDTO(
+								(String)jsonParserFieldValue));
 				}
 			}
-			else if (Objects.equals(jsonParserFieldName, "toStage")) {
+			else if (Objects.equals(
+						jsonParserFieldName, "toAccountLifecycleStage")) {
+
 				if (jsonParserFieldValue != null) {
-					accountLifecycleStageTransition.setToStage(
+					accountLifecycleStageTransition.setToAccountLifecycleStage(
 						AccountLifecycleStageSerDes.toDTO(
 							(String)jsonParserFieldValue));
 				}
@@ -350,4 +375,4 @@ public class AccountLifecycleStageTransitionSerDes {
 	}
 
 }
-// LIFERAY-REST-BUILDER-HASH:839427232
+// LIFERAY-REST-BUILDER-HASH:1334858808

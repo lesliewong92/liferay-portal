@@ -69,49 +69,55 @@ public class AccountLifecycleStageTransition
 
 	protected String accountName;
 
-	public AccountLifecycleStage getFromStage() {
-		return fromStage;
+	public AccountLifecycleStage getFromAccountLifecycleStage() {
+		return fromAccountLifecycleStage;
 	}
 
-	public void setFromStage(AccountLifecycleStage fromStage) {
-		this.fromStage = fromStage;
+	public void setFromAccountLifecycleStage(
+		AccountLifecycleStage fromAccountLifecycleStage) {
+
+		this.fromAccountLifecycleStage = fromAccountLifecycleStage;
 	}
 
-	public void setFromStage(
+	public void setFromAccountLifecycleStage(
 		UnsafeSupplier<AccountLifecycleStage, Exception>
-			fromStageUnsafeSupplier) {
+			fromAccountLifecycleStageUnsafeSupplier) {
 
 		try {
-			fromStage = fromStageUnsafeSupplier.get();
+			fromAccountLifecycleStage =
+				fromAccountLifecycleStageUnsafeSupplier.get();
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	protected AccountLifecycleStage fromStage;
+	protected AccountLifecycleStage fromAccountLifecycleStage;
 
-	public AccountLifecycleStage getToStage() {
-		return toStage;
+	public AccountLifecycleStage getToAccountLifecycleStage() {
+		return toAccountLifecycleStage;
 	}
 
-	public void setToStage(AccountLifecycleStage toStage) {
-		this.toStage = toStage;
+	public void setToAccountLifecycleStage(
+		AccountLifecycleStage toAccountLifecycleStage) {
+
+		this.toAccountLifecycleStage = toAccountLifecycleStage;
 	}
 
-	public void setToStage(
+	public void setToAccountLifecycleStage(
 		UnsafeSupplier<AccountLifecycleStage, Exception>
-			toStageUnsafeSupplier) {
+			toAccountLifecycleStageUnsafeSupplier) {
 
 		try {
-			toStage = toStageUnsafeSupplier.get();
+			toAccountLifecycleStage =
+				toAccountLifecycleStageUnsafeSupplier.get();
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	protected AccountLifecycleStage toStage;
+	protected AccountLifecycleStage toAccountLifecycleStage;
 
 	public Date getTransitionDate() {
 		return transitionDate;
@@ -170,4 +176,4 @@ public class AccountLifecycleStageTransition
 	}
 
 }
-// LIFERAY-REST-BUILDER-HASH:-1807346504
+// LIFERAY-REST-BUILDER-HASH:974601048
