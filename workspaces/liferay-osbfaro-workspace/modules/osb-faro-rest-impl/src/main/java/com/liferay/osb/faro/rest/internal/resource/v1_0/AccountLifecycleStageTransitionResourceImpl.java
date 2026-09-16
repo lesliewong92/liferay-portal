@@ -36,9 +36,9 @@ public class AccountLifecycleStageTransitionResourceImpl
 	public Page<AccountLifecycleStageTransition>
 			getWorkspaceGroupAccountLifecycleStageTransitionsPage(
 				Long groupId, String accountLifecycleId, String country,
-				String fromStageName, String industry, String rangeEnd,
+				String fromLifecycleStage, String industry, String rangeEnd,
 				String rangeKey, String rangeStart, Long segmentId,
-				String toStageName, Pagination pagination, Sort[] sorts)
+				String toLifecycleStage, Pagination pagination, Sort[] sorts)
 		throws Exception {
 
 		Results
@@ -47,9 +47,9 @@ public class AccountLifecycleStageTransitionResourceImpl
 					_contactsEngineClient.getAccountLifecycleStageTransitions(
 						_faroProjectLocalService.getFaroProjectByGroupId(
 							groupId),
-						country, fromStageName, accountLifecycleId, industry,
-						rangeEnd, TimeRange.getRangeKey(rangeKey), rangeStart,
-						segmentId, toStageName,
+						country, fromLifecycleStage, accountLifecycleId,
+						industry, rangeEnd, TimeRange.getRangeKey(rangeKey),
+						rangeStart, segmentId, toLifecycleStage,
 						FaroPaginationUtil.getCur(pagination),
 						FaroPaginationUtil.getDelta(pagination),
 						FaroPaginationUtil.toOrderByFields(sorts));
