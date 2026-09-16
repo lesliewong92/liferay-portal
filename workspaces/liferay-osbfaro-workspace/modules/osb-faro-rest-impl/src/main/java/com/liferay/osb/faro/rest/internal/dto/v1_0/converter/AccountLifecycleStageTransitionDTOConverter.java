@@ -45,14 +45,16 @@ public class AccountLifecycleStageTransitionDTOConverter
 			{
 				setAccountId(accountLifecycleStageTransition::getAccountId);
 				setAccountName(accountLifecycleStageTransition::getAccountName);
-				setFromStage(
+				setFromAccountLifecycleStage(
 					() -> _accountLifecycleStageDTOConverter.toDTO(
 						dtoConverterContext,
-						accountLifecycleStageTransition.getFromStage()));
-				setToStage(
+						accountLifecycleStageTransition.
+							getFromAccountLifecycleStage()));
+				setToAccountLifecycleStage(
 					() -> _accountLifecycleStageDTOConverter.toDTO(
 						dtoConverterContext,
-						accountLifecycleStageTransition.getToStage()));
+						accountLifecycleStageTransition.
+							getToAccountLifecycleStage()));
 				setTransitionDate(
 					accountLifecycleStageTransition::getTransitionDate);
 			}
