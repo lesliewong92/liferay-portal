@@ -197,23 +197,23 @@ public class Query {
 	/**
 	 * Invoke this method with the command line:
 	 *
-	 * curl -H 'Content-Type: text/plain; charset=utf-8' -X 'POST' 'http://localhost:8080/o/graphql' -d $'{"query": "query {workspaceGroupAccountLifecycleStageTransitions(accountLifecycleId: ___, country: ___, fromStageName: ___, groupId: ___, industry: ___, page: ___, pageSize: ___, rangeEnd: ___, rangeKey: ___, rangeStart: ___, segmentId: ___, sorts: ___, toStageName: ___){items {__}, page, pageSize, totalCount}}"}' -u 'test@liferay.com:test'
+	 * curl -H 'Content-Type: text/plain; charset=utf-8' -X 'POST' 'http://localhost:8080/o/graphql' -d $'{"query": "query {workspaceGroupAccountLifecycleStageTransitions(accountLifecycleId: ___, country: ___, fromLifecycleStage: ___, groupId: ___, industry: ___, page: ___, pageSize: ___, rangeEnd: ___, rangeKey: ___, rangeStart: ___, segmentId: ___, sorts: ___, toLifecycleStage: ___){items {__}, page, pageSize, totalCount}}"}' -u 'test@liferay.com:test'
 	 */
 	@GraphQLField(
-		description = "List the accounts that moved from one account lifecycle stage to another within a date range, one entry per move and most recent first. Each entry names the account, the stage it left, the stage it entered, and when the move happened. Filter by origin stage (`fromStageName`), destination stage (`toStageName`), account country or industry, or segment membership. Stage names are matched case-insensitively against the stage type (e.g. PIPELINE or 'at risk') or the stage description. For date-range filtering pass `rangeKey` as one of LAST_24_HOURS, YESTERDAY, LAST_7_DAYS, LAST_28_DAYS, LAST_30_DAYS, LAST_90_DAYS, LAST_180_DAYS, LAST_YEAR; it defaults to LAST_90_DAYS, roughly the last quarter. Alternatively, pass `rangeStart` and `rangeEnd` as dates for a custom window."
+		description = "List the accounts that moved from one account lifecycle stage to another within a date range, one entry per move and most recent first. Each entry names the account, the stage it left, the stage it entered, and when the move happened. Filter by origin stage (`fromLifecycleStage`), destination stage (`toLifecycleStage`), account country or industry, or segment membership. Lifecycle stage values are matched case-insensitively against the stage type (e.g. PIPELINE or 'at risk') or the stage description. For date-range filtering pass `rangeKey` as one of LAST_24_HOURS, YESTERDAY, LAST_7_DAYS, LAST_28_DAYS, LAST_30_DAYS, LAST_90_DAYS, LAST_180_DAYS, LAST_YEAR; it defaults to LAST_90_DAYS, roughly the last quarter. Alternatively, pass `rangeStart` and `rangeEnd` as dates for a custom window."
 	)
 	public AccountLifecycleStageTransitionPage
 			workspaceGroupAccountLifecycleStageTransitions(
 				@GraphQLName("groupId") Long groupId,
 				@GraphQLName("accountLifecycleId") String accountLifecycleId,
 				@GraphQLName("country") String country,
-				@GraphQLName("fromStageName") String fromStageName,
+				@GraphQLName("fromLifecycleStage") String fromLifecycleStage,
 				@GraphQLName("industry") String industry,
 				@GraphQLName("rangeEnd") String rangeEnd,
 				@GraphQLName("rangeKey") String rangeKey,
 				@GraphQLName("rangeStart") String rangeStart,
 				@GraphQLName("segmentId") Long segmentId,
-				@GraphQLName("toStageName") String toStageName,
+				@GraphQLName("toLifecycleStage") String toLifecycleStage,
 				@GraphQLName("pageSize") int pageSize,
 				@GraphQLName("page") int page,
 				@GraphQLName("sort") String sortsString)
@@ -226,9 +226,10 @@ public class Query {
 				new AccountLifecycleStageTransitionPage(
 					accountLifecycleStageTransitionResource.
 						getWorkspaceGroupAccountLifecycleStageTransitionsPage(
-							groupId, accountLifecycleId, country, fromStageName,
-							industry, rangeEnd, rangeKey, rangeStart, segmentId,
-							toStageName, Pagination.of(page, pageSize),
+							groupId, accountLifecycleId, country,
+							fromLifecycleStage, industry, rangeEnd, rangeKey,
+							rangeStart, segmentId, toLifecycleStage,
+							Pagination.of(page, pageSize),
 							_sortsBiFunction.apply(
 								accountLifecycleStageTransitionResource,
 								sortsString))));
@@ -1176,4 +1177,4 @@ public class Query {
 	private com.liferay.portal.kernel.model.User _user;
 
 }
-// LIFERAY-REST-BUILDER-HASH:299694545
+// LIFERAY-REST-BUILDER-HASH:-1305362211

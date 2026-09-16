@@ -226,7 +226,7 @@ public class AccountLifecycleStage implements Serializable {
 	private Supplier<Integer> _maxDurationSupplier;
 
 	@io.swagger.v3.oas.annotations.media.Schema(
-		description = "Stage type: AWARE, ENGAGED, PIPELINE, ONBOARDING, ESTABLISHED, or AT_RISK. Use it (or the description) as `fromStageName` or `toStageName` to filter stage transitions."
+		description = "Stage type: AWARE, ENGAGED, PIPELINE, ONBOARDING, ESTABLISHED, or AT_RISK. Use it (or the description) as `fromLifecycleStage` or `toLifecycleStage` to filter stage transitions."
 	)
 	public String getStageType() {
 		if (_stageTypeSupplier != null) {
@@ -262,7 +262,7 @@ public class AccountLifecycleStage implements Serializable {
 	}
 
 	@GraphQLField(
-		description = "Stage type: AWARE, ENGAGED, PIPELINE, ONBOARDING, ESTABLISHED, or AT_RISK. Use it (or the description) as `fromStageName` or `toStageName` to filter stage transitions."
+		description = "Stage type: AWARE, ENGAGED, PIPELINE, ONBOARDING, ESTABLISHED, or AT_RISK. Use it (or the description) as `fromLifecycleStage` or `toLifecycleStage` to filter stage transitions."
 	)
 	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	protected String stageType;
@@ -471,4 +471,4 @@ public class AccountLifecycleStage implements Serializable {
 	private Map<String, Serializable> _extendedProperties;
 
 }
-// LIFERAY-REST-BUILDER-HASH:1799307883
+// LIFERAY-REST-BUILDER-HASH:1000084595

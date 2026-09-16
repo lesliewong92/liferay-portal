@@ -37,17 +37,19 @@ public interface AccountLifecycleStageTransitionResource {
 	public Page<AccountLifecycleStageTransition>
 			getWorkspaceGroupAccountLifecycleStageTransitionsPage(
 				Long groupId, String accountLifecycleId, String country,
-				String fromStageName, String industry, String rangeEnd,
+				String fromLifecycleStage, String industry, String rangeEnd,
 				String rangeKey, String rangeStart, Long segmentId,
-				String toStageName, Pagination pagination, String sortString)
+				String toLifecycleStage, Pagination pagination,
+				String sortString)
 		throws Exception;
 
 	public HttpInvoker.HttpResponse
 			getWorkspaceGroupAccountLifecycleStageTransitionsPageHttpResponse(
 				Long groupId, String accountLifecycleId, String country,
-				String fromStageName, String industry, String rangeEnd,
+				String fromLifecycleStage, String industry, String rangeEnd,
 				String rangeKey, String rangeStart, Long segmentId,
-				String toStageName, Pagination pagination, String sortString)
+				String toLifecycleStage, Pagination pagination,
+				String sortString)
 		throws Exception;
 
 	public static class Builder {
@@ -162,17 +164,17 @@ public interface AccountLifecycleStageTransitionResource {
 		public Page<AccountLifecycleStageTransition>
 				getWorkspaceGroupAccountLifecycleStageTransitionsPage(
 					Long groupId, String accountLifecycleId, String country,
-					String fromStageName, String industry, String rangeEnd,
+					String fromLifecycleStage, String industry, String rangeEnd,
 					String rangeKey, String rangeStart, Long segmentId,
-					String toStageName, Pagination pagination,
+					String toLifecycleStage, Pagination pagination,
 					String sortString)
 			throws Exception {
 
 			HttpInvoker.HttpResponse httpResponse =
 				getWorkspaceGroupAccountLifecycleStageTransitionsPageHttpResponse(
-					groupId, accountLifecycleId, country, fromStageName,
+					groupId, accountLifecycleId, country, fromLifecycleStage,
 					industry, rangeEnd, rangeKey, rangeStart, segmentId,
-					toStageName, pagination, sortString);
+					toLifecycleStage, pagination, sortString);
 
 			String content = httpResponse.getContent();
 
@@ -237,9 +239,9 @@ public interface AccountLifecycleStageTransitionResource {
 		public HttpInvoker.HttpResponse
 				getWorkspaceGroupAccountLifecycleStageTransitionsPageHttpResponse(
 					Long groupId, String accountLifecycleId, String country,
-					String fromStageName, String industry, String rangeEnd,
+					String fromLifecycleStage, String industry, String rangeEnd,
 					String rangeKey, String rangeStart, Long segmentId,
-					String toStageName, Pagination pagination,
+					String toLifecycleStage, Pagination pagination,
 					String sortString)
 			throws Exception {
 
@@ -268,9 +270,9 @@ public interface AccountLifecycleStageTransitionResource {
 				httpInvoker.parameter("country", String.valueOf(country));
 			}
 
-			if (fromStageName != null) {
+			if (fromLifecycleStage != null) {
 				httpInvoker.parameter(
-					"fromStageName", String.valueOf(fromStageName));
+					"fromLifecycleStage", String.valueOf(fromLifecycleStage));
 			}
 
 			if (industry != null) {
@@ -293,9 +295,9 @@ public interface AccountLifecycleStageTransitionResource {
 				httpInvoker.parameter("segmentId", String.valueOf(segmentId));
 			}
 
-			if (toStageName != null) {
+			if (toLifecycleStage != null) {
 				httpInvoker.parameter(
-					"toStageName", String.valueOf(toStageName));
+					"toLifecycleStage", String.valueOf(toLifecycleStage));
 			}
 
 			if (pagination != null) {
@@ -337,4 +339,4 @@ public interface AccountLifecycleStageTransitionResource {
 	}
 
 }
-// LIFERAY-REST-BUILDER-HASH:322358294
+// LIFERAY-REST-BUILDER-HASH:-1205689248

@@ -46,9 +46,9 @@ public interface AccountLifecycleStageTransitionResource {
 	public Page<AccountLifecycleStageTransition>
 			getWorkspaceGroupAccountLifecycleStageTransitionsPage(
 				Long groupId, String accountLifecycleId, String country,
-				String fromStageName, String industry, String rangeEnd,
+				String fromLifecycleStage, String industry, String rangeEnd,
 				String rangeKey, String rangeStart, Long segmentId,
-				String toStageName, Pagination pagination,
+				String toLifecycleStage, Pagination pagination,
 				com.liferay.portal.kernel.search.Sort[] sorts)
 		throws Exception;
 
@@ -140,4 +140,4 @@ public interface AccountLifecycleStageTransitionResource {
 	}
 
 }
-// LIFERAY-REST-BUILDER-HASH:-1796339543
+// LIFERAY-REST-BUILDER-HASH:-947199327
