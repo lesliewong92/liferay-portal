@@ -1985,6 +1985,116 @@ paths:
                             schema:
                                 $ref: "#/components/schemas/IndividualSegment"
             tags: ["IndividualSegment"]
+    "/workspace/{groupId}/individual-segments/{individualSegmentId}/individuals":
+        get:
+            description:
+                "List the individuals who are members of an individual segment, each as a full individual record. Optionally narrowed further to an associated account, channel, interest, activity status, or date range, and searchable by name or email with `search`. Use this to answer 'who is in this segment' style questions. To read the membership records instead, which also cover individuals who have left the segment, use `getWorkspaceGroupIndividualSegmentMembershipsPage`."
+            operationId: getWorkspaceGroupIndividualSegmentIndividualsPage
+            parameters:
+                -   in: path
+                    description:
+                        "ID of the Liferay site that owns the Analytics Cloud workspace."
+                    name: groupId
+                    required: true
+                    schema:
+                        format: int64
+                        type: integer
+                -   in: path
+                    description:
+                        "ID of the individual segment whose members should be listed."
+                    name: individualSegmentId
+                    required: true
+                    schema:
+                        type: string
+                -   in: query
+                    description:
+                        "Optional account ID to restrict results to individuals associated with an account."
+                    name: accountId
+                    schema:
+                        type: string
+                -   in: query
+                    description:
+                        "Optional engagement classification to restrict results to individuals with that activity status. The set of values is defined by the analytics engine."
+                    name: activityStatus
+                    schema:
+                        type: string
+                -   in: query
+                    description:
+                        "Optional channel ID to scope the lookup to a single channel."
+                    name: channelId
+                    schema:
+                        type: string
+                -   in: query
+                    description:
+                        "If true, anonymous (browser-tracked) individuals are included. Defaults to false."
+                    name: includeAnonymousUsers
+                    schema:
+                        type: boolean
+                -   in: query
+                    description:
+                        "Optional interest name to restrict results to individuals interested in the keyword."
+                    name: interestName
+                    schema:
+                        type: string
+                -   in: query
+                    description:
+                        "Page number (starts at 1)."
+                    name: page
+                    schema:
+                        type: integer
+                -   in: query
+                    description:
+                        "Page size."
+                    name: pageSize
+                    schema:
+                        type: integer
+                -   in: query
+                    description:
+                        "Custom range end as date (e.g. 2026-01-01). Use with rangeStart as a rangeKey alternative."
+                    name: rangeEnd
+                    schema:
+                        type: string
+                -   in: query
+                    description:
+                        "Date-range preset. Use one of the listed enum values (e.g. LAST_30_DAYS). Mutually exclusive with rangeStart/rangeEnd. If rangeKey is set, rangeStart and rangeEnd are ignored. For custom windows, omit rangeKey and provide rangeStart and rangeEnd as dates."
+                    example: LAST_30_DAYS
+                    name: rangeKey
+                    schema:
+                        enum: [LAST_180_DAYS, LAST_24_HOURS, LAST_28_DAYS, LAST_30_DAYS, LAST_7_DAYS, LAST_90_DAYS, LAST_YEAR, YESTERDAY]
+                        type: string
+                -   in: query
+                    description:
+                        "Custom range start as date (e.g. 2026-01-01). Use with rangeEnd as a rangeKey alternative."
+                    name: rangeStart
+                    schema:
+                        type: string
+                -   in: query
+                    description:
+                        "Free-text search across individual name, email, and related fields. Empty or null returns all members of the segment."
+                    name: search
+                    schema:
+                        type: string
+                -   in: query
+                    description:
+                        "Sort expression `column:asc|desc`."
+                    example: lastActivityDate:desc
+                    name: sort
+                    schema:
+                        type: string
+            responses:
+                200:
+                    content:
+                        application/json:
+                            schema:
+                                items:
+                                    $ref: "#/components/schemas/Individual"
+                                type: array
+                        application/xml:
+                            schema:
+                                items:
+                                    $ref: "#/components/schemas/Individual"
+                                type: array
+            tags: ["Individual"]
     "/workspace/{groupId}/individual-segments/{individualSegmentId}/membership-change-metrics":
         get:
             description:
