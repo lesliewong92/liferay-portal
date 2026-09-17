@@ -39,6 +39,49 @@ public class IndividualResourceImpl extends BaseIndividualResourceImpl {
 			Pagination pagination, Sort[] sorts)
 		throws Exception {
 
+		return _getIndividualsPage(
+			groupId, accountId, activityStatus, channelId,
+			includeAnonymousUsers, individualSegmentId, interestName, rangeEnd,
+			rangeKey, rangeStart, search, pagination, sorts);
+	}
+
+	@Override
+	public Individual getWorkspaceGroupIndividual(
+			Long groupId, String individualId, String channelId)
+		throws Exception {
+
+		return _individualDTOConverter.toDTO(
+			new FaroDTOConverterContext(
+				contextAcceptLanguage.isAcceptAllLanguages(), individualId,
+				contextAcceptLanguage.getPreferredLocale()),
+			_contactsEngineClient.getIndividual(
+				_faroProjectLocalService.getFaroProjectByGroupId(groupId),
+				individualId, channelId));
+	}
+
+	@Override
+	public Page<Individual> getWorkspaceGroupIndividualSegmentIndividualsPage(
+			Long groupId, String individualSegmentId, String accountId,
+			String activityStatus, String channelId,
+			Boolean includeAnonymousUsers, String interestName, String rangeEnd,
+			String rangeKey, String rangeStart, String search,
+			Pagination pagination, Sort[] sorts)
+		throws Exception {
+
+		return _getIndividualsPage(
+			groupId, accountId, activityStatus, channelId,
+			includeAnonymousUsers, individualSegmentId, interestName, rangeEnd,
+			rangeKey, rangeStart, search, pagination, sorts);
+	}
+
+	private Page<Individual> _getIndividualsPage(
+			Long groupId, String accountId, String activityStatus,
+			String channelId, Boolean includeAnonymousUsers,
+			String individualSegmentId, String interestName, String rangeEnd,
+			String rangeKey, String rangeStart, String search,
+			Pagination pagination, Sort[] sorts)
+		throws Exception {
+
 		Results<com.liferay.osb.faro.engine.client.model.Individual> results =
 			_contactsEngineClient.getIndividuals(
 				_faroProjectLocalService.getFaroProjectByGroupId(groupId),
@@ -60,20 +103,6 @@ public class IndividualResourceImpl extends BaseIndividualResourceImpl {
 						contextAcceptLanguage.getPreferredLocale()),
 					individual)),
 			pagination, results.getTotal());
-	}
-
-	@Override
-	public Individual getWorkspaceGroupIndividual(
-			Long groupId, String individualId, String channelId)
-		throws Exception {
-
-		return _individualDTOConverter.toDTO(
-			new FaroDTOConverterContext(
-				contextAcceptLanguage.isAcceptAllLanguages(), individualId,
-				contextAcceptLanguage.getPreferredLocale()),
-			_contactsEngineClient.getIndividual(
-				_faroProjectLocalService.getFaroProjectByGroupId(groupId),
-				individualId, channelId));
 	}
 
 	@Reference
