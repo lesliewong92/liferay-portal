@@ -36,11 +36,11 @@ import java.util.function.Supplier;
  */
 @Generated("")
 @GraphQLName(
-	description = "How an individual segment's membership changed over the selected date range, bucketed by day. `individuals` and `knownIndividuals` are the segment's size: `value` is the size at the end of the range and `previousValue` the size at the end of the preceding range of the same length. `addedIndividuals` and `removedIndividuals` are how much the segment grew and shrank, summed over the range. Those two are derived from the change in size between consecutive days, so on any one day only one of them can be non-zero: a day on which 10 individuals joined and 10 left reports zero for both, and a day on which 12 joined and 10 left reports 2 added and 0 removed. Read them as net movement, not as counts of individuals entering and leaving. For the current member list use `getWorkspaceGroupIndividualSegmentMembershipsPage`.",
+	description = "How an individual segment's membership changed over the selected date range. `individuals` and `knownIndividuals` are the segment's size: `value` is the size at the end of the range and `previousValue` the size at the end of the preceding range of the same length. `addedIndividuals` and `removedIndividuals` count the individuals that entered and left the segment, summed over the range across every recomputation in it. The two are independent, so a range in which 10 individuals joined and 10 left reports 10 for both. Movement from before the analytics engine began recording it is reported as zero. For the current member list use `getWorkspaceGroupIndividualSegmentMembershipsPage`.",
 	value = "IndividualSegmentMembershipChangeMetric"
 )
 @io.swagger.v3.oas.annotations.media.Schema(
-	description = "How an individual segment's membership changed over the selected date range, bucketed by day. `individuals` and `knownIndividuals` are the segment's size: `value` is the size at the end of the range and `previousValue` the size at the end of the preceding range of the same length. `addedIndividuals` and `removedIndividuals` are how much the segment grew and shrank, summed over the range. Those two are derived from the change in size between consecutive days, so on any one day only one of them can be non-zero: a day on which 10 individuals joined and 10 left reports zero for both, and a day on which 12 joined and 10 left reports 2 added and 0 removed. Read them as net movement, not as counts of individuals entering and leaving. For the current member list use `getWorkspaceGroupIndividualSegmentMembershipsPage`."
+	description = "How an individual segment's membership changed over the selected date range. `individuals` and `knownIndividuals` are the segment's size: `value` is the size at the end of the range and `previousValue` the size at the end of the preceding range of the same length. `addedIndividuals` and `removedIndividuals` count the individuals that entered and left the segment, summed over the range across every recomputation in it. The two are independent, so a range in which 10 individuals joined and 10 left reports 10 for both. Movement from before the analytics engine began recording it is reported as zero. For the current member list use `getWorkspaceGroupIndividualSegmentMembershipsPage`."
 )
 @JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "IndividualSegmentMembershipChangeMetric")
@@ -405,4 +405,4 @@ public class IndividualSegmentMembershipChangeMetric implements Serializable {
 	private Map<String, Serializable> _extendedProperties;
 
 }
-// LIFERAY-REST-BUILDER-HASH:1208748557
+// LIFERAY-REST-BUILDER-HASH:1792862573

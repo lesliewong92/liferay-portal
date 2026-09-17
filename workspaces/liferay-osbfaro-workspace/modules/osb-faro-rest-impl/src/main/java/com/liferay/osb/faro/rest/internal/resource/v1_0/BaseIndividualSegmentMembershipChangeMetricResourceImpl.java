@@ -48,7 +48,7 @@ public abstract class BaseIndividualSegmentMembershipChangeMetricResourceImpl
 	 * curl -X 'GET' 'http://localhost:8080/o/faro-rest/v1.0/workspace/{groupId}/individual-segments/{individualSegmentId}/membership-change-metrics'  -u 'test@liferay.com:test'
 	 */
 	@io.swagger.v3.oas.annotations.Operation(
-		description = "How an individual segment's membership changed over a date range: its size at the end of the range and how much it grew and shrank, each with the preceding range's figure, a trend percentage, and a daily time series. Use this to answer 'is this segment growing or shrinking' style questions. Growth and shrinkage are net per day and cannot report individuals joining and leaving on the same day; see the `IndividualSegmentMembershipChangeMetric` schema. Buckets are always daily and the range always ends today, so pass `rangeKey` as one of LAST_7_DAYS, LAST_28_DAYS, LAST_30_DAYS, LAST_90_DAYS, LAST_180_DAYS, LAST_YEAR. LAST_30_DAYS is used when omitted."
+		description = "How an individual segment's membership changed over a date range: its size at the end of the range, and how many individuals joined and left it, each with the preceding range's figure, a trend percentage, and a time series bucketed by `interval`. Use this to answer 'is this segment growing or shrinking, and who is churning out of it' style questions. Joins and departures are counted independently, so a range with heavy churn and no net change still reports both. For date-range filtering pass `rangeKey` as one of LAST_24_HOURS, YESTERDAY, LAST_7_DAYS, LAST_28_DAYS, LAST_30_DAYS, LAST_90_DAYS, LAST_180_DAYS, LAST_YEAR. Alternatively, pass `rangeStart` and `rangeEnd` as dates for a custom window. LAST_30_DAYS is used when neither is given."
 	)
 	@io.swagger.v3.oas.annotations.Parameters(
 		value = {
@@ -63,10 +63,26 @@ public abstract class BaseIndividualSegmentMembershipChangeMetricResourceImpl
 				name = "individualSegmentId"
 			),
 			@io.swagger.v3.oas.annotations.Parameter(
-				description = "Date-range preset. LAST_30_DAYS when omitted. Custom windows are not supported on this operation: the range always ends today.",
+				description = "Histogram bucket size for the metrics' time series. DAY when omitted.",
+				example = "MONTH",
+				in = io.swagger.v3.oas.annotations.enums.ParameterIn.QUERY,
+				name = "interval"
+			),
+			@io.swagger.v3.oas.annotations.Parameter(
+				description = "Custom range end as date (e.g. 2026-01-01). Use with rangeStart as a rangeKey alternative.",
+				in = io.swagger.v3.oas.annotations.enums.ParameterIn.QUERY,
+				name = "rangeEnd"
+			),
+			@io.swagger.v3.oas.annotations.Parameter(
+				description = "Date-range preset. Mutually exclusive with rangeStart/rangeEnd. If rangeKey is set, rangeStart and rangeEnd are ignored. LAST_30_DAYS when none is given.",
 				example = "LAST_30_DAYS",
 				in = io.swagger.v3.oas.annotations.enums.ParameterIn.QUERY,
 				name = "rangeKey"
+			),
+			@io.swagger.v3.oas.annotations.Parameter(
+				description = "Custom range start as date (e.g. 2026-01-01). Use with rangeEnd as a rangeKey alternative.",
+				in = io.swagger.v3.oas.annotations.enums.ParameterIn.QUERY,
+				name = "rangeStart"
 			)
 		}
 	)
@@ -94,8 +110,17 @@ public abstract class BaseIndividualSegmentMembershipChangeMetricResourceImpl
 				@jakarta.ws.rs.PathParam("individualSegmentId")
 				String individualSegmentId,
 				@io.swagger.v3.oas.annotations.Parameter(hidden = true)
+				@jakarta.ws.rs.QueryParam("interval")
+				String interval,
+				@io.swagger.v3.oas.annotations.Parameter(hidden = true)
+				@jakarta.ws.rs.QueryParam("rangeEnd")
+				String rangeEnd,
+				@io.swagger.v3.oas.annotations.Parameter(hidden = true)
 				@jakarta.ws.rs.QueryParam("rangeKey")
-				String rangeKey)
+				String rangeKey,
+				@io.swagger.v3.oas.annotations.Parameter(hidden = true)
+				@jakarta.ws.rs.QueryParam("rangeStart")
+				String rangeStart)
 		throws Exception {
 
 		return new IndividualSegmentMembershipChangeMetric();
@@ -547,4 +572,4 @@ public abstract class BaseIndividualSegmentMembershipChangeMetricResourceImpl
 			BaseIndividualSegmentMembershipChangeMetricResourceImpl.class);
 
 }
-// LIFERAY-REST-BUILDER-HASH:-891909241
+// LIFERAY-REST-BUILDER-HASH:-1581526768

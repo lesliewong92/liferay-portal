@@ -23,11 +23,23 @@ import java.util.function.ToLongFunction;
  */
 public class IndividualSegmentMembershipChangeMetricUtil {
 
+	/**
+	 * Splits the aggregations into the buckets on or after
+	 * <code>startDate</code> and the run of buckets before them, then reports
+	 * each count over the first window with the second as its previous value.
+	 *
+	 * <p>
+	 * Segment sizes are reported as the value of the newest bucket in each
+	 * window, since they are levels rather than totals. The individuals that
+	 * joined and left are summed, and are independent of each other: a window
+	 * with heavy churn and no net change reports both.
+	 * </p>
+	 */
 	public static IndividualSegmentMembershipChangeMetric
 		toIndividualSegmentMembershipChangeMetric(
 			List<IndividualSegmentMembershipChangeAggregation>
 				individualSegmentMembershipChangeAggregations,
-			int days) {
+			Date startDate) {
 
 		List<IndividualSegmentMembershipChangeAggregation> sorted =
 			new ArrayList<>();
@@ -50,7 +62,22 @@ public class IndividualSegmentMembershipChangeMetricUtil {
 				IndividualSegmentMembershipChangeAggregation::
 					getIntervalInitDate));
 
-		int fromIndex = Math.max(0, sorted.size() - days);
+		int fromIndex = sorted.size();
+
+		for (int i = 0; i < sorted.size(); i++) {
+			IndividualSegmentMembershipChangeAggregation
+				individualSegmentMembershipChangeAggregation = sorted.get(i);
+
+			Date intervalInitDate =
+				individualSegmentMembershipChangeAggregation.
+					getIntervalInitDate();
+
+			if (!intervalInitDate.before(startDate)) {
+				fromIndex = i;
+
+				break;
+			}
+		}
 
 		List<IndividualSegmentMembershipChangeAggregation> currentAggregations =
 			sorted.subList(fromIndex, sorted.size());

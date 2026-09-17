@@ -692,16 +692,19 @@ public class Query {
 	/**
 	 * Invoke this method with the command line:
 	 *
-	 * curl -H 'Content-Type: text/plain; charset=utf-8' -X 'POST' 'http://localhost:8080/o/graphql' -d $'{"query": "query {workspaceGroupIndividualSegmentMembershipChangeMetric(groupId: ___, individualSegmentId: ___, rangeKey: ___){addedIndividuals, individuals, knownIndividuals, removedIndividuals}}"}' -u 'test@liferay.com:test'
+	 * curl -H 'Content-Type: text/plain; charset=utf-8' -X 'POST' 'http://localhost:8080/o/graphql' -d $'{"query": "query {workspaceGroupIndividualSegmentMembershipChangeMetric(groupId: ___, individualSegmentId: ___, interval: ___, rangeEnd: ___, rangeKey: ___, rangeStart: ___){addedIndividuals, individuals, knownIndividuals, removedIndividuals}}"}' -u 'test@liferay.com:test'
 	 */
 	@GraphQLField(
-		description = "How an individual segment's membership changed over a date range: its size at the end of the range and how much it grew and shrank, each with the preceding range's figure, a trend percentage, and a daily time series. Use this to answer 'is this segment growing or shrinking' style questions. Growth and shrinkage are net per day and cannot report individuals joining and leaving on the same day; see the `IndividualSegmentMembershipChangeMetric` schema. Buckets are always daily and the range always ends today, so pass `rangeKey` as one of LAST_7_DAYS, LAST_28_DAYS, LAST_30_DAYS, LAST_90_DAYS, LAST_180_DAYS, LAST_YEAR. LAST_30_DAYS is used when omitted."
+		description = "How an individual segment's membership changed over a date range: its size at the end of the range, and how many individuals joined and left it, each with the preceding range's figure, a trend percentage, and a time series bucketed by `interval`. Use this to answer 'is this segment growing or shrinking, and who is churning out of it' style questions. Joins and departures are counted independently, so a range with heavy churn and no net change still reports both. For date-range filtering pass `rangeKey` as one of LAST_24_HOURS, YESTERDAY, LAST_7_DAYS, LAST_28_DAYS, LAST_30_DAYS, LAST_90_DAYS, LAST_180_DAYS, LAST_YEAR. Alternatively, pass `rangeStart` and `rangeEnd` as dates for a custom window. LAST_30_DAYS is used when neither is given."
 	)
 	public IndividualSegmentMembershipChangeMetric
 			workspaceGroupIndividualSegmentMembershipChangeMetric(
 				@GraphQLName("groupId") Long groupId,
 				@GraphQLName("individualSegmentId") String individualSegmentId,
-				@GraphQLName("rangeKey") String rangeKey)
+				@GraphQLName("interval") String interval,
+				@GraphQLName("rangeEnd") String rangeEnd,
+				@GraphQLName("rangeKey") String rangeKey,
+				@GraphQLName("rangeStart") String rangeStart)
 		throws Exception {
 
 		return _applyComponentServiceObjects(
@@ -710,7 +713,8 @@ public class Query {
 			individualSegmentMembershipChangeMetricResource ->
 				individualSegmentMembershipChangeMetricResource.
 					getWorkspaceGroupIndividualSegmentMembershipChangeMetric(
-						groupId, individualSegmentId, rangeKey));
+						groupId, individualSegmentId, interval, rangeEnd,
+						rangeKey, rangeStart));
 	}
 
 	/**
@@ -1721,4 +1725,4 @@ public class Query {
 	private com.liferay.portal.kernel.model.User _user;
 
 }
-// LIFERAY-REST-BUILDER-HASH:-373046449
+// LIFERAY-REST-BUILDER-HASH:-1246955461

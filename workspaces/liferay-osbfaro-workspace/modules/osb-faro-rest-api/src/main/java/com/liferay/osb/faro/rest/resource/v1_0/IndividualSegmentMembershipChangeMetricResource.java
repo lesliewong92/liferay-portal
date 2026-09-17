@@ -43,7 +43,8 @@ public interface IndividualSegmentMembershipChangeMetricResource {
 
 	public IndividualSegmentMembershipChangeMetric
 			getWorkspaceGroupIndividualSegmentMembershipChangeMetric(
-				Long groupId, String individualSegmentId, String rangeKey)
+				Long groupId, String individualSegmentId, String interval,
+				String rangeEnd, String rangeKey, String rangeStart)
 		throws Exception;
 
 	public default void setContextAcceptLanguage(
@@ -134,4 +135,4 @@ public interface IndividualSegmentMembershipChangeMetricResource {
 	}
 
 }
-// LIFERAY-REST-BUILDER-HASH:-1816692114
+// LIFERAY-REST-BUILDER-HASH:2145991097

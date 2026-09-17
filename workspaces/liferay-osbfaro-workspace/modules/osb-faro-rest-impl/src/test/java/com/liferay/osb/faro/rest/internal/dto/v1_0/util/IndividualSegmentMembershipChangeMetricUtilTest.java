@@ -29,7 +29,7 @@ public class IndividualSegmentMembershipChangeMetricUtilTest {
 			individualSegmentMembershipChangeMetric =
 				IndividualSegmentMembershipChangeMetricUtil.
 					toIndividualSegmentMembershipChangeMetric(
-						_aggregations(), 3);
+						_aggregations(), _SELECTED_START_DATE);
 
 		Metric individuals =
 			individualSegmentMembershipChangeMetric.getIndividuals();
@@ -70,7 +70,7 @@ public class IndividualSegmentMembershipChangeMetricUtilTest {
 			individualSegmentMembershipChangeMetric =
 				IndividualSegmentMembershipChangeMetricUtil.
 					toIndividualSegmentMembershipChangeMetric(
-						_aggregations(), 3);
+						_aggregations(), _SELECTED_START_DATE);
 
 		Metric individuals =
 			individualSegmentMembershipChangeMetric.getIndividuals();
@@ -94,7 +94,7 @@ public class IndividualSegmentMembershipChangeMetricUtilTest {
 			individualSegmentMembershipChangeMetric =
 				IndividualSegmentMembershipChangeMetricUtil.
 					toIndividualSegmentMembershipChangeMetric(
-						Collections.emptyList(), 30);
+						Collections.emptyList(), _SELECTED_START_DATE);
 
 		Metric individuals =
 			individualSegmentMembershipChangeMetric.getIndividuals();
@@ -112,7 +112,7 @@ public class IndividualSegmentMembershipChangeMetricUtilTest {
 			individualSegmentMembershipChangeMetric =
 				IndividualSegmentMembershipChangeMetricUtil.
 					toIndividualSegmentMembershipChangeMetric(
-						_aggregations(), 30);
+						_aggregations(), _BEFORE_EVERY_BUCKET_DATE);
 
 		Metric individuals =
 			individualSegmentMembershipChangeMetric.getIndividuals();
@@ -156,5 +156,12 @@ public class IndividualSegmentMembershipChangeMetricUtilTest {
 			_aggregation(0, 15, 1789430400000L, 12, 0),
 			_aggregation(0, 13, 1789516800000L, 10, 2));
 	}
+
+	private static final Date _BEFORE_EVERY_BUCKET_DATE = new Date(
+		1788998400000L);
+
+	// 2026-09-14, the fourth of the six daily buckets in _aggregations
+
+	private static final Date _SELECTED_START_DATE = new Date(1789344000000L);
 
 }

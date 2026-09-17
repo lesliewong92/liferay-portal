@@ -34,12 +34,14 @@ public interface IndividualSegmentMembershipChangeMetricResource {
 
 	public IndividualSegmentMembershipChangeMetric
 			getWorkspaceGroupIndividualSegmentMembershipChangeMetric(
-				Long groupId, String individualSegmentId, String rangeKey)
+				Long groupId, String individualSegmentId, String interval,
+				String rangeEnd, String rangeKey, String rangeStart)
 		throws Exception;
 
 	public HttpInvoker.HttpResponse
 			getWorkspaceGroupIndividualSegmentMembershipChangeMetricHttpResponse(
-				Long groupId, String individualSegmentId, String rangeKey)
+				Long groupId, String individualSegmentId, String interval,
+				String rangeEnd, String rangeKey, String rangeStart)
 		throws Exception;
 
 	public static class Builder {
@@ -154,12 +156,14 @@ public interface IndividualSegmentMembershipChangeMetricResource {
 
 		public IndividualSegmentMembershipChangeMetric
 				getWorkspaceGroupIndividualSegmentMembershipChangeMetric(
-					Long groupId, String individualSegmentId, String rangeKey)
+					Long groupId, String individualSegmentId, String interval,
+					String rangeEnd, String rangeKey, String rangeStart)
 			throws Exception {
 
 			HttpInvoker.HttpResponse httpResponse =
 				getWorkspaceGroupIndividualSegmentMembershipChangeMetricHttpResponse(
-					groupId, individualSegmentId, rangeKey);
+					groupId, individualSegmentId, interval, rangeEnd, rangeKey,
+					rangeStart);
 
 			String content = httpResponse.getContent();
 
@@ -223,7 +227,8 @@ public interface IndividualSegmentMembershipChangeMetricResource {
 
 		public HttpInvoker.HttpResponse
 				getWorkspaceGroupIndividualSegmentMembershipChangeMetricHttpResponse(
-					Long groupId, String individualSegmentId, String rangeKey)
+					Long groupId, String individualSegmentId, String interval,
+					String rangeEnd, String rangeKey, String rangeStart)
 			throws Exception {
 
 			HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
@@ -247,8 +252,20 @@ public interface IndividualSegmentMembershipChangeMetricResource {
 
 			httpInvoker.httpMethod(HttpInvoker.HttpMethod.GET);
 
+			if (interval != null) {
+				httpInvoker.parameter("interval", String.valueOf(interval));
+			}
+
+			if (rangeEnd != null) {
+				httpInvoker.parameter("rangeEnd", String.valueOf(rangeEnd));
+			}
+
 			if (rangeKey != null) {
 				httpInvoker.parameter("rangeKey", String.valueOf(rangeKey));
+			}
+
+			if (rangeStart != null) {
+				httpInvoker.parameter("rangeStart", String.valueOf(rangeStart));
 			}
 
 			httpInvoker.path(
@@ -281,4 +298,4 @@ public interface IndividualSegmentMembershipChangeMetricResource {
 	}
 
 }
-// LIFERAY-REST-BUILDER-HASH:498920135
+// LIFERAY-REST-BUILDER-HASH:-1288977598
