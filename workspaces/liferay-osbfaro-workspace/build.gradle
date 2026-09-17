@@ -137,6 +137,7 @@ subprojects {
 
 	tasks.withType(Test) {
 		jvmArgs "--add-opens=java.base/java.lang.invoke=ALL-UNNAMED"
+		jvmArgs "--add-opens=java.base/java.lang.reflect=ALL-UNNAMED"
 		maxHeapSize = "4096m"
 	}
 }
