@@ -56,6 +56,15 @@ public interface IndividualResource {
 			Long groupId, String individualId, String channelId)
 		throws Exception;
 
+	public Page<Individual> getWorkspaceGroupIndividualsPage(
+			Long groupId, String accountId, String activityStatus,
+			String channelId, Boolean includeAnonymousUsers,
+			String individualSegmentId, String interestName, String rangeEnd,
+			String rangeKey, String rangeStart, String search,
+			Pagination pagination,
+			com.liferay.portal.kernel.search.Sort[] sorts)
+		throws Exception;
+
 	public default void setContextAcceptLanguage(
 		AcceptLanguage contextAcceptLanguage) {
 	}
@@ -144,4 +153,4 @@ public interface IndividualResource {
 	}
 
 }
-// LIFERAY-REST-BUILDER-HASH:-187450540
+// LIFERAY-REST-BUILDER-HASH:208904965
