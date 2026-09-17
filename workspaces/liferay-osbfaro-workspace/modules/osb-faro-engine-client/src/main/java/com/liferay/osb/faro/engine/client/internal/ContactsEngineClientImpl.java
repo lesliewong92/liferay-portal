@@ -3249,13 +3249,27 @@ public class ContactsEngineClientImpl
 	public Results<IndividualSegmentMembershipChangeAggregation>
 		getIndividualSegmentMembershipChangeAggregations(
 			FaroProject faroProject, String individualSegmentId,
-			String interval, int delta) {
+			String interval, int delta, String rangeEnd, Integer rangeKey,
+			String rangeStart) {
 
 		Map<String, Object> uriVariables = getUriVariables(
 			faroProject, 1, delta + 1, null);
 
 		uriVariables.put("apply", getGroupBy("dateChanged", interval));
 		uriVariables.put("id", individualSegmentId);
+		uriVariables.put("interval", _getIntervalKey(interval));
+
+		if (Validator.isNotNull(rangeEnd)) {
+			uriVariables.put("rangeEnd", rangeEnd);
+		}
+
+		if (rangeKey != null) {
+			uriVariables.put("rangeKey", rangeKey);
+		}
+
+		if (Validator.isNotNull(rangeStart)) {
+			uriVariables.put("rangeStart", rangeStart);
+		}
 
 		PagedModel<?, IndividualSegmentMembershipChangeAggregation> pagedModel =
 			get(
@@ -4150,6 +4164,26 @@ public class ContactsEngineClientImpl
 
 	protected String getWorkspaceURL(long groupId) {
 		return FaroPropsValues.FARO_URL + "/workspace/" + groupId;
+	}
+
+	/**
+	 * Returns the key the analytics engine buckets a histogram by, for the
+	 * interval name the engine's own apply expression is built from.
+	 */
+	private String _getIntervalKey(String interval) {
+		if (StringUtil.equalsIgnoreCase(interval, "hour")) {
+			return "H";
+		}
+
+		if (StringUtil.equalsIgnoreCase(interval, "month")) {
+			return "M";
+		}
+
+		if (StringUtil.equalsIgnoreCase(interval, "week")) {
+			return "W";
+		}
+
+		return "D";
 	}
 
 	private DataSource _patchDataSource(

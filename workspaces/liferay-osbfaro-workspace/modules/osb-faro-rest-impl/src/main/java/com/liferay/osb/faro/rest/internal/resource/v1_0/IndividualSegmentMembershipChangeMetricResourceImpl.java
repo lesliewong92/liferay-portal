@@ -41,7 +41,8 @@ public class IndividualSegmentMembershipChangeMetricResourceImpl
 			_contactsEngineClient.
 				getIndividualSegmentMembershipChangeAggregations(
 					_faroProjectLocalService.getFaroProjectByGroupId(groupId),
-					individualSegmentId, _INTERVAL_DAY, (2 * days) - 1);
+					individualSegmentId, _INTERVAL_DAY, (2 * days) - 1, null,
+					null, null);
 
 		return IndividualSegmentMembershipChangeMetricUtil.
 			toIndividualSegmentMembershipChangeMetric(results.getItems(), days);

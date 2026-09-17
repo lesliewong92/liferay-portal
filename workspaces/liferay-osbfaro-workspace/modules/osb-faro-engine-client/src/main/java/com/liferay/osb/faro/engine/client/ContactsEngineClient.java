@@ -586,7 +586,8 @@ public interface ContactsEngineClient {
 	public Results<IndividualSegmentMembershipChangeAggregation>
 		getIndividualSegmentMembershipChangeAggregations(
 			FaroProject faroProject, String individualSegmentId,
-			String interval, int delta);
+			String interval, int delta, String rangeEnd, Integer rangeKey,
+			String rangeStart);
 
 	public Results<IndividualSegmentMembershipChange>
 		getIndividualSegmentMembershipChanges(

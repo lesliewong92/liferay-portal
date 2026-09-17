@@ -182,7 +182,7 @@ public class IndividualSegmentFaroController extends BaseFaroController {
 			contactsEngineClient.
 				getIndividualSegmentMembershipChangeAggregations(
 					faroProjectLocalService.getFaroProjectByGroupId(groupId),
-					id, interval, max);
+					id, interval, max, null, null, null);
 
 		return results.getItems();
 	}

@@ -44,7 +44,8 @@ public class SegmentMembershipContactsCardTemplateDisplay
 		Results<IndividualSegmentMembershipChangeAggregation> results =
 			contactsEngineClient.
 				getIndividualSegmentMembershipChangeAggregations(
-					faroProject, faroEntityDisplay.getId(), _interval, _max);
+					faroProject, faroEntityDisplay.getId(), _interval, _max,
+					null, null, null);
 
 		return HashMapBuilder.<String, Object>put(
 			"individualSegmentHistory", results.getItems()

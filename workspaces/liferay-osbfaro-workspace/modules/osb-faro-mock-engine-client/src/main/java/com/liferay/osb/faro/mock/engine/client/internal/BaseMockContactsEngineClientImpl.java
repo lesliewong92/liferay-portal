@@ -1172,11 +1172,13 @@ public abstract class BaseMockContactsEngineClientImpl
 	public Results<IndividualSegmentMembershipChangeAggregation>
 		getIndividualSegmentMembershipChangeAggregations(
 			FaroProject faroProject, String individualSegmentId,
-			String interval, int delta) {
+			String interval, int delta, String rangeEnd, Integer rangeKey,
+			String rangeStart) {
 
 		return contactsEngineClient.
 			getIndividualSegmentMembershipChangeAggregations(
-				faroProject, individualSegmentId, interval, delta);
+				faroProject, individualSegmentId, interval, delta, rangeEnd,
+				rangeKey, rangeStart);
 	}
 
 	@Override
