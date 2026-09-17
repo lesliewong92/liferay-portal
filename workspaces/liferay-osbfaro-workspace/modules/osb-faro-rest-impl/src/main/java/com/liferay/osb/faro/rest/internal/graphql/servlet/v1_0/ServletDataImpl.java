@@ -186,6 +186,11 @@ public class ServletDataImpl implements ServletData {
 							IndividualResourceImpl.class,
 							"getWorkspaceGroupIndividual"));
 					put(
+						"query#workspaceGroupIndividualSegmentIndividuals",
+						new ObjectValuePair<>(
+							IndividualResourceImpl.class,
+							"getWorkspaceGroupIndividualSegmentIndividualsPage"));
+					put(
 						"query#workspaceGroupChannelIndividualSegments",
 						new ObjectValuePair<>(
 							IndividualSegmentResourceImpl.class,
@@ -305,4 +310,4 @@ public class ServletDataImpl implements ServletData {
 		_workspaceResourceComponentServiceObjects;
 
 }
-// LIFERAY-REST-BUILDER-HASH:-149085200
+// LIFERAY-REST-BUILDER-HASH:592532695

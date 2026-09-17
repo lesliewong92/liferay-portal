@@ -234,6 +234,143 @@ public abstract class BaseIndividualResourceImpl
 		return new Individual();
 	}
 
+	/**
+	 * Invoke this method with the command line:
+	 *
+	 * curl -X 'GET' 'http://localhost:8080/o/faro-rest/v1.0/workspace/{groupId}/individual-segments/{individualSegmentId}/individuals'  -u 'test@liferay.com:test'
+	 */
+	@io.swagger.v3.oas.annotations.Operation(
+		description = "List the individuals who are members of an individual segment, each as a full individual record. Optionally narrowed further to an associated account, channel, interest, activity status, or date range, and searchable by name or email with `search`. Use this to answer 'who is in this segment' style questions. To read the membership records instead, which also cover individuals who have left the segment, use `getWorkspaceGroupIndividualSegmentMembershipsPage`."
+	)
+	@io.swagger.v3.oas.annotations.Parameters(
+		value = {
+			@io.swagger.v3.oas.annotations.Parameter(
+				description = "ID of the Liferay site that owns the Analytics Cloud workspace.",
+				in = io.swagger.v3.oas.annotations.enums.ParameterIn.PATH,
+				name = "groupId"
+			),
+			@io.swagger.v3.oas.annotations.Parameter(
+				description = "ID of the individual segment whose members should be listed.",
+				in = io.swagger.v3.oas.annotations.enums.ParameterIn.PATH,
+				name = "individualSegmentId"
+			),
+			@io.swagger.v3.oas.annotations.Parameter(
+				description = "Optional account ID to restrict results to individuals associated with an account.",
+				in = io.swagger.v3.oas.annotations.enums.ParameterIn.QUERY,
+				name = "accountId"
+			),
+			@io.swagger.v3.oas.annotations.Parameter(
+				description = "Optional engagement classification to restrict results to individuals with that activity status. The set of values is defined by the analytics engine.",
+				in = io.swagger.v3.oas.annotations.enums.ParameterIn.QUERY,
+				name = "activityStatus"
+			),
+			@io.swagger.v3.oas.annotations.Parameter(
+				description = "Optional channel ID to scope the lookup to a single channel.",
+				in = io.swagger.v3.oas.annotations.enums.ParameterIn.QUERY,
+				name = "channelId"
+			),
+			@io.swagger.v3.oas.annotations.Parameter(
+				description = "If true, anonymous (browser-tracked) individuals are included. Defaults to false.",
+				in = io.swagger.v3.oas.annotations.enums.ParameterIn.QUERY,
+				name = "includeAnonymousUsers"
+			),
+			@io.swagger.v3.oas.annotations.Parameter(
+				description = "Optional interest name to restrict results to individuals interested in the keyword.",
+				in = io.swagger.v3.oas.annotations.enums.ParameterIn.QUERY,
+				name = "interestName"
+			),
+			@io.swagger.v3.oas.annotations.Parameter(
+				description = "Page number (starts at 1).",
+				in = io.swagger.v3.oas.annotations.enums.ParameterIn.QUERY,
+				name = "page"
+			),
+			@io.swagger.v3.oas.annotations.Parameter(
+				description = "Page size.",
+				in = io.swagger.v3.oas.annotations.enums.ParameterIn.QUERY,
+				name = "pageSize"
+			),
+			@io.swagger.v3.oas.annotations.Parameter(
+				description = "Custom range end as date (e.g. 2026-01-01). Use with rangeStart as a rangeKey alternative.",
+				in = io.swagger.v3.oas.annotations.enums.ParameterIn.QUERY,
+				name = "rangeEnd"
+			),
+			@io.swagger.v3.oas.annotations.Parameter(
+				description = "Date-range preset. Use one of the listed enum values (e.g. LAST_30_DAYS). Mutually exclusive with rangeStart/rangeEnd. If rangeKey is set, rangeStart and rangeEnd are ignored. For custom windows, omit rangeKey and provide rangeStart and rangeEnd as dates.",
+				example = "LAST_30_DAYS",
+				in = io.swagger.v3.oas.annotations.enums.ParameterIn.QUERY,
+				name = "rangeKey"
+			),
+			@io.swagger.v3.oas.annotations.Parameter(
+				description = "Custom range start as date (e.g. 2026-01-01). Use with rangeEnd as a rangeKey alternative.",
+				in = io.swagger.v3.oas.annotations.enums.ParameterIn.QUERY,
+				name = "rangeStart"
+			),
+			@io.swagger.v3.oas.annotations.Parameter(
+				description = "Free-text search across individual name, email, and related fields. Empty or null returns all members of the segment.",
+				in = io.swagger.v3.oas.annotations.enums.ParameterIn.QUERY,
+				name = "search"
+			),
+			@io.swagger.v3.oas.annotations.Parameter(
+				description = "Sort expression `column:asc|desc`.",
+				example = "lastActivityDate:desc",
+				in = io.swagger.v3.oas.annotations.enums.ParameterIn.QUERY,
+				name = "sort"
+			)
+		}
+	)
+	@io.swagger.v3.oas.annotations.tags.Tags(
+		value = {@io.swagger.v3.oas.annotations.tags.Tag(name = "Individual")}
+	)
+	@jakarta.ws.rs.GET
+	@jakarta.ws.rs.Path(
+		"/workspace/{groupId}/individual-segments/{individualSegmentId}/individuals"
+	)
+	@jakarta.ws.rs.Produces({"application/json", "application/xml"})
+	@Override
+	public Page<Individual> getWorkspaceGroupIndividualSegmentIndividualsPage(
+			@io.swagger.v3.oas.annotations.Parameter(hidden = true)
+			@jakarta.validation.constraints.NotNull
+			@jakarta.ws.rs.PathParam("groupId")
+			Long groupId,
+			@io.swagger.v3.oas.annotations.Parameter(hidden = true)
+			@jakarta.validation.constraints.NotNull
+			@jakarta.ws.rs.PathParam("individualSegmentId")
+			String individualSegmentId,
+			@io.swagger.v3.oas.annotations.Parameter(hidden = true)
+			@jakarta.ws.rs.QueryParam("accountId")
+			String accountId,
+			@io.swagger.v3.oas.annotations.Parameter(hidden = true)
+			@jakarta.ws.rs.QueryParam("activityStatus")
+			String activityStatus,
+			@io.swagger.v3.oas.annotations.Parameter(hidden = true)
+			@jakarta.ws.rs.QueryParam("channelId")
+			String channelId,
+			@io.swagger.v3.oas.annotations.Parameter(hidden = true)
+			@jakarta.ws.rs.QueryParam("includeAnonymousUsers")
+			Boolean includeAnonymousUsers,
+			@io.swagger.v3.oas.annotations.Parameter(hidden = true)
+			@jakarta.ws.rs.QueryParam("interestName")
+			String interestName,
+			@io.swagger.v3.oas.annotations.Parameter(hidden = true)
+			@jakarta.ws.rs.QueryParam("rangeEnd")
+			String rangeEnd,
+			@io.swagger.v3.oas.annotations.Parameter(hidden = true)
+			@jakarta.ws.rs.QueryParam("rangeKey")
+			String rangeKey,
+			@io.swagger.v3.oas.annotations.Parameter(hidden = true)
+			@jakarta.ws.rs.QueryParam("rangeStart")
+			String rangeStart,
+			@io.swagger.v3.oas.annotations.Parameter(hidden = true)
+			@jakarta.ws.rs.QueryParam("search")
+			String search,
+			@jakarta.ws.rs.core.Context Pagination pagination,
+			@jakarta.ws.rs.core.Context com.liferay.portal.kernel.search.Sort[]
+				sorts)
+		throws Exception {
+
+		return Page.of(Collections.emptyList());
+	}
+
 	@Override
 	public EntityModel getEntityModel(MultivaluedMap multivaluedMap)
 		throws Exception {
@@ -686,4 +823,4 @@ public abstract class BaseIndividualResourceImpl
 		LogFactoryUtil.getLog(BaseIndividualResourceImpl.class);
 
 }
-// LIFERAY-REST-BUILDER-HASH:-868861139
+// LIFERAY-REST-BUILDER-HASH:-968153059

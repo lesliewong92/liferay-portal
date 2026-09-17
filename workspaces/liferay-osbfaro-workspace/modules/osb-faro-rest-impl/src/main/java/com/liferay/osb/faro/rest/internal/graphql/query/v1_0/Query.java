@@ -510,6 +510,45 @@ public class Query {
 	/**
 	 * Invoke this method with the command line:
 	 *
+	 * curl -H 'Content-Type: text/plain; charset=utf-8' -X 'POST' 'http://localhost:8080/o/graphql' -d $'{"query": "query {workspaceGroupIndividualSegmentIndividuals(accountId: ___, activityStatus: ___, channelId: ___, groupId: ___, includeAnonymousUsers: ___, individualSegmentId: ___, interestName: ___, page: ___, pageSize: ___, rangeEnd: ___, rangeKey: ___, rangeStart: ___, search: ___, sorts: ___){items {__}, page, pageSize, totalCount}}"}' -u 'test@liferay.com:test'
+	 */
+	@GraphQLField(
+		description = "List the individuals who are members of an individual segment, each as a full individual record. Optionally narrowed further to an associated account, channel, interest, activity status, or date range, and searchable by name or email with `search`. Use this to answer 'who is in this segment' style questions. To read the membership records instead, which also cover individuals who have left the segment, use `getWorkspaceGroupIndividualSegmentMembershipsPage`."
+	)
+	public IndividualPage workspaceGroupIndividualSegmentIndividuals(
+			@GraphQLName("groupId") Long groupId,
+			@GraphQLName("individualSegmentId") String individualSegmentId,
+			@GraphQLName("accountId") String accountId,
+			@GraphQLName("activityStatus") String activityStatus,
+			@GraphQLName("channelId") String channelId,
+			@GraphQLName("includeAnonymousUsers") Boolean includeAnonymousUsers,
+			@GraphQLName("interestName") String interestName,
+			@GraphQLName("rangeEnd") String rangeEnd,
+			@GraphQLName("rangeKey") String rangeKey,
+			@GraphQLName("rangeStart") String rangeStart,
+			@GraphQLName("search") String search,
+			@GraphQLName("pageSize") int pageSize,
+			@GraphQLName("page") int page,
+			@GraphQLName("sort") String sortsString)
+		throws Exception {
+
+		return _applyComponentServiceObjects(
+			_individualResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			individualResource -> new IndividualPage(
+				individualResource.
+					getWorkspaceGroupIndividualSegmentIndividualsPage(
+						groupId, individualSegmentId, accountId, activityStatus,
+						channelId, includeAnonymousUsers, interestName,
+						rangeEnd, rangeKey, rangeStart, search,
+						Pagination.of(page, pageSize),
+						_sortsBiFunction.apply(
+							individualResource, sortsString))));
+	}
+
+	/**
+	 * Invoke this method with the command line:
+	 *
 	 * curl -H 'Content-Type: text/plain; charset=utf-8' -X 'POST' 'http://localhost:8080/o/graphql' -d $'{"query": "query {workspaceGroupChannelIndividualSegments(channelId: ___, groupId: ___, name: ___, page: ___, pageSize: ___, search: ___, status: ___){items {__}, page, pageSize, totalCount}}"}' -u 'test@liferay.com:test'
 	 */
 	@GraphQLField(
@@ -1684,4 +1723,4 @@ public class Query {
 	private com.liferay.portal.kernel.model.User _user;
 
 }
-// LIFERAY-REST-BUILDER-HASH:1613540740
+// LIFERAY-REST-BUILDER-HASH:454066343

@@ -699,6 +699,400 @@ public abstract class BaseIndividualResourceTestCase {
 		return testGraphQLIndividual_addIndividual();
 	}
 
+	@Test
+	public void testGetWorkspaceGroupIndividualSegmentIndividualsPage()
+		throws Exception {
+
+		Long groupId =
+			testGetWorkspaceGroupIndividualSegmentIndividualsPage_getGroupId();
+		Long irrelevantGroupId =
+			testGetWorkspaceGroupIndividualSegmentIndividualsPage_getIrrelevantGroupId();
+		String individualSegmentId =
+			testGetWorkspaceGroupIndividualSegmentIndividualsPage_getIndividualSegmentId();
+		String irrelevantIndividualSegmentId =
+			testGetWorkspaceGroupIndividualSegmentIndividualsPage_getIrrelevantIndividualSegmentId();
+
+		Page<Individual> page =
+			individualResource.
+				getWorkspaceGroupIndividualSegmentIndividualsPage(
+					groupId, individualSegmentId, RandomTestUtil.randomString(),
+					RandomTestUtil.randomString(),
+					RandomTestUtil.randomString(), null,
+					RandomTestUtil.randomString(),
+					RandomTestUtil.randomString(),
+					RandomTestUtil.randomString(),
+					RandomTestUtil.randomString(), null, Pagination.of(1, 10),
+					null);
+
+		long totalCount = page.getTotalCount();
+
+		if ((irrelevantGroupId != null) &&
+			(irrelevantIndividualSegmentId != null)) {
+
+			Individual irrelevantIndividual =
+				testGetWorkspaceGroupIndividualSegmentIndividualsPage_addIndividual(
+					irrelevantGroupId, irrelevantIndividualSegmentId,
+					randomIrrelevantIndividual());
+
+			page =
+				individualResource.
+					getWorkspaceGroupIndividualSegmentIndividualsPage(
+						irrelevantGroupId, irrelevantIndividualSegmentId, null,
+						null, null, null, null, null, null, null, null,
+						Pagination.of(1, (int)totalCount + 1), null);
+
+			Assert.assertEquals(totalCount + 1, page.getTotalCount());
+
+			assertContains(
+				irrelevantIndividual, (List<Individual>)page.getItems());
+			assertValid(
+				page,
+				testGetWorkspaceGroupIndividualSegmentIndividualsPage_getExpectedActions(
+					irrelevantGroupId, irrelevantIndividualSegmentId));
+		}
+
+		Individual individual1 =
+			testGetWorkspaceGroupIndividualSegmentIndividualsPage_addIndividual(
+				groupId, individualSegmentId, randomIndividual());
+
+		Individual individual2 =
+			testGetWorkspaceGroupIndividualSegmentIndividualsPage_addIndividual(
+				groupId, individualSegmentId, randomIndividual());
+
+		page =
+			individualResource.
+				getWorkspaceGroupIndividualSegmentIndividualsPage(
+					groupId, individualSegmentId, null, null, null, null, null,
+					null, null, null, null, Pagination.of(1, 10), null);
+
+		Assert.assertEquals(totalCount + 2, page.getTotalCount());
+
+		assertContains(individual1, (List<Individual>)page.getItems());
+		assertContains(individual2, (List<Individual>)page.getItems());
+		assertValid(
+			page,
+			testGetWorkspaceGroupIndividualSegmentIndividualsPage_getExpectedActions(
+				groupId, individualSegmentId));
+	}
+
+	protected Map<String, Map<String, String>>
+			testGetWorkspaceGroupIndividualSegmentIndividualsPage_getExpectedActions(
+				Long groupId, String individualSegmentId)
+		throws Exception {
+
+		Map<String, Map<String, String>> expectedActions = new HashMap<>();
+
+		return expectedActions;
+	}
+
+	@Test
+	public void testGetWorkspaceGroupIndividualSegmentIndividualsPageWithPagination()
+		throws Exception {
+
+		Long groupId =
+			testGetWorkspaceGroupIndividualSegmentIndividualsPage_getGroupId();
+		String individualSegmentId =
+			testGetWorkspaceGroupIndividualSegmentIndividualsPage_getIndividualSegmentId();
+
+		Page<Individual> individualsPage =
+			individualResource.
+				getWorkspaceGroupIndividualSegmentIndividualsPage(
+					groupId, individualSegmentId, null, null, null, null, null,
+					null, null, null, null, null, null);
+
+		int totalCount = GetterUtil.getInteger(individualsPage.getTotalCount());
+
+		Individual individual1 =
+			testGetWorkspaceGroupIndividualSegmentIndividualsPage_addIndividual(
+				groupId, individualSegmentId, randomIndividual());
+
+		Individual individual2 =
+			testGetWorkspaceGroupIndividualSegmentIndividualsPage_addIndividual(
+				groupId, individualSegmentId, randomIndividual());
+
+		Individual individual3 =
+			testGetWorkspaceGroupIndividualSegmentIndividualsPage_addIndividual(
+				groupId, individualSegmentId, randomIndividual());
+
+		// See com.liferay.portal.vulcan.internal.configuration.HeadlessAPICompanyConfiguration#pageSizeLimit
+
+		int pageSizeLimit = 500;
+
+		if (totalCount >= (pageSizeLimit - 2)) {
+			Page<Individual> page1 =
+				individualResource.
+					getWorkspaceGroupIndividualSegmentIndividualsPage(
+						groupId, individualSegmentId, null, null, null, null,
+						null, null, null, null, null,
+						Pagination.of(
+							(int)Math.ceil((totalCount + 1.0) / pageSizeLimit),
+							pageSizeLimit),
+						null);
+
+			Assert.assertEquals(totalCount + 3, page1.getTotalCount());
+
+			assertContains(individual1, (List<Individual>)page1.getItems());
+
+			Page<Individual> page2 =
+				individualResource.
+					getWorkspaceGroupIndividualSegmentIndividualsPage(
+						groupId, individualSegmentId, null, null, null, null,
+						null, null, null, null, null,
+						Pagination.of(
+							(int)Math.ceil((totalCount + 2.0) / pageSizeLimit),
+							pageSizeLimit),
+						null);
+
+			assertContains(individual2, (List<Individual>)page2.getItems());
+
+			Page<Individual> page3 =
+				individualResource.
+					getWorkspaceGroupIndividualSegmentIndividualsPage(
+						groupId, individualSegmentId, null, null, null, null,
+						null, null, null, null, null,
+						Pagination.of(
+							(int)Math.ceil((totalCount + 3.0) / pageSizeLimit),
+							pageSizeLimit),
+						null);
+
+			assertContains(individual3, (List<Individual>)page3.getItems());
+		}
+		else {
+			Page<Individual> page1 =
+				individualResource.
+					getWorkspaceGroupIndividualSegmentIndividualsPage(
+						groupId, individualSegmentId, null, null, null, null,
+						null, null, null, null, null,
+						Pagination.of(1, totalCount + 2), null);
+
+			List<Individual> individuals1 = (List<Individual>)page1.getItems();
+
+			Assert.assertEquals(
+				individuals1.toString(), totalCount + 2, individuals1.size());
+
+			Page<Individual> page2 =
+				individualResource.
+					getWorkspaceGroupIndividualSegmentIndividualsPage(
+						groupId, individualSegmentId, null, null, null, null,
+						null, null, null, null, null,
+						Pagination.of(2, totalCount + 2), null);
+
+			Assert.assertEquals(totalCount + 3, page2.getTotalCount());
+
+			List<Individual> individuals2 = (List<Individual>)page2.getItems();
+
+			Assert.assertEquals(
+				individuals2.toString(), 1, individuals2.size());
+
+			Page<Individual> page3 =
+				individualResource.
+					getWorkspaceGroupIndividualSegmentIndividualsPage(
+						groupId, individualSegmentId, null, null, null, null,
+						null, null, null, null, null,
+						Pagination.of(1, (int)totalCount + 3), null);
+
+			assertContains(individual1, (List<Individual>)page3.getItems());
+			assertContains(individual2, (List<Individual>)page3.getItems());
+			assertContains(individual3, (List<Individual>)page3.getItems());
+		}
+	}
+
+	@Test
+	public void testGetWorkspaceGroupIndividualSegmentIndividualsPageWithSortDateTime()
+		throws Exception {
+
+		testGetWorkspaceGroupIndividualSegmentIndividualsPageWithSort(
+			EntityField.Type.DATE_TIME,
+			(entityField, individual1, individual2) -> {
+				BeanTestUtil.setProperty(
+					individual1, entityField.getName(),
+					new Date(System.currentTimeMillis() - (2 * Time.MINUTE)));
+			});
+	}
+
+	@Test
+	public void testGetWorkspaceGroupIndividualSegmentIndividualsPageWithSortDouble()
+		throws Exception {
+
+		testGetWorkspaceGroupIndividualSegmentIndividualsPageWithSort(
+			EntityField.Type.DOUBLE,
+			(entityField, individual1, individual2) -> {
+				BeanTestUtil.setProperty(
+					individual1, entityField.getName(), 0.1);
+				BeanTestUtil.setProperty(
+					individual2, entityField.getName(), 0.5);
+			});
+	}
+
+	@Test
+	public void testGetWorkspaceGroupIndividualSegmentIndividualsPageWithSortInteger()
+		throws Exception {
+
+		testGetWorkspaceGroupIndividualSegmentIndividualsPageWithSort(
+			EntityField.Type.INTEGER,
+			(entityField, individual1, individual2) -> {
+				BeanTestUtil.setProperty(individual1, entityField.getName(), 0);
+				BeanTestUtil.setProperty(individual2, entityField.getName(), 1);
+			});
+	}
+
+	@Test
+	public void testGetWorkspaceGroupIndividualSegmentIndividualsPageWithSortString()
+		throws Exception {
+
+		testGetWorkspaceGroupIndividualSegmentIndividualsPageWithSort(
+			EntityField.Type.STRING,
+			(entityField, individual1, individual2) -> {
+				Class<?> clazz = individual1.getClass();
+
+				String entityFieldName = entityField.getName();
+
+				Method method = clazz.getMethod(
+					"get" + StringUtil.upperCaseFirstLetter(entityFieldName));
+
+				Class<?> returnType = method.getReturnType();
+
+				if (returnType.isAssignableFrom(Map.class)) {
+					BeanTestUtil.setProperty(
+						individual1, entityFieldName,
+						Collections.singletonMap("Aaa", "Aaa"));
+					BeanTestUtil.setProperty(
+						individual2, entityFieldName,
+						Collections.singletonMap("Bbb", "Bbb"));
+				}
+				else if (entityFieldName.contains("email")) {
+					BeanTestUtil.setProperty(
+						individual1, entityFieldName,
+						"aaa" +
+							StringUtil.toLowerCase(
+								RandomTestUtil.randomString()) +
+									"@liferay.com");
+					BeanTestUtil.setProperty(
+						individual2, entityFieldName,
+						"bbb" +
+							StringUtil.toLowerCase(
+								RandomTestUtil.randomString()) +
+									"@liferay.com");
+				}
+				else {
+					BeanTestUtil.setProperty(
+						individual1, entityFieldName,
+						"aaa" +
+							StringUtil.toLowerCase(
+								RandomTestUtil.randomString()));
+					BeanTestUtil.setProperty(
+						individual2, entityFieldName,
+						"bbb" +
+							StringUtil.toLowerCase(
+								RandomTestUtil.randomString()));
+				}
+			});
+	}
+
+	protected void
+			testGetWorkspaceGroupIndividualSegmentIndividualsPageWithSort(
+				EntityField.Type type,
+				UnsafeTriConsumer
+					<EntityField, Individual, Individual, Exception>
+						unsafeTriConsumer)
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(type);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long groupId =
+			testGetWorkspaceGroupIndividualSegmentIndividualsPage_getGroupId();
+		String individualSegmentId =
+			testGetWorkspaceGroupIndividualSegmentIndividualsPage_getIndividualSegmentId();
+
+		Individual individual1 = randomIndividual();
+		Individual individual2 = randomIndividual();
+
+		for (EntityField entityField : entityFields) {
+			unsafeTriConsumer.accept(entityField, individual1, individual2);
+		}
+
+		individual1 =
+			testGetWorkspaceGroupIndividualSegmentIndividualsPage_addIndividual(
+				groupId, individualSegmentId, individual1);
+
+		individual2 =
+			testGetWorkspaceGroupIndividualSegmentIndividualsPage_addIndividual(
+				groupId, individualSegmentId, individual2);
+
+		Page<Individual> page =
+			individualResource.
+				getWorkspaceGroupIndividualSegmentIndividualsPage(
+					groupId, individualSegmentId, null, null, null, null, null,
+					null, null, null, null, null, null);
+
+		for (EntityField entityField : entityFields) {
+			Page<Individual> ascPage =
+				individualResource.
+					getWorkspaceGroupIndividualSegmentIndividualsPage(
+						groupId, individualSegmentId, null, null, null, null,
+						null, null, null, null, null,
+						Pagination.of(1, (int)page.getTotalCount() + 1),
+						entityField.getName() + ":asc");
+
+			assertContains(individual1, (List<Individual>)ascPage.getItems());
+			assertContains(individual2, (List<Individual>)ascPage.getItems());
+
+			Page<Individual> descPage =
+				individualResource.
+					getWorkspaceGroupIndividualSegmentIndividualsPage(
+						groupId, individualSegmentId, null, null, null, null,
+						null, null, null, null, null,
+						Pagination.of(1, (int)page.getTotalCount() + 1),
+						entityField.getName() + ":desc");
+
+			assertContains(individual2, (List<Individual>)descPage.getItems());
+			assertContains(individual1, (List<Individual>)descPage.getItems());
+		}
+	}
+
+	protected Individual
+			testGetWorkspaceGroupIndividualSegmentIndividualsPage_addIndividual(
+				Long groupId, String individualSegmentId, Individual individual)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long
+			testGetWorkspaceGroupIndividualSegmentIndividualsPage_getGroupId()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long
+			testGetWorkspaceGroupIndividualSegmentIndividualsPage_getIrrelevantGroupId()
+		throws Exception {
+
+		return null;
+	}
+
+	protected String
+			testGetWorkspaceGroupIndividualSegmentIndividualsPage_getIndividualSegmentId()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected String
+			testGetWorkspaceGroupIndividualSegmentIndividualsPage_getIrrelevantIndividualSegmentId()
+		throws Exception {
+
+		return null;
+	}
+
 	protected Individual testGraphQLIndividual_addIndividual()
 		throws Exception {
 
@@ -2042,4 +2436,4 @@ public abstract class BaseIndividualResourceTestCase {
 		_individualResource;
 
 }
-// LIFERAY-REST-BUILDER-HASH:-1869924808
+// LIFERAY-REST-BUILDER-HASH:-1409163186
