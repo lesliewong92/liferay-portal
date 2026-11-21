@@ -6,6 +6,7 @@
 package com.liferay.osb.faro.rest.internal.jaxrs.exception.mapper;
 
 import com.liferay.osb.faro.engine.client.exception.HeadlessRequestRejectedException;
+import com.liferay.osb.faro.util.FaroThreadLocal;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.vulcan.jaxrs.exception.mapper.Problem;
@@ -17,6 +18,7 @@ import jakarta.ws.rs.core.Response;
 import java.util.Collections;
 import java.util.Objects;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -41,6 +43,11 @@ public class HeadlessRequestRejectedExceptionMapperTest {
 		ReflectionTestUtil.setFieldValue(
 			_headlessRequestRejectedExceptionMapper, "httpHeaders",
 			httpHeaders);
+	}
+
+	@After
+	public void tearDown() {
+		FaroThreadLocal.setOrigin(null);
 	}
 
 	@Test
@@ -126,6 +133,35 @@ public class HeadlessRequestRejectedExceptionMapperTest {
 			null, "service-capacity-unavailable", null,
 			Response.Status.SERVICE_UNAVAILABLE,
 			"Unable to process the request right now, retry later");
+	}
+
+	@Test
+	public void testToResponseWithMCPOrigin() {
+		FaroThreadLocal.setOrigin("mcp");
+
+		long retryAfterSeconds = RandomTestUtil.randomLong();
+
+		Response response = _headlessRequestRejectedExceptionMapper.toResponse(
+			new HeadlessRequestRejectedException(
+				null, RandomTestUtil.randomString(), "query-in-progress",
+				retryAfterSeconds));
+
+		Assert.assertNull(response.getHeaderString(HttpHeaders.RETRY_AFTER));
+		Assert.assertEquals(
+			Response.Status.ACCEPTED.getStatusCode(), response.getStatus());
+
+		Problem problem = (Problem)response.getEntity();
+
+		Assert.assertEquals(
+			"Query is still running, repeat the same request with the same " +
+				"parameters after " + retryAfterSeconds + " seconds",
+			problem.getTitle());
+
+		_testToResponse(
+			null, "service-capacity-unavailable", retryAfterSeconds,
+			Response.Status.SERVICE_UNAVAILABLE,
+			"Unable to process the request right now, retry after " +
+				retryAfterSeconds + " seconds");
 	}
 
 	private void _testToResponse(
