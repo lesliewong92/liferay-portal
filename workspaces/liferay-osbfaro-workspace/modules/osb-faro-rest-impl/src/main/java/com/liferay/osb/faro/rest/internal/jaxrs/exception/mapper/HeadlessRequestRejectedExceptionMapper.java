@@ -6,6 +6,7 @@
 package com.liferay.osb.faro.rest.internal.jaxrs.exception.mapper;
 
 import com.liferay.osb.faro.engine.client.exception.HeadlessRequestRejectedException;
+import com.liferay.osb.faro.util.FaroThreadLocal;
 import com.liferay.portal.vulcan.jaxrs.exception.mapper.BaseExceptionMapper;
 import com.liferay.portal.vulcan.jaxrs.exception.mapper.Problem;
 
@@ -116,8 +117,14 @@ public class HeadlessRequestRejectedExceptionMapper
 		}
 
 		if (Objects.equals(messageKey, "query-in-progress")) {
+			Response.Status status = Response.Status.SERVICE_UNAVAILABLE;
+
+			if (Objects.equals(FaroThreadLocal.getOrigin(), "mcp")) {
+				status = Response.Status.ACCEPTED;
+			}
+
 			return new Problem(
-				Response.Status.SERVICE_UNAVAILABLE,
+				status,
 				_getRetryTitle(
 					headlessRequestRejectedException.getRetryAfterSeconds(),
 					"Query is still running, repeat the same request with " +
